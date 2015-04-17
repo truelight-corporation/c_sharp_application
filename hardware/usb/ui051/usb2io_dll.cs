@@ -129,3 +129,4 @@ namespace ui051
         public static extern int Usb2ioGetUartBr(IntPtr USB2IO_hdl, ref int UartBr);
     }
 }
+

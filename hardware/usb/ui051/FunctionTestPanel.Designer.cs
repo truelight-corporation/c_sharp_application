@@ -39,8 +39,16 @@
             this.tcFunction = new System.Windows.Forms.TabControl();
             this.tpSignalRegister = new System.Windows.Forms.TabPage();
             this.tpMultiRegister = new System.Windows.Forms.TabPage();
+            this.dgvMultiRegister = new System.Windows.Forms.DataGridView();
+            this.bMultiWrite = new System.Windows.Forms.Button();
+            this.bMultiRead = new System.Windows.Forms.Button();
+            this.tbLength = new System.Windows.Forms.TextBox();
+            this.lLength = new System.Windows.Forms.Label();
+            this.cbConnected = new System.Windows.Forms.CheckBox();
             this.tcFunction.SuspendLayout();
             this.tpSignalRegister.SuspendLayout();
+            this.tpMultiRegister.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMultiRegister)).BeginInit();
             this.SuspendLayout();
             // 
             // lDevAddr
@@ -58,6 +66,7 @@
             this.tbDevAddr.Name = "tbDevAddr";
             this.tbDevAddr.Size = new System.Drawing.Size(40, 22);
             this.tbDevAddr.TabIndex = 1;
+            this.tbDevAddr.Text = "80";
             // 
             // lRegAddr
             // 
@@ -74,6 +83,7 @@
             this.tbRegAddr.Name = "tbRegAddr";
             this.tbRegAddr.Size = new System.Drawing.Size(40, 22);
             this.tbRegAddr.TabIndex = 3;
+            this.tbRegAddr.Text = "0";
             // 
             // lValue
             // 
@@ -99,7 +109,7 @@
             this.bSignalRead.TabIndex = 6;
             this.bSignalRead.Text = "Read";
             this.bSignalRead.UseVisualStyleBackColor = true;
-            this.bSignalRead.Click += new System.EventHandler(this.bRead_Click);
+            this.bSignalRead.Click += new System.EventHandler(this._bSingleReadClick);
             // 
             // bSignalWrite
             // 
@@ -109,6 +119,7 @@
             this.bSignalWrite.TabIndex = 7;
             this.bSignalWrite.Text = "Write";
             this.bSignalWrite.UseVisualStyleBackColor = true;
+            this.bSignalWrite.Click += new System.EventHandler(this._bSignalWriteClick);
             // 
             // tcFunction
             // 
@@ -136,6 +147,11 @@
             // 
             // tpMultiRegister
             // 
+            this.tpMultiRegister.Controls.Add(this.dgvMultiRegister);
+            this.tpMultiRegister.Controls.Add(this.bMultiWrite);
+            this.tpMultiRegister.Controls.Add(this.bMultiRead);
+            this.tpMultiRegister.Controls.Add(this.tbLength);
+            this.tpMultiRegister.Controls.Add(this.lLength);
             this.tpMultiRegister.Location = new System.Drawing.Point(4, 22);
             this.tpMultiRegister.Name = "tpMultiRegister";
             this.tpMultiRegister.Padding = new System.Windows.Forms.Padding(3);
@@ -144,10 +160,70 @@
             this.tpMultiRegister.Text = "Multi Register";
             this.tpMultiRegister.UseVisualStyleBackColor = true;
             // 
+            // dgvMultiRegister
+            // 
+            this.dgvMultiRegister.AllowUserToAddRows = false;
+            this.dgvMultiRegister.AllowUserToDeleteRows = false;
+            this.dgvMultiRegister.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dgvMultiRegister.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMultiRegister.Location = new System.Drawing.Point(106, 3);
+            this.dgvMultiRegister.Name = "dgvMultiRegister";
+            this.dgvMultiRegister.RowTemplate.Height = 24;
+            this.dgvMultiRegister.Size = new System.Drawing.Size(160, 385);
+            this.dgvMultiRegister.TabIndex = 4;
+            // 
+            // bMultiWrite
+            // 
+            this.bMultiWrite.Location = new System.Drawing.Point(10, 68);
+            this.bMultiWrite.Name = "bMultiWrite";
+            this.bMultiWrite.Size = new System.Drawing.Size(60, 23);
+            this.bMultiWrite.TabIndex = 3;
+            this.bMultiWrite.Text = "Write";
+            this.bMultiWrite.UseVisualStyleBackColor = true;
+            this.bMultiWrite.Click += new System.EventHandler(this._bMultiWriteClick);
+            // 
+            // bMultiRead
+            // 
+            this.bMultiRead.Location = new System.Drawing.Point(10, 39);
+            this.bMultiRead.Name = "bMultiRead";
+            this.bMultiRead.Size = new System.Drawing.Size(60, 23);
+            this.bMultiRead.TabIndex = 2;
+            this.bMultiRead.Text = "Read";
+            this.bMultiRead.UseVisualStyleBackColor = true;
+            this.bMultiRead.Click += new System.EventHandler(this._bMultiReadClick);
+            // 
+            // tbLength
+            // 
+            this.tbLength.Location = new System.Drawing.Point(58, 11);
+            this.tbLength.Name = "tbLength";
+            this.tbLength.Size = new System.Drawing.Size(40, 22);
+            this.tbLength.TabIndex = 1;
+            // 
+            // lLength
+            // 
+            this.lLength.AutoSize = true;
+            this.lLength.Location = new System.Drawing.Point(8, 14);
+            this.lLength.Name = "lLength";
+            this.lLength.Size = new System.Drawing.Size(44, 12);
+            this.lLength.TabIndex = 0;
+            this.lLength.Text = "Length :";
+            // 
+            // cbConnected
+            // 
+            this.cbConnected.AutoSize = true;
+            this.cbConnected.Location = new System.Drawing.Point(217, 10);
+            this.cbConnected.Name = "cbConnected";
+            this.cbConnected.Size = new System.Drawing.Size(74, 16);
+            this.cbConnected.TabIndex = 10;
+            this.cbConnected.Text = "Connected";
+            this.cbConnected.UseVisualStyleBackColor = true;
+            this.cbConnected.CheckedChanged += new System.EventHandler(this._cbConnectedCheckedChanged);
+            // 
             // FunctionTestPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cbConnected);
             this.Controls.Add(this.lDevAddr);
             this.Controls.Add(this.tcFunction);
             this.Controls.Add(this.tbDevAddr);
@@ -160,6 +236,9 @@
             this.tcFunction.ResumeLayout(false);
             this.tpSignalRegister.ResumeLayout(false);
             this.tpSignalRegister.PerformLayout();
+            this.tpMultiRegister.ResumeLayout(false);
+            this.tpMultiRegister.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMultiRegister)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -178,5 +257,11 @@
         private System.Windows.Forms.TabControl tcFunction;
         private System.Windows.Forms.TabPage tpSignalRegister;
         private System.Windows.Forms.TabPage tpMultiRegister;
+        private System.Windows.Forms.CheckBox cbConnected;
+        private System.Windows.Forms.Button bMultiWrite;
+        private System.Windows.Forms.Button bMultiRead;
+        private System.Windows.Forms.TextBox tbLength;
+        private System.Windows.Forms.Label lLength;
+        private System.Windows.Forms.DataGridView dgvMultiRegister;
     }
 }
