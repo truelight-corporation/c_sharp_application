@@ -112,6 +112,7 @@ namespace ui051
             int iRv;
             byte[] bBuf = new byte[256];
 
+            tbValue.Text = "";
             if (cbConnected.Checked == false) {
                 if (_ConnectDevice() < 0)
                     return;
@@ -122,8 +123,12 @@ namespace ui051
                 return;
 
             iRv = ui051.usb2io_dll.Usb2ioI2cRead(hUsb2io, System.Int32.Parse(tbDevAddr.Text), System.Int32.Parse(tbRegAddr.Text), 1, 1, ref bBuf[0]);
-            if (iRv != 0)
+            if (iRv != 0) {
                 MessageBox.Show("Usb2ioI2cRead() iRv: " + iRv);
+                if (_DisconnectDevice() < 0)
+                    return;
+                cbConnected.Checked = false;
+            }
             else
                 tbValue.Text = bBuf[0].ToString();
         }
@@ -143,7 +148,6 @@ namespace ui051
 
         private void _bSignalWriteClick(object sender, EventArgs e)
         {
-            IntPtr hUsb2io = System.IntPtr.Zero;
             int iRv;
             byte[] bBuf = new byte[256];
 
@@ -159,8 +163,12 @@ namespace ui051
             bBuf[0] = Convert.ToByte(tbValue.Text);
 
             iRv = ui051.usb2io_dll.Usb2ioI2cWrite(hUsb2io, System.Int32.Parse(tbDevAddr.Text), System.Int32.Parse(tbRegAddr.Text), 1, 1, ref bBuf[0]);
-            if (iRv != 0)
+            if (iRv != 0) {
                 MessageBox.Show("Usb2ioI2cRead() iRv: " + iRv);
+                if (_DisconnectDevice() < 0)
+                    return;
+                cbConnected.Checked = false;
+            }
         }
 
         private void _cbConnectedCheckedChanged(object sender, EventArgs e)
@@ -201,9 +209,9 @@ namespace ui051
         private void _bMultiReadClick(object sender, EventArgs e)
         {
             int iRv;
-
             Byte[] bBuf = new Byte[256];
 
+            dtValue.Clear();
             if (cbConnected.Checked == false)
             {
                 if (_ConnectDevice() < 0)
@@ -217,18 +225,40 @@ namespace ui051
             iRv = ui051.usb2io_dll.Usb2ioI2cRead(hUsb2io, Convert.ToInt32(tbDevAddr.Text), Convert.ToInt32(tbRegAddr.Text), 1, Convert.ToInt32(tbLength.Text), ref bBuf[0]);
             if (iRv != 0) {
                 MessageBox.Show("Usb2ioI2cRead() iRv: " + iRv);
+                if (_DisconnectDevice() < 0)
+                    return;
+                cbConnected.Checked = false;
                 return;
             }
 
-            dtValue.Clear();
             for (int i = 0; i < Convert.ToInt32(tbLength.Text); i++)
                 dtValue.Rows.Add(Convert.ToByte(tbRegAddr.Text) + i, bBuf[i]);
             
+            if (Convert.ToInt32(tbLength.Text) == 128)
+                dgvMultiRegister.AllowUserToAddRows = false;
+            else
+                dgvMultiRegister.AllowUserToAddRows = true;
         }
 
         private void _bMultiWriteClick(object sender, EventArgs e)
         {
 
+        }
+
+        private void _dgvMultiRegisterUserAddedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            if (dgvMultiRegister.RowCount == 129) {
+                dgvMultiRegister.AllowUserToAddRows = false;
+                tbLength.Text = Convert.ToString(dgvMultiRegister.RowCount);
+            }
+            else
+                tbLength.Text = Convert.ToString(dgvMultiRegister.RowCount - 1);
+        }
+
+        private void _dgvMultiRegisterUserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            dgvMultiRegister.AllowUserToAddRows = true;
+            tbLength.Text = Convert.ToString(dgvMultiRegister.RowCount - 1);
         }
     }
 }

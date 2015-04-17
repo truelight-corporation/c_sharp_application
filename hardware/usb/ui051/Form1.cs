@@ -15,6 +15,8 @@ namespace ui051
         public Form1()
         {
             InitializeComponent();
+            this.ClientSize = new System.Drawing.Size(this.functionTestPanel1.Size.Width, this.functionTestPanel1.Size.Height);
+            
         }
     }
 }

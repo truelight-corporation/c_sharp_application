@@ -128,7 +128,7 @@
             this.tcFunction.Location = new System.Drawing.Point(3, 35);
             this.tcFunction.Name = "tcFunction";
             this.tcFunction.SelectedIndex = 0;
-            this.tcFunction.Size = new System.Drawing.Size(628, 417);
+            this.tcFunction.Size = new System.Drawing.Size(288, 208);
             this.tcFunction.TabIndex = 8;
             // 
             // tpSignalRegister
@@ -140,7 +140,7 @@
             this.tpSignalRegister.Location = new System.Drawing.Point(4, 22);
             this.tpSignalRegister.Name = "tpSignalRegister";
             this.tpSignalRegister.Padding = new System.Windows.Forms.Padding(3);
-            this.tpSignalRegister.Size = new System.Drawing.Size(620, 391);
+            this.tpSignalRegister.Size = new System.Drawing.Size(280, 182);
             this.tpSignalRegister.TabIndex = 0;
             this.tpSignalRegister.Text = "Signal Register";
             this.tpSignalRegister.UseVisualStyleBackColor = true;
@@ -155,26 +155,26 @@
             this.tpMultiRegister.Location = new System.Drawing.Point(4, 22);
             this.tpMultiRegister.Name = "tpMultiRegister";
             this.tpMultiRegister.Padding = new System.Windows.Forms.Padding(3);
-            this.tpMultiRegister.Size = new System.Drawing.Size(620, 391);
+            this.tpMultiRegister.Size = new System.Drawing.Size(280, 182);
             this.tpMultiRegister.TabIndex = 1;
             this.tpMultiRegister.Text = "Multi Register";
             this.tpMultiRegister.UseVisualStyleBackColor = true;
             // 
             // dgvMultiRegister
             // 
-            this.dgvMultiRegister.AllowUserToAddRows = false;
-            this.dgvMultiRegister.AllowUserToDeleteRows = false;
             this.dgvMultiRegister.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.dgvMultiRegister.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMultiRegister.Location = new System.Drawing.Point(106, 3);
+            this.dgvMultiRegister.Location = new System.Drawing.Point(58, 39);
             this.dgvMultiRegister.Name = "dgvMultiRegister";
             this.dgvMultiRegister.RowTemplate.Height = 24;
-            this.dgvMultiRegister.Size = new System.Drawing.Size(160, 385);
+            this.dgvMultiRegister.Size = new System.Drawing.Size(170, 140);
             this.dgvMultiRegister.TabIndex = 4;
+            this.dgvMultiRegister.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this._dgvMultiRegisterUserAddedRow);
+            this.dgvMultiRegister.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this._dgvMultiRegisterUserDeletedRow);
             // 
             // bMultiWrite
             // 
-            this.bMultiWrite.Location = new System.Drawing.Point(10, 68);
+            this.bMultiWrite.Location = new System.Drawing.Point(170, 11);
             this.bMultiWrite.Name = "bMultiWrite";
             this.bMultiWrite.Size = new System.Drawing.Size(60, 23);
             this.bMultiWrite.TabIndex = 3;
@@ -184,7 +184,7 @@
             // 
             // bMultiRead
             // 
-            this.bMultiRead.Location = new System.Drawing.Point(10, 39);
+            this.bMultiRead.Location = new System.Drawing.Point(104, 11);
             this.bMultiRead.Name = "bMultiRead";
             this.bMultiRead.Size = new System.Drawing.Size(60, 23);
             this.bMultiRead.TabIndex = 2;
@@ -229,10 +229,10 @@
             this.Controls.Add(this.tbDevAddr);
             this.Controls.Add(this.tbRegAddr);
             this.Controls.Add(this.lRegAddr);
-            this.MaximumSize = new System.Drawing.Size(634, 455);
-            this.MinimumSize = new System.Drawing.Size(634, 455);
+            this.MaximumSize = new System.Drawing.Size(294, 246);
+            this.MinimumSize = new System.Drawing.Size(294, 246);
             this.Name = "FunctionTestPanel";
-            this.Size = new System.Drawing.Size(634, 455);
+            this.Size = new System.Drawing.Size(294, 246);
             this.tcFunction.ResumeLayout(false);
             this.tpSignalRegister.ResumeLayout(false);
             this.tpSignalRegister.PerformLayout();
