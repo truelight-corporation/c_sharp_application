@@ -242,7 +242,28 @@ namespace ui051
 
         private void _bMultiWriteClick(object sender, EventArgs e)
         {
+            int iRv;
+            Byte[] bBuf = new Byte[256];
 
+            if (cbConnected.Checked == false) {
+                if (_ConnectDevice() < 0)
+                    return;
+                cbConnected.Checked = true;
+            }
+
+            if (_CheckMultiReadInput() < 0)
+                return;
+
+            foreach (DataRow row in dtValue.Rows) {
+                bBuf[0] = Convert.ToByte(row.ItemArray[1]);
+                iRv = ui051.usb2io_dll.Usb2ioI2cWrite(hUsb2io, System.Int32.Parse(tbDevAddr.Text), Convert.ToInt32(row.ItemArray[0]), 1, 1, ref bBuf[0]);
+                if (iRv != 0) {
+                    MessageBox.Show("Usb2ioI2cRead() iRv: " + iRv);
+                    if (_DisconnectDevice() < 0)
+                        return;
+                    cbConnected.Checked = false;
+                }
+            }
         }
 
         private void _dgvMultiRegisterUserAddedRow(object sender, DataGridViewRowEventArgs e)

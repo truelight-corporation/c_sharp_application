@@ -34,10 +34,10 @@
             // functionTestPanel1
             // 
             this.functionTestPanel1.Location = new System.Drawing.Point(-2, 0);
-            this.functionTestPanel1.MaximumSize = new System.Drawing.Size(294, 246);
-            this.functionTestPanel1.MinimumSize = new System.Drawing.Size(294, 246);
+            this.functionTestPanel1.MaximumSize = new System.Drawing.Size(294, 455);
+            this.functionTestPanel1.MinimumSize = new System.Drawing.Size(294, 455);
             this.functionTestPanel1.Name = "functionTestPanel1";
-            this.functionTestPanel1.Size = new System.Drawing.Size(294, 246);
+            this.functionTestPanel1.Size = new System.Drawing.Size(294, 455);
             this.functionTestPanel1.TabIndex = 0;
             // 
             // Form1
@@ -46,6 +46,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(632, 453);
             this.Controls.Add(this.functionTestPanel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Form1";
