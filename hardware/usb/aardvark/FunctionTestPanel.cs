@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace aardvark
+namespace AardvarkAdapter
 {
     public partial class FunctionTestPanel : UserControl
     {

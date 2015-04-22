@@ -1,4 +1,4 @@
-﻿namespace aardvark
+﻿namespace AardvarkAdapter
 {
     partial class Form1
     {
@@ -27,7 +27,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.functionTestPanel1 = new aardvark.FunctionTestPanel();
+            this.functionTestPanel1 = new AardvarkAdapter.FunctionTestPanel();
             this.SuspendLayout();
             // 
             // functionTestPanel1

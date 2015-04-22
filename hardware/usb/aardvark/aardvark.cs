@@ -59,7 +59,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyrightAttribute("Total Phase, Inc. 2014")]
 #endif
 
-namespace aardvark {
+namespace AardvarkAdapter {
 
 public enum AardvarkStatus : int {
     /* General codes (0 to -99) */

@@ -1,4 +1,4 @@
-﻿namespace aardvark
+﻿namespace AardvarkAdapter
 {
     partial class FunctionTestPanel
     {

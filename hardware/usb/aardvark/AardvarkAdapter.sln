@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aardvark", "aardvark.csproj", "{87D176D5-27A0-43C3-9300-42F34A8AB686}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AardvarkAdapter", "AardvarkAdapter.csproj", "{87D176D5-27A0-43C3-9300-42F34A8AB686}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
