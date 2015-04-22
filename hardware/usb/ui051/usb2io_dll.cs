@@ -4,7 +4,7 @@ using System.Text;
 
 using System.Runtime.InteropServices;
 
-namespace ui051
+namespace Ui051Adapter
 {
     class usb2io_dll
     {

@@ -7,8 +7,8 @@
     <ProjectGuid>{EC46EE59-28C8-440A-9CC9-D45566ADB7DB}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ui051</RootNamespace>
-    <AssemblyName>ui051</AssemblyName>
+    <RootNamespace>Ui051Adapter</RootNamespace>
+    <AssemblyName>Ui051Adapter</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <PublishUrl>publish\</PublishUrl>
@@ -108,6 +108,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

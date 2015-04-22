@@ -1,4 +1,4 @@
-﻿namespace ui051
+﻿namespace Ui051Adapter
 {
     partial class FunctionTestPanel
     {

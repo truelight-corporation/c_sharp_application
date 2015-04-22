@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ui051
+namespace Ui051Adapter
 {
     public partial class FunctionTestPanel : UserControl
     {
@@ -28,7 +28,7 @@ namespace ui051
             int iRv;
 
             if (hUsb2io.ToInt32() > 0) {
-                iRv = ui051.usb2io_dll.Usb2ioClose(hUsb2io);
+                iRv = Ui051Adapter.usb2io_dll.Usb2ioClose(hUsb2io);
                 if (iRv != 0) {
                     MessageBox.Show("Usb2ioClose() fail: " + iRv + "!!");
                     return -1;
@@ -53,7 +53,7 @@ namespace ui051
             if (hUsb2io.ToInt32() > 0)
                 return 1;
 
-            hUsb2io = ui051.usb2io_dll.Usb2ioOpen(1);
+            hUsb2io = Ui051Adapter.usb2io_dll.Usb2ioOpen(1);
             if (hUsb2io.ToInt32() < 0)
             {
                 MessageBox.Show("Open device fail!!\n" +
@@ -61,14 +61,14 @@ namespace ui051
                 return -1;
             }
 
-            iRv = ui051.usb2io_dll.Usb2ioEnableI2c(hUsb2io);
+            iRv = Ui051Adapter.usb2io_dll.Usb2ioEnableI2c(hUsb2io);
             if (iRv != 0)
             {
                 MessageBox.Show("Usb2ioEnableI2c() fail: " + iRv + "!!");
                 return -1;
             }
 
-            iRv = ui051.usb2io_dll.Usb2ioSetI2cSpeed(hUsb2io, 0);
+            iRv = Ui051Adapter.usb2io_dll.Usb2ioSetI2cSpeed(hUsb2io, 0);
             if (iRv != 0)
             {
                 MessageBox.Show("Usb2ioSetI2cSpeed() fail: " + iRv + "!!");
@@ -122,7 +122,7 @@ namespace ui051
             if (_CheckSignalReadInput() < 0)
                 return;
 
-            iRv = ui051.usb2io_dll.Usb2ioI2cRead(hUsb2io, System.Int32.Parse(tbDevAddr.Text), System.Int32.Parse(tbRegAddr.Text), 1, 1, ref bBuf[0]);
+            iRv = Ui051Adapter.usb2io_dll.Usb2ioI2cRead(hUsb2io, System.Int32.Parse(tbDevAddr.Text), System.Int32.Parse(tbRegAddr.Text), 1, 1, ref bBuf[0]);
             if (iRv != 0) {
                 MessageBox.Show("Usb2ioI2cRead() iRv: " + iRv);
                 if (_DisconnectDevice() < 0)
@@ -162,7 +162,7 @@ namespace ui051
 
             bBuf[0] = Convert.ToByte(tbValue.Text);
 
-            iRv = ui051.usb2io_dll.Usb2ioI2cWrite(hUsb2io, System.Int32.Parse(tbDevAddr.Text), System.Int32.Parse(tbRegAddr.Text), 1, 1, ref bBuf[0]);
+            iRv = Ui051Adapter.usb2io_dll.Usb2ioI2cWrite(hUsb2io, System.Int32.Parse(tbDevAddr.Text), System.Int32.Parse(tbRegAddr.Text), 1, 1, ref bBuf[0]);
             if (iRv != 0) {
                 MessageBox.Show("Usb2ioI2cRead() iRv: " + iRv);
                 if (_DisconnectDevice() < 0)
@@ -222,7 +222,7 @@ namespace ui051
             if (_CheckMultiReadInput() < 0)
                 return;
 
-            iRv = ui051.usb2io_dll.Usb2ioI2cRead(hUsb2io, Convert.ToInt32(tbDevAddr.Text), Convert.ToInt32(tbRegAddr.Text), 1, Convert.ToInt32(tbLength.Text), ref bBuf[0]);
+            iRv = Ui051Adapter.usb2io_dll.Usb2ioI2cRead(hUsb2io, Convert.ToInt32(tbDevAddr.Text), Convert.ToInt32(tbRegAddr.Text), 1, Convert.ToInt32(tbLength.Text), ref bBuf[0]);
             if (iRv != 0) {
                 MessageBox.Show("Usb2ioI2cRead() iRv: " + iRv);
                 if (_DisconnectDevice() < 0)
@@ -256,7 +256,7 @@ namespace ui051
 
             foreach (DataRow row in dtValue.Rows) {
                 bBuf[0] = Convert.ToByte(row.ItemArray[1]);
-                iRv = ui051.usb2io_dll.Usb2ioI2cWrite(hUsb2io, System.Int32.Parse(tbDevAddr.Text), Convert.ToInt32(row.ItemArray[0]), 1, 1, ref bBuf[0]);
+                iRv = Ui051Adapter.usb2io_dll.Usb2ioI2cWrite(hUsb2io, System.Int32.Parse(tbDevAddr.Text), Convert.ToInt32(row.ItemArray[0]), 1, 1, ref bBuf[0]);
                 if (iRv != 0) {
                     MessageBox.Show("Usb2ioI2cRead() iRv: " + iRv);
                     if (_DisconnectDevice() < 0)

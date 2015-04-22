@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ui051
+namespace Ui051Adapter
 {
     static class Program
     {

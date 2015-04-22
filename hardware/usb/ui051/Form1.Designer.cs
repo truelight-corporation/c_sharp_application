@@ -1,4 +1,4 @@
-﻿namespace ui051
+﻿namespace Ui051Adapter
 {
     partial class Form1
     {
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.functionTestPanel1 = new ui051.FunctionTestPanel();
+            this.functionTestPanel1 = new Ui051Adapter.FunctionTestPanel();
             this.SuspendLayout();
             // 
             // functionTestPanel1
