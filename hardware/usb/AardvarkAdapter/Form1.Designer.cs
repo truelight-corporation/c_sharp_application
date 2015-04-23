@@ -46,7 +46,7 @@
             this.ClientSize = new System.Drawing.Size(270, 304);
             this.Controls.Add(this.functionTestPanel1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Aardvark adapter I2C test";
             this.ResumeLayout(false);
 
         }
