@@ -9,7 +9,7 @@ using AardvarkAdapter;
 
 namespace I2cMasterInterface
 {
-    class I2cMaster
+    public class I2cMaster
     {
         private delegate int AdapterConnectedCB(int handler);
 
