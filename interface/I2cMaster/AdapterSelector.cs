@@ -43,10 +43,8 @@ namespace I2cMasterInterface
             lbAardvark.DataSource = lAdapter;
         }
 
-        private void bLBAUpdate_Click(object sender, EventArgs e)
+        public int UpdateAdapterApi()
         {
-            
-            
             string tmp;
             int numElem = 16;
             int i, count;
@@ -63,7 +61,7 @@ namespace I2cMasterInterface
 
             if (count == 0) {
                 lAdapter.Add("Cannot find any adapter!!");
-                return;
+                return 0;
             }
 
             for (i = 0; i < count; i++) {
@@ -77,6 +75,12 @@ namespace I2cMasterInterface
                 lAdapter.Add(tmp);
             }
 
+            return 0;
+        }
+
+        private void bLBAUpdate_Click(object sender, EventArgs e)
+        {
+            UpdateAdapterApi();
         }
 
         private void _lbAardvarkDoubleClick(object sender, EventArgs e)

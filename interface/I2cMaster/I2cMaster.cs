@@ -106,7 +106,9 @@ namespace I2cMasterInterface
                     goto Error;
             }
 
-            as_atAdapterType = type; 
+            as_atAdapterType = type;
+
+            fASelect.Hide();
             
             return 0;
 
@@ -152,10 +154,26 @@ namespace I2cMasterInterface
         {
             if (fASelect == null) {
                 fASelect = new FAdapterSelect();
-                fASelect.adapterSelector1.AdapterSelectorSetAdapterSelectedCBApi(SelectAdapterCB);
+                fASelect.adapterSelector.AdapterSelectorSetAdapterSelectedCBApi(SelectAdapterCB);
             }
 
-            fASelect.Show();
+            fASelect.adapterSelector.UpdateAdapterApi();
+            fASelect.ShowDialog();
+            
+
+            return 0;
+        }
+
+        public int ConnectApi(int bitrate)
+        {
+            if ((bitrate == iBitrate) && (iHandler > 0))
+                return 0;
+
+            if (SetBitRateApi(bitrate) < 0)
+                return -1;
+
+            if (ConnectApi() < 0)
+                return -1;
 
             return 0;
         }
@@ -206,7 +224,7 @@ namespace I2cMasterInterface
             buf[0] = regAddr;
             Array.Copy(data, 0, buf, 1, length);
 
-            AardvarkApi.aa_i2c_write(iHandler, devAddr, AardvarkI2cFlags.AA_I2C_NO_FLAGS, Convert.ToByte(length + 1), data);
+            AardvarkApi.aa_i2c_write(iHandler, devAddr, AardvarkI2cFlags.AA_I2C_NO_FLAGS, Convert.ToByte(length + 1), buf);
 
             return 0;
         }
@@ -224,8 +242,7 @@ namespace I2cMasterInterface
                     break;
 
                 case AdapterSelector.AdapterType.AS_AT_AARDVARK:
-                    
-                    break;
+                    return _AardvarkWrite(devAddr, regAddr, length, data);
 
                 case AdapterSelector.AdapterType.AS_AT_UI051:
                     break;

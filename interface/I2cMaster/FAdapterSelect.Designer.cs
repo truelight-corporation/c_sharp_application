@@ -27,22 +27,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.adapterSelector1 = new I2cMasterInterface.AdapterSelector();
+            this.adapterSelector = new I2cMasterInterface.AdapterSelector();
             this.SuspendLayout();
             // 
             // adapterSelector1
             // 
-            this.adapterSelector1.Location = new System.Drawing.Point(-1, -2);
-            this.adapterSelector1.Name = "adapterSelector1";
-            this.adapterSelector1.Size = new System.Drawing.Size(320, 240);
-            this.adapterSelector1.TabIndex = 0;
+            this.adapterSelector.Location = new System.Drawing.Point(-1, -2);
+            this.adapterSelector.Name = "adapterSelector1";
+            this.adapterSelector.Size = new System.Drawing.Size(320, 240);
+            this.adapterSelector.TabIndex = 0;
             // 
             // fAdapterSelect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(318, 237);
-            this.Controls.Add(this.adapterSelector1);
+            this.Controls.Add(this.adapterSelector);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "fAdapterSelect";
@@ -54,7 +54,7 @@
 
         #endregion
 
-        public AdapterSelector adapterSelector1;
+        public AdapterSelector adapterSelector;
 
 
     }
