@@ -40,9 +40,12 @@
             this.lTemperature = new System.Windows.Forms.Label();
             this.lTxTemperature = new System.Windows.Forms.Label();
             this.gbRxPowerRate = new System.Windows.Forms.GroupBox();
+            this.lRxPowerRateDefault = new System.Windows.Forms.Label();
+            this.tbRxPowerRateDefault = new System.Windows.Forms.TextBox();
+            this.lRxPowerRateUnit = new System.Windows.Forms.Label();
             this.bRxPowerRateWrite = new System.Windows.Forms.Button();
             this.bRxPowerRateRead = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.cbRPRAutoCorrect = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lRssiUA = new System.Windows.Forms.Label();
             this.lInputUW = new System.Windows.Forms.Label();
@@ -70,6 +73,10 @@
             this.tbRxInputPower1 = new System.Windows.Forms.TextBox();
             this.lInputPower = new System.Windows.Forms.Label();
             this.lRxCh1 = new System.Windows.Forms.Label();
+            this.lRxPowerRateMax = new System.Windows.Forms.Label();
+            this.lRxPowerRateMin = new System.Windows.Forms.Label();
+            this.tbRxPowerRateMax = new System.Windows.Forms.TextBox();
+            this.tbRxPowerRateMin = new System.Windows.Forms.TextBox();
             this.gbTemperature.SuspendLayout();
             this.gbRxPowerRate.SuspendLayout();
             this.SuspendLayout();
@@ -194,9 +201,16 @@
             // 
             // gbRxPowerRate
             // 
+            this.gbRxPowerRate.Controls.Add(this.tbRxPowerRateMin);
+            this.gbRxPowerRate.Controls.Add(this.tbRxPowerRateMax);
+            this.gbRxPowerRate.Controls.Add(this.lRxPowerRateMin);
+            this.gbRxPowerRate.Controls.Add(this.lRxPowerRateMax);
+            this.gbRxPowerRate.Controls.Add(this.lRxPowerRateDefault);
+            this.gbRxPowerRate.Controls.Add(this.tbRxPowerRateDefault);
+            this.gbRxPowerRate.Controls.Add(this.lRxPowerRateUnit);
             this.gbRxPowerRate.Controls.Add(this.bRxPowerRateWrite);
             this.gbRxPowerRate.Controls.Add(this.bRxPowerRateRead);
-            this.gbRxPowerRate.Controls.Add(this.checkBox1);
+            this.gbRxPowerRate.Controls.Add(this.cbRPRAutoCorrect);
             this.gbRxPowerRate.Controls.Add(this.label1);
             this.gbRxPowerRate.Controls.Add(this.lRssiUA);
             this.gbRxPowerRate.Controls.Add(this.lInputUW);
@@ -231,6 +245,32 @@
             this.gbRxPowerRate.TabStop = false;
             this.gbRxPowerRate.Text = "Rx Power Rate";
             // 
+            // lRxPowerRateDefault
+            // 
+            this.lRxPowerRateDefault.AutoSize = true;
+            this.lRxPowerRateDefault.Location = new System.Drawing.Point(54, 18);
+            this.lRxPowerRateDefault.Name = "lRxPowerRateDefault";
+            this.lRxPowerRateDefault.Size = new System.Drawing.Size(39, 12);
+            this.lRxPowerRateDefault.TabIndex = 29;
+            this.lRxPowerRateDefault.Text = "Default";
+            // 
+            // tbRxPowerRateDefault
+            // 
+            this.tbRxPowerRateDefault.Location = new System.Drawing.Point(48, 89);
+            this.tbRxPowerRateDefault.Name = "tbRxPowerRateDefault";
+            this.tbRxPowerRateDefault.ReadOnly = true;
+            this.tbRxPowerRateDefault.Size = new System.Drawing.Size(50, 22);
+            this.tbRxPowerRateDefault.TabIndex = 28;
+            // 
+            // lRxPowerRateUnit
+            // 
+            this.lRxPowerRateUnit.AutoSize = true;
+            this.lRxPowerRateUnit.Location = new System.Drawing.Point(440, 92);
+            this.lRxPowerRateUnit.Name = "lRxPowerRateUnit";
+            this.lRxPowerRateUnit.Size = new System.Drawing.Size(26, 12);
+            this.lRxPowerRateUnit.TabIndex = 27;
+            this.lRxPowerRateUnit.Text = "0.01";
+            // 
             // bRxPowerRateWrite
             // 
             this.bRxPowerRateWrite.Location = new System.Drawing.Point(548, 115);
@@ -239,6 +279,7 @@
             this.bRxPowerRateWrite.TabIndex = 8;
             this.bRxPowerRateWrite.Text = "Write";
             this.bRxPowerRateWrite.UseVisualStyleBackColor = true;
+            this.bRxPowerRateWrite.Click += new System.EventHandler(this._bRxPowerRateWriteClick);
             // 
             // bRxPowerRateRead
             // 
@@ -250,20 +291,21 @@
             this.bRxPowerRateRead.UseVisualStyleBackColor = true;
             this.bRxPowerRateRead.Click += new System.EventHandler(this._bRxPowerRateReadClick);
             // 
-            // checkBox1
+            // cbRPRAutoCorrect
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(391, 119);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(85, 16);
-            this.checkBox1.TabIndex = 8;
-            this.checkBox1.Text = "Auto Correct";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cbRPRAutoCorrect.AutoSize = true;
+            this.cbRPRAutoCorrect.Location = new System.Drawing.Point(482, 88);
+            this.cbRPRAutoCorrect.Name = "cbRPRAutoCorrect";
+            this.cbRPRAutoCorrect.Size = new System.Drawing.Size(85, 16);
+            this.cbRPRAutoCorrect.TabIndex = 8;
+            this.cbRPRAutoCorrect.Text = "Auto Correct";
+            this.cbRPRAutoCorrect.UseVisualStyleBackColor = true;
+            this.cbRPRAutoCorrect.CheckedChanged += new System.EventHandler(this._cbRPRAutoCorrectCheckedChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(273, 120);
+            this.label1.Location = new System.Drawing.Point(440, 120);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(22, 12);
             this.label1.TabIndex = 26;
@@ -272,7 +314,7 @@
             // lRssiUA
             // 
             this.lRssiUA.AutoSize = true;
-            this.lRssiUA.Location = new System.Drawing.Point(273, 64);
+            this.lRssiUA.Location = new System.Drawing.Point(440, 64);
             this.lRssiUA.Name = "lRssiUA";
             this.lRssiUA.Size = new System.Drawing.Size(19, 12);
             this.lRssiUA.TabIndex = 25;
@@ -281,7 +323,7 @@
             // lInputUW
             // 
             this.lInputUW.AutoSize = true;
-            this.lInputUW.Location = new System.Drawing.Point(273, 36);
+            this.lInputUW.Location = new System.Drawing.Point(440, 36);
             this.lInputUW.Name = "lInputUW";
             this.lInputUW.Size = new System.Drawing.Size(22, 12);
             this.lInputUW.TabIndex = 24;
@@ -289,7 +331,7 @@
             // 
             // tbRxPower4
             // 
-            this.tbRxPower4.Location = new System.Drawing.Point(220, 117);
+            this.tbRxPower4.Location = new System.Drawing.Point(384, 117);
             this.tbRxPower4.Name = "tbRxPower4";
             this.tbRxPower4.ReadOnly = true;
             this.tbRxPower4.Size = new System.Drawing.Size(50, 22);
@@ -297,14 +339,14 @@
             // 
             // tbRxPowerRate4
             // 
-            this.tbRxPowerRate4.Location = new System.Drawing.Point(220, 89);
+            this.tbRxPowerRate4.Location = new System.Drawing.Point(384, 89);
             this.tbRxPowerRate4.Name = "tbRxPowerRate4";
             this.tbRxPowerRate4.Size = new System.Drawing.Size(50, 22);
             this.tbRxPowerRate4.TabIndex = 22;
             // 
             // tbRssi4
             // 
-            this.tbRssi4.Location = new System.Drawing.Point(220, 61);
+            this.tbRssi4.Location = new System.Drawing.Point(384, 61);
             this.tbRssi4.Name = "tbRssi4";
             this.tbRssi4.ReadOnly = true;
             this.tbRssi4.Size = new System.Drawing.Size(50, 22);
@@ -312,7 +354,7 @@
             // 
             // tbRxInputPower4
             // 
-            this.tbRxInputPower4.Location = new System.Drawing.Point(220, 33);
+            this.tbRxInputPower4.Location = new System.Drawing.Point(384, 33);
             this.tbRxInputPower4.Name = "tbRxInputPower4";
             this.tbRxInputPower4.Size = new System.Drawing.Size(50, 22);
             this.tbRxInputPower4.TabIndex = 20;
@@ -321,7 +363,7 @@
             // lRxCh4
             // 
             this.lRxCh4.AutoSize = true;
-            this.lRxCh4.Location = new System.Drawing.Point(233, 18);
+            this.lRxCh4.Location = new System.Drawing.Point(397, 18);
             this.lRxCh4.Name = "lRxCh4";
             this.lRxCh4.Size = new System.Drawing.Size(25, 12);
             this.lRxCh4.TabIndex = 19;
@@ -329,7 +371,7 @@
             // 
             // tbRxPower3
             // 
-            this.tbRxPower3.Location = new System.Drawing.Point(164, 117);
+            this.tbRxPower3.Location = new System.Drawing.Point(328, 117);
             this.tbRxPower3.Name = "tbRxPower3";
             this.tbRxPower3.ReadOnly = true;
             this.tbRxPower3.Size = new System.Drawing.Size(50, 22);
@@ -337,14 +379,14 @@
             // 
             // tbRxPowerRate3
             // 
-            this.tbRxPowerRate3.Location = new System.Drawing.Point(164, 89);
+            this.tbRxPowerRate3.Location = new System.Drawing.Point(328, 89);
             this.tbRxPowerRate3.Name = "tbRxPowerRate3";
             this.tbRxPowerRate3.Size = new System.Drawing.Size(50, 22);
             this.tbRxPowerRate3.TabIndex = 17;
             // 
             // tbRssi3
             // 
-            this.tbRssi3.Location = new System.Drawing.Point(164, 61);
+            this.tbRssi3.Location = new System.Drawing.Point(328, 61);
             this.tbRssi3.Name = "tbRssi3";
             this.tbRssi3.ReadOnly = true;
             this.tbRssi3.Size = new System.Drawing.Size(50, 22);
@@ -352,7 +394,7 @@
             // 
             // tbRxInputPower3
             // 
-            this.tbRxInputPower3.Location = new System.Drawing.Point(164, 33);
+            this.tbRxInputPower3.Location = new System.Drawing.Point(328, 33);
             this.tbRxInputPower3.Name = "tbRxInputPower3";
             this.tbRxInputPower3.Size = new System.Drawing.Size(50, 22);
             this.tbRxInputPower3.TabIndex = 15;
@@ -361,7 +403,7 @@
             // lRxCh3
             // 
             this.lRxCh3.AutoSize = true;
-            this.lRxCh3.Location = new System.Drawing.Point(177, 18);
+            this.lRxCh3.Location = new System.Drawing.Point(341, 18);
             this.lRxCh3.Name = "lRxCh3";
             this.lRxCh3.Size = new System.Drawing.Size(25, 12);
             this.lRxCh3.TabIndex = 14;
@@ -369,7 +411,7 @@
             // 
             // tbRxPower2
             // 
-            this.tbRxPower2.Location = new System.Drawing.Point(108, 117);
+            this.tbRxPower2.Location = new System.Drawing.Point(272, 117);
             this.tbRxPower2.Name = "tbRxPower2";
             this.tbRxPower2.ReadOnly = true;
             this.tbRxPower2.Size = new System.Drawing.Size(50, 22);
@@ -377,7 +419,7 @@
             // 
             // tbRxPower1
             // 
-            this.tbRxPower1.Location = new System.Drawing.Point(52, 117);
+            this.tbRxPower1.Location = new System.Drawing.Point(216, 117);
             this.tbRxPower1.Name = "tbRxPower1";
             this.tbRxPower1.ReadOnly = true;
             this.tbRxPower1.Size = new System.Drawing.Size(50, 22);
@@ -394,14 +436,14 @@
             // 
             // tbRxPowerRate2
             // 
-            this.tbRxPowerRate2.Location = new System.Drawing.Point(108, 89);
+            this.tbRxPowerRate2.Location = new System.Drawing.Point(272, 89);
             this.tbRxPowerRate2.Name = "tbRxPowerRate2";
             this.tbRxPowerRate2.Size = new System.Drawing.Size(50, 22);
             this.tbRxPowerRate2.TabIndex = 10;
             // 
             // tbRssi2
             // 
-            this.tbRssi2.Location = new System.Drawing.Point(108, 61);
+            this.tbRssi2.Location = new System.Drawing.Point(272, 61);
             this.tbRssi2.Name = "tbRssi2";
             this.tbRssi2.ReadOnly = true;
             this.tbRssi2.Size = new System.Drawing.Size(50, 22);
@@ -409,7 +451,7 @@
             // 
             // tbRxInputPower2
             // 
-            this.tbRxInputPower2.Location = new System.Drawing.Point(108, 33);
+            this.tbRxInputPower2.Location = new System.Drawing.Point(272, 33);
             this.tbRxInputPower2.Name = "tbRxInputPower2";
             this.tbRxInputPower2.Size = new System.Drawing.Size(50, 22);
             this.tbRxInputPower2.TabIndex = 8;
@@ -418,7 +460,7 @@
             // lRxCh2
             // 
             this.lRxCh2.AutoSize = true;
-            this.lRxCh2.Location = new System.Drawing.Point(121, 18);
+            this.lRxCh2.Location = new System.Drawing.Point(285, 18);
             this.lRxCh2.Name = "lRxCh2";
             this.lRxCh2.Size = new System.Drawing.Size(25, 12);
             this.lRxCh2.TabIndex = 7;
@@ -426,7 +468,7 @@
             // 
             // tbRxPowerRate1
             // 
-            this.tbRxPowerRate1.Location = new System.Drawing.Point(52, 89);
+            this.tbRxPowerRate1.Location = new System.Drawing.Point(216, 89);
             this.tbRxPowerRate1.Name = "tbRxPowerRate1";
             this.tbRxPowerRate1.Size = new System.Drawing.Size(50, 22);
             this.tbRxPowerRate1.TabIndex = 6;
@@ -442,7 +484,7 @@
             // 
             // tbRssi1
             // 
-            this.tbRssi1.Location = new System.Drawing.Point(52, 61);
+            this.tbRssi1.Location = new System.Drawing.Point(216, 61);
             this.tbRssi1.Name = "tbRssi1";
             this.tbRssi1.ReadOnly = true;
             this.tbRssi1.Size = new System.Drawing.Size(50, 22);
@@ -459,7 +501,7 @@
             // 
             // tbRxInputPower1
             // 
-            this.tbRxInputPower1.Location = new System.Drawing.Point(52, 33);
+            this.tbRxInputPower1.Location = new System.Drawing.Point(216, 33);
             this.tbRxInputPower1.Name = "tbRxInputPower1";
             this.tbRxInputPower1.Size = new System.Drawing.Size(50, 22);
             this.tbRxInputPower1.TabIndex = 2;
@@ -477,11 +519,43 @@
             // lRxCh1
             // 
             this.lRxCh1.AutoSize = true;
-            this.lRxCh1.Location = new System.Drawing.Point(65, 18);
+            this.lRxCh1.Location = new System.Drawing.Point(229, 18);
             this.lRxCh1.Name = "lRxCh1";
             this.lRxCh1.Size = new System.Drawing.Size(25, 12);
             this.lRxCh1.TabIndex = 0;
             this.lRxCh1.Text = "Rx1";
+            // 
+            // lRxPowerRateMax
+            // 
+            this.lRxPowerRateMax.AutoSize = true;
+            this.lRxPowerRateMax.Location = new System.Drawing.Point(116, 18);
+            this.lRxPowerRateMax.Name = "lRxPowerRateMax";
+            this.lRxPowerRateMax.Size = new System.Drawing.Size(26, 12);
+            this.lRxPowerRateMax.TabIndex = 30;
+            this.lRxPowerRateMax.Text = "Max";
+            // 
+            // lRxPowerRateMin
+            // 
+            this.lRxPowerRateMin.AutoSize = true;
+            this.lRxPowerRateMin.Location = new System.Drawing.Point(173, 18);
+            this.lRxPowerRateMin.Name = "lRxPowerRateMin";
+            this.lRxPowerRateMin.Size = new System.Drawing.Size(24, 12);
+            this.lRxPowerRateMin.TabIndex = 31;
+            this.lRxPowerRateMin.Text = "Min";
+            // 
+            // tbRxPowerRateMax
+            // 
+            this.tbRxPowerRateMax.Location = new System.Drawing.Point(104, 89);
+            this.tbRxPowerRateMax.Name = "tbRxPowerRateMax";
+            this.tbRxPowerRateMax.Size = new System.Drawing.Size(50, 22);
+            this.tbRxPowerRateMax.TabIndex = 32;
+            // 
+            // tbRxPowerRateMin
+            // 
+            this.tbRxPowerRateMin.Location = new System.Drawing.Point(160, 89);
+            this.tbRxPowerRateMin.Name = "tbRxPowerRateMin";
+            this.tbRxPowerRateMin.Size = new System.Drawing.Size(50, 22);
+            this.tbRxPowerRateMin.TabIndex = 33;
             // 
             // UcQsfpCorrector
             // 
@@ -539,10 +613,17 @@
         private System.Windows.Forms.Label lRxCh1;
         private System.Windows.Forms.Button bRxPowerRateWrite;
         private System.Windows.Forms.Button bRxPowerRateRead;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox cbRPRAutoCorrect;
         private System.Windows.Forms.TextBox tbTemperature;
         private System.Windows.Forms.Label lTemperature;
         private System.Windows.Forms.Label lTxTemperature;
         private System.Windows.Forms.Label lTemperatureOffsetDegC;
+        private System.Windows.Forms.Label lRxPowerRateUnit;
+        private System.Windows.Forms.TextBox tbRxPowerRateDefault;
+        private System.Windows.Forms.Label lRxPowerRateDefault;
+        private System.Windows.Forms.TextBox tbRxPowerRateMin;
+        private System.Windows.Forms.TextBox tbRxPowerRateMax;
+        private System.Windows.Forms.Label lRxPowerRateMin;
+        private System.Windows.Forms.Label lRxPowerRateMax;
     }
 }
