@@ -226,6 +226,8 @@ namespace I2cMasterInterface
 
             AardvarkApi.aa_i2c_write(iHandler, devAddr, AardvarkI2cFlags.AA_I2C_NO_FLAGS, Convert.ToByte(length + 1), buf);
 
+            AardvarkApi.aa_sleep_ms(100);
+
             return 0;
         }
 
