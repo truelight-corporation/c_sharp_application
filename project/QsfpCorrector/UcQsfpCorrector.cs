@@ -1227,6 +1227,8 @@ namespace QsfpCorrector
             if (i2cMasterQsfp.WriteApi(80, 192, 1, data) < 0)
                 goto device_no_response;
 
+            cbAcMcCorrected.Checked = false;
+
             return 0;
 
         device_no_response:
