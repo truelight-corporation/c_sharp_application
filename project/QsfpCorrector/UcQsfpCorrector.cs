@@ -596,14 +596,13 @@ namespace QsfpCorrector
                 tbRxPowerRateMin.Text);
 
             swConfig.WriteLine(tbAverageCurrentMax.Text + "," +
-                tbAverageCurrentMin.Text + "," + tbAverageCurrentTarget.Text +
-                "," + tbAverageCurrentEquationA.Text + "," + 
+                tbAverageCurrentMin.Text + "," +
+                tbAverageCurrentEquationA.Text + "," + 
                 tbAverageCurrentEquationB.Text + "," +
                 tbAverageCurrentEquationC.Text);
 
             swConfig.WriteLine(tbModulationCurrentMax.Text + "," +
                 tbModulationCurrentMin.Text + "," +
-                tbModulationCurrentTarget.Text + "," +
                 tbModulationCurrentEquationA.Text + "," +
                 tbModulationCurrentEquationB.Text + "," +
                 tbModulationCurrentEquationC.Text);
@@ -665,10 +664,9 @@ namespace QsfpCorrector
             }
             tbAverageCurrentMax.Text = sATmp[0];
             tbAverageCurrentMin.Text = sATmp[1];
-            tbAverageCurrentTarget.Text = sATmp[2];
-            tbAverageCurrentEquationA.Text = sATmp[3];
-            tbAverageCurrentEquationB.Text = sATmp[4];
-            tbAverageCurrentEquationC.Text = sATmp[5];
+            tbAverageCurrentEquationA.Text = sATmp[2];
+            tbAverageCurrentEquationB.Text = sATmp[3];
+            tbAverageCurrentEquationC.Text = sATmp[4];
 
             line++;
             sTmp = srConfig.ReadLine();
@@ -684,10 +682,9 @@ namespace QsfpCorrector
 
             tbModulationCurrentMax.Text = sATmp[0];
             tbModulationCurrentMin.Text = sATmp[1];
-            tbModulationCurrentTarget.Text = sATmp[2];
-            tbModulationCurrentEquationA.Text = sATmp[3];
-            tbModulationCurrentEquationB.Text = sATmp[4];
-            tbModulationCurrentEquationC.Text = sATmp[5];
+            tbModulationCurrentEquationA.Text = sATmp[2];
+            tbModulationCurrentEquationB.Text = sATmp[3];
+            tbModulationCurrentEquationC.Text = sATmp[4];
 
             srConfig.Close();
 
@@ -698,13 +695,12 @@ namespace QsfpCorrector
                 tbRxInputPower2.Text = tbRxInputPower3.Text =
                 tbRxInputPower4.Text = tbRxPowerRateMin.Text =
                 tbRxPowerRateMax.Text = tbAverageCurrentMax.Text = 
-                tbAverageCurrentMin.Text = tbAverageCurrentTarget.Text =
+                tbAverageCurrentMin.Text = 
                 tbAverageCurrentEquationA.Text =
                 tbAverageCurrentEquationB.Text =
                 tbAverageCurrentEquationC.Text =
                 tbModulationCurrentMax.Text = 
                 tbModulationCurrentMin.Text = 
-                tbModulationCurrentTarget.Text =
                 tbModulationCurrentEquationA.Text = 
                 tbModulationCurrentEquationB.Text =
                 tbModulationCurrentEquationC.Text = "";
@@ -728,134 +724,6 @@ namespace QsfpCorrector
                 return;
         }
 
-        private int _CalculateAverageCurrentOffset()
-        {
-            Single temperature, targetCurrent, equationA, equationB,
-                current, currentOffset;
-            uint equationC;
-
-            try {
-                temperature = Convert.ToSingle(tbTemperature.Text);
-            }
-            catch (Exception eTS) {
-                MessageBox.Show("Temperature format wrong!!\n" + eTS.ToString());
-                goto Error;
-            }
-            try {
-                targetCurrent = Convert.ToSingle(tbAverageCurrentTarget.Text);
-            }
-            catch (Exception eTS) {
-                MessageBox.Show("Average current target format wrong!!\n" + eTS.ToString());
-                goto Error;
-            }
-            try {
-                equationA = 0;
-                equationA = Convert.ToSingle(tbAverageCurrentEquationA.Text);
-                tbAverageCurrentEquationA.Text = equationA.ToString("#0.00");
-            }
-            catch (Exception eTS) {
-                MessageBox.Show("Average current equation X^2 format wrong!!\n" + eTS.ToString());
-                goto Error;
-            }
-            try {
-                equationB = 0;
-                equationB = Convert.ToSingle(tbAverageCurrentEquationB.Text);
-                tbAverageCurrentEquationB.Text = equationB.ToString("#0.0");
-            }
-            catch (Exception eTS) {
-                MessageBox.Show("Average current equation X^1 format wrong!!\n" + eTS.ToString());
-                goto Error;
-            }
-            try {
-                equationC = Convert.ToUInt32(tbAverageCurrentEquationC.Text);
-            }
-            catch (Exception eTUI) {
-                MessageBox.Show("Average current equation X^0 format wrong!!\n" + eTUI.ToString());
-                goto Error;
-            }
-            try {
-                current = ((equationA * temperature * temperature) +
-                    (equationB * temperature) + equationC) / 1000;
-
-                currentOffset = targetCurrent - current;
-
-                tbAverageCurrentOffset.Text = currentOffset.ToString("#0.00");
-            }
-            catch (Exception e) {
-                MessageBox.Show(e.ToString());
-                goto Error;
-            }
-
-            return 0;
-
-        Error:
-            return -1;
-        }
-
-        private int _CalculateModulationCurrentOffset()
-        {
-            Single temperature, targetCurrent, equationA, equationB,
-                current, currentOffset;
-            uint equationC;
-
-            try {
-                temperature = Convert.ToSingle(tbTemperature.Text);
-            }
-            catch (Exception eTS) {
-                MessageBox.Show("Temperature format wrong!!\n" + eTS.ToString());
-                goto Error;
-            }
-            try {
-                targetCurrent = Convert.ToSingle(tbModulationCurrentTarget.Text);
-            }
-            catch (Exception eTS) {
-                MessageBox.Show("Modulation current target format wrong!!\n" + eTS.ToString());
-                goto Error;
-            }
-            try {
-                equationA = 0;
-                equationA = Convert.ToSingle(tbModulationCurrentEquationA.Text);
-                tbModulationCurrentEquationA.Text = equationA.ToString("#0.00");
-            }
-            catch (Exception eTS) {
-                MessageBox.Show("Modulation current equation X^2 format wrong!!\n" + eTS.ToString());
-                goto Error;
-            }
-            try {
-                equationB = 0;
-                equationB = Convert.ToSingle(tbModulationCurrentEquationB.Text);
-                tbModulationCurrentEquationB.Text = equationB.ToString("#0.0");
-            }
-            catch (Exception eTS) {
-                MessageBox.Show("Modulation current equation X^1 format wrong!!\n" + eTS.ToString());
-                goto Error;
-            }
-            try {
-                equationC = Convert.ToUInt32(tbModulationCurrentEquationC.Text);
-            }
-            catch (Exception eTUI) {
-                MessageBox.Show("Modulation current equation X^0 format wrong!!\n" + eTUI.ToString());
-                goto Error;
-            }
-            try {
-                current = ((equationA * temperature * temperature) +
-                    (equationB * temperature) + equationC) / 1000;
-
-                currentOffset = targetCurrent - current;
-
-                tbModulationCurrentOffset.Text = currentOffset.ToString("#0.00");
-            }
-            catch (Exception e) {
-                MessageBox.Show(e.ToString());
-                goto Error;
-            }
-
-            return 0;
-
-        Error:
-            return -1;
-        }
-
         private int _WriteAcMcCorrectData()
         {
 
@@ -863,38 +731,183 @@ namespace QsfpCorrector
             byte[] bATmp;
             int i;
             UInt16 u16Tmp;
+            Int16 s16Tmp;
             byte bChecksum;
+            sbyte[] sBATmp = new sbyte[1];
+            
 
             data[0] = 2;
             if (i2cMasterQsfp.WriteApi(80, 127, 1, data) < 0)
                 goto device_no_response;
 
-            data[0] = Convert.ToByte(Convert.ToSingle(tbAverageCurrentEquationA.Text) * 100);
-            u16Tmp = Convert.ToUInt16(Convert.ToSingle(tbAverageCurrentEquationB.Text) * 10);
+            if ((Convert.ToSingle(tbAverageCurrentEquationA.Text) < 0) ||
+                (Convert.ToSingle(tbAverageCurrentEquationA.Text) > 2.55)) {
+                MessageBox.Show("Average current equation A: " +
+                    tbAverageCurrentEquationA.Text +
+                    " out of range (0 ~ 2.55)!!");
+                goto error;
+            }
+
+            try {
+                data[0] = Convert.ToByte(Convert.ToSingle(tbAverageCurrentEquationA.Text) * 100);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                goto error;
+            }
+            if ((Convert.ToSingle(tbAverageCurrentEquationB.Text) < 0) ||
+                Convert.ToSingle(tbAverageCurrentEquationB.Text) > 6553.5) {
+                MessageBox.Show("Average current equation B: " +
+                    tbAverageCurrentEquationB.Text +
+                    " out of range (0 ~ 6553.5)!!");
+                goto error;
+            }
+            try {
+                u16Tmp = Convert.ToUInt16(Convert.ToSingle(tbAverageCurrentEquationB.Text) * 10);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                goto error;
+            }
             bATmp = BitConverter.GetBytes(u16Tmp);
             data[1] = bATmp[1];
             data[2] = bATmp[0];
-            u16Tmp = Convert.ToUInt16(tbAverageCurrentEquationC.Text);
+
+            try {
+                u16Tmp = Convert.ToUInt16(tbAverageCurrentEquationC.Text);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                goto error;
+            }
             bATmp = BitConverter.GetBytes(u16Tmp);
             data[3] = bATmp[1];
             data[4] = bATmp[0];
-            data[5] = Convert.ToByte(Convert.ToSingle(tbAverageCurrentMin.Text) / 0.04);
-            data[6] = Convert.ToByte(Convert.ToSingle(tbAverageCurrentMax.Text) / 0.04);
+            if ((Convert.ToSingle(tbAverageCurrentMin.Text) < 0) ||
+                Convert.ToSingle(tbAverageCurrentMin.Text) > 10.2) {
+                MessageBox.Show("Average current min: " +
+                    tbAverageCurrentMin.Text +
+                    " out of range (0 ~ 10.2)!!");
+            }
+            try {
+                data[5] = Convert.ToByte(Convert.ToSingle(tbAverageCurrentMin.Text) / 0.04);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                goto error;
+            }
+            if ((Convert.ToSingle(tbAverageCurrentMax.Text) < 0) ||
+                Convert.ToSingle(tbAverageCurrentMax.Text) > 10.2) {
+                MessageBox.Show("Average current max: " +
+                    tbAverageCurrentMax.Text +
+                    " out of range (0 ~ 10.2)!!");
+            }
+            try {
+                data[6] = Convert.ToByte(Convert.ToSingle(tbAverageCurrentMax.Text) / 0.04);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                goto error;
+            }
 
-            data[7] = Convert.ToByte(Convert.ToSingle(tbModulationCurrentEquationA.Text) * 100);
-            u16Tmp = Convert.ToUInt16(Convert.ToSingle(tbModulationCurrentEquationB.Text) * 10);
-            bATmp = BitConverter.GetBytes(u16Tmp);
+            if (Convert.ToSingle(tbModulationCurrentEquationA.Text) < 0 ||
+                Convert.ToSingle(tbModulationCurrentEquationA.Text) > 2.55) {
+                MessageBox.Show("Modualtion current equation A: " +
+                    tbModulationCurrentEquationA.Text +
+                    " out of range (0 ~ 2.55)!!");
+                goto error;
+            }
+            try {
+                data[7] = Convert.ToByte(Convert.ToSingle(tbModulationCurrentEquationA.Text) * 100);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                goto error;
+            }
+            if (Convert.ToSingle(tbModulationCurrentEquationB.Text) < -3276.8 ||
+                Convert.ToSingle(tbModulationCurrentEquationB.Text) > 3276.7) {
+                MessageBox.Show("Modualtion current equation B: " +
+                    tbModulationCurrentEquationA.Text +
+                    " out of range (-3276.8 ~ 3276.7)!!");
+                goto error;
+            }
+            try {
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbModulationCurrentEquationB.Text) * 10);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                goto error;
+            }
+            bATmp = BitConverter.GetBytes(s16Tmp);
             data[8] = bATmp[1];
             data[9] = bATmp[0];
-            u16Tmp = Convert.ToUInt16(tbModulationCurrentEquationC.Text);
+            try {
+                u16Tmp = Convert.ToUInt16(tbModulationCurrentEquationC.Text);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                goto error;
+            }
             bATmp = BitConverter.GetBytes(u16Tmp);
             data[10] = bATmp[1];
             data[11] = bATmp[0];
-            data[12] = Convert.ToByte(Convert.ToSingle(tbModulationCurrentMin.Text) / 0.04);
-            data[13] = Convert.ToByte(Convert.ToSingle(tbModulationCurrentMax.Text) / 0.04);
+            if ((Convert.ToSingle(tbModulationCurrentMin.Text) < 0) ||
+                Convert.ToSingle(tbModulationCurrentMin.Text) > 10.2) {
+                MessageBox.Show("Modulation current min: " +
+                    tbModulationCurrentMin.Text +
+                    " out of range (0 ~ 10.2)!!");
+            }
+            try {
+                data[12] = Convert.ToByte(Convert.ToSingle(tbModulationCurrentMin.Text) / 0.04);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                goto error;
+            }
+            if ((Convert.ToSingle(tbModulationCurrentMax.Text) < 0) ||
+                Convert.ToSingle(tbModulationCurrentMax.Text) > 10.2) {
+                MessageBox.Show("Modulation current max: " +
+                    tbModulationCurrentMax.Text +
+                    " out of range (0 ~ 10.2)!!");
+            }
+            try {
+                data[13] = Convert.ToByte(Convert.ToSingle(tbModulationCurrentMax.Text) / 0.04);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                goto error;
+            }
 
-            data[14] = Convert.ToByte(Convert.ToSingle(tbAverageCurrentOffset.Text) / 0.04);
-            data[15] = Convert.ToByte(Convert.ToSingle(tbModulationCurrentOffset.Text) / 0.04);
+            if (Convert.ToSingle(tbAverageCurrentOffset.Text) < -12.8 ||
+                Convert.ToSingle(tbAverageCurrentOffset.Text) > 12.7) {
+                MessageBox.Show("Average current offset: " +
+                    tbAverageCurrentOffset.Text +
+                    " out of range (-12.8 ~ 12.7)!!");
+                goto error;
+            }
+            try {
+                sBATmp[0] = Convert.ToSByte(Convert.ToSingle(tbAverageCurrentOffset.Text) * 10);
+                Buffer.BlockCopy(sBATmp, 0, data, 14, 1);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                goto error;
+            }
+            if (Convert.ToSingle(tbModulationCurrentOffset.Text) < -12.8 ||
+                Convert.ToSingle(tbModulationCurrentOffset.Text) > 12.7) {
+                MessageBox.Show("Modulation current offset: " +
+                    tbModulationCurrentOffset.Text +
+                    " out of range (-12.8 ~ 12.7)!!");
+                goto error;
+            }
+            try {
+                sBATmp[0] = Convert.ToSByte(Convert.ToSingle(tbModulationCurrentOffset.Text) * 10);
+                Buffer.BlockCopy(sBATmp, 0, data, 15, 1);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                goto error;
+            }
             
             if (i2cMasterQsfp.WriteApi(80, 189, 16, data) < 0)
                 goto device_no_response;
@@ -912,21 +925,14 @@ namespace QsfpCorrector
         device_no_response:
             MessageBox.Show("QSFP+ module no response Error!!");
             _QsfpDisconnect();
+        error:
             return -1;
         }
 
         private int _AutoCorrectAcMc()
         {
-            if (_CalculateAverageCurrentOffset() < 0)
-                return -1;
-
-            if (_CalculateModulationCurrentOffset() < 0)
-                return -1;
-
             if (_WriteAcMcCorrectData() < 0)
                 return -1;
-
-            cbAcMcCorrected.Checked = true;
 
             return 0;
         }
@@ -947,8 +953,6 @@ namespace QsfpCorrector
             data[0] = 0;
             if (i2cMasterQsfp.WriteApi(80, 191, 1, data) < 0)
                 goto device_no_response;
-
-            cbAcMcCorrected.Checked = false;
 
             return 0;
 
@@ -1030,7 +1034,7 @@ namespace QsfpCorrector
 
             Array.Copy(data, 8, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
-            sTmp = Convert.ToSingle(BitConverter.ToUInt16(reverseData, 0)) / 10;
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10;
             tbModuleModulationCurrentEquationB.Text = sTmp.ToString("#0.0");
 
             Array.Copy(data, 10, bATmp, 0, 2);
@@ -1044,11 +1048,13 @@ namespace QsfpCorrector
             sTmp = Convert.ToSingle(Convert.ToUInt32(data[13]) * 0.04);
             tbModuleModulationCurrentMax.Text = sTmp.ToString("#0.00");
 
-            sTmp = Convert.ToSingle(Convert.ToUInt32(data[14]) * 0.04);
-            tbAverageCurrentOffset.Text = sTmp.ToString("#0.00");
+            Buffer.BlockCopy(data, 14, sData, 0, 1);
+            sTmp = Convert.ToSingle(Convert.ToInt32(sData[0]) * 0.1);
+            tbAverageCurrentOffset.Text = sTmp.ToString("#0.0");
 
-            sTmp = Convert.ToSingle(Convert.ToUInt32(data[15]) * 0.04);
-            tbModulationCurrentOffset.Text = sTmp.ToString("#0.00");
+            Buffer.BlockCopy(data, 15, sData, 0, 1);
+            sTmp = Convert.ToSingle(Convert.ToInt32(sData[0]) * 0.1);
+            tbModulationCurrentOffset.Text = sTmp.ToString("#0.0");
 
             return 0;
 
