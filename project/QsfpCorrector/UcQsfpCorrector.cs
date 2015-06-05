@@ -658,7 +658,7 @@ namespace QsfpCorrector
                 goto clearup;
             }
             sATmp = sTmp.Split(',');
-            if (sATmp.Length != 6) {
+            if (sATmp.Length != 5) {
                 MessageBox.Show("Line " + line + " context paser error");
                 goto clearup;
             }
@@ -675,7 +675,7 @@ namespace QsfpCorrector
                 goto clearup;
             }
             sATmp = sTmp.Split(',');
-            if (sATmp.Length != 6) {
+            if (sATmp.Length != 5) {
                 MessageBox.Show("Line " + line + " context paser error");
                 goto clearup;
             }
