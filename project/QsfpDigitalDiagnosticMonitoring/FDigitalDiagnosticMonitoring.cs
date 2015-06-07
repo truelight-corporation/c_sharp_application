@@ -15,6 +15,7 @@ namespace QsfpDigitalDiagnosticMonitoring
         public FDigitalDiagnosticMonitoring()
         {
             InitializeComponent();
+            this.ClientSize = new System.Drawing.Size(this.ucDigitalDiagnosticsMonitoring1.Size.Width, this.ucDigitalDiagnosticsMonitoring1.Size.Height);
         }
     }
 }

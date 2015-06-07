@@ -8,13 +8,1935 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using I2cMasterInterface;
+
 namespace QsfpDigitalDiagnosticMonitoring
 {
     public partial class UCDigitalDiagnosticsMonitoring : UserControl
     {
+        bool qsfpConnected;
+        I2cMaster i2cMaster = new I2cMaster();
+
         public UCDigitalDiagnosticsMonitoring()
         {
+            qsfpConnected = false;
             InitializeComponent();
         }
+
+        private int _QsfpConnect()
+        {
+            byte[] data = new byte[] { 32 };
+
+            if (qsfpConnected == true)
+                return 0;
+
+            if (i2cMaster.ConnectApi(100) < 0)
+                return -1;
+
+            if (i2cMaster.WriteApi(80, 127, 1, data) < 0)
+                goto DeviceNoResponse;
+
+            data[0] = 0x4D;
+
+            if (i2cMaster.WriteApi(80, 164, 1, data) < 0)
+                goto DeviceNoResponse;
+
+            qsfpConnected = cbQsfpLinked.Checked = true;
+
+            return 0;
+
+        DeviceNoResponse:
+            MessageBox.Show("QSFP+ no reponse!!");
+            cbQsfpLinked.Checked = false;
+            return -1;
+        }
+
+        private int _QsfpDisconnect()
+        {
+            byte[] data = new byte[] { 32 };
+
+            if (qsfpConnected == false)
+                return -1;
+
+            if (i2cMaster.WriteApi(80, 127, 1, data) < 0)
+                goto DeviceNoResponse;
+
+            data[0] = 0;
+
+            if (i2cMaster.WriteApi(80, 164, 1, data) < 0)
+                goto DeviceNoResponse;
+
+            if (i2cMaster.DisconnectApi() < 0)
+                return -1;
+
+            qsfpConnected = cbQsfpLinked.Checked = false;
+
+            return 0;
+
+        DeviceNoResponse:
+            MessageBox.Show("QSFP+ no reponse!!");
+            qsfpConnected = cbQsfpLinked.Checked = false;
+            return -1;
+        }
+
+        private void cbQsfpLinked_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbQsfpLinked.Checked == false) {
+                if (_QsfpDisconnect() < 0)
+                    return;
+            }
+            else {
+                if (_QsfpConnect() < 0)
+                    return;
+            }
+        }
+
+        private int _LosAndFaultRead()
+        {
+            byte[] data = new byte[2];
+
+            if (_QsfpConnect() < 0)
+                return -1;
+
+            if (i2cMaster.ReadApi(80, 3, 2, data) != 2)
+                goto DeviceNoResponse;
+
+            if ((data[0] & 0x80) != 0)
+                cbLosTx4.Checked = true;
+            else
+                cbLosTx4.Checked = false;
+
+            if ((data[0] & 0x40) != 0)
+                cbLosTx3.Checked = true;
+            else
+                cbLosTx3.Checked = false;
+
+            if ((data[0] & 0x20) != 0)
+                cbLosTx2.Checked = true;
+            else
+                cbLosTx2.Checked = false;
+
+            if ((data[0] & 0x10) != 0)
+                cbLosTx1.Checked = true;
+            else
+                cbLosTx1.Checked = false;
+
+            if ((data[0] & 0x08) != 0)
+                cbLosRx4.Checked = true;
+            else
+                cbLosRx4.Checked = false;
+
+            if ((data[0] & 0x04) != 0)
+                cbLosRx3.Checked = true;
+            else
+                cbLosRx3.Checked = false;
+
+            if ((data[0] & 0x02) != 0)
+                cbLosRx2.Checked = true;
+            else
+                cbLosRx2.Checked = false;
+
+            if ((data[0] & 0x01) != 0)
+                cbLosRx1.Checked = true;
+            else
+                cbLosRx1.Checked = false;
+
+            if ((data[1] & 0x08) != 0)
+                cbFaultTx4.Checked = true;
+            else
+                cbFaultTx4.Checked = false;
+
+            if ((data[1] & 0x04) != 0)
+                cbFaultTx3.Checked = true;
+            else
+                cbFaultTx3.Checked = false;
+
+            if ((data[1] & 0x02) != 0)
+                cbFaultTx2.Checked = true;
+            else
+                cbFaultTx2.Checked = false;
+
+            if ((data[1] & 0x01) != 0)
+                cbFaultTx1.Checked = true;
+            else
+                cbFaultTx1.Checked = false;
+
+            if (i2cMaster.ReadApi(80, 100, 2, data) != 2)
+                goto DeviceNoResponse;
+
+            if ((data[0] & 0x80) != 0)
+                cbLosTx4Mask.Checked = true;
+            else
+                cbLosTx4Mask.Checked = false;
+
+            if ((data[0] & 0x40) != 0)
+                cbLosTx3Mask.Checked = true;
+            else
+                cbLosTx3Mask.Checked = false;
+
+            if ((data[0] & 0x20) != 0)
+                cbLosTx2Mask.Checked = true;
+            else
+                cbLosTx2Mask.Checked = false;
+
+            if ((data[0] & 0x10) != 0)
+                cbLosTx1Mask.Checked = true;
+            else
+                cbLosTx1Mask.Checked = false;
+
+            if ((data[0] & 0x08) != 0)
+                cbLosRx4Mask.Checked = true;
+            else
+                cbLosRx4Mask.Checked = false;
+
+            if ((data[0] & 0x04) != 0)
+                cbLosRx3Mask.Checked = true;
+            else
+                cbLosRx3Mask.Checked = false;
+
+            if ((data[0] & 0x02) != 0)
+                cbLosRx2Mask.Checked = true;
+            else
+                cbLosRx2Mask.Checked = false;
+
+            if ((data[0] & 0x01) != 0)
+                cbLosRx1Mask.Checked = true;
+            else
+                cbLosRx1Mask.Checked = false;
+
+            if ((data[1] & 0x08) != 0)
+                cbFaultTx4Mask.Checked = true;
+            else
+                cbFaultTx4Mask.Checked = false;
+
+            if ((data[1] & 0x04) != 0)
+                cbFaultTx3Mask.Checked = true;
+            else
+                cbFaultTx3Mask.Checked = false;
+
+            if ((data[1] & 0x02) != 0)
+                cbFaultTx2Mask.Checked = true;
+            else
+                cbFaultTx2Mask.Checked = false;
+
+            if ((data[1] & 0x01) != 0)
+                cbFaultTx1Mask.Checked = true;
+            else
+                cbFaultTx1Mask.Checked = false;
+
+            return 0;
+
+        DeviceNoResponse:
+            MessageBox.Show("QSFP+ no reponse!!");
+            _QsfpDisconnect();
+            return -1;
+        }
+
+        private void _bLosAndFaultRead_Click(object sender, EventArgs e)
+        {
+            if (qsfpConnected == false) {
+                if (_QsfpConnect() < 0)
+                    return;
+            }
+
+            if (_LosAndFaultRead() < 0)
+                return;
+        }
+
+        private int _LosAndFaultWrite()
+        {
+            byte[] data = new byte[2];
+
+            data[0] = data[1] = 0;
+            if (cbLosTx4Mask.Checked == true)
+                data[0] |= 0x80;
+            if (cbLosTx3Mask.Checked == true)
+                data[0] |= 0x40;
+            if (cbLosTx2Mask.Checked == true)
+                data[0] |= 0x20;
+            if (cbLosTx1Mask.Checked == true)
+                data[0] |= 0x10;
+            if (cbLosRx4Mask.Checked == true)
+                data[0] |= 0x08;
+            if (cbLosRx3Mask.Checked == true)
+                data[0] |= 0x04;
+            if (cbLosRx2Mask.Checked == true)
+                data[0] |= 0x02;
+            if (cbLosRx1Mask.Checked == true)
+                data[0] |= 0x01;
+            if (cbFaultTx4Mask.Checked == true)
+                data[1] |= 0x08;
+            if (cbFaultTx3Mask.Checked == true)
+                data[1] |= 0x04;
+            if (cbFaultTx2Mask.Checked == true)
+                data[1] |= 0x02;
+            if (cbFaultTx1Mask.Checked == true)
+                data[1] |= 0x01;
+
+            if (i2cMaster.WriteApi(80, 100, 2, data) < 0)
+                goto DeviceNoResponse;
+
+            return 0;
+
+        DeviceNoResponse:
+            MessageBox.Show("QSFP+ no reponse!!");
+            _QsfpDisconnect();
+            return -1;
+        }
+
+        private void bLosAndFaultWrite_Click(object sender, EventArgs e)
+        {
+            if (qsfpConnected == false) {
+                if (_QsfpConnect() < 0)
+                    return;
+            }
+
+            if (_LosAndFaultWrite() < 0)
+                return;
+        }
+
+        private int _MiscRead()
+        {
+            byte[] data = new byte[8];
+
+            if (_QsfpConnect() < 0)
+                return -1;
+
+            if (i2cMaster.ReadApi(80, 6, 1, data) != 1)
+                goto DeviceNoResponse;
+
+            if ((data[0] & 0x01) != 0)
+                cbInitComplete.Checked = true;
+            else
+                cbInitComplete.Checked = false;
+
+            if (i2cMaster.ReadApi(80, 103, 1, data) != 1)
+                goto DeviceNoResponse;
+
+            if ((data[0] & 0x01) != 0)
+                cbInitCompleteMask.Checked = true;
+            else
+                cbInitCompleteMask.Checked = false;
+
+            return 0;
+
+        DeviceNoResponse:
+            MessageBox.Show("QSFP+ no reponse!!");
+            _QsfpDisconnect();
+            return -1;
+        }
+
+        private void _bMiscRead_Click(object sender, EventArgs e)
+        {
+            if (qsfpConnected == false) {
+                if (_QsfpConnect() < 0)
+                    return;
+            }
+
+            if (_MiscRead() < 0)
+                return;
+        }
+
+        private int _MiscWrite()
+        {
+            byte[] data = new byte[1];
+
+            if (i2cMaster.ReadApi(80, 103, 1, data) != 1)
+                goto DeviceNoResponse;
+
+            data[0] &= 0xF0;
+
+            if (cbInitCompleteMask.Checked == true)
+                data[0] |= 0x01;
+
+            if (i2cMaster.WriteApi(80, 103, 1, data) < 0)
+                goto DeviceNoResponse;
+
+            return 0;
+
+        DeviceNoResponse:
+            MessageBox.Show("QSFP+ no reponse!!");
+            _QsfpDisconnect();
+            return -1;
+        }
+
+        private void _bMiscWrite_Click(object sender, EventArgs e)
+        {
+            if (qsfpConnected == false) {
+                if (_QsfpConnect() < 0)
+                    return;
+            }
+
+            if (_MiscWrite() < 0)
+                return;
+        }
+
+        private int _TemperatureRead()
+        {
+            byte[] data = new byte[8];
+            byte[] bATmp = new byte[2];
+            byte[] reverseData;
+            float temperature;
+            int tmp;
+
+            tbTemperature.Text = "";
+
+            if (_QsfpConnect() < 0)
+                return -1;
+
+            if (i2cMaster.ReadApi(80, 6, 1, data) != 1)
+                goto DeviceNoResponse;
+
+            if ((data[0] & 0x80) != 0)
+                cbTemperatureHighAlarm.Checked = true;
+            else
+                cbTemperatureHighAlarm.Checked = false;
+
+            if ((data[0] & 0x40) != 0)
+                cbTemperatureLowAlarm.Checked = true;
+            else
+                cbTemperatureLowAlarm.Checked = false;
+
+            if ((data[0] & 0x20) != 0)
+                cbTemperatureHighWarning.Checked = true;
+            else
+                cbTemperatureHighWarning.Checked = false;
+
+            if ((data[0] & 0x10) != 0)
+                cbTemperatureLowWarning.Checked = true;
+            else
+                cbTemperatureLowWarning.Checked = false;
+
+            if (i2cMaster.ReadApi(80, 22, 2, data) != 2)
+                goto DeviceNoResponse;
+
+            try {
+                Buffer.BlockCopy(data, 0, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+
+            reverseData = bATmp.Reverse().ToArray();
+            tmp = BitConverter.ToInt16(reverseData, 0);
+            temperature = tmp;
+            temperature = temperature / 256;
+            tbTemperature.Text = temperature.ToString("#0.0");
+
+            if (i2cMaster.ReadApi(80, 103, 1, data) != 1)
+                goto DeviceNoResponse;
+
+            if ((data[0] & 0x80) != 0)
+                cbTemperatureHighAlarmMask.Checked = true;
+            else
+                cbTemperatureHighAlarmMask.Checked = false;
+            if ((data[0] & 0x40) != 0)
+                cbTemperatureLowAlarmMask.Checked = true;
+            else
+                cbTemperatureLowAlarmMask.Checked = false;
+            if ((data[0] & 0x20) != 0)
+                cbTemperatureHighWarningMask.Checked = true;
+            else
+                cbTemperatureHighWarningMask.Checked = false;
+            if ((data[0] & 0x10) != 0)
+                cbTemperatureLowWarningMask.Checked = true;
+            else
+                cbTemperatureLowWarningMask.Checked = false;
+
+            data[0] = 3;
+            i2cMaster.WriteApi(80, 127, 1, data);
+            if (i2cMaster.ReadApi(80, 128, 8, data) != 8)
+                goto DeviceNoResponse;
+
+            try {
+                Buffer.BlockCopy(data, 0, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+            reverseData = bATmp.Reverse().ToArray();
+            tmp = BitConverter.ToInt16(reverseData, 0);
+            temperature = tmp;
+            temperature = temperature / 256;
+            tbTemperatureHighAlarmThreshold.Text = temperature.ToString("#0.0");
+
+            try {
+                Buffer.BlockCopy(data, 2, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+            reverseData = bATmp.Reverse().ToArray();
+            tmp = BitConverter.ToInt16(reverseData, 0);
+            temperature = tmp;
+            temperature = temperature / 256;
+            tbTemperatureLowAlarmThreshold.Text = temperature.ToString("#0.0");
+
+            try {
+                Buffer.BlockCopy(data, 4, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+            reverseData = bATmp.Reverse().ToArray();
+            tmp = BitConverter.ToInt16(reverseData, 0);
+            temperature = tmp;
+            temperature = temperature / 256;
+            tbTemperatureHighWarningThreshold.Text = temperature.ToString("#0.0");
+
+            try {
+                Buffer.BlockCopy(data, 6, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+            reverseData = bATmp.Reverse().ToArray();
+            tmp = BitConverter.ToInt16(reverseData, 0);
+            temperature = tmp;
+            temperature = temperature / 256;
+            tbTemperatureLowWarningThreshold.Text = temperature.ToString("#0.0");
+
+            return 0;
+
+        DeviceNoResponse:
+            MessageBox.Show("QSFP+ no reponse!!");
+            tbTemperature.Text = "";
+            _QsfpDisconnect();
+            return -1;
+        }
+
+        private void _bTemperatureRead_Click(object sender, EventArgs e)
+        {
+            if (qsfpConnected == false) {
+                if (_QsfpConnect() < 0)
+                    return;
+            }
+
+            if (_TemperatureRead() < 0)
+                return;
+        }
+
+        private int _TemperatureWrite()
+        {
+            byte[] data = new byte[8];
+            byte[] bATmp;
+            float temperature;
+            short sTmp;
+
+
+            if (i2cMaster.ReadApi(80, 103, 1, data) != 1)
+                goto DeviceNoResponse;
+
+            data[0] &= 0x0F;
+            if (cbTemperatureHighAlarmMask.Checked == true)
+                data[0] |= 0x80;
+            if (cbTemperatureLowAlarmMask.Checked == true)
+                data[0] |= 0x40;
+            if (cbTemperatureHighWarningMask.Checked == true)
+                data[0] |= 0x20;
+            if (cbTemperatureLowWarningMask.Checked == true)
+                data[0] |= 0x10;
+
+            if (i2cMaster.WriteApi(80, 103, 1, data) < 0)
+                goto DeviceNoResponse;
+
+            data[0] = 3;
+            if (i2cMaster.WriteApi(80, 127, 1, data) < 0)
+                goto DeviceNoResponse;
+
+            try {
+                temperature = Convert.ToSingle(tbTemperatureHighAlarmThreshold.Text);
+            }
+            catch (Exception eTS) {
+                MessageBox.Show(eTS.ToString());
+                goto Error;
+            }
+
+            temperature *= 256;
+            try {
+                sTmp = Convert.ToInt16(temperature);
+            }
+            catch (Exception eTI) {
+                MessageBox.Show(eTI.ToString());
+                goto Error;
+            }
+
+            bATmp = BitConverter.GetBytes(sTmp);
+            data[0] = bATmp[1];
+            data[1] = bATmp[0];
+
+            try {
+                temperature = Convert.ToSingle(tbTemperatureLowAlarmThreshold.Text);
+            }
+            catch (Exception eTS) {
+                MessageBox.Show(eTS.ToString());
+                goto Error;
+            }
+
+            temperature *= 256;
+            try {
+                sTmp = Convert.ToInt16(temperature);
+            }
+            catch (Exception eTI) {
+                MessageBox.Show(eTI.ToString());
+                goto Error;
+            }
+
+            bATmp = BitConverter.GetBytes(sTmp);
+            data[2] = bATmp[1];
+            data[3] = bATmp[0];
+
+            try {
+                temperature = Convert.ToSingle(tbTemperatureHighWarningThreshold.Text);
+            }
+            catch (Exception eTS) {
+                MessageBox.Show(eTS.ToString());
+                goto Error;
+            }
+
+            temperature *= 256;
+            try {
+                sTmp = Convert.ToInt16(temperature);
+            }
+            catch (Exception eTI) {
+                MessageBox.Show(eTI.ToString());
+                goto Error;
+            }
+
+            bATmp = BitConverter.GetBytes(sTmp);
+            data[4] = bATmp[1];
+            data[5] = bATmp[0];
+
+            try {
+                temperature = Convert.ToSingle(tbTemperatureLowWarningThreshold.Text);
+            }
+            catch (Exception eTS) {
+                MessageBox.Show(eTS.ToString());
+                goto Error;
+            }
+
+            temperature *= 256;
+            try {
+                sTmp = Convert.ToInt16(temperature);
+            }
+            catch (Exception eTI) {
+                MessageBox.Show(eTI.ToString());
+                goto Error;
+            }
+
+            bATmp = BitConverter.GetBytes(sTmp);
+            data[6] = bATmp[1];
+            data[7] = bATmp[0];
+
+            if (i2cMaster.WriteApi(80, 128, 8, data) < 0)
+                goto DeviceNoResponse;
+
+            return 0;
+
+        DeviceNoResponse:
+            MessageBox.Show("QSFP+ no reponse!!");
+            tbTemperature.Text = "";
+            _QsfpDisconnect();
+        Error:
+            return -1;
+        }
+
+        private void _bTemperatureWrite_Click(object sender, EventArgs e)
+        {
+            if (qsfpConnected == false) {
+                if (_QsfpConnect() < 0)
+                    return;
+            }
+
+            if (_TemperatureWrite() < 0)
+                return;
+        }
+
+        private int _VccRead()
+        {
+            byte[] data = new byte[8];
+            byte[] bATmp = new byte[2];
+            byte[] reverseData;
+            float vcc;
+            int tmp;
+
+            tbVcc.Text = "";
+
+            if (_QsfpConnect() < 0)
+                return -1;
+
+            if (i2cMaster.ReadApi(80, 7, 1, data) != 1)
+                goto DeviceNoResponse;
+
+            if ((data[0] & 0x80) != 0)
+                cbVccHighAlarm.Checked = true;
+            else
+                cbVccHighAlarm.Checked = false;
+
+            if ((data[0] & 0x40) != 0)
+                cbVccLowAlarm.Checked = true;
+            else
+                cbVccLowAlarm.Checked = false;
+
+            if ((data[0] & 0x20) != 0)
+                cbVccHighWarning.Checked = true;
+            else
+                cbVccHighWarning.Checked = false;
+
+            if ((data[0] & 0x10) != 0)
+                cbVccLowWarning.Checked = true;
+            else
+                cbVccLowWarning.Checked = false;
+
+            if (i2cMaster.ReadApi(80, 26, 2, data) != 2)
+                goto DeviceNoResponse;
+
+            try {
+                Buffer.BlockCopy(data, 0, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+
+            reverseData = bATmp.Reverse().ToArray();
+            tmp = BitConverter.ToInt16(reverseData, 0);
+            vcc = tmp;
+            vcc = vcc / 10000;
+            tbVcc.Text = vcc.ToString("#0.0000");
+
+            if (i2cMaster.ReadApi(80, 104, 1, data) != 1)
+                goto DeviceNoResponse;
+
+            if ((data[0] & 0x80) != 0)
+                cbVccHighAlarmMask.Checked = true;
+            else
+                cbVccHighAlarmMask.Checked = false;
+            if ((data[0] & 0x40) != 0)
+                cbVccLowAlarmMask.Checked = true;
+            else
+                cbVccLowAlarmMask.Checked = false;
+            if ((data[0] & 0x20) != 0)
+                cbVccHighWarningMask.Checked = true;
+            else
+                cbVccHighWarningMask.Checked = false;
+            if ((data[0] & 0x10) != 0)
+                cbVccLowWarningMask.Checked = true;
+            else
+                cbVccLowWarningMask.Checked = false;
+
+            data[0] = 3;
+            i2cMaster.WriteApi(80, 127, 1, data);
+            if (i2cMaster.ReadApi(80, 144, 8, data) != 8)
+                goto DeviceNoResponse;
+
+            try {
+                Buffer.BlockCopy(data, 0, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+            reverseData = bATmp.Reverse().ToArray();
+            tmp = BitConverter.ToUInt16(reverseData, 0);
+            vcc = tmp;
+            vcc = vcc / 10000;
+            tbVccHighAlarmThreshold.Text = vcc.ToString("#0.0000");
+
+            try {
+                Buffer.BlockCopy(data, 2, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+            reverseData = bATmp.Reverse().ToArray();
+            tmp = BitConverter.ToUInt16(reverseData, 0);
+            vcc = tmp;
+            vcc = vcc / 10000;
+            tbVccLowAlarmThreshold.Text = vcc.ToString("#0.0000");
+
+            try {
+                Buffer.BlockCopy(data, 4, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+            reverseData = bATmp.Reverse().ToArray();
+            tmp = BitConverter.ToUInt16(reverseData, 0);
+            vcc = tmp;
+            vcc = vcc / 10000;
+            tbVccHighWarningThreshold.Text = vcc.ToString("#0.0000");
+
+            try {
+                Buffer.BlockCopy(data, 6, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+            reverseData = bATmp.Reverse().ToArray();
+            tmp = BitConverter.ToUInt16(reverseData, 0);
+            vcc = tmp;
+            vcc = vcc / 10000;
+            tbVccLowWarningThreshold.Text = vcc.ToString("#0.0000");
+
+            return 0;
+
+        DeviceNoResponse:
+            MessageBox.Show("QSFP+ no reponse!!");
+            tbVcc.Text = "";
+            _QsfpDisconnect();
+            return -1;
+        }
+
+        private void _bVccRead_Click(object sender, EventArgs e)
+        {
+            if (qsfpConnected == false) {
+                if (_QsfpConnect() < 0)
+                    return;
+            }
+
+            if (_VccRead() < 0)
+                return;
+        }
+
+        private int _VccWrite()
+        {
+            byte[] data = new byte[8];
+            byte[] bATmp;
+            float vcc;
+            ushort uSTmp;
+
+            if (cbVccHighAlarmMask.Checked == true)
+                data[0] |= 0x80;
+            if (cbVccLowAlarmMask.Checked == true)
+                data[0] |= 0x40;
+            if (cbVccHighWarningMask.Checked == true)
+                data[0] |= 0x20;
+            if (cbVccLowWarningMask.Checked == true)
+                data[0] |= 0x10;
+
+            if (i2cMaster.WriteApi(80, 104, 1, data) < 0)
+                goto DeviceNoResponse;
+
+            data[0] = 3;
+            if (i2cMaster.WriteApi(80, 127, 1, data) < 0)
+                goto DeviceNoResponse;
+
+            try {
+                vcc = Convert.ToSingle(tbVccHighAlarmThreshold.Text);
+            }
+            catch (Exception eTS) {
+                MessageBox.Show(eTS.ToString());
+                goto Error;
+            }
+
+            vcc *= 10000;
+            try {
+                uSTmp = Convert.ToUInt16(vcc);
+            }
+            catch (Exception eTI) {
+                MessageBox.Show(eTI.ToString());
+                goto Error;
+            }
+
+            bATmp = BitConverter.GetBytes(uSTmp);
+            data[0] = bATmp[1];
+            data[1] = bATmp[0];
+
+            try {
+                vcc = Convert.ToSingle(tbVccLowAlarmThreshold.Text);
+            }
+            catch (Exception eTS) {
+                MessageBox.Show(eTS.ToString());
+                goto Error;
+            }
+
+            vcc *= 10000;
+            try {
+                uSTmp = Convert.ToUInt16(vcc);
+            }
+            catch (Exception eTI) {
+                MessageBox.Show(eTI.ToString());
+                goto Error;
+            }
+
+            bATmp = BitConverter.GetBytes(uSTmp);
+            data[2] = bATmp[1];
+            data[3] = bATmp[0];
+
+            try {
+                vcc = Convert.ToSingle(tbVccHighWarningThreshold.Text);
+            }
+            catch (Exception eTS) {
+                MessageBox.Show(eTS.ToString());
+                goto Error;
+            }
+
+            vcc *= 10000;
+            try {
+                uSTmp = Convert.ToUInt16(vcc);
+            }
+            catch (Exception eTI) {
+                MessageBox.Show(eTI.ToString());
+                goto Error;
+            }
+
+            bATmp = BitConverter.GetBytes(uSTmp);
+            data[4] = bATmp[1];
+            data[5] = bATmp[0];
+
+            try {
+                vcc = Convert.ToSingle(tbVccLowWarningThreshold.Text);
+            }
+            catch (Exception eTS) {
+                MessageBox.Show(eTS.ToString());
+                goto Error;
+            }
+
+            vcc *= 10000;
+            try {
+                uSTmp = Convert.ToUInt16(vcc);
+            }
+            catch (Exception eTI) {
+                MessageBox.Show(eTI.ToString());
+                goto Error;
+            }
+
+            bATmp = BitConverter.GetBytes(uSTmp);
+            data[6] = bATmp[1];
+            data[7] = bATmp[0];
+
+            if (i2cMaster.WriteApi(80, 144, 8, data) < 0)
+                goto DeviceNoResponse;
+
+            return 0;
+
+        DeviceNoResponse:
+            MessageBox.Show("QSFP+ no reponse!!");
+            _QsfpDisconnect();
+        Error:
+            return -1;
+        }
+
+        private void _bVccWrite_Click(object sender, EventArgs e)
+        {
+            if (qsfpConnected == false) {
+                if (_QsfpConnect() < 0)
+                    return;
+            }
+
+            if (_VccWrite() < 0)
+                return;
+        }
+
+        private int _RxPowerRead()
+        {
+            byte[] data = new byte[8];
+            byte[] bATmp = new byte[2];
+            byte[] reverseData;
+            float power;
+            int tmp;
+
+            tbRxPower1.Text = tbRxPower2.Text = tbRxPower3.Text =
+                tbRxPower4.Text = "";
+
+            if (_QsfpConnect() < 0)
+                return -1;
+
+            if (i2cMaster.ReadApi(80, 9, 2, data) != 2)
+                goto DeviceNoResponse;
+
+            if ((data[0] & 0x80) != 0)
+                cbRxPower1HighAlarm.Checked = true;
+            else
+                cbRxPower1HighAlarm.Checked = false;
+
+            if ((data[0] & 0x40) != 0)
+                cbRxPower1LowAlarm.Checked = true;
+            else
+                cbRxPower1LowAlarm.Checked = false;
+
+            if ((data[0] & 0x20) != 0)
+                cbRxPower1HighWarning.Checked = true;
+            else
+                cbRxPower1HighWarning.Checked = false;
+
+            if ((data[0] & 0x10) != 0)
+                cbRxPower1LowWarning.Checked = true;
+            else
+                cbRxPower1LowWarning.Checked = false;
+
+            if ((data[0] & 0x08) != 0)
+                cbRxPower2HighAlarm.Checked = true;
+            else
+                cbRxPower2HighAlarm.Checked = false;
+
+            if ((data[0] & 0x04) != 0)
+                cbRxPower2LowAlarm.Checked = true;
+            else
+                cbRxPower2LowAlarm.Checked = false;
+
+            if ((data[0] & 0x02) != 0)
+                cbRxPower2HighWarning.Checked = true;
+            else
+                cbRxPower2HighWarning.Checked = false;
+
+            if ((data[0] & 0x01) != 0)
+                cbRxPower2LowWarning.Checked = true;
+            else
+                cbRxPower2LowWarning.Checked = false;
+
+            if ((data[1] & 0x80) != 0)
+                cbRxPower3HighAlarm.Checked = true;
+            else
+                cbRxPower3HighAlarm.Checked = false;
+
+            if ((data[1] & 0x40) != 0)
+                cbRxPower3LowAlarm.Checked = true;
+            else
+                cbRxPower3LowAlarm.Checked = false;
+
+            if ((data[1] & 0x20) != 0)
+                cbRxPower3HighWarning.Checked = true;
+            else
+                cbRxPower3HighWarning.Checked = false;
+
+            if ((data[1] & 0x10) != 0)
+                cbRxPower3LowWarning.Checked = true;
+            else
+                cbRxPower3LowWarning.Checked = false;
+
+            if ((data[1] & 0x08) != 0)
+                cbRxPower4HighAlarm.Checked = true;
+            else
+                cbRxPower4HighAlarm.Checked = false;
+
+            if ((data[1] & 0x04) != 0)
+                cbRxPower4LowAlarm.Checked = true;
+            else
+                cbRxPower4LowAlarm.Checked = false;
+
+            if ((data[1] & 0x02) != 0)
+                cbRxPower4HighWarning.Checked = true;
+            else
+                cbRxPower4HighWarning.Checked = false;
+
+            if ((data[1] & 0x01) != 0)
+                cbRxPower4LowWarning.Checked = true;
+            else
+                cbRxPower4LowWarning.Checked = false;
+
+
+            if (i2cMaster.ReadApi(80, 34, 8, data) != 8)
+                goto DeviceNoResponse;
+
+            try {
+                Buffer.BlockCopy(data, 0, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+
+            reverseData = bATmp.Reverse().ToArray();
+            tmp = BitConverter.ToUInt16(reverseData, 0);
+            power = tmp;
+            power = power / 10;
+            tbRxPower1.Text = power.ToString("#0.0");
+
+            try {
+                Buffer.BlockCopy(data, 2, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+
+            reverseData = bATmp.Reverse().ToArray();
+            tmp = BitConverter.ToUInt16(reverseData, 0);
+            power = tmp;
+            power = power / 10;
+            tbRxPower2.Text = power.ToString("#0.0");
+
+            try {
+                Buffer.BlockCopy(data, 4, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+
+            reverseData = bATmp.Reverse().ToArray();
+            tmp = BitConverter.ToUInt16(reverseData, 0);
+            power = tmp;
+            power = power / 10;
+            tbRxPower3.Text = power.ToString("#0.0");
+
+            try {
+                Buffer.BlockCopy(data, 6, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+
+            reverseData = bATmp.Reverse().ToArray();
+            tmp = BitConverter.ToUInt16(reverseData, 0);
+            power = tmp;
+            power = power / 10;
+            tbRxPower4.Text = power.ToString("#0.0");
+
+            data[0] = 3;
+            i2cMaster.WriteApi(80, 127, 1, data);
+            if (i2cMaster.ReadApi(80, 176, 8, data) != 8)
+                goto DeviceNoResponse;
+
+            try {
+                Buffer.BlockCopy(data, 0, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+            reverseData = bATmp.Reverse().ToArray();
+            tmp = BitConverter.ToUInt16(reverseData, 0);
+            power = tmp;
+            power = power / 10;
+            tbRxPowerHighAlarmThreshold.Text = power.ToString("#0.0");
+
+            try {
+                Buffer.BlockCopy(data, 2, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+            reverseData = bATmp.Reverse().ToArray();
+            tmp = BitConverter.ToUInt16(reverseData, 0);
+            power = tmp;
+            power = power / 10;
+            tbRxPowerLowAlarmThreshold.Text = power.ToString("#0.0");
+
+            try {
+                Buffer.BlockCopy(data, 4, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+            reverseData = bATmp.Reverse().ToArray();
+            tmp = BitConverter.ToUInt16(reverseData, 0);
+            power = tmp;
+            power = power / 10;
+            tbRxPowerHighWarningThreshold.Text = power.ToString("#0.0");
+
+            try {
+                Buffer.BlockCopy(data, 6, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+            reverseData = bATmp.Reverse().ToArray();
+            tmp = BitConverter.ToUInt16(reverseData, 0);
+            power = tmp;
+            power = power / 10;
+            tbRxPowerLowWarningThreshold.Text = power.ToString("#0.0");
+
+            data[0] = 3;
+            i2cMaster.WriteApi(80, 127, 1, data);
+            if (i2cMaster.ReadApi(80, 242, 2, data) != 2)
+                goto DeviceNoResponse;
+
+            if ((data[0] & 0x80) != 0)
+                cbRxPower1HighAlarmMask.Checked = true;
+            else
+                cbRxPower1HighAlarmMask.Checked = false;
+
+            if ((data[0] & 0x40) != 0)
+                cbRxPower1LowAlarmMask.Checked = true;
+            else
+                cbRxPower1LowAlarmMask.Checked = false;
+
+            if ((data[0] & 0x20) != 0)
+                cbRxPower1HighWarningMask.Checked = true;
+            else
+                cbRxPower1HighWarningMask.Checked = false;
+
+            if ((data[0] & 0x10) != 0)
+                cbRxPower1LowWarningMask.Checked = true;
+            else
+                cbRxPower1LowWarningMask.Checked = false;
+
+            if ((data[0] & 0x08) != 0)
+                cbRxPower2HighAlarmMask.Checked = true;
+            else
+                cbRxPower2HighAlarmMask.Checked = false;
+
+            if ((data[0] & 0x04) != 0)
+                cbRxPower2LowAlarmMask.Checked = true;
+            else
+                cbRxPower2LowAlarmMask.Checked = false;
+
+            if ((data[0] & 0x02) != 0)
+                cbRxPower2HighWarningMask.Checked = true;
+            else
+                cbRxPower2HighWarningMask.Checked = false;
+
+            if ((data[0] & 0x01) != 0)
+                cbRxPower2LowWarningMask.Checked = true;
+            else
+                cbRxPower2LowWarningMask.Checked = false;
+
+            if ((data[1] & 0x80) != 0)
+                cbRxPower3HighAlarmMask.Checked = true;
+            else
+                cbRxPower3HighAlarmMask.Checked = false;
+
+            if ((data[1] & 0x40) != 0)
+                cbRxPower3LowAlarmMask.Checked = true;
+            else
+                cbRxPower3LowAlarmMask.Checked = false;
+
+            if ((data[1] & 0x20) != 0)
+                cbRxPower3HighWarningMask.Checked = true;
+            else
+                cbRxPower3HighWarningMask.Checked = false;
+
+            if ((data[1] & 0x10) != 0)
+                cbRxPower3LowWarningMask.Checked = true;
+            else
+                cbRxPower3LowWarningMask.Checked = false;
+
+            if ((data[1] & 0x08) != 0)
+                cbRxPower4HighAlarmMask.Checked = true;
+            else
+                cbRxPower4HighAlarmMask.Checked = false;
+
+            if ((data[1] & 0x04) != 0)
+                cbRxPower4LowAlarmMask.Checked = true;
+            else
+                cbRxPower4LowAlarmMask.Checked = false;
+
+            if ((data[1] & 0x02) != 0)
+                cbRxPower4HighWarningMask.Checked = true;
+            else
+                cbRxPower4HighWarningMask.Checked = false;
+
+            if ((data[1] & 0x01) != 0)
+                cbRxPower4LowWarningMask.Checked = true;
+            else
+                cbRxPower4LowWarningMask.Checked = false;
+
+            return 0;
+
+        DeviceNoResponse:
+            MessageBox.Show("QSFP+ no reponse!!");
+            tbRxPower1.Text = tbRxPower2.Text = tbRxPower3.Text =
+                tbRxPower4.Text = "";
+            _QsfpDisconnect();
+            return -1;
+        }
+
+        private void _bRxPowerReadClick(object sender, EventArgs e)
+        {
+            if (qsfpConnected == false) {
+                if (_QsfpConnect() < 0)
+                    return;
+            }
+
+            if (_RxPowerRead() < 0)
+                return;
+        }
+
+        private int _RxPowerWrite()
+        {
+            byte[] data = new byte[8];
+            byte[] bATmp;
+            float power;
+            ushort uSTmp;
+
+            data[0] = 3;
+            if (i2cMaster.WriteApi(80, 127, 1, data) < 0)
+                goto DeviceNoResponse;
+            
+            try {
+                power = Convert.ToSingle(tbRxPowerHighAlarmThreshold.Text);
+            }
+            catch (Exception eTS) {
+                MessageBox.Show(eTS.ToString());
+                goto Error;
+            }
+
+            power *= 10;
+            try {
+                uSTmp = Convert.ToUInt16(power);
+            }
+            catch (Exception eTI) {
+                MessageBox.Show(eTI.ToString());
+                goto Error;
+            }
+
+            bATmp = BitConverter.GetBytes(uSTmp);
+            data[0] = bATmp[1];
+            data[1] = bATmp[0];
+            
+            try {
+                power = Convert.ToSingle(tbRxPowerLowAlarmThreshold.Text);
+            }
+            catch (Exception eTS) {
+                MessageBox.Show(eTS.ToString());
+                goto Error;
+            }
+
+            power *= 10;
+            try {
+                uSTmp = Convert.ToUInt16(power);
+            }
+            catch (Exception eTI) {
+                MessageBox.Show(eTI.ToString());
+                goto Error;
+            }
+
+            bATmp = BitConverter.GetBytes(uSTmp);
+            data[2] = bATmp[1];
+            data[3] = bATmp[0];
+            
+            try {
+                power = Convert.ToSingle(tbRxPowerHighWarningThreshold.Text);
+            }
+            catch (Exception eTS) {
+                MessageBox.Show(eTS.ToString());
+                goto Error;
+            }
+
+            power *= 10;
+            try {
+                uSTmp = Convert.ToUInt16(power);
+            }
+            catch (Exception eTI) {
+                MessageBox.Show(eTI.ToString());
+                goto Error;
+            }
+
+            bATmp = BitConverter.GetBytes(uSTmp);
+            data[4] = bATmp[1];
+            data[5] = bATmp[0];
+            
+            try {
+                power = Convert.ToSingle(tbRxPowerLowWarningThreshold.Text);
+            }
+            catch (Exception eTS) {
+                MessageBox.Show(eTS.ToString());
+                goto Error;
+            }
+
+            power *= 10;
+            try {
+                uSTmp = Convert.ToUInt16(power);
+            }
+            catch (Exception eTI) {
+                MessageBox.Show(eTI.ToString());
+                goto Error;
+            }
+
+            bATmp = BitConverter.GetBytes(uSTmp);
+            data[6] = bATmp[1];
+            data[7] = bATmp[0];
+
+            if (i2cMaster.WriteApi(80, 176, 8, data) < 0)
+                goto DeviceNoResponse;
+
+            data[0] = data[1] = 0;
+            if (cbRxPower1HighAlarmMask.Checked == true)
+                data[0] |= 0x80;
+            if (cbRxPower1LowAlarmMask.Checked == true)
+                data[0] |= 0x40;
+            if (cbRxPower1HighWarningMask.Checked == true)
+                data[0] |= 0x20;
+            if (cbRxPower1LowWarningMask.Checked == true)
+                data[0] |= 0x10;
+            if (cbRxPower2HighAlarmMask.Checked == true)
+                data[0] |= 0x08;
+            if (cbRxPower2LowAlarmMask.Checked == true)
+                data[0] |= 0x04;
+            if (cbRxPower2HighWarningMask.Checked == true)
+                data[0] |= 0x02;
+            if (cbRxPower2LowWarningMask.Checked == true)
+                data[0] |= 0x01;
+            if (cbRxPower3HighAlarmMask.Checked == true)
+                data[1] |= 0x80;
+            if (cbRxPower3LowAlarmMask.Checked == true)
+                data[1] |= 0x40;
+            if (cbRxPower3HighWarningMask.Checked == true)
+                data[1] |= 0x20;
+            if (cbRxPower3LowWarningMask.Checked == true)
+                data[1] |= 0x10;
+            if (cbRxPower4HighAlarmMask.Checked == true)
+                data[1] |= 0x08;
+            if (cbRxPower4LowAlarmMask.Checked == true)
+                data[1] |= 0x04;
+            if (cbRxPower4HighWarningMask.Checked == true)
+                data[1] |= 0x02;
+            if (cbRxPower4LowWarningMask.Checked == true)
+                data[1] |= 0x01;
+
+            if (i2cMaster.WriteApi(80, 242, 2, data) < 0)
+                goto DeviceNoResponse;
+
+            return 0;
+
+        DeviceNoResponse:
+            MessageBox.Show("QSFP+ no reponse!!");
+            _QsfpDisconnect();
+        Error:
+            return -1;
+        }
+
+        private void bRxPowerWrite_Click(object sender, EventArgs e)
+        {
+            if (qsfpConnected == false) {
+                if (_QsfpConnect() < 0)
+                    return;
+            }
+
+            if (_RxPowerWrite() < 0)
+                return;
+        }
+
+        private int _TxBiasRead()
+        {
+            byte[] data = new byte[8];
+            byte[] bATmp = new byte[2];
+            byte[] reverseData;
+            float bias;
+            int tmp;
+
+            tbTxBias1.Text = tbTxBias2.Text = tbTxBias3.Text =
+                tbTxBias4.Text = "";
+
+            if (_QsfpConnect() < 0)
+                return -1;
+
+            if (i2cMaster.ReadApi(80, 11, 2, data) != 2)
+                goto DeviceNoResponse;
+            
+            if ((data[0] & 0x80) != 0)
+                cbTxBias1HighAlarm.Checked = true;
+            else
+                cbTxBias1HighAlarm.Checked = false;
+
+            if ((data[0] & 0x40) != 0)
+                cbTxBias1LowAlarm.Checked = true;
+            else
+                cbTxBias1LowAlarm.Checked = false;
+
+            if ((data[0] & 0x20) != 0)
+                cbTxBias1HighWarning.Checked = true;
+            else
+                cbTxBias1HighWarning.Checked = false;
+
+            if ((data[0] & 0x10) != 0)
+                cbTxBias1LowWarning.Checked = true;
+            else
+                cbTxBias1LowWarning.Checked = false;
+
+            if ((data[0] & 0x08) != 0)
+                cbTxBias2HighAlarm.Checked = true;
+            else
+                cbTxBias2HighAlarm.Checked = false;
+
+            if ((data[0] & 0x04) != 0)
+                cbTxBias2LowAlarm.Checked = true;
+            else
+                cbTxBias2LowAlarm.Checked = false;
+
+            if ((data[0] & 0x02) != 0)
+                cbTxBias2HighWarning.Checked = true;
+            else
+                cbTxBias2HighWarning.Checked = false;
+
+            if ((data[0] & 0x01) != 0)
+                cbTxBias2LowWarning.Checked = true;
+            else
+                cbTxBias2LowWarning.Checked = false;
+
+            if ((data[1] & 0x80) != 0)
+                cbTxBias3HighAlarm.Checked = true;
+            else
+                cbTxBias3HighAlarm.Checked = false;
+
+            if ((data[1] & 0x40) != 0)
+                cbTxBias3LowAlarm.Checked = true;
+            else
+                cbTxBias3LowAlarm.Checked = false;
+
+            if ((data[1] & 0x20) != 0)
+                cbTxBias3HighWarning.Checked = true;
+            else
+                cbTxBias3HighWarning.Checked = false;
+
+            if ((data[1] & 0x10) != 0)
+                cbTxBias3LowWarning.Checked = true;
+            else
+                cbTxBias3LowWarning.Checked = false;
+
+            if ((data[1] & 0x08) != 0)
+                cbTxBias4HighAlarm.Checked = true;
+            else
+                cbTxBias4HighAlarm.Checked = false;
+
+            if ((data[1] & 0x04) != 0)
+                cbTxBias4LowAlarm.Checked = true;
+            else
+                cbTxBias4LowAlarm.Checked = false;
+
+            if ((data[1] & 0x02) != 0)
+                cbTxBias4HighWarning.Checked = true;
+            else
+                cbTxBias4HighWarning.Checked = false;
+
+            if ((data[1] & 0x01) != 0)
+                cbTxBias4LowWarning.Checked = true;
+            else
+                cbTxBias4LowWarning.Checked = false;
+
+            if (i2cMaster.ReadApi(80, 42, 8, data) != 8)
+                goto DeviceNoResponse;
+
+            try {
+                Buffer.BlockCopy(data, 0, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+
+            reverseData = bATmp.Reverse().ToArray();
+            tmp = BitConverter.ToUInt16(reverseData, 0);
+            bias = tmp;
+            bias = bias / 500;
+            tbTxBias1.Text = bias.ToString("#0.000");
+
+            try {
+                Buffer.BlockCopy(data, 2, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+
+            reverseData = bATmp.Reverse().ToArray();
+            tmp = BitConverter.ToUInt16(reverseData, 0);
+            bias = tmp;
+            bias = bias / 500;
+            tbTxBias2.Text = bias.ToString("#0.000");
+
+            try {
+                Buffer.BlockCopy(data, 4, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+
+            reverseData = bATmp.Reverse().ToArray();
+            tmp = BitConverter.ToUInt16(reverseData, 0);
+            bias = tmp;
+            bias = bias / 500;
+            tbTxBias3.Text = bias.ToString("#0.000");
+
+            try {
+                Buffer.BlockCopy(data, 6, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+
+            reverseData = bATmp.Reverse().ToArray();
+            tmp = BitConverter.ToUInt16(reverseData, 0);
+            bias = tmp;
+            bias = bias / 500;
+            tbTxBias4.Text = bias.ToString("#0.000");
+
+            data[0] = 3;
+            i2cMaster.WriteApi(80, 127, 1, data);
+            if (i2cMaster.ReadApi(80, 184, 8, data) != 8)
+                goto DeviceNoResponse;
+
+            try {
+                Buffer.BlockCopy(data, 0, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+            reverseData = bATmp.Reverse().ToArray();
+            tmp = BitConverter.ToUInt16(reverseData, 0);
+            bias = tmp;
+            bias = bias / 500;
+            tbTxBiasHighAlarmThreshold.Text = bias.ToString("#0.000");
+
+            try {
+                Buffer.BlockCopy(data, 2, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+            reverseData = bATmp.Reverse().ToArray();
+            tmp = BitConverter.ToUInt16(reverseData, 0);
+            bias = tmp;
+            bias = bias / 500;
+            tbTxBiasLowAlarmThreshold.Text = bias.ToString("#0.000");
+
+            try {
+                Buffer.BlockCopy(data, 4, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+            reverseData = bATmp.Reverse().ToArray();
+            tmp = BitConverter.ToUInt16(reverseData, 0);
+            bias = tmp;
+            bias = bias / 500;
+            tbTxBiasHighWarningThreshold.Text = bias.ToString("#0.000");
+
+            try {
+                Buffer.BlockCopy(data, 6, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+            reverseData = bATmp.Reverse().ToArray();
+            tmp = BitConverter.ToUInt16(reverseData, 0);
+            bias = tmp;
+            bias = bias / 500;
+            tbTxBiasLowWarningThreshold.Text = bias.ToString("#0.000");
+
+            data[0] = 3;
+            i2cMaster.WriteApi(80, 127, 1, data);
+            if (i2cMaster.ReadApi(80, 244, 2, data) != 2)
+                goto DeviceNoResponse;
+
+            if ((data[0] & 0x80) != 0)
+                cbTxBias1HighAlarmMask.Checked = true;
+            else
+                cbTxBias1HighAlarmMask.Checked = false;
+
+            if ((data[0] & 0x40) != 0)
+                cbTxBias1LowAlarmMask.Checked = true;
+            else
+                cbRxPower1LowAlarmMask.Checked = false;
+
+            if ((data[0] & 0x20) != 0)
+                cbTxBias1HighWarningMask.Checked = true;
+            else
+                cbTxBias1HighWarningMask.Checked = false;
+
+            if ((data[0] & 0x10) != 0)
+                cbTxBias1LowWarningMask.Checked = true;
+            else
+                cbTxBias1LowWarningMask.Checked = false;
+
+            if ((data[0] & 0x08) != 0)
+                cbTxBias2HighAlarmMask.Checked = true;
+            else
+                cbTxBias2HighAlarmMask.Checked = false;
+
+            if ((data[0] & 0x04) != 0)
+                cbTxBias2LowAlarmMask.Checked = true;
+            else
+                cbTxBias2LowAlarmMask.Checked = false;
+
+            if ((data[0] & 0x02) != 0)
+                cbTxBias2HighWarningMask.Checked = true;
+            else
+                cbTxBias2HighWarningMask.Checked = false;
+
+            if ((data[0] & 0x01) != 0)
+                cbTxBias2LowWarningMask.Checked = true;
+            else
+                cbTxBias2LowWarningMask.Checked = false;
+
+            if ((data[1] & 0x80) != 0)
+                cbTxBias3HighAlarmMask.Checked = true;
+            else
+                cbTxBias3HighAlarmMask.Checked = false;
+
+            if ((data[1] & 0x40) != 0)
+                cbTxBias3LowAlarmMask.Checked = true;
+            else
+                cbTxBias3LowAlarmMask.Checked = false;
+
+            if ((data[1] & 0x20) != 0)
+                cbTxBias3HighWarningMask.Checked = true;
+            else
+                cbTxBias3HighWarningMask.Checked = false;
+
+            if ((data[1] & 0x10) != 0)
+                cbTxBias3LowWarningMask.Checked = true;
+            else
+                cbTxBias3LowWarningMask.Checked = false;
+
+            if ((data[1] & 0x08) != 0)
+                cbTxBias4HighAlarmMask.Checked = true;
+            else
+                cbTxBias4HighAlarmMask.Checked = false;
+
+            if ((data[1] & 0x04) != 0)
+                cbTxBias4LowAlarmMask.Checked = true;
+            else
+                cbTxBias4LowAlarmMask.Checked = false;
+
+            if ((data[1] & 0x02) != 0)
+                cbTxBias4HighWarningMask.Checked = true;
+            else
+                cbTxBias4HighWarningMask.Checked = false;
+
+            if ((data[1] & 0x01) != 0)
+                cbTxBias4LowWarningMask.Checked = true;
+            else
+                cbTxBias4LowWarningMask.Checked = false;
+
+            return 0;
+
+        DeviceNoResponse:
+            MessageBox.Show("QSFP+ no reponse!!");
+            tbTxBias1.Text = tbTxBias2.Text = tbTxBias3.Text =
+                tbTxBias4.Text = "";
+            _QsfpDisconnect();
+            return -1;
+        }
+
+        private void _bTxBiasRead_Click(object sender, EventArgs e)
+        {
+            if (qsfpConnected == false) {
+                if (_QsfpConnect() < 0)
+                    return;
+            }
+
+            if (_TxBiasRead() < 0)
+                return;
+        }
+
+        private int _TxBiasWrite()
+        {
+            byte[] data = new byte[8];
+            byte[] bATmp;
+            float power;
+            ushort uSTmp;
+
+            data[0] = 3;
+            if (i2cMaster.WriteApi(80, 127, 1, data) < 0)
+                goto DeviceNoResponse;
+
+            try {
+                power = Convert.ToSingle(tbTxBiasHighAlarmThreshold.Text);
+            }
+            catch (Exception eTS) {
+                MessageBox.Show(eTS.ToString());
+                goto Error;
+            }
+
+            power *= 500;
+            try {
+                uSTmp = Convert.ToUInt16(power);
+            }
+            catch (Exception eTI) {
+                MessageBox.Show(eTI.ToString());
+                goto Error;
+            }
+
+            bATmp = BitConverter.GetBytes(uSTmp);
+            data[0] = bATmp[1];
+            data[1] = bATmp[0];
+
+            try {
+                power = Convert.ToSingle(tbTxBiasLowAlarmThreshold.Text);
+            }
+            catch (Exception eTS) {
+                MessageBox.Show(eTS.ToString());
+                goto Error;
+            }
+
+            power *= 500;
+            try {
+                uSTmp = Convert.ToUInt16(power);
+            }
+            catch (Exception eTI) {
+                MessageBox.Show(eTI.ToString());
+                goto Error;
+            }
+
+            bATmp = BitConverter.GetBytes(uSTmp);
+            data[2] = bATmp[1];
+            data[3] = bATmp[0];
+
+            try {
+                power = Convert.ToSingle(tbTxBiasHighWarningThreshold.Text);
+            }
+            catch (Exception eTS) {
+                MessageBox.Show(eTS.ToString());
+                goto Error;
+            }
+
+            power *= 500;
+            try {
+                uSTmp = Convert.ToUInt16(power);
+            }
+            catch (Exception eTI) {
+                MessageBox.Show(eTI.ToString());
+                goto Error;
+            }
+
+            bATmp = BitConverter.GetBytes(uSTmp);
+            data[4] = bATmp[1];
+            data[5] = bATmp[0];
+
+            try {
+                power = Convert.ToSingle(tbTxBiasLowWarningThreshold.Text);
+            }
+            catch (Exception eTS) {
+                MessageBox.Show(eTS.ToString());
+                goto Error;
+            }
+
+            power *= 500;
+            try {
+                uSTmp = Convert.ToUInt16(power);
+            }
+            catch (Exception eTI) {
+                MessageBox.Show(eTI.ToString());
+                goto Error;
+            }
+
+            bATmp = BitConverter.GetBytes(uSTmp);
+            data[6] = bATmp[1];
+            data[7] = bATmp[0];
+
+            if (i2cMaster.WriteApi(80, 184, 8, data) < 0)
+                goto DeviceNoResponse;
+
+            data[0] = data[1] = 0;
+            if (cbTxBias1HighAlarmMask.Checked == true)
+                data[0] |= 0x80;
+            if (cbTxBias1LowAlarmMask.Checked == true)
+                data[0] |= 0x40;
+            if (cbTxBias1HighWarningMask.Checked == true)
+                data[0] |= 0x20;
+            if (cbTxBias1LowWarningMask.Checked == true)
+                data[0] |= 0x10;
+            if (cbTxBias2HighAlarmMask.Checked == true)
+                data[0] |= 0x08;
+            if (cbTxBias2LowAlarmMask.Checked == true)
+                data[0] |= 0x04;
+            if (cbTxBias2HighWarningMask.Checked == true)
+                data[0] |= 0x02;
+            if (cbTxBias2LowWarningMask.Checked == true)
+                data[0] |= 0x01;
+            if (cbTxBias3HighAlarmMask.Checked == true)
+                data[1] |= 0x80;
+            if (cbTxBias3LowAlarmMask.Checked == true)
+                data[1] |= 0x40;
+            if (cbTxBias3HighWarningMask.Checked == true)
+                data[1] |= 0x20;
+            if (cbTxBias3LowWarningMask.Checked == true)
+                data[1] |= 0x10;
+            if (cbTxBias4HighAlarmMask.Checked == true)
+                data[1] |= 0x08;
+            if (cbTxBias4LowAlarmMask.Checked == true)
+                data[1] |= 0x04;
+            if (cbTxBias4HighWarningMask.Checked == true)
+                data[1] |= 0x02;
+            if (cbTxBias4LowWarningMask.Checked == true)
+                data[1] |= 0x01;
+
+            if (i2cMaster.WriteApi(80, 244, 2, data) < 0)
+                goto DeviceNoResponse;
+
+            return 0;
+
+        DeviceNoResponse:
+            MessageBox.Show("QSFP+ no reponse!!");
+            _QsfpDisconnect();
+        Error:
+            return -1;
+        }
+
+        private void bTxBiasWrite_Click(object sender, EventArgs e)
+        {
+            if (qsfpConnected == false) {
+                if (_QsfpConnect() < 0)
+                    return;
+            }
+
+            if (_TxBiasWrite() < 0)
+                return;
+        }
+
+        private void bRead_Click(object sender, EventArgs e)
+        {
+            if (qsfpConnected == false) {
+                if (_QsfpConnect() < 0)
+                    return;
+            }
+
+            if (_LosAndFaultRead() < 0)
+                return;
+
+            if (_MiscRead() < 0)
+                return;
+
+            if (_TemperatureRead() < 0)
+                return;
+
+            if (_VccRead() < 0)
+                return;
+
+            if (_RxPowerRead() < 0)
+                return;
+
+            if (_TxBiasRead() < 0)
+                return;
+        }
+
+        private void bWrite_Click(object sender, EventArgs e)
+        {
+            if (qsfpConnected == false) {
+                if (_QsfpConnect() < 0)
+                    return;
+            }
+
+            if (_LosAndFaultWrite() < 0)
+                return;
+
+            if (_MiscWrite() < 0)
+                return;
+
+            if (_TemperatureWrite() < 0)
+                return;
+
+            if (_VccWrite() < 0)
+                return;
+
+            if (_RxPowerWrite() < 0)
+                return;
+
+            if (_TxBiasWrite() < 0)
+                return;
+        }
+
     }
 }

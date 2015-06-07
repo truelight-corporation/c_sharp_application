@@ -27,13 +27,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.ucDigitalDiagnosticsMonitoring1 = new QsfpDigitalDiagnosticMonitoring.UCDigitalDiagnosticsMonitoring();
             this.SuspendLayout();
+            // 
+            // ucDigitalDiagnosticsMonitoring1
+            // 
+            this.ucDigitalDiagnosticsMonitoring1.Location = new System.Drawing.Point(1, 2);
+            this.ucDigitalDiagnosticsMonitoring1.Name = "ucDigitalDiagnosticsMonitoring1";
+            this.ucDigitalDiagnosticsMonitoring1.Size = new System.Drawing.Size(782, 482);
+            this.ucDigitalDiagnosticsMonitoring1.TabIndex = 0;
             // 
             // FDigitalDiagnosticMonitoring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 273);
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.ClientSize = new System.Drawing.Size(966, 583);
+            this.Controls.Add(this.ucDigitalDiagnosticsMonitoring1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "FDigitalDiagnosticMonitoring";
             this.Text = "Digital Diagnostic Monitoring";
             this.ResumeLayout(false);
@@ -41,6 +53,8 @@
         }
 
         #endregion
+
+        private UCDigitalDiagnosticsMonitoring ucDigitalDiagnosticsMonitoring1;
     }
 }
 
