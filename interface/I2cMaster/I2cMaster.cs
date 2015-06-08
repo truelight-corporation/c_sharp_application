@@ -11,6 +11,7 @@ namespace I2cMasterInterface
 {
     public class I2cMaster
     {
+        public bool connected = false;
         private delegate int AdapterConnectedCB(int handler);
 
         private FAdapterSelect fASelect;
@@ -109,7 +110,9 @@ namespace I2cMasterInterface
             as_atAdapterType = type;
 
             fASelect.Hide();
-            
+
+            connected = true;
+
             return 0;
 
         Error:
@@ -118,12 +121,15 @@ namespace I2cMasterInterface
 
         public int DisconnectApi()
         {
+            int rv = 0;
+
             switch (as_atAdapterType) {
                 case AdapterSelector.AdapterType.AS_AT_DUMMY:
                     break;
 
                 case AdapterSelector.AdapterType.AS_AT_AARDVARK:
-                    return _AardvarkDisconnect();
+                    rv = _AardvarkDisconnect();
+                    break;
 
                 case AdapterSelector.AdapterType.AS_AT_UI051:
                     break;
@@ -131,8 +137,10 @@ namespace I2cMasterInterface
                 default:
                     break;
             }
-            
-            return 0;
+
+            connected = false;
+
+            return rv;
         }
 
         public int SetBitRateApi(int bitrate)
@@ -160,7 +168,6 @@ namespace I2cMasterInterface
             fASelect.adapterSelector.UpdateAdapterApi();
             fASelect.ShowDialog();
             
-
             return 0;
         }
 
