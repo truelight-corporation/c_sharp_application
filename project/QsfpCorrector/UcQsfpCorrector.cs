@@ -14,125 +14,53 @@ namespace QsfpCorrector
 {
     public partial class UcQsfpCorrector : UserControl
     {
-        bool qsfpConnected;
-        bool monitorConnected;
-        I2cMaster i2cMasterQsfp = new I2cMaster();
-        I2cMaster i2cMasterMonitor = new I2cMaster();
+        public delegate int I2cReadCB(byte devAddr, byte regAddr, byte length, byte[] data);
+        public delegate int I2cWriteCB(byte devAddr, byte regAddr, byte length, byte[] data);
+
+        private I2cReadCB qsfpI2cReadCB = null;
+        private I2cWriteCB qsfpI2cWriteCB = null;
 
         public UcQsfpCorrector()
         {
-            qsfpConnected = false;
-            monitorConnected = false;
             InitializeComponent();
         }
 
-        private int _QsfpConnect()
+        public int SetQsfpI2cReadCBApi(I2cReadCB cb)
+        {
+            if (cb == null)
+                return -1;
+
+            qsfpI2cReadCB = new I2cReadCB(cb);
+
+            return 0;
+        }
+
+        public int SetQsfpI2cWriteCBApi(I2cWriteCB cb)
+        {
+            if (cb == null)
+                return -1;
+
+            qsfpI2cWriteCB = new I2cWriteCB(cb);
+
+            return 0;
+        }
+
+        private int _SetQsfpMode(byte mode)
         {
             byte[] data = new byte[] {32};
 
-            if (qsfpConnected == true)
+            if (qsfpI2cWriteCB == null)
                 return 0;
 
-            if (i2cMasterQsfp.ConnectApi(100) < 0)
+            if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
 
-            if (i2cMasterQsfp.WriteApi(80, 127, 1, data) < 0)
-                goto DeviceNoResponse;
+            data[0] = mode;
 
-            data[0] = 0x4D;
-
-            if (i2cMasterQsfp.WriteApi(80, 164, 1, data) < 0)
-                goto DeviceNoResponse;
-
-            qsfpConnected = cbQsfpLinked.Checked = true;
+            if (qsfpI2cWriteCB(80, 164, 1, data) < 0)
+                return -1;
 
             return 0;
-
-        DeviceNoResponse:
-            MessageBox.Show("QSFP+ no reponse!!");
-            cbQsfpLinked.Checked = false;
-            return -1;
-        }
-
-        private int _QsfpDisconnect()
-        {
-            byte[] data = new byte[] { 32 };
-
-            if (qsfpConnected == false)
-                return -1;
-
-            if (i2cMasterQsfp.WriteApi(80, 127, 1, data) < 0)
-                goto DeviceNoResponse;
-
-            data[0] = 0;
-
-            if (i2cMasterQsfp.WriteApi(80, 164, 1, data) < 0)
-                goto DeviceNoResponse;
-
-            if (i2cMasterQsfp.DisconnectApi() < 0)
-                return -1;
-
-            qsfpConnected = cbQsfpLinked.Checked = false;
-
-            return 0;
-
-        DeviceNoResponse:
-            MessageBox.Show("QSFP+ no reponse!!");
-            qsfpConnected = cbQsfpLinked.Checked = false;
-            return -1;
-        }
-
-        private void cbQsfpLinked_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbQsfpLinked.Checked == false) {
-                if (_QsfpDisconnect() < 0)
-                    return;
-            }
-            else {
-                if (_QsfpConnect() < 0)
-                    return;
-            }
-        }
-
-        private int _MonitorConnect()
-        {
-            byte[] data = new byte[] { 2 };
-
-            if (monitorConnected == true)
-                return 0;
-
-            if (i2cMasterMonitor.ConnectApi(100) < 0)
-                return -1;
-
-            monitorConnected = cbMonitorLinked.Checked = true;
-
-            return 0;
-        }
-
-
-        private int _MonitorDisconnect()
-        {
-            if (monitorConnected == false)
-                return 0;
-
-            if (i2cMasterMonitor.DisconnectApi() < 0)
-                return -1;
-
-            monitorConnected = cbMonitorLinked.Checked = false;
-
-            return 0;
-        }
-
-        private void _cbMonitorLinkedCheckedChanged(object sender, EventArgs e)
-        {
-            if (cbMonitorLinked.Checked == false) {
-                if (_MonitorDisconnect() < 0)
-                    return;
-            }
-            else {
-                if (_MonitorConnect() < 0)
-                    return;
-            }
         }
 
         private int _ReadTemperature()
@@ -145,11 +73,11 @@ namespace QsfpCorrector
 
             tbTxTemperature.Text = "";
 
-            if (_QsfpConnect() < 0)
+            if (qsfpI2cReadCB == null)
                 return -1;
 
-            if (i2cMasterQsfp.ReadApi(80, 22, 2, data) != 2)
-                goto DeviceNoResponse;
+            if (qsfpI2cReadCB(80, 22, 2, data) != 2)
+                return -1;
 
             reverseData = data.Reverse().ToArray();
             tmp = BitConverter.ToInt16(reverseData, 0);
@@ -157,10 +85,13 @@ namespace QsfpCorrector
             temperature = temperature / 256;
             tbTxTemperature.Text = temperature.ToString("#0.0");
 
+            if (qsfpI2cWriteCB == null)
+                return -1;
+
             data = new byte[] { 2, 0 };
-            i2cMasterQsfp.WriteApi(80, 127, 1, data);
-            if (i2cMasterQsfp.ReadApi(80, 137, 1, data) != 1)
-                goto DeviceNoResponse;
+            qsfpI2cWriteCB(80, 127, 1, data);
+            if (qsfpI2cReadCB(80, 137, 1, data) != 1)
+                return -1;
 
             try {
                 Buffer.BlockCopy(data, 0, sData, 0, 1);
@@ -177,12 +108,6 @@ namespace QsfpCorrector
             tbTemperatureOffset.Text = sData[0].ToString();
 
             return 0;
-
-        DeviceNoResponse:
-            MessageBox.Show("QSFP+ no reponse!!");
-            tbTxTemperature.Text = "";
-            _QsfpDisconnect();
-            return -1;
         }
 
         private int _WriteTemperatureOffset()
@@ -190,7 +115,10 @@ namespace QsfpCorrector
             byte[] data = new byte[1];
             sbyte[] tmp = new sbyte[1];
 
-            if (_QsfpConnect() < 0)
+            if (_SetQsfpMode(0x4D) < 0)
+                return -1;
+
+            if (qsfpI2cWriteCB == null)
                 return -1;
 
             try {
@@ -203,7 +131,7 @@ namespace QsfpCorrector
             }
 
             data[0] = 2;
-            i2cMasterQsfp.WriteApi(80, 127, 1, data);
+            qsfpI2cWriteCB(80, 127, 1, data);
 
             try {
                 Buffer.BlockCopy(tmp, 0, data, 0, 1);
@@ -213,7 +141,10 @@ namespace QsfpCorrector
                 return -1;
             }
 
-            i2cMasterQsfp.WriteApi(80, 137, 1, data);
+            qsfpI2cWriteCB(80, 137, 1, data);
+
+            if (_SetQsfpMode(0) < 0)
+                return -1;
 
             return 0;
         }
@@ -320,73 +251,76 @@ namespace QsfpCorrector
             tbRxPowerRate1.Text = tbRxPowerRate2.Text = tbRxPowerRate3.Text = tbRxPowerRate4.Text = "";
             tbRxPower1.Text = tbRxPower2.Text = tbRxPower3.Text = tbRxPower4.Text = "";
 
-            if (_QsfpConnect() < 0)
+            if (qsfpI2cReadCB == null)
                 return -1;
 
-            if (i2cMasterQsfp.ReadApi(80, 108, 2, data) != 2)
-                goto DeviceNoResponse;
+            if (qsfpI2cReadCB(80, 108, 2, data) != 2)
+                return -1;
 
             reverseData = data.Reverse().ToArray();
             tmp = BitConverter.ToInt16(reverseData, 0);
             tbRssi1.Text = tmp.ToString();
 
-            if (i2cMasterQsfp.ReadApi(80, 110, 2, data) != 2)
-                goto DeviceNoResponse;
+            if (qsfpI2cReadCB(80, 110, 2, data) != 2)
+                return -1;
 
             reverseData = data.Reverse().ToArray();
             tmp = BitConverter.ToInt16(reverseData, 0);
             tbRssi2.Text = tmp.ToString();
 
-            if (i2cMasterQsfp.ReadApi(80, 112, 2, data) != 2)
-                goto DeviceNoResponse;
+            if (qsfpI2cReadCB(80, 112, 2, data) != 2)
+                return -1;
 
             reverseData = data.Reverse().ToArray();
             tmp = BitConverter.ToInt16(reverseData, 0);
             tbRssi3.Text = tmp.ToString();
 
-            if (i2cMasterQsfp.ReadApi(80, 114, 2, data) != 2)
-                goto DeviceNoResponse;
+            if (qsfpI2cReadCB(80, 114, 2, data) != 2)
+                return -1;
 
             reverseData = data.Reverse().ToArray();
             tmp = BitConverter.ToInt16(reverseData, 0);
             tbRssi4.Text = tmp.ToString();
 
-            if (i2cMasterQsfp.ReadApi(80, 34, 2, data) != 2)
-                goto DeviceNoResponse;
+            if (qsfpI2cReadCB(80, 34, 2, data) != 2)
+                return -1;
 
             reverseData = data.Reverse().ToArray();
             tmp = BitConverter.ToInt16(reverseData, 0);
             power = tmp / 10;
             tbRxPower1.Text = power.ToString("#0.0");
 
-            if (i2cMasterQsfp.ReadApi(80, 36, 2, data) != 2)
-                goto DeviceNoResponse;
+            if (qsfpI2cReadCB(80, 36, 2, data) != 2)
+                return -1;
 
             reverseData = data.Reverse().ToArray();
             tmp = BitConverter.ToInt16(reverseData, 0);
             power = tmp / 10;
             tbRxPower2.Text = power.ToString("#0.0");
 
-            if (i2cMasterQsfp.ReadApi(80, 38, 2, data) != 2)
-                goto DeviceNoResponse;
+            if (qsfpI2cReadCB(80, 38, 2, data) != 2)
+                return -1;
 
             reverseData = data.Reverse().ToArray();
             tmp = BitConverter.ToInt16(reverseData, 0);
             power = tmp / 10;
             tbRxPower3.Text = power.ToString("#0.0");
 
-            if (i2cMasterQsfp.ReadApi(80, 40, 2, data) != 2)
-                goto DeviceNoResponse;
+            if (qsfpI2cReadCB(80, 40, 2, data) != 2)
+                return -1;
 
             reverseData = data.Reverse().ToArray();
             tmp = BitConverter.ToInt16(reverseData, 0);
             power = tmp / 10;
             tbRxPower4.Text = power.ToString("#0.0");
 
+            if (qsfpI2cWriteCB == null)
+                return -1;
+
             data = new byte[] { 32, 0, 0, 0 };
-            i2cMasterQsfp.WriteApi(80, 127, 1, data);
-            if (i2cMasterQsfp.ReadApi(80, 163, 1, data) != 1)
-                goto DeviceNoResponse;
+            qsfpI2cWriteCB(80, 127, 1, data);
+            if (qsfpI2cReadCB(80, 163, 1, data) != 1)
+                return -1;
 
             tbRxPowerRateDefault.Text = data[0].ToString();
 
@@ -397,9 +331,9 @@ namespace QsfpCorrector
                 tbRxPowerRateMin.Text = (data[0] - 12).ToString();
 
             data = new byte[] { 2, 0, 0, 0};
-            i2cMasterQsfp.WriteApi(80, 127, 1, data);
-            if (i2cMasterQsfp.ReadApi(80, 133, 4, data) != 4)
-                goto DeviceNoResponse;
+            qsfpI2cWriteCB(80, 127, 1, data);
+            if (qsfpI2cReadCB(80, 133, 4, data) != 4)
+                return -1;
 
             tbRxPowerRate1.Text = data[0].ToString();
             tbRxPowerRate2.Text = data[1].ToString();
@@ -407,13 +341,6 @@ namespace QsfpCorrector
             tbRxPowerRate4.Text = data[3].ToString();
 
             return 0;
-
-        DeviceNoResponse:
-            MessageBox.Show("QSFP+ no reponse!!");
-            tbRssi1.Text = tbRssi2.Text = tbRssi3.Text = tbRssi4.Text = "";
-            tbRxPowerRate1.Text = tbRxPowerRate2.Text = tbRxPowerRate3.Text = tbRxPowerRate4.Text = "";
-            tbRxPower1.Text = tbRxPower2.Text = tbRxPower3.Text = tbRxPower4.Text = "";
-            return -1;
         }
 
         private void _bRxPowerRateReadClick(object sender, EventArgs e)
@@ -432,7 +359,13 @@ namespace QsfpCorrector
                 return -1;
             }
 
-            i2cMasterQsfp.WriteApi(80, 127, 1, data);
+            if (_SetQsfpMode(0x4D) < 0)
+                return -1;
+
+            if (qsfpI2cWriteCB == null)
+                return -1;
+
+            qsfpI2cWriteCB(80, 127, 1, data);
 
             try {
                 data[0] = Convert.ToByte(tbRxPowerRate1.Text);
@@ -445,7 +378,7 @@ namespace QsfpCorrector
                 return -1;
             }
 
-            i2cMasterQsfp.WriteApi(80, 133, 4, data);
+            qsfpI2cWriteCB(80, 133, 4, data);
 
             return 0;
         }
@@ -733,18 +666,23 @@ namespace QsfpCorrector
             Int16 s16Tmp;
             byte bChecksum;
             sbyte[] sBATmp = new sbyte[1];
-            
+
+            if (_SetQsfpMode(0x4D) < 0)
+                return -1;
+
+            if (qsfpI2cWriteCB == null)
+                return -1;
 
             data[0] = 2;
-            if (i2cMasterQsfp.WriteApi(80, 127, 1, data) < 0)
-                goto device_no_response;
+            if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
+                return -1;
 
             if ((Convert.ToSingle(tbAverageCurrentEquationA.Text) < 0) ||
                 (Convert.ToSingle(tbAverageCurrentEquationA.Text) > 2.55)) {
                 MessageBox.Show("Average current equation A: " +
                     tbAverageCurrentEquationA.Text +
                     " out of range (0 ~ 2.55)!!");
-                goto error;
+                return -1;
             }
 
             try {
@@ -752,21 +690,21 @@ namespace QsfpCorrector
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
-                goto error;
+                return -1;
             }
             if ((Convert.ToSingle(tbAverageCurrentEquationB.Text) < 0) ||
                 Convert.ToSingle(tbAverageCurrentEquationB.Text) > 6553.5) {
                 MessageBox.Show("Average current equation B: " +
                     tbAverageCurrentEquationB.Text +
                     " out of range (0 ~ 6553.5)!!");
-                goto error;
+                return -1;
             }
             try {
                 u16Tmp = Convert.ToUInt16(Convert.ToSingle(tbAverageCurrentEquationB.Text) * 10);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
-                goto error;
+                return -1;
             }
             bATmp = BitConverter.GetBytes(u16Tmp);
             data[1] = bATmp[1];
@@ -777,7 +715,7 @@ namespace QsfpCorrector
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
-                goto error;
+                return -1;
             }
             bATmp = BitConverter.GetBytes(u16Tmp);
             data[3] = bATmp[1];
@@ -793,7 +731,7 @@ namespace QsfpCorrector
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
-                goto error;
+                return -1;
             }
             if ((Convert.ToSingle(tbAverageCurrentMax.Text) < 0) ||
                 Convert.ToSingle(tbAverageCurrentMax.Text) > 10.2) {
@@ -806,7 +744,7 @@ namespace QsfpCorrector
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
-                goto error;
+                return -1;
             }
 
             if (Convert.ToSingle(tbModulationCurrentEquationA.Text) < 0 ||
@@ -814,28 +752,28 @@ namespace QsfpCorrector
                 MessageBox.Show("Modualtion current equation A: " +
                     tbModulationCurrentEquationA.Text +
                     " out of range (0 ~ 2.55)!!");
-                goto error;
+                return -1;
             }
             try {
                 data[7] = Convert.ToByte(Convert.ToSingle(tbModulationCurrentEquationA.Text) * 100);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
-                goto error;
+                return -1;
             }
             if (Convert.ToSingle(tbModulationCurrentEquationB.Text) < -3276.8 ||
                 Convert.ToSingle(tbModulationCurrentEquationB.Text) > 3276.7) {
                 MessageBox.Show("Modualtion current equation B: " +
                     tbModulationCurrentEquationA.Text +
                     " out of range (-3276.8 ~ 3276.7)!!");
-                goto error;
+                return -1;
             }
             try {
                 s16Tmp = Convert.ToInt16(Convert.ToSingle(tbModulationCurrentEquationB.Text) * 10);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
-                goto error;
+                return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
             data[8] = bATmp[1];
@@ -845,7 +783,7 @@ namespace QsfpCorrector
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
-                goto error;
+                return -1;
             }
             bATmp = BitConverter.GetBytes(u16Tmp);
             data[10] = bATmp[1];
@@ -861,7 +799,7 @@ namespace QsfpCorrector
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
-                goto error;
+                return -1;
             }
             if ((Convert.ToSingle(tbModulationCurrentMax.Text) < 0) ||
                 Convert.ToSingle(tbModulationCurrentMax.Text) > 10.2) {
@@ -874,7 +812,7 @@ namespace QsfpCorrector
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
-                goto error;
+                return -1;
             }
 
             if (Convert.ToSingle(tbAverageCurrentOffset.Text) < -12.8 ||
@@ -882,7 +820,7 @@ namespace QsfpCorrector
                 MessageBox.Show("Average current offset: " +
                     tbAverageCurrentOffset.Text +
                     " out of range (-12.8 ~ 12.7)!!");
-                goto error;
+                return -1;
             }
             try {
                 sBATmp[0] = Convert.ToSByte(Convert.ToSingle(tbAverageCurrentOffset.Text) * 10);
@@ -890,14 +828,14 @@ namespace QsfpCorrector
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
-                goto error;
+                return -1;
             }
             if (Convert.ToSingle(tbModulationCurrentOffset.Text) < -12.8 ||
                 Convert.ToSingle(tbModulationCurrentOffset.Text) > 12.7) {
                 MessageBox.Show("Modulation current offset: " +
                     tbModulationCurrentOffset.Text +
                     " out of range (-12.8 ~ 12.7)!!");
-                goto error;
+                return -1;
             }
             try {
                 sBATmp[0] = Convert.ToSByte(Convert.ToSingle(tbModulationCurrentOffset.Text) * 10);
@@ -905,27 +843,21 @@ namespace QsfpCorrector
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
-                goto error;
+                return -1;
             }
             
-            if (i2cMasterQsfp.WriteApi(80, 189, 16, data) < 0)
-                goto device_no_response;
+            if (qsfpI2cWriteCB(80, 189, 16, data) < 0)
+                return -1;
 
             for (i = 0, bChecksum = 0; i < 16; i++)
                 bChecksum += data[i];
 
             data[0] = bChecksum;
 
-            if (i2cMasterQsfp.WriteApi(80, 132, 1, data) < 0)
-                goto device_no_response;
+            if (qsfpI2cWriteCB(80, 132, 1, data) < 0)
+                return -1;
 
             return 0;
-
-        device_no_response:
-            MessageBox.Show("QSFP+ module no response Error!!");
-            _QsfpDisconnect();
-        error:
-            return -1;
         }
 
         private int _AutoCorrectAcMc()
@@ -946,19 +878,20 @@ namespace QsfpCorrector
         {
             byte[] data = new byte[] { 2 };
 
-            if (i2cMasterQsfp.WriteApi(80, 127, 1, data) < 0)
-                goto device_no_response;
+            if (_SetQsfpMode(0x4D) < 0)
+                return -1;
+
+            if (qsfpI2cWriteCB == null)
+                return -1;
+
+            if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
+                return -1;
 
             data[0] = 0;
-            if (i2cMasterQsfp.WriteApi(80, 191, 1, data) < 0)
-                goto device_no_response;
+            if (qsfpI2cWriteCB(80, 191, 1, data) < 0)
+                return -1;
 
             return 0;
-
-        device_no_response:
-            MessageBox.Show("QSFP+ module no response Error!!");
-            _QsfpDisconnect();
-            return -1;
         }
 
         private void bLutReset_Click(object sender, EventArgs e)
@@ -1000,16 +933,18 @@ namespace QsfpCorrector
             Single sTmp;
             int iTmp;
 
-            if (_QsfpConnect() < 0)
+            if (qsfpI2cWriteCB == null)
                 return -1;
 
             data[0] = 2;
-            
-            if (i2cMasterQsfp.WriteApi(80, 127, 1, data) < 0)
-                goto DeviceNoResponse;
+            if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
+                return -1;
 
-            if (i2cMasterQsfp.ReadApi(80, 189, 16, data) != 16)
-                goto DeviceNoResponse;
+            if (qsfpI2cReadCB == null)
+                return -1;
+
+            if (qsfpI2cReadCB(80, 189, 16, data) != 16)
+                return -1;
 
             tbModuleAverageCurrentEquationA.Text = (Convert.ToSingle(data[0]) / 100).ToString("#0.00");
 
@@ -1056,16 +991,6 @@ namespace QsfpCorrector
             tbModulationCurrentOffset.Text = sTmp.ToString("#0.0");
 
             return 0;
-
-        DeviceNoResponse:
-            MessageBox.Show("QSFP+ no reponse!!");
-            tbModuleAverageCurrentEquationA.Text =
-                tbModuleAverageCurrentEquationB.Text =
-                tbModuleAverageCurrentEquationC.Text =
-                tbModuleModulationCurrentEquationA.Text =
-                tbModuleModulationCurrentEquationB.Text =
-                tbModuleModulationCurrentEquationC.Text = "";
-            return -1;
         }
         
         private void _bAcMcReadClick(object sender, EventArgs e)

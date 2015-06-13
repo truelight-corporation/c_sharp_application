@@ -79,8 +79,11 @@
             this.tbRxInputPower1 = new System.Windows.Forms.TextBox();
             this.lInputPower = new System.Windows.Forms.Label();
             this.lRxCh1 = new System.Windows.Forms.Label();
-            this.cbQsfpLinked = new System.Windows.Forms.CheckBox();
             this.gbAcMcEquation = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.tbModuleModulationCurrentMin = new System.Windows.Forms.TextBox();
             this.tbModuleModulationCurrentMax = new System.Windows.Forms.TextBox();
             this.tbModuleAverageCurrentMax = new System.Windows.Forms.TextBox();
@@ -125,11 +128,6 @@
             this.bAutoCorrect = new System.Windows.Forms.Button();
             this.cbTemperatureCorrected = new System.Windows.Forms.CheckBox();
             this.bSaveFile = new System.Windows.Forms.Button();
-            this.cbMonitorLinked = new System.Windows.Forms.CheckBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.gbTemperature.SuspendLayout();
             this.gbRxPowerRate.SuspendLayout();
             this.gbAcMcEquation.SuspendLayout();
@@ -203,7 +201,7 @@
             this.gbTemperature.Controls.Add(this.bTemperatureRead);
             this.gbTemperature.Controls.Add(this.lTemperatureOffset);
             this.gbTemperature.Controls.Add(this.tbTemperatureOffset);
-            this.gbTemperature.Location = new System.Drawing.Point(3, 76);
+            this.gbTemperature.Location = new System.Drawing.Point(3, 32);
             this.gbTemperature.Name = "gbTemperature";
             this.gbTemperature.Size = new System.Drawing.Size(614, 60);
             this.gbTemperature.TabIndex = 8;
@@ -304,7 +302,7 @@
             this.gbRxPowerRate.Controls.Add(this.tbRxInputPower1);
             this.gbRxPowerRate.Controls.Add(this.lInputPower);
             this.gbRxPowerRate.Controls.Add(this.lRxCh1);
-            this.gbRxPowerRate.Location = new System.Drawing.Point(6, 140);
+            this.gbRxPowerRate.Location = new System.Drawing.Point(3, 98);
             this.gbRxPowerRate.Name = "gbRxPowerRate";
             this.gbRxPowerRate.Size = new System.Drawing.Size(614, 145);
             this.gbRxPowerRate.TabIndex = 9;
@@ -632,17 +630,6 @@
             this.lRxCh1.TabIndex = 0;
             this.lRxCh1.Text = "Rx1";
             // 
-            // cbQsfpLinked
-            // 
-            this.cbQsfpLinked.AutoSize = true;
-            this.cbQsfpLinked.Location = new System.Drawing.Point(393, 45);
-            this.cbQsfpLinked.Name = "cbQsfpLinked";
-            this.cbQsfpLinked.Size = new System.Drawing.Size(86, 16);
-            this.cbQsfpLinked.TabIndex = 10;
-            this.cbQsfpLinked.Text = "QSFP Linked";
-            this.cbQsfpLinked.UseVisualStyleBackColor = true;
-            this.cbQsfpLinked.CheckedChanged += new System.EventHandler(this.cbQsfpLinked_CheckedChanged);
-            // 
             // gbAcMcEquation
             // 
             this.gbAcMcEquation.Controls.Add(this.textBox1);
@@ -684,12 +671,46 @@
             this.gbAcMcEquation.Controls.Add(this.tbAverageCurrentMax);
             this.gbAcMcEquation.Controls.Add(this.lBaBmMaxCurrent);
             this.gbAcMcEquation.Controls.Add(this.tbAverageCurrentMin);
-            this.gbAcMcEquation.Location = new System.Drawing.Point(3, 291);
+            this.gbAcMcEquation.Location = new System.Drawing.Point(3, 249);
             this.gbAcMcEquation.Name = "gbAcMcEquation";
-            this.gbAcMcEquation.Size = new System.Drawing.Size(614, 145);
+            this.gbAcMcEquation.Size = new System.Drawing.Size(476, 145);
             this.gbAcMcEquation.TabIndex = 12;
             this.gbAcMcEquation.TabStop = false;
             this.gbAcMcEquation.Text = "Average Current and Modulation Current Equation";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(151, 115);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(50, 22);
+            this.textBox1.TabIndex = 54;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(151, 59);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(50, 22);
+            this.textBox2.TabIndex = 53;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(207, 118);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(22, 12);
+            this.label1.TabIndex = 52;
+            this.label1.Text = "mA";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(207, 62);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(22, 12);
+            this.label2.TabIndex = 51;
+            this.label2.Text = "mA";
             // 
             // tbModuleModulationCurrentMin
             // 
@@ -773,7 +794,7 @@
             // 
             // bAcMcWrite
             // 
-            this.bAcMcWrite.Location = new System.Drawing.Point(548, 87);
+            this.bAcMcWrite.Location = new System.Drawing.Point(406, 87);
             this.bAcMcWrite.Name = "bAcMcWrite";
             this.bAcMcWrite.Size = new System.Drawing.Size(60, 23);
             this.bAcMcWrite.TabIndex = 36;
@@ -783,7 +804,7 @@
             // 
             // bAcMcRead
             // 
-            this.bAcMcRead.Location = new System.Drawing.Point(482, 87);
+            this.bAcMcRead.Location = new System.Drawing.Point(406, 58);
             this.bAcMcRead.Name = "bAcMcRead";
             this.bAcMcRead.Size = new System.Drawing.Size(60, 23);
             this.bAcMcRead.TabIndex = 36;
@@ -872,9 +893,9 @@
             // 
             // bLutReset
             // 
-            this.bLutReset.Location = new System.Drawing.Point(482, 116);
+            this.bLutReset.Location = new System.Drawing.Point(406, 116);
             this.bLutReset.Name = "bLutReset";
-            this.bLutReset.Size = new System.Drawing.Size(126, 23);
+            this.bLutReset.Size = new System.Drawing.Size(60, 23);
             this.bLutReset.TabIndex = 14;
             this.bLutReset.Text = "Reset";
             this.bLutReset.UseVisualStyleBackColor = true;
@@ -1009,18 +1030,18 @@
             this.gbAutoCorrect.Controls.Add(this.cbRxPowerRateCorrected);
             this.gbAutoCorrect.Controls.Add(this.bAutoCorrect);
             this.gbAutoCorrect.Controls.Add(this.cbTemperatureCorrected);
-            this.gbAutoCorrect.Location = new System.Drawing.Point(3, 27);
+            this.gbAutoCorrect.Location = new System.Drawing.Point(485, 249);
             this.gbAutoCorrect.Name = "gbAutoCorrect";
-            this.gbAutoCorrect.Size = new System.Drawing.Size(326, 43);
+            this.gbAutoCorrect.Size = new System.Drawing.Size(132, 145);
             this.gbAutoCorrect.TabIndex = 13;
             this.gbAutoCorrect.TabStop = false;
             this.gbAutoCorrect.Text = "Auto Correct";
             // 
             // bReset
             // 
-            this.bReset.Location = new System.Drawing.Point(195, 14);
+            this.bReset.Location = new System.Drawing.Point(51, 87);
             this.bReset.Name = "bReset";
-            this.bReset.Size = new System.Drawing.Size(40, 23);
+            this.bReset.Size = new System.Drawing.Size(75, 23);
             this.bReset.TabIndex = 16;
             this.bReset.Text = "Reset";
             this.bReset.UseVisualStyleBackColor = true;
@@ -1030,7 +1051,7 @@
             // 
             this.cbRxPowerRateCorrected.AutoSize = true;
             this.cbRxPowerRateCorrected.Enabled = false;
-            this.cbRxPowerRateCorrected.Location = new System.Drawing.Point(95, 18);
+            this.cbRxPowerRateCorrected.Location = new System.Drawing.Point(6, 40);
             this.cbRxPowerRateCorrected.Name = "cbRxPowerRateCorrected";
             this.cbRxPowerRateCorrected.Size = new System.Drawing.Size(94, 16);
             this.cbRxPowerRateCorrected.TabIndex = 14;
@@ -1039,7 +1060,7 @@
             // 
             // bAutoCorrect
             // 
-            this.bAutoCorrect.Location = new System.Drawing.Point(241, 14);
+            this.bAutoCorrect.Location = new System.Drawing.Point(51, 116);
             this.bAutoCorrect.Name = "bAutoCorrect";
             this.bAutoCorrect.Size = new System.Drawing.Size(75, 23);
             this.bAutoCorrect.TabIndex = 13;
@@ -1068,67 +1089,20 @@
             this.bSaveFile.UseVisualStyleBackColor = true;
             this.bSaveFile.Click += new System.EventHandler(this._bSaveFileClick);
             // 
-            // cbMonitorLinked
-            // 
-            this.cbMonitorLinked.AutoSize = true;
-            this.cbMonitorLinked.Location = new System.Drawing.Point(519, 45);
-            this.cbMonitorLinked.Name = "cbMonitorLinked";
-            this.cbMonitorLinked.Size = new System.Drawing.Size(98, 16);
-            this.cbMonitorLinked.TabIndex = 15;
-            this.cbMonitorLinked.Text = "Monitor Linked";
-            this.cbMonitorLinked.UseVisualStyleBackColor = true;
-            this.cbMonitorLinked.CheckedChanged += new System.EventHandler(this._cbMonitorLinkedCheckedChanged);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(151, 115);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(50, 22);
-            this.textBox1.TabIndex = 54;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(151, 59);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(50, 22);
-            this.textBox2.TabIndex = 53;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(207, 118);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(22, 12);
-            this.label1.TabIndex = 52;
-            this.label1.Text = "mA";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(207, 62);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(22, 12);
-            this.label2.TabIndex = 51;
-            this.label2.Text = "mA";
-            // 
             // UcQsfpCorrector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.cbMonitorLinked);
             this.Controls.Add(this.bSaveFile);
             this.Controls.Add(this.gbAutoCorrect);
             this.Controls.Add(this.gbAcMcEquation);
-            this.Controls.Add(this.cbQsfpLinked);
             this.Controls.Add(this.gbRxPowerRate);
             this.Controls.Add(this.gbTemperature);
             this.Controls.Add(this.bLoadFile);
             this.Controls.Add(this.lFilePath);
             this.Controls.Add(this.tbFilePath);
             this.Name = "UcQsfpCorrector";
-            this.Size = new System.Drawing.Size(620, 440);
+            this.Size = new System.Drawing.Size(620, 397);
             this.gbTemperature.ResumeLayout(false);
             this.gbTemperature.PerformLayout();
             this.gbRxPowerRate.ResumeLayout(false);
@@ -1192,7 +1166,6 @@
         private System.Windows.Forms.TextBox tbRxPowerRateMax;
         private System.Windows.Forms.Label lRxPowerRateMin;
         private System.Windows.Forms.Label lRxPowerRateMax;
-        private System.Windows.Forms.CheckBox cbQsfpLinked;
         private System.Windows.Forms.GroupBox gbAcMcEquation;
         private System.Windows.Forms.GroupBox gbAutoCorrect;
         private System.Windows.Forms.CheckBox cbTemperatureCorrected;
@@ -1217,7 +1190,6 @@
         private System.Windows.Forms.TextBox tbModulationCurrentMin;
         private System.Windows.Forms.TextBox tbModulationCurrentMax;
         private System.Windows.Forms.Label lBmCurrentMA;
-        private System.Windows.Forms.CheckBox cbMonitorLinked;
         private System.Windows.Forms.TextBox tbModulationCurrentEquationA;
         private System.Windows.Forms.Label lModulationCurrent;
         private System.Windows.Forms.TextBox tbAverageCurrentEquationA;
