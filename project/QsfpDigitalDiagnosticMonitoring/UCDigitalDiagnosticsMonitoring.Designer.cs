@@ -44,7 +44,6 @@
             this.cbTemperatureHighAlarmMask = new System.Windows.Forms.CheckBox();
             this.tbTemperatureHighAlarmThreshold = new System.Windows.Forms.TextBox();
             this.cbTemperatureHighAlarm = new System.Windows.Forms.CheckBox();
-            this.cbQsfpLinked = new System.Windows.Forms.CheckBox();
             this.bRead = new System.Windows.Forms.Button();
             this.bWrite = new System.Windows.Forms.Button();
             this.gbVcc = new System.Windows.Forms.GroupBox();
@@ -389,17 +388,6 @@
             this.cbTemperatureHighAlarm.TabIndex = 0;
             this.cbTemperatureHighAlarm.Text = "High Alarm";
             this.cbTemperatureHighAlarm.UseVisualStyleBackColor = true;
-            // 
-            // cbQsfpLinked
-            // 
-            this.cbQsfpLinked.AutoSize = true;
-            this.cbQsfpLinked.Location = new System.Drawing.Point(540, 6);
-            this.cbQsfpLinked.Name = "cbQsfpLinked";
-            this.cbQsfpLinked.Size = new System.Drawing.Size(86, 16);
-            this.cbQsfpLinked.TabIndex = 1;
-            this.cbQsfpLinked.Text = "QSFP Linked";
-            this.cbQsfpLinked.UseVisualStyleBackColor = true;
-            this.cbQsfpLinked.CheckedChanged += new System.EventHandler(this.cbQsfpLinked_CheckedChanged);
             // 
             // bRead
             // 
@@ -2161,7 +2149,6 @@
             this.Controls.Add(this.gbVcc);
             this.Controls.Add(this.bWrite);
             this.Controls.Add(this.bRead);
-            this.Controls.Add(this.cbQsfpLinked);
             this.Controls.Add(this.gbTemperature);
             this.Name = "UCDigitalDiagnosticsMonitoring";
             this.Size = new System.Drawing.Size(781, 480);
@@ -2178,7 +2165,6 @@
             this.gbMisc.ResumeLayout(false);
             this.gbMisc.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -2191,7 +2177,6 @@
         private System.Windows.Forms.CheckBox cbTemperatureHighWarning;
         private System.Windows.Forms.TextBox tbTemperatureHighAlarmThreshold;
         private System.Windows.Forms.CheckBox cbTemperatureHighAlarm;
-        private System.Windows.Forms.CheckBox cbQsfpLinked;
         private System.Windows.Forms.Button bRead;
         private System.Windows.Forms.Button bWrite;
         private System.Windows.Forms.TextBox tbTemperatureLowWarningThreshold;

@@ -13,92 +13,64 @@ namespace QsfpDigitalDiagnosticMonitoring
 {
     public partial class UCDigitalDiagnosticsMonitoring : UserControl
     {
-        bool qsfpConnected;
-        I2cMaster i2cMaster = new I2cMaster();
+        public delegate int I2cReadCB(byte devAddr, byte regAddr, byte length, byte[] data);
+        public delegate int I2cWriteCB(byte devAddr, byte regAddr, byte length, byte[] data);
+
+        private I2cReadCB i2cReadCB = null;
+        private I2cWriteCB i2cWriteCB = null;
 
         public UCDigitalDiagnosticsMonitoring()
         {
-            qsfpConnected = false;
             InitializeComponent();
         }
 
-        private int _QsfpConnect()
+        public int SetI2cReadCBApi(I2cReadCB cb)
+        {
+            if (cb == null)
+                return -1;
+
+            i2cReadCB = new I2cReadCB(cb);
+
+            return 0;
+        }
+
+        public int SetI2cWriteCBApi(I2cWriteCB cb)
+        {
+            if (cb == null)
+                return -1;
+
+            i2cWriteCB = new I2cWriteCB(cb);
+
+            return 0;
+        }
+
+        private int _SetQsfpMode(byte mode)
         {
             byte[] data = new byte[] { 32 };
 
-            if (qsfpConnected == true)
-                return 0;
-
-            if (i2cMaster.ConnectApi(100) < 0)
+            if (i2cWriteCB == null)
                 return -1;
 
-            if (i2cMaster.WriteApi(80, 127, 1, data) < 0)
-                goto DeviceNoResponse;
+            if (i2cWriteCB(80, 127, 1, data) < 0)
+                return -1;
 
-            data[0] = 0x4D;
+            data[0] = mode;
 
-            if (i2cMaster.WriteApi(80, 164, 1, data) < 0)
-                goto DeviceNoResponse;
-
-            qsfpConnected = cbQsfpLinked.Checked = true;
+            if (i2cWriteCB(80, 164, 1, data) < 0)
+                return -1;
 
             return 0;
-
-        DeviceNoResponse:
-            MessageBox.Show("QSFP+ no reponse!!");
-            cbQsfpLinked.Checked = false;
-            return -1;
-        }
-
-        private int _QsfpDisconnect()
-        {
-            byte[] data = new byte[] { 32 };
-
-            if (qsfpConnected == false)
-                return -1;
-
-            if (i2cMaster.WriteApi(80, 127, 1, data) < 0)
-                goto DeviceNoResponse;
-
-            data[0] = 0;
-
-            if (i2cMaster.WriteApi(80, 164, 1, data) < 0)
-                goto DeviceNoResponse;
-
-            if (i2cMaster.DisconnectApi() < 0)
-                return -1;
-
-            qsfpConnected = cbQsfpLinked.Checked = false;
-
-            return 0;
-
-        DeviceNoResponse:
-            MessageBox.Show("QSFP+ no reponse!!");
-            qsfpConnected = cbQsfpLinked.Checked = false;
-            return -1;
-        }
-
-        private void cbQsfpLinked_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbQsfpLinked.Checked == false) {
-                if (_QsfpDisconnect() < 0)
-                    return;
-            }
-            else {
-                if (_QsfpConnect() < 0)
-                    return;
-            }
         }
 
         private int _LosAndFaultRead()
         {
             byte[] data = new byte[2];
 
-            if (_QsfpConnect() < 0)
+            if (i2cReadCB == null)
                 return -1;
 
-            if (i2cMaster.ReadApi(80, 3, 2, data) != 2)
-                goto DeviceNoResponse;
+            if (i2cReadCB(80, 3, 2, data) != 2)
+                return -1;
 
             if ((data[0] & 0x80) != 0)
                 cbLosTx4.Checked = true;
@@ -160,8 +132,8 @@ namespace QsfpDigitalDiagnosticMonitoring
             else
                 cbFaultTx1.Checked = false;
 
-            if (i2cMaster.ReadApi(80, 100, 2, data) != 2)
-                goto DeviceNoResponse;
+            if (i2cReadCB(80, 100, 2, data) != 2)
+                return -1;
 
             if ((data[0] & 0x80) != 0)
                 cbLosTx4Mask.Checked = true;
@@ -224,20 +196,10 @@ namespace QsfpDigitalDiagnosticMonitoring
                 cbFaultTx1Mask.Checked = false;
 
             return 0;
-
-        DeviceNoResponse:
-            MessageBox.Show("QSFP+ no reponse!!");
-            _QsfpDisconnect();
-            return -1;
         }
 
         private void _bLosAndFaultRead_Click(object sender, EventArgs e)
         {
-            if (qsfpConnected == false) {
-                if (_QsfpConnect() < 0)
-                    return;
-            }
-
             if (_LosAndFaultRead() < 0)
                 return;
         }
@@ -245,6 +207,12 @@ namespace QsfpDigitalDiagnosticMonitoring
         private int _LosAndFaultWrite()
         {
             byte[] data = new byte[2];
+
+            if (_SetQsfpMode(0x4D) < 0)
+                return -1;
+
+            if (i2cWriteCB == null)
+                return -1;
 
             data[0] = data[1] = 0;
             if (cbLosTx4Mask.Checked == true)
@@ -272,24 +240,14 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (cbFaultTx1Mask.Checked == true)
                 data[1] |= 0x01;
 
-            if (i2cMaster.WriteApi(80, 100, 2, data) < 0)
-                goto DeviceNoResponse;
+            if (i2cWriteCB(80, 100, 2, data) < 0)
+                return -1;
 
             return 0;
-
-        DeviceNoResponse:
-            MessageBox.Show("QSFP+ no reponse!!");
-            _QsfpDisconnect();
-            return -1;
         }
 
         private void bLosAndFaultWrite_Click(object sender, EventArgs e)
         {
-            if (qsfpConnected == false) {
-                if (_QsfpConnect() < 0)
-                    return;
-            }
-
             if (_LosAndFaultWrite() < 0)
                 return;
         }
@@ -298,19 +256,19 @@ namespace QsfpDigitalDiagnosticMonitoring
         {
             byte[] data = new byte[8];
 
-            if (_QsfpConnect() < 0)
+            if (i2cReadCB == null)
                 return -1;
 
-            if (i2cMaster.ReadApi(80, 6, 1, data) != 1)
-                goto DeviceNoResponse;
+            if (i2cReadCB(80, 6, 1, data) != 1)
+                return -1;
 
             if ((data[0] & 0x01) != 0)
                 cbInitComplete.Checked = true;
             else
                 cbInitComplete.Checked = false;
 
-            if (i2cMaster.ReadApi(80, 103, 1, data) != 1)
-                goto DeviceNoResponse;
+            if (i2cReadCB(80, 103, 1, data) != 1)
+                return -1;
 
             if ((data[0] & 0x01) != 0)
                 cbInitCompleteMask.Checked = true;
@@ -318,20 +276,10 @@ namespace QsfpDigitalDiagnosticMonitoring
                 cbInitCompleteMask.Checked = false;
 
             return 0;
-
-        DeviceNoResponse:
-            MessageBox.Show("QSFP+ no reponse!!");
-            _QsfpDisconnect();
-            return -1;
         }
 
         private void _bMiscRead_Click(object sender, EventArgs e)
         {
-            if (qsfpConnected == false) {
-                if (_QsfpConnect() < 0)
-                    return;
-            }
-
             if (_MiscRead() < 0)
                 return;
         }
@@ -340,32 +288,31 @@ namespace QsfpDigitalDiagnosticMonitoring
         {
             byte[] data = new byte[1];
 
-            if (i2cMaster.ReadApi(80, 103, 1, data) != 1)
-                goto DeviceNoResponse;
+            if (_SetQsfpMode(0x4D) < 0)
+                return -1;
+
+            if (i2cReadCB == null)
+                return -1;
+
+            if (i2cReadCB(80, 103, 1, data) != 1)
+                return -1;
+
+            if (i2cWriteCB == null)
+                return -1;
 
             data[0] &= 0xF0;
 
             if (cbInitCompleteMask.Checked == true)
                 data[0] |= 0x01;
 
-            if (i2cMaster.WriteApi(80, 103, 1, data) < 0)
-                goto DeviceNoResponse;
+            if (i2cWriteCB(80, 103, 1, data) < 0)
+                return -1;
 
             return 0;
-
-        DeviceNoResponse:
-            MessageBox.Show("QSFP+ no reponse!!");
-            _QsfpDisconnect();
-            return -1;
         }
 
         private void _bMiscWrite_Click(object sender, EventArgs e)
         {
-            if (qsfpConnected == false) {
-                if (_QsfpConnect() < 0)
-                    return;
-            }
-
             if (_MiscWrite() < 0)
                 return;
         }
@@ -378,13 +325,13 @@ namespace QsfpDigitalDiagnosticMonitoring
             float temperature;
             int tmp;
 
-            tbTemperature.Text = "";
-
-            if (_QsfpConnect() < 0)
+            if (i2cReadCB == null)
                 return -1;
 
-            if (i2cMaster.ReadApi(80, 6, 1, data) != 1)
-                goto DeviceNoResponse;
+            tbTemperature.Text = "";
+
+            if (i2cReadCB(80, 6, 1, data) != 1)
+                return -1;
 
             if ((data[0] & 0x80) != 0)
                 cbTemperatureHighAlarm.Checked = true;
@@ -406,8 +353,8 @@ namespace QsfpDigitalDiagnosticMonitoring
             else
                 cbTemperatureLowWarning.Checked = false;
 
-            if (i2cMaster.ReadApi(80, 22, 2, data) != 2)
-                goto DeviceNoResponse;
+            if (i2cReadCB(80, 22, 2, data) != 2)
+                return -1;
 
             try {
                 Buffer.BlockCopy(data, 0, bATmp, 0, 2);
@@ -423,8 +370,8 @@ namespace QsfpDigitalDiagnosticMonitoring
             temperature = temperature / 256;
             tbTemperature.Text = temperature.ToString("#0.0");
 
-            if (i2cMaster.ReadApi(80, 103, 1, data) != 1)
-                goto DeviceNoResponse;
+            if (i2cReadCB(80, 103, 1, data) != 1)
+                return -1;
 
             if ((data[0] & 0x80) != 0)
                 cbTemperatureHighAlarmMask.Checked = true;
@@ -443,10 +390,13 @@ namespace QsfpDigitalDiagnosticMonitoring
             else
                 cbTemperatureLowWarningMask.Checked = false;
 
+            if (i2cWriteCB == null)
+                return -1;
+
             data[0] = 3;
-            i2cMaster.WriteApi(80, 127, 1, data);
-            if (i2cMaster.ReadApi(80, 128, 8, data) != 8)
-                goto DeviceNoResponse;
+            i2cWriteCB(80, 127, 1, data);
+            if (i2cReadCB(80, 128, 8, data) != 8)
+                return -1;
 
             try {
                 Buffer.BlockCopy(data, 0, bATmp, 0, 2);
@@ -501,21 +451,10 @@ namespace QsfpDigitalDiagnosticMonitoring
             tbTemperatureLowWarningThreshold.Text = temperature.ToString("#0.0");
 
             return 0;
-
-        DeviceNoResponse:
-            MessageBox.Show("QSFP+ no reponse!!");
-            tbTemperature.Text = "";
-            _QsfpDisconnect();
-            return -1;
         }
 
         private void _bTemperatureRead_Click(object sender, EventArgs e)
         {
-            if (qsfpConnected == false) {
-                if (_QsfpConnect() < 0)
-                    return;
-            }
-
             if (_TemperatureRead() < 0)
                 return;
         }
@@ -527,9 +466,11 @@ namespace QsfpDigitalDiagnosticMonitoring
             float temperature;
             short sTmp;
 
+            if (i2cReadCB == null)
+                return -1;
 
-            if (i2cMaster.ReadApi(80, 103, 1, data) != 1)
-                goto DeviceNoResponse;
+            if (i2cReadCB(80, 103, 1, data) != 1)
+                return -1;
 
             data[0] &= 0x0F;
             if (cbTemperatureHighAlarmMask.Checked == true)
@@ -541,12 +482,15 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (cbTemperatureLowWarningMask.Checked == true)
                 data[0] |= 0x10;
 
-            if (i2cMaster.WriteApi(80, 103, 1, data) < 0)
-                goto DeviceNoResponse;
+            if (i2cWriteCB == null)
+                return -1;
+
+            if (i2cWriteCB(80, 103, 1, data) < 0)
+                return -1;
 
             data[0] = 3;
-            if (i2cMaster.WriteApi(80, 127, 1, data) < 0)
-                goto DeviceNoResponse;
+            if (i2cWriteCB(80, 127, 1, data) < 0)
+                return -1;
 
             try {
                 temperature = Convert.ToSingle(tbTemperatureHighAlarmThreshold.Text);
@@ -632,26 +576,17 @@ namespace QsfpDigitalDiagnosticMonitoring
             data[6] = bATmp[1];
             data[7] = bATmp[0];
 
-            if (i2cMaster.WriteApi(80, 128, 8, data) < 0)
-                goto DeviceNoResponse;
+            if (i2cWriteCB(80, 128, 8, data) < 0)
+                return -1;
 
             return 0;
 
-        DeviceNoResponse:
-            MessageBox.Show("QSFP+ no reponse!!");
-            tbTemperature.Text = "";
-            _QsfpDisconnect();
         Error:
             return -1;
         }
 
         private void _bTemperatureWrite_Click(object sender, EventArgs e)
         {
-            if (qsfpConnected == false) {
-                if (_QsfpConnect() < 0)
-                    return;
-            }
-
             if (_TemperatureWrite() < 0)
                 return;
         }
@@ -664,13 +599,13 @@ namespace QsfpDigitalDiagnosticMonitoring
             float vcc;
             int tmp;
 
-            tbVcc.Text = "";
-
-            if (_QsfpConnect() < 0)
+            if (i2cReadCB == null)
                 return -1;
 
-            if (i2cMaster.ReadApi(80, 7, 1, data) != 1)
-                goto DeviceNoResponse;
+            tbVcc.Text = "";
+
+            if (i2cReadCB(80, 7, 1, data) != 1)
+                return -1;
 
             if ((data[0] & 0x80) != 0)
                 cbVccHighAlarm.Checked = true;
@@ -692,8 +627,8 @@ namespace QsfpDigitalDiagnosticMonitoring
             else
                 cbVccLowWarning.Checked = false;
 
-            if (i2cMaster.ReadApi(80, 26, 2, data) != 2)
-                goto DeviceNoResponse;
+            if (i2cReadCB(80, 26, 2, data) != 2)
+                return -1;
 
             try {
                 Buffer.BlockCopy(data, 0, bATmp, 0, 2);
@@ -709,8 +644,8 @@ namespace QsfpDigitalDiagnosticMonitoring
             vcc = vcc / 10000;
             tbVcc.Text = vcc.ToString("#0.0000");
 
-            if (i2cMaster.ReadApi(80, 104, 1, data) != 1)
-                goto DeviceNoResponse;
+            if (i2cReadCB(80, 104, 1, data) != 1)
+                return -1;
 
             if ((data[0] & 0x80) != 0)
                 cbVccHighAlarmMask.Checked = true;
@@ -729,10 +664,13 @@ namespace QsfpDigitalDiagnosticMonitoring
             else
                 cbVccLowWarningMask.Checked = false;
 
+            if (i2cWriteCB == null)
+                return -1;
+
             data[0] = 3;
-            i2cMaster.WriteApi(80, 127, 1, data);
-            if (i2cMaster.ReadApi(80, 144, 8, data) != 8)
-                goto DeviceNoResponse;
+            i2cWriteCB(80, 127, 1, data);
+            if (i2cReadCB(80, 144, 8, data) != 8)
+                return -1;
 
             try {
                 Buffer.BlockCopy(data, 0, bATmp, 0, 2);
@@ -787,21 +725,10 @@ namespace QsfpDigitalDiagnosticMonitoring
             tbVccLowWarningThreshold.Text = vcc.ToString("#0.0000");
 
             return 0;
-
-        DeviceNoResponse:
-            MessageBox.Show("QSFP+ no reponse!!");
-            tbVcc.Text = "";
-            _QsfpDisconnect();
-            return -1;
         }
 
         private void _bVccRead_Click(object sender, EventArgs e)
         {
-            if (qsfpConnected == false) {
-                if (_QsfpConnect() < 0)
-                    return;
-            }
-
             if (_VccRead() < 0)
                 return;
         }
@@ -813,6 +740,12 @@ namespace QsfpDigitalDiagnosticMonitoring
             float vcc;
             ushort uSTmp;
 
+            if (_SetQsfpMode(0x4D) < 0)
+                return -1;
+
+            if (i2cWriteCB == null)
+                return -1;
+
             if (cbVccHighAlarmMask.Checked == true)
                 data[0] |= 0x80;
             if (cbVccLowAlarmMask.Checked == true)
@@ -822,19 +755,19 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (cbVccLowWarningMask.Checked == true)
                 data[0] |= 0x10;
 
-            if (i2cMaster.WriteApi(80, 104, 1, data) < 0)
-                goto DeviceNoResponse;
+            if (i2cWriteCB(80, 104, 1, data) < 0)
+                return -1;
 
             data[0] = 3;
-            if (i2cMaster.WriteApi(80, 127, 1, data) < 0)
-                goto DeviceNoResponse;
+            if (i2cWriteCB(80, 127, 1, data) < 0)
+                return -1;
 
             try {
                 vcc = Convert.ToSingle(tbVccHighAlarmThreshold.Text);
             }
             catch (Exception eTS) {
                 MessageBox.Show(eTS.ToString());
-                goto Error;
+                return -1;
             }
 
             vcc *= 10000;
@@ -843,7 +776,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             }
             catch (Exception eTI) {
                 MessageBox.Show(eTI.ToString());
-                goto Error;
+                return -1;
             }
 
             bATmp = BitConverter.GetBytes(uSTmp);
@@ -855,7 +788,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             }
             catch (Exception eTS) {
                 MessageBox.Show(eTS.ToString());
-                goto Error;
+                return -1;
             }
 
             vcc *= 10000;
@@ -864,7 +797,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             }
             catch (Exception eTI) {
                 MessageBox.Show(eTI.ToString());
-                goto Error;
+                return -1;
             }
 
             bATmp = BitConverter.GetBytes(uSTmp);
@@ -876,7 +809,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             }
             catch (Exception eTS) {
                 MessageBox.Show(eTS.ToString());
-                goto Error;
+                return -1;
             }
 
             vcc *= 10000;
@@ -885,7 +818,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             }
             catch (Exception eTI) {
                 MessageBox.Show(eTI.ToString());
-                goto Error;
+                return -1;
             }
 
             bATmp = BitConverter.GetBytes(uSTmp);
@@ -897,7 +830,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             }
             catch (Exception eTS) {
                 MessageBox.Show(eTS.ToString());
-                goto Error;
+                return -1;
             }
 
             vcc *= 10000;
@@ -906,32 +839,21 @@ namespace QsfpDigitalDiagnosticMonitoring
             }
             catch (Exception eTI) {
                 MessageBox.Show(eTI.ToString());
-                goto Error;
+                return -1;
             }
 
             bATmp = BitConverter.GetBytes(uSTmp);
             data[6] = bATmp[1];
             data[7] = bATmp[0];
 
-            if (i2cMaster.WriteApi(80, 144, 8, data) < 0)
-                goto DeviceNoResponse;
+            if (i2cWriteCB(80, 144, 8, data) < 0)
+                return -1;
 
             return 0;
-
-        DeviceNoResponse:
-            MessageBox.Show("QSFP+ no reponse!!");
-            _QsfpDisconnect();
-        Error:
-            return -1;
         }
 
         private void _bVccWrite_Click(object sender, EventArgs e)
         {
-            if (qsfpConnected == false) {
-                if (_QsfpConnect() < 0)
-                    return;
-            }
-
             if (_VccWrite() < 0)
                 return;
         }
@@ -947,11 +869,11 @@ namespace QsfpDigitalDiagnosticMonitoring
             tbRxPower1.Text = tbRxPower2.Text = tbRxPower3.Text =
                 tbRxPower4.Text = "";
 
-            if (_QsfpConnect() < 0)
+            if (i2cReadCB == null)
                 return -1;
 
-            if (i2cMaster.ReadApi(80, 9, 2, data) != 2)
-                goto DeviceNoResponse;
+            if (i2cReadCB(80, 9, 2, data) != 2)
+                return -1;
 
             if ((data[0] & 0x80) != 0)
                 cbRxPower1HighAlarm.Checked = true;
@@ -1034,8 +956,8 @@ namespace QsfpDigitalDiagnosticMonitoring
                 cbRxPower4LowWarning.Checked = false;
 
 
-            if (i2cMaster.ReadApi(80, 34, 8, data) != 8)
-                goto DeviceNoResponse;
+            if (i2cReadCB(80, 34, 8, data) != 8)
+                return -1;
 
             try {
                 Buffer.BlockCopy(data, 0, bATmp, 0, 2);
@@ -1093,10 +1015,13 @@ namespace QsfpDigitalDiagnosticMonitoring
             power = power / 10;
             tbRxPower4.Text = power.ToString("#0.0");
 
+            if (i2cWriteCB == null)
+                return -1;
+
             data[0] = 3;
-            i2cMaster.WriteApi(80, 127, 1, data);
-            if (i2cMaster.ReadApi(80, 176, 8, data) != 8)
-                goto DeviceNoResponse;
+            i2cWriteCB(80, 127, 1, data);
+            if (i2cReadCB(80, 176, 8, data) != 8)
+                return -1;
 
             try {
                 Buffer.BlockCopy(data, 0, bATmp, 0, 2);
@@ -1151,9 +1076,9 @@ namespace QsfpDigitalDiagnosticMonitoring
             tbRxPowerLowWarningThreshold.Text = power.ToString("#0.0");
 
             data[0] = 3;
-            i2cMaster.WriteApi(80, 127, 1, data);
-            if (i2cMaster.ReadApi(80, 242, 2, data) != 2)
-                goto DeviceNoResponse;
+            i2cWriteCB(80, 127, 1, data);
+            if (i2cReadCB(80, 242, 2, data) != 2)
+                return -1;
 
             if ((data[0] & 0x80) != 0)
                 cbRxPower1HighAlarmMask.Checked = true;
@@ -1236,22 +1161,10 @@ namespace QsfpDigitalDiagnosticMonitoring
                 cbRxPower4LowWarningMask.Checked = false;
 
             return 0;
-
-        DeviceNoResponse:
-            MessageBox.Show("QSFP+ no reponse!!");
-            tbRxPower1.Text = tbRxPower2.Text = tbRxPower3.Text =
-                tbRxPower4.Text = "";
-            _QsfpDisconnect();
-            return -1;
         }
 
         private void _bRxPowerReadClick(object sender, EventArgs e)
         {
-            if (qsfpConnected == false) {
-                if (_QsfpConnect() < 0)
-                    return;
-            }
-
             if (_RxPowerRead() < 0)
                 return;
         }
@@ -1263,16 +1176,22 @@ namespace QsfpDigitalDiagnosticMonitoring
             float power;
             ushort uSTmp;
 
+            if (_SetQsfpMode(0x4D) < 0)
+                return -1;
+
+            if (i2cWriteCB == null)
+                return -1;
+
             data[0] = 3;
-            if (i2cMaster.WriteApi(80, 127, 1, data) < 0)
-                goto DeviceNoResponse;
+            if (i2cWriteCB(80, 127, 1, data) < 0)
+                return -1;
             
             try {
                 power = Convert.ToSingle(tbRxPowerHighAlarmThreshold.Text);
             }
             catch (Exception eTS) {
                 MessageBox.Show(eTS.ToString());
-                goto Error;
+                return -1;
             }
 
             power *= 10;
@@ -1281,7 +1200,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             }
             catch (Exception eTI) {
                 MessageBox.Show(eTI.ToString());
-                goto Error;
+                return -1;
             }
 
             bATmp = BitConverter.GetBytes(uSTmp);
@@ -1293,7 +1212,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             }
             catch (Exception eTS) {
                 MessageBox.Show(eTS.ToString());
-                goto Error;
+                return -1;
             }
 
             power *= 10;
@@ -1302,7 +1221,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             }
             catch (Exception eTI) {
                 MessageBox.Show(eTI.ToString());
-                goto Error;
+                return -1;
             }
 
             bATmp = BitConverter.GetBytes(uSTmp);
@@ -1314,7 +1233,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             }
             catch (Exception eTS) {
                 MessageBox.Show(eTS.ToString());
-                goto Error;
+                return -1;
             }
 
             power *= 10;
@@ -1323,7 +1242,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             }
             catch (Exception eTI) {
                 MessageBox.Show(eTI.ToString());
-                goto Error;
+                return -1;
             }
 
             bATmp = BitConverter.GetBytes(uSTmp);
@@ -1335,7 +1254,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             }
             catch (Exception eTS) {
                 MessageBox.Show(eTS.ToString());
-                goto Error;
+                return -1;
             }
 
             power *= 10;
@@ -1344,15 +1263,15 @@ namespace QsfpDigitalDiagnosticMonitoring
             }
             catch (Exception eTI) {
                 MessageBox.Show(eTI.ToString());
-                goto Error;
+                return -1;
             }
 
             bATmp = BitConverter.GetBytes(uSTmp);
             data[6] = bATmp[1];
             data[7] = bATmp[0];
 
-            if (i2cMaster.WriteApi(80, 176, 8, data) < 0)
-                goto DeviceNoResponse;
+            if (i2cWriteCB(80, 176, 8, data) < 0)
+                return -1;
 
             data[0] = data[1] = 0;
             if (cbRxPower1HighAlarmMask.Checked == true)
@@ -1388,25 +1307,14 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (cbRxPower4LowWarningMask.Checked == true)
                 data[1] |= 0x01;
 
-            if (i2cMaster.WriteApi(80, 242, 2, data) < 0)
-                goto DeviceNoResponse;
+            if (i2cWriteCB(80, 242, 2, data) < 0)
+                return -1;
 
             return 0;
-
-        DeviceNoResponse:
-            MessageBox.Show("QSFP+ no reponse!!");
-            _QsfpDisconnect();
-        Error:
-            return -1;
         }
 
         private void bRxPowerWrite_Click(object sender, EventArgs e)
         {
-            if (qsfpConnected == false) {
-                if (_QsfpConnect() < 0)
-                    return;
-            }
-
             if (_RxPowerWrite() < 0)
                 return;
         }
@@ -1422,11 +1330,11 @@ namespace QsfpDigitalDiagnosticMonitoring
             tbTxBias1.Text = tbTxBias2.Text = tbTxBias3.Text =
                 tbTxBias4.Text = "";
 
-            if (_QsfpConnect() < 0)
+            if (i2cReadCB == null)
                 return -1;
 
-            if (i2cMaster.ReadApi(80, 11, 2, data) != 2)
-                goto DeviceNoResponse;
+            if (i2cReadCB(80, 11, 2, data) != 2)
+                return -1;
             
             if ((data[0] & 0x80) != 0)
                 cbTxBias1HighAlarm.Checked = true;
@@ -1508,8 +1416,8 @@ namespace QsfpDigitalDiagnosticMonitoring
             else
                 cbTxBias4LowWarning.Checked = false;
 
-            if (i2cMaster.ReadApi(80, 42, 8, data) != 8)
-                goto DeviceNoResponse;
+            if (i2cReadCB(80, 42, 8, data) != 8)
+                return -1;
 
             try {
                 Buffer.BlockCopy(data, 0, bATmp, 0, 2);
@@ -1567,10 +1475,13 @@ namespace QsfpDigitalDiagnosticMonitoring
             bias = bias / 500;
             tbTxBias4.Text = bias.ToString("#0.000");
 
+            if (i2cWriteCB == null)
+                return -1;
+
             data[0] = 3;
-            i2cMaster.WriteApi(80, 127, 1, data);
-            if (i2cMaster.ReadApi(80, 184, 8, data) != 8)
-                goto DeviceNoResponse;
+            i2cWriteCB(80, 127, 1, data);
+            if (i2cReadCB(80, 184, 8, data) != 8)
+                return -1;
 
             try {
                 Buffer.BlockCopy(data, 0, bATmp, 0, 2);
@@ -1625,9 +1536,9 @@ namespace QsfpDigitalDiagnosticMonitoring
             tbTxBiasLowWarningThreshold.Text = bias.ToString("#0.000");
 
             data[0] = 3;
-            i2cMaster.WriteApi(80, 127, 1, data);
-            if (i2cMaster.ReadApi(80, 244, 2, data) != 2)
-                goto DeviceNoResponse;
+            i2cWriteCB(80, 127, 1, data);
+            if (i2cReadCB(80, 244, 2, data) != 2)
+                return -1;
 
             if ((data[0] & 0x80) != 0)
                 cbTxBias1HighAlarmMask.Checked = true;
@@ -1710,22 +1621,10 @@ namespace QsfpDigitalDiagnosticMonitoring
                 cbTxBias4LowWarningMask.Checked = false;
 
             return 0;
-
-        DeviceNoResponse:
-            MessageBox.Show("QSFP+ no reponse!!");
-            tbTxBias1.Text = tbTxBias2.Text = tbTxBias3.Text =
-                tbTxBias4.Text = "";
-            _QsfpDisconnect();
-            return -1;
         }
 
         private void _bTxBiasRead_Click(object sender, EventArgs e)
         {
-            if (qsfpConnected == false) {
-                if (_QsfpConnect() < 0)
-                    return;
-            }
-
             if (_TxBiasRead() < 0)
                 return;
         }
@@ -1737,16 +1636,22 @@ namespace QsfpDigitalDiagnosticMonitoring
             float power;
             ushort uSTmp;
 
+            if (_SetQsfpMode(0x4D) < 0)
+                return -1;
+
+            if (i2cWriteCB == null)
+                return -1;
+
             data[0] = 3;
-            if (i2cMaster.WriteApi(80, 127, 1, data) < 0)
-                goto DeviceNoResponse;
+            if (i2cWriteCB(80, 127, 1, data) < 0)
+                return -1;
 
             try {
                 power = Convert.ToSingle(tbTxBiasHighAlarmThreshold.Text);
             }
             catch (Exception eTS) {
                 MessageBox.Show(eTS.ToString());
-                goto Error;
+                return -1;
             }
 
             power *= 500;
@@ -1755,7 +1660,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             }
             catch (Exception eTI) {
                 MessageBox.Show(eTI.ToString());
-                goto Error;
+                return -1;
             }
 
             bATmp = BitConverter.GetBytes(uSTmp);
@@ -1767,7 +1672,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             }
             catch (Exception eTS) {
                 MessageBox.Show(eTS.ToString());
-                goto Error;
+                return -1;
             }
 
             power *= 500;
@@ -1776,7 +1681,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             }
             catch (Exception eTI) {
                 MessageBox.Show(eTI.ToString());
-                goto Error;
+                return -1;
             }
 
             bATmp = BitConverter.GetBytes(uSTmp);
@@ -1788,7 +1693,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             }
             catch (Exception eTS) {
                 MessageBox.Show(eTS.ToString());
-                goto Error;
+                return -1;
             }
 
             power *= 500;
@@ -1797,7 +1702,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             }
             catch (Exception eTI) {
                 MessageBox.Show(eTI.ToString());
-                goto Error;
+                return -1;
             }
 
             bATmp = BitConverter.GetBytes(uSTmp);
@@ -1809,7 +1714,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             }
             catch (Exception eTS) {
                 MessageBox.Show(eTS.ToString());
-                goto Error;
+                return -1;
             }
 
             power *= 500;
@@ -1818,15 +1723,15 @@ namespace QsfpDigitalDiagnosticMonitoring
             }
             catch (Exception eTI) {
                 MessageBox.Show(eTI.ToString());
-                goto Error;
+                return -1;
             }
 
             bATmp = BitConverter.GetBytes(uSTmp);
             data[6] = bATmp[1];
             data[7] = bATmp[0];
 
-            if (i2cMaster.WriteApi(80, 184, 8, data) < 0)
-                goto DeviceNoResponse;
+            if (i2cWriteCB(80, 184, 8, data) < 0)
+                return -1;
 
             data[0] = data[1] = 0;
             if (cbTxBias1HighAlarmMask.Checked == true)
@@ -1862,36 +1767,20 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (cbTxBias4LowWarningMask.Checked == true)
                 data[1] |= 0x01;
 
-            if (i2cMaster.WriteApi(80, 244, 2, data) < 0)
-                goto DeviceNoResponse;
+            if (i2cWriteCB(80, 244, 2, data) < 0)
+                return -1;
 
             return 0;
-
-        DeviceNoResponse:
-            MessageBox.Show("QSFP+ no reponse!!");
-            _QsfpDisconnect();
-        Error:
-            return -1;
         }
 
         private void bTxBiasWrite_Click(object sender, EventArgs e)
         {
-            if (qsfpConnected == false) {
-                if (_QsfpConnect() < 0)
-                    return;
-            }
-
             if (_TxBiasWrite() < 0)
                 return;
         }
 
         private void bRead_Click(object sender, EventArgs e)
         {
-            if (qsfpConnected == false) {
-                if (_QsfpConnect() < 0)
-                    return;
-            }
-
             if (_LosAndFaultRead() < 0)
                 return;
 
@@ -1913,11 +1802,6 @@ namespace QsfpDigitalDiagnosticMonitoring
 
         private void bWrite_Click(object sender, EventArgs e)
         {
-            if (qsfpConnected == false) {
-                if (_QsfpConnect() < 0)
-                    return;
-            }
-
             if (_LosAndFaultWrite() < 0)
                 return;
 
