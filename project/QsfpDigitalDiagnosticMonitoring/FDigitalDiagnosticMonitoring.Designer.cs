@@ -28,12 +28,14 @@
         private void InitializeComponent()
         {
             this.cbConnected = new System.Windows.Forms.CheckBox();
-            this.ucDigitalDiagnosticsMonitoring = new QsfpDigitalDiagnosticMonitoring.UCDigitalDiagnosticsMonitoring();
             this.tcDdmAndInformation = new System.Windows.Forms.TabControl();
             this.tpDigitalDiagnosticMonitoring = new System.Windows.Forms.TabPage();
+            this.ucDigitalDiagnosticsMonitoring = new QsfpDigitalDiagnosticMonitoring.UCDigitalDiagnosticsMonitoring();
             this.tpInformation = new System.Windows.Forms.TabPage();
+            this.ucInformation = new QsfpDigitalDiagnosticMonitoring.UcInformation();
             this.tcDdmAndInformation.SuspendLayout();
             this.tpDigitalDiagnosticMonitoring.SuspendLayout();
+            this.tpInformation.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbConnected
@@ -47,13 +49,6 @@
             this.cbConnected.UseVisualStyleBackColor = true;
             this.cbConnected.CheckedChanged += new System.EventHandler(this._cbConnected_CheckedChanged);
             // 
-            // ucDigitalDiagnosticsMonitoring
-            // 
-            this.ucDigitalDiagnosticsMonitoring.Location = new System.Drawing.Point(6, 4);
-            this.ucDigitalDiagnosticsMonitoring.Name = "ucDigitalDiagnosticsMonitoring";
-            this.ucDigitalDiagnosticsMonitoring.Size = new System.Drawing.Size(782, 482);
-            this.ucDigitalDiagnosticsMonitoring.TabIndex = 0;
-            // 
             // tcDdmAndInformation
             // 
             this.tcDdmAndInformation.Controls.Add(this.tpDigitalDiagnosticMonitoring);
@@ -61,7 +56,7 @@
             this.tcDdmAndInformation.Location = new System.Drawing.Point(12, 34);
             this.tcDdmAndInformation.Name = "tcDdmAndInformation";
             this.tcDdmAndInformation.SelectedIndex = 0;
-            this.tcDdmAndInformation.Size = new System.Drawing.Size(800, 516);
+            this.tcDdmAndInformation.Size = new System.Drawing.Size(800, 518);
             this.tcDdmAndInformation.TabIndex = 2;
             // 
             // tpDigitalDiagnosticMonitoring
@@ -70,27 +65,42 @@
             this.tpDigitalDiagnosticMonitoring.Location = new System.Drawing.Point(4, 22);
             this.tpDigitalDiagnosticMonitoring.Name = "tpDigitalDiagnosticMonitoring";
             this.tpDigitalDiagnosticMonitoring.Padding = new System.Windows.Forms.Padding(3);
-            this.tpDigitalDiagnosticMonitoring.Size = new System.Drawing.Size(792, 490);
+            this.tpDigitalDiagnosticMonitoring.Size = new System.Drawing.Size(792, 492);
             this.tpDigitalDiagnosticMonitoring.TabIndex = 0;
             this.tpDigitalDiagnosticMonitoring.Text = "DDM";
             this.tpDigitalDiagnosticMonitoring.UseVisualStyleBackColor = true;
             // 
+            // ucDigitalDiagnosticsMonitoring
+            // 
+            this.ucDigitalDiagnosticsMonitoring.Location = new System.Drawing.Point(6, 4);
+            this.ucDigitalDiagnosticsMonitoring.Name = "ucDigitalDiagnosticsMonitoring";
+            this.ucDigitalDiagnosticsMonitoring.Size = new System.Drawing.Size(782, 482);
+            this.ucDigitalDiagnosticsMonitoring.TabIndex = 0;
+            // 
             // tpInformation
             // 
+            this.tpInformation.Controls.Add(this.ucInformation);
             this.tpInformation.Location = new System.Drawing.Point(4, 22);
             this.tpInformation.Name = "tpInformation";
             this.tpInformation.Padding = new System.Windows.Forms.Padding(3);
-            this.tpInformation.Size = new System.Drawing.Size(792, 490);
+            this.tpInformation.Size = new System.Drawing.Size(792, 492);
             this.tpInformation.TabIndex = 1;
             this.tpInformation.Text = "Information";
             this.tpInformation.UseVisualStyleBackColor = true;
+            // 
+            // ucInformation
+            // 
+            this.ucInformation.Location = new System.Drawing.Point(3, 3);
+            this.ucInformation.Name = "ucInformation";
+            this.ucInformation.Size = new System.Drawing.Size(786, 488);
+            this.ucInformation.TabIndex = 0;
             // 
             // FDigitalDiagnosticMonitoring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ClientSize = new System.Drawing.Size(823, 554);
+            this.ClientSize = new System.Drawing.Size(823, 555);
             this.Controls.Add(this.tcDdmAndInformation);
             this.Controls.Add(this.cbConnected);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -99,6 +109,7 @@
             this.Text = "Digital Diagnostic Monitoring";
             this.tcDdmAndInformation.ResumeLayout(false);
             this.tpDigitalDiagnosticMonitoring.ResumeLayout(false);
+            this.tpInformation.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -111,6 +122,7 @@
         private System.Windows.Forms.TabControl tcDdmAndInformation;
         private System.Windows.Forms.TabPage tpDigitalDiagnosticMonitoring;
         private System.Windows.Forms.TabPage tpInformation;
+        private UcInformation ucInformation;
     }
 }
 
