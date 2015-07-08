@@ -335,6 +335,48 @@ namespace QsfpDigitalDiagnosticMonitoring
             return 0;
         }
 
+        private int _WriteAddr119()
+        {
+            byte[] data;
+
+            if (i2cWriteCB == null)
+                return -1;
+
+            if (tbNewPassword.Text.Length == 0)
+                return 0;
+
+            if (tbNewPassword.Text.Length != 4) {
+                tbNewPassword.Text = "";
+                MessageBox.Show("Please input 4 char in new password!!");
+                return -1;
+            }
+
+            data = Encoding.Default.GetBytes(tbNewPassword.Text);
+
+            if (i2cWriteCB(80, 119, 4, data) < 0)
+                return -1;
+
+            tbPassword.Text = tbNewPassword.Text = "";
+            MessageBox.Show("Password changed.");        
+
+            return 1;
+        }
+
+        private int _WriteAddr123()
+        {
+            byte[] data;
+
+            if (i2cWriteCB == null)
+                return -1;
+
+            data = Encoding.Default.GetBytes(tbPassword.Text);
+
+            if (i2cWriteCB(80, 123, 4, data) < 0)
+                return -1;
+
+            return 0;
+        }
+
         private int _WriteUpPage2Addr138_188()
         {
             byte[] data = new byte[64];
@@ -375,6 +417,23 @@ namespace QsfpDigitalDiagnosticMonitoring
 
         private void _bWrite_Click(object sender, EventArgs e)
         {
+            int rv;
+
+            if (tbPassword.Text.Length != 4) {
+                tbPassword.Text = "";
+                MessageBox.Show("Please input 4 char password before write!!");
+                return;
+            }
+
+            if (_WriteAddr123() < 0)
+                return;
+
+            rv = _WriteAddr119();
+            if (rv < 0)
+                return;
+            else if (rv == 1)
+                return;
+
             if (_SetQsfpMode(0x4D) < 0)
                 return;
 
@@ -387,5 +446,26 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (_WriteUpPage2Addr138_188() < 0)
                 return;
         }
+
+        private void _bPasswordReset_Click(object sender, EventArgs e)
+        {
+            byte[] data = new byte[1];
+
+            if (i2cWriteCB == null)
+                return;
+
+            data[0] = 32;
+
+            if (i2cWriteCB(80, 127, 1, data) < 0)
+                return;
+
+            data[0] = 0x50;
+            if (i2cWriteCB(80, 162, 1, data) < 0)
+                return;
+
+            tbPassword.Text = "";
+            MessageBox.Show("QSFP+ password reseted");
+        }
+
     }
 }

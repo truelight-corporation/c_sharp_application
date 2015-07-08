@@ -63,6 +63,8 @@
             this.tbGigabitEthernetCompliant = new System.Windows.Forms.TextBox();
             this.lGigabitEthernetCompliant = new System.Windows.Forms.Label();
             this.gbUpPage0 = new System.Windows.Forms.GroupBox();
+            this.tbPassword = new System.Windows.Forms.TextBox();
+            this.lPassword = new System.Windows.Forms.Label();
             this.tbEncoding = new System.Windows.Forms.TextBox();
             this.lEncoding = new System.Windows.Forms.Label();
             this.tbCcExt = new System.Windows.Forms.TextBox();
@@ -124,6 +126,9 @@
             this.lBitRate = new System.Windows.Forms.Label();
             this.tbUpPage0Identifier = new System.Windows.Forms.TextBox();
             this.lUpPage0Identifier = new System.Windows.Forms.Label();
+            this.lNewPassword = new System.Windows.Forms.Label();
+            this.tbNewPassword = new System.Windows.Forms.TextBox();
+            this.bPasswordReset = new System.Windows.Forms.Button();
             this.gbControlBytes.SuspendLayout();
             this.gbSpecificationCompliance.SuspendLayout();
             this.gbUpPage0.SuspendLayout();
@@ -473,6 +478,10 @@
             // 
             // gbUpPage0
             // 
+            this.gbUpPage0.Controls.Add(this.tbNewPassword);
+            this.gbUpPage0.Controls.Add(this.lNewPassword);
+            this.gbUpPage0.Controls.Add(this.tbPassword);
+            this.gbUpPage0.Controls.Add(this.lPassword);
             this.gbUpPage0.Controls.Add(this.tbEncoding);
             this.gbUpPage0.Controls.Add(this.lEncoding);
             this.gbUpPage0.Controls.Add(this.tbCcExt);
@@ -523,6 +532,23 @@
             this.gbUpPage0.TabIndex = 27;
             this.gbUpPage0.TabStop = false;
             this.gbUpPage0.Text = "UP Page 0";
+            // 
+            // tbPassword
+            // 
+            this.tbPassword.Location = new System.Drawing.Point(409, 21);
+            this.tbPassword.Name = "tbPassword";
+            this.tbPassword.Size = new System.Drawing.Size(60, 22);
+            this.tbPassword.TabIndex = 67;
+            this.tbPassword.UseSystemPasswordChar = true;
+            // 
+            // lPassword
+            // 
+            this.lPassword.AutoSize = true;
+            this.lPassword.Location = new System.Drawing.Point(349, 24);
+            this.lPassword.Name = "lPassword";
+            this.lPassword.Size = new System.Drawing.Size(54, 12);
+            this.lPassword.TabIndex = 66;
+            this.lPassword.Text = "Password :";
             // 
             // tbEncoding
             // 
@@ -1094,10 +1120,38 @@
             this.lUpPage0Identifier.TabIndex = 28;
             this.lUpPage0Identifier.Text = "Identifier :";
             // 
+            // lNewPassword
+            // 
+            this.lNewPassword.AutoSize = true;
+            this.lNewPassword.Location = new System.Drawing.Point(475, 24);
+            this.lNewPassword.Name = "lNewPassword";
+            this.lNewPassword.Size = new System.Drawing.Size(78, 12);
+            this.lNewPassword.TabIndex = 68;
+            this.lNewPassword.Text = "New Password :";
+            // 
+            // tbNewPassword
+            // 
+            this.tbNewPassword.Location = new System.Drawing.Point(559, 21);
+            this.tbNewPassword.Name = "tbNewPassword";
+            this.tbNewPassword.Size = new System.Drawing.Size(60, 22);
+            this.tbNewPassword.TabIndex = 69;
+            this.tbNewPassword.UseSystemPasswordChar = true;
+            // 
+            // bPasswordReset
+            // 
+            this.bPasswordReset.Location = new System.Drawing.Point(516, 3);
+            this.bPasswordReset.Name = "bPasswordReset";
+            this.bPasswordReset.Size = new System.Drawing.Size(100, 23);
+            this.bPasswordReset.TabIndex = 28;
+            this.bPasswordReset.Text = "Password Reset";
+            this.bPasswordReset.UseVisualStyleBackColor = true;
+            this.bPasswordReset.Click += new System.EventHandler(this._bPasswordReset_Click);
+            // 
             // UcInformation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.bPasswordReset);
             this.Controls.Add(this.gbUpPage0);
             this.Controls.Add(this.gbControlBytes);
             this.Controls.Add(this.bWrite);
@@ -1223,5 +1277,10 @@
         private System.Windows.Forms.CheckBox cbTxDisableImplemented;
         private System.Windows.Forms.TextBox tbEncoding;
         private System.Windows.Forms.Label lEncoding;
+        private System.Windows.Forms.TextBox tbPassword;
+        private System.Windows.Forms.Label lPassword;
+        private System.Windows.Forms.TextBox tbNewPassword;
+        private System.Windows.Forms.Label lNewPassword;
+        private System.Windows.Forms.Button bPasswordReset;
     }
 }
