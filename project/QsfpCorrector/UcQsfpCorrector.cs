@@ -45,12 +45,48 @@ namespace QsfpCorrector
             return 0;
         }
 
+        private int _WritePassword()
+        {
+            byte[] data;
+
+            if (qsfpI2cWriteCB == null)
+                return -1;
+
+            if (tbPassword.Text.Length != 4) {
+                tbPassword.Text = "";
+                MessageBox.Show("Please input 4 char password before write!!");
+                return -1;
+            }
+
+            data = Encoding.Default.GetBytes(tbPassword.Text);
+
+            if (qsfpI2cWriteCB(80, 123, 4, data) < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _ClearPassword()
+        {
+            byte[] data = new byte[4];
+
+            if (qsfpI2cWriteCB == null)
+                return -1;
+
+            data[0] = data[1] = data[2] = data[3] = 0;
+
+            if (qsfpI2cWriteCB(80, 123, 4, data) < 0)
+                return -1;
+
+            return 0;
+        }
+
         private int _SetQsfpMode(byte mode)
         {
             byte[] data = new byte[] {32};
 
             if (qsfpI2cWriteCB == null)
-                return 0;
+                return -1;
 
             if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
@@ -115,6 +151,9 @@ namespace QsfpCorrector
             byte[] data = new byte[1];
             sbyte[] tmp = new sbyte[1];
 
+            if (_WritePassword() < 0)
+                return -1;
+
             if (_SetQsfpMode(0x4D) < 0)
                 return -1;
 
@@ -143,8 +182,8 @@ namespace QsfpCorrector
 
             qsfpI2cWriteCB(80, 137, 1, data);
 
-            if (_SetQsfpMode(0) < 0)
-                return -1;
+            _ClearPassword();
+            _SetQsfpMode(0);
 
             return 0;
         }
@@ -359,6 +398,9 @@ namespace QsfpCorrector
                 return -1;
             }
 
+            if (_WritePassword() < 0)
+                return -1;
+
             if (_SetQsfpMode(0x4D) < 0)
                 return -1;
 
@@ -379,6 +421,9 @@ namespace QsfpCorrector
             }
 
             qsfpI2cWriteCB(80, 133, 4, data);
+
+            _ClearPassword();
+            _SetQsfpMode(0);
 
             return 0;
         }
@@ -667,6 +712,25 @@ namespace QsfpCorrector
             byte bChecksum;
             sbyte[] sBATmp = new sbyte[1];
 
+            if ((tbAverageCurrentEquationA.Text.Length == 0) ||
+                (tbAverageCurrentEquationB.Text.Length == 0) ||
+                (tbAverageCurrentEquationC.Text.Length == 0) ||
+                (tbAverageCurrentMin.Text.Length == 0) ||
+                (tbAverageCurrentMax.Text.Length == 0) ||
+                (tbModulationCurrentEquationA.Text.Length == 0) ||
+                (tbModulationCurrentEquationB.Text.Length == 0) ||
+                (tbModulationCurrentEquationC.Text.Length == 0) ||
+                (tbModulationCurrentMin.Text.Length == 0) ||
+                (tbModulationCurrentMax.Text.Length == 0) ||
+                (tbAverageCurrentOffset.Text.Length == 0) ||
+                (tbModulationCurrentOffset.Text.Length == 0)) {
+                MessageBox.Show("Please input value before write!!");
+                return -1;
+            }
+
+            if (_WritePassword() < 0)
+                return -1;
+
             if (_SetQsfpMode(0x4D) < 0)
                 return -1;
 
@@ -857,6 +921,9 @@ namespace QsfpCorrector
             if (qsfpI2cWriteCB(80, 132, 1, data) < 0)
                 return -1;
 
+            _ClearPassword();
+            _SetQsfpMode(0);
+
             return 0;
         }
 
@@ -878,6 +945,9 @@ namespace QsfpCorrector
         {
             byte[] data = new byte[] { 2 };
 
+            if (_WritePassword() < 0)
+                return -1;
+
             if (_SetQsfpMode(0x4D) < 0)
                 return -1;
 
@@ -890,6 +960,9 @@ namespace QsfpCorrector
             data[0] = 0;
             if (qsfpI2cWriteCB(80, 191, 1, data) < 0)
                 return -1;
+
+            _ClearPassword();
+            _SetQsfpMode(0);
 
             return 0;
         }
@@ -984,11 +1057,11 @@ namespace QsfpCorrector
 
             Buffer.BlockCopy(data, 14, sData, 0, 1);
             sTmp = Convert.ToSingle(Convert.ToInt32(sData[0]) * 0.1);
-            tbAverageCurrentOffset.Text = sTmp.ToString("#0.0");
+            tbModuleAverageCurrentOffset.Text = sTmp.ToString("#0.0");
 
             Buffer.BlockCopy(data, 15, sData, 0, 1);
             sTmp = Convert.ToSingle(Convert.ToInt32(sData[0]) * 0.1);
-            tbModulationCurrentOffset.Text = sTmp.ToString("#0.0");
+            tbModuleModulationCurrentOffset.Text = sTmp.ToString("#0.0");
 
             return 0;
         }

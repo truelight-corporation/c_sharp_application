@@ -35,7 +35,7 @@
             // cbQsfpConnected
             // 
             this.cbQsfpConnected.AutoSize = true;
-            this.cbQsfpConnected.Location = new System.Drawing.Point(408, 10);
+            this.cbQsfpConnected.Location = new System.Drawing.Point(395, 10);
             this.cbQsfpConnected.Name = "cbQsfpConnected";
             this.cbQsfpConnected.Size = new System.Drawing.Size(103, 16);
             this.cbQsfpConnected.TabIndex = 1;
@@ -46,7 +46,7 @@
             // cbMonitorConnected
             // 
             this.cbMonitorConnected.AutoSize = true;
-            this.cbMonitorConnected.Location = new System.Drawing.Point(517, 10);
+            this.cbMonitorConnected.Location = new System.Drawing.Point(504, 10);
             this.cbMonitorConnected.Name = "cbMonitorConnected";
             this.cbMonitorConnected.Size = new System.Drawing.Size(115, 16);
             this.cbMonitorConnected.TabIndex = 2;
@@ -56,16 +56,16 @@
             // 
             // ucQsfpCorrector
             // 
-            this.ucQsfpCorrector.Location = new System.Drawing.Point(12, 32);
+            this.ucQsfpCorrector.Location = new System.Drawing.Point(3, 32);
             this.ucQsfpCorrector.Name = "ucQsfpCorrector";
-            this.ucQsfpCorrector.Size = new System.Drawing.Size(620, 397);
+            this.ucQsfpCorrector.Size = new System.Drawing.Size(627, 397);
             this.ucQsfpCorrector.TabIndex = 0;
             // 
             // FQsfpCorrector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(642, 432);
+            this.ClientSize = new System.Drawing.Size(625, 432);
             this.Controls.Add(this.cbMonitorConnected);
             this.Controls.Add(this.cbQsfpConnected);
             this.Controls.Add(this.ucQsfpCorrector);

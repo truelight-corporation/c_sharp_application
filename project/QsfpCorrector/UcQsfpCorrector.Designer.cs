@@ -80,10 +80,10 @@
             this.lInputPower = new System.Windows.Forms.Label();
             this.lRxCh1 = new System.Windows.Forms.Label();
             this.gbAcMcEquation = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.tbModuleModulationCurrentOffset = new System.Windows.Forms.TextBox();
+            this.tbModuleAverageCurrentOffset = new System.Windows.Forms.TextBox();
+            this.lModuleBmCurrentMA = new System.Windows.Forms.Label();
+            this.lModuleBaCurrentMA = new System.Windows.Forms.Label();
             this.tbModuleModulationCurrentMin = new System.Windows.Forms.TextBox();
             this.tbModuleModulationCurrentMax = new System.Windows.Forms.TextBox();
             this.tbModuleAverageCurrentMax = new System.Windows.Forms.TextBox();
@@ -128,6 +128,8 @@
             this.bAutoCorrect = new System.Windows.Forms.Button();
             this.cbTemperatureCorrected = new System.Windows.Forms.CheckBox();
             this.bSaveFile = new System.Windows.Forms.Button();
+            this.lPassword = new System.Windows.Forms.Label();
+            this.tbPassword = new System.Windows.Forms.TextBox();
             this.gbTemperature.SuspendLayout();
             this.gbRxPowerRate.SuspendLayout();
             this.gbAcMcEquation.SuspendLayout();
@@ -632,10 +634,10 @@
             // 
             // gbAcMcEquation
             // 
-            this.gbAcMcEquation.Controls.Add(this.textBox1);
-            this.gbAcMcEquation.Controls.Add(this.textBox2);
-            this.gbAcMcEquation.Controls.Add(this.label1);
-            this.gbAcMcEquation.Controls.Add(this.label2);
+            this.gbAcMcEquation.Controls.Add(this.tbModuleModulationCurrentOffset);
+            this.gbAcMcEquation.Controls.Add(this.tbModuleAverageCurrentOffset);
+            this.gbAcMcEquation.Controls.Add(this.lModuleBmCurrentMA);
+            this.gbAcMcEquation.Controls.Add(this.lModuleBaCurrentMA);
             this.gbAcMcEquation.Controls.Add(this.tbModuleModulationCurrentMin);
             this.gbAcMcEquation.Controls.Add(this.tbModuleModulationCurrentMax);
             this.gbAcMcEquation.Controls.Add(this.tbModuleAverageCurrentMax);
@@ -678,39 +680,39 @@
             this.gbAcMcEquation.TabStop = false;
             this.gbAcMcEquation.Text = "Average Current and Modulation Current Equation";
             // 
-            // textBox1
+            // tbModuleModulationCurrentOffset
             // 
-            this.textBox1.Location = new System.Drawing.Point(151, 115);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(50, 22);
-            this.textBox1.TabIndex = 54;
+            this.tbModuleModulationCurrentOffset.Location = new System.Drawing.Point(151, 115);
+            this.tbModuleModulationCurrentOffset.Name = "tbModuleModulationCurrentOffset";
+            this.tbModuleModulationCurrentOffset.ReadOnly = true;
+            this.tbModuleModulationCurrentOffset.Size = new System.Drawing.Size(50, 22);
+            this.tbModuleModulationCurrentOffset.TabIndex = 54;
             // 
-            // textBox2
+            // tbModuleAverageCurrentOffset
             // 
-            this.textBox2.Location = new System.Drawing.Point(151, 59);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(50, 22);
-            this.textBox2.TabIndex = 53;
+            this.tbModuleAverageCurrentOffset.Location = new System.Drawing.Point(151, 59);
+            this.tbModuleAverageCurrentOffset.Name = "tbModuleAverageCurrentOffset";
+            this.tbModuleAverageCurrentOffset.ReadOnly = true;
+            this.tbModuleAverageCurrentOffset.Size = new System.Drawing.Size(50, 22);
+            this.tbModuleAverageCurrentOffset.TabIndex = 53;
             // 
-            // label1
+            // lModuleBmCurrentMA
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(207, 118);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(22, 12);
-            this.label1.TabIndex = 52;
-            this.label1.Text = "mA";
+            this.lModuleBmCurrentMA.AutoSize = true;
+            this.lModuleBmCurrentMA.Location = new System.Drawing.Point(207, 118);
+            this.lModuleBmCurrentMA.Name = "lModuleBmCurrentMA";
+            this.lModuleBmCurrentMA.Size = new System.Drawing.Size(22, 12);
+            this.lModuleBmCurrentMA.TabIndex = 52;
+            this.lModuleBmCurrentMA.Text = "mA";
             // 
-            // label2
+            // lModuleBaCurrentMA
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(207, 62);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(22, 12);
-            this.label2.TabIndex = 51;
-            this.label2.Text = "mA";
+            this.lModuleBaCurrentMA.AutoSize = true;
+            this.lModuleBaCurrentMA.Location = new System.Drawing.Point(207, 62);
+            this.lModuleBaCurrentMA.Name = "lModuleBaCurrentMA";
+            this.lModuleBaCurrentMA.Size = new System.Drawing.Size(22, 12);
+            this.lModuleBaCurrentMA.TabIndex = 51;
+            this.lModuleBaCurrentMA.Text = "mA";
             // 
             // tbModuleModulationCurrentMin
             // 
@@ -1009,16 +1011,16 @@
             // 
             // tbFilePath
             // 
-            this.tbFilePath.Location = new System.Drawing.Point(62, 4);
+            this.tbFilePath.Location = new System.Drawing.Point(186, 4);
             this.tbFilePath.Name = "tbFilePath";
             this.tbFilePath.ReadOnly = true;
-            this.tbFilePath.Size = new System.Drawing.Size(423, 22);
+            this.tbFilePath.Size = new System.Drawing.Size(299, 22);
             this.tbFilePath.TabIndex = 1;
             // 
             // lFilePath
             // 
             this.lFilePath.AutoSize = true;
-            this.lFilePath.Location = new System.Drawing.Point(7, 7);
+            this.lFilePath.Location = new System.Drawing.Point(129, 7);
             this.lFilePath.Name = "lFilePath";
             this.lFilePath.Size = new System.Drawing.Size(51, 12);
             this.lFilePath.TabIndex = 0;
@@ -1089,10 +1091,29 @@
             this.bSaveFile.UseVisualStyleBackColor = true;
             this.bSaveFile.Click += new System.EventHandler(this._bSaveFileClick);
             // 
+            // lPassword
+            // 
+            this.lPassword.AutoSize = true;
+            this.lPassword.Location = new System.Drawing.Point(3, 8);
+            this.lPassword.Name = "lPassword";
+            this.lPassword.Size = new System.Drawing.Size(54, 12);
+            this.lPassword.TabIndex = 15;
+            this.lPassword.Text = "Password :";
+            // 
+            // tbPassword
+            // 
+            this.tbPassword.Location = new System.Drawing.Point(63, 4);
+            this.tbPassword.Name = "tbPassword";
+            this.tbPassword.Size = new System.Drawing.Size(60, 22);
+            this.tbPassword.TabIndex = 16;
+            this.tbPassword.UseSystemPasswordChar = true;
+            // 
             // UcQsfpCorrector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.tbPassword);
+            this.Controls.Add(this.lPassword);
             this.Controls.Add(this.bSaveFile);
             this.Controls.Add(this.gbAutoCorrect);
             this.Controls.Add(this.gbAcMcEquation);
@@ -1215,9 +1236,11 @@
         private System.Windows.Forms.TextBox tbModuleModulationCurrentMax;
         private System.Windows.Forms.TextBox tbModuleAverageCurrentMax;
         private System.Windows.Forms.TextBox tbModuleAverageCurrentMin;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox tbModuleModulationCurrentOffset;
+        private System.Windows.Forms.TextBox tbModuleAverageCurrentOffset;
+        private System.Windows.Forms.Label lModuleBmCurrentMA;
+        private System.Windows.Forms.Label lModuleBaCurrentMA;
+        private System.Windows.Forms.Label lPassword;
+        private System.Windows.Forms.TextBox tbPassword;
     }
 }
