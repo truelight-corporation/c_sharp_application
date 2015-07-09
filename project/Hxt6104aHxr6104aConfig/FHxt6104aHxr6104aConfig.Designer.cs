@@ -33,6 +33,8 @@
             this.tpHxr6104aConfig = new System.Windows.Forms.TabPage();
             this.tpHxt6104aConfig = new System.Windows.Forms.TabPage();
             this.ucHxt6104aConfig = new Hxt6104aHxr6104aConfig.UcHxt6104aConfig();
+            this.lPassword = new System.Windows.Forms.Label();
+            this.tbPassword = new System.Windows.Forms.TextBox();
             this.tcHxt6104aHxr6104aConfig.SuspendLayout();
             this.tpHxr6104aConfig.SuspendLayout();
             this.tpHxt6104aConfig.SuspendLayout();
@@ -72,7 +74,7 @@
             this.tpHxr6104aConfig.Location = new System.Drawing.Point(4, 22);
             this.tpHxr6104aConfig.Name = "tpHxr6104aConfig";
             this.tpHxr6104aConfig.Padding = new System.Windows.Forms.Padding(3);
-            this.tpHxr6104aConfig.Size = new System.Drawing.Size(575, 594);
+            this.tpHxr6104aConfig.Size = new System.Drawing.Size(575, 589);
             this.tpHxr6104aConfig.TabIndex = 0;
             this.tpHxr6104aConfig.Text = "HXR6104A";
             this.tpHxr6104aConfig.UseVisualStyleBackColor = true;
@@ -95,11 +97,30 @@
             this.ucHxt6104aConfig.Size = new System.Drawing.Size(563, 582);
             this.ucHxt6104aConfig.TabIndex = 0;
             // 
+            // lPassword
+            // 
+            this.lPassword.AutoSize = true;
+            this.lPassword.Location = new System.Drawing.Point(10, 13);
+            this.lPassword.Name = "lPassword";
+            this.lPassword.Size = new System.Drawing.Size(54, 12);
+            this.lPassword.TabIndex = 3;
+            this.lPassword.Text = "Password :";
+            // 
+            // tbPassword
+            // 
+            this.tbPassword.Location = new System.Drawing.Point(70, 10);
+            this.tbPassword.Name = "tbPassword";
+            this.tbPassword.Size = new System.Drawing.Size(60, 22);
+            this.tbPassword.TabIndex = 4;
+            this.tbPassword.UseSystemPasswordChar = true;
+            // 
             // FHxt6104aHxr6104aConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(606, 655);
+            this.Controls.Add(this.tbPassword);
+            this.Controls.Add(this.lPassword);
             this.Controls.Add(this.tcHxt6104aHxr6104aConfig);
             this.Controls.Add(this.cbConnected);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -122,6 +143,8 @@
         private System.Windows.Forms.TabPage tpHxr6104aConfig;
         private System.Windows.Forms.TabPage tpHxt6104aConfig;
         private UcHxt6104aConfig ucHxt6104aConfig;
+        private System.Windows.Forms.Label lPassword;
+        private System.Windows.Forms.TextBox tbPassword;
     }
 }
 

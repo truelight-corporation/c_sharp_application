@@ -56,12 +56,24 @@ namespace Hxt6104aHxr6104aConfig
 
         private int _I2cWrite(byte devAddr, byte regAddr, byte length, byte[] data)
         {
+            byte[] passwd;
             int rv;
 
             if (i2cMaster.connected == false) {
                 if (_I2cMasterConnect() < 0)
                     return -1;
             }
+
+            if (tbPassword.Text.Length != 4) {
+                tbPassword.Text = "";
+                MessageBox.Show("Before modify value need input 4 char password!!");
+                return -1;
+            }
+
+            passwd = Encoding.Default.GetBytes(tbPassword.Text);
+
+            if (i2cMaster.WriteApi(80, 123, 4, passwd) < 0)
+                return -1;
 
             rv = i2cMaster.WriteApi(devAddr, regAddr, length, data);
             if (rv < 0) {
@@ -92,6 +104,8 @@ namespace Hxt6104aHxr6104aConfig
                 MessageBox.Show("ucHxt6104aConfig.SetI2cWriteCBApi() faile Error!!");
                 return;
             }
+
+            tbPassword.Text = "3234";
         }
 
         private void _cbConnected_CheckedChanged(object sender, EventArgs e)
