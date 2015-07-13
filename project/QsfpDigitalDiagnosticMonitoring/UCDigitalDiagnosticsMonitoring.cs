@@ -1548,7 +1548,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if ((data[0] & 0x40) != 0)
                 cbTxBias1LowAlarmMask.Checked = true;
             else
-                cbRxPower1LowAlarmMask.Checked = false;
+                cbTxBias1LowAlarmMask.Checked = false;
 
             if ((data[0] & 0x20) != 0)
                 cbTxBias1HighWarningMask.Checked = true;
