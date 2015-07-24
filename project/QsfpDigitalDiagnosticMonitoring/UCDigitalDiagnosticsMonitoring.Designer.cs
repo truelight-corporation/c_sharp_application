@@ -432,7 +432,7 @@
             this.gbVcc.Size = new System.Drawing.Size(213, 161);
             this.gbVcc.TabIndex = 14;
             this.gbVcc.TabStop = false;
-            this.gbVcc.Text = "Vcc (Vlotage)";
+            this.gbVcc.Text = "Vcc (Voltage)";
             // 
             // bVccWrite
             // 
