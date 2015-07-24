@@ -130,6 +130,7 @@
             this.bSaveFile = new System.Windows.Forms.Button();
             this.lPassword = new System.Windows.Forms.Label();
             this.tbPassword = new System.Windows.Forms.TextBox();
+            this.cbTemperatureCompensation = new System.Windows.Forms.CheckBox();
             this.gbTemperature.SuspendLayout();
             this.gbRxPowerRate.SuspendLayout();
             this.gbAcMcEquation.SuspendLayout();
@@ -634,6 +635,7 @@
             // 
             // gbAcMcEquation
             // 
+            this.gbAcMcEquation.Controls.Add(this.cbTemperatureCompensation);
             this.gbAcMcEquation.Controls.Add(this.tbModuleModulationCurrentOffset);
             this.gbAcMcEquation.Controls.Add(this.tbModuleAverageCurrentOffset);
             this.gbAcMcEquation.Controls.Add(this.lModuleBmCurrentMA);
@@ -1108,6 +1110,17 @@
             this.tbPassword.TabIndex = 16;
             this.tbPassword.UseSystemPasswordChar = true;
             // 
+            // cbTemperatureCompensation
+            // 
+            this.cbTemperatureCompensation.AutoSize = true;
+            this.cbTemperatureCompensation.Location = new System.Drawing.Point(406, 33);
+            this.cbTemperatureCompensation.Name = "cbTemperatureCompensation";
+            this.cbTemperatureCompensation.Size = new System.Drawing.Size(56, 16);
+            this.cbTemperatureCompensation.TabIndex = 55;
+            this.cbTemperatureCompensation.Text = "Enable";
+            this.cbTemperatureCompensation.UseVisualStyleBackColor = true;
+            this.cbTemperatureCompensation.CheckedChanged += new System.EventHandler(this.cbTemperatureCompensation_CheckedChanged);
+            // 
             // UcQsfpCorrector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1242,5 +1255,6 @@
         private System.Windows.Forms.Label lModuleBaCurrentMA;
         private System.Windows.Forms.Label lPassword;
         private System.Windows.Forms.TextBox tbPassword;
+        private System.Windows.Forms.CheckBox cbTemperatureCompensation;
     }
 }

@@ -1074,8 +1074,48 @@ namespace QsfpCorrector
 
         private void bAcMcWrite_Click(object sender, EventArgs e)
         {
-            if (_WriteAcMcCorrectData() < 0)
-                return;
+            if (cbTemperatureCompensation.Checked == true) {
+                if (_WriteAcMcCorrectData() < 0)
+                    return;
+            }
+            else
+                cbTemperatureCompensation.Checked = true;
+        }
+
+        private int _DisableTemperatureCompensation()
+        {
+            byte[] data = new byte[1];
+
+            if (qsfpI2cWriteCB == null)
+                return -1;
+
+            data[0] = 0;
+            if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
+                return -1;
+
+            if (qsfpI2cReadCB == null)
+                return -1;
+
+            if (qsfpI2cReadCB(80, 194, 1, data) != 16)
+                return -1;
+
+            data[0] &= 0xEF;
+            if (qsfpI2cWriteCB(80, 194, 1, data) < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private void cbTemperatureCompensation_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbTemperatureCompensation.Checked == true) {
+                if (_WriteAcMcCorrectData() < 0)
+                    return;
+            }
+            else {
+                if (_DisableTemperatureCompensation() < 0)
+                    return;
+            }
         }
 
     }
