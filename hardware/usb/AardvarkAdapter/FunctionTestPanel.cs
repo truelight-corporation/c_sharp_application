@@ -140,18 +140,15 @@ namespace AardvarkAdapter
             return 0;
         }
 
-        private void bSignalRead_Click(object sender, EventArgs e)
+        private int _SignalRead()
         {
             byte[] regAddr = new byte[1];
             byte[] data = new byte[1];
             int counter;
             byte devAddr;
 
-            if (_ConnectDevice() < 0)
-                return;
-
             if (_CheckSignalReadInput() < 0)
-                return;
+                return -1;
 
             devAddr = Convert.ToByte(Convert.ToInt32(tbDevAddr.Text));
             regAddr[0] = Convert.ToByte(Convert.ToInt32(tbRegAddr.Text));
@@ -161,15 +158,26 @@ namespace AardvarkAdapter
             counter = AardvarkApi.aa_i2c_read(iHandle, devAddr, AardvarkI2cFlags.AA_I2C_NO_FLAGS, 1, data);
             if (counter < 0) {
                 MessageBox.Show("AardvarkApi.aa_i2c_read() fail: " + counter);
-                return;
+                return -1;
             }
             else if (counter == 0) {
                 MessageBox.Show("Read 0 byte.\n" +
                     "Please check devAddr!!");
-                return;
+                return -1;
             }
 
             tbValue.Text = Convert.ToString(data[0]);
+
+            return 0;
+        }
+
+        private void bSignalRead_Click(object sender, EventArgs e)
+        {
+            if (_ConnectDevice() < 0)
+                return;
+
+            if (_SignalRead() < 0)
+                return;
         }
 
         private int _CheckSignalWriteInput()
@@ -291,6 +299,75 @@ namespace AardvarkAdapter
             }
             AardvarkApi.aa_i2c_write(iHandle, devAddr, AardvarkI2cFlags.AA_I2C_NO_FLAGS, length, data);
             AardvarkApi.aa_sleep_ms(10);
+        }
+
+        private int _WaitTriggerAndDelay()
+        {
+            int port, bitrate, delay;
+            byte bTmp;
+
+            AardvarkApi.AardvarkExt aaExt = new AardvarkApi.AardvarkExt();
+            
+            port = Convert.ToInt32(tbPort.Text);
+            if ((port <= 0) && (port > 10)) {
+                MessageBox.Show("Port out of range (1 ~ 10)!!");
+                return -1;
+            }
+
+            bitrate = Convert.ToInt32(tbBitrate.Text);
+            if ((bitrate < 10) || (bitrate > 400)) {
+                MessageBox.Show("Bitrate out of range (10 ~ 400)!!");
+                return -1;
+            }
+
+            delay = Convert.ToInt32(tbTriggerDelay.Text);
+
+            iHandle = AardvarkApi.aa_open_ext(0, ref aaExt);
+
+            if (iHandle <= 0) {
+                MessageBox.Show("Unable to open Aardvark device on port 0");
+                return -1;
+            }
+
+            AardvarkApi.aa_configure(iHandle, AardvarkConfig.AA_CONFIG_GPIO_ONLY);
+
+            AardvarkApi.aa_i2c_pullup(iHandle, AardvarkApi.AA_I2C_PULLUP_NONE);
+
+            AardvarkApi.aa_gpio_set(iHandle, 0x00);
+
+            do {
+                bTmp = (byte)AardvarkApi.aa_gpio_get(iHandle);
+            } while (bTmp != 3);
+
+            AardvarkApi.aa_i2c_pullup(iHandle, AardvarkApi.AA_I2C_PULLUP_BOTH);
+            AardvarkApi.aa_configure(iHandle, AardvarkConfig.AA_CONFIG_SPI_I2C);
+
+            bitrate = AardvarkApi.aa_i2c_bitrate(iHandle, bitrate);
+
+            tbPort.ReadOnly = true;
+            tbBitrate.ReadOnly = true;
+            cbConnectState.Checked = true;
+
+            System.Threading.Thread.Sleep(delay);
+
+            return 0;
+        }
+
+        private void cbTriggerRead_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbTriggerRead.Checked == false) {
+                tbValue.Text = "";
+                return;
+            }
+
+            if (cbConnectState.Checked == true)
+                _DisconnectDevice();
+
+            if (_WaitTriggerAndDelay() < 0)
+                return;
+
+            if (_SignalRead() < 0)
+                return;
         }
 
 

@@ -34,6 +34,9 @@
             this.cbConnectState = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tpSignal = new System.Windows.Forms.TabPage();
+            this.cbTriggerRead = new System.Windows.Forms.CheckBox();
+            this.tbTriggerDelay = new System.Windows.Forms.TextBox();
+            this.lTriggerDelay = new System.Windows.Forms.Label();
             this.bSignalWrite = new System.Windows.Forms.Button();
             this.bSignalRead = new System.Windows.Forms.Button();
             this.tbValue = new System.Windows.Forms.TextBox();
@@ -111,6 +114,9 @@
             // 
             // tpSignal
             // 
+            this.tpSignal.Controls.Add(this.cbTriggerRead);
+            this.tpSignal.Controls.Add(this.tbTriggerDelay);
+            this.tpSignal.Controls.Add(this.lTriggerDelay);
             this.tpSignal.Controls.Add(this.bSignalWrite);
             this.tpSignal.Controls.Add(this.bSignalRead);
             this.tpSignal.Controls.Add(this.tbValue);
@@ -122,6 +128,34 @@
             this.tpSignal.TabIndex = 0;
             this.tpSignal.Text = "Signal";
             this.tpSignal.UseVisualStyleBackColor = true;
+            // 
+            // cbTriggerRead
+            // 
+            this.cbTriggerRead.AutoSize = true;
+            this.cbTriggerRead.Location = new System.Drawing.Point(10, 63);
+            this.cbTriggerRead.Name = "cbTriggerRead";
+            this.cbTriggerRead.Size = new System.Drawing.Size(86, 16);
+            this.cbTriggerRead.TabIndex = 6;
+            this.cbTriggerRead.Text = "Trigger Read";
+            this.cbTriggerRead.UseVisualStyleBackColor = true;
+            this.cbTriggerRead.CheckedChanged += new System.EventHandler(this.cbTriggerRead_CheckedChanged);
+            // 
+            // tbTriggerDelay
+            // 
+            this.tbTriggerDelay.Location = new System.Drawing.Point(113, 35);
+            this.tbTriggerDelay.Name = "tbTriggerDelay";
+            this.tbTriggerDelay.Size = new System.Drawing.Size(60, 22);
+            this.tbTriggerDelay.TabIndex = 5;
+            this.tbTriggerDelay.Text = "20";
+            // 
+            // lTriggerDelay
+            // 
+            this.lTriggerDelay.AutoSize = true;
+            this.lTriggerDelay.Location = new System.Drawing.Point(10, 38);
+            this.lTriggerDelay.Name = "lTriggerDelay";
+            this.lTriggerDelay.Size = new System.Drawing.Size(97, 12);
+            this.lTriggerDelay.TabIndex = 4;
+            this.lTriggerDelay.Text = "Trigger Delay (ms):";
             // 
             // bSignalWrite
             // 
@@ -309,5 +343,8 @@
         private System.Windows.Forms.Label lLength;
         private System.Windows.Forms.DataGridView dgvMultiRegister;
         private System.Windows.Forms.Button bWrite;
+        private System.Windows.Forms.CheckBox cbTriggerRead;
+        private System.Windows.Forms.TextBox tbTriggerDelay;
+        private System.Windows.Forms.Label lTriggerDelay;
     }
 }
