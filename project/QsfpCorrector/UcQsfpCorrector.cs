@@ -19,6 +19,7 @@ namespace QsfpCorrector
 
         private I2cReadCB qsfpI2cReadCB = null;
         private I2cWriteCB qsfpI2cWriteCB = null;
+        private bool disableSend = false;
 
         public UcQsfpCorrector()
         {
@@ -574,15 +575,49 @@ namespace QsfpCorrector
 
             swConfig.WriteLine(tbAverageCurrentMax.Text + "," +
                 tbAverageCurrentMin.Text + "," +
+                tbAverageCurrentOffset.Text + "," +
                 tbAverageCurrentEquationA.Text + "," + 
                 tbAverageCurrentEquationB.Text + "," +
                 tbAverageCurrentEquationC.Text);
 
             swConfig.WriteLine(tbModulationCurrentMax.Text + "," +
                 tbModulationCurrentMin.Text + "," +
+                tbModulationCurrentOffset.Text + "," +
                 tbModulationCurrentEquationA.Text + "," +
                 tbModulationCurrentEquationB.Text + "," +
                 tbModulationCurrentEquationC.Text);
+
+            swConfig.WriteLine(tbDrvtnMod1.Text + "," +
+                tbDrvtnMod2.Text + "," +
+                tbDrvtnMod3.Text + "," +
+                tbDrvtnMod4.Text + "," +
+                tbDrvtnMod5.Text + "," +
+                tbDrvtnMod6.Text + "," +
+                tbDrvtnMod7.Text);
+
+            swConfig.WriteLine(tbDrvtnCst1.Text + "," +
+                tbDrvtnCst2.Text + "," +
+                tbDrvtnCst3.Text + "," +
+                tbDrvtnCst4.Text + "," +
+                tbDrvtnCst5.Text + "," +
+                tbDrvtnCst6.Text + "," +
+                tbDrvtnCst7.Text);
+
+            swConfig.WriteLine(tbEfMod1.Text + "," +
+                tbEfMod2.Text + "," +
+                tbEfMod3.Text + "," +
+                tbEfMod4.Text + "," +
+                tbEfMod5.Text + "," +
+                tbEfMod6.Text + "," +
+                tbEfMod7.Text);
+
+            swConfig.WriteLine(tbEfCst1.Text + "," +
+                tbEfCst2.Text + "," +
+                tbEfCst3.Text + "," +
+                tbEfCst4.Text + "," +
+                tbEfCst5.Text + "," +
+                tbEfCst6.Text + "," +
+                tbEfCst7.Text);
 
             swConfig.Close();
         }
@@ -635,15 +670,16 @@ namespace QsfpCorrector
                 goto clearup;
             }
             sATmp = sTmp.Split(',');
-            if (sATmp.Length != 5) {
+            if (sATmp.Length != 6) {
                 MessageBox.Show("Line " + line + " context paser error");
                 goto clearup;
             }
             tbAverageCurrentMax.Text = sATmp[0];
             tbAverageCurrentMin.Text = sATmp[1];
-            tbAverageCurrentEquationA.Text = sATmp[2];
-            tbAverageCurrentEquationB.Text = sATmp[3];
-            tbAverageCurrentEquationC.Text = sATmp[4];
+            tbAverageCurrentOffset.Text = sATmp[2];
+            tbAverageCurrentEquationA.Text = sATmp[3];
+            tbAverageCurrentEquationB.Text = sATmp[4];
+            tbAverageCurrentEquationC.Text = sATmp[5];
 
             line++;
             sTmp = srConfig.ReadLine();
@@ -652,16 +688,97 @@ namespace QsfpCorrector
                 goto clearup;
             }
             sATmp = sTmp.Split(',');
-            if (sATmp.Length != 5) {
+            if (sATmp.Length != 6) {
                 MessageBox.Show("Line " + line + " context paser error");
                 goto clearup;
             }
 
             tbModulationCurrentMax.Text = sATmp[0];
             tbModulationCurrentMin.Text = sATmp[1];
-            tbModulationCurrentEquationA.Text = sATmp[2];
-            tbModulationCurrentEquationB.Text = sATmp[3];
-            tbModulationCurrentEquationC.Text = sATmp[4];
+            tbModulationCurrentOffset.Text = sATmp[2];
+            tbModulationCurrentEquationA.Text = sATmp[3];
+            tbModulationCurrentEquationB.Text = sATmp[4];
+            tbModulationCurrentEquationC.Text = sATmp[5];
+
+            line++;
+            sTmp = srConfig.ReadLine();
+            if (sTmp == null) {
+                MessageBox.Show("File without line " + line + " error!!");
+                goto clearup;
+            }
+            sATmp = sTmp.Split(',');
+            if (sATmp.Length != 7) {
+                MessageBox.Show("Line " + line + " context paser error");
+                goto clearup;
+            }
+
+            tbDrvtnMod1.Text = sATmp[0];
+            tbDrvtnMod2.Text = sATmp[1];
+            tbDrvtnMod3.Text = sATmp[2];
+            tbDrvtnMod4.Text = sATmp[3];
+            tbDrvtnMod5.Text = sATmp[4];
+            tbDrvtnMod6.Text = sATmp[5];
+            tbDrvtnMod7.Text = sATmp[6];
+
+            line++;
+            sTmp = srConfig.ReadLine();
+            if (sTmp == null) {
+                MessageBox.Show("File without line " + line + " error!!");
+                goto clearup;
+            }
+            sATmp = sTmp.Split(',');
+            if (sATmp.Length != 7) {
+                MessageBox.Show("Line " + line + " context paser error");
+                goto clearup;
+            }
+
+            tbDrvtnCst1.Text = sATmp[0];
+            tbDrvtnCst2.Text = sATmp[1];
+            tbDrvtnCst3.Text = sATmp[2];
+            tbDrvtnCst4.Text = sATmp[3];
+            tbDrvtnCst5.Text = sATmp[4];
+            tbDrvtnCst6.Text = sATmp[5];
+            tbDrvtnCst7.Text = sATmp[6];
+
+            line++;
+            sTmp = srConfig.ReadLine();
+            if (sTmp == null) {
+                MessageBox.Show("File without line " + line + " error!!");
+                goto clearup;
+            }
+            sATmp = sTmp.Split(',');
+            if (sATmp.Length != 7) {
+                MessageBox.Show("Line " + line + " context paser error");
+                goto clearup;
+            }
+
+            tbEfMod1.Text = sATmp[0];
+            tbEfMod2.Text = sATmp[1];
+            tbEfMod3.Text = sATmp[2];
+            tbEfMod4.Text = sATmp[3];
+            tbEfMod5.Text = sATmp[4];
+            tbEfMod6.Text = sATmp[5];
+            tbEfMod7.Text = sATmp[6];
+
+            line++;
+            sTmp = srConfig.ReadLine();
+            if (sTmp == null) {
+                MessageBox.Show("File without line " + line + " error!!");
+                goto clearup;
+            }
+            sATmp = sTmp.Split(',');
+            if (sATmp.Length != 7) {
+                MessageBox.Show("Line " + line + " context paser error");
+                goto clearup;
+            }
+
+            tbEfCst1.Text = sATmp[0];
+            tbEfCst2.Text = sATmp[1];
+            tbEfCst3.Text = sATmp[2];
+            tbEfCst4.Text = sATmp[3];
+            tbEfCst5.Text = sATmp[4];
+            tbEfCst6.Text = sATmp[5];
+            tbEfCst7.Text = sATmp[6];
 
             srConfig.Close();
 
@@ -696,15 +813,18 @@ namespace QsfpCorrector
             tbFilePath.Text = ofdSelectFile.FileName;
             if (tbFilePath.Text.Length == 0)
                 return;
-
-            if (_PaserLoadFile() < 0)
+            disableSend = true;
+            if (_PaserLoadFile() < 0) {
+                disableSend = false;
                 return;
+            }
+            disableSend = false;
         }
 
         private int _WriteAcMcCorrectData()
         {
 
-            byte[] data = new byte[16];
+            byte[] data = new byte[44];
             byte[] bATmp;
             int i;
             UInt16 u16Tmp;
@@ -723,7 +843,35 @@ namespace QsfpCorrector
                 (tbModulationCurrentMin.Text.Length == 0) ||
                 (tbModulationCurrentMax.Text.Length == 0) ||
                 (tbAverageCurrentOffset.Text.Length == 0) ||
-                (tbModulationCurrentOffset.Text.Length == 0)) {
+                (tbModulationCurrentOffset.Text.Length == 0) ||
+                (tbDrvtnMod1.Text.Length == 0) ||
+                (tbDrvtnMod2.Text.Length == 0) ||
+                (tbDrvtnMod3.Text.Length == 0) ||
+                (tbDrvtnMod4.Text.Length == 0) ||
+                (tbDrvtnMod5.Text.Length == 0) ||
+                (tbDrvtnMod6.Text.Length == 0) ||
+                (tbDrvtnMod7.Text.Length == 0) ||
+                (tbDrvtnCst1.Text.Length == 0) ||
+                (tbDrvtnCst2.Text.Length == 0) ||
+                (tbDrvtnCst3.Text.Length == 0) ||
+                (tbDrvtnCst4.Text.Length == 0) ||
+                (tbDrvtnCst5.Text.Length == 0) ||
+                (tbDrvtnCst6.Text.Length == 0) ||
+                (tbDrvtnCst7.Text.Length == 0) ||
+                (tbEfMod1.Text.Length == 0) ||
+                (tbEfMod2.Text.Length == 0) ||
+                (tbEfMod3.Text.Length == 0) ||
+                (tbEfMod4.Text.Length == 0) ||
+                (tbEfMod5.Text.Length == 0) ||
+                (tbEfMod6.Text.Length == 0) ||
+                (tbEfMod7.Text.Length == 0) ||
+                (tbEfCst1.Text.Length == 0) ||
+                (tbEfCst2.Text.Length == 0) ||
+                (tbEfCst3.Text.Length == 0) ||
+                (tbEfCst4.Text.Length == 0) ||
+                (tbEfCst5.Text.Length == 0) ||
+                (tbEfCst6.Text.Length == 0) ||
+                (tbEfCst7.Text.Length == 0)) {
                 MessageBox.Show("Please input value before write!!");
                 return -1;
             }
@@ -741,16 +889,16 @@ namespace QsfpCorrector
             if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
 
-            if ((Convert.ToSingle(tbAverageCurrentEquationA.Text) < 0) ||
-                (Convert.ToSingle(tbAverageCurrentEquationA.Text) > 2.55)) {
+            if ((Convert.ToSingle(tbAverageCurrentEquationA.Text) < -1.28) ||
+                (Convert.ToSingle(tbAverageCurrentEquationA.Text) > 1.27)) {
                 MessageBox.Show("Average current equation A: " +
                     tbAverageCurrentEquationA.Text +
-                    " out of range (0 ~ 2.55)!!");
+                    " out of range (-1.28 ~ 1.27)!!");
                 return -1;
             }
 
             try {
-                data[0] = Convert.ToByte(Convert.ToSingle(tbAverageCurrentEquationA.Text) * 100);
+                data[0] = (byte)Convert.ToSByte(Convert.ToSingle(tbAverageCurrentEquationA.Text) * 100);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
@@ -909,11 +1057,379 @@ namespace QsfpCorrector
                 MessageBox.Show(eC.ToString());
                 return -1;
             }
-            
-            if (qsfpI2cWriteCB(80, 189, 16, data) < 0)
+
+            if (Convert.ToSingle(tbDrvtnMod1.Text) < 0 ||
+                Convert.ToSingle(tbDrvtnMod1.Text) > 255) {
+                MessageBox.Show("DRVTNMOD 1: " + tbDrvtnMod1.Text +
+                    " out of range (0 ~ 255)!!");
+                return -1;
+            }
+            try {
+                data[16] = Convert.ToByte(Convert.ToSingle(tbDrvtnMod1.Text));
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+            if (Convert.ToSingle(tbDrvtnMod2.Text) < 0 ||
+                Convert.ToSingle(tbDrvtnMod2.Text) > 255) {
+                MessageBox.Show("DRVTNMOD 2: " + tbDrvtnMod2.Text +
+                    " out of range (0 ~ 255)!!");
+                return -1;
+            }
+            try {
+                data[17] = Convert.ToByte(Convert.ToSingle(tbDrvtnMod2.Text));
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+            if (Convert.ToSingle(tbDrvtnMod3.Text) < 0 ||
+                Convert.ToSingle(tbDrvtnMod3.Text) > 255) {
+                MessageBox.Show("DRVTNMOD 3: " + tbDrvtnMod3.Text +
+                    " out of range (0 ~ 255)!!");
+                return -1;
+            }
+            try {
+                data[18] = Convert.ToByte(Convert.ToSingle(tbDrvtnMod3.Text));
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+            if (Convert.ToSingle(tbDrvtnMod4.Text) < 0 ||
+                Convert.ToSingle(tbDrvtnMod4.Text) > 255) {
+                MessageBox.Show("DRVTNMOD 4: " + tbDrvtnMod4.Text +
+                    " out of range (0 ~ 255)!!");
+                return -1;
+            }
+            try {
+                data[19] = Convert.ToByte(Convert.ToSingle(tbDrvtnMod4.Text));
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+            if (Convert.ToSingle(tbDrvtnMod5.Text) < 0 ||
+                Convert.ToSingle(tbDrvtnMod5.Text) > 255) {
+                MessageBox.Show("DRVTNMOD 5: " + tbDrvtnMod5.Text +
+                    " out of range (0 ~ 255)!!");
+                return -1;
+            }
+            try {
+                data[20] = Convert.ToByte(Convert.ToSingle(tbDrvtnMod5.Text));
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+            if (Convert.ToSingle(tbDrvtnMod6.Text) < 0 ||
+                Convert.ToSingle(tbDrvtnMod6.Text) > 255) {
+                MessageBox.Show("DRVTNMOD 6: " + tbDrvtnMod6.Text +
+                    " out of range (0 ~ 255)!!");
+                return -1;
+            }
+            try {
+                data[21] = Convert.ToByte(Convert.ToSingle(tbDrvtnMod6.Text));
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+            if (Convert.ToSingle(tbDrvtnMod7.Text) < 0 ||
+                Convert.ToSingle(tbDrvtnMod7.Text) > 255) {
+                MessageBox.Show("DRVTNMOD 7: " + tbDrvtnMod7.Text +
+                    " out of range (0 ~ 255)!!");
+                return -1;
+            }
+            try {
+                data[22] = Convert.ToByte(Convert.ToSingle(tbDrvtnMod7.Text));
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+
+            if (Convert.ToSingle(tbDrvtnCst1.Text) < 0 ||
+                Convert.ToSingle(tbDrvtnCst1.Text) > 255) {
+                MessageBox.Show("DRVTNMOD 1: " + tbDrvtnCst1.Text +
+                    " out of range (0 ~ 255)!!");
+                return -1;
+            }
+            try {
+                data[23] = Convert.ToByte(Convert.ToSingle(tbDrvtnCst1.Text));
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+            if (Convert.ToSingle(tbDrvtnCst2.Text) < 0 ||
+                Convert.ToSingle(tbDrvtnCst2.Text) > 255) {
+                MessageBox.Show("DRVTNMOD 2: " + tbDrvtnCst2.Text +
+                    " out of range (0 ~ 255)!!");
+                return -1;
+            }
+            try {
+                data[24] = Convert.ToByte(Convert.ToSingle(tbDrvtnCst2.Text));
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+            if (Convert.ToSingle(tbDrvtnCst3.Text) < 0 ||
+                Convert.ToSingle(tbDrvtnCst3.Text) > 255) {
+                MessageBox.Show("DRVTNMOD 3: " + tbDrvtnCst3.Text +
+                    " out of range (0 ~ 255)!!");
+                return -1;
+            }
+            try {
+                data[25] = Convert.ToByte(Convert.ToSingle(tbDrvtnCst3.Text));
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+            if (Convert.ToSingle(tbDrvtnCst4.Text) < 0 ||
+                Convert.ToSingle(tbDrvtnCst4.Text) > 255) {
+                MessageBox.Show("DRVTNMOD 4: " + tbDrvtnCst4.Text +
+                    " out of range (0 ~ 255)!!");
+                return -1;
+            }
+            try {
+                data[26] = Convert.ToByte(Convert.ToSingle(tbDrvtnCst4.Text));
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+            if (Convert.ToSingle(tbDrvtnCst5.Text) < 0 ||
+                Convert.ToSingle(tbDrvtnCst5.Text) > 255) {
+                MessageBox.Show("DRVTNMOD 5: " + tbDrvtnCst5.Text +
+                    " out of range (0 ~ 255)!!");
+                return -1;
+            }
+            try {
+                data[27] = Convert.ToByte(Convert.ToSingle(tbDrvtnCst5.Text));
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+            if (Convert.ToSingle(tbDrvtnCst6.Text) < 0 ||
+                Convert.ToSingle(tbDrvtnCst6.Text) > 255) {
+                MessageBox.Show("DRVTNMOD 6: " + tbDrvtnCst6.Text +
+                    " out of range (0 ~ 255)!!");
+                return -1;
+            }
+            try {
+                data[28] = Convert.ToByte(Convert.ToSingle(tbDrvtnCst6.Text));
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+            if (Convert.ToSingle(tbDrvtnCst7.Text) < 0 ||
+                Convert.ToSingle(tbDrvtnCst7.Text) > 255) {
+                MessageBox.Show("DRVTNMOD 7: " + tbDrvtnCst7.Text +
+                    " out of range (0 ~ 255)!!");
+                return -1;
+            }
+            try {
+                data[29] = Convert.ToByte(Convert.ToSingle(tbDrvtnCst7.Text));
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+
+            if (Convert.ToSingle(tbEfMod1.Text) < 0 ||
+                Convert.ToSingle(tbEfMod1.Text) > 255) {
+                MessageBox.Show("DRVTNMOD 1: " + tbEfMod1.Text +
+                    " out of range (0 ~ 255)!!");
+                return -1;
+            }
+            try {
+                data[30] = Convert.ToByte(Convert.ToSingle(tbEfMod1.Text));
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+            if (Convert.ToSingle(tbEfMod2.Text) < 0 ||
+                Convert.ToSingle(tbEfMod2.Text) > 255) {
+                MessageBox.Show("DRVTNMOD 2: " + tbEfMod2.Text +
+                    " out of range (0 ~ 255)!!");
+                return -1;
+            }
+            try {
+                data[31] = Convert.ToByte(Convert.ToSingle(tbEfMod2.Text));
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+            if (Convert.ToSingle(tbEfMod3.Text) < 0 ||
+                Convert.ToSingle(tbEfMod3.Text) > 255) {
+                MessageBox.Show("DRVTNMOD 3: " + tbEfMod3.Text +
+                    " out of range (0 ~ 255)!!");
+                return -1;
+            }
+            try {
+                data[32] = Convert.ToByte(Convert.ToSingle(tbEfMod3.Text));
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+            if (Convert.ToSingle(tbEfMod4.Text) < 0 ||
+                Convert.ToSingle(tbEfMod4.Text) > 255) {
+                MessageBox.Show("DRVTNMOD 4: " + tbEfMod4.Text +
+                    " out of range (0 ~ 255)!!");
+                return -1;
+            }
+            try {
+                data[33] = Convert.ToByte(Convert.ToSingle(tbEfMod4.Text));
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+            if (Convert.ToSingle(tbEfMod5.Text) < 0 ||
+                Convert.ToSingle(tbEfMod5.Text) > 255) {
+                MessageBox.Show("DRVTNMOD 5: " + tbEfMod5.Text +
+                    " out of range (0 ~ 255)!!");
+                return -1;
+            }
+            try {
+                data[34] = Convert.ToByte(Convert.ToSingle(tbEfMod5.Text));
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+            if (Convert.ToSingle(tbEfMod6.Text) < 0 ||
+                Convert.ToSingle(tbEfMod6.Text) > 255) {
+                MessageBox.Show("DRVTNMOD 6: " + tbEfMod6.Text +
+                    " out of range (0 ~ 255)!!");
+                return -1;
+            }
+            try {
+                data[35] = Convert.ToByte(Convert.ToSingle(tbEfMod6.Text));
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+            if (Convert.ToSingle(tbEfMod7.Text) < 0 ||
+                Convert.ToSingle(tbEfMod7.Text) > 255) {
+                MessageBox.Show("DRVTNMOD 7: " + tbEfMod7.Text +
+                    " out of range (0 ~ 255)!!");
+                return -1;
+            }
+            try {
+                data[36] = Convert.ToByte(Convert.ToSingle(tbEfMod7.Text));
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+
+            if (Convert.ToSingle(tbEfCst1.Text) < 0 ||
+                Convert.ToSingle(tbEfCst1.Text) > 255) {
+                MessageBox.Show("DRVTNMOD 1: " + tbEfCst1.Text +
+                    " out of range (0 ~ 255)!!");
+                return -1;
+            }
+            try {
+                data[37] = Convert.ToByte(Convert.ToSingle(tbEfCst1.Text));
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+            if (Convert.ToSingle(tbEfCst2.Text) < 0 ||
+                Convert.ToSingle(tbEfCst2.Text) > 255) {
+                MessageBox.Show("DRVTNMOD 2: " + tbEfCst2.Text +
+                    " out of range (0 ~ 255)!!");
+                return -1;
+            }
+            try {
+                data[38] = Convert.ToByte(Convert.ToSingle(tbEfCst2.Text));
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+            if (Convert.ToSingle(tbEfCst3.Text) < 0 ||
+                Convert.ToSingle(tbEfCst3.Text) > 255) {
+                MessageBox.Show("DRVTNMOD 3: " + tbEfCst3.Text +
+                    " out of range (0 ~ 255)!!");
+                return -1;
+            }
+            try {
+                data[39] = Convert.ToByte(Convert.ToSingle(tbEfCst3.Text));
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+            if (Convert.ToSingle(tbEfCst4.Text) < 0 ||
+                Convert.ToSingle(tbEfCst4.Text) > 255) {
+                MessageBox.Show("DRVTNMOD 4: " + tbEfCst4.Text +
+                    " out of range (0 ~ 255)!!");
+                return -1;
+            }
+            try {
+                data[40] = Convert.ToByte(Convert.ToSingle(tbEfCst4.Text));
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+            if (Convert.ToSingle(tbEfCst5.Text) < 0 ||
+                Convert.ToSingle(tbEfCst5.Text) > 255) {
+                MessageBox.Show("DRVTNMOD 5: " + tbEfCst5.Text +
+                    " out of range (0 ~ 255)!!");
+                return -1;
+            }
+            try {
+                data[41] = Convert.ToByte(Convert.ToSingle(tbEfCst5.Text));
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+            if (Convert.ToSingle(tbEfCst6.Text) < 0 ||
+                Convert.ToSingle(tbEfCst6.Text) > 255) {
+                MessageBox.Show("DRVTNMOD 6: " + tbEfCst6.Text +
+                    " out of range (0 ~ 255)!!");
+                return -1;
+            }
+            try {
+                data[42] = Convert.ToByte(Convert.ToSingle(tbEfCst6.Text));
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+            if (Convert.ToSingle(tbEfCst7.Text) < 0 ||
+                Convert.ToSingle(tbEfCst7.Text) > 255) {
+                MessageBox.Show("DRVTNMOD 7: " + tbEfCst7.Text +
+                    " out of range (0 ~ 255)!!");
+                return -1;
+            }
+            try {
+                data[43] = Convert.ToByte(Convert.ToSingle(tbEfCst7.Text));
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+
+            if (qsfpI2cWriteCB(80, 189, 44, data) < 0)
                 return -1;
 
-            for (i = 0, bChecksum = 0; i < 16; i++)
+            for (i = 0, bChecksum = 0; i < 44; i++)
                 bChecksum += data[i];
 
             data[0] = bChecksum;
@@ -1019,7 +1535,9 @@ namespace QsfpCorrector
             if (qsfpI2cReadCB(80, 189, 16, data) != 16)
                 return -1;
 
-            tbModuleAverageCurrentEquationA.Text = (Convert.ToSingle(data[0]) / 100).ToString("#0.00");
+            Buffer.BlockCopy(data, 0, sData, 0, 1);
+            sTmp = Convert.ToSingle(sData[0]) / 100;
+            tbModuleAverageCurrentEquationA.Text = sTmp.ToString("#0.00");
 
             Array.Copy(data, 1, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
@@ -1108,6 +1626,9 @@ namespace QsfpCorrector
 
         private void cbTemperatureCompensation_CheckedChanged(object sender, EventArgs e)
         {
+            if (disableSend == true)
+                return;
+
             if (cbTemperatureCompensation.Checked == true) {
                 if (_WriteAcMcCorrectData() < 0)
                     return;

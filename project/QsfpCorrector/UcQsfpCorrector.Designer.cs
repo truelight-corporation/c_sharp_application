@@ -80,6 +80,7 @@
             this.lInputPower = new System.Windows.Forms.Label();
             this.lRxCh1 = new System.Windows.Forms.Label();
             this.gbAcMcEquation = new System.Windows.Forms.GroupBox();
+            this.cbTemperatureCompensation = new System.Windows.Forms.CheckBox();
             this.tbModuleModulationCurrentOffset = new System.Windows.Forms.TextBox();
             this.tbModuleAverageCurrentOffset = new System.Windows.Forms.TextBox();
             this.lModuleBmCurrentMA = new System.Windows.Forms.Label();
@@ -130,7 +131,46 @@
             this.bSaveFile = new System.Windows.Forms.Button();
             this.lPassword = new System.Windows.Forms.Label();
             this.tbPassword = new System.Windows.Forms.TextBox();
-            this.cbTemperatureCompensation = new System.Windows.Forms.CheckBox();
+            this.tbEfCst7 = new System.Windows.Forms.TextBox();
+            this.tbEfCst6 = new System.Windows.Forms.TextBox();
+            this.tbEfCst5 = new System.Windows.Forms.TextBox();
+            this.tbEfCst4 = new System.Windows.Forms.TextBox();
+            this.tbEfCst3 = new System.Windows.Forms.TextBox();
+            this.tbEfCst2 = new System.Windows.Forms.TextBox();
+            this.tbEfCst1 = new System.Windows.Forms.TextBox();
+            this.lEfCst = new System.Windows.Forms.Label();
+            this.tbEfMod7 = new System.Windows.Forms.TextBox();
+            this.tbEfMod6 = new System.Windows.Forms.TextBox();
+            this.tbEfMod5 = new System.Windows.Forms.TextBox();
+            this.tbEfMod4 = new System.Windows.Forms.TextBox();
+            this.tbEfMod3 = new System.Windows.Forms.TextBox();
+            this.tbEfMod2 = new System.Windows.Forms.TextBox();
+            this.tbEfMod1 = new System.Windows.Forms.TextBox();
+            this.lEfMod = new System.Windows.Forms.Label();
+            this.tbDrvtnCst7 = new System.Windows.Forms.TextBox();
+            this.tbDrvtnCst6 = new System.Windows.Forms.TextBox();
+            this.tbDrvtnCst5 = new System.Windows.Forms.TextBox();
+            this.tbDrvtnCst4 = new System.Windows.Forms.TextBox();
+            this.tbDrvtnCst3 = new System.Windows.Forms.TextBox();
+            this.tbDrvtnCst2 = new System.Windows.Forms.TextBox();
+            this.tbDrvtnCst1 = new System.Windows.Forms.TextBox();
+            this.lDrvtnCst = new System.Windows.Forms.Label();
+            this.lDTaMST7 = new System.Windows.Forms.Label();
+            this.lDTaMST6 = new System.Windows.Forms.Label();
+            this.lDTaMST5 = new System.Windows.Forms.Label();
+            this.lDTaMST4 = new System.Windows.Forms.Label();
+            this.lDTaMST3 = new System.Windows.Forms.Label();
+            this.lDTaMST2 = new System.Windows.Forms.Label();
+            this.lDTaMST1 = new System.Windows.Forms.Label();
+            this.lDTaMST0 = new System.Windows.Forms.Label();
+            this.tbDrvtnMod7 = new System.Windows.Forms.TextBox();
+            this.tbDrvtnMod6 = new System.Windows.Forms.TextBox();
+            this.tbDrvtnMod5 = new System.Windows.Forms.TextBox();
+            this.tbDrvtnMod4 = new System.Windows.Forms.TextBox();
+            this.tbDrvtnMod3 = new System.Windows.Forms.TextBox();
+            this.tbDrvtnMod2 = new System.Windows.Forms.TextBox();
+            this.tbDrvtnMod1 = new System.Windows.Forms.TextBox();
+            this.lDrvtnMod = new System.Windows.Forms.Label();
             this.gbTemperature.SuspendLayout();
             this.gbRxPowerRate.SuspendLayout();
             this.gbAcMcEquation.SuspendLayout();
@@ -536,7 +576,7 @@
             // lRxPower1
             // 
             this.lRxPower1.AutoSize = true;
-            this.lRxPower1.Location = new System.Drawing.Point(8, 120);
+            this.lRxPower1.Location = new System.Drawing.Point(10, 117);
             this.lRxPower1.Name = "lRxPower1";
             this.lRxPower1.Size = new System.Drawing.Size(40, 12);
             this.lRxPower1.TabIndex = 11;
@@ -635,52 +675,103 @@
             // 
             // gbAcMcEquation
             // 
+            this.gbAcMcEquation.Controls.Add(this.tbEfCst7);
             this.gbAcMcEquation.Controls.Add(this.cbTemperatureCompensation);
+            this.gbAcMcEquation.Controls.Add(this.tbEfCst6);
             this.gbAcMcEquation.Controls.Add(this.tbModuleModulationCurrentOffset);
+            this.gbAcMcEquation.Controls.Add(this.tbEfCst5);
             this.gbAcMcEquation.Controls.Add(this.tbModuleAverageCurrentOffset);
+            this.gbAcMcEquation.Controls.Add(this.tbEfCst4);
             this.gbAcMcEquation.Controls.Add(this.lModuleBmCurrentMA);
+            this.gbAcMcEquation.Controls.Add(this.tbEfCst3);
             this.gbAcMcEquation.Controls.Add(this.lModuleBaCurrentMA);
+            this.gbAcMcEquation.Controls.Add(this.tbEfCst2);
             this.gbAcMcEquation.Controls.Add(this.tbModuleModulationCurrentMin);
+            this.gbAcMcEquation.Controls.Add(this.tbEfCst1);
             this.gbAcMcEquation.Controls.Add(this.tbModuleModulationCurrentMax);
+            this.gbAcMcEquation.Controls.Add(this.lEfCst);
             this.gbAcMcEquation.Controls.Add(this.tbModuleAverageCurrentMax);
+            this.gbAcMcEquation.Controls.Add(this.tbEfMod7);
             this.gbAcMcEquation.Controls.Add(this.tbModuleAverageCurrentMin);
+            this.gbAcMcEquation.Controls.Add(this.tbEfMod6);
             this.gbAcMcEquation.Controls.Add(this.tbModuleModulationCurrentEquationC);
+            this.gbAcMcEquation.Controls.Add(this.tbEfMod5);
             this.gbAcMcEquation.Controls.Add(this.tbModuleAverageCurrentEquationC);
+            this.gbAcMcEquation.Controls.Add(this.tbEfMod4);
             this.gbAcMcEquation.Controls.Add(this.tbModuleAverageCurrentEquationB);
+            this.gbAcMcEquation.Controls.Add(this.tbEfMod3);
             this.gbAcMcEquation.Controls.Add(this.tbModuleModulationCurrentEquationB);
+            this.gbAcMcEquation.Controls.Add(this.tbEfMod2);
             this.gbAcMcEquation.Controls.Add(this.tbModuleAverageCurrentEquationA);
+            this.gbAcMcEquation.Controls.Add(this.tbEfMod1);
             this.gbAcMcEquation.Controls.Add(this.tbModuleModulationCurrentEquationA);
+            this.gbAcMcEquation.Controls.Add(this.lEfMod);
             this.gbAcMcEquation.Controls.Add(this.bAcMcWrite);
+            this.gbAcMcEquation.Controls.Add(this.tbDrvtnCst7);
             this.gbAcMcEquation.Controls.Add(this.bAcMcRead);
+            this.gbAcMcEquation.Controls.Add(this.tbDrvtnCst6);
             this.gbAcMcEquation.Controls.Add(this.tbModulationCurrentOffset);
+            this.gbAcMcEquation.Controls.Add(this.tbDrvtnCst5);
             this.gbAcMcEquation.Controls.Add(this.tbModulationCurrentEquationC);
+            this.gbAcMcEquation.Controls.Add(this.tbDrvtnCst4);
             this.gbAcMcEquation.Controls.Add(this.lModulationCurrent);
+            this.gbAcMcEquation.Controls.Add(this.tbDrvtnCst3);
             this.gbAcMcEquation.Controls.Add(this.tbAverageCurrentOffset);
+            this.gbAcMcEquation.Controls.Add(this.tbDrvtnCst2);
             this.gbAcMcEquation.Controls.Add(this.lBmCurrentMA);
+            this.gbAcMcEquation.Controls.Add(this.tbDrvtnCst1);
             this.gbAcMcEquation.Controls.Add(this.lAcMcOffset);
+            this.gbAcMcEquation.Controls.Add(this.lDrvtnCst);
             this.gbAcMcEquation.Controls.Add(this.tbAverageCurrentEquationC);
+            this.gbAcMcEquation.Controls.Add(this.lDTaMST7);
             this.gbAcMcEquation.Controls.Add(this.tbModulationCurrentMin);
+            this.gbAcMcEquation.Controls.Add(this.lDTaMST6);
             this.gbAcMcEquation.Controls.Add(this.tbModulationCurrentMax);
+            this.gbAcMcEquation.Controls.Add(this.lDTaMST5);
             this.gbAcMcEquation.Controls.Add(this.lEquationC);
+            this.gbAcMcEquation.Controls.Add(this.lDTaMST4);
             this.gbAcMcEquation.Controls.Add(this.bLutReset);
+            this.gbAcMcEquation.Controls.Add(this.lDTaMST3);
             this.gbAcMcEquation.Controls.Add(this.tbAverageCurrentEquationB);
+            this.gbAcMcEquation.Controls.Add(this.lDTaMST2);
             this.gbAcMcEquation.Controls.Add(this.tbModulationCurrentEquationB);
+            this.gbAcMcEquation.Controls.Add(this.lDTaMST1);
             this.gbAcMcEquation.Controls.Add(this.lAverageCurrent);
+            this.gbAcMcEquation.Controls.Add(this.lDTaMST0);
+            this.gbAcMcEquation.Controls.Add(this.tbDrvtnMod7);
             this.gbAcMcEquation.Controls.Add(this.lEquationA);
+            this.gbAcMcEquation.Controls.Add(this.tbDrvtnMod6);
             this.gbAcMcEquation.Controls.Add(this.lBaBmMinCurrent);
+            this.gbAcMcEquation.Controls.Add(this.tbDrvtnMod5);
             this.gbAcMcEquation.Controls.Add(this.tbAverageCurrentEquationA);
+            this.gbAcMcEquation.Controls.Add(this.tbDrvtnMod4);
             this.gbAcMcEquation.Controls.Add(this.lEquationB);
+            this.gbAcMcEquation.Controls.Add(this.tbDrvtnMod3);
             this.gbAcMcEquation.Controls.Add(this.lBaCurrentMA);
+            this.gbAcMcEquation.Controls.Add(this.tbDrvtnMod2);
             this.gbAcMcEquation.Controls.Add(this.tbModulationCurrentEquationA);
+            this.gbAcMcEquation.Controls.Add(this.tbDrvtnMod1);
             this.gbAcMcEquation.Controls.Add(this.tbAverageCurrentMax);
+            this.gbAcMcEquation.Controls.Add(this.lDrvtnMod);
             this.gbAcMcEquation.Controls.Add(this.lBaBmMaxCurrent);
             this.gbAcMcEquation.Controls.Add(this.tbAverageCurrentMin);
             this.gbAcMcEquation.Location = new System.Drawing.Point(3, 249);
             this.gbAcMcEquation.Name = "gbAcMcEquation";
-            this.gbAcMcEquation.Size = new System.Drawing.Size(476, 145);
+            this.gbAcMcEquation.Size = new System.Drawing.Size(492, 271);
             this.gbAcMcEquation.TabIndex = 12;
             this.gbAcMcEquation.TabStop = false;
-            this.gbAcMcEquation.Text = "Average Current and Modulation Current Equation";
+            this.gbAcMcEquation.Text = "Average and Modulation Current Equation, Drive Tune and Modulation Slope Table";
+            // 
+            // cbTemperatureCompensation
+            // 
+            this.cbTemperatureCompensation.AutoSize = true;
+            this.cbTemperatureCompensation.Location = new System.Drawing.Point(426, 33);
+            this.cbTemperatureCompensation.Name = "cbTemperatureCompensation";
+            this.cbTemperatureCompensation.Size = new System.Drawing.Size(56, 16);
+            this.cbTemperatureCompensation.TabIndex = 55;
+            this.cbTemperatureCompensation.Text = "Enable";
+            this.cbTemperatureCompensation.UseVisualStyleBackColor = true;
+            this.cbTemperatureCompensation.CheckedChanged += new System.EventHandler(this.cbTemperatureCompensation_CheckedChanged);
             // 
             // tbModuleModulationCurrentOffset
             // 
@@ -798,7 +889,7 @@
             // 
             // bAcMcWrite
             // 
-            this.bAcMcWrite.Location = new System.Drawing.Point(406, 87);
+            this.bAcMcWrite.Location = new System.Drawing.Point(426, 87);
             this.bAcMcWrite.Name = "bAcMcWrite";
             this.bAcMcWrite.Size = new System.Drawing.Size(60, 23);
             this.bAcMcWrite.TabIndex = 36;
@@ -808,7 +899,7 @@
             // 
             // bAcMcRead
             // 
-            this.bAcMcRead.Location = new System.Drawing.Point(406, 58);
+            this.bAcMcRead.Location = new System.Drawing.Point(426, 58);
             this.bAcMcRead.Name = "bAcMcRead";
             this.bAcMcRead.Size = new System.Drawing.Size(60, 23);
             this.bAcMcRead.TabIndex = 36;
@@ -897,7 +988,7 @@
             // 
             // bLutReset
             // 
-            this.bLutReset.Location = new System.Drawing.Point(406, 116);
+            this.bLutReset.Location = new System.Drawing.Point(426, 116);
             this.bLutReset.Name = "bLutReset";
             this.bLutReset.Size = new System.Drawing.Size(60, 23);
             this.bLutReset.TabIndex = 14;
@@ -1034,16 +1125,16 @@
             this.gbAutoCorrect.Controls.Add(this.cbRxPowerRateCorrected);
             this.gbAutoCorrect.Controls.Add(this.bAutoCorrect);
             this.gbAutoCorrect.Controls.Add(this.cbTemperatureCorrected);
-            this.gbAutoCorrect.Location = new System.Drawing.Point(485, 249);
+            this.gbAutoCorrect.Location = new System.Drawing.Point(501, 249);
             this.gbAutoCorrect.Name = "gbAutoCorrect";
-            this.gbAutoCorrect.Size = new System.Drawing.Size(132, 145);
+            this.gbAutoCorrect.Size = new System.Drawing.Size(116, 120);
             this.gbAutoCorrect.TabIndex = 13;
             this.gbAutoCorrect.TabStop = false;
             this.gbAutoCorrect.Text = "Auto Correct";
             // 
             // bReset
             // 
-            this.bReset.Location = new System.Drawing.Point(51, 87);
+            this.bReset.Location = new System.Drawing.Point(35, 62);
             this.bReset.Name = "bReset";
             this.bReset.Size = new System.Drawing.Size(75, 23);
             this.bReset.TabIndex = 16;
@@ -1064,7 +1155,7 @@
             // 
             // bAutoCorrect
             // 
-            this.bAutoCorrect.Location = new System.Drawing.Point(51, 116);
+            this.bAutoCorrect.Location = new System.Drawing.Point(35, 91);
             this.bAutoCorrect.Name = "bAutoCorrect";
             this.bAutoCorrect.Size = new System.Drawing.Size(75, 23);
             this.bAutoCorrect.TabIndex = 13;
@@ -1108,18 +1199,312 @@
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(60, 22);
             this.tbPassword.TabIndex = 16;
+            this.tbPassword.Text = "3234";
             this.tbPassword.UseSystemPasswordChar = true;
             // 
-            // cbTemperatureCompensation
+            // tbEfCst7
             // 
-            this.cbTemperatureCompensation.AutoSize = true;
-            this.cbTemperatureCompensation.Location = new System.Drawing.Point(406, 33);
-            this.cbTemperatureCompensation.Name = "cbTemperatureCompensation";
-            this.cbTemperatureCompensation.Size = new System.Drawing.Size(56, 16);
-            this.cbTemperatureCompensation.TabIndex = 55;
-            this.cbTemperatureCompensation.Text = "Enable";
-            this.cbTemperatureCompensation.UseVisualStyleBackColor = true;
-            this.cbTemperatureCompensation.CheckedChanged += new System.EventHandler(this.cbTemperatureCompensation_CheckedChanged);
+            this.tbEfCst7.Location = new System.Drawing.Point(425, 243);
+            this.tbEfCst7.Name = "tbEfCst7";
+            this.tbEfCst7.Size = new System.Drawing.Size(50, 22);
+            this.tbEfCst7.TabIndex = 95;
+            // 
+            // tbEfCst6
+            // 
+            this.tbEfCst6.Location = new System.Drawing.Point(369, 243);
+            this.tbEfCst6.Name = "tbEfCst6";
+            this.tbEfCst6.Size = new System.Drawing.Size(50, 22);
+            this.tbEfCst6.TabIndex = 94;
+            // 
+            // tbEfCst5
+            // 
+            this.tbEfCst5.Location = new System.Drawing.Point(313, 243);
+            this.tbEfCst5.Name = "tbEfCst5";
+            this.tbEfCst5.Size = new System.Drawing.Size(50, 22);
+            this.tbEfCst5.TabIndex = 93;
+            // 
+            // tbEfCst4
+            // 
+            this.tbEfCst4.Location = new System.Drawing.Point(257, 243);
+            this.tbEfCst4.Name = "tbEfCst4";
+            this.tbEfCst4.Size = new System.Drawing.Size(50, 22);
+            this.tbEfCst4.TabIndex = 92;
+            // 
+            // tbEfCst3
+            // 
+            this.tbEfCst3.Location = new System.Drawing.Point(201, 243);
+            this.tbEfCst3.Name = "tbEfCst3";
+            this.tbEfCst3.Size = new System.Drawing.Size(50, 22);
+            this.tbEfCst3.TabIndex = 91;
+            // 
+            // tbEfCst2
+            // 
+            this.tbEfCst2.Location = new System.Drawing.Point(145, 243);
+            this.tbEfCst2.Name = "tbEfCst2";
+            this.tbEfCst2.Size = new System.Drawing.Size(50, 22);
+            this.tbEfCst2.TabIndex = 90;
+            // 
+            // tbEfCst1
+            // 
+            this.tbEfCst1.Location = new System.Drawing.Point(89, 243);
+            this.tbEfCst1.Name = "tbEfCst1";
+            this.tbEfCst1.Size = new System.Drawing.Size(50, 22);
+            this.tbEfCst1.TabIndex = 89;
+            // 
+            // lEfCst
+            // 
+            this.lEfCst.AutoSize = true;
+            this.lEfCst.Location = new System.Drawing.Point(10, 246);
+            this.lEfCst.Name = "lEfCst";
+            this.lEfCst.Size = new System.Drawing.Size(47, 12);
+            this.lEfCst.TabIndex = 88;
+            this.lEfCst.Text = "EFMOD:";
+            // 
+            // tbEfMod7
+            // 
+            this.tbEfMod7.Location = new System.Drawing.Point(425, 215);
+            this.tbEfMod7.Name = "tbEfMod7";
+            this.tbEfMod7.Size = new System.Drawing.Size(50, 22);
+            this.tbEfMod7.TabIndex = 87;
+            // 
+            // tbEfMod6
+            // 
+            this.tbEfMod6.Location = new System.Drawing.Point(369, 215);
+            this.tbEfMod6.Name = "tbEfMod6";
+            this.tbEfMod6.Size = new System.Drawing.Size(50, 22);
+            this.tbEfMod6.TabIndex = 86;
+            // 
+            // tbEfMod5
+            // 
+            this.tbEfMod5.Location = new System.Drawing.Point(313, 215);
+            this.tbEfMod5.Name = "tbEfMod5";
+            this.tbEfMod5.Size = new System.Drawing.Size(50, 22);
+            this.tbEfMod5.TabIndex = 85;
+            // 
+            // tbEfMod4
+            // 
+            this.tbEfMod4.Location = new System.Drawing.Point(257, 215);
+            this.tbEfMod4.Name = "tbEfMod4";
+            this.tbEfMod4.Size = new System.Drawing.Size(50, 22);
+            this.tbEfMod4.TabIndex = 84;
+            // 
+            // tbEfMod3
+            // 
+            this.tbEfMod3.Location = new System.Drawing.Point(201, 215);
+            this.tbEfMod3.Name = "tbEfMod3";
+            this.tbEfMod3.Size = new System.Drawing.Size(50, 22);
+            this.tbEfMod3.TabIndex = 83;
+            // 
+            // tbEfMod2
+            // 
+            this.tbEfMod2.Location = new System.Drawing.Point(145, 215);
+            this.tbEfMod2.Name = "tbEfMod2";
+            this.tbEfMod2.Size = new System.Drawing.Size(50, 22);
+            this.tbEfMod2.TabIndex = 82;
+            // 
+            // tbEfMod1
+            // 
+            this.tbEfMod1.Location = new System.Drawing.Point(89, 215);
+            this.tbEfMod1.Name = "tbEfMod1";
+            this.tbEfMod1.Size = new System.Drawing.Size(50, 22);
+            this.tbEfMod1.TabIndex = 81;
+            // 
+            // lEfMod
+            // 
+            this.lEfMod.AutoSize = true;
+            this.lEfMod.Location = new System.Drawing.Point(10, 218);
+            this.lEfMod.Name = "lEfMod";
+            this.lEfMod.Size = new System.Drawing.Size(47, 12);
+            this.lEfMod.TabIndex = 80;
+            this.lEfMod.Text = "EFMOD:";
+            // 
+            // tbDrvtnCst7
+            // 
+            this.tbDrvtnCst7.Location = new System.Drawing.Point(425, 187);
+            this.tbDrvtnCst7.Name = "tbDrvtnCst7";
+            this.tbDrvtnCst7.Size = new System.Drawing.Size(50, 22);
+            this.tbDrvtnCst7.TabIndex = 79;
+            // 
+            // tbDrvtnCst6
+            // 
+            this.tbDrvtnCst6.Location = new System.Drawing.Point(369, 187);
+            this.tbDrvtnCst6.Name = "tbDrvtnCst6";
+            this.tbDrvtnCst6.Size = new System.Drawing.Size(50, 22);
+            this.tbDrvtnCst6.TabIndex = 78;
+            // 
+            // tbDrvtnCst5
+            // 
+            this.tbDrvtnCst5.Location = new System.Drawing.Point(313, 187);
+            this.tbDrvtnCst5.Name = "tbDrvtnCst5";
+            this.tbDrvtnCst5.Size = new System.Drawing.Size(50, 22);
+            this.tbDrvtnCst5.TabIndex = 77;
+            // 
+            // tbDrvtnCst4
+            // 
+            this.tbDrvtnCst4.Location = new System.Drawing.Point(257, 187);
+            this.tbDrvtnCst4.Name = "tbDrvtnCst4";
+            this.tbDrvtnCst4.Size = new System.Drawing.Size(50, 22);
+            this.tbDrvtnCst4.TabIndex = 76;
+            // 
+            // tbDrvtnCst3
+            // 
+            this.tbDrvtnCst3.Location = new System.Drawing.Point(201, 187);
+            this.tbDrvtnCst3.Name = "tbDrvtnCst3";
+            this.tbDrvtnCst3.Size = new System.Drawing.Size(50, 22);
+            this.tbDrvtnCst3.TabIndex = 75;
+            // 
+            // tbDrvtnCst2
+            // 
+            this.tbDrvtnCst2.Location = new System.Drawing.Point(145, 187);
+            this.tbDrvtnCst2.Name = "tbDrvtnCst2";
+            this.tbDrvtnCst2.Size = new System.Drawing.Size(50, 22);
+            this.tbDrvtnCst2.TabIndex = 74;
+            // 
+            // tbDrvtnCst1
+            // 
+            this.tbDrvtnCst1.Location = new System.Drawing.Point(89, 187);
+            this.tbDrvtnCst1.Name = "tbDrvtnCst1";
+            this.tbDrvtnCst1.Size = new System.Drawing.Size(50, 22);
+            this.tbDrvtnCst1.TabIndex = 73;
+            // 
+            // lDrvtnCst
+            // 
+            this.lDrvtnCst.AutoSize = true;
+            this.lDrvtnCst.Location = new System.Drawing.Point(10, 190);
+            this.lDrvtnCst.Name = "lDrvtnCst";
+            this.lDrvtnCst.Size = new System.Drawing.Size(68, 12);
+            this.lDrvtnCst.TabIndex = 72;
+            this.lDrvtnCst.Text = "DRVTNCST:";
+            // 
+            // lDTaMST7
+            // 
+            this.lDTaMST7.AutoSize = true;
+            this.lDTaMST7.Location = new System.Drawing.Point(471, 144);
+            this.lDTaMST7.Name = "lDTaMST7";
+            this.lDTaMST7.Size = new System.Drawing.Size(11, 12);
+            this.lDTaMST7.TabIndex = 71;
+            this.lDTaMST7.Text = "7";
+            // 
+            // lDTaMST6
+            // 
+            this.lDTaMST6.AutoSize = true;
+            this.lDTaMST6.Location = new System.Drawing.Point(416, 144);
+            this.lDTaMST6.Name = "lDTaMST6";
+            this.lDTaMST6.Size = new System.Drawing.Size(11, 12);
+            this.lDTaMST6.TabIndex = 70;
+            this.lDTaMST6.Text = "6";
+            // 
+            // lDTaMST5
+            // 
+            this.lDTaMST5.AutoSize = true;
+            this.lDTaMST5.Location = new System.Drawing.Point(364, 144);
+            this.lDTaMST5.Name = "lDTaMST5";
+            this.lDTaMST5.Size = new System.Drawing.Size(11, 12);
+            this.lDTaMST5.TabIndex = 69;
+            this.lDTaMST5.Text = "5";
+            // 
+            // lDTaMST4
+            // 
+            this.lDTaMST4.AutoSize = true;
+            this.lDTaMST4.Location = new System.Drawing.Point(308, 144);
+            this.lDTaMST4.Name = "lDTaMST4";
+            this.lDTaMST4.Size = new System.Drawing.Size(11, 12);
+            this.lDTaMST4.TabIndex = 68;
+            this.lDTaMST4.Text = "4";
+            // 
+            // lDTaMST3
+            // 
+            this.lDTaMST3.AutoSize = true;
+            this.lDTaMST3.Location = new System.Drawing.Point(252, 144);
+            this.lDTaMST3.Name = "lDTaMST3";
+            this.lDTaMST3.Size = new System.Drawing.Size(11, 12);
+            this.lDTaMST3.TabIndex = 67;
+            this.lDTaMST3.Text = "3";
+            // 
+            // lDTaMST2
+            // 
+            this.lDTaMST2.AutoSize = true;
+            this.lDTaMST2.Location = new System.Drawing.Point(196, 144);
+            this.lDTaMST2.Name = "lDTaMST2";
+            this.lDTaMST2.Size = new System.Drawing.Size(11, 12);
+            this.lDTaMST2.TabIndex = 66;
+            this.lDTaMST2.Text = "2";
+            // 
+            // lDTaMST1
+            // 
+            this.lDTaMST1.AutoSize = true;
+            this.lDTaMST1.Location = new System.Drawing.Point(139, 144);
+            this.lDTaMST1.Name = "lDTaMST1";
+            this.lDTaMST1.Size = new System.Drawing.Size(11, 12);
+            this.lDTaMST1.TabIndex = 65;
+            this.lDTaMST1.Text = "1";
+            // 
+            // lDTaMST0
+            // 
+            this.lDTaMST0.AutoSize = true;
+            this.lDTaMST0.Location = new System.Drawing.Point(79, 144);
+            this.lDTaMST0.Name = "lDTaMST0";
+            this.lDTaMST0.Size = new System.Drawing.Size(11, 12);
+            this.lDTaMST0.TabIndex = 64;
+            this.lDTaMST0.Text = "0";
+            // 
+            // tbDrvtnMod7
+            // 
+            this.tbDrvtnMod7.Location = new System.Drawing.Point(425, 159);
+            this.tbDrvtnMod7.Name = "tbDrvtnMod7";
+            this.tbDrvtnMod7.Size = new System.Drawing.Size(50, 22);
+            this.tbDrvtnMod7.TabIndex = 62;
+            // 
+            // tbDrvtnMod6
+            // 
+            this.tbDrvtnMod6.Location = new System.Drawing.Point(369, 159);
+            this.tbDrvtnMod6.Name = "tbDrvtnMod6";
+            this.tbDrvtnMod6.Size = new System.Drawing.Size(50, 22);
+            this.tbDrvtnMod6.TabIndex = 61;
+            // 
+            // tbDrvtnMod5
+            // 
+            this.tbDrvtnMod5.Location = new System.Drawing.Point(313, 159);
+            this.tbDrvtnMod5.Name = "tbDrvtnMod5";
+            this.tbDrvtnMod5.Size = new System.Drawing.Size(50, 22);
+            this.tbDrvtnMod5.TabIndex = 60;
+            // 
+            // tbDrvtnMod4
+            // 
+            this.tbDrvtnMod4.Location = new System.Drawing.Point(257, 159);
+            this.tbDrvtnMod4.Name = "tbDrvtnMod4";
+            this.tbDrvtnMod4.Size = new System.Drawing.Size(50, 22);
+            this.tbDrvtnMod4.TabIndex = 59;
+            // 
+            // tbDrvtnMod3
+            // 
+            this.tbDrvtnMod3.Location = new System.Drawing.Point(201, 159);
+            this.tbDrvtnMod3.Name = "tbDrvtnMod3";
+            this.tbDrvtnMod3.Size = new System.Drawing.Size(50, 22);
+            this.tbDrvtnMod3.TabIndex = 58;
+            // 
+            // tbDrvtnMod2
+            // 
+            this.tbDrvtnMod2.Location = new System.Drawing.Point(145, 159);
+            this.tbDrvtnMod2.Name = "tbDrvtnMod2";
+            this.tbDrvtnMod2.Size = new System.Drawing.Size(50, 22);
+            this.tbDrvtnMod2.TabIndex = 57;
+            // 
+            // tbDrvtnMod1
+            // 
+            this.tbDrvtnMod1.Location = new System.Drawing.Point(89, 159);
+            this.tbDrvtnMod1.Name = "tbDrvtnMod1";
+            this.tbDrvtnMod1.Size = new System.Drawing.Size(50, 22);
+            this.tbDrvtnMod1.TabIndex = 56;
+            // 
+            // lDrvtnMod
+            // 
+            this.lDrvtnMod.AutoSize = true;
+            this.lDrvtnMod.Location = new System.Drawing.Point(10, 162);
+            this.lDrvtnMod.Name = "lDrvtnMod";
+            this.lDrvtnMod.Size = new System.Drawing.Size(73, 12);
+            this.lDrvtnMod.TabIndex = 0;
+            this.lDrvtnMod.Text = "DRVTNMOD:";
             // 
             // UcQsfpCorrector
             // 
@@ -1136,7 +1521,7 @@
             this.Controls.Add(this.lFilePath);
             this.Controls.Add(this.tbFilePath);
             this.Name = "UcQsfpCorrector";
-            this.Size = new System.Drawing.Size(620, 397);
+            this.Size = new System.Drawing.Size(620, 524);
             this.gbTemperature.ResumeLayout(false);
             this.gbTemperature.PerformLayout();
             this.gbRxPowerRate.ResumeLayout(false);
@@ -1256,5 +1641,45 @@
         private System.Windows.Forms.Label lPassword;
         private System.Windows.Forms.TextBox tbPassword;
         private System.Windows.Forms.CheckBox cbTemperatureCompensation;
+        private System.Windows.Forms.TextBox tbEfCst7;
+        private System.Windows.Forms.TextBox tbEfCst6;
+        private System.Windows.Forms.TextBox tbEfCst5;
+        private System.Windows.Forms.TextBox tbEfCst4;
+        private System.Windows.Forms.TextBox tbEfCst3;
+        private System.Windows.Forms.TextBox tbEfCst2;
+        private System.Windows.Forms.TextBox tbEfCst1;
+        private System.Windows.Forms.Label lEfCst;
+        private System.Windows.Forms.TextBox tbEfMod7;
+        private System.Windows.Forms.TextBox tbEfMod6;
+        private System.Windows.Forms.TextBox tbEfMod5;
+        private System.Windows.Forms.TextBox tbEfMod4;
+        private System.Windows.Forms.TextBox tbEfMod3;
+        private System.Windows.Forms.TextBox tbEfMod2;
+        private System.Windows.Forms.TextBox tbEfMod1;
+        private System.Windows.Forms.Label lEfMod;
+        private System.Windows.Forms.TextBox tbDrvtnCst7;
+        private System.Windows.Forms.TextBox tbDrvtnCst6;
+        private System.Windows.Forms.TextBox tbDrvtnCst5;
+        private System.Windows.Forms.TextBox tbDrvtnCst4;
+        private System.Windows.Forms.TextBox tbDrvtnCst3;
+        private System.Windows.Forms.TextBox tbDrvtnCst2;
+        private System.Windows.Forms.TextBox tbDrvtnCst1;
+        private System.Windows.Forms.Label lDrvtnCst;
+        private System.Windows.Forms.Label lDTaMST7;
+        private System.Windows.Forms.Label lDTaMST6;
+        private System.Windows.Forms.Label lDTaMST5;
+        private System.Windows.Forms.Label lDTaMST4;
+        private System.Windows.Forms.Label lDTaMST3;
+        private System.Windows.Forms.Label lDTaMST2;
+        private System.Windows.Forms.Label lDTaMST1;
+        private System.Windows.Forms.Label lDTaMST0;
+        private System.Windows.Forms.TextBox tbDrvtnMod7;
+        private System.Windows.Forms.TextBox tbDrvtnMod6;
+        private System.Windows.Forms.TextBox tbDrvtnMod5;
+        private System.Windows.Forms.TextBox tbDrvtnMod4;
+        private System.Windows.Forms.TextBox tbDrvtnMod3;
+        private System.Windows.Forms.TextBox tbDrvtnMod2;
+        private System.Windows.Forms.TextBox tbDrvtnMod1;
+        private System.Windows.Forms.Label lDrvtnMod;
     }
 }

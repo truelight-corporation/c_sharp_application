@@ -58,14 +58,14 @@
             // 
             this.ucQsfpCorrector.Location = new System.Drawing.Point(3, 32);
             this.ucQsfpCorrector.Name = "ucQsfpCorrector";
-            this.ucQsfpCorrector.Size = new System.Drawing.Size(627, 397);
+            this.ucQsfpCorrector.Size = new System.Drawing.Size(627, 523);
             this.ucQsfpCorrector.TabIndex = 0;
             // 
             // FQsfpCorrector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(625, 432);
+            this.ClientSize = new System.Drawing.Size(625, 553);
             this.Controls.Add(this.cbMonitorConnected);
             this.Controls.Add(this.cbQsfpConnected);
             this.Controls.Add(this.ucQsfpCorrector);
