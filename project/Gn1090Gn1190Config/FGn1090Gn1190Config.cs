@@ -17,7 +17,7 @@ namespace Gn1090Gn1190Config
 
         private int _I2cMasterConnect()
         {
-            if (i2cMaster.ConnectApi() < 0)
+            if (i2cMaster.ConnectApi(100) < 0)
                 return -1;
 
             cbConnected.Checked = true;
@@ -96,9 +96,9 @@ namespace Gn1090Gn1190Config
         private void cbConnected_CheckedChanged(object sender, EventArgs e)
         {
             if (cbConnected.Checked == true)
-                i2cMaster.ConnectApi();
+                _I2cMasterConnect();
             else
-                i2cMaster.DisconnectApi();
+                _I2cMasterDisconnect();
         }
     }
 }

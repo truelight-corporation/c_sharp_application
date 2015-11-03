@@ -198,7 +198,7 @@
             this.bRead.TabIndex = 0;
             this.bRead.Text = "Read";
             this.bRead.UseVisualStyleBackColor = true;
-            this.bRead.Click += new System.EventHandler(this.bRead_Click);
+            this.bRead.Click += new System.EventHandler(this._bRead_Click);
             // 
             // gbGlobalStatusInformation
             // 
