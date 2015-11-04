@@ -344,6 +344,7 @@
             this.cbAllRateSelect = new System.Windows.Forms.CheckBox();
             this.cbAllDisable = new System.Windows.Forms.CheckBox();
             this.bLensAlign = new System.Windows.Forms.Button();
+            this.bUnlock = new System.Windows.Forms.Button();
             this.gbGlobalStatusInformation.SuspendLayout();
             this.gbParametricAndStatusInformationByChannel.SuspendLayout();
             this.gbGlobalSetupControls.SuspendLayout();
@@ -3709,10 +3710,21 @@
             this.bLensAlign.UseVisualStyleBackColor = true;
             this.bLensAlign.Click += new System.EventHandler(this._bLensAlign_Click);
             // 
+            // bUnlock
+            // 
+            this.bUnlock.Location = new System.Drawing.Point(403, 3);
+            this.bUnlock.Name = "bUnlock";
+            this.bUnlock.Size = new System.Drawing.Size(75, 23);
+            this.bUnlock.TabIndex = 14;
+            this.bUnlock.Text = "Unlock";
+            this.bUnlock.UseVisualStyleBackColor = true;
+            this.bUnlock.Click += new System.EventHandler(this.bUnlock_Click);
+            // 
             // UcGn1190Config
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.bUnlock);
             this.Controls.Add(this.bLensAlign);
             this.Controls.Add(this.tcChannelSetupControls);
             this.Controls.Add(this.gbGlobalSetupControls);
@@ -4061,5 +4073,6 @@
         private System.Windows.Forms.CheckBox cbAllRateSelect;
         private System.Windows.Forms.CheckBox cbAllDisable;
         private System.Windows.Forms.Button bLensAlign;
+        private System.Windows.Forms.Button bUnlock;
     }
 }

@@ -4681,5 +4681,10 @@ namespace Gn1090Gn1190Config
             if (_WriteAddr79_95_111_127() < 0)
                 return;
         }
+
+        private void bUnlock_Click(object sender, EventArgs e)
+        {
+            tbPassword0.Text = "9B6D";
+        }
     }
 }

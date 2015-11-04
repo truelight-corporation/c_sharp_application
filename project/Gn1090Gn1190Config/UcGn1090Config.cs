@@ -62,8 +62,8 @@ namespace Gn1090Gn1190Config
                 cbRx3Delay.SelectedIndex = cbRx4Delay.SelectedIndex =
                 cbAllDelay.SelectedIndex = 0;
             cbRx1Hysteresis.SelectedIndex = cbRx2Hysteresis.SelectedIndex =
-                cbRx3Hysteresis.SelectedIndex = cbRx4Delay.SelectedIndex =
-                cbAllDelay.SelectedIndex = 0;
+                cbRx3Hysteresis.SelectedIndex = cbRx4Hysteresis.SelectedIndex =
+                cbAllHysteresis.SelectedIndex = 0;
 
             for (i = 0; i < 32; i++) {
                 cbRx1OutputAmplitudeSwingSelect.Items.Add(i);
@@ -692,7 +692,7 @@ namespace Gn1090Gn1190Config
             _ParseAddr67(data[3]);
             _ParseAddr68(data[4]);
 
-            rv = i2cReadCB(92, 64, 5, data);
+            rv = i2cReadCB(92, 80, 5, data);
             if (rv != 5)
                 goto exit;
 
@@ -702,7 +702,7 @@ namespace Gn1090Gn1190Config
             _ParseAddr83(data[3]);
             _ParseAddr84(data[4]);
 
-            rv = i2cReadCB(92, 64, 5, data);
+            rv = i2cReadCB(92, 96, 5, data);
             if (rv != 5)
                 goto exit;
 
@@ -712,7 +712,7 @@ namespace Gn1090Gn1190Config
             _ParseAddr99(data[3]);
             _ParseAddr100(data[4]);
 
-            rv = i2cReadCB(92, 64, 5, data);
+            rv = i2cReadCB(92, 112, 5, data);
             if (rv != 5)
                 goto exit;
 
