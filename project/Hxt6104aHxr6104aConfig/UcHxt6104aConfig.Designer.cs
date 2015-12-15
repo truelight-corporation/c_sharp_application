@@ -337,6 +337,7 @@
             this.lBmAll = new System.Windows.Forms.Label();
             this.cbBaAll = new System.Windows.Forms.ComboBox();
             this.lBaAll = new System.Windows.Forms.Label();
+            this.bWrite = new System.Windows.Forms.Button();
             this.gbDeviceConfiguration.SuspendLayout();
             this.gbDeviceControlAndMonitor.SuspendLayout();
             this.tcChannel.SuspendLayout();
@@ -3859,10 +3860,21 @@
             this.lBaAll.TabIndex = 138;
             this.lBaAll.Text = "BA :";
             // 
+            // bWrite
+            // 
+            this.bWrite.Location = new System.Drawing.Point(403, 4);
+            this.bWrite.Name = "bWrite";
+            this.bWrite.Size = new System.Drawing.Size(75, 23);
+            this.bWrite.TabIndex = 14;
+            this.bWrite.Text = "Write";
+            this.bWrite.UseVisualStyleBackColor = true;
+            this.bWrite.Click += new System.EventHandler(this.bWrite_Click);
+            // 
             // UcHxt6104aConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.bWrite);
             this.Controls.Add(this.tcChannel);
             this.Controls.Add(this.gbDeviceControlAndMonitor);
             this.Controls.Add(this.gbDeviceConfiguration);
@@ -4205,5 +4217,6 @@
         private System.Windows.Forms.Label lBmAll;
         private System.Windows.Forms.ComboBox cbBaAll;
         private System.Windows.Forms.Label lBaAll;
+        private System.Windows.Forms.Button bWrite;
     }
 }

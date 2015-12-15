@@ -5431,5 +5431,141 @@ namespace Hxt6104aHxr6104aConfig
             if (_WriteAddr241() < 0)
                 return;
         }
+
+        private void bWrite_Click(object sender, EventArgs e)
+        {
+            if (_WriteAddr0() < 0)
+                return;
+            if (_WriteAddr1() < 0)
+                return;
+            if (_WriteAddr2() < 0)
+                return;
+            if (_WriteAddr3() < 0)
+                return;
+            if (_WriteAddr4() < 0)
+                return;
+            if (_WriteAddr6() < 0)
+                return;
+            if (_WriteAddr7() < 0)
+                return;
+            if (_WriteAddr8() < 0)
+                return;
+            if (_WriteAddr9() < 0)
+                return;
+            if (_WriteAddr10() < 0)
+                return;
+            if (_WriteAddr13() < 0)
+                return;
+            if (_WriteAddr14() < 0)
+                return;
+            if (_WriteAddr15() < 0)
+                return;
+            if (_WriteAddr16() < 0)
+                return;
+            if (_WriteAddr17() < 0)
+                return;
+            if (_WriteAddr18() < 0)
+                return;
+            if (_WriteAddr19() < 0)
+                return;
+            if (_WriteAddr20() < 0)
+                return;
+            if (_WriteAddr21() < 0)
+                return;
+            if (_WriteAddr22() < 0)
+                return;
+            if (_WriteAddr23() < 0)
+                return;
+            if (_WriteAddr24() < 0)
+                return;
+            if (_WriteAddr25() < 0)
+                return;
+            if (_WriteAddr26() < 0)
+                return;
+            if (_WriteAddr27() < 0)
+                return;
+            if (_WriteAddr63() < 0)
+                return;
+            if (_WriteAddr64() < 0)
+                return;
+            if (_WriteAddr65() < 0)
+                return;
+            if (_WriteAddr66() < 0)
+                return;
+            if (_WriteAddr67() < 0)
+                return;
+            if (_WriteAddr79() < 0)
+                return;
+            if (_WriteAddr80() < 0)
+                return;
+            if (_WriteAddr81() < 0)
+                return;
+            if (_WriteAddr82() < 0)
+                return;
+            if (_WriteAddr83() < 0)
+                return;
+            if (_WriteAddr95() < 0)
+                return;
+            if (_WriteAddr96() < 0)
+                return;
+            if (_WriteAddr97() < 0)
+                return;
+            if (_WriteAddr98() < 0)
+                return;
+            if (_WriteAddr99() < 0)
+                return;
+            if (_WriteAddr111() < 0)
+                return;
+            if (_WriteAddr112() < 0)
+                return;
+            if (_WriteAddr113() < 0)
+                return;
+            if (_WriteAddr114() < 0)
+                return;
+            if (_WriteAddr115() < 0)
+                return;
+            if (_WriteAddr127() < 0)
+                return;
+            if (_WriteAddr128() < 0)
+                return;
+            if (_WriteAddr129() < 0)
+                return;
+            if (_WriteAddr130() < 0)
+                return;
+            if (_WriteAddr131() < 0)
+                return;
+            if (_WriteAddr143() < 0)
+                return;
+            if (_WriteAddr144() < 0)
+                return;
+            if (_WriteAddr145() < 0)
+                return;
+            if (_WriteAddr146() < 0)
+                return;
+            if (_WriteAddr147() < 0)
+                return;
+            if (_WriteAddr159() < 0)
+                return;
+            if (_WriteAddr160() < 0)
+                return;
+            if (_WriteAddr161() < 0)
+                return;
+            if (_WriteAddr162() < 0)
+                return;
+            if (_WriteAddr163() < 0)
+                return;
+            if (_WriteAddr175() < 0)
+                return;
+            if (_WriteAddr176() < 0)
+                return;
+            if (_WriteAddr177() < 0)
+                return;
+            if (_WriteAddr178() < 0)
+                return;
+            if (_WriteAddr179() < 0)
+                return;
+            if (_WriteAddr241() < 0)
+                return;
+        }
     }
 }
