@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace AnalogMeterUserInterface
 {
-    class AnalogMeter : Control
+    public class AnalogMeter : Control
     {
         float r1x, r1y;
         Bitmap bgImage = null;
