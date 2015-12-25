@@ -18,7 +18,7 @@ namespace AnalogMeterUserInterface
 
         private void trackBar_Scroll(object sender, EventArgs e)
         {
-            analogMeter.Value = (float)trackBar.Value / 10;
+            analogMeter.Value = (float)trackBar.Value;
         }
     }
 }

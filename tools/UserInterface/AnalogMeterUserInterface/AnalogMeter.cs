@@ -32,6 +32,22 @@ namespace AnalogMeterUserInterface
             }
         }
 
+        private string valueUnit = "";
+
+        /// <summary>
+        /// Value unit to display on the meter
+        /// </summary>
+        [Category("Meter"), Description("Value unit to display on the meter")]
+        public string ValueUnit
+        {
+            get {
+                return this.valueUnit;
+            }
+            set {
+                this.valueUnit = value;
+            }
+        }
+
         private float value = 0;
 
         /// <summary>
@@ -45,40 +61,83 @@ namespace AnalogMeterUserInterface
             }
             set {
                 this.value = value;
+                if (this.value > this.maxThreshold) {
+                    if (this.BackColor != this.overMaxThresholdBackColor) {
+                        this.BackColor = this.overMaxThresholdBackColor;
+                        CreateBackground();
+                    }
+                }
+                else {
+                    if (this.BackColor != this.normalBackColor) {
+                        this.BackColor = this.normalBackColor;
+                        CreateBackground();
+                    }
+                }
+                if (this.value > this.maxValue)
+                    this.maxValue = this.value;
                 DrawMeter(realGraphics);
             }
         }
 
-        private float maxValue = 15;
+        private float maxThreshold = 10;
+
+        /// <summary>
+        /// Maximum value threshold of meter
+        /// </summary>
+        [DefaultValue(10), Category("Meter"), Description("Maximum value threshold of meter")]
+        public float MaxThreshold
+        {
+            get {
+                return this.maxThreshold;
+            }
+            set {
+                this.maxThreshold = value;
+            }
+        }
+
+        private float maxValue = 0;
+
+        /// <summary>
+        /// Maximum value of meter
+        /// </summary>
+        [DefaultValue(0), Category("Meter"), Description("Maximum value of meter")]
+        public float MaxValue
+        {
+            get {
+                return this.maxValue;
+            }
+        }
+
+        private float maxRange = 15;
 
         /// <summary>
         /// Maximum value of the meter
         /// </summary>
-        [DefaultValue(15), Category("Meter"), Description("Maximum value of the meter")]
-        public float MaxValue
+        [DefaultValue(15), Category("Meter"), Description("Maximum range of the meter")]
+        public float MaxRange
         {
             get {
-                return maxValue;
+                return this.maxRange;
             }
             set {
-                maxValue = value;
+                this.maxRange = value;
                 CreateBackground();
             }
         }
 
-        private float minValue = 0;
+        private float minRange = 0;
 
         /// <summary>
         /// Minimum value of the meter
         /// </summary>
-        [DefaultValue(0), Category("Meter"), Description("Minimum value of the meter")]
-        public float MinValue
+        [DefaultValue(0), Category("Meter"), Description("Minimum range of the meter")]
+        public float MinRange
         {
             get {
-                return minValue;
+                return this.minRange;
             }
             set {
-                minValue = value;
+                this.minRange = value;
                 CreateBackground();
             }
         }
@@ -258,6 +317,38 @@ namespace AnalogMeterUserInterface
             }
         }
 
+        private Color normalBackColor = System.Drawing.Color.White;
+
+        /// <summary>
+        /// Normal background color of the meter
+        /// </summary>
+        [DefaultValue(typeof(Color), "White")]
+        public Color NormalBackColor
+        {
+            get {
+                return this.normalBackColor;
+            }
+            set {
+                this.normalBackColor = value;
+            }
+        }
+
+        private Color overMaxThresholdBackColor = System.Drawing.Color.Green;
+
+        /// <summary>
+        /// Over max threshold background color of the meter
+        /// </summary>
+        [DefaultValue(typeof(Color), "Green")]
+        public Color OverMaxThresholdBackColor
+        {
+            get {
+                return this.overMaxThresholdBackColor;
+            }
+            set {
+                this.overMaxThresholdBackColor = value;
+            }
+        }
+
         public override Font Font
         {
             get {
@@ -382,7 +473,7 @@ namespace AnalogMeterUserInterface
             float angle;
 
             p = new PointF[2];
-            angle = value * (((float)Math.PI - tickStartAngle * 2) / (maxValue - minValue)) + tickStartAngle;
+            angle = value * (((float)Math.PI - tickStartAngle * 2) / (maxRange - minRange)) + tickStartAngle;
 
             // need to figure out where to calculate from
             p[0] = new PointF((float)(framePadding.Left + internalPadding.Left + (r1x - r1x * Math.Cos(angle))),
@@ -395,6 +486,7 @@ namespace AnalogMeterUserInterface
 
         private void DrawMeter(Graphics g)
         {
+            Font fValue;
             float r2x, r2y;
 
             r2x = r1x - pointSize;
@@ -411,10 +503,17 @@ namespace AnalogMeterUserInterface
             }
 
             using (Brush b = new SolidBrush(ForeColor)) {
-                SizeF sz = g.MeasureString(value.ToString() + " " + Text, Font);
-                g.DrawString(value.ToString() + " " + Text, Font, b,
+                SizeF sz;
+                sz = g.MeasureString("Max: " + maxValue.ToString() + " " + valueUnit, Font);
+                g.DrawString("Max: " + maxValue.ToString() + " " + valueUnit, Font, b,
                     framePadding.Left + (meterLocation.Width / 2) - sz.Width / 2,
-                    framePadding.Top + (meterLocation.Height * 3) / 4 - sz.Height / 2);
+                    framePadding.Top + (meterLocation.Height * 10) / 11 - sz.Height / 2);
+                
+                fValue = new Font(Font.Name, 14.0f, FontStyle.Bold);
+                sz = g.MeasureString(value.ToString() + " " + valueUnit, fValue);
+                g.DrawString(value.ToString() + " " + valueUnit, fValue, b,
+                    framePadding.Left + (meterLocation.Width / 2) - sz.Width / 2,
+                    framePadding.Top + (meterLocation.Height * 5) / 7 - sz.Height / 2);
             }
         }
 
@@ -472,11 +571,11 @@ namespace AnalogMeterUserInterface
 					r2x = r1x - tickTinySize;
 					r2y = r1y - tickTinySize;
 					
-					for (i = minValue; i <= maxValue; i += tickTinyFrequency) {
+					for (i = minRange; i <= maxRange; i += tickTinyFrequency) {
                         PointF[] pts;
 
-						if ((tickSmallFrequency > 0 && (i - minValue) % tickSmallFrequency == 0) ||
-                            (tickLargeFrequency > 0 && ( i - minValue ) % tickLargeFrequency == 0))
+						if ((tickSmallFrequency > 0 && (i - minRange) % tickSmallFrequency == 0) ||
+                            (tickLargeFrequency > 0 && ( i - minRange ) % tickLargeFrequency == 0))
 							continue;
 
 						pts = _GetLine(i, r1x, r1y, r2x, r2y);
@@ -492,10 +591,10 @@ namespace AnalogMeterUserInterface
 					r2x = r1x - tickSmallSize;
 					r2y = r1y - tickSmallSize;
 
-					for (i = minValue; i <= maxValue; i += tickSmallFrequency) {
+					for (i = minRange; i <= maxRange; i += tickSmallFrequency) {
                         PointF[] pts;
 
-						if ( tickLargeFrequency > 0 && (i - minValue) % tickLargeFrequency == 0 )
+						if ( tickLargeFrequency > 0 && (i - minRange) % tickLargeFrequency == 0 )
 							continue;
 
 						pts = _GetLine(i, r1x, r1y, r2x, r2y);
@@ -515,7 +614,7 @@ namespace AnalogMeterUserInterface
 					r3x = r2x - Font.Height;
 					r3y = r2y - Font.Height;
 
-					for (i = minValue; i <= maxValue; i += tickLargeFrequency) {
+					for (i = minRange; i <= maxRange; i += tickLargeFrequency) {
 						PointF[] pts;
                         SizeF sz;
 
@@ -530,6 +629,15 @@ namespace AnalogMeterUserInterface
 				}
 			}
 
+            // draw Text
+            using (Brush b = new SolidBrush(ForeColor)) {
+                SizeF sz;
+                sz = g.MeasureString(Text, Font);
+                g.DrawString(Text, Font, b,
+                    framePadding.Left + (meterLocation.Width / 2) - sz.Width / 2,
+                    framePadding.Top + (meterLocation.Height * 11) / 20 - sz.Height / 2);
+            }
+
 			g.Dispose();
 
 			// done
@@ -541,5 +649,11 @@ namespace AnalogMeterUserInterface
 			if (realGraphics != null)
 				DrawMeter(realGraphics);
 		}
+
+        public void ClearMaxValueApi()
+        {
+            maxValue = 0;
+            DrawMeter(realGraphics);
+        }
     }
 }
