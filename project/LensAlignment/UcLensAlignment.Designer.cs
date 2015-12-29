@@ -543,7 +543,7 @@
             this.amLightSourceRx1.PointSize = 50F;
             this.amLightSourceRx1.Size = new System.Drawing.Size(210, 100);
             this.amLightSourceRx1.TabIndex = 3;
-            this.amLightSourceRx1.Text = "Rx1";
+            this.amLightSourceRx1.Text = "Tx1";
             this.amLightSourceRx1.TickLargeFrequency = 500F;
             this.amLightSourceRx1.TickSmallFrequency = 250F;
             this.amLightSourceRx1.TickStartAngle = 20F;
@@ -567,7 +567,7 @@
             this.amLightSourceRx2.PointSize = 50F;
             this.amLightSourceRx2.Size = new System.Drawing.Size(210, 100);
             this.amLightSourceRx2.TabIndex = 2;
-            this.amLightSourceRx2.Text = "Rx2";
+            this.amLightSourceRx2.Text = "Tx2";
             this.amLightSourceRx2.TickLargeFrequency = 500F;
             this.amLightSourceRx2.TickSmallFrequency = 250F;
             this.amLightSourceRx2.TickStartAngle = 20F;
@@ -600,7 +600,7 @@
             this.amLightSourceRx3.PointSize = 50F;
             this.amLightSourceRx3.Size = new System.Drawing.Size(210, 100);
             this.amLightSourceRx3.TabIndex = 1;
-            this.amLightSourceRx3.Text = "Rx3";
+            this.amLightSourceRx3.Text = "Tx3";
             this.amLightSourceRx3.TickLargeFrequency = 500F;
             this.amLightSourceRx3.TickSmallFrequency = 250F;
             this.amLightSourceRx3.TickStartAngle = 20F;
@@ -624,7 +624,7 @@
             this.amLightSourceRx4.PointSize = 50F;
             this.amLightSourceRx4.Size = new System.Drawing.Size(210, 100);
             this.amLightSourceRx4.TabIndex = 0;
-            this.amLightSourceRx4.Text = "Rx4";
+            this.amLightSourceRx4.Text = "Tx4";
             this.amLightSourceRx4.TickLargeFrequency = 500F;
             this.amLightSourceRx4.TickSmallFrequency = 250F;
             this.amLightSourceRx4.TickStartAngle = 20F;
