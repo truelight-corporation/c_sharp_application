@@ -109,7 +109,7 @@
             this.gbBeAlignmentMpd.Controls.Add(this.tbBeAlignmentDeviceAddr);
             this.gbBeAlignmentMpd.Location = new System.Drawing.Point(3, 3);
             this.gbBeAlignmentMpd.Name = "gbBeAlignmentMpd";
-            this.gbBeAlignmentMpd.Size = new System.Drawing.Size(986, 135);
+            this.gbBeAlignmentMpd.Size = new System.Drawing.Size(1238, 165);
             this.gbBeAlignmentMpd.TabIndex = 1;
             this.gbBeAlignmentMpd.TabStop = false;
             this.gbBeAlignmentMpd.Text = "Be Alignment MPD";
@@ -152,18 +152,21 @@
             // amBeAlignmentMpd1
             // 
             this.amBeAlignmentMpd1.BackColor = System.Drawing.Color.Black;
-            this.amBeAlignmentMpd1.ForeColor = System.Drawing.Color.White;
+            this.amBeAlignmentMpd1.ForeColor = System.Drawing.Color.Silver;
             this.amBeAlignmentMpd1.FrameColor = System.Drawing.Color.Black;
             this.amBeAlignmentMpd1.FramePadding = new System.Windows.Forms.Padding(0);
             this.amBeAlignmentMpd1.InternalPadding = new System.Windows.Forms.Padding(0);
-            this.amBeAlignmentMpd1.Location = new System.Drawing.Point(770, 21);
+            this.amBeAlignmentMpd1.Location = new System.Drawing.Point(972, 21);
             this.amBeAlignmentMpd1.MaxRange = 600F;
             this.amBeAlignmentMpd1.MaxThreshold = 500F;
             this.amBeAlignmentMpd1.MinRange = 0F;
             this.amBeAlignmentMpd1.Name = "amBeAlignmentMpd1";
             this.amBeAlignmentMpd1.NormalBackColor = System.Drawing.Color.Black;
+            this.amBeAlignmentMpd1.NormalValueColor = System.Drawing.Color.Lime;
+            this.amBeAlignmentMpd1.OverMaxThresholdBackColor = System.Drawing.Color.DarkBlue;
+            this.amBeAlignmentMpd1.OverMaxThresholdValueColor = System.Drawing.Color.Orange;
             this.amBeAlignmentMpd1.PointSize = 50F;
-            this.amBeAlignmentMpd1.Size = new System.Drawing.Size(210, 100);
+            this.amBeAlignmentMpd1.Size = new System.Drawing.Size(260, 125);
             this.amBeAlignmentMpd1.TabIndex = 3;
             this.amBeAlignmentMpd1.Text = "MPD1";
             this.amBeAlignmentMpd1.TickLargeFrequency = 200F;
@@ -176,18 +179,21 @@
             // amBeAlignmentMpd2
             // 
             this.amBeAlignmentMpd2.BackColor = System.Drawing.Color.Black;
-            this.amBeAlignmentMpd2.ForeColor = System.Drawing.Color.White;
+            this.amBeAlignmentMpd2.ForeColor = System.Drawing.Color.Silver;
             this.amBeAlignmentMpd2.FrameColor = System.Drawing.Color.Black;
             this.amBeAlignmentMpd2.FramePadding = new System.Windows.Forms.Padding(0);
             this.amBeAlignmentMpd2.InternalPadding = new System.Windows.Forms.Padding(0);
-            this.amBeAlignmentMpd2.Location = new System.Drawing.Point(566, 21);
+            this.amBeAlignmentMpd2.Location = new System.Drawing.Point(706, 21);
             this.amBeAlignmentMpd2.MaxRange = 600F;
             this.amBeAlignmentMpd2.MaxThreshold = 500F;
             this.amBeAlignmentMpd2.MinRange = 0F;
             this.amBeAlignmentMpd2.Name = "amBeAlignmentMpd2";
             this.amBeAlignmentMpd2.NormalBackColor = System.Drawing.Color.Black;
+            this.amBeAlignmentMpd2.NormalValueColor = System.Drawing.Color.Lime;
+            this.amBeAlignmentMpd2.OverMaxThresholdBackColor = System.Drawing.Color.DarkBlue;
+            this.amBeAlignmentMpd2.OverMaxThresholdValueColor = System.Drawing.Color.Orange;
             this.amBeAlignmentMpd2.PointSize = 50F;
-            this.amBeAlignmentMpd2.Size = new System.Drawing.Size(210, 100);
+            this.amBeAlignmentMpd2.Size = new System.Drawing.Size(260, 125);
             this.amBeAlignmentMpd2.TabIndex = 2;
             this.amBeAlignmentMpd2.Text = "MPD2";
             this.amBeAlignmentMpd2.TickLargeFrequency = 200F;
@@ -208,18 +214,21 @@
             // amBeAlignmentMpd3
             // 
             this.amBeAlignmentMpd3.BackColor = System.Drawing.Color.Black;
-            this.amBeAlignmentMpd3.ForeColor = System.Drawing.Color.White;
+            this.amBeAlignmentMpd3.ForeColor = System.Drawing.Color.Silver;
             this.amBeAlignmentMpd3.FrameColor = System.Drawing.Color.Black;
             this.amBeAlignmentMpd3.FramePadding = new System.Windows.Forms.Padding(0);
             this.amBeAlignmentMpd3.InternalPadding = new System.Windows.Forms.Padding(0);
-            this.amBeAlignmentMpd3.Location = new System.Drawing.Point(360, 21);
+            this.amBeAlignmentMpd3.Location = new System.Drawing.Point(440, 21);
             this.amBeAlignmentMpd3.MaxRange = 600F;
             this.amBeAlignmentMpd3.MaxThreshold = 500F;
             this.amBeAlignmentMpd3.MinRange = 0F;
             this.amBeAlignmentMpd3.Name = "amBeAlignmentMpd3";
             this.amBeAlignmentMpd3.NormalBackColor = System.Drawing.Color.Black;
+            this.amBeAlignmentMpd3.NormalValueColor = System.Drawing.Color.Lime;
+            this.amBeAlignmentMpd3.OverMaxThresholdBackColor = System.Drawing.Color.DarkBlue;
+            this.amBeAlignmentMpd3.OverMaxThresholdValueColor = System.Drawing.Color.Orange;
             this.amBeAlignmentMpd3.PointSize = 50F;
-            this.amBeAlignmentMpd3.Size = new System.Drawing.Size(210, 100);
+            this.amBeAlignmentMpd3.Size = new System.Drawing.Size(260, 125);
             this.amBeAlignmentMpd3.TabIndex = 1;
             this.amBeAlignmentMpd3.Text = "MPD3";
             this.amBeAlignmentMpd3.TickLargeFrequency = 200F;
@@ -232,18 +241,21 @@
             // amBeAlignmentMpd4
             // 
             this.amBeAlignmentMpd4.BackColor = System.Drawing.Color.Black;
-            this.amBeAlignmentMpd4.ForeColor = System.Drawing.Color.White;
+            this.amBeAlignmentMpd4.ForeColor = System.Drawing.Color.Silver;
             this.amBeAlignmentMpd4.FrameColor = System.Drawing.Color.Black;
             this.amBeAlignmentMpd4.FramePadding = new System.Windows.Forms.Padding(0);
             this.amBeAlignmentMpd4.InternalPadding = new System.Windows.Forms.Padding(0);
-            this.amBeAlignmentMpd4.Location = new System.Drawing.Point(155, 21);
+            this.amBeAlignmentMpd4.Location = new System.Drawing.Point(174, 21);
             this.amBeAlignmentMpd4.MaxRange = 600F;
             this.amBeAlignmentMpd4.MaxThreshold = 500F;
             this.amBeAlignmentMpd4.MinRange = 0F;
             this.amBeAlignmentMpd4.Name = "amBeAlignmentMpd4";
             this.amBeAlignmentMpd4.NormalBackColor = System.Drawing.Color.Black;
+            this.amBeAlignmentMpd4.NormalValueColor = System.Drawing.Color.Lime;
+            this.amBeAlignmentMpd4.OverMaxThresholdBackColor = System.Drawing.Color.DarkBlue;
+            this.amBeAlignmentMpd4.OverMaxThresholdValueColor = System.Drawing.Color.Orange;
             this.amBeAlignmentMpd4.PointSize = 50F;
-            this.amBeAlignmentMpd4.Size = new System.Drawing.Size(210, 100);
+            this.amBeAlignmentMpd4.Size = new System.Drawing.Size(260, 125);
             this.amBeAlignmentMpd4.TabIndex = 0;
             this.amBeAlignmentMpd4.Text = "MPD4";
             this.amBeAlignmentMpd4.TickLargeFrequency = 200F;
@@ -291,9 +303,9 @@
             this.gbBeAlignmentRx.Controls.Add(this.amBeAlignmentRx3);
             this.gbBeAlignmentRx.Controls.Add(this.amBeAlignmentRx2);
             this.gbBeAlignmentRx.Controls.Add(this.amBeAlignmentRx1);
-            this.gbBeAlignmentRx.Location = new System.Drawing.Point(3, 285);
+            this.gbBeAlignmentRx.Location = new System.Drawing.Point(3, 345);
             this.gbBeAlignmentRx.Name = "gbBeAlignmentRx";
-            this.gbBeAlignmentRx.Size = new System.Drawing.Size(986, 135);
+            this.gbBeAlignmentRx.Size = new System.Drawing.Size(1238, 165);
             this.gbBeAlignmentRx.TabIndex = 12;
             this.gbBeAlignmentRx.TabStop = false;
             this.gbBeAlignmentRx.Text = "Be Alignment Rx RSSI(uA) or Power(uW)";
@@ -344,18 +356,21 @@
             // amBeAlignmentRx4
             // 
             this.amBeAlignmentRx4.BackColor = System.Drawing.Color.Black;
-            this.amBeAlignmentRx4.ForeColor = System.Drawing.Color.White;
+            this.amBeAlignmentRx4.ForeColor = System.Drawing.Color.Silver;
             this.amBeAlignmentRx4.FrameColor = System.Drawing.Color.Black;
             this.amBeAlignmentRx4.FramePadding = new System.Windows.Forms.Padding(0);
             this.amBeAlignmentRx4.InternalPadding = new System.Windows.Forms.Padding(0);
-            this.amBeAlignmentRx4.Location = new System.Drawing.Point(770, 21);
+            this.amBeAlignmentRx4.Location = new System.Drawing.Point(972, 21);
             this.amBeAlignmentRx4.MaxRange = 600F;
             this.amBeAlignmentRx4.MaxThreshold = 500F;
             this.amBeAlignmentRx4.MinRange = 0F;
             this.amBeAlignmentRx4.Name = "amBeAlignmentRx4";
             this.amBeAlignmentRx4.NormalBackColor = System.Drawing.Color.Black;
+            this.amBeAlignmentRx4.NormalValueColor = System.Drawing.Color.Lime;
+            this.amBeAlignmentRx4.OverMaxThresholdBackColor = System.Drawing.Color.DarkBlue;
+            this.amBeAlignmentRx4.OverMaxThresholdValueColor = System.Drawing.Color.Orange;
             this.amBeAlignmentRx4.PointSize = 50F;
-            this.amBeAlignmentRx4.Size = new System.Drawing.Size(210, 100);
+            this.amBeAlignmentRx4.Size = new System.Drawing.Size(260, 125);
             this.amBeAlignmentRx4.TabIndex = 3;
             this.amBeAlignmentRx4.Text = "Rx4";
             this.amBeAlignmentRx4.TickLargeFrequency = 300F;
@@ -377,18 +392,21 @@
             // amBeAlignmentRx3
             // 
             this.amBeAlignmentRx3.BackColor = System.Drawing.Color.Black;
-            this.amBeAlignmentRx3.ForeColor = System.Drawing.Color.White;
+            this.amBeAlignmentRx3.ForeColor = System.Drawing.Color.Silver;
             this.amBeAlignmentRx3.FrameColor = System.Drawing.Color.Black;
             this.amBeAlignmentRx3.FramePadding = new System.Windows.Forms.Padding(0);
             this.amBeAlignmentRx3.InternalPadding = new System.Windows.Forms.Padding(0);
-            this.amBeAlignmentRx3.Location = new System.Drawing.Point(565, 21);
+            this.amBeAlignmentRx3.Location = new System.Drawing.Point(706, 21);
             this.amBeAlignmentRx3.MaxRange = 600F;
             this.amBeAlignmentRx3.MaxThreshold = 500F;
             this.amBeAlignmentRx3.MinRange = 0F;
             this.amBeAlignmentRx3.Name = "amBeAlignmentRx3";
             this.amBeAlignmentRx3.NormalBackColor = System.Drawing.Color.Black;
+            this.amBeAlignmentRx3.NormalValueColor = System.Drawing.Color.Lime;
+            this.amBeAlignmentRx3.OverMaxThresholdBackColor = System.Drawing.Color.DarkBlue;
+            this.amBeAlignmentRx3.OverMaxThresholdValueColor = System.Drawing.Color.Orange;
             this.amBeAlignmentRx3.PointSize = 50F;
-            this.amBeAlignmentRx3.Size = new System.Drawing.Size(210, 100);
+            this.amBeAlignmentRx3.Size = new System.Drawing.Size(260, 125);
             this.amBeAlignmentRx3.TabIndex = 2;
             this.amBeAlignmentRx3.Text = "Rx3";
             this.amBeAlignmentRx3.TickLargeFrequency = 300F;
@@ -401,18 +419,21 @@
             // amBeAlignmentRx2
             // 
             this.amBeAlignmentRx2.BackColor = System.Drawing.Color.Black;
-            this.amBeAlignmentRx2.ForeColor = System.Drawing.Color.White;
+            this.amBeAlignmentRx2.ForeColor = System.Drawing.Color.Silver;
             this.amBeAlignmentRx2.FrameColor = System.Drawing.Color.Black;
             this.amBeAlignmentRx2.FramePadding = new System.Windows.Forms.Padding(0);
             this.amBeAlignmentRx2.InternalPadding = new System.Windows.Forms.Padding(0);
-            this.amBeAlignmentRx2.Location = new System.Drawing.Point(360, 21);
+            this.amBeAlignmentRx2.Location = new System.Drawing.Point(440, 21);
             this.amBeAlignmentRx2.MaxRange = 600F;
             this.amBeAlignmentRx2.MaxThreshold = 500F;
             this.amBeAlignmentRx2.MinRange = 0F;
             this.amBeAlignmentRx2.Name = "amBeAlignmentRx2";
             this.amBeAlignmentRx2.NormalBackColor = System.Drawing.Color.Black;
+            this.amBeAlignmentRx2.NormalValueColor = System.Drawing.Color.Lime;
+            this.amBeAlignmentRx2.OverMaxThresholdBackColor = System.Drawing.Color.DarkBlue;
+            this.amBeAlignmentRx2.OverMaxThresholdValueColor = System.Drawing.Color.Orange;
             this.amBeAlignmentRx2.PointSize = 50F;
-            this.amBeAlignmentRx2.Size = new System.Drawing.Size(210, 100);
+            this.amBeAlignmentRx2.Size = new System.Drawing.Size(260, 125);
             this.amBeAlignmentRx2.TabIndex = 1;
             this.amBeAlignmentRx2.Text = "Rx2";
             this.amBeAlignmentRx2.TickLargeFrequency = 300F;
@@ -425,18 +446,21 @@
             // amBeAlignmentRx1
             // 
             this.amBeAlignmentRx1.BackColor = System.Drawing.Color.Black;
-            this.amBeAlignmentRx1.ForeColor = System.Drawing.Color.White;
+            this.amBeAlignmentRx1.ForeColor = System.Drawing.Color.Silver;
             this.amBeAlignmentRx1.FrameColor = System.Drawing.Color.Black;
             this.amBeAlignmentRx1.FramePadding = new System.Windows.Forms.Padding(0);
             this.amBeAlignmentRx1.InternalPadding = new System.Windows.Forms.Padding(0);
-            this.amBeAlignmentRx1.Location = new System.Drawing.Point(155, 21);
+            this.amBeAlignmentRx1.Location = new System.Drawing.Point(174, 21);
             this.amBeAlignmentRx1.MaxRange = 600F;
             this.amBeAlignmentRx1.MaxThreshold = 500F;
             this.amBeAlignmentRx1.MinRange = 0F;
             this.amBeAlignmentRx1.Name = "amBeAlignmentRx1";
             this.amBeAlignmentRx1.NormalBackColor = System.Drawing.Color.Black;
+            this.amBeAlignmentRx1.NormalValueColor = System.Drawing.Color.Lime;
+            this.amBeAlignmentRx1.OverMaxThresholdBackColor = System.Drawing.Color.DarkBlue;
+            this.amBeAlignmentRx1.OverMaxThresholdValueColor = System.Drawing.Color.Orange;
             this.amBeAlignmentRx1.PointSize = 50F;
-            this.amBeAlignmentRx1.Size = new System.Drawing.Size(210, 100);
+            this.amBeAlignmentRx1.Size = new System.Drawing.Size(260, 125);
             this.amBeAlignmentRx1.TabIndex = 0;
             this.amBeAlignmentRx1.Text = "Rx1";
             this.amBeAlignmentRx1.TickLargeFrequency = 300F;
@@ -460,9 +484,9 @@
             this.gbLightSourceRx.Controls.Add(this.lLightSourceDeviceAddr);
             this.gbLightSourceRx.Controls.Add(this.amLightSourceRx3);
             this.gbLightSourceRx.Controls.Add(this.amLightSourceRx4);
-            this.gbLightSourceRx.Location = new System.Drawing.Point(3, 144);
+            this.gbLightSourceRx.Location = new System.Drawing.Point(3, 174);
             this.gbLightSourceRx.Name = "gbLightSourceRx";
-            this.gbLightSourceRx.Size = new System.Drawing.Size(986, 135);
+            this.gbLightSourceRx.Size = new System.Drawing.Size(1238, 165);
             this.gbLightSourceRx.TabIndex = 13;
             this.gbLightSourceRx.TabStop = false;
             this.gbLightSourceRx.Text = "Light Source Rx Power";
@@ -530,18 +554,21 @@
             // amLightSourceRx1
             // 
             this.amLightSourceRx1.BackColor = System.Drawing.Color.Black;
-            this.amLightSourceRx1.ForeColor = System.Drawing.Color.White;
+            this.amLightSourceRx1.ForeColor = System.Drawing.Color.Silver;
             this.amLightSourceRx1.FrameColor = System.Drawing.Color.Black;
             this.amLightSourceRx1.FramePadding = new System.Windows.Forms.Padding(0);
             this.amLightSourceRx1.InternalPadding = new System.Windows.Forms.Padding(0);
-            this.amLightSourceRx1.Location = new System.Drawing.Point(770, 21);
+            this.amLightSourceRx1.Location = new System.Drawing.Point(972, 21);
             this.amLightSourceRx1.MaxRange = 2000F;
             this.amLightSourceRx1.MaxThreshold = 1258F;
             this.amLightSourceRx1.MinRange = 0F;
             this.amLightSourceRx1.Name = "amLightSourceRx1";
             this.amLightSourceRx1.NormalBackColor = System.Drawing.Color.Black;
+            this.amLightSourceRx1.NormalValueColor = System.Drawing.Color.Lime;
+            this.amLightSourceRx1.OverMaxThresholdBackColor = System.Drawing.Color.DarkBlue;
+            this.amLightSourceRx1.OverMaxThresholdValueColor = System.Drawing.Color.Orange;
             this.amLightSourceRx1.PointSize = 50F;
-            this.amLightSourceRx1.Size = new System.Drawing.Size(210, 100);
+            this.amLightSourceRx1.Size = new System.Drawing.Size(260, 125);
             this.amLightSourceRx1.TabIndex = 3;
             this.amLightSourceRx1.Text = "Tx1";
             this.amLightSourceRx1.TickLargeFrequency = 500F;
@@ -554,18 +581,21 @@
             // amLightSourceRx2
             // 
             this.amLightSourceRx2.BackColor = System.Drawing.Color.Black;
-            this.amLightSourceRx2.ForeColor = System.Drawing.Color.White;
+            this.amLightSourceRx2.ForeColor = System.Drawing.Color.Silver;
             this.amLightSourceRx2.FrameColor = System.Drawing.Color.Black;
             this.amLightSourceRx2.FramePadding = new System.Windows.Forms.Padding(0);
             this.amLightSourceRx2.InternalPadding = new System.Windows.Forms.Padding(0);
-            this.amLightSourceRx2.Location = new System.Drawing.Point(565, 21);
+            this.amLightSourceRx2.Location = new System.Drawing.Point(706, 21);
             this.amLightSourceRx2.MaxRange = 2000F;
             this.amLightSourceRx2.MaxThreshold = 1258F;
             this.amLightSourceRx2.MinRange = 0F;
             this.amLightSourceRx2.Name = "amLightSourceRx2";
             this.amLightSourceRx2.NormalBackColor = System.Drawing.Color.Black;
+            this.amLightSourceRx2.NormalValueColor = System.Drawing.Color.Lime;
+            this.amLightSourceRx2.OverMaxThresholdBackColor = System.Drawing.Color.DarkBlue;
+            this.amLightSourceRx2.OverMaxThresholdValueColor = System.Drawing.Color.Orange;
             this.amLightSourceRx2.PointSize = 50F;
-            this.amLightSourceRx2.Size = new System.Drawing.Size(210, 100);
+            this.amLightSourceRx2.Size = new System.Drawing.Size(260, 125);
             this.amLightSourceRx2.TabIndex = 2;
             this.amLightSourceRx2.Text = "Tx2";
             this.amLightSourceRx2.TickLargeFrequency = 500F;
@@ -587,18 +617,21 @@
             // amLightSourceRx3
             // 
             this.amLightSourceRx3.BackColor = System.Drawing.Color.Black;
-            this.amLightSourceRx3.ForeColor = System.Drawing.Color.White;
+            this.amLightSourceRx3.ForeColor = System.Drawing.Color.Silver;
             this.amLightSourceRx3.FrameColor = System.Drawing.Color.Black;
             this.amLightSourceRx3.FramePadding = new System.Windows.Forms.Padding(0);
             this.amLightSourceRx3.InternalPadding = new System.Windows.Forms.Padding(0);
-            this.amLightSourceRx3.Location = new System.Drawing.Point(360, 21);
+            this.amLightSourceRx3.Location = new System.Drawing.Point(440, 21);
             this.amLightSourceRx3.MaxRange = 2000F;
             this.amLightSourceRx3.MaxThreshold = 1258F;
             this.amLightSourceRx3.MinRange = 0F;
             this.amLightSourceRx3.Name = "amLightSourceRx3";
             this.amLightSourceRx3.NormalBackColor = System.Drawing.Color.Black;
+            this.amLightSourceRx3.NormalValueColor = System.Drawing.Color.Lime;
+            this.amLightSourceRx3.OverMaxThresholdBackColor = System.Drawing.Color.DarkBlue;
+            this.amLightSourceRx3.OverMaxThresholdValueColor = System.Drawing.Color.Orange;
             this.amLightSourceRx3.PointSize = 50F;
-            this.amLightSourceRx3.Size = new System.Drawing.Size(210, 100);
+            this.amLightSourceRx3.Size = new System.Drawing.Size(260, 125);
             this.amLightSourceRx3.TabIndex = 1;
             this.amLightSourceRx3.Text = "Tx3";
             this.amLightSourceRx3.TickLargeFrequency = 500F;
@@ -611,18 +644,21 @@
             // amLightSourceRx4
             // 
             this.amLightSourceRx4.BackColor = System.Drawing.Color.Black;
-            this.amLightSourceRx4.ForeColor = System.Drawing.Color.White;
+            this.amLightSourceRx4.ForeColor = System.Drawing.Color.Silver;
             this.amLightSourceRx4.FrameColor = System.Drawing.Color.Black;
             this.amLightSourceRx4.FramePadding = new System.Windows.Forms.Padding(0);
             this.amLightSourceRx4.InternalPadding = new System.Windows.Forms.Padding(0);
-            this.amLightSourceRx4.Location = new System.Drawing.Point(155, 21);
+            this.amLightSourceRx4.Location = new System.Drawing.Point(174, 21);
             this.amLightSourceRx4.MaxRange = 2000F;
             this.amLightSourceRx4.MaxThreshold = 1258F;
             this.amLightSourceRx4.MinRange = 0F;
             this.amLightSourceRx4.Name = "amLightSourceRx4";
             this.amLightSourceRx4.NormalBackColor = System.Drawing.Color.Black;
+            this.amLightSourceRx4.NormalValueColor = System.Drawing.Color.Lime;
+            this.amLightSourceRx4.OverMaxThresholdBackColor = System.Drawing.Color.DarkBlue;
+            this.amLightSourceRx4.OverMaxThresholdValueColor = System.Drawing.Color.Orange;
             this.amLightSourceRx4.PointSize = 50F;
-            this.amLightSourceRx4.Size = new System.Drawing.Size(210, 100);
+            this.amLightSourceRx4.Size = new System.Drawing.Size(260, 125);
             this.amLightSourceRx4.TabIndex = 0;
             this.amLightSourceRx4.Text = "Tx4";
             this.amLightSourceRx4.TickLargeFrequency = 500F;
@@ -663,7 +699,7 @@
             this.gbModuleInfo.Controls.Add(this.lTemperature);
             this.gbModuleInfo.Controls.Add(this.tbBeAlignmentVcc);
             this.gbModuleInfo.Controls.Add(this.lVcc);
-            this.gbModuleInfo.Location = new System.Drawing.Point(3, 426);
+            this.gbModuleInfo.Location = new System.Drawing.Point(3, 516);
             this.gbModuleInfo.Name = "gbModuleInfo";
             this.gbModuleInfo.Size = new System.Drawing.Size(393, 90);
             this.gbModuleInfo.TabIndex = 15;
@@ -821,7 +857,7 @@
             // 
             this.bClearAllMaxValue.BackColor = System.Drawing.SystemColors.Control;
             this.bClearAllMaxValue.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.bClearAllMaxValue.Location = new System.Drawing.Point(914, 493);
+            this.bClearAllMaxValue.Location = new System.Drawing.Point(1160, 580);
             this.bClearAllMaxValue.Name = "bClearAllMaxValue";
             this.bClearAllMaxValue.Size = new System.Drawing.Size(75, 23);
             this.bClearAllMaxValue.TabIndex = 16;
@@ -833,15 +869,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Black;
+            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.Controls.Add(this.bClearAllMaxValue);
             this.Controls.Add(this.gbModuleInfo);
             this.Controls.Add(this.gbLightSourceRx);
             this.Controls.Add(this.gbBeAlignmentRx);
             this.Controls.Add(this.gbBeAlignmentMpd);
-            this.ForeColor = System.Drawing.Color.White;
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Name = "UcLensAlignment";
-            this.Size = new System.Drawing.Size(992, 520);
+            this.Size = new System.Drawing.Size(1244, 611);
             this.gbBeAlignmentMpd.ResumeLayout(false);
             this.gbBeAlignmentMpd.PerformLayout();
             this.gbBeAlignmentRx.ResumeLayout(false);

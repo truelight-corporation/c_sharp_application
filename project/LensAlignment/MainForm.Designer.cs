@@ -27,7 +27,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cbLightSourceConnected = new System.Windows.Forms.CheckBox();
             this.cbBeAlignmentConnected = new System.Windows.Forms.CheckBox();
             this.cbStartMonitor = new System.Windows.Forms.CheckBox();
@@ -44,8 +43,8 @@
             this.tbBeAlignmentPassword126 = new System.Windows.Forms.TextBox();
             this.tcFunction = new System.Windows.Forms.TabControl();
             this.tpLensAlignment = new System.Windows.Forms.TabPage();
-            this.tpLog = new System.Windows.Forms.TabPage();
             this.ucLensAlignment = new LensAlignment.UcLensAlignment();
+            this.tpLog = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecord)).BeginInit();
             this.tcFunction.SuspendLayout();
             this.tpLensAlignment.SuspendLayout();
@@ -55,40 +54,44 @@
             // cbLightSourceConnected
             // 
             this.cbLightSourceConnected.AutoSize = true;
+            this.cbLightSourceConnected.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.cbLightSourceConnected.Location = new System.Drawing.Point(12, 12);
             this.cbLightSourceConnected.Name = "cbLightSourceConnected";
             this.cbLightSourceConnected.Size = new System.Drawing.Size(137, 16);
             this.cbLightSourceConnected.TabIndex = 0;
             this.cbLightSourceConnected.Text = "Light Source Connected";
             this.cbLightSourceConnected.UseVisualStyleBackColor = true;
-            this.cbLightSourceConnected.CheckedChanged += new System.EventHandler(this.cbLightSourceConnected_CheckedChanged);
+            this.cbLightSourceConnected.CheckedChanged += new System.EventHandler(this._cbLightSourceConnected_CheckedChanged);
             // 
             // cbBeAlignmentConnected
             // 
             this.cbBeAlignmentConnected.AutoSize = true;
+            this.cbBeAlignmentConnected.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.cbBeAlignmentConnected.Location = new System.Drawing.Point(155, 12);
             this.cbBeAlignmentConnected.Name = "cbBeAlignmentConnected";
             this.cbBeAlignmentConnected.Size = new System.Drawing.Size(142, 16);
             this.cbBeAlignmentConnected.TabIndex = 1;
             this.cbBeAlignmentConnected.Text = "Be Alignment Connected";
             this.cbBeAlignmentConnected.UseVisualStyleBackColor = true;
-            this.cbBeAlignmentConnected.CheckedChanged += new System.EventHandler(this.cbBeAlignmentConnected_CheckedChanged);
+            this.cbBeAlignmentConnected.CheckedChanged += new System.EventHandler(this._cbBeAlignmentConnected_CheckedChanged);
             // 
             // cbStartMonitor
             // 
             this.cbStartMonitor.AutoSize = true;
             this.cbStartMonitor.Enabled = false;
-            this.cbStartMonitor.Location = new System.Drawing.Point(822, 12);
+            this.cbStartMonitor.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.cbStartMonitor.Location = new System.Drawing.Point(1021, 12);
             this.cbStartMonitor.Name = "cbStartMonitor";
             this.cbStartMonitor.Size = new System.Drawing.Size(86, 16);
             this.cbStartMonitor.TabIndex = 3;
             this.cbStartMonitor.Text = "Start Monitor";
             this.cbStartMonitor.UseVisualStyleBackColor = true;
-            this.cbStartMonitor.CheckedChanged += new System.EventHandler(this.cbStartMonitor_CheckedChanged);
+            this.cbStartMonitor.CheckedChanged += new System.EventHandler(this._cbStartMonitor_CheckedChanged);
             // 
             // lBeAlignmentPassword
             // 
             this.lBeAlignmentPassword.AutoSize = true;
+            this.lBeAlignmentPassword.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lBeAlignmentPassword.Location = new System.Drawing.Point(303, 13);
             this.lBeAlignmentPassword.Name = "lBeAlignmentPassword";
             this.lBeAlignmentPassword.Size = new System.Drawing.Size(122, 12);
@@ -107,30 +110,31 @@
             // 
             this.bLog.BackColor = System.Drawing.SystemColors.Control;
             this.bLog.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.bLog.Location = new System.Drawing.Point(762, 8);
+            this.bLog.Location = new System.Drawing.Point(867, 8);
             this.bLog.Name = "bLog";
             this.bLog.Size = new System.Drawing.Size(50, 23);
             this.bLog.TabIndex = 6;
             this.bLog.Text = "Log";
             this.bLog.UseVisualStyleBackColor = false;
-            this.bLog.Click += new System.EventHandler(this.bLog_Click);
+            this.bLog.Click += new System.EventHandler(this._bLog_Click);
             // 
             // bClearLog
             // 
             this.bClearLog.BackColor = System.Drawing.SystemColors.Control;
             this.bClearLog.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.bClearLog.Location = new System.Drawing.Point(555, 8);
+            this.bClearLog.Location = new System.Drawing.Point(660, 8);
             this.bClearLog.Name = "bClearLog";
             this.bClearLog.Size = new System.Drawing.Size(60, 23);
             this.bClearLog.TabIndex = 7;
             this.bClearLog.Text = "Clear Log";
             this.bClearLog.UseVisualStyleBackColor = false;
-            this.bClearLog.Click += new System.EventHandler(this.bClearLog_Click);
+            this.bClearLog.Click += new System.EventHandler(this._bClearLog_Click);
             // 
             // lLogLable
             // 
             this.lLogLable.AutoSize = true;
-            this.lLogLable.Location = new System.Drawing.Point(621, 13);
+            this.lLogLable.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lLogLable.Location = new System.Drawing.Point(726, 13);
             this.lLogLable.Name = "lLogLable";
             this.lLogLable.Size = new System.Drawing.Size(59, 12);
             this.lLogLable.TabIndex = 8;
@@ -138,7 +142,7 @@
             // 
             // tbLogLable
             // 
-            this.tbLogLable.Location = new System.Drawing.Point(686, 10);
+            this.tbLogLable.Location = new System.Drawing.Point(791, 10);
             this.tbLogLable.Name = "tbLogLable";
             this.tbLogLable.Size = new System.Drawing.Size(70, 22);
             this.tbLogLable.TabIndex = 9;
@@ -147,13 +151,13 @@
             // 
             this.bSave.BackColor = System.Drawing.SystemColors.Control;
             this.bSave.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.bSave.Location = new System.Drawing.Point(914, 8);
+            this.bSave.Location = new System.Drawing.Point(1211, 8);
             this.bSave.Name = "bSave";
             this.bSave.Size = new System.Drawing.Size(45, 23);
             this.bSave.TabIndex = 10;
             this.bSave.Text = "Save";
             this.bSave.UseVisualStyleBackColor = false;
-            this.bSave.Click += new System.EventHandler(this.bSave_Click);
+            this.bSave.Click += new System.EventHandler(this._bSave_Click);
             // 
             // dgvRecord
             // 
@@ -162,19 +166,11 @@
             this.dgvRecord.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvRecord.BackgroundColor = System.Drawing.Color.DimGray;
             this.dgvRecord.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("PMingLiU", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvRecord.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvRecord.GridColor = System.Drawing.Color.Silver;
             this.dgvRecord.Location = new System.Drawing.Point(0, 0);
             this.dgvRecord.Name = "dgvRecord";
             this.dgvRecord.RowTemplate.Height = 24;
-            this.dgvRecord.Size = new System.Drawing.Size(992, 520);
+            this.dgvRecord.Size = new System.Drawing.Size(1244, 611);
             this.dgvRecord.TabIndex = 11;
             // 
             // tbBeAlignmentPassword124
@@ -208,46 +204,48 @@
             this.tcFunction.Location = new System.Drawing.Point(8, 38);
             this.tcFunction.Name = "tcFunction";
             this.tcFunction.SelectedIndex = 0;
-            this.tcFunction.Size = new System.Drawing.Size(1000, 546);
+            this.tcFunction.Size = new System.Drawing.Size(1252, 637);
             this.tcFunction.TabIndex = 15;
             // 
             // tpLensAlignment
             // 
             this.tpLensAlignment.BackColor = System.Drawing.Color.Black;
             this.tpLensAlignment.Controls.Add(this.ucLensAlignment);
+            this.tpLensAlignment.ForeColor = System.Drawing.SystemColors.ActiveBorder;
             this.tpLensAlignment.Location = new System.Drawing.Point(4, 22);
             this.tpLensAlignment.Name = "tpLensAlignment";
             this.tpLensAlignment.Padding = new System.Windows.Forms.Padding(3);
-            this.tpLensAlignment.Size = new System.Drawing.Size(992, 520);
+            this.tpLensAlignment.Size = new System.Drawing.Size(1244, 611);
             this.tpLensAlignment.TabIndex = 0;
             this.tpLensAlignment.Text = "Lens Alignment";
             // 
+            // ucLensAlignment
+            // 
+            this.ucLensAlignment.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.ucLensAlignment.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ucLensAlignment.Location = new System.Drawing.Point(0, 0);
+            this.ucLensAlignment.Name = "ucLensAlignment";
+            this.ucLensAlignment.Size = new System.Drawing.Size(1244, 611);
+            this.ucLensAlignment.TabIndex = 2;
+            // 
             // tpLog
             // 
-            this.tpLog.BackColor = System.Drawing.Color.Black;
+            this.tpLog.BackColor = System.Drawing.SystemColors.Window;
             this.tpLog.Controls.Add(this.dgvRecord);
+            this.tpLog.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tpLog.Location = new System.Drawing.Point(4, 22);
             this.tpLog.Name = "tpLog";
             this.tpLog.Padding = new System.Windows.Forms.Padding(3);
-            this.tpLog.Size = new System.Drawing.Size(992, 520);
+            this.tpLog.Size = new System.Drawing.Size(1244, 611);
             this.tpLog.TabIndex = 1;
             this.tpLog.Text = "Log";
-            // 
-            // ucLensAlignment
-            // 
-            this.ucLensAlignment.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.ucLensAlignment.ForeColor = System.Drawing.SystemColors.Info;
-            this.ucLensAlignment.Location = new System.Drawing.Point(0, 0);
-            this.ucLensAlignment.Name = "ucLensAlignment";
-            this.ucLensAlignment.Size = new System.Drawing.Size(992, 521);
-            this.ucLensAlignment.TabIndex = 2;
             // 
             // fLensAlignment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(1016, 590);
+            this.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.ClientSize = new System.Drawing.Size(1272, 683);
             this.Controls.Add(this.tcFunction);
             this.Controls.Add(this.tbBeAlignmentPassword126);
             this.Controls.Add(this.tbBeAlignmentPassword125);
@@ -262,7 +260,10 @@
             this.Controls.Add(this.cbStartMonitor);
             this.Controls.Add(this.cbBeAlignmentConnected);
             this.Controls.Add(this.cbLightSourceConnected);
-            this.ForeColor = System.Drawing.Color.White;
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1280, 710);
+            this.MinimumSize = new System.Drawing.Size(1280, 710);
             this.Name = "fLensAlignment";
             this.Text = "Lens Alignment";
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecord)).EndInit();

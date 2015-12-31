@@ -61,8 +61,6 @@ namespace LensAlignment
                 MessageBox.Show("QSFP+ module no response!!");
                 _IM_LightSourceDisconnect();
             }
-            else if (rv != length)
-                MessageBox.Show("Only read " + rv + " not " + length + " byte Error!!");
 
             return rv;
         }
@@ -155,8 +153,6 @@ namespace LensAlignment
                 MessageBox.Show("QSFP+ module no response!!");
                 _IM_BeAlignmentDisconnect();
             }
-            else if (rv != length)
-                MessageBox.Show("Only read " + rv + " not " + length + " byte Error!!");
 
             return rv;
         }
@@ -179,9 +175,17 @@ namespace LensAlignment
             return rv;
         }
 
+        private void _OnClosingHandler(object sender, EventArgs e)
+        {
+            if (dtValue.Rows.Count > 0)
+                _bSave_Click(sender, e);
+        }
+
         public fLensAlignment()
         {
             InitializeComponent();
+
+            this.FormClosing += new FormClosingEventHandler(_OnClosingHandler);
 
             dtValue.Columns.Add("Lable", typeof(String));
             dtValue.Columns.Add("Tx1", typeof(String));
@@ -217,7 +221,7 @@ namespace LensAlignment
             }
         }
 
-        private void bLog_Click(object sender, EventArgs e)
+        private void _bLog_Click(object sender, EventArgs e)
         {
             dtValue.Rows.Add(tbLogLable.Text, ucLensAlignment.GetLightSourceRx1ValueApi().ToString(),
                 ucLensAlignment.GetLightSourceRx2ValueApi().ToString(),
@@ -233,12 +237,12 @@ namespace LensAlignment
                 ucLensAlignment.GetBeAlignmentMpd4ValueApi().ToString());
         }
 
-        private void bClearLog_Click(object sender, EventArgs e)
+        private void _bClearLog_Click(object sender, EventArgs e)
         {
             dtValue.Clear();
         }
 
-        private void bSave_Click(object sender, EventArgs e)
+        private void _bSave_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfdSelectFile = new SaveFileDialog();
             StreamWriter swLog;
@@ -264,9 +268,10 @@ namespace LensAlignment
                     row[12].ToString());
             }
             swLog.Close();
+            dtValue.Clear();
         }
 
-        private void cbLightSourceConnected_CheckedChanged(object sender, EventArgs e)
+        private void _cbLightSourceConnected_CheckedChanged(object sender, EventArgs e)
         {
             if (cbLightSourceConnected.Checked == true) {
                 _IM_LightSourceConnect();
@@ -276,7 +281,7 @@ namespace LensAlignment
             }
         }
 
-        private void cbBeAlignmentConnected_CheckedChanged(object sender, EventArgs e)
+        private void _cbBeAlignmentConnected_CheckedChanged(object sender, EventArgs e)
         {
             if (cbBeAlignmentConnected.Checked == true) {
                 _IM_BeAlignmentConnect();
@@ -286,7 +291,7 @@ namespace LensAlignment
             }
         }
 
-        private void cbStartMonitor_CheckedChanged(object sender, EventArgs e)
+        private void _cbStartMonitor_CheckedChanged(object sender, EventArgs e)
         {
             if (cbStartMonitor.Checked == true)
                 ucLensAlignment.MonitorUpdateStartApi();

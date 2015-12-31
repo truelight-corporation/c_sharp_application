@@ -41,7 +41,7 @@ namespace LensAlignment
             int.TryParse(tbLightSourceDeviceAddr.Text, out devAddr);
 
             if (lightSourceI2cReadCB((byte)devAddr, 26, 2, data) != 2)
-                return -1;
+                goto clearData;
 
             try {
                 Buffer.BlockCopy(data, 0, bATmp, 0, 2);
@@ -52,12 +52,12 @@ namespace LensAlignment
             }
 
             reverseData = bATmp.Reverse().ToArray();
-            vcc = BitConverter.ToInt16(reverseData, 0);
+            vcc = BitConverter.ToUInt16(reverseData, 0);
             vcc = vcc / 10000;
             faLightSourceInfoValue[0] = vcc;
 
             if (lightSourceI2cReadCB((byte)devAddr, 22, 2, data) != 2)
-                return -1;
+                goto clearData;
 
             try {
                 Buffer.BlockCopy(data, 0, bATmp, 0, 2);
@@ -73,7 +73,7 @@ namespace LensAlignment
             faLightSourceInfoValue[1] = temperature;
 
             if (lightSourceI2cReadCB((byte)devAddr, 42, 8, data) != 8)
-                return -1;
+                goto clearData;
 
             try {
                 Buffer.BlockCopy(data, 0, bATmp, 0, 2);
@@ -128,6 +128,12 @@ namespace LensAlignment
             faLightSourceInfoValue[5] = bias;
 
             return 0;
+
+        clearData:
+            faLightSourceInfoValue[0] = faLightSourceInfoValue[1] =
+                faLightSourceInfoValue[2] = faLightSourceInfoValue[3] =
+                faLightSourceInfoValue[4] = faLightSourceInfoValue[5] = 0;
+            return -1;
         }
 
         private int _ReadLightSourceRxValue()
@@ -150,7 +156,7 @@ namespace LensAlignment
             }
 
             if (lightSourceI2cReadCB((byte)devAddr, (byte)regAddr, 8, data) != 8)
-                return -1;
+                goto clearData;
 
             try {
                 Buffer.BlockCopy(data, 0, bATmp, 0, 2);
@@ -205,6 +211,12 @@ namespace LensAlignment
             faLightSourceRxValue[3] = power;
 
             return 0;
+
+        clearData:
+            faLightSourceRxValue[0] = faLightSourceRxValue[1] =
+                faLightSourceRxValue[2] = faLightSourceRxValue[3] = 0;
+
+            return -1;
         }
 
         private int _ReadBeAlignmentInfoValue()
@@ -218,7 +230,7 @@ namespace LensAlignment
             int.TryParse(tbLightSourceDeviceAddr.Text, out devAddr);
 
             if (beAlignmentI2cReadCB((byte)devAddr, 26, 2, data) != 2)
-                return -1;
+                goto clearData;
 
             try {
                 Buffer.BlockCopy(data, 0, bATmp, 0, 2);
@@ -229,12 +241,12 @@ namespace LensAlignment
             }
 
             reverseData = bATmp.Reverse().ToArray();
-            vcc = BitConverter.ToInt16(reverseData, 0);
+            vcc = BitConverter.ToUInt16(reverseData, 0);
             vcc = vcc / 10000;
             faBeAlignmentInfoValue[0] = vcc;
 
             if (beAlignmentI2cReadCB((byte)devAddr, 22, 2, data) != 2)
-                return -1;
+                goto clearData;
 
             try {
                 Buffer.BlockCopy(data, 0, bATmp, 0, 2);
@@ -250,7 +262,7 @@ namespace LensAlignment
             faBeAlignmentInfoValue[1] = temperature;
 
             if (beAlignmentI2cReadCB((byte)devAddr, 42, 8, data) != 8)
-                return -1;
+                goto clearData;
 
             try {
                 Buffer.BlockCopy(data, 0, bATmp, 0, 2);
@@ -305,6 +317,13 @@ namespace LensAlignment
             faBeAlignmentInfoValue[5] = bias;
 
             return 0;
+
+        clearData:
+            faBeAlignmentInfoValue[0] = faBeAlignmentInfoValue[1] =
+                faBeAlignmentInfoValue[2] = faBeAlignmentInfoValue[3] =
+                faBeAlignmentInfoValue[4] = faBeAlignmentInfoValue[5] = 0;
+
+            return -1;
         }
 
         private int _ReadBeAlignmentRxValue()
@@ -326,7 +345,7 @@ namespace LensAlignment
             }
 
             if (beAlignmentI2cReadCB((byte)devAddr, (byte)regAddr, 8, data) != 8)
-                return -1;
+                goto clearData;
 
             try {
                 Buffer.BlockCopy(data, 0, bATmp, 0, 2);
@@ -373,6 +392,12 @@ namespace LensAlignment
             faBeAlignmentRxValue[3] = BitConverter.ToUInt16(reverseData, 0);
 
             return 0;
+
+        clearData:
+            faBeAlignmentRxValue[0] = faBeAlignmentRxValue[1] =
+                faBeAlignmentRxValue[2] = faBeAlignmentRxValue[3] = 0;
+
+            return -1;
         }
 
         private int _ReadBeAlignmentMpdValue()
@@ -394,7 +419,7 @@ namespace LensAlignment
             }
 
             if (beAlignmentI2cReadCB((byte)devAddr, (byte)regAddr, 8, data) != 8)
-                return -1;
+                goto clearData;
 
             try {
                 Buffer.BlockCopy(data, 0, bATmp, 0, 2);
@@ -441,26 +466,42 @@ namespace LensAlignment
             faBeAlignmentMpdValue[3] = BitConverter.ToUInt16(reverseData, 0);
 
             return 0;
+
+        clearData:
+            faBeAlignmentMpdValue[0] = faBeAlignmentMpdValue[1] =
+                faBeAlignmentMpdValue[2] = faBeAlignmentMpdValue[3] = 0;
+
+            return -1;
         }
 
         public void MonitorValueUpdateApi(object sender, DoWorkEventArgs e)
         {
-            int i = 0;
+            int i = 0, delay;
 
             while (startMonitor) {
+                delay = 100;
                 bwMonitor.ReportProgress(0, null);
                 if (i == 0) {
-                    _ReadLightSourceInfoValue();
-                    _ReadBeAlignmentInfoValue();
+                    if (_ReadLightSourceInfoValue() < 0)
+                        delay += 10;
+
+                    if (_ReadBeAlignmentInfoValue() < 0)
+                        delay += 10;
                 }
-                _ReadLightSourceRxValue();
-                _ReadBeAlignmentRxValue();
-                _ReadBeAlignmentMpdValue();
+                if (_ReadLightSourceRxValue() < 0)
+                    delay += 10;
 
-                if (i++ >= 50)
+                if (_ReadBeAlignmentRxValue() < 0)
+                    delay += 10;
+
+                if (_ReadBeAlignmentMpdValue() < 0)
+                    delay += 10;
+
+                if (i++ >= 5)
                     i = 0;
-
-                //System.Threading.Thread.Sleep(10);
+                
+                if (delay > 0)
+                System.Threading.Thread.Sleep(delay);
             }
             bwMonitor.ReportProgress(100, null);
         }
