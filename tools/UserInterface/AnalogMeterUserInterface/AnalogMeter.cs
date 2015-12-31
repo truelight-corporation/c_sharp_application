@@ -60,22 +60,24 @@ namespace AnalogMeterUserInterface
                 return this.value;
             }
             set {
-                this.value = value;
-                if (this.value > this.maxThreshold) {
-                    if (this.BackColor != this.overMaxThresholdBackColor) {
-                        this.BackColor = this.overMaxThresholdBackColor;
-                        CreateBackground();
+                if (this.value != value) {
+                    this.value = value;
+                    if (this.value > this.maxThreshold) {
+                        if (this.BackColor != this.overMaxThresholdBackColor) {
+                            this.BackColor = this.overMaxThresholdBackColor;
+                            CreateBackground();
+                        }
                     }
-                }
-                else {
-                    if (this.BackColor != this.normalBackColor) {
-                        this.BackColor = this.normalBackColor;
-                        CreateBackground();
+                    else {
+                        if (this.BackColor != this.normalBackColor) {
+                            this.BackColor = this.normalBackColor;
+                            CreateBackground();
+                        }
                     }
+                    if (this.value > this.maxValue)
+                        this.maxValue = this.value;
+                    DrawMeter(realGraphics);
                 }
-                if (this.value > this.maxValue)
-                    this.maxValue = this.value;
-                DrawMeter(realGraphics);
             }
         }
 
@@ -333,7 +335,7 @@ namespace AnalogMeterUserInterface
             }
         }
 
-        private Color overMaxThresholdBackColor = System.Drawing.Color.Green;
+        private Color overMaxThresholdBackColor = Color.Green;
 
         /// <summary>
         /// Over max threshold background color of the meter
@@ -371,6 +373,30 @@ namespace AnalogMeterUserInterface
             set {
                 base.ForeColor = value;
                 CreateBackground();
+            }
+        }
+
+        private Color normalValueColor = Color.ForestGreen;
+
+        public Color NormalValueColor
+        {
+            get {
+                return this.normalValueColor;
+            }
+            set {
+                this.normalValueColor = value;
+            }
+        }
+
+        private Color overMaxThresholdValueColor = Color.Red;
+
+        public Color OverMaxThresholdValueColor
+        {
+            get {
+                return this.overMaxThresholdValueColor;
+            }
+            set {
+                this.overMaxThresholdValueColor = value;
             }
         }
 
@@ -502,18 +528,36 @@ namespace AnalogMeterUserInterface
                 g.DrawLine(p, pts[0], pts[1]);
             }
 
+            if (value > maxThreshold) {
+                using (Brush b = new SolidBrush(overMaxThresholdValueColor)) {
+                    SizeF sz;
+
+                    fValue = new Font(Font.Name, 14.0f, FontStyle.Bold);
+                    sz = g.MeasureString(value.ToString() + " " + valueUnit, fValue);
+                    g.DrawString(value.ToString() + " " + valueUnit, fValue, b,
+                        framePadding.Left + (meterLocation.Width / 2) - sz.Width / 2,
+                        framePadding.Top + (meterLocation.Height * 5) / 7 - sz.Height / 2);
+                }
+            }
+            else {
+                using (Brush b = new SolidBrush(normalValueColor)) {
+                    SizeF sz;
+
+                    fValue = new Font(Font.Name, 14.0f, FontStyle.Bold);
+                    sz = g.MeasureString(value.ToString() + " " + valueUnit, fValue);
+                    g.DrawString(value.ToString() + " " + valueUnit, fValue, b,
+                        framePadding.Left + (meterLocation.Width / 2) - sz.Width / 2,
+                        framePadding.Top + (meterLocation.Height * 5) / 7 - sz.Height / 2);
+                }
+            }
+
             using (Brush b = new SolidBrush(ForeColor)) {
                 SizeF sz;
+
                 sz = g.MeasureString("Max: " + maxValue.ToString() + " " + valueUnit, Font);
                 g.DrawString("Max: " + maxValue.ToString() + " " + valueUnit, Font, b,
                     framePadding.Left + (meterLocation.Width / 2) - sz.Width / 2,
                     framePadding.Top + (meterLocation.Height * 10) / 11 - sz.Height / 2);
-                
-                fValue = new Font(Font.Name, 14.0f, FontStyle.Bold);
-                sz = g.MeasureString(value.ToString() + " " + valueUnit, fValue);
-                g.DrawString(value.ToString() + " " + valueUnit, fValue, b,
-                    framePadding.Left + (meterLocation.Width / 2) - sz.Width / 2,
-                    framePadding.Top + (meterLocation.Height * 5) / 7 - sz.Height / 2);
             }
         }
 

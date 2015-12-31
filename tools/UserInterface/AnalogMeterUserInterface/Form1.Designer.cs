@@ -44,6 +44,8 @@
             // 
             // analogMeter
             // 
+            this.analogMeter.BackColor = System.Drawing.Color.Black;
+            this.analogMeter.ForeColor = System.Drawing.Color.White;
             this.analogMeter.FrameColor = System.Drawing.Color.Black;
             this.analogMeter.FramePadding = new System.Windows.Forms.Padding(0);
             this.analogMeter.InternalPadding = new System.Windows.Forms.Padding(5);
@@ -52,6 +54,10 @@
             this.analogMeter.MaxThreshold = 1000F;
             this.analogMeter.MinRange = 0F;
             this.analogMeter.Name = "analogMeter";
+            this.analogMeter.NormalBackColor = System.Drawing.Color.Black;
+            this.analogMeter.NormalValueColor = System.Drawing.Color.ForestGreen;
+            this.analogMeter.OverMaxThresholdBackColor = System.Drawing.Color.DarkBlue;
+            this.analogMeter.OverMaxThresholdValueColor = System.Drawing.Color.Orange;
             this.analogMeter.PointSize = 50F;
             this.analogMeter.Size = new System.Drawing.Size(200, 110);
             this.analogMeter.TabIndex = 0;
