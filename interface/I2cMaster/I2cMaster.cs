@@ -261,5 +261,10 @@ namespace I2cMasterInterface
 
             return 0;
         }
+
+        public int SetTimeoutApi(UInt16 timeout)
+        {
+            return AardvarkApi.aa_i2c_bus_timeout(iHandler, timeout);
+        }
     }
 }
