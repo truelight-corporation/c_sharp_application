@@ -24,6 +24,8 @@ namespace LensAlignment
             if (imLightSoutce.ConnectApi(100) < 0)
                 return -1;
 
+            imLightSoutce.SetTimeoutApi(50);
+
             if (imLightSoutce.connected == false) {
                 cbLightSourceConnected.Checked = false;
                 return -1;
@@ -98,6 +100,8 @@ namespace LensAlignment
 
             if (imBeAlignment.ConnectApi(100) < 0)
                 return -1;
+
+            imBeAlignment.SetTimeoutApi(50);
 
             if (imBeAlignment.connected == false) {
                 cbBeAlignmentConnected.Checked = false;
@@ -177,6 +181,9 @@ namespace LensAlignment
 
         private void _OnClosingHandler(object sender, EventArgs e)
         {
+            ucLensAlignment.MonitorUpdateStopApi();
+            _IM_LightSourceDisconnect();
+            _IM_BeAlignmentDisconnect();
             if (dtValue.Rows.Count > 0)
                 _bSave_Click(sender, e);
         }

@@ -476,32 +476,35 @@ namespace LensAlignment
 
         public void MonitorValueUpdateApi(object sender, DoWorkEventArgs e)
         {
-            int i = 0, delay;
+            bool lightSourecReadError, beAlignmentReadError;
+            int i, delay;
+
+            i = 0;
+            delay = 100;
 
             while (startMonitor) {
-                delay = 100;
+                lightSourecReadError = beAlignmentReadError = false;
                 bwMonitor.ReportProgress(0, null);
-                if (i == 0) {
-                    if (_ReadLightSourceInfoValue() < 0)
-                        delay += 10;
 
-                    if (_ReadBeAlignmentInfoValue() < 0)
-                        delay += 10;
-                }
                 if (_ReadLightSourceRxValue() < 0)
-                    delay += 10;
-
+                    lightSourecReadError = true;
+    
                 if (_ReadBeAlignmentRxValue() < 0)
-                    delay += 10;
+                        beAlignmentReadError = true;
+                else if (_ReadBeAlignmentMpdValue() < 0)
+                        beAlignmentReadError = true;
 
-                if (_ReadBeAlignmentMpdValue() < 0)
-                    delay += 10;
-
-                if (i++ >= 5)
+                if (i++ >= 5) {
                     i = 0;
-                
-                if (delay > 0)
-                System.Threading.Thread.Sleep(delay);
+                    if (lightSourecReadError == false)
+                        _ReadLightSourceInfoValue();
+
+                    if (beAlignmentReadError == false)
+                        _ReadBeAlignmentInfoValue();
+                }
+
+                if ((lightSourecReadError == false) && (beAlignmentReadError == false))
+                    System.Threading.Thread.Sleep(delay);
             }
             bwMonitor.ReportProgress(100, null);
         }
@@ -674,25 +677,28 @@ namespace LensAlignment
         private void tbBeAlignmentMpdLimit_TextChanged(object sender, EventArgs e)
         {
             float tmpF;
+            if (tbBeAlignmentMpdLimit.Text.Length == 0)
+                return;
             float.TryParse(tbBeAlignmentMpdLimit.Text, out tmpF);
             amBeAlignmentMpd1.MaxThreshold = amBeAlignmentMpd2.MaxThreshold = amBeAlignmentMpd3.MaxThreshold = amBeAlignmentMpd4.MaxThreshold = tmpF;
-            amBeAlignmentMpd1.MaxRange = amBeAlignmentMpd2.MaxRange = amBeAlignmentMpd3.MaxRange = amBeAlignmentMpd4.MaxRange = tmpF + 100;
         }
 
         private void tbBeAlignmentRxLimit_TextChanged(object sender, EventArgs e)
         {
             float tmpF;
+            if (tbBeAlignmentRxLimit.Text.Length == 0)
+                return;
             float.TryParse(tbBeAlignmentRxLimit.Text, out tmpF);
             amBeAlignmentRx4.MaxThreshold = amBeAlignmentRx3.MaxThreshold = amBeAlignmentRx2.MaxThreshold = amBeAlignmentRx1.MaxThreshold = tmpF;
-            amBeAlignmentRx4.MaxRange = amBeAlignmentRx3.MaxRange = amBeAlignmentRx2.MaxRange = amBeAlignmentRx1.MaxRange = tmpF + 100;
         }
 
         private void tbLightSourceRxLimit_TextChanged(object sender, EventArgs e)
         {
             float tmpF;
+            if (tbLightSourceRxLimit.Text.Length == 0)
+                return;
             float.TryParse(tbLightSourceRxLimit.Text, out tmpF);
-            amLightSourceRx1.MaxThreshold = amLightSourceRx2.MaxThreshold = amLightSourceRx3.MaxThreshold = amLightSourceRx4.MaxThreshold = tmpF + 600;
-            amLightSourceRx1.MaxRange = amLightSourceRx2.MaxRange = amLightSourceRx3.MaxRange = amLightSourceRx4.MaxRange = tmpF + 600;
+            amLightSourceRx1.MaxThreshold = amLightSourceRx2.MaxThreshold = amLightSourceRx3.MaxThreshold = amLightSourceRx4.MaxThreshold = tmpF;
         }
 
         private void bClearAllMaxValue_Click(object sender, EventArgs e)
@@ -711,6 +717,33 @@ namespace LensAlignment
             amBeAlignmentRx2.ClearMaxValueApi();
             amBeAlignmentRx3.ClearMaxValueApi();
             amBeAlignmentRx4.ClearMaxValueApi();
+        }
+
+        private void tbBeAlignmentMpdMaxRange_TextChanged(object sender, EventArgs e)
+        {
+            float tmpF;
+            if (tbBeAlignmentMpdMaxRange.Text.Length == 0)
+                return;
+            float.TryParse(tbBeAlignmentMpdMaxRange.Text, out tmpF);
+            amBeAlignmentMpd1.MaxRange = amBeAlignmentMpd2.MaxRange = amBeAlignmentMpd3.MaxRange = amBeAlignmentMpd4.MaxRange = tmpF;
+        }
+
+        private void tbLightSourceRxMaxRange_TextChanged(object sender, EventArgs e)
+        {
+            float tmpF;
+            if (tbLightSourceRxMaxRange.Text.Length == 0)
+                return;
+            float.TryParse(tbLightSourceRxMaxRange.Text, out tmpF);
+            amLightSourceRx1.MaxRange = amLightSourceRx2.MaxRange = amLightSourceRx3.MaxRange = amLightSourceRx4.MaxRange = tmpF;
+        }
+
+        private void tbBeAlignmentRxMaxRange_TextChanged(object sender, EventArgs e)
+        {
+            float tmpF;
+            if (tbBeAlignmentRxMaxRange.Text.Length == 0)
+                return;
+            float.TryParse(tbBeAlignmentRxMaxRange.Text, out tmpF);
+            amBeAlignmentRx4.MaxRange = amBeAlignmentRx3.MaxRange = amBeAlignmentRx2.MaxRange = amBeAlignmentRx1.MaxRange = tmpF;
         }
     }
 }

@@ -87,6 +87,12 @@
             this.lTemperature = new System.Windows.Forms.Label();
             this.tbBeAlignmentVcc = new System.Windows.Forms.TextBox();
             this.bClearAllMaxValue = new System.Windows.Forms.Button();
+            this.lBeAlignmentMpdMaxRange = new System.Windows.Forms.Label();
+            this.tbBeAlignmentMpdMaxRange = new System.Windows.Forms.TextBox();
+            this.tbLightSourceRxMaxRange = new System.Windows.Forms.TextBox();
+            this.lLightSourceRxMaxRange = new System.Windows.Forms.Label();
+            this.tbBeAlignmentRxMaxRange = new System.Windows.Forms.TextBox();
+            this.lBeAlignmentRxMaxRange = new System.Windows.Forms.Label();
             this.gbBeAlignmentMpd.SuspendLayout();
             this.gbBeAlignmentRx.SuspendLayout();
             this.gbLightSourceRx.SuspendLayout();
@@ -95,6 +101,8 @@
             // 
             // gbBeAlignmentMpd
             // 
+            this.gbBeAlignmentMpd.Controls.Add(this.tbBeAlignmentMpdMaxRange);
+            this.gbBeAlignmentMpd.Controls.Add(this.lBeAlignmentMpdMaxRange);
             this.gbBeAlignmentMpd.Controls.Add(this.tbBeAlignmentMpdLimit);
             this.gbBeAlignmentMpd.Controls.Add(this.lBeAlignmentMpdLimit);
             this.gbBeAlignmentMpd.Controls.Add(this.tbBeAlignmentMpdRegisterAddr);
@@ -169,10 +177,10 @@
             this.amBeAlignmentMpd1.Size = new System.Drawing.Size(260, 125);
             this.amBeAlignmentMpd1.TabIndex = 3;
             this.amBeAlignmentMpd1.Text = "MPD1";
-            this.amBeAlignmentMpd1.TickLargeFrequency = 200F;
-            this.amBeAlignmentMpd1.TickSmallFrequency = 100F;
+            this.amBeAlignmentMpd1.TickLargeFrequency = 150F;
+            this.amBeAlignmentMpd1.TickSmallFrequency = 30F;
             this.amBeAlignmentMpd1.TickStartAngle = 20F;
-            this.amBeAlignmentMpd1.TickTinyFrequency = 20F;
+            this.amBeAlignmentMpd1.TickTinyFrequency = 15F;
             this.amBeAlignmentMpd1.Value = 0F;
             this.amBeAlignmentMpd1.ValueUnit = "uA";
             // 
@@ -196,10 +204,10 @@
             this.amBeAlignmentMpd2.Size = new System.Drawing.Size(260, 125);
             this.amBeAlignmentMpd2.TabIndex = 2;
             this.amBeAlignmentMpd2.Text = "MPD2";
-            this.amBeAlignmentMpd2.TickLargeFrequency = 200F;
-            this.amBeAlignmentMpd2.TickSmallFrequency = 100F;
+            this.amBeAlignmentMpd2.TickLargeFrequency = 150F;
+            this.amBeAlignmentMpd2.TickSmallFrequency = 30F;
             this.amBeAlignmentMpd2.TickStartAngle = 20F;
-            this.amBeAlignmentMpd2.TickTinyFrequency = 20F;
+            this.amBeAlignmentMpd2.TickTinyFrequency = 15F;
             this.amBeAlignmentMpd2.Value = 0F;
             this.amBeAlignmentMpd2.ValueUnit = "uA";
             // 
@@ -231,10 +239,10 @@
             this.amBeAlignmentMpd3.Size = new System.Drawing.Size(260, 125);
             this.amBeAlignmentMpd3.TabIndex = 1;
             this.amBeAlignmentMpd3.Text = "MPD3";
-            this.amBeAlignmentMpd3.TickLargeFrequency = 200F;
-            this.amBeAlignmentMpd3.TickSmallFrequency = 100F;
+            this.amBeAlignmentMpd3.TickLargeFrequency = 150F;
+            this.amBeAlignmentMpd3.TickSmallFrequency = 30F;
             this.amBeAlignmentMpd3.TickStartAngle = 20F;
-            this.amBeAlignmentMpd3.TickTinyFrequency = 20F;
+            this.amBeAlignmentMpd3.TickTinyFrequency = 15F;
             this.amBeAlignmentMpd3.Value = 0F;
             this.amBeAlignmentMpd3.ValueUnit = "uA";
             // 
@@ -258,10 +266,10 @@
             this.amBeAlignmentMpd4.Size = new System.Drawing.Size(260, 125);
             this.amBeAlignmentMpd4.TabIndex = 0;
             this.amBeAlignmentMpd4.Text = "MPD4";
-            this.amBeAlignmentMpd4.TickLargeFrequency = 200F;
-            this.amBeAlignmentMpd4.TickSmallFrequency = 100F;
+            this.amBeAlignmentMpd4.TickLargeFrequency = 150F;
+            this.amBeAlignmentMpd4.TickSmallFrequency = 30F;
             this.amBeAlignmentMpd4.TickStartAngle = 20F;
-            this.amBeAlignmentMpd4.TickTinyFrequency = 20F;
+            this.amBeAlignmentMpd4.TickTinyFrequency = 15F;
             this.amBeAlignmentMpd4.Value = 0F;
             this.amBeAlignmentMpd4.ValueUnit = "uA";
             // 
@@ -293,6 +301,8 @@
             // 
             // gbBeAlignmentRx
             // 
+            this.gbBeAlignmentRx.Controls.Add(this.tbBeAlignmentRxMaxRange);
+            this.gbBeAlignmentRx.Controls.Add(this.lBeAlignmentRxMaxRange);
             this.gbBeAlignmentRx.Controls.Add(this.tbBeAlignmentRxLimit);
             this.gbBeAlignmentRx.Controls.Add(this.lBeAlignmentRxLimit);
             this.gbBeAlignmentRx.Controls.Add(this.tbBeAlignmentRxRegisterAddr);
@@ -373,10 +383,10 @@
             this.amBeAlignmentRx4.Size = new System.Drawing.Size(260, 125);
             this.amBeAlignmentRx4.TabIndex = 3;
             this.amBeAlignmentRx4.Text = "Rx4";
-            this.amBeAlignmentRx4.TickLargeFrequency = 300F;
-            this.amBeAlignmentRx4.TickSmallFrequency = 100F;
+            this.amBeAlignmentRx4.TickLargeFrequency = 150F;
+            this.amBeAlignmentRx4.TickSmallFrequency = 30F;
             this.amBeAlignmentRx4.TickStartAngle = 20F;
-            this.amBeAlignmentRx4.TickTinyFrequency = 20F;
+            this.amBeAlignmentRx4.TickTinyFrequency = 15F;
             this.amBeAlignmentRx4.Value = 0F;
             this.amBeAlignmentRx4.ValueUnit = "";
             // 
@@ -409,10 +419,10 @@
             this.amBeAlignmentRx3.Size = new System.Drawing.Size(260, 125);
             this.amBeAlignmentRx3.TabIndex = 2;
             this.amBeAlignmentRx3.Text = "Rx3";
-            this.amBeAlignmentRx3.TickLargeFrequency = 300F;
-            this.amBeAlignmentRx3.TickSmallFrequency = 100F;
+            this.amBeAlignmentRx3.TickLargeFrequency = 150F;
+            this.amBeAlignmentRx3.TickSmallFrequency = 30F;
             this.amBeAlignmentRx3.TickStartAngle = 20F;
-            this.amBeAlignmentRx3.TickTinyFrequency = 20F;
+            this.amBeAlignmentRx3.TickTinyFrequency = 15F;
             this.amBeAlignmentRx3.Value = 0F;
             this.amBeAlignmentRx3.ValueUnit = "";
             // 
@@ -436,10 +446,10 @@
             this.amBeAlignmentRx2.Size = new System.Drawing.Size(260, 125);
             this.amBeAlignmentRx2.TabIndex = 1;
             this.amBeAlignmentRx2.Text = "Rx2";
-            this.amBeAlignmentRx2.TickLargeFrequency = 300F;
-            this.amBeAlignmentRx2.TickSmallFrequency = 100F;
+            this.amBeAlignmentRx2.TickLargeFrequency = 150F;
+            this.amBeAlignmentRx2.TickSmallFrequency = 30F;
             this.amBeAlignmentRx2.TickStartAngle = 20F;
-            this.amBeAlignmentRx2.TickTinyFrequency = 20F;
+            this.amBeAlignmentRx2.TickTinyFrequency = 15F;
             this.amBeAlignmentRx2.Value = 0F;
             this.amBeAlignmentRx2.ValueUnit = "";
             // 
@@ -463,15 +473,17 @@
             this.amBeAlignmentRx1.Size = new System.Drawing.Size(260, 125);
             this.amBeAlignmentRx1.TabIndex = 0;
             this.amBeAlignmentRx1.Text = "Rx1";
-            this.amBeAlignmentRx1.TickLargeFrequency = 300F;
-            this.amBeAlignmentRx1.TickSmallFrequency = 100F;
+            this.amBeAlignmentRx1.TickLargeFrequency = 150F;
+            this.amBeAlignmentRx1.TickSmallFrequency = 30F;
             this.amBeAlignmentRx1.TickStartAngle = 20F;
-            this.amBeAlignmentRx1.TickTinyFrequency = 20F;
+            this.amBeAlignmentRx1.TickTinyFrequency = 15F;
             this.amBeAlignmentRx1.Value = 0F;
             this.amBeAlignmentRx1.ValueUnit = "";
             // 
             // gbLightSourceRx
             // 
+            this.gbLightSourceRx.Controls.Add(this.tbLightSourceRxMaxRange);
+            this.gbLightSourceRx.Controls.Add(this.lLightSourceRxMaxRange);
             this.gbLightSourceRx.Controls.Add(this.tbLightSourceRxLimit);
             this.gbLightSourceRx.Controls.Add(this.lLightSourceRxLimit);
             this.gbLightSourceRx.Controls.Add(this.tbLightSourceRxRegisterAddr);
@@ -572,7 +584,7 @@
             this.amLightSourceRx1.TabIndex = 3;
             this.amLightSourceRx1.Text = "Tx1";
             this.amLightSourceRx1.TickLargeFrequency = 500F;
-            this.amLightSourceRx1.TickSmallFrequency = 250F;
+            this.amLightSourceRx1.TickSmallFrequency = 100F;
             this.amLightSourceRx1.TickStartAngle = 20F;
             this.amLightSourceRx1.TickTinyFrequency = 50F;
             this.amLightSourceRx1.Value = 0F;
@@ -599,7 +611,7 @@
             this.amLightSourceRx2.TabIndex = 2;
             this.amLightSourceRx2.Text = "Tx2";
             this.amLightSourceRx2.TickLargeFrequency = 500F;
-            this.amLightSourceRx2.TickSmallFrequency = 250F;
+            this.amLightSourceRx2.TickSmallFrequency = 100F;
             this.amLightSourceRx2.TickStartAngle = 20F;
             this.amLightSourceRx2.TickTinyFrequency = 50F;
             this.amLightSourceRx2.Value = 0F;
@@ -635,7 +647,7 @@
             this.amLightSourceRx3.TabIndex = 1;
             this.amLightSourceRx3.Text = "Tx3";
             this.amLightSourceRx3.TickLargeFrequency = 500F;
-            this.amLightSourceRx3.TickSmallFrequency = 250F;
+            this.amLightSourceRx3.TickSmallFrequency = 100F;
             this.amLightSourceRx3.TickStartAngle = 20F;
             this.amLightSourceRx3.TickTinyFrequency = 50F;
             this.amLightSourceRx3.Value = 0F;
@@ -662,7 +674,7 @@
             this.amLightSourceRx4.TabIndex = 0;
             this.amLightSourceRx4.Text = "Tx4";
             this.amLightSourceRx4.TickLargeFrequency = 500F;
-            this.amLightSourceRx4.TickSmallFrequency = 250F;
+            this.amLightSourceRx4.TickSmallFrequency = 100F;
             this.amLightSourceRx4.TickStartAngle = 20F;
             this.amLightSourceRx4.TickTinyFrequency = 50F;
             this.amLightSourceRx4.Value = 0F;
@@ -865,6 +877,60 @@
             this.bClearAllMaxValue.UseVisualStyleBackColor = false;
             this.bClearAllMaxValue.Click += new System.EventHandler(this.bClearAllMaxValue_Click);
             // 
+            // lBeAlignmentMpdMaxRange
+            // 
+            this.lBeAlignmentMpdMaxRange.AutoSize = true;
+            this.lBeAlignmentMpdMaxRange.Location = new System.Drawing.Point(6, 134);
+            this.lBeAlignmentMpdMaxRange.Name = "lBeAlignmentMpdMaxRange";
+            this.lBeAlignmentMpdMaxRange.Size = new System.Drawing.Size(92, 12);
+            this.lBeAlignmentMpdMaxRange.TabIndex = 22;
+            this.lBeAlignmentMpdMaxRange.Text = "MPD Max Range :";
+            // 
+            // tbBeAlignmentMpdMaxRange
+            // 
+            this.tbBeAlignmentMpdMaxRange.Location = new System.Drawing.Point(115, 130);
+            this.tbBeAlignmentMpdMaxRange.Name = "tbBeAlignmentMpdMaxRange";
+            this.tbBeAlignmentMpdMaxRange.Size = new System.Drawing.Size(40, 22);
+            this.tbBeAlignmentMpdMaxRange.TabIndex = 23;
+            this.tbBeAlignmentMpdMaxRange.Text = "600";
+            this.tbBeAlignmentMpdMaxRange.TextChanged += new System.EventHandler(this.tbBeAlignmentMpdMaxRange_TextChanged);
+            // 
+            // tbLightSourceRxMaxRange
+            // 
+            this.tbLightSourceRxMaxRange.Location = new System.Drawing.Point(115, 130);
+            this.tbLightSourceRxMaxRange.Name = "tbLightSourceRxMaxRange";
+            this.tbLightSourceRxMaxRange.Size = new System.Drawing.Size(40, 22);
+            this.tbLightSourceRxMaxRange.TabIndex = 35;
+            this.tbLightSourceRxMaxRange.Text = "2000";
+            this.tbLightSourceRxMaxRange.TextChanged += new System.EventHandler(this.tbLightSourceRxMaxRange_TextChanged);
+            // 
+            // lLightSourceRxMaxRange
+            // 
+            this.lLightSourceRxMaxRange.AutoSize = true;
+            this.lLightSourceRxMaxRange.Location = new System.Drawing.Point(6, 133);
+            this.lLightSourceRxMaxRange.Name = "lLightSourceRxMaxRange";
+            this.lLightSourceRxMaxRange.Size = new System.Drawing.Size(82, 12);
+            this.lLightSourceRxMaxRange.TabIndex = 34;
+            this.lLightSourceRxMaxRange.Text = "Rx Max Range :";
+            // 
+            // tbBeAlignmentRxMaxRange
+            // 
+            this.tbBeAlignmentRxMaxRange.Location = new System.Drawing.Point(115, 102);
+            this.tbBeAlignmentRxMaxRange.Name = "tbBeAlignmentRxMaxRange";
+            this.tbBeAlignmentRxMaxRange.Size = new System.Drawing.Size(40, 22);
+            this.tbBeAlignmentRxMaxRange.TabIndex = 29;
+            this.tbBeAlignmentRxMaxRange.Text = "600";
+            this.tbBeAlignmentRxMaxRange.TextChanged += new System.EventHandler(this.tbBeAlignmentRxMaxRange_TextChanged);
+            // 
+            // lBeAlignmentRxMaxRange
+            // 
+            this.lBeAlignmentRxMaxRange.AutoSize = true;
+            this.lBeAlignmentRxMaxRange.Location = new System.Drawing.Point(6, 105);
+            this.lBeAlignmentRxMaxRange.Name = "lBeAlignmentRxMaxRange";
+            this.lBeAlignmentRxMaxRange.Size = new System.Drawing.Size(82, 12);
+            this.lBeAlignmentRxMaxRange.TabIndex = 28;
+            this.lBeAlignmentRxMaxRange.Text = "Rx Max Range :";
+            // 
             // UcLensAlignment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -952,5 +1018,11 @@
         private System.Windows.Forms.TextBox tbLightSourceTx1Bias;
         private System.Windows.Forms.TextBox tbLightSourceTemperature;
         private System.Windows.Forms.TextBox tbLightSourceVcc;
+        private System.Windows.Forms.TextBox tbBeAlignmentMpdMaxRange;
+        private System.Windows.Forms.Label lBeAlignmentMpdMaxRange;
+        private System.Windows.Forms.TextBox tbLightSourceRxMaxRange;
+        private System.Windows.Forms.Label lLightSourceRxMaxRange;
+        private System.Windows.Forms.TextBox tbBeAlignmentRxMaxRange;
+        private System.Windows.Forms.Label lBeAlignmentRxMaxRange;
     }
 }

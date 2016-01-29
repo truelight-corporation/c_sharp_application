@@ -17,7 +17,10 @@ namespace LensAlignment
             
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new fLensAlignment());
+            try {
+                Application.Run(new fLensAlignment());
+            }
+            catch (Exception) { }
         }
     }
 }
