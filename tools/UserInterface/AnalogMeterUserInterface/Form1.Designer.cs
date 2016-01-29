@@ -29,6 +29,7 @@
         {
             this.trackBar = new System.Windows.Forms.TrackBar();
             this.analogMeter = new AnalogMeterUserInterface.AnalogMeter();
+            this.tbMaxValue = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,11 +70,20 @@
             this.analogMeter.Value = 0F;
             this.analogMeter.ValueUnit = "uW";
             // 
+            // tbMaxValue
+            // 
+            this.tbMaxValue.Location = new System.Drawing.Point(12, 176);
+            this.tbMaxValue.Name = "tbMaxValue";
+            this.tbMaxValue.Size = new System.Drawing.Size(100, 22);
+            this.tbMaxValue.TabIndex = 2;
+            this.tbMaxValue.TextChanged += new System.EventHandler(this.tbMaxValue_TextChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(252, 258);
+            this.Controls.Add(this.tbMaxValue);
             this.Controls.Add(this.trackBar);
             this.Controls.Add(this.analogMeter);
             this.Name = "Form1";
@@ -88,6 +98,7 @@
 
         private AnalogMeter analogMeter;
         private System.Windows.Forms.TrackBar trackBar;
+        private System.Windows.Forms.TextBox tbMaxValue;
     }
 }
 

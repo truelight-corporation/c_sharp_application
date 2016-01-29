@@ -122,6 +122,8 @@ namespace AnalogMeterUserInterface
                 return this.maxRange;
             }
             set {
+                if (maxRange <= 0)
+                    return;
                 this.maxRange = value;
                 CreateBackground();
             }
@@ -574,9 +576,17 @@ namespace AnalogMeterUserInterface
             
             float r2x, r2y;
 			float i;
+            int tmpI;
 
 			if (Width < 1 || Height < 1)
 				return;
+
+            tmpI = 0;
+            while (tmpI < maxRange)
+                tmpI += 10;
+            tickLargeFrequency = tmpI / 4;
+            tickSmallFrequency = tickLargeFrequency / 5;
+            tickTinyFrequency = tickSmallFrequency / 2;
 
 			bmp = new Bitmap(Width, Height);
 			g = Graphics.FromImage(bmp);
