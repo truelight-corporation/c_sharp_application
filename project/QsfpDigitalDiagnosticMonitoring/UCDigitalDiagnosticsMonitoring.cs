@@ -639,7 +639,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             }
 
             reverseData = bATmp.Reverse().ToArray();
-            tmp = BitConverter.ToInt16(reverseData, 0);
+            tmp = BitConverter.ToUInt16(reverseData, 0);
             vcc = tmp;
             vcc = vcc / 10000;
             tbVcc.Text = vcc.ToString("#0.0000");
