@@ -15,12 +15,30 @@ namespace Gn1090Gn1190Config
     {
         private I2cMaster i2cMaster = new I2cMaster();
 
+        private int _SetQsfpMode(byte mode)
+        {
+            byte[] data = new byte[] { 32 };
+
+            if (_I2cWrite(80, 127, 1, data) < 0)
+                return -1;
+
+            data[0] = mode;
+
+            if (_I2cWrite(80, 164, 1, data) < 0)
+                return -1;
+
+            return 0;
+        }
+
         private int _I2cMasterConnect()
         {
             if (i2cMaster.ConnectApi(100) < 0)
                 return -1;
 
             cbConnected.Checked = true;
+
+            if (_SetQsfpMode(0x4D) < 0)
+                return -1;
 
             return 0;
         }

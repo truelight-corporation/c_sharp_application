@@ -651,7 +651,8 @@ namespace Gn1090Gn1190Config
             int iTmp;
 
             iTmp = data & 0x1F;
-            cbTx1CpaLevel.SelectedIndex = iTmp;
+            if (iTmp != 0x1F)
+                cbTx1CpaLevel.SelectedIndex = iTmp;
 
             if ((data & 0x20) == 0)
                 cbTx1CpaDirection.Checked = false;
@@ -829,7 +830,8 @@ namespace Gn1090Gn1190Config
             int iTmp;
 
             iTmp = data & 0x1F;
-            cbTx2CpaLevel.SelectedIndex = iTmp;
+            if (iTmp != 0x1F)
+                cbTx2CpaLevel.SelectedIndex = iTmp;
 
             if ((data & 0x20) == 0)
                 cbTx2CpaDirection.Checked = false;
@@ -1007,7 +1009,8 @@ namespace Gn1090Gn1190Config
             int iTmp;
 
             iTmp = data & 0x1F;
-            cbTx3CpaLevel.SelectedIndex = iTmp;
+            if (iTmp != 0x1F)
+                cbTx3CpaLevel.SelectedIndex = iTmp;
 
             if ((data & 0x20) == 0)
                 cbTx3CpaDirection.Checked = false;
@@ -1185,7 +1188,8 @@ namespace Gn1090Gn1190Config
             int iTmp;
 
             iTmp = data & 0x1F;
-            cbTx4CpaLevel.SelectedIndex = iTmp;
+            if (iTmp != 0x1F)
+                cbTx4CpaLevel.SelectedIndex = iTmp;
 
             if ((data & 0x20) == 0)
                 cbTx4CpaDirection.Checked = false;

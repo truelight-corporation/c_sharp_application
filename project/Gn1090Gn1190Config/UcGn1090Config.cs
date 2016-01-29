@@ -216,7 +216,8 @@ namespace Gn1090Gn1190Config
             int iTmp;
 
             iTmp = data & 0x0F;
-            cbRssi2Select.SelectedIndex = iTmp;
+            if (iTmp != 0x0F)
+                cbRssi2Select.SelectedIndex = iTmp;
 
             if ((data & 0x80) == 0)
                 cbRssi2Enable.Checked = false;
@@ -229,7 +230,8 @@ namespace Gn1090Gn1190Config
             int iTmp;
 
             iTmp = data & 0x0F;
-            cbRssi1Select.SelectedIndex = iTmp;
+            if (iTmp != 0x0F)
+                cbRssi1Select.SelectedIndex = iTmp;
 
             if ((data & 0x80) == 0)
                 cbRssi1Enable.Checked = false;
