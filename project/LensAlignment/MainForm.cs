@@ -305,5 +305,196 @@ namespace LensAlignment
             else
                 ucLensAlignment.MonitorUpdateStopApi();
         }
+
+        private void bRead_Click(object sender, EventArgs e)
+        {
+            byte[] data = new byte[2];
+            byte[] reverseData;
+            int tmp;
+            float power;
+
+            tbRx1Rssi.Text = tbRx2Rssi.Text = tbRx3Rssi.Text = tbRx4Rssi.Text = "";
+            tbRx1Rate.Text = tbRx2Rate.Text = tbRx3Rate.Text = tbRx4Rate.Text = "";
+            tbTx1RxPower.Text = tbTx2RxPower.Text = tbTx3RxPower.Text = tbTx4RxPower.Text = "";
+
+            if (_IM_LightSourceRead(80, 108, 2, data) != 2)
+                return;
+
+            reverseData = data.Reverse().ToArray();
+            tmp = BitConverter.ToInt16(reverseData, 0);
+            tbRx1Rssi.Text = tmp.ToString();
+
+            if (_IM_LightSourceRead(80, 110, 2, data) != 2)
+                return;
+
+            reverseData = data.Reverse().ToArray();
+            tmp = BitConverter.ToInt16(reverseData, 0);
+            tbRx2Rssi.Text = tmp.ToString();
+
+            if (_IM_LightSourceRead(80, 112, 2, data) != 2)
+                return;
+
+            reverseData = data.Reverse().ToArray();
+            tmp = BitConverter.ToInt16(reverseData, 0);
+            tbRx3Rssi.Text = tmp.ToString();
+
+            if (_IM_LightSourceRead(80, 114, 2, data) != 2)
+                return;
+
+            reverseData = data.Reverse().ToArray();
+            tmp = BitConverter.ToInt16(reverseData, 0);
+            tbRx4Rssi.Text = tmp.ToString();
+
+            if (_IM_LightSourceRead(80, 34, 2, data) != 2)
+                return;
+
+            reverseData = data.Reverse().ToArray();
+            tmp = BitConverter.ToInt16(reverseData, 0);
+            power = tmp / 10;
+            tbTx1RxPower.Text = power.ToString("#0.0");
+
+            if (_IM_LightSourceRead(80, 36, 2, data) != 2)
+                return;
+
+            reverseData = data.Reverse().ToArray();
+            tmp = BitConverter.ToInt16(reverseData, 0);
+            power = tmp / 10;
+            tbTx2RxPower.Text = power.ToString("#0.0");
+
+            if (_IM_LightSourceRead(80, 38, 2, data) != 2)
+                return;
+
+            reverseData = data.Reverse().ToArray();
+            tmp = BitConverter.ToInt16(reverseData, 0);
+            power = tmp / 10;
+            tbTx3RxPower.Text = power.ToString("#0.0");
+
+            if (_IM_LightSourceRead(80, 40, 2, data) != 2)
+                return;
+
+            reverseData = data.Reverse().ToArray();
+            tmp = BitConverter.ToInt16(reverseData, 0);
+            power = tmp / 10;
+            tbTx4RxPower.Text = power.ToString("#0.0");
+
+            data = new byte[] { 32, 0, 0, 0 };
+            _IM_LightSourceWrite(80, 127, 1, data);
+            if (_IM_LightSourceRead(80, 163, 1, data) != 1)
+                return;
+
+            tbRxRateDefault.Text = data[0].ToString();
+
+            if (tbRxRateMax.Text.Length == 0)
+                tbRxRateMax.Text = (data[0] + 15).ToString();
+
+            if (tbRxRateMin.Text.Length == 0)
+                tbRxRateMin.Text = (data[0] - 12).ToString();
+
+            data = new byte[] { 2, 0, 0, 0 };
+            _IM_LightSourceWrite(80, 127, 1, data);
+            if (_IM_LightSourceRead(80, 133, 4, data) != 4)
+                return;
+
+            tbRx1Rate.Text = data[0].ToString();
+            tbRx2Rate.Text = data[1].ToString();
+            tbRx3Rate.Text = data[2].ToString();
+            tbRx4Rate.Text = data[3].ToString();
+
+            return;
+        }
+
+        private int _WriteLightSourcePassword()
+        {
+            byte[] data = new byte[4];
+
+            if ((tbLightSourcePassword123.Text.Length != 2) ||
+                (tbLightSourcePassword124.Text.Length != 2) ||
+                (tbLightSourcePassword125.Text.Length != 2) ||
+                (tbLightSourcePassword126.Text.Length != 2)) {
+                MessageBox.Show("Please input 4 ASCII value password before write!!");
+                return -1;
+            }
+
+            try {
+                data[0] = Convert.ToByte(tbLightSourcePassword123.Text);
+                data[1] = Convert.ToByte(tbLightSourcePassword124.Text);
+                data[2] = Convert.ToByte(tbLightSourcePassword125.Text);
+                data[3] = Convert.ToByte(tbLightSourcePassword126.Text);
+            }
+            catch (Exception eTB) {
+                MessageBox.Show("Password to byte Error!!\n" + eTB.ToString());
+                return -1;
+            }
+
+            if (_IM_LightSourceWrite(80, 123, 4, data) < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _ClearLightSourcePassword()
+        {
+            byte[] data = new byte[4];
+
+            data[0] = data[1] = data[2] = data[3] = 0;
+
+            if (_IM_LightSourceWrite(80, 123, 4, data) < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _SetLightSourceQsfpMode(byte mode)
+        {
+            byte[] data = new byte[] { 32 };
+
+
+            if (_IM_LightSourceWrite(80, 127, 1, data) < 0)
+                return -1;
+
+            data[0] = mode;
+
+            if (_IM_LightSourceWrite(80, 164, 1, data) < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private void bWrite_Click(object sender, EventArgs e)
+        {
+            byte[] data = new byte[] { 2, 0, 0, 0 }; ;
+
+            if ((tbRx1Rate.Text.Length == 0) || (tbRx2Rate.Text.Length == 0) ||
+                (tbRx3Rate.Text.Length == 0) || (tbRx4Rate.Text.Length == 0)) {
+                MessageBox.Show("Please input Rx power rate!!");
+                return;
+            }
+
+            if (_WriteLightSourcePassword() < 0)
+                return;
+
+            if (_SetLightSourceQsfpMode(0x4D) < 0)
+                return;
+
+            _IM_LightSourceWrite(80, 127, 1, data);
+
+            try {
+                data[0] = Convert.ToByte(tbRx1Rate.Text);
+                data[1] = Convert.ToByte(tbRx2Rate.Text);
+                data[2] = Convert.ToByte(tbRx3Rate.Text);
+                data[3] = Convert.ToByte(tbRx4Rate.Text);
+            }
+            catch (Exception eTB) {
+                MessageBox.Show("Rx power rate out of range (0 ~ 255)!!\n" + eTB.ToString());
+                return;
+            }
+
+            _IM_LightSourceWrite(80, 133, 4, data);
+
+            _ClearLightSourcePassword();
+            _SetLightSourceQsfpMode(0);
+
+            return;
+        }
     }
 }
