@@ -1,4 +1,8 @@
 bin/
 obj/
+publish/
+Properties/
 LensAlignment.v12.suo
+LensAlignment.csproj.user
+LensAlignment_TemporaryKey.pfx
 *.TMP
