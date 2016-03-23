@@ -1437,6 +1437,8 @@ namespace QsfpCorrector
             if (qsfpI2cWriteCB(80, 132, 1, data) < 0)
                 return -1;
 
+            disableSend = false;
+
             _ClearPassword();
             _SetQsfpMode(0);
 
