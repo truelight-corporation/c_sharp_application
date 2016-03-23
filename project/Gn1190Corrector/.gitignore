@@ -1,0 +1,8 @@
+bin/
+obj/
+publish/
+Properties/
+Gn1190Corrector.v12.suo
+Gn1190Corrector.csproj.user
+Gn1190Corrector_TemporaryKey.pfx
+*.TMP
