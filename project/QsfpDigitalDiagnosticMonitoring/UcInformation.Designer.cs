@@ -63,6 +63,8 @@
             this.tbGigabitEthernetCompliant = new System.Windows.Forms.TextBox();
             this.lGigabitEthernetCompliant = new System.Windows.Forms.Label();
             this.gbUpPage0 = new System.Windows.Forms.GroupBox();
+            this.tbNewPassword = new System.Windows.Forms.TextBox();
+            this.lNewPassword = new System.Windows.Forms.Label();
             this.tbPassword = new System.Windows.Forms.TextBox();
             this.lPassword = new System.Windows.Forms.Label();
             this.tbEncoding = new System.Windows.Forms.TextBox();
@@ -126,8 +128,6 @@
             this.lBitRate = new System.Windows.Forms.Label();
             this.tbUpPage0Identifier = new System.Windows.Forms.TextBox();
             this.lUpPage0Identifier = new System.Windows.Forms.Label();
-            this.lNewPassword = new System.Windows.Forms.Label();
-            this.tbNewPassword = new System.Windows.Forms.TextBox();
             this.bPasswordReset = new System.Windows.Forms.Button();
             this.gbControlBytes.SuspendLayout();
             this.gbSpecificationCompliance.SuspendLayout();
@@ -533,12 +533,30 @@
             this.gbUpPage0.TabStop = false;
             this.gbUpPage0.Text = "UP Page 0";
             // 
+            // tbNewPassword
+            // 
+            this.tbNewPassword.Location = new System.Drawing.Point(559, 21);
+            this.tbNewPassword.Name = "tbNewPassword";
+            this.tbNewPassword.Size = new System.Drawing.Size(60, 22);
+            this.tbNewPassword.TabIndex = 69;
+            this.tbNewPassword.UseSystemPasswordChar = true;
+            // 
+            // lNewPassword
+            // 
+            this.lNewPassword.AutoSize = true;
+            this.lNewPassword.Location = new System.Drawing.Point(475, 24);
+            this.lNewPassword.Name = "lNewPassword";
+            this.lNewPassword.Size = new System.Drawing.Size(78, 12);
+            this.lNewPassword.TabIndex = 68;
+            this.lNewPassword.Text = "New Password :";
+            // 
             // tbPassword
             // 
             this.tbPassword.Location = new System.Drawing.Point(409, 21);
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(60, 22);
             this.tbPassword.TabIndex = 67;
+            this.tbPassword.Text = "3234";
             this.tbPassword.UseSystemPasswordChar = true;
             // 
             // lPassword
@@ -1119,23 +1137,6 @@
             this.lUpPage0Identifier.Size = new System.Drawing.Size(54, 12);
             this.lUpPage0Identifier.TabIndex = 28;
             this.lUpPage0Identifier.Text = "Identifier :";
-            // 
-            // lNewPassword
-            // 
-            this.lNewPassword.AutoSize = true;
-            this.lNewPassword.Location = new System.Drawing.Point(475, 24);
-            this.lNewPassword.Name = "lNewPassword";
-            this.lNewPassword.Size = new System.Drawing.Size(78, 12);
-            this.lNewPassword.TabIndex = 68;
-            this.lNewPassword.Text = "New Password :";
-            // 
-            // tbNewPassword
-            // 
-            this.tbNewPassword.Location = new System.Drawing.Point(559, 21);
-            this.tbNewPassword.Name = "tbNewPassword";
-            this.tbNewPassword.Size = new System.Drawing.Size(60, 22);
-            this.tbNewPassword.TabIndex = 69;
-            this.tbNewPassword.UseSystemPasswordChar = true;
             // 
             // bPasswordReset
             // 
