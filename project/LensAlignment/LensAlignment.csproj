@@ -63,12 +63,20 @@
   <PropertyGroup>
     <SignManifests>false</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>LensAlignment.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AnalogMeterUserInterface">
-      <HintPath>..\..\tools\UserInterface\AnalogMeterUserInterface\bin\Release\AnalogMeterUserInterface.dll</HintPath>
+    <Reference Include="AnalogMeterUserInterface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dll\AnalogMeterUserInterface.dll</HintPath>
     </Reference>
-    <Reference Include="I2cMasterInterface">
-      <HintPath>..\..\interface\I2cMaster\bin\Release\I2cMasterInterface.dll</HintPath>
+    <Reference Include="I2cMasterInterface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dll\I2cMasterInterface.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -110,6 +118,7 @@
     <EmbeddedResource Include="UcLensAlignment.resx">
       <DependentUpon>UcLensAlignment.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
