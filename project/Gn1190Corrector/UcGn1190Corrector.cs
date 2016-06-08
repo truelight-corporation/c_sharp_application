@@ -631,7 +631,7 @@ namespace Gn1190Corrector
 
             Array.Copy(data, 1, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
-            sTmp = Convert.ToSingle(BitConverter.ToUInt16(reverseData, 0)) / 10;
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10;
             tbModuleAverageCurrentEquationB.Text = sTmp.ToString("#0.0");
 
             Array.Copy(data, 3, bATmp, 0, 2);
@@ -769,21 +769,21 @@ namespace Gn1190Corrector
                 return -1;
             }
 
-            if ((Convert.ToSingle(tbAverageCurrentEquationB.Text) < 0) ||
-                Convert.ToSingle(tbAverageCurrentEquationB.Text) > 6553.5) {
+            if ((Convert.ToSingle(tbAverageCurrentEquationB.Text) < -3276.8) ||
+                Convert.ToSingle(tbAverageCurrentEquationB.Text) > 3276.7) {
                 MessageBox.Show("Average current equation B: " +
                     tbAverageCurrentEquationB.Text +
-                    " out of range (0 ~ 6553.5)!!");
+                    " out of range (-3276.8 ~ 3276.7)!!");
                 return -1;
             }
             try {
-                u16Tmp = Convert.ToUInt16(Convert.ToSingle(tbAverageCurrentEquationB.Text) * 10);
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbAverageCurrentEquationB.Text) * 10);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
                 return -1;
             }
-            bATmp = BitConverter.GetBytes(u16Tmp);
+            bATmp = BitConverter.GetBytes(s16Tmp);
             data[1] = bATmp[1];
             data[2] = bATmp[0];
 
@@ -1130,5 +1130,6 @@ namespace Gn1190Corrector
                 cbTemperatureCompensation.Enabled = false;
             }
         }
+
     }
 }
