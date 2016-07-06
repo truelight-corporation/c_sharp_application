@@ -272,7 +272,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             tbMaxCaseTemp.Text = data[62].ToString();
             tbCcBase.Text = "0x" + data[63].ToString("X2");
 
-            if (i2cReadCB(80, 193, 30, data) != 30)
+            if (i2cReadCB(80, 193, 31, data) != 31)
                 return;
 
             _ParserAddr193(data[0]);
@@ -286,7 +286,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             tbDateCode.Text = Encoding.Default.GetString(bATmp);
             tbDiagnosticMonitoringType.Text = "0x" + data[27].ToString("X2");
             tbEnhancedOptions.Text = "0x" + data[28].ToString("X2");
-            tbCcExt.Text = "0x" + data[29].ToString("X2");
+            tbCcExt.Text = "0x" + data[30].ToString("X2");
         }
 
         private int _WriteAddr86()
@@ -377,39 +377,227 @@ namespace QsfpDigitalDiagnosticMonitoring
             return 0;
         }
 
-        private int _WriteUpPage2Addr138_188()
+        private int _WriteUpPage0()
         {
             byte[] data = new byte[64];
             byte[] bATmp;
             string sTmp;
-            int i;
+            int i, iTmp;
+            ushort uSTmp;
 
             if (i2cWriteCB == null)
                 return -1;
 
-            data[0] = 2;
+            data[0] = 0;
             if (i2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
 
             Array.Clear(data, 0, 64);
+            if (tbUpPage0Identifier.Text.Length != 4 || tbUpPage0Identifier.Text.ElementAt(1) != 'x')
+                return -1;
+            iTmp = Int32.Parse(tbUpPage0Identifier.Text.Substring(2), System.Globalization.NumberStyles.HexNumber);
+            data[0] = Convert.ToByte(iTmp);
+
+            if (tbExtIdentifier.Text.Length != 4 || tbExtIdentifier.Text.ElementAt(1) != 'x')
+                return -1;
+            iTmp = Int32.Parse(tbExtIdentifier.Text.Substring(2), System.Globalization.NumberStyles.HexNumber);
+            data[1] = Convert.ToByte(iTmp);
+
+            if (tbConnector.Text.Length != 4 || tbConnector.Text.ElementAt(1) != 'x')
+                return -1;
+            iTmp = Int32.Parse(tbConnector.Text.Substring(2), System.Globalization.NumberStyles.HexNumber);
+            data[2] = Convert.ToByte(iTmp);
+
+            if (tb1040GEthernetCompliance.Text.Length != 4 || tb1040GEthernetCompliance.Text.ElementAt(1) != 'x')
+                return -1;
+            iTmp = Int32.Parse(tb1040GEthernetCompliance.Text.Substring(2), System.Globalization.NumberStyles.HexNumber);
+            data[3] = Convert.ToByte(iTmp);
+
+            if (tbSonetCompliance.Text.Length != 4 || tbSonetCompliance.Text.ElementAt(1) != 'x')
+                return -1;
+            iTmp = Int32.Parse(tbSonetCompliance.Text.Substring(2), System.Globalization.NumberStyles.HexNumber);
+            data[4] = Convert.ToByte(iTmp);
+
+            if (tbSasSataCompliance.Text.Length != 4 || tbSasSataCompliance.Text.ElementAt(1) != 'x')
+                return -1;
+            iTmp = Int32.Parse(tbSasSataCompliance.Text.Substring(2), System.Globalization.NumberStyles.HexNumber);
+            data[5] = Convert.ToByte(iTmp);
+
+            if (tbGigabitEthernetCompliant.Text.Length != 4 || tbGigabitEthernetCompliant.Text.ElementAt(1) != 'x')
+                return -1;
+            iTmp = Int32.Parse(tbGigabitEthernetCompliant.Text.Substring(2), System.Globalization.NumberStyles.HexNumber);
+            data[6] = Convert.ToByte(iTmp);
+
+            if (tbFibreChannelLinkLength.Text.Length != 4 || tbFibreChannelLinkLength.Text.ElementAt(1) != 'x')
+                return -1;
+            iTmp = Int32.Parse(tbFibreChannelLinkLength.Text.Substring(2), System.Globalization.NumberStyles.HexNumber);
+            data[7] = Convert.ToByte(iTmp);
+
+            if (tbTransmitterTechnology.Text.Length != 4 || tbTransmitterTechnology.Text.ElementAt(1) != 'x')
+                return -1;
+            iTmp = Int32.Parse(tbTransmitterTechnology.Text.Substring(2), System.Globalization.NumberStyles.HexNumber);
+            data[8] = Convert.ToByte(iTmp);
+
+            if (tbFibreChannelTransmissionMedia.Text.Length != 4 || tbFibreChannelTransmissionMedia.Text.ElementAt(1) != 'x')
+                return -1;
+            iTmp = Int32.Parse(tbFibreChannelTransmissionMedia.Text.Substring(2), System.Globalization.NumberStyles.HexNumber);
+            data[9] = Convert.ToByte(iTmp);
+
+            if (tbFibreChannelSpeed.Text.Length != 4 || tbFibreChannelSpeed.Text.ElementAt(1) != 'x')
+                return -1;
+            iTmp = Int32.Parse(tbFibreChannelSpeed.Text.Substring(2), System.Globalization.NumberStyles.HexNumber);
+            data[10] = Convert.ToByte(iTmp);
+
+            if (tbEncoding.Text.Length != 4 || tbEncoding.Text.ElementAt(1) != 'x')
+                return -1;
+            iTmp = Int32.Parse(tbEncoding.Text.Substring(2), System.Globalization.NumberStyles.HexNumber);
+            data[11] = Convert.ToByte(iTmp);
+
+            if (tbBitRate.Text.Length != 4 || tbBitRate.Text.ElementAt(1) != 'x')
+                return -1;
+            iTmp = Int32.Parse(tbBitRate.Text.Substring(2), System.Globalization.NumberStyles.HexNumber);
+            data[12] = Convert.ToByte(iTmp);
+
+            if (cbExtendedRateSelect.Checked == true)
+                data[13] = 0x01;
+
+            iTmp = Int32.Parse(tbStandardSmFiberLength.Text);
+            data[14] = Convert.ToByte(iTmp);
+
+            iTmp = Int32.Parse(tbOm3Length.Text);
+            data[15] = Convert.ToByte(iTmp);
+
+            iTmp = Int32.Parse(tbOm2Length.Text);
+            data[16] = Convert.ToByte(iTmp);
+
+            iTmp = Int32.Parse(tbOm1Length.Text);
+            data[17] = Convert.ToByte(iTmp);
+
+            iTmp = Int32.Parse(tbCableAssemblyLength.Text);
+            data[18] = Convert.ToByte(iTmp);
+
+            if (tbDeviceTech.Text.Length != 4 || tbDeviceTech.Text.ElementAt(1) != 'x')
+                return -1;
+            iTmp = Int32.Parse(tbDeviceTech.Text.Substring(2), System.Globalization.NumberStyles.HexNumber);
+            data[19] = Convert.ToByte(iTmp);
+
             bATmp = Encoding.ASCII.GetBytes(tbVendorName.Text);
-            System.Buffer.BlockCopy(bATmp, 0, data, 0, bATmp.Length);
+            System.Buffer.BlockCopy(bATmp, 0, data, 20, bATmp.Length > 16 ? 16 : bATmp.Length);
+
+            if (tbExtendedModuleCodes.Text.Length != 4 || tbExtendedModuleCodes.Text.ElementAt(1) != 'x')
+                return -1;
+            iTmp = Int32.Parse(tbExtendedModuleCodes.Text.Substring(2), System.Globalization.NumberStyles.HexNumber);
+            data[36] = Convert.ToByte(iTmp);
 
             if (tbVendorOui.Text.StartsWith("0x"))
                 sTmp = tbVendorOui.Text.Substring(2);
             else
                 sTmp = tbVendorOui.Text;
             for (i = 0; i < sTmp.Length / 2; i++) {
-                data[16 + i] = Convert.ToByte(sTmp.Substring(i * 2, 2), 16);
+                data[37 + i] = Convert.ToByte(sTmp.Substring(i * 2, 2), 16);
             }
 
             bATmp = Encoding.ASCII.GetBytes(tbVendorPn.Text);
-            System.Buffer.BlockCopy(bATmp, 0, data, 19, bATmp.Length);
-            
-            bATmp = Encoding.ASCII.GetBytes(tbVendorSn.Text);
-            System.Buffer.BlockCopy(bATmp, 0, data, 35, bATmp.Length);
+            System.Buffer.BlockCopy(bATmp, 0, data, 40, bATmp.Length > 16 ? 16 : bATmp.Length);
 
-            if (i2cWriteCB(80, 138, 51, data) < 0)
+            bATmp = Encoding.ASCII.GetBytes(tbVendorRev.Text);
+            System.Buffer.BlockCopy(bATmp, 0, data, 56, bATmp.Length > 2 ? 2 : bATmp.Length);
+
+            try {
+                iTmp = Int32.Parse(tbWavelength.Text);
+            }
+            catch (Exception eTS) {
+                MessageBox.Show(eTS.ToString());
+                return -1;
+            }
+            try {
+                uSTmp = Convert.ToUInt16(iTmp);
+            }
+            catch (Exception eTI) {
+                MessageBox.Show(eTI.ToString());
+                return -1;
+            }
+            bATmp = BitConverter.GetBytes(uSTmp);
+            data[58] = bATmp[1];
+            data[59] = bATmp[0];
+
+            try {
+                iTmp = Int32.Parse(tbWavelengthTolerance.Text);
+            }
+            catch (Exception eTS) {
+                MessageBox.Show(eTS.ToString());
+                return -1;
+            }
+            try {
+                uSTmp = Convert.ToUInt16(iTmp);
+            }
+            catch (Exception eTI) {
+                MessageBox.Show(eTI.ToString());
+                return -1;
+            }
+            bATmp = BitConverter.GetBytes(uSTmp);
+            data[60] = bATmp[1];
+            data[61] = bATmp[0];
+
+            try {
+                iTmp = Int32.Parse(tbMaxCaseTemp.Text);
+            }
+            catch (Exception eTS) {
+                MessageBox.Show(eTS.ToString());
+                return -1;
+            }
+            bATmp = BitConverter.GetBytes(iTmp);
+            data[62] = bATmp[0];
+
+            if (i2cWriteCB(80, 128, 63, data) < 0)
+                return -1;
+
+            Array.Clear(data, 0, 64);
+
+            if (cbRxOutputAmplitudeProgramming.Checked == true)
+                data[0] |= 0x01;
+
+            if (cbRxSquelchDisableImplemented.Checked == true)
+                data[1] |= 0x08;
+            if (cbRxOutputDisableCapable.Checked == true)
+                data[1] |= 0x04;
+            if (cbTxSquelchDisableImplemented.Checked == true)
+                data[1] |= 0x02;
+            if (cbTxSquelchImplemented.Checked == true)
+                data[1] |= 0x01;
+
+            if (cbMemoryPage02Provided.Checked == true)
+                data[2] |= 0x80;
+            if (cbMemoryPage01Provided.Checked == true)
+                data[2] |= 0x40;
+            if (cbRateSelectImplemented.Checked == true)
+                data[2] |= 0x20;
+            if (cbTxDisableImplemented.Checked == true)
+                data[2] |= 0x10;
+            if (cbTxFaultSignalImplemented.Checked == true)
+                data[2] |= 0x08;
+            if (cbTxSquelchImplementedToReduceOma.Checked == true)
+                data[2] |= 0x04;
+            if (cbTxLossOfSignal.Checked == true)
+                data[2] |= 0x02;
+
+            bATmp = Encoding.ASCII.GetBytes(tbVendorSn.Text);
+            System.Buffer.BlockCopy(bATmp, 0, data, 3, bATmp.Length > 16 ? 16 : bATmp.Length);
+
+            bATmp = Encoding.ASCII.GetBytes(tbDateCode.Text);
+            System.Buffer.BlockCopy(bATmp, 0, data, 19, bATmp.Length > 8 ? 8 : bATmp.Length);
+
+            if (tbDiagnosticMonitoringType.Text.Length != 4 || tbDiagnosticMonitoringType.Text.ElementAt(1) != 'x')
+                return -1;
+            iTmp = Int32.Parse(tbDiagnosticMonitoringType.Text.Substring(2), System.Globalization.NumberStyles.HexNumber);
+            data[27] = Convert.ToByte(iTmp);
+
+            if (tbEnhancedOptions.Text.Length != 4 || tbEnhancedOptions.Text.ElementAt(1) != 'x')
+                return -1;
+            iTmp = Int32.Parse(tbEnhancedOptions.Text.Substring(2), System.Globalization.NumberStyles.HexNumber);
+            data[28] = Convert.ToByte(iTmp);
+
+            if (i2cWriteCB(80, 193, 29, data) < 0)
                 return -1;
 
             return 0;
@@ -434,16 +622,13 @@ namespace QsfpDigitalDiagnosticMonitoring
             else if (rv == 1)
                 return;
 
-            if (_SetQsfpMode(0x4D) < 0)
-                return;
-
             if (_WriteAddr86() < 0)
                 return;
 
             if (_WriteAddr93() < 0)
                 return;
 
-            if (_WriteUpPage2Addr138_188() < 0)
+            if (_WriteUpPage0() < 0)
                 return;
         }
 

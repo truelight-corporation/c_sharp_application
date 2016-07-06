@@ -286,7 +286,6 @@
             // 
             this.tbExtIdentifier.Location = new System.Drawing.Point(191, 21);
             this.tbExtIdentifier.Name = "tbExtIdentifier";
-            this.tbExtIdentifier.ReadOnly = true;
             this.tbExtIdentifier.Size = new System.Drawing.Size(40, 22);
             this.tbExtIdentifier.TabIndex = 15;
             // 
@@ -294,7 +293,6 @@
             // 
             this.tbConnector.Location = new System.Drawing.Point(303, 21);
             this.tbConnector.Name = "tbConnector";
-            this.tbConnector.ReadOnly = true;
             this.tbConnector.Size = new System.Drawing.Size(40, 22);
             this.tbConnector.TabIndex = 19;
             // 
@@ -311,7 +309,6 @@
             // 
             this.tb1040GEthernetCompliance.Location = new System.Drawing.Point(103, 21);
             this.tb1040GEthernetCompliance.Name = "tb1040GEthernetCompliance";
-            this.tb1040GEthernetCompliance.ReadOnly = true;
             this.tb1040GEthernetCompliance.Size = new System.Drawing.Size(40, 22);
             this.tb1040GEthernetCompliance.TabIndex = 21;
             // 
@@ -328,7 +325,6 @@
             // 
             this.tbSonetCompliance.Location = new System.Drawing.Point(202, 21);
             this.tbSonetCompliance.Name = "tbSonetCompliance";
-            this.tbSonetCompliance.ReadOnly = true;
             this.tbSonetCompliance.Size = new System.Drawing.Size(40, 22);
             this.tbSonetCompliance.TabIndex = 23;
             // 
@@ -345,7 +341,6 @@
             // 
             this.tbSasSataCompliance.Location = new System.Drawing.Point(320, 21);
             this.tbSasSataCompliance.Name = "tbSasSataCompliance";
-            this.tbSasSataCompliance.ReadOnly = true;
             this.tbSasSataCompliance.Size = new System.Drawing.Size(40, 22);
             this.tbSasSataCompliance.TabIndex = 25;
             // 
@@ -395,7 +390,6 @@
             // 
             this.tbFibreChannelSpeed.Location = new System.Drawing.Point(515, 49);
             this.tbFibreChannelSpeed.Name = "tbFibreChannelSpeed";
-            this.tbFibreChannelSpeed.ReadOnly = true;
             this.tbFibreChannelSpeed.Size = new System.Drawing.Size(40, 22);
             this.tbFibreChannelSpeed.TabIndex = 35;
             // 
@@ -412,7 +406,6 @@
             // 
             this.tbFibreChannelTransmissionMedia.Location = new System.Drawing.Point(355, 49);
             this.tbFibreChannelTransmissionMedia.Name = "tbFibreChannelTransmissionMedia";
-            this.tbFibreChannelTransmissionMedia.ReadOnly = true;
             this.tbFibreChannelTransmissionMedia.Size = new System.Drawing.Size(40, 22);
             this.tbFibreChannelTransmissionMedia.TabIndex = 33;
             // 
@@ -429,7 +422,6 @@
             // 
             this.tbTransmitterTechnology.Location = new System.Drawing.Point(135, 49);
             this.tbTransmitterTechnology.Name = "tbTransmitterTechnology";
-            this.tbTransmitterTechnology.ReadOnly = true;
             this.tbTransmitterTechnology.Size = new System.Drawing.Size(40, 22);
             this.tbTransmitterTechnology.TabIndex = 31;
             // 
@@ -446,7 +438,6 @@
             // 
             this.tbFibreChannelLinkLength.Location = new System.Drawing.Point(641, 21);
             this.tbFibreChannelLinkLength.Name = "tbFibreChannelLinkLength";
-            this.tbFibreChannelLinkLength.ReadOnly = true;
             this.tbFibreChannelLinkLength.Size = new System.Drawing.Size(40, 22);
             this.tbFibreChannelLinkLength.TabIndex = 29;
             // 
@@ -463,7 +454,6 @@
             // 
             this.tbGigabitEthernetCompliant.Location = new System.Drawing.Point(459, 21);
             this.tbGigabitEthernetCompliant.Name = "tbGigabitEthernetCompliant";
-            this.tbGigabitEthernetCompliant.ReadOnly = true;
             this.tbGigabitEthernetCompliant.Size = new System.Drawing.Size(40, 22);
             this.tbGigabitEthernetCompliant.TabIndex = 27;
             // 
@@ -572,7 +562,6 @@
             // 
             this.tbEncoding.Location = new System.Drawing.Point(68, 134);
             this.tbEncoding.Name = "tbEncoding";
-            this.tbEncoding.ReadOnly = true;
             this.tbEncoding.Size = new System.Drawing.Size(40, 22);
             this.tbEncoding.TabIndex = 65;
             // 
@@ -606,7 +595,6 @@
             // 
             this.tbEnhancedOptions.Location = new System.Drawing.Point(543, 370);
             this.tbEnhancedOptions.Name = "tbEnhancedOptions";
-            this.tbEnhancedOptions.ReadOnly = true;
             this.tbEnhancedOptions.Size = new System.Drawing.Size(40, 22);
             this.tbEnhancedOptions.TabIndex = 61;
             // 
@@ -623,7 +611,6 @@
             // 
             this.tbDiagnosticMonitoringType.Location = new System.Drawing.Point(395, 370);
             this.tbDiagnosticMonitoringType.Name = "tbDiagnosticMonitoringType";
-            this.tbDiagnosticMonitoringType.ReadOnly = true;
             this.tbDiagnosticMonitoringType.Size = new System.Drawing.Size(40, 22);
             this.tbDiagnosticMonitoringType.TabIndex = 59;
             // 
@@ -640,7 +627,6 @@
             // 
             this.tbDateCode.Location = new System.Drawing.Point(267, 370);
             this.tbDateCode.Name = "tbDateCode";
-            this.tbDateCode.ReadOnly = true;
             this.tbDateCode.Size = new System.Drawing.Size(60, 22);
             this.tbDateCode.TabIndex = 57;
             // 
@@ -693,7 +679,6 @@
             // cbTxLossOfSignal
             // 
             this.cbTxLossOfSignal.AutoSize = true;
-            this.cbTxLossOfSignal.Enabled = false;
             this.cbTxLossOfSignal.Location = new System.Drawing.Point(512, 43);
             this.cbTxLossOfSignal.Name = "cbTxLossOfSignal";
             this.cbTxLossOfSignal.Size = new System.Drawing.Size(61, 16);
@@ -704,7 +689,6 @@
             // cbTxSquelchImplementedToReduceOma
             // 
             this.cbTxSquelchImplementedToReduceOma.AutoSize = true;
-            this.cbTxSquelchImplementedToReduceOma.Enabled = false;
             this.cbTxSquelchImplementedToReduceOma.Location = new System.Drawing.Point(356, 43);
             this.cbTxSquelchImplementedToReduceOma.Name = "cbTxSquelchImplementedToReduceOma";
             this.cbTxSquelchImplementedToReduceOma.Size = new System.Drawing.Size(150, 16);
@@ -715,7 +699,6 @@
             // cbTxFaultSignalImplemented
             // 
             this.cbTxFaultSignalImplemented.AutoSize = true;
-            this.cbTxFaultSignalImplemented.Enabled = false;
             this.cbTxFaultSignalImplemented.Location = new System.Drawing.Point(259, 43);
             this.cbTxFaultSignalImplemented.Name = "cbTxFaultSignalImplemented";
             this.cbTxFaultSignalImplemented.Size = new System.Drawing.Size(91, 16);
@@ -726,7 +709,6 @@
             // cbTxDisableImplemented
             // 
             this.cbTxDisableImplemented.AutoSize = true;
-            this.cbTxDisableImplemented.Enabled = false;
             this.cbTxDisableImplemented.Location = new System.Drawing.Point(181, 43);
             this.cbTxDisableImplemented.Name = "cbTxDisableImplemented";
             this.cbTxDisableImplemented.Size = new System.Drawing.Size(72, 16);
@@ -737,7 +719,6 @@
             // cbRateSelectImplemented
             // 
             this.cbRateSelectImplemented.AutoSize = true;
-            this.cbRateSelectImplemented.Enabled = false;
             this.cbRateSelectImplemented.Location = new System.Drawing.Point(100, 43);
             this.cbRateSelectImplemented.Name = "cbRateSelectImplemented";
             this.cbRateSelectImplemented.Size = new System.Drawing.Size(75, 16);
@@ -748,7 +729,6 @@
             // cbMemoryPage01Provided
             // 
             this.cbMemoryPage01Provided.AutoSize = true;
-            this.cbMemoryPage01Provided.Enabled = false;
             this.cbMemoryPage01Provided.Location = new System.Drawing.Point(6, 43);
             this.cbMemoryPage01Provided.Name = "cbMemoryPage01Provided";
             this.cbMemoryPage01Provided.Size = new System.Drawing.Size(88, 16);
@@ -759,7 +739,6 @@
             // cbMemoryPage02Provided
             // 
             this.cbMemoryPage02Provided.AutoSize = true;
-            this.cbMemoryPage02Provided.Enabled = false;
             this.cbMemoryPage02Provided.Location = new System.Drawing.Point(625, 21);
             this.cbMemoryPage02Provided.Name = "cbMemoryPage02Provided";
             this.cbMemoryPage02Provided.Size = new System.Drawing.Size(88, 16);
@@ -770,7 +749,6 @@
             // cbTxSquelchImplemented
             // 
             this.cbTxSquelchImplemented.AutoSize = true;
-            this.cbTxSquelchImplemented.Enabled = false;
             this.cbTxSquelchImplemented.Location = new System.Drawing.Point(544, 21);
             this.cbTxSquelchImplemented.Name = "cbTxSquelchImplemented";
             this.cbTxSquelchImplemented.Size = new System.Drawing.Size(75, 16);
@@ -781,7 +759,6 @@
             // cbTxSquelchDisableImplemented
             // 
             this.cbTxSquelchDisableImplemented.AutoSize = true;
-            this.cbTxSquelchDisableImplemented.Enabled = false;
             this.cbTxSquelchDisableImplemented.Location = new System.Drawing.Point(428, 21);
             this.cbTxSquelchDisableImplemented.Name = "cbTxSquelchDisableImplemented";
             this.cbTxSquelchDisableImplemented.Size = new System.Drawing.Size(110, 16);
@@ -792,7 +769,6 @@
             // cbRxOutputDisableCapable
             // 
             this.cbRxOutputDisableCapable.AutoSize = true;
-            this.cbRxOutputDisableCapable.Enabled = false;
             this.cbRxOutputDisableCapable.Location = new System.Drawing.Point(316, 21);
             this.cbRxOutputDisableCapable.Name = "cbRxOutputDisableCapable";
             this.cbRxOutputDisableCapable.Size = new System.Drawing.Size(106, 16);
@@ -803,7 +779,6 @@
             // cbRxSquelchDisableImplemented
             // 
             this.cbRxSquelchDisableImplemented.AutoSize = true;
-            this.cbRxSquelchDisableImplemented.Enabled = false;
             this.cbRxSquelchDisableImplemented.Location = new System.Drawing.Point(199, 21);
             this.cbRxSquelchDisableImplemented.Name = "cbRxSquelchDisableImplemented";
             this.cbRxSquelchDisableImplemented.Size = new System.Drawing.Size(111, 16);
@@ -814,7 +789,6 @@
             // cbRxOutputAmplitudeProgramming
             // 
             this.cbRxOutputAmplitudeProgramming.AutoSize = true;
-            this.cbRxOutputAmplitudeProgramming.Enabled = false;
             this.cbRxOutputAmplitudeProgramming.Location = new System.Drawing.Point(6, 21);
             this.cbRxOutputAmplitudeProgramming.Name = "cbRxOutputAmplitudeProgramming";
             this.cbRxOutputAmplitudeProgramming.Size = new System.Drawing.Size(187, 16);
@@ -843,7 +817,6 @@
             // 
             this.tbMaxCaseTemp.Location = new System.Drawing.Point(99, 270);
             this.tbMaxCaseTemp.Name = "tbMaxCaseTemp";
-            this.tbMaxCaseTemp.ReadOnly = true;
             this.tbMaxCaseTemp.Size = new System.Drawing.Size(40, 22);
             this.tbMaxCaseTemp.TabIndex = 50;
             // 
@@ -860,7 +833,6 @@
             // 
             this.tbWavelengthTolerance.Location = new System.Drawing.Point(583, 242);
             this.tbWavelengthTolerance.Name = "tbWavelengthTolerance";
-            this.tbWavelengthTolerance.ReadOnly = true;
             this.tbWavelengthTolerance.Size = new System.Drawing.Size(60, 22);
             this.tbWavelengthTolerance.TabIndex = 48;
             // 
@@ -877,7 +849,6 @@
             // 
             this.tbWavelength.Location = new System.Drawing.Point(395, 242);
             this.tbWavelength.Name = "tbWavelength";
-            this.tbWavelength.ReadOnly = true;
             this.tbWavelength.Size = new System.Drawing.Size(60, 22);
             this.tbWavelength.TabIndex = 46;
             // 
@@ -894,7 +865,6 @@
             // 
             this.tbVendorRev.Location = new System.Drawing.Point(275, 242);
             this.tbVendorRev.Name = "tbVendorRev";
-            this.tbVendorRev.ReadOnly = true;
             this.tbVendorRev.Size = new System.Drawing.Size(40, 22);
             this.tbVendorRev.TabIndex = 44;
             // 
@@ -943,7 +913,6 @@
             // 
             this.tbExtendedModuleCodes.Location = new System.Drawing.Point(467, 214);
             this.tbExtendedModuleCodes.Name = "tbExtendedModuleCodes";
-            this.tbExtendedModuleCodes.ReadOnly = true;
             this.tbExtendedModuleCodes.Size = new System.Drawing.Size(40, 22);
             this.tbExtendedModuleCodes.TabIndex = 38;
             // 
@@ -976,7 +945,6 @@
             // 
             this.tbDeviceTech.Location = new System.Drawing.Point(81, 214);
             this.tbDeviceTech.Name = "tbDeviceTech";
-            this.tbDeviceTech.ReadOnly = true;
             this.tbDeviceTech.Size = new System.Drawing.Size(40, 22);
             this.tbDeviceTech.TabIndex = 34;
             // 
@@ -1012,7 +980,6 @@
             // 
             this.tbCableAssemblyLength.Location = new System.Drawing.Point(509, 21);
             this.tbCableAssemblyLength.Name = "tbCableAssemblyLength";
-            this.tbCableAssemblyLength.ReadOnly = true;
             this.tbCableAssemblyLength.Size = new System.Drawing.Size(40, 22);
             this.tbCableAssemblyLength.TabIndex = 42;
             // 
@@ -1029,7 +996,6 @@
             // 
             this.tbOm1Length.Location = new System.Drawing.Point(371, 21);
             this.tbOm1Length.Name = "tbOm1Length";
-            this.tbOm1Length.ReadOnly = true;
             this.tbOm1Length.Size = new System.Drawing.Size(40, 22);
             this.tbOm1Length.TabIndex = 40;
             // 
@@ -1046,7 +1012,6 @@
             // 
             this.tbOm2Length.Location = new System.Drawing.Point(284, 21);
             this.tbOm2Length.Name = "tbOm2Length";
-            this.tbOm2Length.ReadOnly = true;
             this.tbOm2Length.Size = new System.Drawing.Size(40, 22);
             this.tbOm2Length.TabIndex = 38;
             // 
@@ -1063,7 +1028,6 @@
             // 
             this.tbOm3Length.Location = new System.Drawing.Point(197, 21);
             this.tbOm3Length.Name = "tbOm3Length";
-            this.tbOm3Length.ReadOnly = true;
             this.tbOm3Length.Size = new System.Drawing.Size(40, 22);
             this.tbOm3Length.TabIndex = 36;
             // 
@@ -1080,7 +1044,6 @@
             // 
             this.tbStandardSmFiberLength.Location = new System.Drawing.Point(110, 21);
             this.tbStandardSmFiberLength.Name = "tbStandardSmFiberLength";
-            this.tbStandardSmFiberLength.ReadOnly = true;
             this.tbStandardSmFiberLength.Size = new System.Drawing.Size(40, 22);
             this.tbStandardSmFiberLength.TabIndex = 34;
             // 
@@ -1108,7 +1071,6 @@
             // 
             this.tbBitRate.Location = new System.Drawing.Point(169, 134);
             this.tbBitRate.Name = "tbBitRate";
-            this.tbBitRate.ReadOnly = true;
             this.tbBitRate.Size = new System.Drawing.Size(40, 22);
             this.tbBitRate.TabIndex = 31;
             // 
@@ -1125,7 +1087,6 @@
             // 
             this.tbUpPage0Identifier.Location = new System.Drawing.Point(66, 21);
             this.tbUpPage0Identifier.Name = "tbUpPage0Identifier";
-            this.tbUpPage0Identifier.ReadOnly = true;
             this.tbUpPage0Identifier.Size = new System.Drawing.Size(40, 22);
             this.tbUpPage0Identifier.TabIndex = 29;
             // 
