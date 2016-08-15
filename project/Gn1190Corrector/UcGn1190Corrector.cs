@@ -129,6 +129,12 @@ namespace Gn1190Corrector
                 tmp = (~data[0]) + 1;
             tbTemperatureOffset.Text = sData[0].ToString();
 
+            if (qsfpI2cReadCB(80, 139, 2, data) != 2)
+                return -1;
+
+            tmp = BitConverter.ToUInt16(data, 0);
+            tbTemperatureSlope.Text = tmp.ToString();
+
             return 0;
         }
 
@@ -204,10 +210,12 @@ namespace Gn1190Corrector
             return 0;
         }
 
-        private int _WriteTemperatureOffset()
+        private int _WriteTemperatureCorrector()
         {
-            byte[] data = new byte[1];
+            byte[] data = new byte[2];
+            byte[] bATmp;
             sbyte[] tmp = new sbyte[1];
+            ushort tmpU16;
 
             if (_WritePassword() < 0)
                 return -1;
@@ -227,6 +235,15 @@ namespace Gn1190Corrector
                 return -1;
             }
 
+            try {
+                tmpU16 = Convert.ToUInt16(tbTemperatureSlope.Text);
+            }
+            catch (Exception eTSB) {
+                MessageBox.Show("Temperature slope out of range (0 ~ 65536)!!\n" + eTSB.ToString());
+                tbTemperatureSlope.Text = "";
+                return -1;
+            }
+
             data[0] = 2;
             qsfpI2cWriteCB(80, 127, 1, data);
 
@@ -240,6 +257,12 @@ namespace Gn1190Corrector
 
             qsfpI2cWriteCB(80, 137, 1, data);
 
+            bATmp = BitConverter.GetBytes(tmpU16);
+            data[0] = bATmp[0];
+            data[1] = bATmp[1];
+
+            qsfpI2cWriteCB(80, 139, 2, data);
+
             _ClearPassword();
             _SetQsfpMode(0);
 
@@ -248,7 +271,7 @@ namespace Gn1190Corrector
 
         private void bTemperatureWrite_Click(object sender, EventArgs e)
         {
-            if (_WriteTemperatureOffset() < 0)
+            if (_WriteTemperatureCorrector() < 0)
                 return;
         }
 
@@ -256,7 +279,7 @@ namespace Gn1190Corrector
         {
             tbTemperatureOffset.Text = "0";
 
-            if (_WriteTemperatureOffset() < 0)
+            if (_WriteTemperatureCorrector() < 0)
                 return -1;
 
             cbTemperatureCorrected.Checked = false;
@@ -301,7 +324,7 @@ namespace Gn1190Corrector
                 return -1;
             }
 
-            fOffset = (temperature - txTemperature) * 10;
+            fOffset = (temperature - txTemperature) * 2;
             if ((fOffset > 127) || (fOffset < -128)) {
                 MessageBox.Show("Offset out of range: " + fOffset + " (-128 ~ 127)!!");
                 return -1;
@@ -317,7 +340,7 @@ namespace Gn1190Corrector
 
             tbTemperatureOffset.Text = offset[0].ToString();
 
-            if (_WriteTemperatureOffset() < 0)
+            if (_WriteTemperatureCorrector() < 0)
                 return -1;
 
             cbTemperatureCorrected.Checked = true;

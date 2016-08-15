@@ -37,6 +37,9 @@
             this.bSaveFile = new System.Windows.Forms.Button();
             this.bLoadFile = new System.Windows.Forms.Button();
             this.gbTemperature = new System.Windows.Forms.GroupBox();
+            this.lTemperatureSlopeUnit = new System.Windows.Forms.Label();
+            this.lTemperatureSlope = new System.Windows.Forms.Label();
+            this.tbTemperatureSlope = new System.Windows.Forms.TextBox();
             this.bTemperatureReset = new System.Windows.Forms.Button();
             this.bTemperatureAutoCorrect = new System.Windows.Forms.Button();
             this.lTemperatureOffsetDegC = new System.Windows.Forms.Label();
@@ -235,6 +238,9 @@
             // 
             // gbTemperature
             // 
+            this.gbTemperature.Controls.Add(this.lTemperatureSlopeUnit);
+            this.gbTemperature.Controls.Add(this.lTemperatureSlope);
+            this.gbTemperature.Controls.Add(this.tbTemperatureSlope);
             this.gbTemperature.Controls.Add(this.bTemperatureReset);
             this.gbTemperature.Controls.Add(this.bTemperatureAutoCorrect);
             this.gbTemperature.Controls.Add(this.lTemperatureOffsetDegC);
@@ -253,6 +259,31 @@
             this.gbTemperature.TabIndex = 19;
             this.gbTemperature.TabStop = false;
             this.gbTemperature.Text = "Temperature";
+            // 
+            // lTemperatureSlopeUnit
+            // 
+            this.lTemperatureSlopeUnit.AutoSize = true;
+            this.lTemperatureSlopeUnit.Location = new System.Drawing.Point(347, 36);
+            this.lTemperatureSlopeUnit.Name = "lTemperatureSlopeUnit";
+            this.lTemperatureSlopeUnit.Size = new System.Drawing.Size(32, 12);
+            this.lTemperatureSlopeUnit.TabIndex = 16;
+            this.lTemperatureSlopeUnit.Text = "0.001";
+            // 
+            // lTemperatureSlope
+            // 
+            this.lTemperatureSlope.AutoSize = true;
+            this.lTemperatureSlope.Location = new System.Drawing.Point(291, 18);
+            this.lTemperatureSlope.Name = "lTemperatureSlope";
+            this.lTemperatureSlope.Size = new System.Drawing.Size(31, 12);
+            this.lTemperatureSlope.TabIndex = 15;
+            this.lTemperatureSlope.Text = "Slope";
+            // 
+            // tbTemperatureSlope
+            // 
+            this.tbTemperatureSlope.Location = new System.Drawing.Point(281, 33);
+            this.tbTemperatureSlope.Name = "tbTemperatureSlope";
+            this.tbTemperatureSlope.Size = new System.Drawing.Size(60, 22);
+            this.tbTemperatureSlope.TabIndex = 14;
             // 
             // bTemperatureReset
             // 
@@ -277,11 +308,11 @@
             // lTemperatureOffsetDegC
             // 
             this.lTemperatureOffsetDegC.AutoSize = true;
-            this.lTemperatureOffsetDegC.Location = new System.Drawing.Point(332, 36);
+            this.lTemperatureOffsetDegC.Location = new System.Drawing.Point(225, 36);
             this.lTemperatureOffsetDegC.Name = "lTemperatureOffsetDegC";
             this.lTemperatureOffsetDegC.Size = new System.Drawing.Size(50, 12);
             this.lTemperatureOffsetDegC.TabIndex = 11;
-            this.lTemperatureOffsetDegC.Text = "0.1 DegC";
+            this.lTemperatureOffsetDegC.Text = "0.5 DegC";
             // 
             // tbTemperature
             // 
@@ -348,15 +379,15 @@
             // lTemperatureOffset
             // 
             this.lTemperatureOffset.AutoSize = true;
-            this.lTemperatureOffset.Location = new System.Drawing.Point(159, 36);
+            this.lTemperatureOffset.Location = new System.Drawing.Point(171, 18);
             this.lTemperatureOffset.Name = "lTemperatureOffset";
-            this.lTemperatureOffset.Size = new System.Drawing.Size(101, 12);
+            this.lTemperatureOffset.Size = new System.Drawing.Size(33, 12);
             this.lTemperatureOffset.TabIndex = 2;
-            this.lTemperatureOffset.Text = "Temperature Offset :";
+            this.lTemperatureOffset.Text = "Offset";
             // 
             // tbTemperatureOffset
             // 
-            this.tbTemperatureOffset.Location = new System.Drawing.Point(266, 33);
+            this.tbTemperatureOffset.Location = new System.Drawing.Point(159, 33);
             this.tbTemperatureOffset.Name = "tbTemperatureOffset";
             this.tbTemperatureOffset.Size = new System.Drawing.Size(60, 22);
             this.tbTemperatureOffset.TabIndex = 4;
@@ -1412,5 +1443,8 @@
         private System.Windows.Forms.Label lVhfCompProp;
         private System.Windows.Forms.Label lBaBmMaxCurrent;
         private System.Windows.Forms.TextBox tbAverageCurrentMin;
+        private System.Windows.Forms.Label lTemperatureSlope;
+        private System.Windows.Forms.TextBox tbTemperatureSlope;
+        private System.Windows.Forms.Label lTemperatureSlopeUnit;
     }
 }
