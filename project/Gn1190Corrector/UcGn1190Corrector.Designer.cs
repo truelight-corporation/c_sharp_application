@@ -37,7 +37,6 @@
             this.bSaveFile = new System.Windows.Forms.Button();
             this.bLoadFile = new System.Windows.Forms.Button();
             this.gbTemperature = new System.Windows.Forms.GroupBox();
-            this.lTemperatureSlopeUnit = new System.Windows.Forms.Label();
             this.lTemperatureSlope = new System.Windows.Forms.Label();
             this.tbTemperatureSlope = new System.Windows.Forms.TextBox();
             this.bTemperatureReset = new System.Windows.Forms.Button();
@@ -238,7 +237,6 @@
             // 
             // gbTemperature
             // 
-            this.gbTemperature.Controls.Add(this.lTemperatureSlopeUnit);
             this.gbTemperature.Controls.Add(this.lTemperatureSlope);
             this.gbTemperature.Controls.Add(this.tbTemperatureSlope);
             this.gbTemperature.Controls.Add(this.bTemperatureReset);
@@ -259,15 +257,6 @@
             this.gbTemperature.TabIndex = 19;
             this.gbTemperature.TabStop = false;
             this.gbTemperature.Text = "Temperature";
-            // 
-            // lTemperatureSlopeUnit
-            // 
-            this.lTemperatureSlopeUnit.AutoSize = true;
-            this.lTemperatureSlopeUnit.Location = new System.Drawing.Point(347, 36);
-            this.lTemperatureSlopeUnit.Name = "lTemperatureSlopeUnit";
-            this.lTemperatureSlopeUnit.Size = new System.Drawing.Size(32, 12);
-            this.lTemperatureSlopeUnit.TabIndex = 16;
-            this.lTemperatureSlopeUnit.Text = "0.001";
             // 
             // lTemperatureSlope
             // 
@@ -1445,6 +1434,5 @@
         private System.Windows.Forms.TextBox tbAverageCurrentMin;
         private System.Windows.Forms.Label lTemperatureSlope;
         private System.Windows.Forms.TextBox tbTemperatureSlope;
-        private System.Windows.Forms.Label lTemperatureSlopeUnit;
     }
 }
