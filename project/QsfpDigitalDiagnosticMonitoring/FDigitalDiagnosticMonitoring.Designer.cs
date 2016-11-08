@@ -33,6 +33,13 @@
             this.ucDigitalDiagnosticsMonitoring = new QsfpDigitalDiagnosticMonitoring.UCDigitalDiagnosticsMonitoring();
             this.tpInformation = new System.Windows.Forms.TabPage();
             this.ucInformation = new QsfpDigitalDiagnosticMonitoring.UcInformation();
+            this.lFirmwareVersion = new System.Windows.Forms.Label();
+            this.tbFirmwareVersion = new System.Windows.Forms.TextBox();
+            this.lFirmwareDate = new System.Windows.Forms.Label();
+            this.tbFirmwareDate = new System.Windows.Forms.TextBox();
+            this.tbFirmwareVersionCheck = new System.Windows.Forms.TextBox();
+            this.tbFirmwareDateCheck = new System.Windows.Forms.TextBox();
+            this.cbFirmwareVersionCheck = new System.Windows.Forms.CheckBox();
             this.tcDdmAndInformation.SuspendLayout();
             this.tpDigitalDiagnosticMonitoring.SuspendLayout();
             this.tpInformation.SuspendLayout();
@@ -95,12 +102,77 @@
             this.ucInformation.Size = new System.Drawing.Size(786, 488);
             this.ucInformation.TabIndex = 0;
             // 
+            // lFirmwareVersion
+            // 
+            this.lFirmwareVersion.AutoSize = true;
+            this.lFirmwareVersion.Location = new System.Drawing.Point(421, 13);
+            this.lFirmwareVersion.Name = "lFirmwareVersion";
+            this.lFirmwareVersion.Size = new System.Drawing.Size(44, 12);
+            this.lFirmwareVersion.TabIndex = 3;
+            this.lFirmwareVersion.Text = "Version:";
+            // 
+            // tbFirmwareVersion
+            // 
+            this.tbFirmwareVersion.Location = new System.Drawing.Point(471, 10);
+            this.tbFirmwareVersion.Name = "tbFirmwareVersion";
+            this.tbFirmwareVersion.ReadOnly = true;
+            this.tbFirmwareVersion.Size = new System.Drawing.Size(30, 22);
+            this.tbFirmwareVersion.TabIndex = 4;
+            // 
+            // lFirmwareDate
+            // 
+            this.lFirmwareDate.AutoSize = true;
+            this.lFirmwareDate.Location = new System.Drawing.Point(543, 13);
+            this.lFirmwareDate.Name = "lFirmwareDate";
+            this.lFirmwareDate.Size = new System.Drawing.Size(29, 12);
+            this.lFirmwareDate.TabIndex = 5;
+            this.lFirmwareDate.Text = "Date:";
+            // 
+            // tbFirmwareDate
+            // 
+            this.tbFirmwareDate.Location = new System.Drawing.Point(578, 10);
+            this.tbFirmwareDate.Name = "tbFirmwareDate";
+            this.tbFirmwareDate.ReadOnly = true;
+            this.tbFirmwareDate.Size = new System.Drawing.Size(60, 22);
+            this.tbFirmwareDate.TabIndex = 6;
+            // 
+            // tbFirmwareVersionCheck
+            // 
+            this.tbFirmwareVersionCheck.Location = new System.Drawing.Point(507, 10);
+            this.tbFirmwareVersionCheck.Name = "tbFirmwareVersionCheck";
+            this.tbFirmwareVersionCheck.Size = new System.Drawing.Size(30, 22);
+            this.tbFirmwareVersionCheck.TabIndex = 7;
+            // 
+            // tbFirmwareDateCheck
+            // 
+            this.tbFirmwareDateCheck.Location = new System.Drawing.Point(644, 10);
+            this.tbFirmwareDateCheck.Name = "tbFirmwareDateCheck";
+            this.tbFirmwareDateCheck.Size = new System.Drawing.Size(60, 22);
+            this.tbFirmwareDateCheck.TabIndex = 8;
+            // 
+            // cbFirmwareVersionCheck
+            // 
+            this.cbFirmwareVersionCheck.AutoSize = true;
+            this.cbFirmwareVersionCheck.Location = new System.Drawing.Point(275, 12);
+            this.cbFirmwareVersionCheck.Name = "cbFirmwareVersionCheck";
+            this.cbFirmwareVersionCheck.Size = new System.Drawing.Size(140, 16);
+            this.cbFirmwareVersionCheck.TabIndex = 9;
+            this.cbFirmwareVersionCheck.Text = "Firmware Version Check";
+            this.cbFirmwareVersionCheck.UseVisualStyleBackColor = true;
+            // 
             // FDigitalDiagnosticMonitoring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.ClientSize = new System.Drawing.Size(823, 555);
+            this.Controls.Add(this.cbFirmwareVersionCheck);
+            this.Controls.Add(this.tbFirmwareDateCheck);
+            this.Controls.Add(this.tbFirmwareVersionCheck);
+            this.Controls.Add(this.tbFirmwareDate);
+            this.Controls.Add(this.lFirmwareDate);
+            this.Controls.Add(this.tbFirmwareVersion);
+            this.Controls.Add(this.lFirmwareVersion);
             this.Controls.Add(this.tcDdmAndInformation);
             this.Controls.Add(this.cbConnected);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -123,6 +195,13 @@
         private System.Windows.Forms.TabPage tpDigitalDiagnosticMonitoring;
         private System.Windows.Forms.TabPage tpInformation;
         private UcInformation ucInformation;
+        private System.Windows.Forms.Label lFirmwareVersion;
+        private System.Windows.Forms.TextBox tbFirmwareVersion;
+        private System.Windows.Forms.Label lFirmwareDate;
+        private System.Windows.Forms.TextBox tbFirmwareDate;
+        private System.Windows.Forms.TextBox tbFirmwareVersionCheck;
+        private System.Windows.Forms.TextBox tbFirmwareDateCheck;
+        private System.Windows.Forms.CheckBox cbFirmwareVersionCheck;
     }
 }
 

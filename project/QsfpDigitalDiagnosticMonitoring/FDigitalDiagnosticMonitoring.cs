@@ -93,10 +93,60 @@ namespace QsfpDigitalDiagnosticMonitoring
             }
         }
 
+        private int _CheckFirmwareVersion()
+        {
+            byte[] data = new byte[10];
+            byte[] bATmp = new byte[2];
+
+            data[0] = 32;
+            if (_I2cWrite(80, 127, 1, data) < 0)
+                return -1;
+
+            if (_I2cRead(80, 165, 10, data) < 0)
+                return -1;
+
+            bATmp = new byte[2];
+            System.Buffer.BlockCopy(data, 0, bATmp, 0, 2);
+            tbFirmwareVersion.Text = Encoding.Default.GetString(bATmp);
+
+            if (tbFirmwareVersionCheck.Text.Length != 0) {
+                if (cbFirmwareVersionCheck.Checked == true) {
+                    if (!tbFirmwareVersion.Text.Equals(tbFirmwareVersionCheck.Text))
+                        MessageBox.Show("Firmware Version: " + tbFirmwareVersion.Text +
+                            " != " + tbFirmwareVersionCheck.Text + " Error!!");
+                }
+            }
+            else {
+                tbFirmwareVersionCheck.Text = tbFirmwareVersion.Text;
+            }
+
+            bATmp = new byte[8];
+            System.Buffer.BlockCopy(data, 2, bATmp, 0, 8);
+            tbFirmwareDate.Text = Encoding.Default.GetString(bATmp);
+
+            if (tbFirmwareDateCheck.Text.Length != 0) {
+                if (cbFirmwareVersionCheck.Checked == true) {
+                    if (!tbFirmwareDate.Text.Equals(tbFirmwareDateCheck.Text))
+                        MessageBox.Show("Firmware Date: " + tbFirmwareDate.Text +
+                            " != " + tbFirmwareDateCheck.Text + " Error!!");
+                }
+            }
+            else {
+                tbFirmwareDateCheck.Text = tbFirmwareDate.Text;
+            }
+
+            return 0;
+        }
+
         private void _cbConnected_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbConnected.Checked == true)
-                i2cMaster.ConnectApi();
+            int rv;
+            if (cbConnected.Checked == true) {
+                rv = i2cMaster.ConnectApi();
+                if (rv < 0)
+                    return;
+                _CheckFirmwareVersion();    
+            }
             else
                 i2cMaster.DisconnectApi();
         }
