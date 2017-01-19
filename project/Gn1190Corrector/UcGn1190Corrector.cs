@@ -645,82 +645,144 @@ namespace Gn1190Corrector
             if (qsfpI2cReadCB == null)
                 return -1;
 
-            if (qsfpI2cReadCB(80, 189, 26, data) != 26)
+            if (qsfpI2cReadCB(80, 189, 14, data) != 14)
                 return -1;
 
             Buffer.BlockCopy(data, 0, sData, 0, 1);
             sTmp = Convert.ToSingle(sData[0]) / 100;
-            tbModuleAverageCurrentEquationA.Text = sTmp.ToString("#0.00");
+            tbAverageCurrentEquationA.Text = sTmp.ToString("#0.00");
 
             Array.Copy(data, 1, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10;
-            tbModuleAverageCurrentEquationB.Text = sTmp.ToString("#0.0");
+            tbAverageCurrentEquationB.Text = sTmp.ToString("#0.0");
 
             Array.Copy(data, 3, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             iTmp = BitConverter.ToUInt16(reverseData, 0);
-            tbModuleAverageCurrentEquationC.Text = iTmp.ToString();
+            tbAverageCurrentEquationC.Text = iTmp.ToString();
 
             sTmp = Convert.ToSingle(Convert.ToUInt32(data[5]) * 0.04);
-            tbModuleAverageCurrentMin.Text = sTmp.ToString("#0.00");
+            tbAverageCurrentMin.Text = sTmp.ToString("#0.00");
 
             sTmp = Convert.ToSingle(Convert.ToUInt32(data[6]) * 0.04);
-            tbModuleAverageCurrentMax.Text = sTmp.ToString("#0.00");
+            tbAverageCurrentMax.Text = sTmp.ToString("#0.00");
 
-            tbModuleModulationCurrentEquationA.Text = (Convert.ToSingle(data[7]) / 100).ToString("#0.00");
+            tbModulationCurrentEquationA.Text = (Convert.ToSingle(data[7]) / 100).ToString("#0.00");
 
             Array.Copy(data, 8, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10;
-            tbModuleModulationCurrentEquationB.Text = sTmp.ToString("#0.0");
+            tbModulationCurrentEquationB.Text = sTmp.ToString("#0.0");
 
             Array.Copy(data, 10, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             iTmp = BitConverter.ToInt16(reverseData, 0);
-            tbModuleModulationCurrentEquationC.Text = iTmp.ToString();
+            tbModulationCurrentEquationC.Text = iTmp.ToString();
 
             sTmp = Convert.ToSingle(Convert.ToUInt32(data[12]) * 0.04);
-            tbModuleModulationCurrentMin.Text = sTmp.ToString("#0.00");
+            tbModulationCurrentMin.Text = sTmp.ToString("#0.00");
 
             sTmp = Convert.ToSingle(Convert.ToUInt32(data[13]) * 0.04);
-            tbModuleModulationCurrentMax.Text = sTmp.ToString("#0.00");
+            tbModulationCurrentMax.Text = sTmp.ToString("#0.00");
 
-            Buffer.BlockCopy(data, 14, sData, 0, 1);
-            sTmp = Convert.ToSingle(Convert.ToInt32(sData[0]) * 0.1);
-            tbModuleAverageCurrentOffset.Text = sTmp.ToString("#0.0");
+            if (qsfpI2cReadCB(80, 205, 22, data) != 22)
+                return -1;
 
-            Buffer.BlockCopy(data, 15, sData, 0, 1);
-            sTmp = Convert.ToSingle(Convert.ToInt32(sData[0]) * 0.1);
-            tbModuleModulationCurrentOffset.Text = sTmp.ToString("#0.0");
-
-            Buffer.BlockCopy(data, 16, sData, 0, 1);
+            Buffer.BlockCopy(data, 0, sData, 0, 1);
             sTmp = Convert.ToSingle(sData[0]) / 1000;
             tbVhfCompPropEquationA.Text = sTmp.ToString("#0.000");
 
-            Array.Copy(data, 17, bATmp, 0, 2);
+            Array.Copy(data, 1, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbVhfCompPropEquationB.Text = sTmp.ToString("#0.0000");
 
-            Array.Copy(data, 19, bATmp, 0, 2);
+            Array.Copy(data, 3, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 1000;
             tbVhfCompPropEquationC.Text = sTmp.ToString("#0.000");
 
-            Buffer.BlockCopy(data, 21, sData, 0, 1);
+            Buffer.BlockCopy(data, 5, sData, 0, 1);
             sTmp = Convert.ToSingle(sData[0]) / 1000;
             tbVhfCompConstEquationA.Text = sTmp.ToString("#0.000");
 
-            Array.Copy(data, 22, bATmp, 0, 2);
+            Array.Copy(data, 6, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbVhfCompConstEquationB.Text = sTmp.ToString("#0.0000");
 
-            Array.Copy(data, 24, bATmp, 0, 2);
+            Array.Copy(data, 8, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
             tbVhfCompConstEquationC.Text = sTmp.ToString("#0.00");
+
+            Buffer.BlockCopy(data, 10, sData, 0, 1);
+            sTmp = Convert.ToSingle(Convert.ToInt32(sData[0]) * 0.1);
+            tbAverageCurrentOffsetCh1.Text = sTmp.ToString("#0.0");
+
+            Buffer.BlockCopy(data, 11, sData, 0, 1);
+            sTmp = Convert.ToSingle(Convert.ToInt32(sData[0]) * 0.1);
+            tbAverageCurrentOffsetCh2.Text = sTmp.ToString("#0.0");
+
+            Buffer.BlockCopy(data, 12, sData, 0, 1);
+            sTmp = Convert.ToSingle(Convert.ToInt32(sData[0]) * 0.1);
+            tbAverageCurrentOffsetCh3.Text = sTmp.ToString("#0.0");
+
+            Buffer.BlockCopy(data, 13, sData, 0, 1);
+            sTmp = Convert.ToSingle(Convert.ToInt32(sData[0]) * 0.1);
+            tbAverageCurrentOffsetCh4.Text = sTmp.ToString("#0.0");
+
+            Buffer.BlockCopy(data, 14, sData, 0, 1);
+            sTmp = Convert.ToSingle(Convert.ToInt32(sData[0]) * 0.1);
+            tbModulationCurrentOffsetCh1.Text = sTmp.ToString("#0.0");
+
+            Buffer.BlockCopy(data, 15, sData, 0, 1);
+            sTmp = Convert.ToSingle(Convert.ToInt32(sData[0]) * 0.1);
+            tbModulationCurrentOffsetCh2.Text = sTmp.ToString("#0.0");
+
+            Buffer.BlockCopy(data, 16, sData, 0, 1);
+            sTmp = Convert.ToSingle(Convert.ToInt32(sData[0]) * 0.1);
+            tbModulationCurrentOffsetCh3.Text = sTmp.ToString("#0.0");
+
+            Buffer.BlockCopy(data, 17, sData, 0, 1);
+            sTmp = Convert.ToSingle(Convert.ToInt32(sData[0]) * 0.1);
+            tbModulationCurrentOffsetCh4.Text = sTmp.ToString("#0.0");
+
+            Buffer.BlockCopy(data, 18, sData, 0, 1);
+            sTmp = Convert.ToSingle(Convert.ToInt32(sData[0]) * 0.1);
+            tbVhfCompPropOffsetCh1.Text = sTmp.ToString("#0.0");
+
+            Buffer.BlockCopy(data, 19, sData, 0, 1);
+            sTmp = Convert.ToSingle(Convert.ToInt32(sData[0]) * 0.1);
+            tbVhfCompPropOffsetCh2.Text = sTmp.ToString("#0.0");
+
+            Buffer.BlockCopy(data, 20, sData, 0, 1);
+            sTmp = Convert.ToSingle(Convert.ToInt32(sData[0]) * 0.1);
+            tbVhfCompPropOffsetCh3.Text = sTmp.ToString("#0.0");
+
+            Buffer.BlockCopy(data, 21, sData, 0, 1);
+            sTmp = Convert.ToSingle(Convert.ToInt32(sData[0]) * 0.1);
+            tbVhfCompPropOffsetCh4.Text = sTmp.ToString("#0.0");
+
+            if (qsfpI2cReadCB(80, 231, 4, data) != 4)
+                return -1;
+
+            Buffer.BlockCopy(data, 0, sData, 0, 1);
+            sTmp = Convert.ToSingle(Convert.ToInt32(sData[0]) * 0.1);
+            tbVhfCompConstOffsetCh1.Text = sTmp.ToString("#0.0");
+
+            Buffer.BlockCopy(data, 1, sData, 0, 1);
+            sTmp = Convert.ToSingle(Convert.ToInt32(sData[0]) * 0.1);
+            tbVhfCompConstOffsetCh2.Text = sTmp.ToString("#0.0");
+
+            Buffer.BlockCopy(data, 2, sData, 0, 1);
+            sTmp = Convert.ToSingle(Convert.ToInt32(sData[0]) * 0.1);
+            tbVhfCompConstOffsetCh3.Text = sTmp.ToString("#0.0");
+
+            Buffer.BlockCopy(data, 3, sData, 0, 1);
+            sTmp = Convert.ToSingle(Convert.ToInt32(sData[0]) * 0.1);
+            tbVhfCompConstOffsetCh4.Text = sTmp.ToString("#0.0");
 
             return 0;
         }
@@ -752,14 +814,28 @@ namespace Gn1190Corrector
                 (tbModulationCurrentEquationC.Text.Length == 0) ||
                 (tbModulationCurrentMin.Text.Length == 0) ||
                 (tbModulationCurrentMax.Text.Length == 0) ||
-                (tbAverageCurrentOffset.Text.Length == 0) ||
-                (tbModulationCurrentOffset.Text.Length == 0) ||
+                (tbAverageCurrentOffsetCh1.Text.Length == 0) ||
+                (tbAverageCurrentOffsetCh2.Text.Length == 0) ||
+                (tbAverageCurrentOffsetCh3.Text.Length == 0) ||
+                (tbAverageCurrentOffsetCh4.Text.Length == 0) ||
+                (tbModulationCurrentOffsetCh1.Text.Length == 0) ||
+                (tbModulationCurrentOffsetCh2.Text.Length == 0) ||
+                (tbModulationCurrentOffsetCh3.Text.Length == 0) ||
+                (tbModulationCurrentOffsetCh4.Text.Length == 0) ||
                 (tbVhfCompPropEquationA.Text.Length == 0) ||
                 (tbVhfCompPropEquationB.Text.Length == 0) ||
                 (tbVhfCompPropEquationC.Text.Length == 0) ||
                 (tbVhfCompConstEquationA.Text.Length == 0) ||
                 (tbVhfCompConstEquationB.Text.Length == 0) ||
-                (tbVhfCompConstEquationC.Text.Length == 0)) {
+                (tbVhfCompConstEquationC.Text.Length == 0) ||
+                (tbVhfCompPropOffsetCh1.Text.Length == 0) ||
+                (tbVhfCompPropOffsetCh2.Text.Length == 0) ||
+                (tbVhfCompPropOffsetCh3.Text.Length == 0) ||
+                (tbVhfCompPropOffsetCh4.Text.Length == 0) ||
+                (tbVhfCompConstOffsetCh1.Text.Length == 0) ||
+                (tbVhfCompConstOffsetCh2.Text.Length == 0) ||
+                (tbVhfCompConstOffsetCh3.Text.Length == 0) ||
+                (tbVhfCompConstOffsetCh4.Text.Length == 0)) {
                 MessageBox.Show("Please input value before write!!");
                 return -1;
             }
@@ -920,37 +996,7 @@ namespace Gn1190Corrector
                 return -1;
             }
 
-            if (Convert.ToSingle(tbAverageCurrentOffset.Text) < -12.8 ||
-                Convert.ToSingle(tbAverageCurrentOffset.Text) > 12.7) {
-                MessageBox.Show("Average current offset: " +
-                    tbAverageCurrentOffset.Text +
-                    " out of range (-12.8 ~ 12.7)!!");
-                return -1;
-            }
-            try {
-                sBATmp[0] = Convert.ToSByte(Convert.ToSingle(tbAverageCurrentOffset.Text) * 10);
-                Buffer.BlockCopy(sBATmp, 0, data, 14, 1);
-            }
-            catch (Exception eC) {
-                MessageBox.Show(eC.ToString());
-                return -1;
-            }
-
-            if (Convert.ToSingle(tbModulationCurrentOffset.Text) < -12.8 ||
-                Convert.ToSingle(tbModulationCurrentOffset.Text) > 12.7) {
-                MessageBox.Show("Modulation current offset: " +
-                    tbModulationCurrentOffset.Text +
-                    " out of range (-12.8 ~ 12.7)!!");
-                return -1;
-            }
-            try {
-                sBATmp[0] = Convert.ToSByte(Convert.ToSingle(tbModulationCurrentOffset.Text) * 10);
-                Buffer.BlockCopy(sBATmp, 0, data, 15, 1);
-            }
-            catch (Exception eC) {
-                MessageBox.Show(eC.ToString());
-                return -1;
-            }
+            data[14] = data[15] = 0;
 
             if ((Convert.ToSingle(tbVhfCompPropEquationA.Text) < -0.128) ||
                 (Convert.ToSingle(tbVhfCompPropEquationA.Text) > 0.127)) {
@@ -1056,7 +1102,266 @@ namespace Gn1190Corrector
             data[24] = bATmp[1];
             data[25] = bATmp[0];
 
-            if (qsfpI2cWriteCB(80, 189, 26, data) < 0)
+            if (Convert.ToSingle(tbAverageCurrentOffsetCh1.Text) < -12.8 ||
+                Convert.ToSingle(tbAverageCurrentOffsetCh1.Text) > 12.7) {
+                MessageBox.Show("Average current offset: " +
+                    tbAverageCurrentOffsetCh1.Text +
+                    " out of range (-12.8 ~ 12.7)!!");
+                return -1;
+            }
+            try {
+                sBATmp[0] = Convert.ToSByte(Convert.ToSingle(tbAverageCurrentOffsetCh1.Text) * 10);
+                Buffer.BlockCopy(sBATmp, 0, data, 26, 1);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+
+            if (Convert.ToSingle(tbAverageCurrentOffsetCh2.Text) < -12.8 ||
+                Convert.ToSingle(tbAverageCurrentOffsetCh2.Text) > 12.7) {
+                MessageBox.Show("Average current offset: " +
+                    tbAverageCurrentOffsetCh2.Text +
+                    " out of range (-12.8 ~ 12.7)!!");
+                return -1;
+            }
+            try {
+                sBATmp[0] = Convert.ToSByte(Convert.ToSingle(tbAverageCurrentOffsetCh2.Text) * 10);
+                Buffer.BlockCopy(sBATmp, 0, data, 27, 1);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+
+            if (Convert.ToSingle(tbAverageCurrentOffsetCh3.Text) < -12.8 ||
+                Convert.ToSingle(tbAverageCurrentOffsetCh3.Text) > 12.7) {
+                MessageBox.Show("Average current offset: " +
+                    tbAverageCurrentOffsetCh3.Text +
+                    " out of range (-12.8 ~ 12.7)!!");
+                return -1;
+            }
+            try {
+                sBATmp[0] = Convert.ToSByte(Convert.ToSingle(tbAverageCurrentOffsetCh3.Text) * 10);
+                Buffer.BlockCopy(sBATmp, 0, data, 28, 1);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+
+            if (Convert.ToSingle(tbAverageCurrentOffsetCh4.Text) < -12.8 ||
+                Convert.ToSingle(tbAverageCurrentOffsetCh4.Text) > 12.7) {
+                MessageBox.Show("Average current offset: " +
+                    tbAverageCurrentOffsetCh4.Text +
+                    " out of range (-12.8 ~ 12.7)!!");
+                return -1;
+            }
+            try {
+                sBATmp[0] = Convert.ToSByte(Convert.ToSingle(tbAverageCurrentOffsetCh4.Text) * 10);
+                Buffer.BlockCopy(sBATmp, 0, data, 29, 1);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+
+            if (Convert.ToSingle(tbModulationCurrentOffsetCh1.Text) < -12.8 ||
+                Convert.ToSingle(tbModulationCurrentOffsetCh1.Text) > 12.7) {
+                MessageBox.Show("Modulation current offset: " +
+                    tbModulationCurrentOffsetCh1.Text +
+                    " out of range (-12.8 ~ 12.7)!!");
+                return -1;
+            }
+            try {
+                sBATmp[0] = Convert.ToSByte(Convert.ToSingle(tbModulationCurrentOffsetCh1.Text) * 10);
+                Buffer.BlockCopy(sBATmp, 0, data, 30, 1);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+
+            if (Convert.ToSingle(tbModulationCurrentOffsetCh2.Text) < -12.8 ||
+                Convert.ToSingle(tbModulationCurrentOffsetCh2.Text) > 12.7) {
+                MessageBox.Show("Modulation current offset: " +
+                    tbModulationCurrentOffsetCh2.Text +
+                    " out of range (-12.8 ~ 12.7)!!");
+                return -1;
+            }
+            try {
+                sBATmp[0] = Convert.ToSByte(Convert.ToSingle(tbModulationCurrentOffsetCh2.Text) * 10);
+                Buffer.BlockCopy(sBATmp, 0, data, 31, 1);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+
+            if (Convert.ToSingle(tbModulationCurrentOffsetCh3.Text) < -12.8 ||
+                Convert.ToSingle(tbModulationCurrentOffsetCh3.Text) > 12.7) {
+                MessageBox.Show("Modulation current offset: " +
+                    tbModulationCurrentOffsetCh3.Text +
+                    " out of range (-12.8 ~ 12.7)!!");
+                return -1;
+            }
+            try {
+                sBATmp[0] = Convert.ToSByte(Convert.ToSingle(tbModulationCurrentOffsetCh3.Text) * 10);
+                Buffer.BlockCopy(sBATmp, 0, data, 32, 1);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+
+            if (Convert.ToSingle(tbModulationCurrentOffsetCh4.Text) < -12.8 ||
+                Convert.ToSingle(tbModulationCurrentOffsetCh4.Text) > 12.7) {
+                MessageBox.Show("Modulation current offset: " +
+                    tbModulationCurrentOffsetCh4.Text +
+                    " out of range (-12.8 ~ 12.7)!!");
+                return -1;
+            }
+            try {
+                sBATmp[0] = Convert.ToSByte(Convert.ToSingle(tbModulationCurrentOffsetCh4.Text) * 10);
+                Buffer.BlockCopy(sBATmp, 0, data, 33, 1);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+
+            if (Convert.ToSingle(tbVhfCompPropOffsetCh1.Text) < -12.8 ||
+                Convert.ToSingle(tbVhfCompPropOffsetCh1.Text) > 12.7) {
+                MessageBox.Show("VHT comp prop offset: " +
+                    tbVhfCompPropOffsetCh1.Text +
+                    " out of range (-12.8 ~ 12.7)!!");
+                return -1;
+            }
+            try {
+                sBATmp[0] = Convert.ToSByte(Convert.ToSingle(tbVhfCompPropOffsetCh1.Text) * 10);
+                Buffer.BlockCopy(sBATmp, 0, data, 34, 1);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+
+            if (Convert.ToSingle(tbVhfCompPropOffsetCh2.Text) < -12.8 ||
+                Convert.ToSingle(tbVhfCompPropOffsetCh2.Text) > 12.7) {
+                MessageBox.Show("VHT comp prop offset: " +
+                    tbVhfCompPropOffsetCh2.Text +
+                    " out of range (-12.8 ~ 12.7)!!");
+                return -1;
+            }
+            try {
+                sBATmp[0] = Convert.ToSByte(Convert.ToSingle(tbVhfCompPropOffsetCh2.Text) * 10);
+                Buffer.BlockCopy(sBATmp, 0, data, 35, 1);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+
+            if (Convert.ToSingle(tbVhfCompPropOffsetCh3.Text) < -12.8 ||
+                Convert.ToSingle(tbVhfCompPropOffsetCh3.Text) > 12.7) {
+                MessageBox.Show("VHT comp prop offset: " +
+                    tbVhfCompPropOffsetCh3.Text +
+                    " out of range (-12.8 ~ 12.7)!!");
+                return -1;
+            }
+            try {
+                sBATmp[0] = Convert.ToSByte(Convert.ToSingle(tbVhfCompPropOffsetCh3.Text) * 10);
+                Buffer.BlockCopy(sBATmp, 0, data, 36, 1);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+
+            if (Convert.ToSingle(tbVhfCompPropOffsetCh4.Text) < -12.8 ||
+                Convert.ToSingle(tbVhfCompPropOffsetCh4.Text) > 12.7) {
+                MessageBox.Show("VHT comp prop offset: " +
+                    tbVhfCompPropOffsetCh4.Text +
+                    " out of range (-12.8 ~ 12.7)!!");
+                return -1;
+            }
+            try {
+                sBATmp[0] = Convert.ToSByte(Convert.ToSingle(tbVhfCompPropOffsetCh4.Text) * 10);
+                Buffer.BlockCopy(sBATmp, 0, data, 37, 1);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+
+            if (qsfpI2cWriteCB(80, 189, 38, data) < 0)
+                return -1;
+
+            if (Convert.ToSingle(tbVhfCompConstOffsetCh1.Text) < -12.8 ||
+                Convert.ToSingle(tbVhfCompConstOffsetCh1.Text) > 12.7) {
+                MessageBox.Show("VHT comp const offset: " +
+                    tbVhfCompConstOffsetCh1.Text +
+                    " out of range (-12.8 ~ 12.7)!!");
+                return -1;
+            }
+            try {
+                sBATmp[0] = Convert.ToSByte(Convert.ToSingle(tbVhfCompConstOffsetCh1.Text) * 10);
+                Buffer.BlockCopy(sBATmp, 0, data, 0, 1);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+
+            if (Convert.ToSingle(tbVhfCompConstOffsetCh2.Text) < -12.8 ||
+                Convert.ToSingle(tbVhfCompConstOffsetCh2.Text) > 12.7) {
+                MessageBox.Show("VHT comp const offset: " +
+                    tbVhfCompConstOffsetCh2.Text +
+                    " out of range (-12.8 ~ 12.7)!!");
+                return -1;
+            }
+            try {
+                sBATmp[0] = Convert.ToSByte(Convert.ToSingle(tbVhfCompConstOffsetCh2.Text) * 10);
+                Buffer.BlockCopy(sBATmp, 0, data, 1, 1);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+
+            if (Convert.ToSingle(tbVhfCompConstOffsetCh3.Text) < -12.8 ||
+                Convert.ToSingle(tbVhfCompConstOffsetCh3.Text) > 12.7) {
+                MessageBox.Show("VHT comp const offset: " +
+                    tbVhfCompConstOffsetCh3.Text +
+                    " out of range (-12.8 ~ 12.7)!!");
+                return -1;
+            }
+            try {
+                sBATmp[0] = Convert.ToSByte(Convert.ToSingle(tbVhfCompConstOffsetCh3.Text) * 10);
+                Buffer.BlockCopy(sBATmp, 0, data, 2, 1);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+
+            if (Convert.ToSingle(tbVhfCompConstOffsetCh4.Text) < -12.8 ||
+                Convert.ToSingle(tbVhfCompConstOffsetCh4.Text) > 12.7) {
+                MessageBox.Show("VHT comp const offset: " +
+                    tbVhfCompConstOffsetCh4.Text +
+                    " out of range (-12.8 ~ 12.7)!!");
+                return -1;
+            }
+            try {
+                sBATmp[0] = Convert.ToSByte(Convert.ToSingle(tbVhfCompConstOffsetCh4.Text) * 10);
+                Buffer.BlockCopy(sBATmp, 0, data, 3, 1);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+
+            if (qsfpI2cWriteCB(80, 231, 4, data) < 0)
                 return -1;
 
             for (i = 0, bChecksum = 1; i < 16; i++)
@@ -1067,8 +1372,6 @@ namespace Gn1190Corrector
             if (qsfpI2cWriteCB(80, 132, 1, data) < 0)
                 return -1;
 
-
-            
             _ClearPassword();
             _SetQsfpMode(0);
 
