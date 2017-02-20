@@ -1297,6 +1297,9 @@ namespace Gn1190Corrector
             if (qsfpI2cWriteCB(80, 189, 38, data) < 0)
                 return -1;
 
+            for (i = 0, bChecksum = 1; i < 16; i++)
+                bChecksum += data[i];
+
             if (Convert.ToSingle(tbVhfCompConstOffsetCh1.Text) < -12.8 ||
                 Convert.ToSingle(tbVhfCompConstOffsetCh1.Text) > 12.7) {
                 MessageBox.Show("VHT comp const offset: " +
@@ -1363,9 +1366,6 @@ namespace Gn1190Corrector
 
             if (qsfpI2cWriteCB(80, 231, 4, data) < 0)
                 return -1;
-
-            for (i = 0, bChecksum = 1; i < 16; i++)
-                bChecksum += data[i];
 
             data[0] = bChecksum;
 
