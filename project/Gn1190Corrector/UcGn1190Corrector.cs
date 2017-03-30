@@ -18,6 +18,8 @@ namespace Gn1190Corrector
         private I2cReadCB qsfpI2cReadCB = null;
         private I2cWriteCB qsfpI2cWriteCB = null;
 
+        private byte dataStorePage = 2;
+
         public UcGn1190Corrector()
         {
             InitializeComponent();
@@ -85,6 +87,31 @@ namespace Gn1190Corrector
             swConfig = new StreamWriter(tbFilePath.Text);
         }
 
+        private int _ReadVersion()
+        {
+            byte[] data = new byte[2];
+
+            if (qsfpI2cWriteCB == null)
+                return -1;
+
+            if (qsfpI2cReadCB == null)
+                return -1;
+
+            data[0] = 32;
+            if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
+                return -1;
+
+            if (qsfpI2cReadCB(80, 165, 2, data) != 2)
+                return -1;
+
+            if (data[0] > 48) //'0'
+                dataStorePage = 4;
+            else if (data[1] > 51) //'3'
+                dataStorePage = 4;
+            
+            return 0;
+        }
+
         private int _ReadTemperature()
         {
             byte[] data = new byte[2];
@@ -110,7 +137,7 @@ namespace Gn1190Corrector
             if (qsfpI2cWriteCB == null)
                 return -1;
 
-            data = new byte[] { 2, 0 };
+            data = new byte[] { dataStorePage, 0 };
             qsfpI2cWriteCB(80, 127, 1, data);
             if (qsfpI2cReadCB(80, 137, 1, data) != 1)
                 return -1;
@@ -140,6 +167,9 @@ namespace Gn1190Corrector
 
         private void bTemperatureRead_Click(object sender, EventArgs e)
         {
+            if (_ReadVersion() < 0)
+                return;
+
             if (_ReadTemperature() < 0)
                 return;
         }
@@ -148,6 +178,7 @@ namespace Gn1190Corrector
         {
             byte[] data = new byte[4];
             int tmpI;
+
             if (qsfpI2cWriteCB == null)
                 return -1;
 
@@ -244,7 +275,7 @@ namespace Gn1190Corrector
                 return -1;
             }
 
-            data[0] = 2;
+            data[0] = dataStorePage;
             qsfpI2cWriteCB(80, 127, 1, data);
 
             try {
@@ -271,6 +302,9 @@ namespace Gn1190Corrector
 
         private void bTemperatureWrite_Click(object sender, EventArgs e)
         {
+            if (_ReadVersion() < 0)
+                return;
+
             if (_WriteTemperatureCorrector() < 0)
                 return;
         }
@@ -289,6 +323,9 @@ namespace Gn1190Corrector
 
         private void bTemperatureReset_Click(object sender, EventArgs e)
         {
+            if (_ReadVersion() < 0)
+                return;
+
             if (_ResetTemperatureOffset() < 0)
                 return;
         }
@@ -350,6 +387,9 @@ namespace Gn1190Corrector
 
         private void bTemperatureAutoCorrect_Click(object sender, EventArgs e)
         {
+            if (_ReadVersion() < 0)
+                return;
+
             if (_AutoCorrectTemperatureOffset() < 0)
                 return;
         }
@@ -444,7 +484,7 @@ namespace Gn1190Corrector
             if (tbRxPowerRateMin.Text.Length == 0)
                 tbRxPowerRateMin.Text = (data[0] - 12).ToString();
 
-            data = new byte[] { 2, 0, 0, 0 };
+            data = new byte[] { dataStorePage, 0, 0, 0 };
             qsfpI2cWriteCB(80, 127, 1, data);
             if (qsfpI2cReadCB(80, 133, 4, data) != 4)
                 return -1;
@@ -459,13 +499,16 @@ namespace Gn1190Corrector
 
         private void bRxPowerRateRead_Click(object sender, EventArgs e)
         {
+            if (_ReadVersion() < 0)
+                return;
+
             if (_ReadPowerRate() < 0)
                 return;
         }
 
         private int _WritePowerRate()
         {
-            byte[] data = new byte[] { 2, 0, 0, 0 }; ;
+            byte[] data = new byte[] { dataStorePage, 0, 0, 0 }; ;
 
             if ((tbRxPowerRate1.Text.Length == 0) || (tbRxPowerRate2.Text.Length == 0) ||
                 (tbRxPowerRate3.Text.Length == 0) || (tbRxPowerRate4.Text.Length == 0)) {
@@ -505,6 +548,9 @@ namespace Gn1190Corrector
 
         private void bRxPowerRateWrite_Click(object sender, EventArgs e)
         {
+            if (_ReadVersion() < 0)
+                return;
+
             if (_WritePowerRate() < 0)
                 return;
         }
@@ -529,6 +575,9 @@ namespace Gn1190Corrector
 
         private void bRxPowerRateReset_Click(object sender, EventArgs e)
         {
+            if (_ReadVersion() < 0)
+                return;
+
             if (_ResetRxPowerRate() < 0)
                 return;
         }
@@ -561,7 +610,7 @@ namespace Gn1190Corrector
             }
 
             try {
-                input = Convert.ToSingle(tbRxInputPower1.Text);
+                input = Convert.ToSingle(tbRxInputPowerRssi1.Text);
                 rssi = Convert.ToSingle(tbRssi1.Text);
                 rate = Convert.ToInt32(Math.Ceiling(rssi * 100 / input));
             }
@@ -574,7 +623,7 @@ namespace Gn1190Corrector
                 MessageBox.Show("Rx1 rate: " + rate + " out of bound!!");
 
             try {
-                input = Convert.ToSingle(tbRxInputPower2.Text);
+                input = Convert.ToSingle(tbRxInputPowerRssi2.Text);
                 rssi = Convert.ToSingle(tbRssi2.Text);
                 rate = Convert.ToInt32(Math.Ceiling(rssi * 100 / input));
             }
@@ -587,7 +636,7 @@ namespace Gn1190Corrector
                 MessageBox.Show("Rx2 rate: " + rate + " out of bound!!");
 
             try {
-                input = Convert.ToSingle(tbRxInputPower3.Text);
+                input = Convert.ToSingle(tbRxInputPowerRssi3.Text);
                 rssi = Convert.ToSingle(tbRssi3.Text);
                 rate = Convert.ToInt32(Math.Ceiling(rssi * 100 / input));
             }
@@ -600,7 +649,7 @@ namespace Gn1190Corrector
                 MessageBox.Show("Rx3 rate: " + rate + " out of bound!!");
 
             try {
-                input = Convert.ToSingle(tbRxInputPower4.Text);
+                input = Convert.ToSingle(tbRxInputPowerRssi4.Text);
                 rssi = Convert.ToSingle(tbRssi4.Text);
                 rate = Convert.ToInt32(Math.Ceiling(rssi * 100 / input));
             }
@@ -622,6 +671,9 @@ namespace Gn1190Corrector
 
         private void bRxPowerRateAutoCorrect_Click(object sender, EventArgs e)
         {
+            if (_ReadVersion() < 0)
+                return;
+
             if (_AutoCorrectRxPowerRate() < 0)
                 return;
         }
@@ -638,7 +690,7 @@ namespace Gn1190Corrector
             if (qsfpI2cWriteCB == null)
                 return -1;
 
-            data[0] = 2;
+            data[0] = dataStorePage;
             if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
 
@@ -668,7 +720,9 @@ namespace Gn1190Corrector
             sTmp = Convert.ToSingle(Convert.ToUInt32(data[6]) * 0.04);
             tbAverageCurrentMax.Text = sTmp.ToString("#0.00");
 
-            tbModulationCurrentEquationA.Text = (Convert.ToSingle(data[7]) / 100).ToString("#0.00");
+            Buffer.BlockCopy(data, 7, sData, 0, 1);
+            sTmp = Convert.ToSingle(sData[0]) / 100;
+            tbModulationCurrentEquationA.Text = sTmp.ToString("#0.00");
 
             Array.Copy(data, 8, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
@@ -789,6 +843,9 @@ namespace Gn1190Corrector
 
         private void bAcMcRead_Click(object sender, EventArgs e)
         {
+            if (_ReadVersion() < 0)
+                return;
+
             if (_ReadAverageCurrentAndModulationCurrentCorrectData() < 0)
                 return;
         }
@@ -849,7 +906,7 @@ namespace Gn1190Corrector
             if (qsfpI2cWriteCB == null)
                 return -1;
 
-            data[0] = 2;
+            data[0] = dataStorePage;
             if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
 
@@ -925,15 +982,15 @@ namespace Gn1190Corrector
                 return -1;
             }
 
-            if (Convert.ToSingle(tbModulationCurrentEquationA.Text) < 0 ||
-                Convert.ToSingle(tbModulationCurrentEquationA.Text) > 2.55) {
-                MessageBox.Show("Modualtion current equation A: " +
+            if ((Convert.ToSingle(tbModulationCurrentEquationA.Text) < -1.28) ||
+                (Convert.ToSingle(tbModulationCurrentEquationA.Text) > 1.27)) {
+                    MessageBox.Show("Modualtion current equation A: " +
                     tbModulationCurrentEquationA.Text +
-                    " out of range (0 ~ 2.55)!!");
+                    " out of range (-1.28 ~ 1.27)!!");
                 return -1;
             }
             try {
-                data[7] = Convert.ToByte(Convert.ToSingle(tbModulationCurrentEquationA.Text) * 100);
+                data[7] = (byte)Convert.ToSByte(Convert.ToSingle(tbModulationCurrentEquationA.Text) * 100);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
@@ -1380,6 +1437,9 @@ namespace Gn1190Corrector
 
         private void bAcMcWrite_Click(object sender, EventArgs e)
         {
+            if (_ReadVersion() < 0)
+                return;
+
             if (_WriteAcMcCorrectData() < 0)
                 return;
             cbTemperatureCompensation.Checked = true;
@@ -1388,7 +1448,7 @@ namespace Gn1190Corrector
 
         private int _ResetAcMcEquation()
         {
-            byte[] data = new byte[] { 2 };
+            byte[] data = new byte[] { dataStorePage };
 
             if (_WritePassword() < 0)
                 return -1;
@@ -1402,7 +1462,10 @@ namespace Gn1190Corrector
             if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
 
-            data[0] = 0;
+            if (qsfpI2cReadCB(80, 191, 1, data) != 1)
+                return -1;
+
+            data[0] ^= 0xFF;
             if (qsfpI2cWriteCB(80, 191, 1, data) < 0)
                 return -1;
 
@@ -1414,6 +1477,9 @@ namespace Gn1190Corrector
 
         private void bLutReset_Click(object sender, EventArgs e)
         {
+            if (_ReadVersion() < 0)
+                return;
+
             if (_ResetAcMcEquation() < 0)
                 return;
         }
@@ -1431,7 +1497,7 @@ namespace Gn1190Corrector
             if (qsfpI2cWriteCB == null)
                 return -1;
 
-            data[0] = 2;
+            data[0] = dataStorePage;
             if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
 
@@ -1450,6 +1516,9 @@ namespace Gn1190Corrector
 
         private void cbTemperatureCompensation_CheckedChanged(object sender, EventArgs e)
         {
+            if (_ReadVersion() < 0)
+                return;
+
             if (cbTemperatureCompensation.Checked == false) {
                 if (_DisableTemperatureCompensation() < 0)
                     return;
@@ -1457,5 +1526,100 @@ namespace Gn1190Corrector
             }
         }
 
+        private void bReset_Click(object sender, EventArgs e)
+        {
+            bTemperatureReset_Click(sender, e);
+            bRxPowerRateReset_Click(sender, e);
+        }
+
+        private void bAutoCorrect_Click(object sender, EventArgs e)
+        {
+            bTemperatureAutoCorrect_Click(sender, e);
+            bRxPowerRateAutoCorrect_Click(sender, e);
+        }
+
+        private void tbRxInputPower1_TextChanged(object sender, EventArgs e)
+        {
+            float input, rssi;
+            uint numerator, denominator;
+
+            try {
+                input = Convert.ToSingle(tbRxInputPower1.Text);
+                numerator = Convert.ToUInt32(tbRxRssiRateNumerator.Text);
+                denominator = Convert.ToUInt32(tbRxRssiRateDenominator.Text);
+                rssi = input * numerator / denominator;
+                tbRxInputPowerRssi1.Text = rssi.ToString("#0.0");
+            }
+            catch (Exception eCT) {
+                MessageBox.Show(eCT.ToString());
+            }
+        }
+
+        private void tbRxInputPower2_TextChanged(object sender, EventArgs e)
+        {
+            float input, rssi;
+            uint numerator, denominator;
+
+            try {
+                input = Convert.ToSingle(tbRxInputPower2.Text);
+                numerator = Convert.ToUInt32(tbRxRssiRateNumerator.Text);
+                denominator = Convert.ToUInt32(tbRxRssiRateDenominator.Text);
+                rssi = input * numerator / denominator;
+                tbRxInputPowerRssi2.Text = rssi.ToString("#0.0");
+            }
+            catch (Exception eCT) {
+                MessageBox.Show(eCT.ToString());
+            }
+        }
+
+        private void tbRxInputPower3_TextChanged(object sender, EventArgs e)
+        {
+            float input, rssi;
+            uint numerator, denominator;
+
+            try {
+                input = Convert.ToSingle(tbRxInputPower3.Text);
+                numerator = Convert.ToUInt32(tbRxRssiRateNumerator.Text);
+                denominator = Convert.ToUInt32(tbRxRssiRateDenominator.Text);
+                rssi = input * numerator / denominator;
+                tbRxInputPowerRssi3.Text = rssi.ToString("#0.0");
+            }
+            catch (Exception eCT) {
+                MessageBox.Show(eCT.ToString());
+            }
+        }
+
+        private void tbRxInputPower4_TextChanged(object sender, EventArgs e)
+        {
+            float input, rssi;
+            uint numerator, denominator;
+
+            try {
+                input = Convert.ToSingle(tbRxInputPower4.Text);
+                numerator = Convert.ToUInt32(tbRxRssiRateNumerator.Text);
+                denominator = Convert.ToUInt32(tbRxRssiRateDenominator.Text);
+                rssi = input * numerator / denominator;
+                tbRxInputPowerRssi4.Text = rssi.ToString("#0.0");
+            }
+            catch (Exception eCT) {
+                MessageBox.Show(eCT.ToString());
+            }
+        }
+
+        private void tbRxRssiRateNumerator_TextChanged(object sender, EventArgs e)
+        {
+            tbRxInputPower1_TextChanged(sender, e);
+            tbRxInputPower2_TextChanged(sender, e);
+            tbRxInputPower3_TextChanged(sender, e);
+            tbRxInputPower4_TextChanged(sender, e);
+        }
+
+        private void tbRxRssiRateDenominator_TextChanged(object sender, EventArgs e)
+        {
+            tbRxInputPower1_TextChanged(sender, e);
+            tbRxInputPower2_TextChanged(sender, e);
+            tbRxInputPower3_TextChanged(sender, e);
+            tbRxInputPower4_TextChanged(sender, e);
+        }
     }
 }
