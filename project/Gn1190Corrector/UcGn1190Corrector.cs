@@ -819,7 +819,7 @@ namespace Gn1190Corrector
             sTmp = Convert.ToSingle(Convert.ToInt32(sData[0]) * 0.1);
             tbVhfCompPropOffsetCh4.Text = sTmp.ToString("#0.0");
 
-            if (qsfpI2cReadCB(80, 231, 4, data) != 4)
+            if (qsfpI2cReadCB(80, 231, 22, data) != 22)
                 return -1;
 
             Buffer.BlockCopy(data, 0, sData, 0, 1);
@@ -837,6 +837,66 @@ namespace Gn1190Corrector
             Buffer.BlockCopy(data, 3, sData, 0, 1);
             sTmp = Convert.ToSingle(Convert.ToInt32(sData[0]) * 0.1);
             tbVhfCompConstOffsetCh4.Text = sTmp.ToString("#0.0");
+
+            Buffer.BlockCopy(data, 4, sData, 0, 1);
+            sTmp = Convert.ToSingle(sData[0]) / 1000;
+            tbPeakEnEquationA.Text = sTmp.ToString("#0.000");
+
+            Array.Copy(data, 5, bATmp, 0, 2);
+            reverseData = bATmp.Reverse().ToArray();
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
+            tbPeakEnEquationB.Text = sTmp.ToString("#0.0000");
+
+            Array.Copy(data, 7, bATmp, 0, 2);
+            reverseData = bATmp.Reverse().ToArray();
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 1000;
+            tbPeakEnEquationC.Text = sTmp.ToString("#0.000");
+
+            Buffer.BlockCopy(data, 9, sData, 0, 1);
+            sTmp = Convert.ToSingle(sData[0]) / 1000;
+            tbPeakLenCtrlEquationA.Text = sTmp.ToString("#0.000");
+
+            Array.Copy(data, 10, bATmp, 0, 2);
+            reverseData = bATmp.Reverse().ToArray();
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
+            tbPeakLenCtrlEquationB.Text = sTmp.ToString("#0.0000");
+
+            Array.Copy(data, 12, bATmp, 0, 2);
+            reverseData = bATmp.Reverse().ToArray();
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 1000;
+            tbPeakLenCtrlEquationC.Text = sTmp.ToString("#0.000");
+
+            Buffer.BlockCopy(data, 14, sData, 0, 1);
+            sTmp = Convert.ToSingle(Convert.ToInt32(sData[0]) * 0.1);
+            tbPeakEnOffsetCh1.Text = sTmp.ToString("#0.0");
+
+            Buffer.BlockCopy(data, 15, sData, 0, 1);
+            sTmp = Convert.ToSingle(Convert.ToInt32(sData[0]) * 0.1);
+            tbPeakEnOffsetCh2.Text = sTmp.ToString("#0.0");
+
+            Buffer.BlockCopy(data, 16, sData, 0, 1);
+            sTmp = Convert.ToSingle(Convert.ToInt32(sData[0]) * 0.1);
+            tbPeakEnOffsetCh3.Text = sTmp.ToString("#0.0");
+
+            Buffer.BlockCopy(data, 17, sData, 0, 1);
+            sTmp = Convert.ToSingle(Convert.ToInt32(sData[0]) * 0.1);
+            tbPeakEnOffsetCh4.Text = sTmp.ToString("#0.0");
+
+            Buffer.BlockCopy(data, 18, sData, 0, 1);
+            sTmp = Convert.ToSingle(Convert.ToInt32(sData[0]) * 0.1);
+            tbPeakLenCtrlOffsetCh1.Text = sTmp.ToString("#0.0");
+
+            Buffer.BlockCopy(data, 19, sData, 0, 1);
+            sTmp = Convert.ToSingle(Convert.ToInt32(sData[0]) * 0.1);
+            tbPeakLenCtrlOffsetCh2.Text = sTmp.ToString("#0.0");
+
+            Buffer.BlockCopy(data, 20, sData, 0, 1);
+            sTmp = Convert.ToSingle(Convert.ToInt32(sData[0]) * 0.1);
+            tbPeakLenCtrlOffsetCh3.Text = sTmp.ToString("#0.0");
+
+            Buffer.BlockCopy(data, 21, sData, 0, 1);
+            sTmp = Convert.ToSingle(Convert.ToInt32(sData[0]) * 0.1);
+            tbPeakLenCtrlOffsetCh4.Text = sTmp.ToString("#0.0");
 
             return 0;
         }
@@ -892,7 +952,21 @@ namespace Gn1190Corrector
                 (tbVhfCompConstOffsetCh1.Text.Length == 0) ||
                 (tbVhfCompConstOffsetCh2.Text.Length == 0) ||
                 (tbVhfCompConstOffsetCh3.Text.Length == 0) ||
-                (tbVhfCompConstOffsetCh4.Text.Length == 0)) {
+                (tbVhfCompConstOffsetCh4.Text.Length == 0) ||
+                (tbPeakEnEquationA.Text.Length == 0) ||
+                (tbPeakEnEquationB.Text.Length == 0) ||
+                (tbPeakEnEquationC.Text.Length == 0) ||
+                (tbPeakLenCtrlEquationA.Text.Length == 0) ||
+                (tbPeakLenCtrlEquationB.Text.Length == 0) ||
+                (tbPeakLenCtrlEquationC.Text.Length == 0) ||
+                (tbPeakEnOffsetCh1.Text.Length == 0) ||
+                (tbPeakEnOffsetCh2.Text.Length == 0) ||
+                (tbPeakEnOffsetCh3.Text.Length == 0) ||
+                (tbPeakEnOffsetCh4.Text.Length == 0) ||
+                (tbPeakLenCtrlOffsetCh1.Text.Length == 0) ||
+                (tbPeakLenCtrlOffsetCh2.Text.Length == 0) ||
+                (tbPeakLenCtrlOffsetCh3.Text.Length == 0) ||
+                (tbPeakLenCtrlOffsetCh4.Text.Length == 0)) {
                 MessageBox.Show("Please input value before write!!");
                 return -1;
             }
@@ -1421,7 +1495,239 @@ namespace Gn1190Corrector
                 return -1;
             }
 
-            if (qsfpI2cWriteCB(80, 231, 4, data) < 0)
+            if ((Convert.ToSingle(tbPeakEnEquationA.Text) < -0.128) ||
+                (Convert.ToSingle(tbPeakEnEquationA.Text) > 0.127)) {
+                MessageBox.Show("Peak En equation A: " +
+                    tbPeakEnEquationA.Text +
+                    " out of range (-0.128 ~ 0.127)!!");
+                return -1;
+            }
+
+            try {
+                data[4] = (byte)Convert.ToSByte(Convert.ToSingle(tbPeakEnEquationA.Text) * 1000);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+
+            if (Convert.ToSingle(tbPeakEnEquationB.Text) < -3.2768 ||
+                Convert.ToSingle(tbPeakEnEquationB.Text) > 3.2767) {
+                MessageBox.Show("Peak En equation B: " +
+                    tbPeakEnEquationB.Text +
+                    " out of range (-3.2768 ~ 3.2767)!!");
+                return -1;
+            }
+            try {
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbPeakEnEquationB.Text) * 10000);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+            bATmp = BitConverter.GetBytes(s16Tmp);
+            data[5] = bATmp[1];
+            data[6] = bATmp[0];
+
+            if (Convert.ToSingle(tbPeakEnEquationC.Text) < -32.768 ||
+                Convert.ToSingle(tbPeakEnEquationC.Text) > 32.767) {
+                MessageBox.Show("Peak En equation C: " +
+                    tbPeakEnEquationC.Text +
+                    " out of range (-32.768 ~ 32.767)!!");
+                return -1;
+            }
+            try {
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbPeakEnEquationC.Text) * 1000);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+            bATmp = BitConverter.GetBytes(s16Tmp);
+            data[7] = bATmp[1];
+            data[8] = bATmp[0];
+
+            if ((Convert.ToSingle(tbPeakLenCtrlEquationA.Text) < -0.128) ||
+                (Convert.ToSingle(tbPeakLenCtrlEquationA.Text) > 0.127)) {
+                MessageBox.Show("Peak Len Ctrl equation A: " +
+                    tbPeakLenCtrlEquationA.Text +
+                    " out of range (-0.128 ~ 0.127)!!");
+                return -1;
+            }
+
+            try {
+                data[9] = (byte)Convert.ToSByte(Convert.ToSingle(tbPeakLenCtrlEquationA.Text) * 1000);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+
+            if (Convert.ToSingle(tbPeakLenCtrlEquationB.Text) < -3.2768 ||
+                Convert.ToSingle(tbPeakLenCtrlEquationB.Text) > 3.2767) {
+                MessageBox.Show("Peak Len Ctrl equation B: " +
+                    tbPeakLenCtrlEquationB.Text +
+                    " out of range (-3.2768 ~ 3.2767)!!");
+                return -1;
+            }
+            try {
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbPeakLenCtrlEquationB.Text) * 10000);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+            bATmp = BitConverter.GetBytes(s16Tmp);
+            data[10] = bATmp[1];
+            data[11] = bATmp[0];
+
+            if (Convert.ToSingle(tbPeakLenCtrlEquationC.Text) < -32.768 ||
+                Convert.ToSingle(tbPeakLenCtrlEquationC.Text) > 32.767) {
+                MessageBox.Show("Peak Len Ctrl equation C: " +
+                    tbPeakLenCtrlEquationC.Text +
+                    " out of range (-32.768 ~ 32.767)!!");
+                return -1;
+            }
+            try {
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbPeakLenCtrlEquationC.Text) * 1000);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+            bATmp = BitConverter.GetBytes(s16Tmp);
+            data[12] = bATmp[1];
+            data[13] = bATmp[0];
+
+            if (Convert.ToSingle(tbPeakEnOffsetCh1.Text) < -12.8 ||
+                Convert.ToSingle(tbPeakEnOffsetCh1.Text) > 12.7) {
+                MessageBox.Show("Peak En offset Ch1: " +
+                    tbPeakEnOffsetCh1.Text +
+                    " out of range (-12.8 ~ 12.7)!!");
+                return -1;
+            }
+            try {
+                sBATmp[0] = Convert.ToSByte(Convert.ToSingle(tbPeakEnOffsetCh1.Text) * 10);
+                Buffer.BlockCopy(sBATmp, 0, data, 14, 1);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+
+            if (Convert.ToSingle(tbPeakEnOffsetCh2.Text) < -12.8 ||
+                Convert.ToSingle(tbPeakEnOffsetCh2.Text) > 12.7) {
+                MessageBox.Show("Peak En offset Ch2: " +
+                    tbPeakEnOffsetCh2.Text +
+                    " out of range (-12.8 ~ 12.7)!!");
+                return -1;
+            }
+            try {
+                sBATmp[0] = Convert.ToSByte(Convert.ToSingle(tbPeakEnOffsetCh2.Text) * 10);
+                Buffer.BlockCopy(sBATmp, 0, data, 15, 1);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+
+            if (Convert.ToSingle(tbPeakEnOffsetCh3.Text) < -12.8 ||
+                Convert.ToSingle(tbPeakEnOffsetCh3.Text) > 12.7) {
+                MessageBox.Show("Peak En offset Ch3: " +
+                    tbPeakEnOffsetCh3.Text +
+                    " out of range (-12.8 ~ 12.7)!!");
+                return -1;
+            }
+            try {
+                sBATmp[0] = Convert.ToSByte(Convert.ToSingle(tbPeakEnOffsetCh3.Text) * 10);
+                Buffer.BlockCopy(sBATmp, 0, data, 16, 1);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+
+            if (Convert.ToSingle(tbPeakEnOffsetCh4.Text) < -12.8 ||
+                Convert.ToSingle(tbPeakEnOffsetCh4.Text) > 12.7) {
+                MessageBox.Show("Peak En offset Ch4: " +
+                    tbPeakEnOffsetCh4.Text +
+                    " out of range (-12.8 ~ 12.7)!!");
+                return -1;
+            }
+            try {
+                sBATmp[0] = Convert.ToSByte(Convert.ToSingle(tbPeakEnOffsetCh4.Text) * 10);
+                Buffer.BlockCopy(sBATmp, 0, data, 17, 1);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+
+            if (Convert.ToSingle(tbPeakLenCtrlOffsetCh1.Text) < -12.8 ||
+                Convert.ToSingle(tbPeakLenCtrlOffsetCh1.Text) > 12.7) {
+                MessageBox.Show("Peak Len Ctrl offset Ch1: " +
+                    tbPeakLenCtrlOffsetCh1.Text +
+                    " out of range (-12.8 ~ 12.7)!!");
+                return -1;
+            }
+            try {
+                sBATmp[0] = Convert.ToSByte(Convert.ToSingle(tbPeakLenCtrlOffsetCh1.Text) * 10);
+                Buffer.BlockCopy(sBATmp, 0, data, 18, 1);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+
+            if (Convert.ToSingle(tbPeakLenCtrlOffsetCh2.Text) < -12.8 ||
+                Convert.ToSingle(tbPeakLenCtrlOffsetCh2.Text) > 12.7) {
+                MessageBox.Show("Peak Len Ctrl offset Ch2: " +
+                    tbPeakLenCtrlOffsetCh2.Text +
+                    " out of range (-12.8 ~ 12.7)!!");
+                return -1;
+            }
+            try {
+                sBATmp[0] = Convert.ToSByte(Convert.ToSingle(tbPeakLenCtrlOffsetCh2.Text) * 10);
+                Buffer.BlockCopy(sBATmp, 0, data, 19, 1);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+
+            if (Convert.ToSingle(tbPeakLenCtrlOffsetCh3.Text) < -12.8 ||
+                Convert.ToSingle(tbPeakLenCtrlOffsetCh3.Text) > 12.7) {
+                MessageBox.Show("Peak Len Ctrl offset Ch3: " +
+                    tbPeakLenCtrlOffsetCh3.Text +
+                    " out of range (-12.8 ~ 12.7)!!");
+                return -1;
+            }
+            try {
+                sBATmp[0] = Convert.ToSByte(Convert.ToSingle(tbPeakLenCtrlOffsetCh3.Text) * 10);
+                Buffer.BlockCopy(sBATmp, 0, data, 20, 1);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+
+            if (Convert.ToSingle(tbPeakLenCtrlOffsetCh4.Text) < -12.8 ||
+                Convert.ToSingle(tbPeakLenCtrlOffsetCh4.Text) > 12.7) {
+                MessageBox.Show("Peak Len Ctrl offset Ch4: " +
+                    tbPeakLenCtrlOffsetCh4.Text +
+                    " out of range (-12.8 ~ 12.7)!!");
+                return -1;
+            }
+            try {
+                sBATmp[0] = Convert.ToSByte(Convert.ToSingle(tbPeakLenCtrlOffsetCh4.Text) * 10);
+                Buffer.BlockCopy(sBATmp, 0, data, 21, 1);
+            }
+            catch (Exception eC) {
+                MessageBox.Show(eC.ToString());
+                return -1;
+            }
+
+            if (qsfpI2cWriteCB(80, 231, 22, data) < 0)
                 return -1;
 
             data[0] = bChecksum;
@@ -1442,6 +1748,7 @@ namespace Gn1190Corrector
 
             if (_WriteAcMcCorrectData() < 0)
                 return;
+
             cbTemperatureCompensation.Checked = true;
             cbTemperatureCompensation.Enabled = true;
         }

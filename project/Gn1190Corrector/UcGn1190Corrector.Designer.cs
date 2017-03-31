@@ -162,6 +162,22 @@
             this.lVhfCompProp = new System.Windows.Forms.Label();
             this.lBaBmMaxCurrent = new System.Windows.Forms.Label();
             this.tbAverageCurrentMin = new System.Windows.Forms.TextBox();
+            this.tbPeakLenCtrlOffsetCh4 = new System.Windows.Forms.TextBox();
+            this.tbPeakEnOffsetCh4 = new System.Windows.Forms.TextBox();
+            this.tbPeakLenCtrlOffsetCh3 = new System.Windows.Forms.TextBox();
+            this.tbPeakEnOffsetCh3 = new System.Windows.Forms.TextBox();
+            this.tbPeakLenCtrlOffsetCh2 = new System.Windows.Forms.TextBox();
+            this.tbPeakEnOffsetCh2 = new System.Windows.Forms.TextBox();
+            this.tbPeakLenCtrlOffsetCh1 = new System.Windows.Forms.TextBox();
+            this.tbPeakEnOffsetCh1 = new System.Windows.Forms.TextBox();
+            this.tbPeakLenCtrlEquationC = new System.Windows.Forms.TextBox();
+            this.tbPeakLenCtrlEquationB = new System.Windows.Forms.TextBox();
+            this.tbPeakLenCtrlEquationA = new System.Windows.Forms.TextBox();
+            this.lPeakLenCtrl = new System.Windows.Forms.Label();
+            this.tbPeakEnEquationC = new System.Windows.Forms.TextBox();
+            this.tbPeakEnEquationB = new System.Windows.Forms.TextBox();
+            this.tbPeakEnEquationA = new System.Windows.Forms.TextBox();
+            this.lPeakEn = new System.Windows.Forms.Label();
             this.gbTemperature.SuspendLayout();
             this.gbAutoCorrect.SuspendLayout();
             this.gbRxPowerRate.SuspendLayout();
@@ -905,6 +921,22 @@
             // 
             // gbAcMcEquation
             // 
+            this.gbAcMcEquation.Controls.Add(this.tbPeakLenCtrlOffsetCh4);
+            this.gbAcMcEquation.Controls.Add(this.tbPeakEnOffsetCh4);
+            this.gbAcMcEquation.Controls.Add(this.tbPeakLenCtrlOffsetCh3);
+            this.gbAcMcEquation.Controls.Add(this.tbPeakEnOffsetCh3);
+            this.gbAcMcEquation.Controls.Add(this.tbPeakLenCtrlOffsetCh2);
+            this.gbAcMcEquation.Controls.Add(this.tbPeakEnOffsetCh2);
+            this.gbAcMcEquation.Controls.Add(this.tbPeakLenCtrlOffsetCh1);
+            this.gbAcMcEquation.Controls.Add(this.tbPeakEnOffsetCh1);
+            this.gbAcMcEquation.Controls.Add(this.tbPeakLenCtrlEquationC);
+            this.gbAcMcEquation.Controls.Add(this.tbPeakLenCtrlEquationB);
+            this.gbAcMcEquation.Controls.Add(this.tbPeakLenCtrlEquationA);
+            this.gbAcMcEquation.Controls.Add(this.lPeakLenCtrl);
+            this.gbAcMcEquation.Controls.Add(this.tbPeakEnEquationC);
+            this.gbAcMcEquation.Controls.Add(this.tbPeakEnEquationB);
+            this.gbAcMcEquation.Controls.Add(this.tbPeakEnEquationA);
+            this.gbAcMcEquation.Controls.Add(this.lPeakEn);
             this.gbAcMcEquation.Controls.Add(this.tbVhfCompConstOffsetCh4);
             this.gbAcMcEquation.Controls.Add(this.tbVhfCompPropOffsetCh4);
             this.gbAcMcEquation.Controls.Add(this.lVhfComOffsetCh4);
@@ -965,7 +997,7 @@
             this.gbAcMcEquation.Controls.Add(this.tbAverageCurrentMin);
             this.gbAcMcEquation.Location = new System.Drawing.Point(5, 279);
             this.gbAcMcEquation.Name = "gbAcMcEquation";
-            this.gbAcMcEquation.Size = new System.Drawing.Size(659, 159);
+            this.gbAcMcEquation.Size = new System.Drawing.Size(659, 217);
             this.gbAcMcEquation.TabIndex = 22;
             this.gbAcMcEquation.TabStop = false;
             this.gbAcMcEquation.Text = "Average and Modulation Current Equation, Drive Tune and Modulation Slope Table";
@@ -1270,7 +1302,7 @@
             // lDrvtnCst
             // 
             this.lDrvtnCst.AutoSize = true;
-            this.lDrvtnCst.Location = new System.Drawing.Point(15, 134);
+            this.lDrvtnCst.Location = new System.Drawing.Point(10, 134);
             this.lDrvtnCst.Name = "lDrvtnCst";
             this.lDrvtnCst.Size = new System.Drawing.Size(95, 12);
             this.lDrvtnCst.TabIndex = 72;
@@ -1420,7 +1452,7 @@
             // lVhfCompProp
             // 
             this.lVhfCompProp.AutoSize = true;
-            this.lVhfCompProp.Location = new System.Drawing.Point(15, 106);
+            this.lVhfCompProp.Location = new System.Drawing.Point(10, 106);
             this.lVhfCompProp.Name = "lVhfCompProp";
             this.lVhfCompProp.Size = new System.Drawing.Size(90, 12);
             this.lVhfCompProp.TabIndex = 0;
@@ -1442,6 +1474,122 @@
             this.tbAverageCurrentMin.Size = new System.Drawing.Size(50, 22);
             this.tbAverageCurrentMin.TabIndex = 4;
             // 
+            // tbPeakLenCtrlOffsetCh4
+            // 
+            this.tbPeakLenCtrlOffsetCh4.Location = new System.Drawing.Point(452, 187);
+            this.tbPeakLenCtrlOffsetCh4.Name = "tbPeakLenCtrlOffsetCh4";
+            this.tbPeakLenCtrlOffsetCh4.Size = new System.Drawing.Size(50, 22);
+            this.tbPeakLenCtrlOffsetCh4.TabIndex = 121;
+            // 
+            // tbPeakEnOffsetCh4
+            // 
+            this.tbPeakEnOffsetCh4.Location = new System.Drawing.Point(452, 159);
+            this.tbPeakEnOffsetCh4.Name = "tbPeakEnOffsetCh4";
+            this.tbPeakEnOffsetCh4.Size = new System.Drawing.Size(50, 22);
+            this.tbPeakEnOffsetCh4.TabIndex = 120;
+            // 
+            // tbPeakLenCtrlOffsetCh3
+            // 
+            this.tbPeakLenCtrlOffsetCh3.Location = new System.Drawing.Point(396, 187);
+            this.tbPeakLenCtrlOffsetCh3.Name = "tbPeakLenCtrlOffsetCh3";
+            this.tbPeakLenCtrlOffsetCh3.Size = new System.Drawing.Size(50, 22);
+            this.tbPeakLenCtrlOffsetCh3.TabIndex = 119;
+            // 
+            // tbPeakEnOffsetCh3
+            // 
+            this.tbPeakEnOffsetCh3.Location = new System.Drawing.Point(396, 159);
+            this.tbPeakEnOffsetCh3.Name = "tbPeakEnOffsetCh3";
+            this.tbPeakEnOffsetCh3.Size = new System.Drawing.Size(50, 22);
+            this.tbPeakEnOffsetCh3.TabIndex = 118;
+            // 
+            // tbPeakLenCtrlOffsetCh2
+            // 
+            this.tbPeakLenCtrlOffsetCh2.Location = new System.Drawing.Point(340, 187);
+            this.tbPeakLenCtrlOffsetCh2.Name = "tbPeakLenCtrlOffsetCh2";
+            this.tbPeakLenCtrlOffsetCh2.Size = new System.Drawing.Size(50, 22);
+            this.tbPeakLenCtrlOffsetCh2.TabIndex = 117;
+            // 
+            // tbPeakEnOffsetCh2
+            // 
+            this.tbPeakEnOffsetCh2.Location = new System.Drawing.Point(340, 159);
+            this.tbPeakEnOffsetCh2.Name = "tbPeakEnOffsetCh2";
+            this.tbPeakEnOffsetCh2.Size = new System.Drawing.Size(50, 22);
+            this.tbPeakEnOffsetCh2.TabIndex = 116;
+            // 
+            // tbPeakLenCtrlOffsetCh1
+            // 
+            this.tbPeakLenCtrlOffsetCh1.Location = new System.Drawing.Point(284, 187);
+            this.tbPeakLenCtrlOffsetCh1.Name = "tbPeakLenCtrlOffsetCh1";
+            this.tbPeakLenCtrlOffsetCh1.Size = new System.Drawing.Size(50, 22);
+            this.tbPeakLenCtrlOffsetCh1.TabIndex = 115;
+            // 
+            // tbPeakEnOffsetCh1
+            // 
+            this.tbPeakEnOffsetCh1.Location = new System.Drawing.Point(284, 159);
+            this.tbPeakEnOffsetCh1.Name = "tbPeakEnOffsetCh1";
+            this.tbPeakEnOffsetCh1.Size = new System.Drawing.Size(50, 22);
+            this.tbPeakEnOffsetCh1.TabIndex = 114;
+            // 
+            // tbPeakLenCtrlEquationC
+            // 
+            this.tbPeakLenCtrlEquationC.Location = new System.Drawing.Point(228, 187);
+            this.tbPeakLenCtrlEquationC.Name = "tbPeakLenCtrlEquationC";
+            this.tbPeakLenCtrlEquationC.Size = new System.Drawing.Size(50, 22);
+            this.tbPeakLenCtrlEquationC.TabIndex = 113;
+            // 
+            // tbPeakLenCtrlEquationB
+            // 
+            this.tbPeakLenCtrlEquationB.Location = new System.Drawing.Point(172, 187);
+            this.tbPeakLenCtrlEquationB.Name = "tbPeakLenCtrlEquationB";
+            this.tbPeakLenCtrlEquationB.Size = new System.Drawing.Size(50, 22);
+            this.tbPeakLenCtrlEquationB.TabIndex = 112;
+            // 
+            // tbPeakLenCtrlEquationA
+            // 
+            this.tbPeakLenCtrlEquationA.Location = new System.Drawing.Point(116, 187);
+            this.tbPeakLenCtrlEquationA.Name = "tbPeakLenCtrlEquationA";
+            this.tbPeakLenCtrlEquationA.Size = new System.Drawing.Size(50, 22);
+            this.tbPeakLenCtrlEquationA.TabIndex = 111;
+            // 
+            // lPeakLenCtrl
+            // 
+            this.lPeakLenCtrl.AutoSize = true;
+            this.lPeakLenCtrl.Location = new System.Drawing.Point(10, 190);
+            this.lPeakLenCtrl.Name = "lPeakLenCtrl";
+            this.lPeakLenCtrl.Size = new System.Drawing.Size(75, 12);
+            this.lPeakLenCtrl.TabIndex = 110;
+            this.lPeakLenCtrl.Text = "Peak Len Ctrl :";
+            // 
+            // tbPeakEnEquationC
+            // 
+            this.tbPeakEnEquationC.Location = new System.Drawing.Point(228, 159);
+            this.tbPeakEnEquationC.Name = "tbPeakEnEquationC";
+            this.tbPeakEnEquationC.Size = new System.Drawing.Size(50, 22);
+            this.tbPeakEnEquationC.TabIndex = 109;
+            // 
+            // tbPeakEnEquationB
+            // 
+            this.tbPeakEnEquationB.Location = new System.Drawing.Point(172, 159);
+            this.tbPeakEnEquationB.Name = "tbPeakEnEquationB";
+            this.tbPeakEnEquationB.Size = new System.Drawing.Size(50, 22);
+            this.tbPeakEnEquationB.TabIndex = 108;
+            // 
+            // tbPeakEnEquationA
+            // 
+            this.tbPeakEnEquationA.Location = new System.Drawing.Point(116, 159);
+            this.tbPeakEnEquationA.Name = "tbPeakEnEquationA";
+            this.tbPeakEnEquationA.Size = new System.Drawing.Size(50, 22);
+            this.tbPeakEnEquationA.TabIndex = 107;
+            // 
+            // lPeakEn
+            // 
+            this.lPeakEn.AutoSize = true;
+            this.lPeakEn.Location = new System.Drawing.Point(10, 162);
+            this.lPeakEn.Name = "lPeakEn";
+            this.lPeakEn.Size = new System.Drawing.Size(49, 12);
+            this.lPeakEn.TabIndex = 106;
+            this.lPeakEn.Text = "Peak En :";
+            // 
             // UcGn1190Corrector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1460,7 +1608,7 @@
             this.Controls.Add(this.bSaveFile);
             this.Controls.Add(this.bLoadFile);
             this.Name = "UcGn1190Corrector";
-            this.Size = new System.Drawing.Size(791, 442);
+            this.Size = new System.Drawing.Size(791, 501);
             this.gbTemperature.ResumeLayout(false);
             this.gbTemperature.PerformLayout();
             this.gbAutoCorrect.ResumeLayout(false);
@@ -1611,5 +1759,21 @@
         private System.Windows.Forms.Label lRxRssiRateNumerator;
         private System.Windows.Forms.TextBox tbRxRssiRateNumerator;
         private System.Windows.Forms.Label lRxRssiRateAndConversion;
+        private System.Windows.Forms.TextBox tbPeakLenCtrlOffsetCh4;
+        private System.Windows.Forms.TextBox tbPeakEnOffsetCh4;
+        private System.Windows.Forms.TextBox tbPeakLenCtrlOffsetCh3;
+        private System.Windows.Forms.TextBox tbPeakEnOffsetCh3;
+        private System.Windows.Forms.TextBox tbPeakLenCtrlOffsetCh2;
+        private System.Windows.Forms.TextBox tbPeakEnOffsetCh2;
+        private System.Windows.Forms.TextBox tbPeakLenCtrlOffsetCh1;
+        private System.Windows.Forms.TextBox tbPeakEnOffsetCh1;
+        private System.Windows.Forms.TextBox tbPeakLenCtrlEquationC;
+        private System.Windows.Forms.TextBox tbPeakLenCtrlEquationB;
+        private System.Windows.Forms.TextBox tbPeakLenCtrlEquationA;
+        private System.Windows.Forms.Label lPeakLenCtrl;
+        private System.Windows.Forms.TextBox tbPeakEnEquationC;
+        private System.Windows.Forms.TextBox tbPeakEnEquationB;
+        private System.Windows.Forms.TextBox tbPeakEnEquationA;
+        private System.Windows.Forms.Label lPeakEn;
     }
 }
