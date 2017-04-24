@@ -34,7 +34,7 @@
             // cbConnected
             // 
             this.cbConnected.AutoSize = true;
-            this.cbConnected.Location = new System.Drawing.Point(724, 12);
+            this.cbConnected.Location = new System.Drawing.Point(691, 12);
             this.cbConnected.Name = "cbConnected";
             this.cbConnected.Size = new System.Drawing.Size(74, 16);
             this.cbConnected.TabIndex = 0;
@@ -46,14 +46,14 @@
             // 
             this.ucGn1190Corrector.Location = new System.Drawing.Point(12, 34);
             this.ucGn1190Corrector.Name = "ucGn1190Corrector";
-            this.ucGn1190Corrector.Size = new System.Drawing.Size(795, 509);
+            this.ucGn1190Corrector.Size = new System.Drawing.Size(764, 669);
             this.ucGn1190Corrector.TabIndex = 10;
             // 
             // FGn1190Corrector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(810, 544);
+            this.ClientSize = new System.Drawing.Size(776, 705);
             this.Controls.Add(this.ucGn1190Corrector);
             this.Controls.Add(this.cbConnected);
             this.Name = "FGn1190Corrector";
