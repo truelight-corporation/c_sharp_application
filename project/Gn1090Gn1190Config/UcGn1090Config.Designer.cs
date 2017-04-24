@@ -179,6 +179,7 @@
             this.lAllRateSelect = new System.Windows.Forms.Label();
             this.cbAllSleep = new System.Windows.Forms.CheckBox();
             this.cbAllPowerDown = new System.Windows.Forms.CheckBox();
+            this.bStoreIntoFlash = new System.Windows.Forms.Button();
             this.gbGlobalStatusInformation.SuspendLayout();
             this.gbParametricAndStatusInformationByChannel.SuspendLayout();
             this.gbGlobalSetupControl.SuspendLayout();
@@ -1794,10 +1795,21 @@
             this.cbAllPowerDown.UseVisualStyleBackColor = true;
             this.cbAllPowerDown.CheckedChanged += new System.EventHandler(this.cbAllPowerDown_CheckedChanged);
             // 
+            // bStoreIntoFlash
+            // 
+            this.bStoreIntoFlash.Location = new System.Drawing.Point(565, 57);
+            this.bStoreIntoFlash.Name = "bStoreIntoFlash";
+            this.bStoreIntoFlash.Size = new System.Drawing.Size(75, 40);
+            this.bStoreIntoFlash.TabIndex = 5;
+            this.bStoreIntoFlash.Text = "Store Into Flash";
+            this.bStoreIntoFlash.UseVisualStyleBackColor = true;
+            this.bStoreIntoFlash.Click += new System.EventHandler(this.bSave_Click);
+            // 
             // UcGn1090Config
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.bStoreIntoFlash);
             this.Controls.Add(this.tcChannelControls);
             this.Controls.Add(this.gbGlobalSetupControl);
             this.Controls.Add(this.gbParametricAndStatusInformationByChannel);
@@ -1980,5 +1992,6 @@
         private System.Windows.Forms.Label lAllRateSelect;
         private System.Windows.Forms.CheckBox cbAllSleep;
         private System.Windows.Forms.CheckBox cbAllPowerDown;
+        private System.Windows.Forms.Button bStoreIntoFlash;
     }
 }

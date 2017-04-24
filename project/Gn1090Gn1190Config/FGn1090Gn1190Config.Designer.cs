@@ -31,8 +31,8 @@
             this.tbGn1090Gn1190Config = new System.Windows.Forms.TabControl();
             this.tpGn1090Config = new System.Windows.Forms.TabPage();
             this.tpGn1190Config = new System.Windows.Forms.TabPage();
-            this.ucGn1190Config = new Gn1090Gn1190Config.UcGn1190Config();
             this.ucGn1090Config = new Gn1090Gn1190Config.UcGn1090Config();
+            this.ucGn1190Config = new Gn1090Gn1190Config.UcGn1190Config();
             this.tbGn1090Gn1190Config.SuspendLayout();
             this.tpGn1090Config.SuspendLayout();
             this.tpGn1190Config.SuspendLayout();
@@ -81,19 +81,19 @@
             this.tpGn1190Config.Text = "GN1190";
             this.tpGn1190Config.UseVisualStyleBackColor = true;
             // 
+            // ucGn1090Config
+            // 
+            this.ucGn1090Config.Location = new System.Drawing.Point(0, 0);
+            this.ucGn1090Config.Name = "ucGn1090Config";
+            this.ucGn1090Config.Size = new System.Drawing.Size(643, 440);
+            this.ucGn1090Config.TabIndex = 0;
+            // 
             // ucGn1190Config
             // 
             this.ucGn1190Config.Location = new System.Drawing.Point(0, 0);
             this.ucGn1190Config.Name = "ucGn1190Config";
             this.ucGn1190Config.Size = new System.Drawing.Size(641, 522);
             this.ucGn1190Config.TabIndex = 0;
-            // 
-            // ucGn1090Config
-            // 
-            this.ucGn1090Config.Location = new System.Drawing.Point(0, 0);
-            this.ucGn1090Config.Name = "ucGn1090Config";
-            this.ucGn1090Config.Size = new System.Drawing.Size(643, 618);
-            this.ucGn1090Config.TabIndex = 0;
             // 
             // FGn1090Gn1190Config
             // 

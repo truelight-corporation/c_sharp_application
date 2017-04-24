@@ -345,6 +345,7 @@
             this.cbAllDisable = new System.Windows.Forms.CheckBox();
             this.bLensAlign = new System.Windows.Forms.Button();
             this.bUnlock = new System.Windows.Forms.Button();
+            this.bStoreIntoFlash = new System.Windows.Forms.Button();
             this.gbGlobalStatusInformation.SuspendLayout();
             this.gbParametricAndStatusInformationByChannel.SuspendLayout();
             this.gbGlobalSetupControls.SuspendLayout();
@@ -468,9 +469,9 @@
             this.gbGlobalStatusInformation.Controls.Add(this.cbGlobalVcselVfLowAlarm);
             this.gbGlobalStatusInformation.Controls.Add(this.cbTxDisablePinStatus);
             this.gbGlobalStatusInformation.Controls.Add(this.cbGlobalVcselVfHighAlarm);
-            this.gbGlobalStatusInformation.Location = new System.Drawing.Point(378, 68);
+            this.gbGlobalStatusInformation.Location = new System.Drawing.Point(378, 75);
             this.gbGlobalStatusInformation.Name = "gbGlobalStatusInformation";
-            this.gbGlobalStatusInformation.Size = new System.Drawing.Size(259, 189);
+            this.gbGlobalStatusInformation.Size = new System.Drawing.Size(259, 182);
             this.gbGlobalStatusInformation.TabIndex = 9;
             this.gbGlobalStatusInformation.TabStop = false;
             this.gbGlobalStatusInformation.Text = "Global status information";
@@ -3720,10 +3721,21 @@
             this.bUnlock.UseVisualStyleBackColor = true;
             this.bUnlock.Click += new System.EventHandler(this.bUnlock_Click);
             // 
+            // bStoreIntoFlash
+            // 
+            this.bStoreIntoFlash.Location = new System.Drawing.Point(484, 32);
+            this.bStoreIntoFlash.Name = "bStoreIntoFlash";
+            this.bStoreIntoFlash.Size = new System.Drawing.Size(75, 40);
+            this.bStoreIntoFlash.TabIndex = 15;
+            this.bStoreIntoFlash.Text = "Store Into Flash";
+            this.bStoreIntoFlash.UseVisualStyleBackColor = true;
+            this.bStoreIntoFlash.Click += new System.EventHandler(this.bSave_Click);
+            // 
             // UcGn1190Config
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.bStoreIntoFlash);
             this.Controls.Add(this.bUnlock);
             this.Controls.Add(this.bLensAlign);
             this.Controls.Add(this.tcChannelSetupControls);
@@ -4074,5 +4086,6 @@
         private System.Windows.Forms.CheckBox cbAllDisable;
         private System.Windows.Forms.Button bLensAlign;
         private System.Windows.Forms.Button bUnlock;
+        private System.Windows.Forms.Button bStoreIntoFlash;
     }
 }

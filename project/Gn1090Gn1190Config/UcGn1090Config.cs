@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Gn1090Gn1190Config
 {
@@ -639,6 +640,7 @@ namespace Gn1090Gn1190Config
             byte[] data = new byte[23];
             int rv;
 
+            bRead.Enabled = false;
             reading = true;
 
             if (i2cReadCB == null)
@@ -726,6 +728,7 @@ namespace Gn1090Gn1190Config
 
         exit:
             reading = false;
+            bRead.Enabled = true;
         }
 
         private int _WriteAddr52()
@@ -2280,6 +2283,23 @@ namespace Gn1090Gn1190Config
 
             if (_WriteAddr68_84_100_116() < 0)
                 return;
+        }
+
+        private void bSave_Click(object sender, EventArgs e)
+        {
+            byte[] data = {0x55};
+            int rv;
+
+            if (reading == true)
+                return;
+
+            bStoreIntoFlash.Enabled = false;
+            rv = i2cWriteCB(92, 170, 1, data);
+
+            Thread.Sleep(1000);
+            bStoreIntoFlash.Enabled = true;
+
+            return;
         }
     }
 }
