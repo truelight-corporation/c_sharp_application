@@ -370,6 +370,44 @@ namespace AardvarkAdapter
                 return;
         }
 
+        private int _ContinuousRead()
+        {
+            byte[] regAddr = new byte[1];
+            byte[] data = new byte[1];
+            int counter;
+            byte devAddr;
+
+            if (_CheckSignalReadInput() < 0)
+                return -1;
+
+            devAddr = Convert.ToByte(Convert.ToInt32(tbDevAddr.Text));
+            regAddr[0] = Convert.ToByte(Convert.ToInt32(tbRegAddr.Text));
+
+            counter = AardvarkApi.aa_i2c_read(iHandle, devAddr, AardvarkI2cFlags.AA_I2C_NO_FLAGS, 1, data);
+            if (counter < 0) {
+                MessageBox.Show("AardvarkApi.aa_i2c_read() fail: " + counter);
+                return -1;
+            }
+            else if (counter == 0) {
+                MessageBox.Show("Read 0 byte.\n" +
+                    "Please check devAddr!!");
+                return -1;
+            }
+
+            tbValue.Text = Convert.ToString(data[0]);
+
+            return 0;
+        }
+
+        private void bContinuousRead_Click(object sender, EventArgs e)
+        {
+            if (_ConnectDevice() < 0)
+                return;
+
+            if (_ContinuousRead() < 0)
+                return;
+        }
+
 
     }
 }

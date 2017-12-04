@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{87D176D5-27A0-43C3-9300-42F34A8AB686}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AardvarkAdapter</RootNamespace>
     <AssemblyName>AardvarkAdapter</AssemblyName>
@@ -95,7 +95,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if exist "$(TargetDir)$(ProjectName).dll" (
-xcopy /Y $(TargetDir)$(ProjectName).dll $(ProjectDir)..\..\..\dll\
+xcopy /Y $(TargetDir)$(ProjectName).dll $(ProjectDir)..\..\..\dll\device\
 )</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

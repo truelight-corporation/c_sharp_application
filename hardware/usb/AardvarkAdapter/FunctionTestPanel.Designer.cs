@@ -51,6 +51,7 @@
             this.tbPort = new System.Windows.Forms.TextBox();
             this.lBitrate = new System.Windows.Forms.Label();
             this.tbBitrate = new System.Windows.Forms.TextBox();
+            this.bContinuousRead = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tpSignal.SuspendLayout();
             this.tpMulti.SuspendLayout();
@@ -114,6 +115,7 @@
             // 
             // tpSignal
             // 
+            this.tpSignal.Controls.Add(this.bContinuousRead);
             this.tpSignal.Controls.Add(this.cbTriggerRead);
             this.tpSignal.Controls.Add(this.tbTriggerDelay);
             this.tpSignal.Controls.Add(this.lTriggerDelay);
@@ -132,7 +134,7 @@
             // cbTriggerRead
             // 
             this.cbTriggerRead.AutoSize = true;
-            this.cbTriggerRead.Location = new System.Drawing.Point(10, 63);
+            this.cbTriggerRead.Location = new System.Drawing.Point(6, 99);
             this.cbTriggerRead.Name = "cbTriggerRead";
             this.cbTriggerRead.Size = new System.Drawing.Size(86, 16);
             this.cbTriggerRead.TabIndex = 6;
@@ -142,7 +144,7 @@
             // 
             // tbTriggerDelay
             // 
-            this.tbTriggerDelay.Location = new System.Drawing.Point(113, 35);
+            this.tbTriggerDelay.Location = new System.Drawing.Point(109, 71);
             this.tbTriggerDelay.Name = "tbTriggerDelay";
             this.tbTriggerDelay.Size = new System.Drawing.Size(60, 22);
             this.tbTriggerDelay.TabIndex = 5;
@@ -151,7 +153,7 @@
             // lTriggerDelay
             // 
             this.lTriggerDelay.AutoSize = true;
-            this.lTriggerDelay.Location = new System.Drawing.Point(10, 38);
+            this.lTriggerDelay.Location = new System.Drawing.Point(6, 74);
             this.lTriggerDelay.Name = "lTriggerDelay";
             this.lTriggerDelay.Size = new System.Drawing.Size(97, 12);
             this.lTriggerDelay.TabIndex = 4;
@@ -159,7 +161,7 @@
             // 
             // bSignalWrite
             // 
-            this.bSignalWrite.Location = new System.Drawing.Point(161, 6);
+            this.bSignalWrite.Location = new System.Drawing.Point(158, 6);
             this.bSignalWrite.Name = "bSignalWrite";
             this.bSignalWrite.Size = new System.Drawing.Size(65, 23);
             this.bSignalWrite.TabIndex = 3;
@@ -169,7 +171,7 @@
             // 
             // bSignalRead
             // 
-            this.bSignalRead.Location = new System.Drawing.Point(90, 6);
+            this.bSignalRead.Location = new System.Drawing.Point(87, 6);
             this.bSignalRead.Name = "bSignalRead";
             this.bSignalRead.Size = new System.Drawing.Size(65, 23);
             this.bSignalRead.TabIndex = 2;
@@ -179,7 +181,7 @@
             // 
             // tbValue
             // 
-            this.tbValue.Location = new System.Drawing.Point(54, 6);
+            this.tbValue.Location = new System.Drawing.Point(50, 7);
             this.tbValue.Name = "tbValue";
             this.tbValue.Size = new System.Drawing.Size(30, 22);
             this.tbValue.TabIndex = 1;
@@ -187,7 +189,7 @@
             // lValue
             // 
             this.lValue.AutoSize = true;
-            this.lValue.Location = new System.Drawing.Point(10, 10);
+            this.lValue.Location = new System.Drawing.Point(6, 11);
             this.lValue.Name = "lValue";
             this.lValue.Size = new System.Drawing.Size(38, 12);
             this.lValue.TabIndex = 0;
@@ -291,6 +293,16 @@
             this.tbBitrate.TabIndex = 9;
             this.tbBitrate.Text = "100";
             // 
+            // bContinuousRead
+            // 
+            this.bContinuousRead.Location = new System.Drawing.Point(88, 35);
+            this.bContinuousRead.Name = "bContinuousRead";
+            this.bContinuousRead.Size = new System.Drawing.Size(107, 23);
+            this.bContinuousRead.TabIndex = 7;
+            this.bContinuousRead.Text = "Continuous Read";
+            this.bContinuousRead.UseVisualStyleBackColor = true;
+            this.bContinuousRead.Click += new System.EventHandler(this.bContinuousRead_Click);
+            // 
             // FunctionTestPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -346,5 +358,6 @@
         private System.Windows.Forms.CheckBox cbTriggerRead;
         private System.Windows.Forms.TextBox tbTriggerDelay;
         private System.Windows.Forms.Label lTriggerDelay;
+        private System.Windows.Forms.Button bContinuousRead;
     }
 }
