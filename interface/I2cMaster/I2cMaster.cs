@@ -166,7 +166,7 @@ namespace I2cMasterInterface
 
             fASelect.adapterSelector.UpdateAdapterApi();
             fASelect.ShowDialog();
-            
+
             return 0;
         }
 
@@ -205,13 +205,47 @@ namespace I2cMasterInterface
                     MessageBox.Show("I2cMasterConnectApi() fail!!");
                 return -1;
             }
-
+            
             switch (as_atAdapterType) {
                 case AdapterSelector.AdapterType.AS_AT_DUMMY:
                     break;
 
                 case AdapterSelector.AdapterType.AS_AT_AARDVARK:
                     return _AardvarkRead(devAddr, regAddr, length, data);
+
+                case AdapterSelector.AdapterType.AS_AT_UI051:
+                    break;
+
+                default:
+                    break;
+            }
+
+            return 0;
+        }
+
+        private int _AardvarkRead16(byte devAddr, byte[] regAddr, byte length, byte[] data)
+        {
+            byte[] reg = { regAddr[0], regAddr[1] };
+
+            AardvarkApi.aa_i2c_write(iHandler, devAddr, AardvarkI2cFlags.AA_I2C_NO_STOP, 2, reg);
+
+            return AardvarkApi.aa_i2c_read(iHandler, devAddr, AardvarkI2cFlags.AA_I2C_NO_FLAGS, length, data);
+        }
+
+        public int Read16Api(byte devAddr, byte[] regAddr, byte length, byte[] data)
+        {
+            if (iHandler <= 0) {
+                if (ConnectApi() < 0)
+                    MessageBox.Show("I2cMasterConnectApi() fail!!");
+                return -1;
+            }
+
+            switch (as_atAdapterType) {
+                case AdapterSelector.AdapterType.AS_AT_DUMMY:
+                    break;
+
+                case AdapterSelector.AdapterType.AS_AT_AARDVARK:
+                    return _AardvarkRead16(devAddr, regAddr, length, data);
 
                 case AdapterSelector.AdapterType.AS_AT_UI051:
                     break;
@@ -251,6 +285,46 @@ namespace I2cMasterInterface
 
                 case AdapterSelector.AdapterType.AS_AT_AARDVARK:
                     return _AardvarkWrite(devAddr, regAddr, length, data);
+
+                case AdapterSelector.AdapterType.AS_AT_UI051:
+                    break;
+
+                default:
+                    break;
+            }
+
+            return 0;
+        }
+
+        private int _AardvarkWrite16(byte devAddr, byte[] regAddr, byte length, byte[] data)
+        {
+            byte[] buf = new byte[length + 2];
+
+            buf[0] = regAddr[0];
+            buf[1] = regAddr[1];
+            Array.Copy(data, 0, buf, 2, length);
+
+            AardvarkApi.aa_i2c_write(iHandler, devAddr, AardvarkI2cFlags.AA_I2C_NO_FLAGS, Convert.ToByte(length + 2), buf);
+
+            AardvarkApi.aa_sleep_ms(100);
+
+            return 0;
+        }
+
+        public int Write16Api(byte devAddr, byte[] regAddr, byte length, byte[] data)
+        {
+            if (iHandler <= 0) {
+                if (ConnectApi() < 0)
+                    MessageBox.Show("I2cMasterConnectApi() fail!!");
+                return -1;
+            }
+
+            switch (as_atAdapterType) {
+                case AdapterSelector.AdapterType.AS_AT_DUMMY:
+                    break;
+
+                case AdapterSelector.AdapterType.AS_AT_AARDVARK:
+                    return _AardvarkWrite16(devAddr, regAddr, length, data);
 
                 case AdapterSelector.AdapterType.AS_AT_UI051:
                     break;

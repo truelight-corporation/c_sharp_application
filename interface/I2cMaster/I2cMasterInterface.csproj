@@ -38,7 +38,7 @@
   <ItemGroup>
     <Reference Include="AardvarkAdapter, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\dll\AardvarkAdapter.dll</HintPath>
+      <HintPath>..\..\dll\device\AardvarkAdapter.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -98,7 +98,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if exist "$(TargetDir)$(ProjectName).dll" (
-xcopy /Y $(TargetDir)$(ProjectName).dll $(ProjectDir)..\..\dll\
+xcopy /Y $(TargetDir)$(ProjectName).dll $(ProjectDir)..\..\dll\interface\
 )</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
