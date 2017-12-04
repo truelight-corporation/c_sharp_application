@@ -166,7 +166,7 @@ namespace Gn1190Corrector
             if (qsfpI2cWriteCB == null)
                 return -1;
 
-            data = new byte[] { 2, 0 };
+            data = new byte[] { 4, 0 };
             qsfpI2cWriteCB(80, 127, 1, data);
             if (qsfpI2cReadCB(80, 241, 1, data) != 1)
                 return -1;
@@ -252,19 +252,181 @@ namespace Gn1190Corrector
             return 0;
         }
 
-        private int _ClearPassword()
+        private int _ReadVoltage()
         {
-            byte[] data = new byte[4];
+            byte[] data = new byte[2];
+            byte[] reverseData;
+            sbyte[] sData = new sbyte[1];
+            float voltage;
+            int tmp;
+
+            tbTxTemperature.Text = "";
+
+            if (qsfpI2cReadCB == null)
+                return -1;
+
+            if (qsfpI2cReadCB(80, 26, 2, data) != 2)
+                return -1;
+
+            reverseData = data.Reverse().ToArray();
+            tmp = BitConverter.ToUInt16(reverseData, 0);
+            voltage = tmp;
+            voltage = voltage / 10000;
+            tbTxVoltage.Text = voltage.ToString("#0.0000");
 
             if (qsfpI2cWriteCB == null)
                 return -1;
 
-            data[0] = data[1] = data[2] = data[3] = 0;
-
-            if (qsfpI2cWriteCB(80, 123, 4, data) < 0)
+            data = new byte[] { 4, 0 };
+            qsfpI2cWriteCB(80, 127, 1, data);
+            if (qsfpI2cReadCB(80, 240, 1, data) != 1)
                 return -1;
 
+            try {
+                Buffer.BlockCopy(data, 0, sData, 0, 1);
+            }
+            catch (Exception eBC) {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+
+            if (data[0] < 128)
+                tmp = data[0];
+            else
+                tmp = (~data[0]) + 1;
+            tbVoltageOffset.Text = sData[0].ToString();
+
             return 0;
+        }
+
+        private void bVoltageRead_Click(object sender, EventArgs e)
+        {
+            if (_ReadVoltage() < 0)
+                return;
+        }
+
+        private int _WriteVoltageCorrector()
+        {
+            byte[] data = new byte[1];
+            sbyte[] tmp = new sbyte[1];
+
+            if (_WritePassword() < 0)
+                return -1;
+
+            if (_SetQsfpMode(0x4D) < 0)
+                return -1;
+
+            if (qsfpI2cWriteCB == null)
+                return -1;
+
+            try {
+                tmp[0] = Convert.ToSByte(tbVoltageOffset.Text);
+            }
+            catch (Exception eTSB) {
+                MessageBox.Show("Voltage offset out of range (-128 ~ 127)!!\n" + eTSB.ToString());
+                tbVoltageOffset.Text = "";
+                return -1;
+            }
+
+            data[0] = 4;
+            qsfpI2cWriteCB(80, 127, 1, data);
+
+            try {
+                Buffer.BlockCopy(tmp, 0, data, 0, 1);
+            }
+            catch (Exception e2) {
+                MessageBox.Show(e2.ToString());
+                return -1;
+            }
+
+            qsfpI2cWriteCB(80, 240, 1, data);
+
+            return 0;
+        }
+
+        private void bVoltageWrite_Click(object sender, EventArgs e)
+        {
+            if (_WriteVoltageCorrector() < 0)
+                return;
+        }
+
+        private int _ResetVoltageOffset()
+        {
+            tbVoltageOffset.Text = "0";
+
+            if (_WriteVoltageCorrector() < 0)
+                return -1;
+
+            cbVoltageCorrected.Checked = false;
+
+            return 0;
+        }
+
+        private void bVoltageReset_Click(object sender, EventArgs e)
+        {
+            if (_ResetVoltageOffset() < 0)
+                return;
+        }
+
+        private int _AutoCorrectVoltageOffset()
+        {
+            sbyte[] offset = new sbyte[1];
+            float txVoltage, voltage, fOffset;
+
+            if (tbVoltage.Text.Length == 0) {
+                MessageBox.Show("Please input voltage!!");
+                return -1;
+            }
+
+            if (tbTxVoltage.Text.Length == 0) {
+                if (_ReadVoltage() < 0)
+                    return -1;
+            }
+
+            try {
+                txVoltage = Convert.ToSingle(tbTxVoltage.Text);
+            }
+            catch (Exception eTSTxVoltage) {
+                MessageBox.Show(eTSTxVoltage.ToString());
+                return -1;
+            }
+
+            try {
+                voltage = Convert.ToSingle(tbVoltage.Text);
+            }
+            catch (Exception eTSVoltage) {
+                MessageBox.Show(eTSVoltage.ToString());
+                return -1;
+            }
+
+            fOffset = (voltage - txVoltage) * 1000 / 25;
+            if ((fOffset > 127) || (fOffset < -128)) {
+                MessageBox.Show("Offset out of range: " + fOffset + " (-128 ~ 127)!!");
+                return -1;
+            }
+
+            try {
+                offset[0] = Convert.ToSByte(fOffset);
+            }
+            catch (Exception eTSB) {
+                MessageBox.Show(eTSB.ToString());
+                return -1;
+            }
+
+            tbVoltageOffset.Text = offset[0].ToString();
+
+            if (_WriteVoltageCorrector() < 0)
+                return -1;
+
+            cbVoltageCorrected.Checked = true;
+
+            return 0;
+        }
+
+        private void bVoltageAutoCorrect_Click(object sender, EventArgs e)
+        {
+            if (_AutoCorrectVoltageOffset() < 0)
+                return;
         }
 
         private int _WriteTemperatureCorrector()
@@ -301,7 +463,7 @@ namespace Gn1190Corrector
                 return -1;
             }
 
-            data[0] = 2;
+            data[0] = 4;
             qsfpI2cWriteCB(80, 127, 1, data);
 
             try {
@@ -319,9 +481,6 @@ namespace Gn1190Corrector
             data[1] = bATmp[1];
 
             qsfpI2cWriteCB(80, 242, 2, data);
-
-            _ClearPassword();
-            _SetQsfpMode(0);
 
             return 0;
         }
@@ -501,7 +660,7 @@ namespace Gn1190Corrector
             if (tbRxPowerRateMin.Text.Length == 0)
                 tbRxPowerRateMin.Text = (data[0] - 12).ToString();
 
-            data = new byte[] { 2, 0, 0, 0 };
+            data = new byte[] { 4, 0, 0, 0 };
             qsfpI2cWriteCB(80, 127, 1, data);
             if (qsfpI2cReadCB(80, 244, 4, data) != 4)
                 return -1;
@@ -522,7 +681,7 @@ namespace Gn1190Corrector
 
         private int _WritePowerRate()
         {
-            byte[] data = new byte[] { 2, 0, 0, 0 }; ;
+            byte[] data = new byte[] { 4, 0, 0, 0 }; ;
 
             if ((tbRxPowerRate1.Text.Length == 0) || (tbRxPowerRate2.Text.Length == 0) ||
                 (tbRxPowerRate3.Text.Length == 0) || (tbRxPowerRate4.Text.Length == 0)) {
@@ -553,9 +712,6 @@ namespace Gn1190Corrector
             }
 
             qsfpI2cWriteCB(80, 244, 4, data);
-
-            _ClearPassword();
-            _SetQsfpMode(0);
 
             return 0;
         }
@@ -695,14 +851,14 @@ namespace Gn1190Corrector
             if (qsfpI2cWriteCB == null)
                 return -1;
 
-            data[0] = 4;
+            data[0] = 5;
             if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
 
             if (qsfpI2cReadCB == null)
                 return -1;
 
-            if (qsfpI2cReadCB(80, 128, 125, data) != 125)
+            if (qsfpI2cReadCB(80, 128, 44, data) != 44)
                 return -1;
 
             sTmp = Convert.ToSingle(Convert.ToUInt32(data[0]) * 0.04);
@@ -829,242 +985,271 @@ namespace Gn1190Corrector
             iTmp = BitConverter.ToInt16(reverseData, 0);
             tbModulationCurrentEquationCCh4.Text = iTmp.ToString();
 
-            Buffer.BlockCopy(data, 44, sData, 0, 1);
-            sTmp = Convert.ToSingle(sData[0]) / 1000;
-            tbVhfCompPropEquationACh1.Text = sTmp.ToString("#0.000");
+            if (qsfpI2cReadCB(80, 252, 1, data) != 1)
+                return -1;
 
-            Array.Copy(data, 45, bATmp, 0, 2);
+            if (data[0] % 2 == 1)
+                cbTemperatureCompensation.Checked = true;
+            else
+                cbTemperatureCompensation.Checked = false;
+
+            data[0] = 4;
+            if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
+                return -1;
+
+            Thread.Sleep(1);
+
+            if (qsfpI2cReadCB(80, 128, 96, data) != 96)
+                return -1;
+
+            Array.Copy(data, 0, bATmp, 0, 2);
+            reverseData = bATmp.Reverse().ToArray();
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100000;
+            tbVhfCompPropEquationACh1.Text = sTmp.ToString("#0.00000");
+
+            Array.Copy(data, 2, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbVhfCompPropEquationBCh1.Text = sTmp.ToString("#0.0000");
 
-            Array.Copy(data, 47, bATmp, 0, 2);
+            Array.Copy(data, 4, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
-            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 1000;
-            tbVhfCompPropEquationCCh1.Text = sTmp.ToString("#0.000");
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
+            tbVhfCompPropEquationCCh1.Text = sTmp.ToString("#0.00");
 
-            Buffer.BlockCopy(data, 49, sData, 0, 1);
-            sTmp = Convert.ToSingle(sData[0]) / 1000;
-            tbVhfCompPropEquationACh2.Text = sTmp.ToString("#0.000");
+            Array.Copy(data, 6, bATmp, 0, 2);
+            reverseData = bATmp.Reverse().ToArray();
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100000;
+            tbVhfCompPropEquationACh2.Text = sTmp.ToString("#0.00000");
 
-            Array.Copy(data, 50, bATmp, 0, 2);
+            Array.Copy(data, 8, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbVhfCompPropEquationBCh2.Text = sTmp.ToString("#0.0000");
 
-            Array.Copy(data, 52, bATmp, 0, 2);
+            Array.Copy(data, 10, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
-            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 1000;
-            tbVhfCompPropEquationCCh2.Text = sTmp.ToString("#0.000");
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
+            tbVhfCompPropEquationCCh2.Text = sTmp.ToString("#0.00");
 
-            Buffer.BlockCopy(data, 54, sData, 0, 1);
-            sTmp = Convert.ToSingle(sData[0]) / 1000;
-            tbVhfCompPropEquationACh3.Text = sTmp.ToString("#0.000");
+            Array.Copy(data, 12, bATmp, 0, 2);
+            reverseData = bATmp.Reverse().ToArray();
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100000;
+            tbVhfCompPropEquationACh3.Text = sTmp.ToString("#0.00000");
 
-            Array.Copy(data, 55, bATmp, 0, 2);
+            Array.Copy(data, 14, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbVhfCompPropEquationBCh3.Text = sTmp.ToString("#0.0000");
 
-            Array.Copy(data, 57, bATmp, 0, 2);
+            Array.Copy(data, 16, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
-            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 1000;
-            tbVhfCompPropEquationCCh3.Text = sTmp.ToString("#0.000");
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
+            tbVhfCompPropEquationCCh3.Text = sTmp.ToString("#0.00");
 
-            Buffer.BlockCopy(data, 59, sData, 0, 1);
-            sTmp = Convert.ToSingle(sData[0]) / 1000;
-            tbVhfCompPropEquationACh4.Text = sTmp.ToString("#0.000");
+            Array.Copy(data, 18, bATmp, 0, 2);
+            reverseData = bATmp.Reverse().ToArray();
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100000;
+            tbVhfCompPropEquationACh4.Text = sTmp.ToString("#0.00000");
 
-            Array.Copy(data, 60, bATmp, 0, 2);
+            Array.Copy(data, 20, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbVhfCompPropEquationBCh4.Text = sTmp.ToString("#0.0000");
 
-            Array.Copy(data, 62, bATmp, 0, 2);
+            Array.Copy(data, 22, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
-            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 1000;
-            tbVhfCompPropEquationCCh4.Text = sTmp.ToString("#0.000");
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
+            tbVhfCompPropEquationCCh4.Text = sTmp.ToString("#0.00");
 
-            Buffer.BlockCopy(data, 64, sData, 0, 1);
-            sTmp = Convert.ToSingle(sData[0]) / 1000;
-            tbVhfCompConstEquationACh1.Text = sTmp.ToString("#0.000");
+            Array.Copy(data, 24, bATmp, 0, 2);
+            reverseData = bATmp.Reverse().ToArray();
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100000;
+            tbVhfCompConstEquationACh1.Text = sTmp.ToString("#0.00000");
 
-            Array.Copy(data, 65, bATmp, 0, 2);
+            Array.Copy(data, 26, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbVhfCompConstEquationBCh1.Text = sTmp.ToString("#0.0000");
 
-            Array.Copy(data, 67, bATmp, 0, 2);
+            Array.Copy(data, 28, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
             tbVhfCompConstEquationCCh1.Text = sTmp.ToString("#0.00");
 
-            Buffer.BlockCopy(data, 69, sData, 0, 1);
-            sTmp = Convert.ToSingle(sData[0]) / 1000;
-            tbVhfCompConstEquationACh2.Text = sTmp.ToString("#0.000");
+            Array.Copy(data, 30, bATmp, 0, 2);
+            reverseData = bATmp.Reverse().ToArray();
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100000;
+            tbVhfCompConstEquationACh2.Text = sTmp.ToString("#0.00000");
 
-            Array.Copy(data, 70, bATmp, 0, 2);
+            Array.Copy(data, 32, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbVhfCompConstEquationBCh2.Text = sTmp.ToString("#0.0000");
 
-            Array.Copy(data, 72, bATmp, 0, 2);
+            Array.Copy(data, 34, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
             tbVhfCompConstEquationCCh2.Text = sTmp.ToString("#0.00");
 
-            Buffer.BlockCopy(data, 74, sData, 0, 1);
-            sTmp = Convert.ToSingle(sData[0]) / 1000;
-            tbVhfCompConstEquationACh3.Text = sTmp.ToString("#0.000");
+            Array.Copy(data, 36, bATmp, 0, 2);
+            reverseData = bATmp.Reverse().ToArray();
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100000;
+            tbVhfCompConstEquationACh3.Text = sTmp.ToString("#0.00000");
 
-            Array.Copy(data, 75, bATmp, 0, 2);
+            Array.Copy(data, 38, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbVhfCompConstEquationBCh3.Text = sTmp.ToString("#0.0000");
 
-            Array.Copy(data, 77, bATmp, 0, 2);
+            Array.Copy(data, 40, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
             tbVhfCompConstEquationCCh3.Text = sTmp.ToString("#0.00");
 
-            Buffer.BlockCopy(data, 79, sData, 0, 1);
-            sTmp = Convert.ToSingle(sData[0]) / 1000;
-            tbVhfCompConstEquationACh4.Text = sTmp.ToString("#0.000");
+            Array.Copy(data, 42, bATmp, 0, 2);
+            reverseData = bATmp.Reverse().ToArray();
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100000;
+            tbVhfCompConstEquationACh4.Text = sTmp.ToString("#0.00000");
 
-            Array.Copy(data, 80, bATmp, 0, 2);
+            Array.Copy(data, 44, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbVhfCompConstEquationBCh4.Text = sTmp.ToString("#0.0000");
 
-            Array.Copy(data, 82, bATmp, 0, 2);
+            Array.Copy(data, 46, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
             tbVhfCompConstEquationCCh4.Text = sTmp.ToString("#0.00");
 
-            Buffer.BlockCopy(data, 84, sData, 0, 1);
-            sTmp = Convert.ToSingle(sData[0]) / 1000;
-            tbPeakEnEquationACh1.Text = sTmp.ToString("#0.000");
+            Array.Copy(data, 48, bATmp, 0, 2);
+            reverseData = bATmp.Reverse().ToArray();
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100000;
+            tbPeakEnEquationACh1.Text = sTmp.ToString("#0.00000");
 
-            Array.Copy(data, 85, bATmp, 0, 2);
+            Array.Copy(data, 50, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbPeakEnEquationBCh1.Text = sTmp.ToString("#0.0000");
 
-            Array.Copy(data, 87, bATmp, 0, 2);
+            Array.Copy(data, 52, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
-            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 1000;
-            tbPeakEnEquationCCh1.Text = sTmp.ToString("#0.000");
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
+            tbPeakEnEquationCCh1.Text = sTmp.ToString("#0.00");
 
-            Buffer.BlockCopy(data, 89, sData, 0, 1);
-            sTmp = Convert.ToSingle(sData[0]) / 1000;
-            tbPeakEnEquationACh2.Text = sTmp.ToString("#0.000");
+            Array.Copy(data, 54, bATmp, 0, 2);
+            reverseData = bATmp.Reverse().ToArray();
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100000;
+            tbPeakEnEquationACh2.Text = sTmp.ToString("#0.00000");
 
-            Array.Copy(data, 90, bATmp, 0, 2);
+            Array.Copy(data, 56, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbPeakEnEquationBCh2.Text = sTmp.ToString("#0.0000");
 
-            Array.Copy(data, 92, bATmp, 0, 2);
+            Array.Copy(data, 58, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
-            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 1000;
-            tbPeakEnEquationCCh2.Text = sTmp.ToString("#0.000");
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
+            tbPeakEnEquationCCh2.Text = sTmp.ToString("#0.00");
 
-            Buffer.BlockCopy(data, 94, sData, 0, 1);
-            sTmp = Convert.ToSingle(sData[0]) / 1000;
-            tbPeakEnEquationACh3.Text = sTmp.ToString("#0.000");
+            Array.Copy(data, 60, bATmp, 0, 2);
+            reverseData = bATmp.Reverse().ToArray();
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100000;
+            tbPeakEnEquationACh3.Text = sTmp.ToString("#0.00000");
 
-            Array.Copy(data, 95, bATmp, 0, 2);
+            Array.Copy(data, 62, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbPeakEnEquationBCh3.Text = sTmp.ToString("#0.0000");
 
-            Array.Copy(data, 97, bATmp, 0, 2);
+            Array.Copy(data, 64, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
-            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 1000;
-            tbPeakEnEquationCCh3.Text = sTmp.ToString("#0.000");
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
+            tbPeakEnEquationCCh3.Text = sTmp.ToString("#0.00");
 
-            Buffer.BlockCopy(data, 99, sData, 0, 1);
-            sTmp = Convert.ToSingle(sData[0]) / 1000;
-            tbPeakEnEquationACh4.Text = sTmp.ToString("#0.000");
+            Array.Copy(data, 66, bATmp, 0, 2);
+            reverseData = bATmp.Reverse().ToArray();
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100000;
+            tbPeakEnEquationACh4.Text = sTmp.ToString("#0.00000");
 
-            Array.Copy(data, 100, bATmp, 0, 2);
+            Array.Copy(data, 68, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbPeakEnEquationBCh4.Text = sTmp.ToString("#0.0000");
 
-            Array.Copy(data, 102, bATmp, 0, 2);
+            Array.Copy(data, 70, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
-            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 1000;
-            tbPeakEnEquationCCh4.Text = sTmp.ToString("#0.000");
-            
-            Buffer.BlockCopy(data, 104, sData, 0, 1);
-            sTmp = Convert.ToSingle(sData[0]) / 1000;
-            tbPeakLenCtrlEquationACh1.Text = sTmp.ToString("#0.000");
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
+            tbPeakEnEquationCCh4.Text = sTmp.ToString("#0.00");
 
-            Array.Copy(data, 105, bATmp, 0, 2);
+            Array.Copy(data, 72, bATmp, 0, 2);
+            reverseData = bATmp.Reverse().ToArray();
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100000;
+            tbPeakLenCtrlEquationACh1.Text = sTmp.ToString("#0.00000");
+
+            Array.Copy(data, 74, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbPeakLenCtrlEquationBCh1.Text = sTmp.ToString("#0.0000");
 
-            Array.Copy(data, 107, bATmp, 0, 2);
+            Array.Copy(data, 76, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
-            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 1000;
-            tbPeakLenCtrlEquationCCh1.Text = sTmp.ToString("#0.000");
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
+            tbPeakLenCtrlEquationCCh1.Text = sTmp.ToString("#0.00");
 
-            Buffer.BlockCopy(data, 109, sData, 0, 1);
-            sTmp = Convert.ToSingle(sData[0]) / 1000;
-            tbPeakLenCtrlEquationACh2.Text = sTmp.ToString("#0.000");
+            Array.Copy(data, 78, bATmp, 0, 2);
+            reverseData = bATmp.Reverse().ToArray();
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100000;
+            tbPeakLenCtrlEquationACh2.Text = sTmp.ToString("#0.00000");
 
-            Array.Copy(data, 110, bATmp, 0, 2);
+            Array.Copy(data, 80, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbPeakLenCtrlEquationBCh2.Text = sTmp.ToString("#0.0000");
 
-            Array.Copy(data, 112, bATmp, 0, 2);
+            Array.Copy(data, 82, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
-            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 1000;
-            tbPeakLenCtrlEquationCCh2.Text = sTmp.ToString("#0.000");
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
+            tbPeakLenCtrlEquationCCh2.Text = sTmp.ToString("#0.00");
 
-            Buffer.BlockCopy(data, 114, sData, 0, 1);
-            sTmp = Convert.ToSingle(sData[0]) / 1000;
-            tbPeakLenCtrlEquationACh3.Text = sTmp.ToString("#0.000");
+            Array.Copy(data, 84, bATmp, 0, 2);
+            reverseData = bATmp.Reverse().ToArray();
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100000;
+            tbPeakLenCtrlEquationACh3.Text = sTmp.ToString("#0.00000");
 
-            Array.Copy(data, 115, bATmp, 0, 2);
+            Array.Copy(data, 86, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbPeakLenCtrlEquationBCh3.Text = sTmp.ToString("#0.0000");
 
-            Array.Copy(data, 117, bATmp, 0, 2);
+            Array.Copy(data, 88, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
-            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 1000;
-            tbPeakLenCtrlEquationCCh3.Text = sTmp.ToString("#0.000");
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
+            tbPeakLenCtrlEquationCCh3.Text = sTmp.ToString("#0.00");
 
-            Buffer.BlockCopy(data, 119, sData, 0, 1);
-            sTmp = Convert.ToSingle(sData[0]) / 1000;
-            tbPeakLenCtrlEquationACh4.Text = sTmp.ToString("#0.000");
+            Array.Copy(data, 90, bATmp, 0, 2);
+            reverseData = bATmp.Reverse().ToArray();
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100000;
+            tbPeakLenCtrlEquationACh4.Text = sTmp.ToString("#0.00000");
 
-            Array.Copy(data, 120, bATmp, 0, 2);
+            Array.Copy(data, 92, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbPeakLenCtrlEquationBCh4.Text = sTmp.ToString("#0.0000");
 
-            Array.Copy(data, 122, bATmp, 0, 2);
+            Array.Copy(data, 94, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
-            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 1000;
-            tbPeakLenCtrlEquationCCh4.Text = sTmp.ToString("#0.000");
-
-            if (data[124] % 2 == 1)
-                cbTemperatureCompensation.Checked = true;
-            else
-                cbTemperatureCompensation.Checked = false;
+            sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
+            tbPeakLenCtrlEquationCCh4.Text = sTmp.ToString("#0.00");
 
             return 0;
         }
 
         private void bAcMcRead_Click(object sender, EventArgs e)
         {
-            if (_ReadAverageCurrentAndModulationCurrentCorrectData() < 0)
-                return;
+            bAcMcRead.Enabled = false;
+            _ReadAverageCurrentAndModulationCurrentCorrectData();
+            bAcMcRead.Enabled = true;
         }
 
         private int _WriteAcMcCorrectData()
@@ -1165,7 +1350,7 @@ namespace Gn1190Corrector
             if (qsfpI2cWriteCB == null)
                 return -1;
 
-            data[0] = 4;
+            data[0] = 5;
             if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
 
@@ -1569,20 +1754,32 @@ namespace Gn1190Corrector
             data[42] = bATmp[1];
             data[43] = bATmp[0];
 
-            if ((Convert.ToSingle(tbVhfCompPropEquationACh1.Text) < -0.128) ||
-                (Convert.ToSingle(tbVhfCompPropEquationACh1.Text) > 0.127)) {
+            if (qsfpI2cWriteCB(80, 128, 44, data) < 0)
+                return -1;
+
+            Thread.Sleep(1);
+
+            data[0] = 4;
+            if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
+                return -1;
+
+            if ((Convert.ToSingle(tbVhfCompPropEquationACh1.Text) < -0.32768) ||
+                (Convert.ToSingle(tbVhfCompPropEquationACh1.Text) > 0.32767)) {
                 MessageBox.Show("VHF Comp Prop equation A: " +
                     tbVhfCompPropEquationACh1.Text +
-                    " out of range (-0.128 ~ 0.127)!!");
+                    " out of range (-0.32768 ~ 0.32767)!!");
                 return -1;
             }
             try {
-                data[44] = (byte)Convert.ToSByte(Convert.ToSingle(tbVhfCompPropEquationACh1.Text) * 1000);
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbVhfCompPropEquationACh1.Text) * 100000);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
                 return -1;
             }
+            bATmp = BitConverter.GetBytes(s16Tmp);
+            data[0] = bATmp[1];
+            data[1] = bATmp[0];
 
             if (Convert.ToSingle(tbVhfCompPropEquationBCh1.Text) < -3.2768 ||
                 Convert.ToSingle(tbVhfCompPropEquationBCh1.Text) > 3.2767) {
@@ -1599,42 +1796,45 @@ namespace Gn1190Corrector
                 return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
-            data[45] = bATmp[1];
-            data[46] = bATmp[0];
+            data[2] = bATmp[1];
+            data[3] = bATmp[0];
 
-            if (Convert.ToSingle(tbVhfCompPropEquationCCh1.Text) < -32.768 ||
-                Convert.ToSingle(tbVhfCompPropEquationCCh1.Text) > 32.767) {
+            if (Convert.ToSingle(tbVhfCompPropEquationCCh1.Text) < -327.68 ||
+                Convert.ToSingle(tbVhfCompPropEquationCCh1.Text) > 327.67) {
                 MessageBox.Show("VHF Comp Prop equation C: " +
                     tbVhfCompPropEquationCCh1.Text +
-                    " out of range (-32.768 ~ 32.767)!!");
+                    " out of range (-327.68 ~ 327.67)!!");
                 return -1;
             }
             try {
-                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbVhfCompPropEquationCCh1.Text) * 1000);
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbVhfCompPropEquationCCh1.Text) * 100);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
                 return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
-            data[47] = bATmp[1];
-            data[48] = bATmp[0];
+            data[4] = bATmp[1];
+            data[5] = bATmp[0];
 
-            if ((Convert.ToSingle(tbVhfCompPropEquationACh2.Text) < -0.128) ||
-                (Convert.ToSingle(tbVhfCompPropEquationACh2.Text) > 0.127)) {
+            if ((Convert.ToSingle(tbVhfCompPropEquationACh2.Text) < -0.32768) ||
+                (Convert.ToSingle(tbVhfCompPropEquationACh2.Text) > 0.32767)) {
                 MessageBox.Show("VHF Comp Prop equation A: " +
                     tbVhfCompPropEquationACh2.Text +
-                    " out of range (-0.128 ~ 0.127)!!");
+                    " out of range (-0.32768 ~ 0.32767)!!");
                 return -1;
             }
             try {
-                data[49] = (byte)Convert.ToSByte(Convert.ToSingle(tbVhfCompPropEquationACh2.Text) * 1000);
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbVhfCompPropEquationACh2.Text) * 100000);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
                 return -1;
             }
-
+            bATmp = BitConverter.GetBytes(s16Tmp);
+            data[6] = bATmp[1];
+            data[7] = bATmp[0];
+            
             if (Convert.ToSingle(tbVhfCompPropEquationBCh2.Text) < -3.2768 ||
                 Convert.ToSingle(tbVhfCompPropEquationBCh2.Text) > 3.2767) {
                 MessageBox.Show("VHF Comp Prop equation B: " +
@@ -1650,41 +1850,44 @@ namespace Gn1190Corrector
                 return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
-            data[50] = bATmp[1];
-            data[51] = bATmp[0];
+            data[8] = bATmp[1];
+            data[9] = bATmp[0];
 
-            if (Convert.ToSingle(tbVhfCompPropEquationCCh2.Text) < -32.768 ||
-                Convert.ToSingle(tbVhfCompPropEquationCCh2.Text) > 32.767) {
+            if (Convert.ToSingle(tbVhfCompPropEquationCCh2.Text) < -327.68 ||
+                Convert.ToSingle(tbVhfCompPropEquationCCh2.Text) > 327.67) {
                 MessageBox.Show("VHF Comp Prop equation C: " +
                     tbVhfCompPropEquationCCh2.Text +
-                    " out of range (-32.768 ~ 32.767)!!");
+                    " out of range (-327.68 ~ 327.67)!!");
                 return -1;
             }
             try {
-                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbVhfCompPropEquationCCh2.Text) * 1000);
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbVhfCompPropEquationCCh2.Text) * 100);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
                 return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
-            data[52] = bATmp[1];
-            data[53] = bATmp[0];
+            data[10] = bATmp[1];
+            data[11] = bATmp[0];
 
-            if ((Convert.ToSingle(tbVhfCompPropEquationACh3.Text) < -0.128) ||
-                (Convert.ToSingle(tbVhfCompPropEquationACh3.Text) > 0.127)) {
+            if ((Convert.ToSingle(tbVhfCompPropEquationACh3.Text) < -0.32768) ||
+                (Convert.ToSingle(tbVhfCompPropEquationACh3.Text) > 0.32767)) {
                 MessageBox.Show("VHF Comp Prop equation A: " +
                     tbVhfCompPropEquationACh3.Text +
                     " out of range (-0.128 ~ 0.127)!!");
                 return -1;
             }
             try {
-                data[54] = (byte)Convert.ToSByte(Convert.ToSingle(tbVhfCompPropEquationACh3.Text) * 1000);
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbVhfCompPropEquationACh3.Text) * 100000);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
                 return -1;
             }
+            bATmp = BitConverter.GetBytes(s16Tmp);
+            data[12] = bATmp[1];
+            data[13] = bATmp[0];
 
             if (Convert.ToSingle(tbVhfCompPropEquationBCh3.Text) < -3.2768 ||
                 Convert.ToSingle(tbVhfCompPropEquationBCh3.Text) > 3.2767) {
@@ -1701,41 +1904,44 @@ namespace Gn1190Corrector
                 return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
-            data[55] = bATmp[1];
-            data[56] = bATmp[0];
+            data[14] = bATmp[1];
+            data[15] = bATmp[0];
 
-            if (Convert.ToSingle(tbVhfCompPropEquationCCh3.Text) < -32.768 ||
-                Convert.ToSingle(tbVhfCompPropEquationCCh3.Text) > 32.767) {
+            if (Convert.ToSingle(tbVhfCompPropEquationCCh3.Text) < -327.68 ||
+                Convert.ToSingle(tbVhfCompPropEquationCCh3.Text) > 327.67) {
                 MessageBox.Show("VHF Comp Prop equation C: " +
                     tbVhfCompPropEquationCCh3.Text +
-                    " out of range (-32.768 ~ 32.767)!!");
+                    " out of range (-327.68 ~ 327.67)!!");
                 return -1;
             }
             try {
-                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbVhfCompPropEquationCCh3.Text) * 1000);
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbVhfCompPropEquationCCh3.Text) * 100);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
                 return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
-            data[57] = bATmp[1];
-            data[58] = bATmp[0];
+            data[16] = bATmp[1];
+            data[17] = bATmp[0];
 
-            if ((Convert.ToSingle(tbVhfCompPropEquationACh4.Text) < -0.128) ||
-                (Convert.ToSingle(tbVhfCompPropEquationACh4.Text) > 0.127)) {
+            if ((Convert.ToSingle(tbVhfCompPropEquationACh4.Text) < -0.32768) ||
+                (Convert.ToSingle(tbVhfCompPropEquationACh4.Text) > 0.32767)) {
                 MessageBox.Show("VHF Comp Prop equation A: " +
                     tbVhfCompPropEquationACh4.Text +
-                    " out of range (-0.128 ~ 0.127)!!");
+                    " out of range (-0.32768 ~ 0.32767)!!");
                 return -1;
             }
             try {
-                data[59] = (byte)Convert.ToSByte(Convert.ToSingle(tbVhfCompPropEquationACh4.Text) * 1000);
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbVhfCompPropEquationACh4.Text) * 100000);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
                 return -1;
             }
+            bATmp = BitConverter.GetBytes(s16Tmp);
+            data[18] = bATmp[1];
+            data[19] = bATmp[0];
 
             if (Convert.ToSingle(tbVhfCompPropEquationBCh4.Text) < -3.2768 ||
                 Convert.ToSingle(tbVhfCompPropEquationBCh4.Text) > 3.2767) {
@@ -1752,41 +1958,44 @@ namespace Gn1190Corrector
                 return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
-            data[60] = bATmp[1];
-            data[61] = bATmp[0];
+            data[20] = bATmp[1];
+            data[21] = bATmp[0];
 
-            if (Convert.ToSingle(tbVhfCompPropEquationCCh4.Text) < -32.768 ||
-                Convert.ToSingle(tbVhfCompPropEquationCCh4.Text) > 32.767) {
+            if (Convert.ToSingle(tbVhfCompPropEquationCCh4.Text) < -327.68 ||
+                Convert.ToSingle(tbVhfCompPropEquationCCh4.Text) > 327.67) {
                 MessageBox.Show("VHF Comp Prop equation C: " +
                     tbVhfCompPropEquationCCh4.Text +
-                    " out of range (-32.768 ~ 32.767)!!");
+                    " out of range (-327.68 ~ 327.67)!!");
                 return -1;
             }
             try {
-                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbVhfCompPropEquationCCh4.Text) * 1000);
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbVhfCompPropEquationCCh4.Text) * 100);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
                 return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
-            data[62] = bATmp[1];
-            data[63] = bATmp[0];
+            data[22] = bATmp[1];
+            data[23] = bATmp[0];
 
-            if ((Convert.ToSingle(tbVhfCompConstEquationACh1.Text) < -0.128) ||
-                (Convert.ToSingle(tbVhfCompConstEquationACh1.Text) > 0.127)) {
+            if ((Convert.ToSingle(tbVhfCompConstEquationACh1.Text) < -0.32768) ||
+                (Convert.ToSingle(tbVhfCompConstEquationACh1.Text) > 0.32767)) {
                 MessageBox.Show("VHF Comp Const equation A: " +
                     tbVhfCompConstEquationACh1.Text +
-                    " out of range (-0.128 ~ 0.127)!!");
+                    " out of range (-0.32768 ~ 0.32767)!!");
                 return -1;
             }
             try {
-                data[64] = (byte)Convert.ToSByte(Convert.ToSingle(tbVhfCompConstEquationACh1.Text) * 1000);
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbVhfCompConstEquationACh1.Text) * 100000);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
                 return -1;
             }
+            bATmp = BitConverter.GetBytes(s16Tmp);
+            data[24] = bATmp[1];
+            data[25] = bATmp[0];
 
             if (Convert.ToSingle(tbVhfCompConstEquationBCh1.Text) < -3.2768 ||
                 Convert.ToSingle(tbVhfCompConstEquationBCh1.Text) > 3.2767) {
@@ -1803,8 +2012,8 @@ namespace Gn1190Corrector
                 return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
-            data[65] = bATmp[1];
-            data[66] = bATmp[0];
+            data[26] = bATmp[1];
+            data[27] = bATmp[0];
 
             if (Convert.ToSingle(tbVhfCompConstEquationCCh1.Text) < -327.68 ||
                 Convert.ToSingle(tbVhfCompConstEquationCCh1.Text) > 327.67) {
@@ -1821,23 +2030,26 @@ namespace Gn1190Corrector
                 return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
-            data[67] = bATmp[1];
-            data[68] = bATmp[0];
+            data[28] = bATmp[1];
+            data[29] = bATmp[0];
 
-            if ((Convert.ToSingle(tbVhfCompConstEquationACh2.Text) < -0.128) ||
-                (Convert.ToSingle(tbVhfCompConstEquationACh2.Text) > 0.127)) {
+            if ((Convert.ToSingle(tbVhfCompConstEquationACh2.Text) < -0.32768) ||
+                (Convert.ToSingle(tbVhfCompConstEquationACh2.Text) > 0.32767)) {
                 MessageBox.Show("VHF Comp Const equation A: " +
                     tbVhfCompConstEquationACh2.Text +
-                    " out of range (-0.128 ~ 0.127)!!");
+                    " out of range (-0.32768 ~ 0.32767)!!");
                 return -1;
             }
             try {
-                data[69] = (byte)Convert.ToSByte(Convert.ToSingle(tbVhfCompConstEquationACh2.Text) * 1000);
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbVhfCompConstEquationACh2.Text) * 100000);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
                 return -1;
             }
+            bATmp = BitConverter.GetBytes(s16Tmp);
+            data[30] = bATmp[1];
+            data[31] = bATmp[0];
 
             if (Convert.ToSingle(tbVhfCompConstEquationBCh2.Text) < -3.2768 ||
                 Convert.ToSingle(tbVhfCompConstEquationBCh2.Text) > 3.2767) {
@@ -1854,8 +2066,8 @@ namespace Gn1190Corrector
                 return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
-            data[70] = bATmp[1];
-            data[71] = bATmp[0];
+            data[32] = bATmp[1];
+            data[33] = bATmp[0];
 
             if (Convert.ToSingle(tbVhfCompConstEquationCCh2.Text) < -327.68 ||
                 Convert.ToSingle(tbVhfCompConstEquationCCh2.Text) > 327.67) {
@@ -1872,23 +2084,26 @@ namespace Gn1190Corrector
                 return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
-            data[72] = bATmp[1];
-            data[73] = bATmp[0];
+            data[34] = bATmp[1];
+            data[35] = bATmp[0];
 
-            if ((Convert.ToSingle(tbVhfCompConstEquationACh3.Text) < -0.128) ||
-                (Convert.ToSingle(tbVhfCompConstEquationACh3.Text) > 0.127)) {
+            if ((Convert.ToSingle(tbVhfCompConstEquationACh3.Text) < -0.32768) ||
+                (Convert.ToSingle(tbVhfCompConstEquationACh3.Text) > 0.32767)) {
                 MessageBox.Show("VHF Comp Const equation A: " +
                     tbVhfCompConstEquationACh3.Text +
-                    " out of range (-0.128 ~ 0.127)!!");
+                    " out of range (-0.32768 ~ 0.32767)!!");
                 return -1;
             }
             try {
-                data[74] = (byte)Convert.ToSByte(Convert.ToSingle(tbVhfCompConstEquationACh3.Text) * 1000);
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbVhfCompConstEquationACh3.Text) * 100000);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
                 return -1;
             }
+            bATmp = BitConverter.GetBytes(s16Tmp);
+            data[36] = bATmp[1];
+            data[37] = bATmp[0];
 
             if (Convert.ToSingle(tbVhfCompConstEquationBCh3.Text) < -3.2768 ||
                 Convert.ToSingle(tbVhfCompConstEquationBCh3.Text) > 3.2767) {
@@ -1905,8 +2120,8 @@ namespace Gn1190Corrector
                 return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
-            data[75] = bATmp[1];
-            data[76] = bATmp[0];
+            data[38] = bATmp[1];
+            data[39] = bATmp[0];
 
             if (Convert.ToSingle(tbVhfCompConstEquationCCh3.Text) < -327.68 ||
                 Convert.ToSingle(tbVhfCompConstEquationCCh3.Text) > 327.67) {
@@ -1923,23 +2138,26 @@ namespace Gn1190Corrector
                 return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
-            data[77] = bATmp[1];
-            data[78] = bATmp[0];
+            data[40] = bATmp[1];
+            data[41] = bATmp[0];
 
-            if ((Convert.ToSingle(tbVhfCompConstEquationACh4.Text) < -0.128) ||
-                (Convert.ToSingle(tbVhfCompConstEquationACh4.Text) > 0.127)) {
+            if ((Convert.ToSingle(tbVhfCompConstEquationACh4.Text) < -0.32768) ||
+                (Convert.ToSingle(tbVhfCompConstEquationACh4.Text) > 0.32767)) {
                 MessageBox.Show("VHF Comp Const equation A: " +
                     tbVhfCompConstEquationACh4.Text +
-                    " out of range (-0.128 ~ 0.127)!!");
+                    " out of range (-0.32768 ~ 0.32767)!!");
                 return -1;
             }
             try {
-                data[79] = (byte)Convert.ToSByte(Convert.ToSingle(tbVhfCompConstEquationACh4.Text) * 1000);
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbVhfCompConstEquationACh4.Text) * 100000);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
                 return -1;
             }
+            bATmp = BitConverter.GetBytes(s16Tmp);
+            data[42] = bATmp[1];
+            data[43] = bATmp[0];
 
             if (Convert.ToSingle(tbVhfCompConstEquationBCh4.Text) < -3.2768 ||
                 Convert.ToSingle(tbVhfCompConstEquationBCh4.Text) > 3.2767) {
@@ -1956,8 +2174,8 @@ namespace Gn1190Corrector
                 return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
-            data[80] = bATmp[1];
-            data[81] = bATmp[0];
+            data[44] = bATmp[1];
+            data[45] = bATmp[0];
 
             if (Convert.ToSingle(tbVhfCompConstEquationCCh4.Text) < -327.68 ||
                 Convert.ToSingle(tbVhfCompConstEquationCCh4.Text) > 327.67) {
@@ -1974,23 +2192,26 @@ namespace Gn1190Corrector
                 return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
-            data[82] = bATmp[1];
-            data[83] = bATmp[0];
+            data[46] = bATmp[1];
+            data[47] = bATmp[0];
 
-            if ((Convert.ToSingle(tbPeakEnEquationACh1.Text) < -0.128) ||
-                (Convert.ToSingle(tbPeakEnEquationACh1.Text) > 0.127)) {
+            if ((Convert.ToSingle(tbPeakEnEquationACh1.Text) < -0.32768) ||
+                (Convert.ToSingle(tbPeakEnEquationACh1.Text) > 0.32767)) {
                 MessageBox.Show("Peak En equation A: " +
                     tbPeakEnEquationACh1.Text +
-                    " out of range (-0.128 ~ 0.127)!!");
+                    " out of range (-0.32768 ~ 0.32767)!!");
                 return -1;
             }
             try {
-                data[84] = (byte)Convert.ToSByte(Convert.ToSingle(tbPeakEnEquationACh1.Text) * 1000);
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbPeakEnEquationACh1.Text) * 100000);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
                 return -1;
             }
+            bATmp = BitConverter.GetBytes(s16Tmp);
+            data[48] = bATmp[1];
+            data[49] = bATmp[0];
 
             if (Convert.ToSingle(tbPeakEnEquationBCh1.Text) < -3.2768 ||
                 Convert.ToSingle(tbPeakEnEquationBCh1.Text) > 3.2767) {
@@ -2007,41 +2228,44 @@ namespace Gn1190Corrector
                 return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
-            data[85] = bATmp[1];
-            data[86] = bATmp[0];
+            data[50] = bATmp[1];
+            data[51] = bATmp[0];
 
-            if (Convert.ToSingle(tbPeakEnEquationCCh1.Text) < -32.768 ||
-                Convert.ToSingle(tbPeakEnEquationCCh1.Text) > 32.767) {
+            if (Convert.ToSingle(tbPeakEnEquationCCh1.Text) < -327.68 ||
+                Convert.ToSingle(tbPeakEnEquationCCh1.Text) > 327.67) {
                 MessageBox.Show("Peak En equation C: " +
                     tbPeakEnEquationCCh1.Text +
-                    " out of range (-32.768 ~ 32.767)!!");
+                    " out of range (-327.68 ~ 327.67)!!");
                 return -1;
             }
             try {
-                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbPeakEnEquationCCh1.Text) * 1000);
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbPeakEnEquationCCh1.Text) * 100);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
                 return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
-            data[87] = bATmp[1];
-            data[88] = bATmp[0];
+            data[52] = bATmp[1];
+            data[53] = bATmp[0];
 
-            if ((Convert.ToSingle(tbPeakEnEquationACh2.Text) < -0.128) ||
-                (Convert.ToSingle(tbPeakEnEquationACh2.Text) > 0.127)) {
+            if ((Convert.ToSingle(tbPeakEnEquationACh2.Text) < -0.32768) ||
+                (Convert.ToSingle(tbPeakEnEquationACh2.Text) > 0.32767)) {
                 MessageBox.Show("Peak En equation A: " +
                     tbPeakEnEquationACh2.Text +
-                    " out of range (-0.128 ~ 0.127)!!");
+                    " out of range (-0.32768 ~ 0.32767)!!");
                 return -1;
             }
             try {
-                data[89] = (byte)Convert.ToSByte(Convert.ToSingle(tbPeakEnEquationACh2.Text) * 1000);
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbPeakEnEquationACh2.Text) * 100000);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
                 return -1;
             }
+            bATmp = BitConverter.GetBytes(s16Tmp);
+            data[54] = bATmp[1];
+            data[55] = bATmp[0];
 
             if (Convert.ToSingle(tbPeakEnEquationBCh2.Text) < -3.2768 ||
                 Convert.ToSingle(tbPeakEnEquationBCh2.Text) > 3.2767) {
@@ -2058,41 +2282,44 @@ namespace Gn1190Corrector
                 return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
-            data[90] = bATmp[1];
-            data[91] = bATmp[0];
+            data[56] = bATmp[1];
+            data[57] = bATmp[0];
 
-            if (Convert.ToSingle(tbPeakEnEquationCCh2.Text) < -32.768 ||
-                Convert.ToSingle(tbPeakEnEquationCCh2.Text) > 32.767) {
+            if (Convert.ToSingle(tbPeakEnEquationCCh2.Text) < -327.68 ||
+                Convert.ToSingle(tbPeakEnEquationCCh2.Text) > 327.67) {
                 MessageBox.Show("Peak En equation C: " +
                     tbPeakEnEquationCCh2.Text +
-                    " out of range (-32.768 ~ 32.767)!!");
+                    " out of range (-327.68 ~ 327.67)!!");
                 return -1;
             }
             try {
-                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbPeakEnEquationCCh2.Text) * 1000);
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbPeakEnEquationCCh2.Text) * 100);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
                 return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
-            data[92] = bATmp[1];
-            data[93] = bATmp[0];
+            data[58] = bATmp[1];
+            data[59] = bATmp[0];
 
-            if ((Convert.ToSingle(tbPeakEnEquationACh3.Text) < -0.128) ||
-                (Convert.ToSingle(tbPeakEnEquationACh3.Text) > 0.127)) {
+            if ((Convert.ToSingle(tbPeakEnEquationACh3.Text) < -0.32768) ||
+                (Convert.ToSingle(tbPeakEnEquationACh3.Text) > 0.32767)) {
                 MessageBox.Show("Peak En equation A: " +
                     tbPeakEnEquationACh3.Text +
-                    " out of range (-0.128 ~ 0.127)!!");
+                    " out of range (-0.32768 ~ 0.32767)!!");
                 return -1;
             }
             try {
-                data[94] = (byte)Convert.ToSByte(Convert.ToSingle(tbPeakEnEquationACh3.Text) * 1000);
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbPeakEnEquationACh3.Text) * 100000);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
                 return -1;
             }
+            bATmp = BitConverter.GetBytes(s16Tmp);
+            data[60] = bATmp[1];
+            data[61] = bATmp[0];
 
             if (Convert.ToSingle(tbPeakEnEquationBCh3.Text) < -3.2768 ||
                 Convert.ToSingle(tbPeakEnEquationBCh3.Text) > 3.2767) {
@@ -2109,41 +2336,44 @@ namespace Gn1190Corrector
                 return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
-            data[95] = bATmp[1];
-            data[96] = bATmp[0];
+            data[62] = bATmp[1];
+            data[63] = bATmp[0];
 
-            if (Convert.ToSingle(tbPeakEnEquationCCh3.Text) < -32.768 ||
-                Convert.ToSingle(tbPeakEnEquationCCh3.Text) > 32.767) {
+            if (Convert.ToSingle(tbPeakEnEquationCCh3.Text) < -327.68 ||
+                Convert.ToSingle(tbPeakEnEquationCCh3.Text) > 327.67) {
                 MessageBox.Show("Peak En equation C: " +
                     tbPeakEnEquationCCh3.Text +
-                    " out of range (-32.768 ~ 32.767)!!");
+                    " out of range (-327.68 ~ 327.67)!!");
                 return -1;
             }
             try {
-                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbPeakEnEquationCCh3.Text) * 1000);
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbPeakEnEquationCCh3.Text) * 100);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
                 return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
-            data[97] = bATmp[1];
-            data[98] = bATmp[0];
+            data[64] = bATmp[1];
+            data[65] = bATmp[0];
 
-            if ((Convert.ToSingle(tbPeakEnEquationACh4.Text) < -0.128) ||
-                (Convert.ToSingle(tbPeakEnEquationACh4.Text) > 0.127)) {
+            if ((Convert.ToSingle(tbPeakEnEquationACh4.Text) < -0.32768) ||
+                (Convert.ToSingle(tbPeakEnEquationACh4.Text) > 0.32767)) {
                 MessageBox.Show("Peak En equation A: " +
                     tbPeakEnEquationACh4.Text +
-                    " out of range (-0.128 ~ 0.127)!!");
+                    " out of range (-0.32768 ~ 0.32767)!!");
                 return -1;
             }
             try {
-                data[99] = (byte)Convert.ToSByte(Convert.ToSingle(tbPeakEnEquationACh4.Text) * 1000);
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbPeakEnEquationACh4.Text) * 100000);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
                 return -1;
             }
+            bATmp = BitConverter.GetBytes(s16Tmp);
+            data[66] = bATmp[1];
+            data[67] = bATmp[0];
 
             if (Convert.ToSingle(tbPeakEnEquationBCh4.Text) < -3.2768 ||
                 Convert.ToSingle(tbPeakEnEquationBCh4.Text) > 3.2767) {
@@ -2160,41 +2390,44 @@ namespace Gn1190Corrector
                 return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
-            data[100] = bATmp[1];
-            data[101] = bATmp[0];
+            data[68] = bATmp[1];
+            data[69] = bATmp[0];
 
-            if (Convert.ToSingle(tbPeakEnEquationCCh4.Text) < -32.768 ||
-                Convert.ToSingle(tbPeakEnEquationCCh4.Text) > 32.767) {
+            if (Convert.ToSingle(tbPeakEnEquationCCh4.Text) < -327.68 ||
+                Convert.ToSingle(tbPeakEnEquationCCh4.Text) > 327.67) {
                 MessageBox.Show("Peak En equation C: " +
                     tbPeakEnEquationCCh4.Text +
-                    " out of range (-32.768 ~ 32.767)!!");
+                    " out of range (-327.68 ~ 327.67)!!");
                 return -1;
             }
             try {
-                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbPeakEnEquationCCh4.Text) * 1000);
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbPeakEnEquationCCh4.Text) * 100);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
                 return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
-            data[102] = bATmp[1];
-            data[103] = bATmp[0];
+            data[70] = bATmp[1];
+            data[71] = bATmp[0];
 
-            if ((Convert.ToSingle(tbPeakLenCtrlEquationACh1.Text) < -0.128) ||
-                (Convert.ToSingle(tbPeakLenCtrlEquationACh1.Text) > 0.127)) {
+            if ((Convert.ToSingle(tbPeakLenCtrlEquationACh1.Text) < -0.32768) ||
+                (Convert.ToSingle(tbPeakLenCtrlEquationACh1.Text) > 0.32767)) {
                 MessageBox.Show("Peak Len Ctrl equation A: " +
                     tbPeakLenCtrlEquationACh1.Text +
-                    " out of range (-0.128 ~ 0.127)!!");
+                    " out of range (-0.32768 ~ 0.32767)!!");
                 return -1;
             }
             try {
-                data[104] = (byte)Convert.ToSByte(Convert.ToSingle(tbPeakLenCtrlEquationACh1.Text) * 1000);
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbPeakLenCtrlEquationACh1.Text) * 100000);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
                 return -1;
             }
+            bATmp = BitConverter.GetBytes(s16Tmp);
+            data[72] = bATmp[1];
+            data[73] = bATmp[0];
 
             if (Convert.ToSingle(tbPeakLenCtrlEquationBCh1.Text) < -3.2768 ||
                 Convert.ToSingle(tbPeakLenCtrlEquationBCh1.Text) > 3.2767) {
@@ -2211,41 +2444,44 @@ namespace Gn1190Corrector
                 return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
-            data[105] = bATmp[1];
-            data[106] = bATmp[0];
+            data[74] = bATmp[1];
+            data[75] = bATmp[0];
 
-            if (Convert.ToSingle(tbPeakLenCtrlEquationCCh1.Text) < -32.768 ||
-                Convert.ToSingle(tbPeakLenCtrlEquationCCh1.Text) > 32.767) {
+            if (Convert.ToSingle(tbPeakLenCtrlEquationCCh1.Text) < -327.68 ||
+                Convert.ToSingle(tbPeakLenCtrlEquationCCh1.Text) > 327.67) {
                 MessageBox.Show("Peak Len Ctrl equation C: " +
                     tbPeakLenCtrlEquationCCh1.Text +
-                    " out of range (-32.768 ~ 32.767)!!");
+                    " out of range (-327.68 ~ 327.67)!!");
                 return -1;
             }
             try {
-                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbPeakLenCtrlEquationCCh1.Text) * 1000);
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbPeakLenCtrlEquationCCh1.Text) * 100);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
                 return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
-            data[107] = bATmp[1];
-            data[108] = bATmp[0];
+            data[76] = bATmp[1];
+            data[77] = bATmp[0];
 
-            if ((Convert.ToSingle(tbPeakLenCtrlEquationACh2.Text) < -0.128) ||
-                (Convert.ToSingle(tbPeakLenCtrlEquationACh2.Text) > 0.127)) {
+            if ((Convert.ToSingle(tbPeakLenCtrlEquationACh2.Text) < -0.32768) ||
+                (Convert.ToSingle(tbPeakLenCtrlEquationACh2.Text) > 0.32767)) {
                 MessageBox.Show("Peak Len Ctrl equation A: " +
                     tbPeakLenCtrlEquationACh2.Text +
-                    " out of range (-0.128 ~ 0.127)!!");
+                    " out of range (-0.32768 ~ 0.32767)!!");
                 return -1;
             }
             try {
-                data[109] = (byte)Convert.ToSByte(Convert.ToSingle(tbPeakLenCtrlEquationACh2.Text) * 1000);
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbPeakLenCtrlEquationACh2.Text) * 100000);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
                 return -1;
             }
+            bATmp = BitConverter.GetBytes(s16Tmp);
+            data[78] = bATmp[1];
+            data[79] = bATmp[0];
 
             if (Convert.ToSingle(tbPeakLenCtrlEquationBCh2.Text) < -3.2768 ||
                 Convert.ToSingle(tbPeakLenCtrlEquationBCh2.Text) > 3.2767) {
@@ -2262,41 +2498,44 @@ namespace Gn1190Corrector
                 return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
-            data[110] = bATmp[1];
-            data[111] = bATmp[0];
+            data[80] = bATmp[1];
+            data[81] = bATmp[0];
 
-            if (Convert.ToSingle(tbPeakLenCtrlEquationCCh2.Text) < -32.768 ||
-                Convert.ToSingle(tbPeakLenCtrlEquationCCh2.Text) > 32.767) {
+            if (Convert.ToSingle(tbPeakLenCtrlEquationCCh2.Text) < -327.68 ||
+                Convert.ToSingle(tbPeakLenCtrlEquationCCh2.Text) > 327.67) {
                 MessageBox.Show("Peak Len Ctrl equation C: " +
                     tbPeakLenCtrlEquationCCh2.Text +
-                    " out of range (-32.768 ~ 32.767)!!");
+                    " out of range (-327.68 ~ 327.67)!!");
                 return -1;
             }
             try {
-                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbPeakLenCtrlEquationCCh2.Text) * 1000);
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbPeakLenCtrlEquationCCh2.Text) * 100);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
                 return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
-            data[112] = bATmp[1];
-            data[113] = bATmp[0];
+            data[82] = bATmp[1];
+            data[83] = bATmp[0];
 
-            if ((Convert.ToSingle(tbPeakLenCtrlEquationACh3.Text) < -0.128) ||
-                (Convert.ToSingle(tbPeakLenCtrlEquationACh3.Text) > 0.127)) {
+            if ((Convert.ToSingle(tbPeakLenCtrlEquationACh3.Text) < -0.32768) ||
+                (Convert.ToSingle(tbPeakLenCtrlEquationACh3.Text) > 0.32767)) {
                 MessageBox.Show("Peak Len Ctrl equation A: " +
                     tbPeakLenCtrlEquationACh3.Text +
-                    " out of range (-0.128 ~ 0.127)!!");
+                    " out of range (-0.32768 ~ 0.32767)!!");
                 return -1;
             }
             try {
-                data[114] = (byte)Convert.ToSByte(Convert.ToSingle(tbPeakLenCtrlEquationACh3.Text) * 1000);
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbPeakLenCtrlEquationACh3.Text) * 100000);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
                 return -1;
             }
+            bATmp = BitConverter.GetBytes(s16Tmp);
+            data[84] = bATmp[1];
+            data[85] = bATmp[0];
 
             if (Convert.ToSingle(tbPeakLenCtrlEquationBCh3.Text) < -3.2768 ||
                 Convert.ToSingle(tbPeakLenCtrlEquationBCh3.Text) > 3.2767) {
@@ -2313,41 +2552,44 @@ namespace Gn1190Corrector
                 return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
-            data[115] = bATmp[1];
-            data[116] = bATmp[0];
+            data[86] = bATmp[1];
+            data[87] = bATmp[0];
 
-            if (Convert.ToSingle(tbPeakLenCtrlEquationCCh3.Text) < -32.768 ||
-                Convert.ToSingle(tbPeakLenCtrlEquationCCh3.Text) > 32.767) {
+            if (Convert.ToSingle(tbPeakLenCtrlEquationCCh3.Text) < -327.68 ||
+                Convert.ToSingle(tbPeakLenCtrlEquationCCh3.Text) > 327.67) {
                 MessageBox.Show("Peak Len Ctrl equation C: " +
                     tbPeakLenCtrlEquationCCh3.Text +
-                    " out of range (-32.768 ~ 32.767)!!");
+                    " out of range (-327.68 ~ 327.67)!!");
                 return -1;
             }
             try {
-                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbPeakLenCtrlEquationCCh3.Text) * 1000);
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbPeakLenCtrlEquationCCh3.Text) * 100);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
                 return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
-            data[117] = bATmp[1];
-            data[118] = bATmp[0];
+            data[88] = bATmp[1];
+            data[89] = bATmp[0];
 
-            if ((Convert.ToSingle(tbPeakLenCtrlEquationACh4.Text) < -0.128) ||
-                (Convert.ToSingle(tbPeakLenCtrlEquationACh4.Text) > 0.127)) {
+            if ((Convert.ToSingle(tbPeakLenCtrlEquationACh4.Text) < -0.32768) ||
+                (Convert.ToSingle(tbPeakLenCtrlEquationACh4.Text) > 0.32767)) {
                 MessageBox.Show("Peak Len Ctrl equation A: " +
                     tbPeakLenCtrlEquationACh4.Text +
                     " out of range (-0.128 ~ 0.127)!!");
                 return -1;
             }
             try {
-                data[119] = (byte)Convert.ToSByte(Convert.ToSingle(tbPeakLenCtrlEquationACh4.Text) * 1000);
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbPeakLenCtrlEquationACh4.Text) * 100000);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
                 return -1;
             }
+            bATmp = BitConverter.GetBytes(s16Tmp);
+            data[90] = bATmp[1];
+            data[91] = bATmp[0];
 
             if (Convert.ToSingle(tbPeakLenCtrlEquationBCh4.Text) < -3.2768 ||
                 Convert.ToSingle(tbPeakLenCtrlEquationBCh4.Text) > 3.2767) {
@@ -2364,45 +2606,52 @@ namespace Gn1190Corrector
                 return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
-            data[120] = bATmp[1];
-            data[121] = bATmp[0];
+            data[92] = bATmp[1];
+            data[93] = bATmp[0];
 
-            if (Convert.ToSingle(tbPeakLenCtrlEquationCCh4.Text) < -32.768 ||
-                Convert.ToSingle(tbPeakLenCtrlEquationCCh4.Text) > 32.767) {
+            if (Convert.ToSingle(tbPeakLenCtrlEquationCCh4.Text) < -327.68 ||
+                Convert.ToSingle(tbPeakLenCtrlEquationCCh4.Text) > 327.67) {
                 MessageBox.Show("Peak Len Ctrl equation C: " +
                     tbPeakLenCtrlEquationCCh4.Text +
-                    " out of range (-32.768 ~ 32.767)!!");
+                    " out of range (-327.68 ~ 327.67)!!");
                 return -1;
             }
             try {
-                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbPeakLenCtrlEquationCCh4.Text) * 1000);
+                s16Tmp = Convert.ToInt16(Convert.ToSingle(tbPeakLenCtrlEquationCCh4.Text) * 100);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
                 return -1;
             }
             bATmp = BitConverter.GetBytes(s16Tmp);
-            data[122] = bATmp[1];
-            data[123] = bATmp[0];
+            data[94] = bATmp[1];
+            data[95] = bATmp[0];
 
-            if (cbTemperatureCompensation.Checked)
-                data[124] = 0x01;
-            else
-                data[124] = 0x00;
-
-            if (qsfpI2cWriteCB(80, 128, 125, data) < 0)
+            if (qsfpI2cWriteCB(80, 128, 96, data) < 0)
                 return -1;
 
-            _ClearPassword();
-            _SetQsfpMode(0);
+            Thread.Sleep(1);
+
+            data[0] = 5;
+            if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
+                return -1;
+
+            if (cbTemperatureCompensation.Checked)
+                data[0] = 0x01;
+            else
+                data[0] = 0x00;
+
+            if (qsfpI2cWriteCB(80, 252, 1, data) < 0)
+                return -1;
 
             return 0;
         }
 
         private void bAcMcWrite_Click(object sender, EventArgs e)
         {
-            if (_WriteAcMcCorrectData() < 0)
-                return;
+            bAcMcWrite.Enabled = false;
+            _WriteAcMcCorrectData();
+            bAcMcWrite.Enabled = true;
         }
 
         private int _ResetAcMcEquation()
@@ -2505,7 +2754,7 @@ namespace Gn1190Corrector
             if (qsfpI2cWriteCB == null)
                 return -1;
 
-            data[0] = 4;
+            data[0] = 5;
             if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
 
@@ -2515,12 +2764,9 @@ namespace Gn1190Corrector
             if (qsfpI2cReadCB(80, 252, 1, data) != 1)
                 return -1;
 
-            data[0] ^= 0xFF;
+            data[0] &= 0xFE;
             if (qsfpI2cWriteCB(80, 252, 1, data) < 0)
                 return -1;
-
-            _ClearPassword();
-            _SetQsfpMode(0);
 
             return 0;
         }
@@ -2535,12 +2781,14 @@ namespace Gn1190Corrector
 
         private void bReset_Click(object sender, EventArgs e)
         {
+            bVoltageReset_Click(sender, e);
             bTemperatureReset_Click(sender, e);
             bRxPowerRateReset_Click(sender, e);
         }
 
         private void bAutoCorrect_Click(object sender, EventArgs e)
         {
+            bVoltageAutoCorrect_Click(sender, e);
             bTemperatureAutoCorrect_Click(sender, e);
             bRxPowerRateAutoCorrect_Click(sender, e);
         }
@@ -2654,8 +2902,6 @@ namespace Gn1190Corrector
             Thread.Sleep(1000);
 
         exit:
-            _ClearPassword();
-            _SetQsfpMode(0);
             bStoreIntoFlash.Enabled = true;
         }
     }

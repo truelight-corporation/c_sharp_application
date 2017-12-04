@@ -44,16 +44,16 @@
             // 
             // ucGn1190Corrector
             // 
-            this.ucGn1190Corrector.Location = new System.Drawing.Point(12, 34);
+            this.ucGn1190Corrector.Location = new System.Drawing.Point(5, 34);
             this.ucGn1190Corrector.Name = "ucGn1190Corrector";
-            this.ucGn1190Corrector.Size = new System.Drawing.Size(764, 669);
+            this.ucGn1190Corrector.Size = new System.Drawing.Size(764, 757);
             this.ucGn1190Corrector.TabIndex = 10;
             // 
             // FGn1190Corrector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(776, 705);
+            this.ClientSize = new System.Drawing.Size(776, 791);
             this.Controls.Add(this.ucGn1190Corrector);
             this.Controls.Add(this.cbConnected);
             this.Name = "FGn1190Corrector";

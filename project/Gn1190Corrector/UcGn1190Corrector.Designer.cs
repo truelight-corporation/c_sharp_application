@@ -225,24 +225,39 @@
             this.lBaBmMaxCurrent = new System.Windows.Forms.Label();
             this.tbAverageCurrentMin = new System.Windows.Forms.TextBox();
             this.bStoreIntoFlash = new System.Windows.Forms.Button();
+            this.gbVcc = new System.Windows.Forms.GroupBox();
+            this.lVccOffset = new System.Windows.Forms.Label();
+            this.lVcc = new System.Windows.Forms.Label();
+            this.lTxVcc = new System.Windows.Forms.Label();
+            this.lVccOffsetUnit = new System.Windows.Forms.Label();
+            this.tbVoltage = new System.Windows.Forms.TextBox();
+            this.tbTxVoltage = new System.Windows.Forms.TextBox();
+            this.lVoltage = new System.Windows.Forms.Label();
+            this.tbVoltageOffset = new System.Windows.Forms.TextBox();
+            this.bVoltageReset = new System.Windows.Forms.Button();
+            this.bVoltageAutoCorrect = new System.Windows.Forms.Button();
+            this.bVoltageWrite = new System.Windows.Forms.Button();
+            this.bVoltageRead = new System.Windows.Forms.Button();
+            this.cbVoltageCorrected = new System.Windows.Forms.CheckBox();
             this.gbTemperature.SuspendLayout();
             this.gbAutoCorrect.SuspendLayout();
             this.gbRxPowerRate.SuspendLayout();
             this.gbAcMcEquation.SuspendLayout();
+            this.gbVcc.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbFilePath
             // 
             this.tbFilePath.Enabled = false;
-            this.tbFilePath.Location = new System.Drawing.Point(243, 3);
+            this.tbFilePath.Location = new System.Drawing.Point(244, 5);
             this.tbFilePath.Name = "tbFilePath";
-            this.tbFilePath.Size = new System.Drawing.Size(348, 22);
+            this.tbFilePath.Size = new System.Drawing.Size(379, 22);
             this.tbFilePath.TabIndex = 18;
             // 
             // lFilePath
             // 
             this.lFilePath.AutoSize = true;
-            this.lFilePath.Location = new System.Drawing.Point(187, 6);
+            this.lFilePath.Location = new System.Drawing.Point(187, 8);
             this.lFilePath.Name = "lFilePath";
             this.lFilePath.Size = new System.Drawing.Size(51, 12);
             this.lFilePath.TabIndex = 17;
@@ -250,7 +265,7 @@
             // 
             // tbPassword126
             // 
-            this.tbPassword126.Location = new System.Drawing.Point(156, 3);
+            this.tbPassword126.Location = new System.Drawing.Point(156, 5);
             this.tbPassword126.Name = "tbPassword126";
             this.tbPassword126.PasswordChar = '*';
             this.tbPassword126.Size = new System.Drawing.Size(25, 22);
@@ -259,7 +274,7 @@
             // 
             // tbPassword125
             // 
-            this.tbPassword125.Location = new System.Drawing.Point(125, 3);
+            this.tbPassword125.Location = new System.Drawing.Point(125, 5);
             this.tbPassword125.Name = "tbPassword125";
             this.tbPassword125.PasswordChar = '*';
             this.tbPassword125.Size = new System.Drawing.Size(25, 22);
@@ -268,7 +283,7 @@
             // 
             // tbPassword124
             // 
-            this.tbPassword124.Location = new System.Drawing.Point(94, 3);
+            this.tbPassword124.Location = new System.Drawing.Point(94, 5);
             this.tbPassword124.Name = "tbPassword124";
             this.tbPassword124.PasswordChar = '*';
             this.tbPassword124.Size = new System.Drawing.Size(25, 22);
@@ -277,7 +292,7 @@
             // 
             // tbPassword123
             // 
-            this.tbPassword123.Location = new System.Drawing.Point(63, 3);
+            this.tbPassword123.Location = new System.Drawing.Point(63, 5);
             this.tbPassword123.Name = "tbPassword123";
             this.tbPassword123.PasswordChar = '*';
             this.tbPassword123.Size = new System.Drawing.Size(25, 22);
@@ -287,7 +302,7 @@
             // lPassword
             // 
             this.lPassword.AutoSize = true;
-            this.lPassword.Location = new System.Drawing.Point(3, 6);
+            this.lPassword.Location = new System.Drawing.Point(3, 8);
             this.lPassword.Name = "lPassword";
             this.lPassword.Size = new System.Drawing.Size(54, 12);
             this.lPassword.TabIndex = 12;
@@ -295,9 +310,9 @@
             // 
             // bSaveFile
             // 
-            this.bSaveFile.Location = new System.Drawing.Point(597, 1);
+            this.bSaveFile.Location = new System.Drawing.Point(629, 3);
             this.bSaveFile.Name = "bSaveFile";
-            this.bSaveFile.Size = new System.Drawing.Size(75, 23);
+            this.bSaveFile.Size = new System.Drawing.Size(60, 23);
             this.bSaveFile.TabIndex = 11;
             this.bSaveFile.Text = "Save File";
             this.bSaveFile.UseVisualStyleBackColor = true;
@@ -305,9 +320,9 @@
             // 
             // bLoadFile
             // 
-            this.bLoadFile.Location = new System.Drawing.Point(679, 1);
+            this.bLoadFile.Location = new System.Drawing.Point(695, 3);
             this.bLoadFile.Name = "bLoadFile";
-            this.bLoadFile.Size = new System.Drawing.Size(75, 23);
+            this.bLoadFile.Size = new System.Drawing.Size(60, 23);
             this.bLoadFile.TabIndex = 10;
             this.bLoadFile.Text = "Load File";
             this.bLoadFile.UseVisualStyleBackColor = true;
@@ -329,7 +344,7 @@
             this.gbTemperature.Controls.Add(this.bTemperatureRead);
             this.gbTemperature.Controls.Add(this.lTemperatureOffset);
             this.gbTemperature.Controls.Add(this.tbTemperatureOffset);
-            this.gbTemperature.Location = new System.Drawing.Point(5, 32);
+            this.gbTemperature.Location = new System.Drawing.Point(5, 118);
             this.gbTemperature.Name = "gbTemperature";
             this.gbTemperature.Size = new System.Drawing.Size(494, 79);
             this.gbTemperature.TabIndex = 19;
@@ -461,20 +476,21 @@
             // 
             // gbAutoCorrect
             // 
+            this.gbAutoCorrect.Controls.Add(this.cbVoltageCorrected);
             this.gbAutoCorrect.Controls.Add(this.bReset);
             this.gbAutoCorrect.Controls.Add(this.cbRxPowerRateCorrected);
             this.gbAutoCorrect.Controls.Add(this.bAutoCorrect);
             this.gbAutoCorrect.Controls.Add(this.cbTemperatureCorrected);
-            this.gbAutoCorrect.Location = new System.Drawing.Point(505, 32);
+            this.gbAutoCorrect.Location = new System.Drawing.Point(505, 33);
             this.gbAutoCorrect.Name = "gbAutoCorrect";
-            this.gbAutoCorrect.Size = new System.Drawing.Size(190, 79);
+            this.gbAutoCorrect.Size = new System.Drawing.Size(190, 164);
             this.gbAutoCorrect.TabIndex = 20;
             this.gbAutoCorrect.TabStop = false;
             this.gbAutoCorrect.Text = "Auto Correct";
             // 
             // bReset
             // 
-            this.bReset.Location = new System.Drawing.Point(106, 21);
+            this.bReset.Location = new System.Drawing.Point(109, 106);
             this.bReset.Name = "bReset";
             this.bReset.Size = new System.Drawing.Size(75, 23);
             this.bReset.TabIndex = 16;
@@ -486,7 +502,7 @@
             // 
             this.cbRxPowerRateCorrected.AutoSize = true;
             this.cbRxPowerRateCorrected.Enabled = false;
-            this.cbRxPowerRateCorrected.Location = new System.Drawing.Point(6, 40);
+            this.cbRxPowerRateCorrected.Location = new System.Drawing.Point(6, 65);
             this.cbRxPowerRateCorrected.Name = "cbRxPowerRateCorrected";
             this.cbRxPowerRateCorrected.Size = new System.Drawing.Size(94, 16);
             this.cbRxPowerRateCorrected.TabIndex = 14;
@@ -495,7 +511,7 @@
             // 
             // bAutoCorrect
             // 
-            this.bAutoCorrect.Location = new System.Drawing.Point(106, 50);
+            this.bAutoCorrect.Location = new System.Drawing.Point(109, 135);
             this.bAutoCorrect.Name = "bAutoCorrect";
             this.bAutoCorrect.Size = new System.Drawing.Size(75, 23);
             this.bAutoCorrect.TabIndex = 13;
@@ -507,7 +523,7 @@
             // 
             this.cbTemperatureCorrected.AutoSize = true;
             this.cbTemperatureCorrected.Enabled = false;
-            this.cbTemperatureCorrected.Location = new System.Drawing.Point(6, 18);
+            this.cbTemperatureCorrected.Location = new System.Drawing.Point(6, 43);
             this.cbTemperatureCorrected.Name = "cbTemperatureCorrected";
             this.cbTemperatureCorrected.Size = new System.Drawing.Size(83, 16);
             this.cbTemperatureCorrected.TabIndex = 12;
@@ -562,7 +578,7 @@
             this.gbRxPowerRate.Controls.Add(this.tbRxInputPower1);
             this.gbRxPowerRate.Controls.Add(this.lInputPower);
             this.gbRxPowerRate.Controls.Add(this.lRxCh1);
-            this.gbRxPowerRate.Location = new System.Drawing.Point(5, 117);
+            this.gbRxPowerRate.Location = new System.Drawing.Point(5, 203);
             this.gbRxPowerRate.Name = "gbRxPowerRate";
             this.gbRxPowerRate.Size = new System.Drawing.Size(749, 175);
             this.gbRxPowerRate.TabIndex = 21;
@@ -1088,7 +1104,7 @@
             this.gbAcMcEquation.Controls.Add(this.lVhfCompProp);
             this.gbAcMcEquation.Controls.Add(this.lBaBmMaxCurrent);
             this.gbAcMcEquation.Controls.Add(this.tbAverageCurrentMin);
-            this.gbAcMcEquation.Location = new System.Drawing.Point(5, 298);
+            this.gbAcMcEquation.Location = new System.Drawing.Point(5, 384);
             this.gbAcMcEquation.Name = "gbAcMcEquation";
             this.gbAcMcEquation.Size = new System.Drawing.Size(749, 371);
             this.gbAcMcEquation.TabIndex = 22;
@@ -2054,18 +2070,158 @@
             // 
             // bStoreIntoFlash
             // 
-            this.bStoreIntoFlash.Location = new System.Drawing.Point(701, 53);
+            this.bStoreIntoFlash.Location = new System.Drawing.Point(701, 54);
             this.bStoreIntoFlash.Name = "bStoreIntoFlash";
-            this.bStoreIntoFlash.Size = new System.Drawing.Size(53, 52);
+            this.bStoreIntoFlash.Size = new System.Drawing.Size(53, 58);
             this.bStoreIntoFlash.TabIndex = 23;
             this.bStoreIntoFlash.Text = "Store Into Flash";
             this.bStoreIntoFlash.UseVisualStyleBackColor = true;
             this.bStoreIntoFlash.Click += new System.EventHandler(this.bSaveIntoFlash_Click);
             // 
+            // gbVcc
+            // 
+            this.gbVcc.Controls.Add(this.bVoltageReset);
+            this.gbVcc.Controls.Add(this.bVoltageAutoCorrect);
+            this.gbVcc.Controls.Add(this.bVoltageWrite);
+            this.gbVcc.Controls.Add(this.bVoltageRead);
+            this.gbVcc.Controls.Add(this.lVccOffsetUnit);
+            this.gbVcc.Controls.Add(this.lVcc);
+            this.gbVcc.Controls.Add(this.tbVoltage);
+            this.gbVcc.Controls.Add(this.lTxVcc);
+            this.gbVcc.Controls.Add(this.tbTxVoltage);
+            this.gbVcc.Controls.Add(this.lVoltage);
+            this.gbVcc.Controls.Add(this.lVccOffset);
+            this.gbVcc.Controls.Add(this.tbVoltageOffset);
+            this.gbVcc.Location = new System.Drawing.Point(5, 33);
+            this.gbVcc.Name = "gbVcc";
+            this.gbVcc.Size = new System.Drawing.Size(494, 79);
+            this.gbVcc.TabIndex = 24;
+            this.gbVcc.TabStop = false;
+            this.gbVcc.Text = "Voltage";
+            // 
+            // lVccOffset
+            // 
+            this.lVccOffset.AutoSize = true;
+            this.lVccOffset.Location = new System.Drawing.Point(171, 18);
+            this.lVccOffset.Name = "lVccOffset";
+            this.lVccOffset.Size = new System.Drawing.Size(33, 12);
+            this.lVccOffset.TabIndex = 188;
+            this.lVccOffset.Text = "Offset";
+            // 
+            // lVcc
+            // 
+            this.lVcc.AutoSize = true;
+            this.lVcc.Location = new System.Drawing.Point(77, 18);
+            this.lVcc.Name = "lVcc";
+            this.lVcc.Size = new System.Drawing.Size(29, 12);
+            this.lVcc.TabIndex = 17;
+            this.lVcc.Text = "VCC";
+            // 
+            // lTxVcc
+            // 
+            this.lTxVcc.AutoSize = true;
+            this.lTxVcc.Location = new System.Drawing.Point(26, 18);
+            this.lTxVcc.Name = "lTxVcc";
+            this.lTxVcc.Size = new System.Drawing.Size(18, 12);
+            this.lTxVcc.TabIndex = 16;
+            this.lTxVcc.Text = "Tx";
+            // 
+            // lVccOffsetUnit
+            // 
+            this.lVccOffsetUnit.AutoSize = true;
+            this.lVccOffsetUnit.Location = new System.Drawing.Point(225, 36);
+            this.lVccOffsetUnit.Name = "lVccOffsetUnit";
+            this.lVccOffsetUnit.Size = new System.Drawing.Size(34, 12);
+            this.lVccOffsetUnit.TabIndex = 20;
+            this.lVccOffsetUnit.Text = "25mV";
+            // 
+            // tbVoltage
+            // 
+            this.tbVoltage.Location = new System.Drawing.Point(66, 33);
+            this.tbVoltage.Name = "tbVoltage";
+            this.tbVoltage.Size = new System.Drawing.Size(50, 22);
+            this.tbVoltage.TabIndex = 19;
+            // 
+            // tbTxVoltage
+            // 
+            this.tbTxVoltage.Location = new System.Drawing.Point(10, 33);
+            this.tbTxVoltage.Name = "tbTxVoltage";
+            this.tbTxVoltage.ReadOnly = true;
+            this.tbTxVoltage.Size = new System.Drawing.Size(50, 22);
+            this.tbTxVoltage.TabIndex = 16;
+            // 
+            // lVoltage
+            // 
+            this.lVoltage.AutoSize = true;
+            this.lVoltage.Location = new System.Drawing.Point(131, 36);
+            this.lVoltage.Name = "lVoltage";
+            this.lVoltage.Size = new System.Drawing.Size(13, 12);
+            this.lVoltage.TabIndex = 17;
+            this.lVoltage.Text = "V";
+            // 
+            // tbVoltageOffset
+            // 
+            this.tbVoltageOffset.Location = new System.Drawing.Point(159, 33);
+            this.tbVoltageOffset.Name = "tbVoltageOffset";
+            this.tbVoltageOffset.Size = new System.Drawing.Size(60, 22);
+            this.tbVoltageOffset.TabIndex = 18;
+            // 
+            // bVoltageReset
+            // 
+            this.bVoltageReset.Location = new System.Drawing.Point(438, 21);
+            this.bVoltageReset.Name = "bVoltageReset";
+            this.bVoltageReset.Size = new System.Drawing.Size(45, 23);
+            this.bVoltageReset.TabIndex = 192;
+            this.bVoltageReset.Text = "Reset";
+            this.bVoltageReset.UseVisualStyleBackColor = true;
+            this.bVoltageReset.Click += new System.EventHandler(this.bVoltageReset_Click);
+            // 
+            // bVoltageAutoCorrect
+            // 
+            this.bVoltageAutoCorrect.Location = new System.Drawing.Point(408, 50);
+            this.bVoltageAutoCorrect.Name = "bVoltageAutoCorrect";
+            this.bVoltageAutoCorrect.Size = new System.Drawing.Size(75, 23);
+            this.bVoltageAutoCorrect.TabIndex = 191;
+            this.bVoltageAutoCorrect.Text = "Auto Correct";
+            this.bVoltageAutoCorrect.UseVisualStyleBackColor = true;
+            this.bVoltageAutoCorrect.Click += new System.EventHandler(this.bVoltageAutoCorrect_Click);
+            // 
+            // bVoltageWrite
+            // 
+            this.bVoltageWrite.Location = new System.Drawing.Point(392, 21);
+            this.bVoltageWrite.Name = "bVoltageWrite";
+            this.bVoltageWrite.Size = new System.Drawing.Size(40, 23);
+            this.bVoltageWrite.TabIndex = 190;
+            this.bVoltageWrite.Text = "Write";
+            this.bVoltageWrite.UseVisualStyleBackColor = true;
+            this.bVoltageWrite.Click += new System.EventHandler(this.bVoltageWrite_Click);
+            // 
+            // bVoltageRead
+            // 
+            this.bVoltageRead.Location = new System.Drawing.Point(346, 21);
+            this.bVoltageRead.Name = "bVoltageRead";
+            this.bVoltageRead.Size = new System.Drawing.Size(40, 23);
+            this.bVoltageRead.TabIndex = 189;
+            this.bVoltageRead.Text = "Read";
+            this.bVoltageRead.UseVisualStyleBackColor = true;
+            this.bVoltageRead.Click += new System.EventHandler(this.bVoltageRead_Click);
+            // 
+            // cbVoltageCorrected
+            // 
+            this.cbVoltageCorrected.AutoSize = true;
+            this.cbVoltageCorrected.Enabled = false;
+            this.cbVoltageCorrected.Location = new System.Drawing.Point(6, 21);
+            this.cbVoltageCorrected.Name = "cbVoltageCorrected";
+            this.cbVoltageCorrected.Size = new System.Drawing.Size(60, 16);
+            this.cbVoltageCorrected.TabIndex = 17;
+            this.cbVoltageCorrected.Text = "Voltage";
+            this.cbVoltageCorrected.UseVisualStyleBackColor = true;
+            // 
             // UcGn1190Corrector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.gbVcc);
             this.Controls.Add(this.bStoreIntoFlash);
             this.Controls.Add(this.gbAcMcEquation);
             this.Controls.Add(this.gbRxPowerRate);
@@ -2081,7 +2237,7 @@
             this.Controls.Add(this.bSaveFile);
             this.Controls.Add(this.bLoadFile);
             this.Name = "UcGn1190Corrector";
-            this.Size = new System.Drawing.Size(758, 673);
+            this.Size = new System.Drawing.Size(758, 760);
             this.gbTemperature.ResumeLayout(false);
             this.gbTemperature.PerformLayout();
             this.gbAutoCorrect.ResumeLayout(false);
@@ -2090,6 +2246,8 @@
             this.gbRxPowerRate.PerformLayout();
             this.gbAcMcEquation.ResumeLayout(false);
             this.gbAcMcEquation.PerformLayout();
+            this.gbVcc.ResumeLayout(false);
+            this.gbVcc.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2295,5 +2453,19 @@
         private System.Windows.Forms.TextBox tbVhfCompConstEquationCCh4;
         private System.Windows.Forms.TextBox tbVhfCompConstEquationBCh4;
         private System.Windows.Forms.TextBox tbVhfCompConstEquationACh4;
+        private System.Windows.Forms.GroupBox gbVcc;
+        private System.Windows.Forms.Button bVoltageReset;
+        private System.Windows.Forms.Button bVoltageAutoCorrect;
+        private System.Windows.Forms.Button bVoltageWrite;
+        private System.Windows.Forms.Button bVoltageRead;
+        private System.Windows.Forms.Label lVccOffsetUnit;
+        private System.Windows.Forms.Label lVcc;
+        private System.Windows.Forms.TextBox tbVoltage;
+        private System.Windows.Forms.Label lTxVcc;
+        private System.Windows.Forms.TextBox tbTxVoltage;
+        private System.Windows.Forms.Label lVoltage;
+        private System.Windows.Forms.Label lVccOffset;
+        private System.Windows.Forms.TextBox tbVoltageOffset;
+        private System.Windows.Forms.CheckBox cbVoltageCorrected;
     }
 }
