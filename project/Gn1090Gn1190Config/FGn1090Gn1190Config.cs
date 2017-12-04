@@ -50,6 +50,9 @@ namespace Gn1090Gn1190Config
 
             cbConnected.Checked = false;
 
+            if (_SetQsfpMode(0x00) < 0)
+                return -1;
+
             return 0;
         }
 
