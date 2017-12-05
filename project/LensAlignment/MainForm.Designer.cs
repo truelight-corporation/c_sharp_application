@@ -43,9 +43,43 @@
             this.tbBeAlignmentPassword126 = new System.Windows.Forms.TextBox();
             this.tcFunction = new System.Windows.Forms.TabControl();
             this.tpLensAlignment = new System.Windows.Forms.TabPage();
+            this.ucLensAlignment = new LensAlignment.UcLensAlignment();
             this.tpLog = new System.Windows.Forms.TabPage();
             this.tpCorrect = new System.Windows.Forms.TabPage();
+            this.bLoadCorrectFile = new System.Windows.Forms.Button();
+            this.bSaveCorrectFile = new System.Windows.Forms.Button();
+            this.tbCorrectFilePath = new System.Windows.Forms.TextBox();
+            this.lCorrectFilePath = new System.Windows.Forms.Label();
+            this.tbLightSourcePassword126 = new System.Windows.Forms.TextBox();
+            this.tbLightSourcePassword125 = new System.Windows.Forms.TextBox();
+            this.tbLightSourcePassword124 = new System.Windows.Forms.TextBox();
+            this.tbLightSourcePassword123 = new System.Windows.Forms.TextBox();
+            this.lLightSourcePassword = new System.Windows.Forms.Label();
             this.gbRxRateCorrect = new System.Windows.Forms.GroupBox();
+            this.bAutoCorrect = new System.Windows.Forms.Button();
+            this.bReset = new System.Windows.Forms.Button();
+            this.bWrite = new System.Windows.Forms.Button();
+            this.lRxPowerUnit = new System.Windows.Forms.Label();
+            this.lRxRateUnit = new System.Windows.Forms.Label();
+            this.lRssiUnit = new System.Windows.Forms.Label();
+            this.lInputPowerUnit = new System.Windows.Forms.Label();
+            this.bRead = new System.Windows.Forms.Button();
+            this.tbTx1RxPower = new System.Windows.Forms.TextBox();
+            this.tbTx2RxPower = new System.Windows.Forms.TextBox();
+            this.tbTx3RxPower = new System.Windows.Forms.TextBox();
+            this.tbTx4RxPower = new System.Windows.Forms.TextBox();
+            this.lRxPower = new System.Windows.Forms.Label();
+            this.tbRx1Rate = new System.Windows.Forms.TextBox();
+            this.tbRx2Rate = new System.Windows.Forms.TextBox();
+            this.tbRx3Rate = new System.Windows.Forms.TextBox();
+            this.tbRx4Rate = new System.Windows.Forms.TextBox();
+            this.lRxRateMin = new System.Windows.Forms.Label();
+            this.tbRxRateMin = new System.Windows.Forms.TextBox();
+            this.lRxRateMax = new System.Windows.Forms.Label();
+            this.tbRxRateMax = new System.Windows.Forms.TextBox();
+            this.lRateDefault = new System.Windows.Forms.Label();
+            this.tbRxRateDefault = new System.Windows.Forms.TextBox();
+            this.lRxRate = new System.Windows.Forms.Label();
             this.tbRx1Rssi = new System.Windows.Forms.TextBox();
             this.tbRx2Rssi = new System.Windows.Forms.TextBox();
             this.tbRx3Rssi = new System.Windows.Forms.TextBox();
@@ -60,40 +94,8 @@
             this.lRx4InputPower = new System.Windows.Forms.Label();
             this.tbRx4InputPower = new System.Windows.Forms.TextBox();
             this.lRxInputPower = new System.Windows.Forms.Label();
-            this.lRxRate = new System.Windows.Forms.Label();
-            this.lRxRateMin = new System.Windows.Forms.Label();
-            this.tbRxRateMin = new System.Windows.Forms.TextBox();
-            this.lRxRateMax = new System.Windows.Forms.Label();
-            this.tbRxRateMax = new System.Windows.Forms.TextBox();
-            this.lRateDefault = new System.Windows.Forms.Label();
-            this.tbRxRateDefault = new System.Windows.Forms.TextBox();
-            this.tbRx1Rate = new System.Windows.Forms.TextBox();
-            this.tbRx2Rate = new System.Windows.Forms.TextBox();
-            this.tbRx3Rate = new System.Windows.Forms.TextBox();
-            this.tbRx4Rate = new System.Windows.Forms.TextBox();
-            this.lRxPower = new System.Windows.Forms.Label();
-            this.tbTx1RxPower = new System.Windows.Forms.TextBox();
-            this.tbTx2RxPower = new System.Windows.Forms.TextBox();
-            this.tbTx3RxPower = new System.Windows.Forms.TextBox();
-            this.tbTx4RxPower = new System.Windows.Forms.TextBox();
-            this.bRead = new System.Windows.Forms.Button();
-            this.lInputPowerUnit = new System.Windows.Forms.Label();
-            this.lRssiUnit = new System.Windows.Forms.Label();
-            this.lRxRateUnit = new System.Windows.Forms.Label();
-            this.lRxPowerUnit = new System.Windows.Forms.Label();
-            this.bWrite = new System.Windows.Forms.Button();
-            this.bReset = new System.Windows.Forms.Button();
-            this.bAutoCorrect = new System.Windows.Forms.Button();
-            this.lLightSourcePassword = new System.Windows.Forms.Label();
-            this.tbLightSourcePassword123 = new System.Windows.Forms.TextBox();
-            this.tbLightSourcePassword124 = new System.Windows.Forms.TextBox();
-            this.tbLightSourcePassword126 = new System.Windows.Forms.TextBox();
-            this.tbLightSourcePassword125 = new System.Windows.Forms.TextBox();
-            this.lCorrectFilePath = new System.Windows.Forms.Label();
-            this.tbCorrectFilePath = new System.Windows.Forms.TextBox();
-            this.bSaveCorrectFile = new System.Windows.Forms.Button();
-            this.bLoadCorrectFile = new System.Windows.Forms.Button();
-            this.ucLensAlignment = new LensAlignment.UcLensAlignment();
+            this.tbSerialNumber = new System.Windows.Forms.TextBox();
+            this.lSerialNumber = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecord)).BeginInit();
             this.tcFunction.SuspendLayout();
             this.tpLensAlignment.SuspendLayout();
@@ -161,7 +163,7 @@
             // 
             this.bLog.BackColor = System.Drawing.SystemColors.Control;
             this.bLog.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.bLog.Location = new System.Drawing.Point(867, 8);
+            this.bLog.Location = new System.Drawing.Point(905, 8);
             this.bLog.Name = "bLog";
             this.bLog.Size = new System.Drawing.Size(50, 23);
             this.bLog.TabIndex = 6;
@@ -173,7 +175,7 @@
             // 
             this.bClearLog.BackColor = System.Drawing.SystemColors.Control;
             this.bClearLog.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.bClearLog.Location = new System.Drawing.Point(660, 8);
+            this.bClearLog.Location = new System.Drawing.Point(555, 8);
             this.bClearLog.Name = "bClearLog";
             this.bClearLog.Size = new System.Drawing.Size(60, 23);
             this.bClearLog.TabIndex = 7;
@@ -185,7 +187,7 @@
             // 
             this.lLogLable.AutoSize = true;
             this.lLogLable.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lLogLable.Location = new System.Drawing.Point(726, 13);
+            this.lLogLable.Location = new System.Drawing.Point(657, 13);
             this.lLogLable.Name = "lLogLable";
             this.lLogLable.Size = new System.Drawing.Size(59, 12);
             this.lLogLable.TabIndex = 8;
@@ -193,7 +195,7 @@
             // 
             // tbLogLable
             // 
-            this.tbLogLable.Location = new System.Drawing.Point(791, 10);
+            this.tbLogLable.Location = new System.Drawing.Point(722, 10);
             this.tbLogLable.Name = "tbLogLable";
             this.tbLogLable.Size = new System.Drawing.Size(70, 22);
             this.tbLogLable.TabIndex = 9;
@@ -271,6 +273,15 @@
             this.tpLensAlignment.TabIndex = 0;
             this.tpLensAlignment.Text = "Lens Alignment";
             // 
+            // ucLensAlignment
+            // 
+            this.ucLensAlignment.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.ucLensAlignment.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ucLensAlignment.Location = new System.Drawing.Point(0, 0);
+            this.ucLensAlignment.Name = "ucLensAlignment";
+            this.ucLensAlignment.Size = new System.Drawing.Size(1244, 611);
+            this.ucLensAlignment.TabIndex = 2;
+            // 
             // tpLog
             // 
             this.tpLog.BackColor = System.Drawing.SystemColors.Window;
@@ -302,6 +313,86 @@
             this.tpCorrect.TabIndex = 2;
             this.tpCorrect.Text = "Correct";
             this.tpCorrect.UseVisualStyleBackColor = true;
+            // 
+            // bLoadCorrectFile
+            // 
+            this.bLoadCorrectFile.Location = new System.Drawing.Point(1163, 6);
+            this.bLoadCorrectFile.Name = "bLoadCorrectFile";
+            this.bLoadCorrectFile.Size = new System.Drawing.Size(75, 23);
+            this.bLoadCorrectFile.TabIndex = 13;
+            this.bLoadCorrectFile.Text = "Load File";
+            this.bLoadCorrectFile.UseVisualStyleBackColor = true;
+            // 
+            // bSaveCorrectFile
+            // 
+            this.bSaveCorrectFile.Location = new System.Drawing.Point(1082, 6);
+            this.bSaveCorrectFile.Name = "bSaveCorrectFile";
+            this.bSaveCorrectFile.Size = new System.Drawing.Size(75, 23);
+            this.bSaveCorrectFile.TabIndex = 12;
+            this.bSaveCorrectFile.Text = "Save File";
+            this.bSaveCorrectFile.UseVisualStyleBackColor = true;
+            // 
+            // tbCorrectFilePath
+            // 
+            this.tbCorrectFilePath.Enabled = false;
+            this.tbCorrectFilePath.Location = new System.Drawing.Point(476, 6);
+            this.tbCorrectFilePath.Name = "tbCorrectFilePath";
+            this.tbCorrectFilePath.Size = new System.Drawing.Size(600, 22);
+            this.tbCorrectFilePath.TabIndex = 11;
+            // 
+            // lCorrectFilePath
+            // 
+            this.lCorrectFilePath.AutoSize = true;
+            this.lCorrectFilePath.Location = new System.Drawing.Point(419, 9);
+            this.lCorrectFilePath.Name = "lCorrectFilePath";
+            this.lCorrectFilePath.Size = new System.Drawing.Size(51, 12);
+            this.lCorrectFilePath.TabIndex = 10;
+            this.lCorrectFilePath.Text = "File Path :";
+            // 
+            // tbLightSourcePassword126
+            // 
+            this.tbLightSourcePassword126.Location = new System.Drawing.Point(222, 6);
+            this.tbLightSourcePassword126.Name = "tbLightSourcePassword126";
+            this.tbLightSourcePassword126.PasswordChar = '*';
+            this.tbLightSourcePassword126.Size = new System.Drawing.Size(25, 22);
+            this.tbLightSourcePassword126.TabIndex = 9;
+            this.tbLightSourcePassword126.Text = "34";
+            // 
+            // tbLightSourcePassword125
+            // 
+            this.tbLightSourcePassword125.Location = new System.Drawing.Point(191, 6);
+            this.tbLightSourcePassword125.Name = "tbLightSourcePassword125";
+            this.tbLightSourcePassword125.PasswordChar = '*';
+            this.tbLightSourcePassword125.Size = new System.Drawing.Size(25, 22);
+            this.tbLightSourcePassword125.TabIndex = 8;
+            this.tbLightSourcePassword125.Text = "33";
+            // 
+            // tbLightSourcePassword124
+            // 
+            this.tbLightSourcePassword124.Location = new System.Drawing.Point(160, 6);
+            this.tbLightSourcePassword124.Name = "tbLightSourcePassword124";
+            this.tbLightSourcePassword124.PasswordChar = '*';
+            this.tbLightSourcePassword124.Size = new System.Drawing.Size(25, 22);
+            this.tbLightSourcePassword124.TabIndex = 7;
+            this.tbLightSourcePassword124.Text = "32";
+            // 
+            // tbLightSourcePassword123
+            // 
+            this.tbLightSourcePassword123.Location = new System.Drawing.Point(129, 6);
+            this.tbLightSourcePassword123.Name = "tbLightSourcePassword123";
+            this.tbLightSourcePassword123.PasswordChar = '*';
+            this.tbLightSourcePassword123.Size = new System.Drawing.Size(25, 22);
+            this.tbLightSourcePassword123.TabIndex = 6;
+            this.tbLightSourcePassword123.Text = "33";
+            // 
+            // lLightSourcePassword
+            // 
+            this.lLightSourcePassword.AutoSize = true;
+            this.lLightSourcePassword.Location = new System.Drawing.Point(6, 9);
+            this.lLightSourcePassword.Name = "lLightSourcePassword";
+            this.lLightSourcePassword.Size = new System.Drawing.Size(117, 12);
+            this.lLightSourcePassword.TabIndex = 2;
+            this.lLightSourcePassword.Text = "Light Source Password :";
             // 
             // gbRxRateCorrect
             // 
@@ -349,6 +440,207 @@
             this.gbRxRateCorrect.TabIndex = 1;
             this.gbRxRateCorrect.TabStop = false;
             this.gbRxRateCorrect.Text = "Light Sourec Rx Rate";
+            // 
+            // bAutoCorrect
+            // 
+            this.bAutoCorrect.Location = new System.Drawing.Point(475, 117);
+            this.bAutoCorrect.Name = "bAutoCorrect";
+            this.bAutoCorrect.Size = new System.Drawing.Size(126, 23);
+            this.bAutoCorrect.TabIndex = 37;
+            this.bAutoCorrect.Text = "Auto Correct";
+            this.bAutoCorrect.UseVisualStyleBackColor = true;
+            // 
+            // bReset
+            // 
+            this.bReset.Location = new System.Drawing.Point(475, 88);
+            this.bReset.Name = "bReset";
+            this.bReset.Size = new System.Drawing.Size(126, 23);
+            this.bReset.TabIndex = 36;
+            this.bReset.Text = "Reset";
+            this.bReset.UseVisualStyleBackColor = true;
+            // 
+            // bWrite
+            // 
+            this.bWrite.Location = new System.Drawing.Point(541, 59);
+            this.bWrite.Name = "bWrite";
+            this.bWrite.Size = new System.Drawing.Size(60, 23);
+            this.bWrite.TabIndex = 35;
+            this.bWrite.Text = "Write";
+            this.bWrite.UseVisualStyleBackColor = true;
+            this.bWrite.Click += new System.EventHandler(this.bWrite_Click);
+            // 
+            // lRxPowerUnit
+            // 
+            this.lRxPowerUnit.AutoSize = true;
+            this.lRxPowerUnit.Location = new System.Drawing.Point(440, 120);
+            this.lRxPowerUnit.Name = "lRxPowerUnit";
+            this.lRxPowerUnit.Size = new System.Drawing.Size(22, 12);
+            this.lRxPowerUnit.TabIndex = 34;
+            this.lRxPowerUnit.Text = "uW";
+            // 
+            // lRxRateUnit
+            // 
+            this.lRxRateUnit.AutoSize = true;
+            this.lRxRateUnit.Location = new System.Drawing.Point(440, 92);
+            this.lRxRateUnit.Name = "lRxRateUnit";
+            this.lRxRateUnit.Size = new System.Drawing.Size(26, 12);
+            this.lRxRateUnit.TabIndex = 33;
+            this.lRxRateUnit.Text = "0.01";
+            // 
+            // lRssiUnit
+            // 
+            this.lRssiUnit.AutoSize = true;
+            this.lRssiUnit.Location = new System.Drawing.Point(440, 64);
+            this.lRssiUnit.Name = "lRssiUnit";
+            this.lRssiUnit.Size = new System.Drawing.Size(19, 12);
+            this.lRssiUnit.TabIndex = 32;
+            this.lRssiUnit.Text = "uA";
+            // 
+            // lInputPowerUnit
+            // 
+            this.lInputPowerUnit.AutoSize = true;
+            this.lInputPowerUnit.Location = new System.Drawing.Point(440, 36);
+            this.lInputPowerUnit.Name = "lInputPowerUnit";
+            this.lInputPowerUnit.Size = new System.Drawing.Size(22, 12);
+            this.lInputPowerUnit.TabIndex = 31;
+            this.lInputPowerUnit.Text = "uW";
+            // 
+            // bRead
+            // 
+            this.bRead.Location = new System.Drawing.Point(475, 59);
+            this.bRead.Name = "bRead";
+            this.bRead.Size = new System.Drawing.Size(60, 23);
+            this.bRead.TabIndex = 30;
+            this.bRead.Text = "Read";
+            this.bRead.UseVisualStyleBackColor = true;
+            this.bRead.Click += new System.EventHandler(this.bRead_Click);
+            // 
+            // tbTx1RxPower
+            // 
+            this.tbTx1RxPower.Enabled = false;
+            this.tbTx1RxPower.Location = new System.Drawing.Point(384, 117);
+            this.tbTx1RxPower.Name = "tbTx1RxPower";
+            this.tbTx1RxPower.Size = new System.Drawing.Size(50, 22);
+            this.tbTx1RxPower.TabIndex = 29;
+            // 
+            // tbTx2RxPower
+            // 
+            this.tbTx2RxPower.Enabled = false;
+            this.tbTx2RxPower.Location = new System.Drawing.Point(328, 117);
+            this.tbTx2RxPower.Name = "tbTx2RxPower";
+            this.tbTx2RxPower.Size = new System.Drawing.Size(50, 22);
+            this.tbTx2RxPower.TabIndex = 28;
+            // 
+            // tbTx3RxPower
+            // 
+            this.tbTx3RxPower.Enabled = false;
+            this.tbTx3RxPower.Location = new System.Drawing.Point(272, 117);
+            this.tbTx3RxPower.Name = "tbTx3RxPower";
+            this.tbTx3RxPower.Size = new System.Drawing.Size(50, 22);
+            this.tbTx3RxPower.TabIndex = 27;
+            // 
+            // tbTx4RxPower
+            // 
+            this.tbTx4RxPower.Enabled = false;
+            this.tbTx4RxPower.Location = new System.Drawing.Point(216, 117);
+            this.tbTx4RxPower.Name = "tbTx4RxPower";
+            this.tbTx4RxPower.Size = new System.Drawing.Size(50, 22);
+            this.tbTx4RxPower.TabIndex = 26;
+            // 
+            // lRxPower
+            // 
+            this.lRxPower.AutoSize = true;
+            this.lRxPower.Location = new System.Drawing.Point(6, 120);
+            this.lRxPower.Name = "lRxPower";
+            this.lRxPower.Size = new System.Drawing.Size(40, 12);
+            this.lRxPower.TabIndex = 25;
+            this.lRxPower.Text = "Power :";
+            // 
+            // tbRx1Rate
+            // 
+            this.tbRx1Rate.Location = new System.Drawing.Point(384, 89);
+            this.tbRx1Rate.Name = "tbRx1Rate";
+            this.tbRx1Rate.Size = new System.Drawing.Size(50, 22);
+            this.tbRx1Rate.TabIndex = 24;
+            // 
+            // tbRx2Rate
+            // 
+            this.tbRx2Rate.Location = new System.Drawing.Point(328, 89);
+            this.tbRx2Rate.Name = "tbRx2Rate";
+            this.tbRx2Rate.Size = new System.Drawing.Size(50, 22);
+            this.tbRx2Rate.TabIndex = 23;
+            // 
+            // tbRx3Rate
+            // 
+            this.tbRx3Rate.Location = new System.Drawing.Point(272, 89);
+            this.tbRx3Rate.Name = "tbRx3Rate";
+            this.tbRx3Rate.Size = new System.Drawing.Size(50, 22);
+            this.tbRx3Rate.TabIndex = 22;
+            // 
+            // tbRx4Rate
+            // 
+            this.tbRx4Rate.Location = new System.Drawing.Point(216, 89);
+            this.tbRx4Rate.Name = "tbRx4Rate";
+            this.tbRx4Rate.Size = new System.Drawing.Size(50, 22);
+            this.tbRx4Rate.TabIndex = 21;
+            // 
+            // lRxRateMin
+            // 
+            this.lRxRateMin.AutoSize = true;
+            this.lRxRateMin.Location = new System.Drawing.Point(173, 18);
+            this.lRxRateMin.Name = "lRxRateMin";
+            this.lRxRateMin.Size = new System.Drawing.Size(24, 12);
+            this.lRxRateMin.TabIndex = 20;
+            this.lRxRateMin.Text = "Min";
+            // 
+            // tbRxRateMin
+            // 
+            this.tbRxRateMin.Location = new System.Drawing.Point(160, 89);
+            this.tbRxRateMin.Name = "tbRxRateMin";
+            this.tbRxRateMin.Size = new System.Drawing.Size(50, 22);
+            this.tbRxRateMin.TabIndex = 19;
+            // 
+            // lRxRateMax
+            // 
+            this.lRxRateMax.AutoSize = true;
+            this.lRxRateMax.Location = new System.Drawing.Point(116, 18);
+            this.lRxRateMax.Name = "lRxRateMax";
+            this.lRxRateMax.Size = new System.Drawing.Size(26, 12);
+            this.lRxRateMax.TabIndex = 18;
+            this.lRxRateMax.Text = "Max";
+            // 
+            // tbRxRateMax
+            // 
+            this.tbRxRateMax.Location = new System.Drawing.Point(104, 89);
+            this.tbRxRateMax.Name = "tbRxRateMax";
+            this.tbRxRateMax.Size = new System.Drawing.Size(50, 22);
+            this.tbRxRateMax.TabIndex = 17;
+            // 
+            // lRateDefault
+            // 
+            this.lRateDefault.AutoSize = true;
+            this.lRateDefault.Location = new System.Drawing.Point(54, 18);
+            this.lRateDefault.Name = "lRateDefault";
+            this.lRateDefault.Size = new System.Drawing.Size(39, 12);
+            this.lRateDefault.TabIndex = 16;
+            this.lRateDefault.Text = "Default";
+            // 
+            // tbRxRateDefault
+            // 
+            this.tbRxRateDefault.Enabled = false;
+            this.tbRxRateDefault.Location = new System.Drawing.Point(48, 89);
+            this.tbRxRateDefault.Name = "tbRxRateDefault";
+            this.tbRxRateDefault.Size = new System.Drawing.Size(50, 22);
+            this.tbRxRateDefault.TabIndex = 15;
+            // 
+            // lRxRate
+            // 
+            this.lRxRate.AutoSize = true;
+            this.lRxRate.Location = new System.Drawing.Point(6, 92);
+            this.lRxRate.Name = "lRxRate";
+            this.lRxRate.Size = new System.Drawing.Size(32, 12);
+            this.lRxRate.TabIndex = 14;
+            this.lRxRate.Text = "Rate :";
             // 
             // tbRx1Rssi
             // 
@@ -464,295 +756,22 @@
             this.lRxInputPower.TabIndex = 0;
             this.lRxInputPower.Text = "Input :";
             // 
-            // lRxRate
-            // 
-            this.lRxRate.AutoSize = true;
-            this.lRxRate.Location = new System.Drawing.Point(6, 92);
-            this.lRxRate.Name = "lRxRate";
-            this.lRxRate.Size = new System.Drawing.Size(32, 12);
-            this.lRxRate.TabIndex = 14;
-            this.lRxRate.Text = "Rate :";
-            // 
-            // lRxRateMin
-            // 
-            this.lRxRateMin.AutoSize = true;
-            this.lRxRateMin.Location = new System.Drawing.Point(173, 18);
-            this.lRxRateMin.Name = "lRxRateMin";
-            this.lRxRateMin.Size = new System.Drawing.Size(24, 12);
-            this.lRxRateMin.TabIndex = 20;
-            this.lRxRateMin.Text = "Min";
-            // 
-            // tbRxRateMin
-            // 
-            this.tbRxRateMin.Location = new System.Drawing.Point(160, 89);
-            this.tbRxRateMin.Name = "tbRxRateMin";
-            this.tbRxRateMin.Size = new System.Drawing.Size(50, 22);
-            this.tbRxRateMin.TabIndex = 19;
-            // 
-            // lRxRateMax
-            // 
-            this.lRxRateMax.AutoSize = true;
-            this.lRxRateMax.Location = new System.Drawing.Point(116, 18);
-            this.lRxRateMax.Name = "lRxRateMax";
-            this.lRxRateMax.Size = new System.Drawing.Size(26, 12);
-            this.lRxRateMax.TabIndex = 18;
-            this.lRxRateMax.Text = "Max";
-            // 
-            // tbRxRateMax
-            // 
-            this.tbRxRateMax.Location = new System.Drawing.Point(104, 89);
-            this.tbRxRateMax.Name = "tbRxRateMax";
-            this.tbRxRateMax.Size = new System.Drawing.Size(50, 22);
-            this.tbRxRateMax.TabIndex = 17;
-            // 
-            // lRateDefault
-            // 
-            this.lRateDefault.AutoSize = true;
-            this.lRateDefault.Location = new System.Drawing.Point(54, 18);
-            this.lRateDefault.Name = "lRateDefault";
-            this.lRateDefault.Size = new System.Drawing.Size(39, 12);
-            this.lRateDefault.TabIndex = 16;
-            this.lRateDefault.Text = "Default";
-            // 
-            // tbRxRateDefault
-            // 
-            this.tbRxRateDefault.Enabled = false;
-            this.tbRxRateDefault.Location = new System.Drawing.Point(48, 89);
-            this.tbRxRateDefault.Name = "tbRxRateDefault";
-            this.tbRxRateDefault.Size = new System.Drawing.Size(50, 22);
-            this.tbRxRateDefault.TabIndex = 15;
-            // 
-            // tbRx1Rate
-            // 
-            this.tbRx1Rate.Location = new System.Drawing.Point(384, 89);
-            this.tbRx1Rate.Name = "tbRx1Rate";
-            this.tbRx1Rate.Size = new System.Drawing.Size(50, 22);
-            this.tbRx1Rate.TabIndex = 24;
-            // 
-            // tbRx2Rate
-            // 
-            this.tbRx2Rate.Location = new System.Drawing.Point(328, 89);
-            this.tbRx2Rate.Name = "tbRx2Rate";
-            this.tbRx2Rate.Size = new System.Drawing.Size(50, 22);
-            this.tbRx2Rate.TabIndex = 23;
-            // 
-            // tbRx3Rate
-            // 
-            this.tbRx3Rate.Location = new System.Drawing.Point(272, 89);
-            this.tbRx3Rate.Name = "tbRx3Rate";
-            this.tbRx3Rate.Size = new System.Drawing.Size(50, 22);
-            this.tbRx3Rate.TabIndex = 22;
-            // 
-            // tbRx4Rate
-            // 
-            this.tbRx4Rate.Location = new System.Drawing.Point(216, 89);
-            this.tbRx4Rate.Name = "tbRx4Rate";
-            this.tbRx4Rate.Size = new System.Drawing.Size(50, 22);
-            this.tbRx4Rate.TabIndex = 21;
-            // 
-            // lRxPower
-            // 
-            this.lRxPower.AutoSize = true;
-            this.lRxPower.Location = new System.Drawing.Point(6, 120);
-            this.lRxPower.Name = "lRxPower";
-            this.lRxPower.Size = new System.Drawing.Size(40, 12);
-            this.lRxPower.TabIndex = 25;
-            this.lRxPower.Text = "Power :";
-            // 
-            // tbTx1RxPower
-            // 
-            this.tbTx1RxPower.Enabled = false;
-            this.tbTx1RxPower.Location = new System.Drawing.Point(384, 117);
-            this.tbTx1RxPower.Name = "tbTx1RxPower";
-            this.tbTx1RxPower.Size = new System.Drawing.Size(50, 22);
-            this.tbTx1RxPower.TabIndex = 29;
-            // 
-            // tbTx2RxPower
-            // 
-            this.tbTx2RxPower.Enabled = false;
-            this.tbTx2RxPower.Location = new System.Drawing.Point(328, 117);
-            this.tbTx2RxPower.Name = "tbTx2RxPower";
-            this.tbTx2RxPower.Size = new System.Drawing.Size(50, 22);
-            this.tbTx2RxPower.TabIndex = 28;
-            // 
-            // tbTx3RxPower
-            // 
-            this.tbTx3RxPower.Enabled = false;
-            this.tbTx3RxPower.Location = new System.Drawing.Point(272, 117);
-            this.tbTx3RxPower.Name = "tbTx3RxPower";
-            this.tbTx3RxPower.Size = new System.Drawing.Size(50, 22);
-            this.tbTx3RxPower.TabIndex = 27;
-            // 
-            // tbTx4RxPower
-            // 
-            this.tbTx4RxPower.Enabled = false;
-            this.tbTx4RxPower.Location = new System.Drawing.Point(216, 117);
-            this.tbTx4RxPower.Name = "tbTx4RxPower";
-            this.tbTx4RxPower.Size = new System.Drawing.Size(50, 22);
-            this.tbTx4RxPower.TabIndex = 26;
-            // 
-            // bRead
-            // 
-            this.bRead.Location = new System.Drawing.Point(475, 59);
-            this.bRead.Name = "bRead";
-            this.bRead.Size = new System.Drawing.Size(60, 23);
-            this.bRead.TabIndex = 30;
-            this.bRead.Text = "Read";
-            this.bRead.UseVisualStyleBackColor = true;
-            this.bRead.Click += new System.EventHandler(this.bRead_Click);
-            // 
-            // lInputPowerUnit
-            // 
-            this.lInputPowerUnit.AutoSize = true;
-            this.lInputPowerUnit.Location = new System.Drawing.Point(440, 36);
-            this.lInputPowerUnit.Name = "lInputPowerUnit";
-            this.lInputPowerUnit.Size = new System.Drawing.Size(22, 12);
-            this.lInputPowerUnit.TabIndex = 31;
-            this.lInputPowerUnit.Text = "uW";
-            // 
-            // lRssiUnit
-            // 
-            this.lRssiUnit.AutoSize = true;
-            this.lRssiUnit.Location = new System.Drawing.Point(440, 64);
-            this.lRssiUnit.Name = "lRssiUnit";
-            this.lRssiUnit.Size = new System.Drawing.Size(19, 12);
-            this.lRssiUnit.TabIndex = 32;
-            this.lRssiUnit.Text = "uA";
-            // 
-            // lRxRateUnit
-            // 
-            this.lRxRateUnit.AutoSize = true;
-            this.lRxRateUnit.Location = new System.Drawing.Point(440, 92);
-            this.lRxRateUnit.Name = "lRxRateUnit";
-            this.lRxRateUnit.Size = new System.Drawing.Size(26, 12);
-            this.lRxRateUnit.TabIndex = 33;
-            this.lRxRateUnit.Text = "0.01";
-            // 
-            // lRxPowerUnit
-            // 
-            this.lRxPowerUnit.AutoSize = true;
-            this.lRxPowerUnit.Location = new System.Drawing.Point(440, 120);
-            this.lRxPowerUnit.Name = "lRxPowerUnit";
-            this.lRxPowerUnit.Size = new System.Drawing.Size(22, 12);
-            this.lRxPowerUnit.TabIndex = 34;
-            this.lRxPowerUnit.Text = "uW";
-            // 
-            // bWrite
-            // 
-            this.bWrite.Location = new System.Drawing.Point(541, 59);
-            this.bWrite.Name = "bWrite";
-            this.bWrite.Size = new System.Drawing.Size(60, 23);
-            this.bWrite.TabIndex = 35;
-            this.bWrite.Text = "Write";
-            this.bWrite.UseVisualStyleBackColor = true;
-            this.bWrite.Click += new System.EventHandler(this.bWrite_Click);
-            // 
-            // bReset
-            // 
-            this.bReset.Location = new System.Drawing.Point(475, 88);
-            this.bReset.Name = "bReset";
-            this.bReset.Size = new System.Drawing.Size(126, 23);
-            this.bReset.TabIndex = 36;
-            this.bReset.Text = "Reset";
-            this.bReset.UseVisualStyleBackColor = true;
-            // 
-            // bAutoCorrect
-            // 
-            this.bAutoCorrect.Location = new System.Drawing.Point(475, 117);
-            this.bAutoCorrect.Name = "bAutoCorrect";
-            this.bAutoCorrect.Size = new System.Drawing.Size(126, 23);
-            this.bAutoCorrect.TabIndex = 37;
-            this.bAutoCorrect.Text = "Auto Correct";
-            this.bAutoCorrect.UseVisualStyleBackColor = true;
-            // 
-            // lLightSourcePassword
-            // 
-            this.lLightSourcePassword.AutoSize = true;
-            this.lLightSourcePassword.Location = new System.Drawing.Point(6, 9);
-            this.lLightSourcePassword.Name = "lLightSourcePassword";
-            this.lLightSourcePassword.Size = new System.Drawing.Size(117, 12);
-            this.lLightSourcePassword.TabIndex = 2;
-            this.lLightSourcePassword.Text = "Light Source Password :";
-            // 
-            // tbLightSourcePassword123
-            // 
-            this.tbLightSourcePassword123.Location = new System.Drawing.Point(129, 6);
-            this.tbLightSourcePassword123.Name = "tbLightSourcePassword123";
-            this.tbLightSourcePassword123.PasswordChar = '*';
-            this.tbLightSourcePassword123.Size = new System.Drawing.Size(25, 22);
-            this.tbLightSourcePassword123.TabIndex = 6;
-            this.tbLightSourcePassword123.Text = "33";
-            // 
-            // tbLightSourcePassword124
-            // 
-            this.tbLightSourcePassword124.Location = new System.Drawing.Point(160, 6);
-            this.tbLightSourcePassword124.Name = "tbLightSourcePassword124";
-            this.tbLightSourcePassword124.PasswordChar = '*';
-            this.tbLightSourcePassword124.Size = new System.Drawing.Size(25, 22);
-            this.tbLightSourcePassword124.TabIndex = 7;
-            this.tbLightSourcePassword124.Text = "32";
-            // 
-            // tbLightSourcePassword126
-            // 
-            this.tbLightSourcePassword126.Location = new System.Drawing.Point(222, 6);
-            this.tbLightSourcePassword126.Name = "tbLightSourcePassword126";
-            this.tbLightSourcePassword126.PasswordChar = '*';
-            this.tbLightSourcePassword126.Size = new System.Drawing.Size(25, 22);
-            this.tbLightSourcePassword126.TabIndex = 9;
-            this.tbLightSourcePassword126.Text = "34";
-            // 
-            // tbLightSourcePassword125
-            // 
-            this.tbLightSourcePassword125.Location = new System.Drawing.Point(191, 6);
-            this.tbLightSourcePassword125.Name = "tbLightSourcePassword125";
-            this.tbLightSourcePassword125.PasswordChar = '*';
-            this.tbLightSourcePassword125.Size = new System.Drawing.Size(25, 22);
-            this.tbLightSourcePassword125.TabIndex = 8;
-            this.tbLightSourcePassword125.Text = "33";
-            // 
-            // lCorrectFilePath
-            // 
-            this.lCorrectFilePath.AutoSize = true;
-            this.lCorrectFilePath.Location = new System.Drawing.Point(419, 9);
-            this.lCorrectFilePath.Name = "lCorrectFilePath";
-            this.lCorrectFilePath.Size = new System.Drawing.Size(51, 12);
-            this.lCorrectFilePath.TabIndex = 10;
-            this.lCorrectFilePath.Text = "File Path :";
-            // 
-            // tbCorrectFilePath
-            // 
-            this.tbCorrectFilePath.Enabled = false;
-            this.tbCorrectFilePath.Location = new System.Drawing.Point(476, 6);
-            this.tbCorrectFilePath.Name = "tbCorrectFilePath";
-            this.tbCorrectFilePath.Size = new System.Drawing.Size(600, 22);
-            this.tbCorrectFilePath.TabIndex = 11;
-            // 
-            // bSaveCorrectFile
-            // 
-            this.bSaveCorrectFile.Location = new System.Drawing.Point(1082, 6);
-            this.bSaveCorrectFile.Name = "bSaveCorrectFile";
-            this.bSaveCorrectFile.Size = new System.Drawing.Size(75, 23);
-            this.bSaveCorrectFile.TabIndex = 12;
-            this.bSaveCorrectFile.Text = "Save File";
-            this.bSaveCorrectFile.UseVisualStyleBackColor = true;
-            // 
-            // bLoadCorrectFile
-            // 
-            this.bLoadCorrectFile.Location = new System.Drawing.Point(1163, 6);
-            this.bLoadCorrectFile.Name = "bLoadCorrectFile";
-            this.bLoadCorrectFile.Size = new System.Drawing.Size(75, 23);
-            this.bLoadCorrectFile.TabIndex = 13;
-            this.bLoadCorrectFile.Text = "Load File";
-            this.bLoadCorrectFile.UseVisualStyleBackColor = true;
-            // 
-            // ucLensAlignment
-            // 
-            this.ucLensAlignment.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.ucLensAlignment.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.ucLensAlignment.Location = new System.Drawing.Point(0, 0);
-            this.ucLensAlignment.Name = "ucLensAlignment";
-            this.ucLensAlignment.Size = new System.Drawing.Size(1244, 611);
-            this.ucLensAlignment.TabIndex = 2;
+            // tbSerialNumber
+            // 
+            this.tbSerialNumber.Location = new System.Drawing.Point(829, 9);
+            this.tbSerialNumber.Name = "tbSerialNumber";
+            this.tbSerialNumber.Size = new System.Drawing.Size(70, 22);
+            this.tbSerialNumber.TabIndex = 17;
+            // 
+            // lSerialNumber
+            // 
+            this.lSerialNumber.AutoSize = true;
+            this.lSerialNumber.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lSerialNumber.Location = new System.Drawing.Point(798, 13);
+            this.lSerialNumber.Name = "lSerialNumber";
+            this.lSerialNumber.Size = new System.Drawing.Size(25, 12);
+            this.lSerialNumber.TabIndex = 16;
+            this.lSerialNumber.Text = "SN :";
             // 
             // fLensAlignment
             // 
@@ -760,6 +779,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(1272, 683);
+            this.Controls.Add(this.tbSerialNumber);
+            this.Controls.Add(this.lSerialNumber);
             this.Controls.Add(this.tcFunction);
             this.Controls.Add(this.tbBeAlignmentPassword126);
             this.Controls.Add(this.tbBeAlignmentPassword125);
@@ -862,6 +883,8 @@
         private System.Windows.Forms.Button bSaveCorrectFile;
         private System.Windows.Forms.TextBox tbCorrectFilePath;
         private System.Windows.Forms.Label lCorrectFilePath;
+        private System.Windows.Forms.TextBox tbSerialNumber;
+        private System.Windows.Forms.Label lSerialNumber;
     }
 }
 

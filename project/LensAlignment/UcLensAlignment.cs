@@ -13,13 +13,17 @@ namespace LensAlignment
 {
     public partial class UcLensAlignment : UserControl
     {
+        public delegate bool LightSourceI2cCheckConnectedCB();
         public delegate int LightSourceI2cReadCB(byte devAddr, byte regAddr, byte length, byte[] data);
         public delegate int LightSourceI2cWriteCB(byte devAddr, byte regAddr, byte length, byte[] data);
+        public delegate bool BeAlignmentI2cCheckConnectedCB();
         public delegate int BeAlignmentI2cReadCB(byte devAddr, byte regAddr, byte length, byte[] data);
         public delegate int BeAlignmentI2cWriteCB(byte devAddr, byte regAddr, byte length, byte[] data);
 
+        private LightSourceI2cCheckConnectedCB lightSourceI2cCheckConnectedCB = null;
         private LightSourceI2cReadCB lightSourceI2cReadCB = null;
         private LightSourceI2cWriteCB lightSourceI2cWriteCB = null;
+        private BeAlignmentI2cCheckConnectedCB beAlignmentI2cCheckConnectedCB = null;
         private BeAlignmentI2cReadCB beAlignmentI2cReadCB = null;
         private BeAlignmentI2cWriteCB beAlignmentI2cWriteCB = null;
         private BackgroundWorker bwMonitor;
@@ -486,21 +490,29 @@ namespace LensAlignment
                 lightSourecReadError = beAlignmentReadError = false;
                 bwMonitor.ReportProgress(0, null);
 
-                if (_ReadLightSourceRxValue() < 0)
-                    lightSourecReadError = true;
-    
-                if (_ReadBeAlignmentRxValue() < 0)
+                if (lightSourceI2cCheckConnectedCB() == true) {
+                    if (_ReadLightSourceRxValue() < 0)
+                        lightSourecReadError = true;
+                }
+
+                if (beAlignmentI2cCheckConnectedCB() == true) {
+                    if (_ReadBeAlignmentRxValue() < 0)
                         beAlignmentReadError = true;
-                else if (_ReadBeAlignmentMpdValue() < 0)
+                    else if (_ReadBeAlignmentMpdValue() < 0)
                         beAlignmentReadError = true;
+                }
 
                 if (i++ >= 5) {
                     i = 0;
-                    if (lightSourecReadError == false)
-                        _ReadLightSourceInfoValue();
+                    if (lightSourceI2cCheckConnectedCB() == true) {
+                        if (lightSourecReadError == false)
+                            _ReadLightSourceInfoValue();
+                    }
 
-                    if (beAlignmentReadError == false)
-                        _ReadBeAlignmentInfoValue();
+                    if (beAlignmentI2cCheckConnectedCB() == true) {
+                        if (beAlignmentReadError == false)
+                            _ReadBeAlignmentInfoValue();
+                    }
                 }
 
                 if ((lightSourecReadError == false) && (beAlignmentReadError == false))
@@ -552,6 +564,16 @@ namespace LensAlignment
             bwMonitor.ProgressChanged += new ProgressChangedEventHandler(MonitorProgressChangedApi);
         }
 
+        public int SetLightSourceI2cCheckConnectedCBApi(LightSourceI2cCheckConnectedCB cb)
+        {
+            if (cb == null)
+                return -1;
+
+            lightSourceI2cCheckConnectedCB = new LightSourceI2cCheckConnectedCB(cb);
+
+            return 0;
+        }
+
         public int SetLightSourceI2cReadCBApi(LightSourceI2cReadCB cb)
         {
             if (cb == null)
@@ -568,6 +590,16 @@ namespace LensAlignment
                 return -1;
 
             lightSourceI2cWriteCB = new LightSourceI2cWriteCB(cb);
+
+            return 0;
+        }
+
+        public int SetBeAlignmentI2cCheckConnectedCBApi(BeAlignmentI2cCheckConnectedCB cb)
+        {
+            if (cb == null)
+                return -1;
+
+            beAlignmentI2cCheckConnectedCB = new BeAlignmentI2cCheckConnectedCB(cb);
 
             return 0;
         }

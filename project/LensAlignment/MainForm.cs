@@ -50,6 +50,11 @@ namespace LensAlignment
             return 0;
         }
 
+        private bool _IM_LightSourceCheckConnected()
+        {
+            return cbLightSourceConnected.Checked;
+        }
+
         private int _IM_LightSourceRead(byte devAddr, byte regAddr, byte length, byte[] data)
         {
             int rv;
@@ -123,7 +128,7 @@ namespace LensAlignment
                 
             cbBeAlignmentConnected.Checked = true;
 
-            if (cbLightSourceConnected.Checked == true)
+            //if (cbLightSourceConnected.Checked == true)
                 cbStartMonitor.Enabled = true;
 
             return 0;
@@ -142,6 +147,11 @@ namespace LensAlignment
             cbStartMonitor.Enabled = false;
             cbStartMonitor.Checked = false;
             return 0;
+        }
+
+        private bool _IM_BeAlignmentCheckConnected()
+        {
+            return cbBeAlignmentConnected.Checked;
         }
 
         private int _IM_BeAlignmentRead(byte devAddr, byte regAddr, byte length, byte[] data)
@@ -195,6 +205,7 @@ namespace LensAlignment
             this.FormClosing += new FormClosingEventHandler(_OnClosingHandler);
 
             dtValue.Columns.Add("Lable", typeof(String));
+            dtValue.Columns.Add("SN", typeof(String));
             dtValue.Columns.Add("Tx1", typeof(String));
             dtValue.Columns.Add("Tx2", typeof(String));
             dtValue.Columns.Add("Tx3", typeof(String));
@@ -209,28 +220,39 @@ namespace LensAlignment
             dtValue.Columns.Add("MPD4", typeof(String));
             dgvRecord.DataSource = dtValue;
 
-            if (ucLensAlignment.SetLightSourceI2cReadCBApi(_IM_LightSourceRead) < 0) {
-                MessageBox.Show("ucHxr6104aConfig.SetI2cReadCBApi() faile Error!!");
-                return;
-            }
-            if (ucLensAlignment.SetLightSourceI2cWriteCBApi(_IM_LightSourceWrite) < 0) {
-                MessageBox.Show("ucHxr6104aConfig.SetI2cWriteCBApi() faile Error!!");
+            if (ucLensAlignment.SetLightSourceI2cCheckConnectedCBApi(_IM_LightSourceCheckConnected) < 0) {
+                MessageBox.Show("ucLensAlignment.SetLightSourceI2cCheckConnectedCBApi() faile Error!!");
                 return;
             }
 
+            if (ucLensAlignment.SetLightSourceI2cReadCBApi(_IM_LightSourceRead) < 0) {
+                MessageBox.Show("ucLensAlignment.SetLightSourceI2cReadCBApi() faile Error!!");
+                return;
+            }
+            if (ucLensAlignment.SetLightSourceI2cWriteCBApi(_IM_LightSourceWrite) < 0) {
+                MessageBox.Show("ucLensAlignment.SetLightSourceI2cWriteCBApi() faile Error!!");
+                return;
+            }
+
+            if (ucLensAlignment.SetBeAlignmentI2cCheckConnectedCBApi(_IM_BeAlignmentCheckConnected) < 0) {
+                MessageBox.Show("ucLensAlignment.SetBeAlignmentI2cCheckConnectedCBApi() faile Error!!");
+                return;
+            }
+            
             if (ucLensAlignment.SetBeAlignmentI2cReadCBApi(_IM_BeAlignmentRead) < 0) {
-                MessageBox.Show("ucHxr6104aConfig.SetI2cReadCBApi() faile Error!!");
+                MessageBox.Show("ucLensAlignment.SetBeAlignmentI2cReadCBApi() faile Error!!");
                 return;
             }
             if (ucLensAlignment.SetBeAlignmentI2cWriteCBApi(_IM_BeAlignmentWrite) < 0) {
-                MessageBox.Show("ucHxr6104aConfig.SetI2cWriteCBApi() faile Error!!");
+                MessageBox.Show("ucLensAlignment.SetBeAlignmentI2cWriteCBApi() faile Error!!");
                 return;
             }
         }
 
         private void _bLog_Click(object sender, EventArgs e)
         {
-            dtValue.Rows.Add(tbLogLable.Text, ucLensAlignment.GetLightSourceRx1ValueApi().ToString(),
+            dtValue.Rows.Add(tbLogLable.Text, tbSerialNumber.Text,
+                ucLensAlignment.GetLightSourceRx1ValueApi().ToString(),
                 ucLensAlignment.GetLightSourceRx2ValueApi().ToString(),
                 ucLensAlignment.GetLightSourceRx3ValueApi().ToString(),
                 ucLensAlignment.GetLightSourceRx4ValueApi().ToString(),
@@ -264,7 +286,7 @@ namespace LensAlignment
             lastFileName = sfdSelectFile.FileName;
 
             swLog = new StreamWriter(lastFileName);
-            swLog.WriteLine("Lable\tTx1\tTx2\tTx3\tTx4\tRx1\tRx2\tRx3\tRx4\tMpd1\tMpd2\tMpd3\tMpd4");
+            swLog.WriteLine("Lable\tSn\tTx1\tTx2\tTx3\tTx4\tRx1\tRx2\tRx3\tRx4\tMpd1\tMpd2\tMpd3\tMpd4");
             foreach (DataRow row in dtValue.Rows) {
                 swLog.WriteLine(row[0].ToString() + "\t" + row[1].ToString() +
                     "\t" + row[2].ToString() + "\t" + row[3].ToString() + "\t" +
@@ -272,7 +294,7 @@ namespace LensAlignment
                     row[6].ToString() + "\t" + row[7].ToString() + "\t" +
                     row[8].ToString() + "\t" + row[9].ToString() + "\t" +
                     row[10].ToString() + "\t" + row[11].ToString() + "\t" +
-                    row[12].ToString());
+                    row[12].ToString() + "\t" + row[13].ToString());
             }
             swLog.Close();
             dtValue.Clear();
