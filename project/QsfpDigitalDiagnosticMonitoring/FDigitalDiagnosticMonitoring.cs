@@ -82,6 +82,10 @@ namespace QsfpDigitalDiagnosticMonitoring
                 MessageBox.Show("ucDigitalDiagnosticsMonitoring.SetI2cReadCBApi() faile Error!!");
                 return;
             }
+            if (ucDigitalDiagnosticsMonitoring.SetWritePasswordCBApi(ucInformation.WritePassword) < 0) {
+                MessageBox.Show("ucDigitalDiagnosticsMonitoring.SetWritePasswordCBApi() faile Error!!");
+                return;
+            }
 
             if (ucInformation.SetI2cReadCBApi(_I2cRead) < 0) {
                 MessageBox.Show("ucInformation.SetI2cReadCBApi() faile Error!!");

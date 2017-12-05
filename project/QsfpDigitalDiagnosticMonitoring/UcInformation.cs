@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace QsfpDigitalDiagnosticMonitoring
 {
@@ -198,38 +199,40 @@ namespace QsfpDigitalDiagnosticMonitoring
             byte[] reverseData;
             UInt16 u16Tmp;
 
+            bRead.Enabled = false;
+
             if (i2cReadCB == null)
-                return;
+                goto exit;
 
             if (i2cReadCB(80, 0, 1, data) != 1)
-                return;
+                goto exit;
 
             tbIdentifier.Text = "0x" + data[0].ToString("X2");
 
             if (i2cReadCB(80, 2, 1, data) != 1)
-                return;
+                goto exit;
 
             _ParserAddr2(data[0]);
 
             if (i2cReadCB(80, 86, 1, data) != 1)
-                return;
+                goto exit;
 
             _ParserAddr86(data[0]);
 
             if (i2cReadCB(80, 93, 1, data) != 1)
-                return;
+                goto exit;
 
             _ParserAddr93(data[0]);
 
             if (i2cWriteCB == null)
-                return;
+                goto exit;
 
             data[0] = 0;
             if (i2cWriteCB(80, 127, 1, data) < 0)
-                return;
+                goto exit;
 
             if (i2cReadCB(80, 128, 64, data) != 64)
-                return;
+                goto exit;
 
             tbUpPage0Identifier.Text = "0x" + data[0].ToString("X2");
             tbExtIdentifier.Text = "0x" + data[1].ToString("X2");
@@ -272,21 +275,25 @@ namespace QsfpDigitalDiagnosticMonitoring
             tbMaxCaseTemp.Text = data[62].ToString();
             tbCcBase.Text = "0x" + data[63].ToString("X2");
 
-            if (i2cReadCB(80, 193, 31, data) != 31)
-                return;
+            if (i2cReadCB(80, 192, 32, data) != 32)
+                goto exit;
 
-            _ParserAddr193(data[0]);
-            _ParserAddr194(data[1]);
-            _ParserAddr195(data[2]);
+            tbLinkCodes.Text = "0x" + data[0].ToString("X2");
+            _ParserAddr193(data[1]);
+            _ParserAddr194(data[2]);
+            _ParserAddr195(data[3]);
             bATmp = new byte[16];
-            System.Buffer.BlockCopy(data, 3, bATmp, 0, 16);
+            System.Buffer.BlockCopy(data, 4, bATmp, 0, 16);
             tbVendorSn.Text = Encoding.Default.GetString(bATmp);
             bATmp = new byte[8];
-            System.Buffer.BlockCopy(data, 19, bATmp, 0, 8);
+            System.Buffer.BlockCopy(data, 20, bATmp, 0, 8);
             tbDateCode.Text = Encoding.Default.GetString(bATmp);
-            tbDiagnosticMonitoringType.Text = "0x" + data[27].ToString("X2");
-            tbEnhancedOptions.Text = "0x" + data[28].ToString("X2");
-            tbCcExt.Text = "0x" + data[30].ToString("X2");
+            tbDiagnosticMonitoringType.Text = "0x" + data[28].ToString("X2");
+            tbEnhancedOptions.Text = "0x" + data[29].ToString("X2");
+            tbCcExt.Text = "0x" + data[31].ToString("X2");
+
+        exit:
+            bRead.Enabled = true;
         }
 
         private int _WriteAddr86()
@@ -375,6 +382,11 @@ namespace QsfpDigitalDiagnosticMonitoring
                 return -1;
 
             return 0;
+        }
+
+        public int WritePassword()
+        {
+            return _WriteAddr123();
         }
 
         private int _WriteUpPage0()
@@ -554,50 +566,55 @@ namespace QsfpDigitalDiagnosticMonitoring
 
             Array.Clear(data, 0, 64);
 
-            if (cbRxOutputAmplitudeProgramming.Checked == true)
-                data[0] |= 0x01;
+            if (tbLinkCodes.Text.Length != 4 || tbLinkCodes.Text.ElementAt(1) != 'x')
+                return -1;
+            iTmp = Int32.Parse(tbLinkCodes.Text.Substring(2), System.Globalization.NumberStyles.HexNumber);
+            data[0] = Convert.ToByte(iTmp);
 
-            if (cbRxSquelchDisableImplemented.Checked == true)
-                data[1] |= 0x08;
-            if (cbRxOutputDisableCapable.Checked == true)
-                data[1] |= 0x04;
-            if (cbTxSquelchDisableImplemented.Checked == true)
-                data[1] |= 0x02;
-            if (cbTxSquelchImplemented.Checked == true)
+            if (cbRxOutputAmplitudeProgramming.Checked == true)
                 data[1] |= 0x01;
 
-            if (cbMemoryPage02Provided.Checked == true)
-                data[2] |= 0x80;
-            if (cbMemoryPage01Provided.Checked == true)
-                data[2] |= 0x40;
-            if (cbRateSelectImplemented.Checked == true)
-                data[2] |= 0x20;
-            if (cbTxDisableImplemented.Checked == true)
-                data[2] |= 0x10;
-            if (cbTxFaultSignalImplemented.Checked == true)
+            if (cbRxSquelchDisableImplemented.Checked == true)
                 data[2] |= 0x08;
-            if (cbTxSquelchImplementedToReduceOma.Checked == true)
+            if (cbRxOutputDisableCapable.Checked == true)
                 data[2] |= 0x04;
-            if (cbTxLossOfSignal.Checked == true)
+            if (cbTxSquelchDisableImplemented.Checked == true)
                 data[2] |= 0x02;
+            if (cbTxSquelchImplemented.Checked == true)
+                data[2] |= 0x01;
+
+            if (cbMemoryPage02Provided.Checked == true)
+                data[3] |= 0x80;
+            if (cbMemoryPage01Provided.Checked == true)
+                data[3] |= 0x40;
+            if (cbRateSelectImplemented.Checked == true)
+                data[3] |= 0x20;
+            if (cbTxDisableImplemented.Checked == true)
+                data[3] |= 0x10;
+            if (cbTxFaultSignalImplemented.Checked == true)
+                data[3] |= 0x08;
+            if (cbTxSquelchImplementedToReduceOma.Checked == true)
+                data[3] |= 0x04;
+            if (cbTxLossOfSignal.Checked == true)
+                data[3] |= 0x02;
 
             bATmp = Encoding.ASCII.GetBytes(tbVendorSn.Text);
-            System.Buffer.BlockCopy(bATmp, 0, data, 3, bATmp.Length > 16 ? 16 : bATmp.Length);
+            System.Buffer.BlockCopy(bATmp, 0, data, 4, bATmp.Length > 16 ? 16 : bATmp.Length);
 
             bATmp = Encoding.ASCII.GetBytes(tbDateCode.Text);
-            System.Buffer.BlockCopy(bATmp, 0, data, 19, bATmp.Length > 8 ? 8 : bATmp.Length);
+            System.Buffer.BlockCopy(bATmp, 0, data, 20, bATmp.Length > 8 ? 8 : bATmp.Length);
 
             if (tbDiagnosticMonitoringType.Text.Length != 4 || tbDiagnosticMonitoringType.Text.ElementAt(1) != 'x')
                 return -1;
             iTmp = Int32.Parse(tbDiagnosticMonitoringType.Text.Substring(2), System.Globalization.NumberStyles.HexNumber);
-            data[27] = Convert.ToByte(iTmp);
+            data[28] = Convert.ToByte(iTmp);
 
             if (tbEnhancedOptions.Text.Length != 4 || tbEnhancedOptions.Text.ElementAt(1) != 'x')
                 return -1;
             iTmp = Int32.Parse(tbEnhancedOptions.Text.Substring(2), System.Globalization.NumberStyles.HexNumber);
-            data[28] = Convert.ToByte(iTmp);
+            data[29] = Convert.ToByte(iTmp);
 
-            if (i2cWriteCB(80, 193, 29, data) < 0)
+            if (i2cWriteCB(80, 192, 30, data) < 0)
                 return -1;
 
             return 0;
@@ -607,29 +624,34 @@ namespace QsfpDigitalDiagnosticMonitoring
         {
             int rv;
 
+            bWrite.Enabled = false;
+
             if (tbPassword.Text.Length != 4) {
                 tbPassword.Text = "";
                 MessageBox.Show("Please input 4 char password before write!!");
-                return;
+                goto exit;
             }
 
             if (_WriteAddr123() < 0)
-                return;
+                goto exit;
 
             rv = _WriteAddr119();
             if (rv < 0)
-                return;
+                goto exit;
             else if (rv == 1)
-                return;
+                goto exit;
 
             if (_WriteAddr86() < 0)
-                return;
+                goto exit;
 
             if (_WriteAddr93() < 0)
-                return;
+                goto exit;
 
             if (_WriteUpPage0() < 0)
-                return;
+                goto exit;
+
+        exit:
+            bWrite.Enabled = true;
         }
 
         private void _bPasswordReset_Click(object sender, EventArgs e)
@@ -650,6 +672,36 @@ namespace QsfpDigitalDiagnosticMonitoring
 
             tbPassword.Text = "";
             MessageBox.Show("QSFP+ password reseted");
+        }
+
+        private void bStoreIntoFlash_Click(object sender, EventArgs e)
+        {
+            byte[] data = new byte[1];
+
+            bStoreIntoFlash.Enabled = false;
+
+            if (_WriteAddr123() < 0)
+                goto exit;
+
+            if (_SetQsfpMode(0x4D) < 0)
+                goto exit;
+
+            if (i2cWriteCB == null)
+                goto exit;
+
+            data[0] = 32;
+            if (i2cWriteCB(80, 127, 1, data) < 0)
+                goto exit;
+
+            data[0] = 0xAA;
+            if (i2cWriteCB(80, 162, 1, data) < 0)
+                goto exit;
+
+            Thread.Sleep(1000);
+
+        exit:
+            _SetQsfpMode(0);
+            bStoreIntoFlash.Enabled = true;
         }
 
     }

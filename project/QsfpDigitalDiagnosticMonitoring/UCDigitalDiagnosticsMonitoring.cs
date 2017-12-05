@@ -6,7 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
+using System.Threading;
 using I2cMasterInterface;
 
 namespace QsfpDigitalDiagnosticMonitoring
@@ -15,9 +15,11 @@ namespace QsfpDigitalDiagnosticMonitoring
     {
         public delegate int I2cReadCB(byte devAddr, byte regAddr, byte length, byte[] data);
         public delegate int I2cWriteCB(byte devAddr, byte regAddr, byte length, byte[] data);
+        public delegate int WritePasswordCB();
 
         private I2cReadCB i2cReadCB = null;
         private I2cWriteCB i2cWriteCB = null;
+        private WritePasswordCB writePasswordCB = null;
 
         public UCDigitalDiagnosticsMonitoring()
         {
@@ -40,6 +42,16 @@ namespace QsfpDigitalDiagnosticMonitoring
                 return -1;
 
             i2cWriteCB = new I2cWriteCB(cb);
+
+            return 0;
+        }
+
+        public int SetWritePasswordCBApi(WritePasswordCB cb)
+        {
+            if (cb == null)
+                return -1;
+
+            writePasswordCB = new WritePasswordCB(cb);
 
             return 0;
         }
@@ -488,6 +500,12 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (i2cWriteCB(80, 103, 1, data) < 0)
                 return -1;
 
+            if (writePasswordCB == null)
+                return -1;
+
+            if (writePasswordCB() < 0)
+                return -1;
+
             data[0] = 3;
             if (i2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
@@ -756,6 +774,12 @@ namespace QsfpDigitalDiagnosticMonitoring
                 data[0] |= 0x10;
 
             if (i2cWriteCB(80, 104, 1, data) < 0)
+                return -1;
+
+            if (writePasswordCB == null)
+                return -1;
+
+            if (writePasswordCB() < 0)
                 return -1;
 
             data[0] = 3;
@@ -1180,6 +1204,12 @@ namespace QsfpDigitalDiagnosticMonitoring
                 return -1;
 
             if (i2cWriteCB == null)
+                return -1;
+
+            if (writePasswordCB == null)
+                return -1;
+
+            if (writePasswordCB() < 0)
                 return -1;
 
             data[0] = 3;
@@ -1642,6 +1672,12 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (i2cWriteCB == null)
                 return -1;
 
+            if (writePasswordCB == null)
+                return -1;
+
+            if (writePasswordCB() < 0)
+                return -1;
+
             data[0] = 3;
             if (i2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
@@ -1781,44 +1817,84 @@ namespace QsfpDigitalDiagnosticMonitoring
 
         private void bRead_Click(object sender, EventArgs e)
         {
+            bRead.Enabled = false;
             if (_LosAndFaultRead() < 0)
-                return;
+                goto exit;
 
             if (_MiscRead() < 0)
-                return;
+                goto exit;
 
             if (_TemperatureRead() < 0)
-                return;
+                goto exit;
 
             if (_VccRead() < 0)
-                return;
+                goto exit;
 
             if (_RxPowerRead() < 0)
-                return;
+                goto exit;
 
             if (_TxBiasRead() < 0)
-                return;
+                goto exit;
+        exit:
+            bRead.Enabled = true;
         }
 
         private void bWrite_Click(object sender, EventArgs e)
         {
+            bWrite.Enabled = false;
+
             if (_LosAndFaultWrite() < 0)
-                return;
+                goto exit;
 
             if (_MiscWrite() < 0)
-                return;
+                goto exit;
 
             if (_TemperatureWrite() < 0)
-                return;
+                goto exit;
 
             if (_VccWrite() < 0)
-                return;
+                goto exit;
 
             if (_RxPowerWrite() < 0)
-                return;
+                goto exit;
 
             if (_TxBiasWrite() < 0)
-                return;
+                goto exit;
+        exit:
+            bWrite.Enabled = true;
+        }
+
+        private void bStoreIntoFlash_Click(object sender, EventArgs e)
+        {
+            byte[] data = new byte[1];
+
+            bStoreIntoFlash.Enabled = false;
+
+            if (writePasswordCB == null)
+                goto exit;
+
+            if (writePasswordCB() < 0)
+                goto exit;
+
+            if (_SetQsfpMode(0x4D) < 0)
+                goto exit;
+
+            if (i2cWriteCB == null)
+                goto exit;
+
+            data[0] = 32;
+            if (i2cWriteCB(80, 127, 1, data) < 0)
+                goto exit;
+
+            data[0] = 0xAA;
+            if (i2cWriteCB(80, 162, 1, data) < 0)
+                goto exit;
+
+            Thread.Sleep(1000);
+
+        exit:
+            _SetQsfpMode(0);
+            bStoreIntoFlash.Enabled = true;
         }
 
     }

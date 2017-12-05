@@ -129,6 +129,9 @@
             this.tbUpPage0Identifier = new System.Windows.Forms.TextBox();
             this.lUpPage0Identifier = new System.Windows.Forms.Label();
             this.bPasswordReset = new System.Windows.Forms.Button();
+            this.bStoreIntoFlash = new System.Windows.Forms.Button();
+            this.tbLinkCodes = new System.Windows.Forms.TextBox();
+            this.lLinkCodes = new System.Windows.Forms.Label();
             this.gbControlBytes.SuspendLayout();
             this.gbSpecificationCompliance.SuspendLayout();
             this.gbUpPage0.SuspendLayout();
@@ -468,6 +471,8 @@
             // 
             // gbUpPage0
             // 
+            this.gbUpPage0.Controls.Add(this.tbLinkCodes);
+            this.gbUpPage0.Controls.Add(this.lLinkCodes);
             this.gbUpPage0.Controls.Add(this.tbNewPassword);
             this.gbUpPage0.Controls.Add(this.lNewPassword);
             this.gbUpPage0.Controls.Add(this.tbPassword);
@@ -1109,10 +1114,37 @@
             this.bPasswordReset.UseVisualStyleBackColor = true;
             this.bPasswordReset.Click += new System.EventHandler(this._bPasswordReset_Click);
             // 
+            // bStoreIntoFlash
+            // 
+            this.bStoreIntoFlash.Location = new System.Drawing.Point(622, 38);
+            this.bStoreIntoFlash.Name = "bStoreIntoFlash";
+            this.bStoreIntoFlash.Size = new System.Drawing.Size(75, 40);
+            this.bStoreIntoFlash.TabIndex = 29;
+            this.bStoreIntoFlash.Text = "Store Into Flash";
+            this.bStoreIntoFlash.UseVisualStyleBackColor = true;
+            this.bStoreIntoFlash.Click += new System.EventHandler(this.bStoreIntoFlash_Click);
+            // 
+            // tbLinkCodes
+            // 
+            this.tbLinkCodes.Location = new System.Drawing.Point(330, 270);
+            this.tbLinkCodes.Name = "tbLinkCodes";
+            this.tbLinkCodes.Size = new System.Drawing.Size(40, 22);
+            this.tbLinkCodes.TabIndex = 71;
+            // 
+            // lLinkCodes
+            // 
+            this.lLinkCodes.AutoSize = true;
+            this.lLinkCodes.Location = new System.Drawing.Point(259, 273);
+            this.lLinkCodes.Name = "lLinkCodes";
+            this.lLinkCodes.Size = new System.Drawing.Size(65, 12);
+            this.lLinkCodes.TabIndex = 70;
+            this.lLinkCodes.Text = "Link Codes :";
+            // 
             // UcInformation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.bStoreIntoFlash);
             this.Controls.Add(this.bPasswordReset);
             this.Controls.Add(this.gbUpPage0);
             this.Controls.Add(this.gbControlBytes);
@@ -1244,5 +1276,8 @@
         private System.Windows.Forms.TextBox tbNewPassword;
         private System.Windows.Forms.Label lNewPassword;
         private System.Windows.Forms.Button bPasswordReset;
+        private System.Windows.Forms.Button bStoreIntoFlash;
+        private System.Windows.Forms.TextBox tbLinkCodes;
+        private System.Windows.Forms.Label lLinkCodes;
     }
 }

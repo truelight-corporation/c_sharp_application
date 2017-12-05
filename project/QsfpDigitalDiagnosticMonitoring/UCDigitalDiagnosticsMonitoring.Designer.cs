@@ -207,6 +207,7 @@
             this.bMiscRead = new System.Windows.Forms.Button();
             this.cbInitCompleteMask = new System.Windows.Forms.CheckBox();
             this.cbInitComplete = new System.Windows.Forms.CheckBox();
+            this.bStoreIntoFlash = new System.Windows.Forms.Button();
             this.gbTemperature.SuspendLayout();
             this.gbVcc.SuspendLayout();
             this.gbRxPower.SuspendLayout();
@@ -2138,10 +2139,21 @@
             this.cbInitComplete.Text = "Init Complete";
             this.cbInitComplete.UseVisualStyleBackColor = true;
             // 
+            // bStoreIntoFlash
+            // 
+            this.bStoreIntoFlash.Location = new System.Drawing.Point(498, 3);
+            this.bStoreIntoFlash.Name = "bStoreIntoFlash";
+            this.bStoreIntoFlash.Size = new System.Drawing.Size(100, 21);
+            this.bStoreIntoFlash.TabIndex = 67;
+            this.bStoreIntoFlash.Text = "Store Into Flash";
+            this.bStoreIntoFlash.UseVisualStyleBackColor = true;
+            this.bStoreIntoFlash.Click += new System.EventHandler(this.bStoreIntoFlash_Click);
+            // 
             // UCDigitalDiagnosticsMonitoring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.bStoreIntoFlash);
             this.Controls.Add(this.gbMisc);
             this.Controls.Add(this.gbLosFault);
             this.Controls.Add(this.gbTxBias);
@@ -2350,5 +2362,6 @@
         private System.Windows.Forms.Button bMiscRead;
         private System.Windows.Forms.CheckBox cbInitCompleteMask;
         private System.Windows.Forms.CheckBox cbInitComplete;
+        private System.Windows.Forms.Button bStoreIntoFlash;
     }
 }
