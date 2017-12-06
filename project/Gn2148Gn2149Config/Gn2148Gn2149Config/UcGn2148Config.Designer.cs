@@ -207,6 +207,7 @@
             this.bStoreIntoFlash.TabIndex = 6;
             this.bStoreIntoFlash.Text = "Store Into Flash";
             this.bStoreIntoFlash.UseVisualStyleBackColor = true;
+            this.bStoreIntoFlash.Click += new System.EventHandler(this.bStoreIntoFlash_Click);
             // 
             // bReadAll
             // 
@@ -309,7 +310,7 @@
             this.tpChannelConfig.Location = new System.Drawing.Point(4, 22);
             this.tpChannelConfig.Name = "tpChannelConfig";
             this.tpChannelConfig.Padding = new System.Windows.Forms.Padding(3);
-            this.tpChannelConfig.Size = new System.Drawing.Size(632, 458);
+            this.tpChannelConfig.Size = new System.Drawing.Size(633, 458);
             this.tpChannelConfig.TabIndex = 0;
             this.tpChannelConfig.Text = "Channel";
             this.tpChannelConfig.UseVisualStyleBackColor = true;

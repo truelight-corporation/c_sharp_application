@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Gn2148Gn2149Config
@@ -3061,6 +3062,17 @@ namespace Gn2148Gn2149Config
 
             if (_WriteAddr1A9() < 0)
                 return;
+        }
+
+        private void bStoreIntoFlash_Click(object sender, EventArgs e)
+        {
+            byte[] data = new byte[1];
+            int rv;
+
+            bStoreIntoFlash.Enabled = false;
+            rv = i2cWrite16CB(86, BitConverter.GetBytes((ushort)0x05AA).Reverse().ToArray(), 1, data);
+            Thread.Sleep(1000);
+            bStoreIntoFlash.Enabled = true;
         }
     }
 }
