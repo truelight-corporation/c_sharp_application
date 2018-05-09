@@ -125,7 +125,7 @@ namespace QsfpPlus40gSr4Config
             byte[] data = new byte[12];
             byte[] bATmp = new byte[2];
             String sTmp = "170001001001";
-            int iTmp;
+            int iTmp = -1;
 
             data[0] = 32;
             if (_I2cWrite(80, 127, 1, data) < 0)
@@ -137,7 +137,12 @@ namespace QsfpPlus40gSr4Config
             bATmp = new byte[2];
             System.Buffer.BlockCopy(data, 0, bATmp, 0, 2);
             tbFirmwareVersion.Text = Encoding.Default.GetString(bATmp);
-            iTmp = Convert.ToInt32(tbFirmwareVersion.Text);
+            try {
+                iTmp = Convert.ToInt32(tbFirmwareVersion.Text);
+            }
+            catch (Exception e) {
+                MessageBox.Show(e.ToString());
+            }
             if (iTmp < 9)
                 MessageBox.Show("GUI cannot support Version: " + tbFirmwareVersion.Text + " < 9!!");
 

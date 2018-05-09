@@ -75,7 +75,7 @@
             this.tpGn1090.Location = new System.Drawing.Point(4, 22);
             this.tpGn1090.Name = "tpGn1090";
             this.tpGn1090.Padding = new System.Windows.Forms.Padding(3);
-            this.tpGn1090.Size = new System.Drawing.Size(770, 840);
+            this.tpGn1090.Size = new System.Drawing.Size(770, 766);
             this.tpGn1090.TabIndex = 0;
             this.tpGn1090.Text = "GN1090";
             this.tpGn1090.UseVisualStyleBackColor = true;
@@ -93,7 +93,7 @@
             this.tpGn1190.Location = new System.Drawing.Point(4, 22);
             this.tpGn1190.Name = "tpGn1190";
             this.tpGn1190.Padding = new System.Windows.Forms.Padding(3);
-            this.tpGn1190.Size = new System.Drawing.Size(770, 840);
+            this.tpGn1190.Size = new System.Drawing.Size(770, 766);
             this.tpGn1190.TabIndex = 1;
             this.tpGn1190.Text = "GN1190";
             this.tpGn1190.UseVisualStyleBackColor = true;
@@ -188,7 +188,7 @@
             this.Controls.Add(this.tcFunctionSelect);
             this.Controls.Add(this.cbConnected);
             this.Name = "fQsfpPlus40gSr4Config";
-            this.Text = "QSFP+ 40G SR4 Config 20170926 (Firmware version >= 9)";
+            this.Text = "QSFP+ 40G SR4 Config 20180102 (Firmware version >= 9)";
             this.tcFunctionSelect.ResumeLayout(false);
             this.tpGn1090.ResumeLayout(false);
             this.tpGn1190.ResumeLayout(false);
