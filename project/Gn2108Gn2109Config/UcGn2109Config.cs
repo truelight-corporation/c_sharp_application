@@ -1220,7 +1220,7 @@ namespace Gn2108Gn2109Config
 
         private void _ParseAddr400(byte data)
         {
-            if ((data & 0x10) == 0)
+            if ((data & 0x01) == 0)
                 cbTiaRssiDiv.Checked = false;
             else
                 cbTiaRssiDiv.Checked = true;
