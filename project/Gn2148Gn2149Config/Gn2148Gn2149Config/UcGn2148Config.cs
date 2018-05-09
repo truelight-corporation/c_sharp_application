@@ -730,7 +730,7 @@ namespace Gn2148Gn2149Config
             int iTmp;
 
             iTmp = data0;
-            iTmp |= (data1 & 0x03) << 7;
+            iTmp += (data1 & 0x03) * 256;
 
             tbTemperature.Text = iTmp.ToString();
         }
@@ -745,7 +745,7 @@ namespace Gn2148Gn2149Config
             int iTmp;
 
             iTmp = data0;
-            iTmp |= (data1 & 0x03) << 7;
+            iTmp += (data1 & 0x03) * 256;
 
             tbVccSupply.Text = iTmp.ToString();
         }
@@ -755,7 +755,7 @@ namespace Gn2148Gn2149Config
             int iTmp;
 
             iTmp = data0;
-            iTmp |= (data1 & 0x03) << 7;
+            iTmp += (data1 & 0x03) * 256;
 
             tbVcc2Supply.Text = iTmp.ToString();
         }
