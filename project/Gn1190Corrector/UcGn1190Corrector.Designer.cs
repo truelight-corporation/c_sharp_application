@@ -52,6 +52,7 @@
             this.lTemperatureOffset = new System.Windows.Forms.Label();
             this.tbTemperatureOffset = new System.Windows.Forms.TextBox();
             this.gbAutoCorrect = new System.Windows.Forms.GroupBox();
+            this.cbVoltageCorrected = new System.Windows.Forms.CheckBox();
             this.bReset = new System.Windows.Forms.Button();
             this.cbRxPowerRateCorrected = new System.Windows.Forms.CheckBox();
             this.bAutoCorrect = new System.Windows.Forms.Button();
@@ -226,19 +227,21 @@
             this.tbAverageCurrentMin = new System.Windows.Forms.TextBox();
             this.bStoreIntoFlash = new System.Windows.Forms.Button();
             this.gbVcc = new System.Windows.Forms.GroupBox();
-            this.lVccOffset = new System.Windows.Forms.Label();
-            this.lVcc = new System.Windows.Forms.Label();
-            this.lTxVcc = new System.Windows.Forms.Label();
-            this.lVccOffsetUnit = new System.Windows.Forms.Label();
-            this.tbVoltage = new System.Windows.Forms.TextBox();
-            this.tbTxVoltage = new System.Windows.Forms.TextBox();
-            this.lVoltage = new System.Windows.Forms.Label();
-            this.tbVoltageOffset = new System.Windows.Forms.TextBox();
             this.bVoltageReset = new System.Windows.Forms.Button();
             this.bVoltageAutoCorrect = new System.Windows.Forms.Button();
             this.bVoltageWrite = new System.Windows.Forms.Button();
             this.bVoltageRead = new System.Windows.Forms.Button();
-            this.cbVoltageCorrected = new System.Windows.Forms.CheckBox();
+            this.lVccOffsetUnit = new System.Windows.Forms.Label();
+            this.lVcc = new System.Windows.Forms.Label();
+            this.tbVoltage = new System.Windows.Forms.TextBox();
+            this.lTxVcc = new System.Windows.Forms.Label();
+            this.tbTxVoltage = new System.Windows.Forms.TextBox();
+            this.lVoltage = new System.Windows.Forms.Label();
+            this.lVccOffset = new System.Windows.Forms.Label();
+            this.tbVoltageOffset = new System.Windows.Forms.TextBox();
+            this.tbLutTemperature = new System.Windows.Forms.TextBox();
+            this.lLutTemperature = new System.Windows.Forms.Label();
+            this.bLutTemperatureUpdate = new System.Windows.Forms.Button();
             this.gbTemperature.SuspendLayout();
             this.gbAutoCorrect.SuspendLayout();
             this.gbRxPowerRate.SuspendLayout();
@@ -487,6 +490,17 @@
             this.gbAutoCorrect.TabIndex = 20;
             this.gbAutoCorrect.TabStop = false;
             this.gbAutoCorrect.Text = "Auto Correct";
+            // 
+            // cbVoltageCorrected
+            // 
+            this.cbVoltageCorrected.AutoSize = true;
+            this.cbVoltageCorrected.Enabled = false;
+            this.cbVoltageCorrected.Location = new System.Drawing.Point(6, 21);
+            this.cbVoltageCorrected.Name = "cbVoltageCorrected";
+            this.cbVoltageCorrected.Size = new System.Drawing.Size(60, 16);
+            this.cbVoltageCorrected.TabIndex = 17;
+            this.cbVoltageCorrected.Text = "Voltage";
+            this.cbVoltageCorrected.UseVisualStyleBackColor = true;
             // 
             // bReset
             // 
@@ -984,6 +998,9 @@
             // 
             // gbAcMcEquation
             // 
+            this.gbAcMcEquation.Controls.Add(this.bLutTemperatureUpdate);
+            this.gbAcMcEquation.Controls.Add(this.tbLutTemperature);
+            this.gbAcMcEquation.Controls.Add(this.lLutTemperature);
             this.gbAcMcEquation.Controls.Add(this.tbPeakLenCtrlEquationCCh4);
             this.gbAcMcEquation.Controls.Add(this.tbPeakLenCtrlEquationBCh4);
             this.gbAcMcEquation.Controls.Add(this.tbPeakLenCtrlEquationACh4);
@@ -2099,73 +2116,6 @@
             this.gbVcc.TabStop = false;
             this.gbVcc.Text = "Voltage";
             // 
-            // lVccOffset
-            // 
-            this.lVccOffset.AutoSize = true;
-            this.lVccOffset.Location = new System.Drawing.Point(171, 18);
-            this.lVccOffset.Name = "lVccOffset";
-            this.lVccOffset.Size = new System.Drawing.Size(33, 12);
-            this.lVccOffset.TabIndex = 188;
-            this.lVccOffset.Text = "Offset";
-            // 
-            // lVcc
-            // 
-            this.lVcc.AutoSize = true;
-            this.lVcc.Location = new System.Drawing.Point(77, 18);
-            this.lVcc.Name = "lVcc";
-            this.lVcc.Size = new System.Drawing.Size(29, 12);
-            this.lVcc.TabIndex = 17;
-            this.lVcc.Text = "VCC";
-            // 
-            // lTxVcc
-            // 
-            this.lTxVcc.AutoSize = true;
-            this.lTxVcc.Location = new System.Drawing.Point(26, 18);
-            this.lTxVcc.Name = "lTxVcc";
-            this.lTxVcc.Size = new System.Drawing.Size(18, 12);
-            this.lTxVcc.TabIndex = 16;
-            this.lTxVcc.Text = "Tx";
-            // 
-            // lVccOffsetUnit
-            // 
-            this.lVccOffsetUnit.AutoSize = true;
-            this.lVccOffsetUnit.Location = new System.Drawing.Point(225, 36);
-            this.lVccOffsetUnit.Name = "lVccOffsetUnit";
-            this.lVccOffsetUnit.Size = new System.Drawing.Size(34, 12);
-            this.lVccOffsetUnit.TabIndex = 20;
-            this.lVccOffsetUnit.Text = "25mV";
-            // 
-            // tbVoltage
-            // 
-            this.tbVoltage.Location = new System.Drawing.Point(66, 33);
-            this.tbVoltage.Name = "tbVoltage";
-            this.tbVoltage.Size = new System.Drawing.Size(50, 22);
-            this.tbVoltage.TabIndex = 19;
-            // 
-            // tbTxVoltage
-            // 
-            this.tbTxVoltage.Location = new System.Drawing.Point(10, 33);
-            this.tbTxVoltage.Name = "tbTxVoltage";
-            this.tbTxVoltage.ReadOnly = true;
-            this.tbTxVoltage.Size = new System.Drawing.Size(50, 22);
-            this.tbTxVoltage.TabIndex = 16;
-            // 
-            // lVoltage
-            // 
-            this.lVoltage.AutoSize = true;
-            this.lVoltage.Location = new System.Drawing.Point(131, 36);
-            this.lVoltage.Name = "lVoltage";
-            this.lVoltage.Size = new System.Drawing.Size(13, 12);
-            this.lVoltage.TabIndex = 17;
-            this.lVoltage.Text = "V";
-            // 
-            // tbVoltageOffset
-            // 
-            this.tbVoltageOffset.Location = new System.Drawing.Point(159, 33);
-            this.tbVoltageOffset.Name = "tbVoltageOffset";
-            this.tbVoltageOffset.Size = new System.Drawing.Size(60, 22);
-            this.tbVoltageOffset.TabIndex = 18;
-            // 
             // bVoltageReset
             // 
             this.bVoltageReset.Location = new System.Drawing.Point(438, 21);
@@ -2206,16 +2156,98 @@
             this.bVoltageRead.UseVisualStyleBackColor = true;
             this.bVoltageRead.Click += new System.EventHandler(this.bVoltageRead_Click);
             // 
-            // cbVoltageCorrected
+            // lVccOffsetUnit
             // 
-            this.cbVoltageCorrected.AutoSize = true;
-            this.cbVoltageCorrected.Enabled = false;
-            this.cbVoltageCorrected.Location = new System.Drawing.Point(6, 21);
-            this.cbVoltageCorrected.Name = "cbVoltageCorrected";
-            this.cbVoltageCorrected.Size = new System.Drawing.Size(60, 16);
-            this.cbVoltageCorrected.TabIndex = 17;
-            this.cbVoltageCorrected.Text = "Voltage";
-            this.cbVoltageCorrected.UseVisualStyleBackColor = true;
+            this.lVccOffsetUnit.AutoSize = true;
+            this.lVccOffsetUnit.Location = new System.Drawing.Point(225, 36);
+            this.lVccOffsetUnit.Name = "lVccOffsetUnit";
+            this.lVccOffsetUnit.Size = new System.Drawing.Size(34, 12);
+            this.lVccOffsetUnit.TabIndex = 20;
+            this.lVccOffsetUnit.Text = "25mV";
+            // 
+            // lVcc
+            // 
+            this.lVcc.AutoSize = true;
+            this.lVcc.Location = new System.Drawing.Point(77, 18);
+            this.lVcc.Name = "lVcc";
+            this.lVcc.Size = new System.Drawing.Size(29, 12);
+            this.lVcc.TabIndex = 17;
+            this.lVcc.Text = "VCC";
+            // 
+            // tbVoltage
+            // 
+            this.tbVoltage.Location = new System.Drawing.Point(66, 33);
+            this.tbVoltage.Name = "tbVoltage";
+            this.tbVoltage.Size = new System.Drawing.Size(50, 22);
+            this.tbVoltage.TabIndex = 19;
+            // 
+            // lTxVcc
+            // 
+            this.lTxVcc.AutoSize = true;
+            this.lTxVcc.Location = new System.Drawing.Point(26, 18);
+            this.lTxVcc.Name = "lTxVcc";
+            this.lTxVcc.Size = new System.Drawing.Size(18, 12);
+            this.lTxVcc.TabIndex = 16;
+            this.lTxVcc.Text = "Tx";
+            // 
+            // tbTxVoltage
+            // 
+            this.tbTxVoltage.Location = new System.Drawing.Point(10, 33);
+            this.tbTxVoltage.Name = "tbTxVoltage";
+            this.tbTxVoltage.ReadOnly = true;
+            this.tbTxVoltage.Size = new System.Drawing.Size(50, 22);
+            this.tbTxVoltage.TabIndex = 16;
+            // 
+            // lVoltage
+            // 
+            this.lVoltage.AutoSize = true;
+            this.lVoltage.Location = new System.Drawing.Point(131, 36);
+            this.lVoltage.Name = "lVoltage";
+            this.lVoltage.Size = new System.Drawing.Size(13, 12);
+            this.lVoltage.TabIndex = 17;
+            this.lVoltage.Text = "V";
+            // 
+            // lVccOffset
+            // 
+            this.lVccOffset.AutoSize = true;
+            this.lVccOffset.Location = new System.Drawing.Point(171, 18);
+            this.lVccOffset.Name = "lVccOffset";
+            this.lVccOffset.Size = new System.Drawing.Size(33, 12);
+            this.lVccOffset.TabIndex = 188;
+            this.lVccOffset.Text = "Offset";
+            // 
+            // tbVoltageOffset
+            // 
+            this.tbVoltageOffset.Location = new System.Drawing.Point(159, 33);
+            this.tbVoltageOffset.Name = "tbVoltageOffset";
+            this.tbVoltageOffset.Size = new System.Drawing.Size(60, 22);
+            this.tbVoltageOffset.TabIndex = 18;
+            // 
+            // tbLutTemperature
+            // 
+            this.tbLutTemperature.Location = new System.Drawing.Point(685, 171);
+            this.tbLutTemperature.Name = "tbLutTemperature";
+            this.tbLutTemperature.Size = new System.Drawing.Size(50, 22);
+            this.tbLutTemperature.TabIndex = 189;
+            // 
+            // lLutTemperature
+            // 
+            this.lLutTemperature.AutoSize = true;
+            this.lLutTemperature.Location = new System.Drawing.Point(682, 147);
+            this.lLutTemperature.Name = "lLutTemperature";
+            this.lLutTemperature.Size = new System.Drawing.Size(57, 12);
+            this.lLutTemperature.TabIndex = 188;
+            this.lLutTemperature.Text = "LUT Temp";
+            // 
+            // bLutTemperatureUpdate
+            // 
+            this.bLutTemperatureUpdate.Location = new System.Drawing.Point(681, 199);
+            this.bLutTemperatureUpdate.Name = "bLutTemperatureUpdate";
+            this.bLutTemperatureUpdate.Size = new System.Drawing.Size(60, 23);
+            this.bLutTemperatureUpdate.TabIndex = 190;
+            this.bLutTemperatureUpdate.Text = "Update";
+            this.bLutTemperatureUpdate.UseVisualStyleBackColor = true;
+            this.bLutTemperatureUpdate.Click += new System.EventHandler(this.bLutTemperatureUpdate_Click);
             // 
             // UcGn1190Corrector
             // 
@@ -2467,5 +2499,8 @@
         private System.Windows.Forms.Label lVccOffset;
         private System.Windows.Forms.TextBox tbVoltageOffset;
         private System.Windows.Forms.CheckBox cbVoltageCorrected;
+        private System.Windows.Forms.TextBox tbLutTemperature;
+        private System.Windows.Forms.Label lLutTemperature;
+        private System.Windows.Forms.Button bLutTemperatureUpdate;
     }
 }

@@ -188,7 +188,7 @@ namespace Gn1190Corrector
             if (qsfpI2cReadCB(80, 242, 2, data) != 2)
                 return -1;
 
-            tmp = BitConverter.ToUInt16(data, 0);
+            tmp = BitConverter.ToInt16(data, 0);
             tbTemperatureSlope.Text = tmp.ToString();
 
             return 0;
@@ -434,7 +434,7 @@ namespace Gn1190Corrector
             byte[] data = new byte[2];
             byte[] bATmp;
             sbyte[] tmp = new sbyte[1];
-            ushort tmpU16;
+            short tmpS16;
 
             if (_WritePassword() < 0)
                 return -1;
@@ -455,7 +455,7 @@ namespace Gn1190Corrector
             }
 
             try {
-                tmpU16 = Convert.ToUInt16(tbTemperatureSlope.Text);
+                tmpS16 = Convert.ToInt16(tbTemperatureSlope.Text);
             }
             catch (Exception eTSB) {
                 MessageBox.Show("Temperature slope out of range (0 ~ 65536)!!\n" + eTSB.ToString());
@@ -476,7 +476,7 @@ namespace Gn1190Corrector
 
             qsfpI2cWriteCB(80, 241, 1, data);
 
-            bATmp = BitConverter.GetBytes(tmpU16);
+            bATmp = BitConverter.GetBytes(tmpS16);
             data[0] = bATmp[0];
             data[1] = bATmp[1];
 
@@ -2903,6 +2903,30 @@ namespace Gn1190Corrector
 
         exit:
             bStoreIntoFlash.Enabled = true;
+        }
+
+        private void bLutTemperatureUpdate_Click(object sender, EventArgs e)
+        {
+            byte[] data = new byte[2];
+            byte[] reverseData;
+            int tmp;
+
+            bLutTemperatureUpdate.Enabled = false;
+
+            data[0] = 32;
+            if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
+                goto exit;
+
+            Thread.Sleep(1);
+
+            if (qsfpI2cReadCB(80, 175, 2, data) != 2)
+                goto exit;
+
+            reverseData = data.Reverse().ToArray();
+            tmp = BitConverter.ToInt16(reverseData, 0);
+            tbLutTemperature.Text = tmp.ToString("#0");
+        exit:
+            bLutTemperatureUpdate.Enabled = true;
         }
     }
 }

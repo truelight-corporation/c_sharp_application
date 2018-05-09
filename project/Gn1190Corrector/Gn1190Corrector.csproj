@@ -68,6 +68,9 @@
   <PropertyGroup />
   <PropertyGroup />
   <PropertyGroup />
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="I2cMasterInterface">
       <HintPath>..\..\interface\I2cMaster\bin\Release\I2cMasterInterface.dll</HintPath>
