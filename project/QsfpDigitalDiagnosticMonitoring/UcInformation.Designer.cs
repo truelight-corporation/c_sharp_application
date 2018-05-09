@@ -63,6 +63,8 @@
             this.tbGigabitEthernetCompliant = new System.Windows.Forms.TextBox();
             this.lGigabitEthernetCompliant = new System.Windows.Forms.Label();
             this.gbUpPage0 = new System.Windows.Forms.GroupBox();
+            this.tbLinkCodes = new System.Windows.Forms.TextBox();
+            this.lLinkCodes = new System.Windows.Forms.Label();
             this.tbNewPassword = new System.Windows.Forms.TextBox();
             this.lNewPassword = new System.Windows.Forms.Label();
             this.tbPassword = new System.Windows.Forms.TextBox();
@@ -130,8 +132,22 @@
             this.lUpPage0Identifier = new System.Windows.Forms.Label();
             this.bPasswordReset = new System.Windows.Forms.Button();
             this.bStoreIntoFlash = new System.Windows.Forms.Button();
-            this.tbLinkCodes = new System.Windows.Forms.TextBox();
-            this.lLinkCodes = new System.Windows.Forms.Label();
+            this.cbRx4RateSelect = new System.Windows.Forms.ComboBox();
+            this.lRx4RateSelect = new System.Windows.Forms.Label();
+            this.lRx3RateSelect = new System.Windows.Forms.Label();
+            this.cbRx3RateSelect = new System.Windows.Forms.ComboBox();
+            this.lRx2RateSelect = new System.Windows.Forms.Label();
+            this.cbRx2RateSelect = new System.Windows.Forms.ComboBox();
+            this.lRx1RateSelect = new System.Windows.Forms.Label();
+            this.cbRx1RateSelect = new System.Windows.Forms.ComboBox();
+            this.lTx1RateSelect = new System.Windows.Forms.Label();
+            this.cbTx1RateSelect = new System.Windows.Forms.ComboBox();
+            this.lTx2RateSelect = new System.Windows.Forms.Label();
+            this.cbTx2RateSelect = new System.Windows.Forms.ComboBox();
+            this.lTx3RateSelect = new System.Windows.Forms.Label();
+            this.cbTx3RateSelect = new System.Windows.Forms.ComboBox();
+            this.lTx4RateSelect = new System.Windows.Forms.Label();
+            this.cbTx4RateSelect = new System.Windows.Forms.ComboBox();
             this.gbControlBytes.SuspendLayout();
             this.gbSpecificationCompliance.SuspendLayout();
             this.gbUpPage0.SuspendLayout();
@@ -183,7 +199,7 @@
             // 
             // bRead
             // 
-            this.bRead.Location = new System.Drawing.Point(622, 3);
+            this.bRead.Location = new System.Drawing.Point(627, 3);
             this.bRead.Name = "bRead";
             this.bRead.Size = new System.Drawing.Size(75, 23);
             this.bRead.TabIndex = 5;
@@ -193,7 +209,7 @@
             // 
             // bWrite
             // 
-            this.bWrite.Location = new System.Drawing.Point(703, 3);
+            this.bWrite.Location = new System.Drawing.Point(708, 3);
             this.bWrite.Name = "bWrite";
             this.bWrite.Size = new System.Drawing.Size(75, 23);
             this.bWrite.TabIndex = 6;
@@ -263,15 +279,31 @@
             // 
             // gbControlBytes
             // 
+            this.gbControlBytes.Controls.Add(this.lTx1RateSelect);
+            this.gbControlBytes.Controls.Add(this.cbTx1RateSelect);
+            this.gbControlBytes.Controls.Add(this.lTx2RateSelect);
+            this.gbControlBytes.Controls.Add(this.cbTx2RateSelect);
+            this.gbControlBytes.Controls.Add(this.lTx3RateSelect);
+            this.gbControlBytes.Controls.Add(this.cbTx3RateSelect);
+            this.gbControlBytes.Controls.Add(this.lTx4RateSelect);
+            this.gbControlBytes.Controls.Add(this.cbTx4RateSelect);
+            this.gbControlBytes.Controls.Add(this.lRx1RateSelect);
+            this.gbControlBytes.Controls.Add(this.cbRx1RateSelect);
+            this.gbControlBytes.Controls.Add(this.lRx2RateSelect);
+            this.gbControlBytes.Controls.Add(this.cbRx2RateSelect);
+            this.gbControlBytes.Controls.Add(this.lRx3RateSelect);
+            this.gbControlBytes.Controls.Add(this.cbRx3RateSelect);
+            this.gbControlBytes.Controls.Add(this.lRx4RateSelect);
+            this.gbControlBytes.Controls.Add(this.cbRx4RateSelect);
             this.gbControlBytes.Controls.Add(this.cbTx4Disable);
             this.gbControlBytes.Controls.Add(this.cbPowerOverride);
             this.gbControlBytes.Controls.Add(this.cbTx3Disable);
             this.gbControlBytes.Controls.Add(this.cbPowerSet);
             this.gbControlBytes.Controls.Add(this.cbTx2Disable);
             this.gbControlBytes.Controls.Add(this.cbTx1Disable);
-            this.gbControlBytes.Location = new System.Drawing.Point(5, 33);
+            this.gbControlBytes.Location = new System.Drawing.Point(3, 33);
             this.gbControlBytes.Name = "gbControlBytes";
-            this.gbControlBytes.Size = new System.Drawing.Size(522, 45);
+            this.gbControlBytes.Size = new System.Drawing.Size(581, 96);
             this.gbControlBytes.TabIndex = 13;
             this.gbControlBytes.TabStop = false;
             this.gbControlBytes.Text = "Control Bytes";
@@ -521,12 +553,28 @@
             this.gbUpPage0.Controls.Add(this.tbExtIdentifier);
             this.gbUpPage0.Controls.Add(this.lConnector);
             this.gbUpPage0.Controls.Add(this.lExtIdentifier);
-            this.gbUpPage0.Location = new System.Drawing.Point(5, 84);
+            this.gbUpPage0.Location = new System.Drawing.Point(3, 135);
             this.gbUpPage0.Name = "gbUpPage0";
             this.gbUpPage0.Size = new System.Drawing.Size(773, 399);
             this.gbUpPage0.TabIndex = 27;
             this.gbUpPage0.TabStop = false;
             this.gbUpPage0.Text = "UP Page 0";
+            // 
+            // tbLinkCodes
+            // 
+            this.tbLinkCodes.Location = new System.Drawing.Point(330, 270);
+            this.tbLinkCodes.Name = "tbLinkCodes";
+            this.tbLinkCodes.Size = new System.Drawing.Size(40, 22);
+            this.tbLinkCodes.TabIndex = 71;
+            // 
+            // lLinkCodes
+            // 
+            this.lLinkCodes.AutoSize = true;
+            this.lLinkCodes.Location = new System.Drawing.Point(259, 273);
+            this.lLinkCodes.Name = "lLinkCodes";
+            this.lLinkCodes.Size = new System.Drawing.Size(65, 12);
+            this.lLinkCodes.TabIndex = 70;
+            this.lLinkCodes.Text = "Link Codes :";
             // 
             // tbNewPassword
             // 
@@ -1064,7 +1112,6 @@
             // cbExtendedRateSelect
             // 
             this.cbExtendedRateSelect.AutoSize = true;
-            this.cbExtendedRateSelect.Enabled = false;
             this.cbExtendedRateSelect.Location = new System.Drawing.Point(215, 136);
             this.cbExtendedRateSelect.Name = "cbExtendedRateSelect";
             this.cbExtendedRateSelect.Size = new System.Drawing.Size(119, 16);
@@ -1106,7 +1153,7 @@
             // 
             // bPasswordReset
             // 
-            this.bPasswordReset.Location = new System.Drawing.Point(516, 3);
+            this.bPasswordReset.Location = new System.Drawing.Point(521, 3);
             this.bPasswordReset.Name = "bPasswordReset";
             this.bPasswordReset.Size = new System.Drawing.Size(100, 23);
             this.bPasswordReset.TabIndex = 28;
@@ -1116,7 +1163,7 @@
             // 
             // bStoreIntoFlash
             // 
-            this.bStoreIntoFlash.Location = new System.Drawing.Point(622, 38);
+            this.bStoreIntoFlash.Location = new System.Drawing.Point(627, 33);
             this.bStoreIntoFlash.Name = "bStoreIntoFlash";
             this.bStoreIntoFlash.Size = new System.Drawing.Size(75, 40);
             this.bStoreIntoFlash.TabIndex = 29;
@@ -1124,21 +1171,141 @@
             this.bStoreIntoFlash.UseVisualStyleBackColor = true;
             this.bStoreIntoFlash.Click += new System.EventHandler(this.bStoreIntoFlash_Click);
             // 
-            // tbLinkCodes
+            // cbRx4RateSelect
             // 
-            this.tbLinkCodes.Location = new System.Drawing.Point(330, 270);
-            this.tbLinkCodes.Name = "tbLinkCodes";
-            this.tbLinkCodes.Size = new System.Drawing.Size(40, 22);
-            this.tbLinkCodes.TabIndex = 71;
+            this.cbRx4RateSelect.FormattingEnabled = true;
+            this.cbRx4RateSelect.Location = new System.Drawing.Point(94, 43);
+            this.cbRx4RateSelect.Name = "cbRx4RateSelect";
+            this.cbRx4RateSelect.Size = new System.Drawing.Size(40, 20);
+            this.cbRx4RateSelect.TabIndex = 13;
             // 
-            // lLinkCodes
+            // lRx4RateSelect
             // 
-            this.lLinkCodes.AutoSize = true;
-            this.lLinkCodes.Location = new System.Drawing.Point(259, 273);
-            this.lLinkCodes.Name = "lLinkCodes";
-            this.lLinkCodes.Size = new System.Drawing.Size(65, 12);
-            this.lLinkCodes.TabIndex = 70;
-            this.lLinkCodes.Text = "Link Codes :";
+            this.lRx4RateSelect.AutoSize = true;
+            this.lRx4RateSelect.Location = new System.Drawing.Point(6, 46);
+            this.lRx4RateSelect.Name = "lRx4RateSelect";
+            this.lRx4RateSelect.Size = new System.Drawing.Size(82, 12);
+            this.lRx4RateSelect.TabIndex = 14;
+            this.lRx4RateSelect.Text = "Rx4 Rate Select:";
+            // 
+            // lRx3RateSelect
+            // 
+            this.lRx3RateSelect.AutoSize = true;
+            this.lRx3RateSelect.Location = new System.Drawing.Point(140, 46);
+            this.lRx3RateSelect.Name = "lRx3RateSelect";
+            this.lRx3RateSelect.Size = new System.Drawing.Size(82, 12);
+            this.lRx3RateSelect.TabIndex = 16;
+            this.lRx3RateSelect.Text = "Rx3 Rate Select:";
+            // 
+            // cbRx3RateSelect
+            // 
+            this.cbRx3RateSelect.FormattingEnabled = true;
+            this.cbRx3RateSelect.Location = new System.Drawing.Point(228, 43);
+            this.cbRx3RateSelect.Name = "cbRx3RateSelect";
+            this.cbRx3RateSelect.Size = new System.Drawing.Size(40, 20);
+            this.cbRx3RateSelect.TabIndex = 15;
+            // 
+            // lRx2RateSelect
+            // 
+            this.lRx2RateSelect.AutoSize = true;
+            this.lRx2RateSelect.Location = new System.Drawing.Point(274, 46);
+            this.lRx2RateSelect.Name = "lRx2RateSelect";
+            this.lRx2RateSelect.Size = new System.Drawing.Size(82, 12);
+            this.lRx2RateSelect.TabIndex = 18;
+            this.lRx2RateSelect.Text = "Rx2 Rate Select:";
+            // 
+            // cbRx2RateSelect
+            // 
+            this.cbRx2RateSelect.FormattingEnabled = true;
+            this.cbRx2RateSelect.Location = new System.Drawing.Point(362, 43);
+            this.cbRx2RateSelect.Name = "cbRx2RateSelect";
+            this.cbRx2RateSelect.Size = new System.Drawing.Size(40, 20);
+            this.cbRx2RateSelect.TabIndex = 17;
+            // 
+            // lRx1RateSelect
+            // 
+            this.lRx1RateSelect.AutoSize = true;
+            this.lRx1RateSelect.Location = new System.Drawing.Point(408, 46);
+            this.lRx1RateSelect.Name = "lRx1RateSelect";
+            this.lRx1RateSelect.Size = new System.Drawing.Size(82, 12);
+            this.lRx1RateSelect.TabIndex = 20;
+            this.lRx1RateSelect.Text = "Rx1 Rate Select:";
+            // 
+            // cbRx1RateSelect
+            // 
+            this.cbRx1RateSelect.FormattingEnabled = true;
+            this.cbRx1RateSelect.Location = new System.Drawing.Point(496, 43);
+            this.cbRx1RateSelect.Name = "cbRx1RateSelect";
+            this.cbRx1RateSelect.Size = new System.Drawing.Size(40, 20);
+            this.cbRx1RateSelect.TabIndex = 19;
+            // 
+            // lTx1RateSelect
+            // 
+            this.lTx1RateSelect.AutoSize = true;
+            this.lTx1RateSelect.Location = new System.Drawing.Point(408, 72);
+            this.lTx1RateSelect.Name = "lTx1RateSelect";
+            this.lTx1RateSelect.Size = new System.Drawing.Size(81, 12);
+            this.lTx1RateSelect.TabIndex = 28;
+            this.lTx1RateSelect.Text = "Tx1 Rate Select:";
+            // 
+            // cbTx1RateSelect
+            // 
+            this.cbTx1RateSelect.FormattingEnabled = true;
+            this.cbTx1RateSelect.Location = new System.Drawing.Point(496, 69);
+            this.cbTx1RateSelect.Name = "cbTx1RateSelect";
+            this.cbTx1RateSelect.Size = new System.Drawing.Size(40, 20);
+            this.cbTx1RateSelect.TabIndex = 27;
+            // 
+            // lTx2RateSelect
+            // 
+            this.lTx2RateSelect.AutoSize = true;
+            this.lTx2RateSelect.Location = new System.Drawing.Point(274, 72);
+            this.lTx2RateSelect.Name = "lTx2RateSelect";
+            this.lTx2RateSelect.Size = new System.Drawing.Size(81, 12);
+            this.lTx2RateSelect.TabIndex = 26;
+            this.lTx2RateSelect.Text = "Tx2 Rate Select:";
+            // 
+            // cbTx2RateSelect
+            // 
+            this.cbTx2RateSelect.FormattingEnabled = true;
+            this.cbTx2RateSelect.Location = new System.Drawing.Point(362, 69);
+            this.cbTx2RateSelect.Name = "cbTx2RateSelect";
+            this.cbTx2RateSelect.Size = new System.Drawing.Size(40, 20);
+            this.cbTx2RateSelect.TabIndex = 25;
+            // 
+            // lTx3RateSelect
+            // 
+            this.lTx3RateSelect.AutoSize = true;
+            this.lTx3RateSelect.Location = new System.Drawing.Point(140, 72);
+            this.lTx3RateSelect.Name = "lTx3RateSelect";
+            this.lTx3RateSelect.Size = new System.Drawing.Size(81, 12);
+            this.lTx3RateSelect.TabIndex = 24;
+            this.lTx3RateSelect.Text = "Tx3 Rate Select:";
+            // 
+            // cbTx3RateSelect
+            // 
+            this.cbTx3RateSelect.FormattingEnabled = true;
+            this.cbTx3RateSelect.Location = new System.Drawing.Point(228, 69);
+            this.cbTx3RateSelect.Name = "cbTx3RateSelect";
+            this.cbTx3RateSelect.Size = new System.Drawing.Size(40, 20);
+            this.cbTx3RateSelect.TabIndex = 23;
+            // 
+            // lTx4RateSelect
+            // 
+            this.lTx4RateSelect.AutoSize = true;
+            this.lTx4RateSelect.Location = new System.Drawing.Point(6, 72);
+            this.lTx4RateSelect.Name = "lTx4RateSelect";
+            this.lTx4RateSelect.Size = new System.Drawing.Size(81, 12);
+            this.lTx4RateSelect.TabIndex = 22;
+            this.lTx4RateSelect.Text = "Tx4 Rate Select:";
+            // 
+            // cbTx4RateSelect
+            // 
+            this.cbTx4RateSelect.FormattingEnabled = true;
+            this.cbTx4RateSelect.Location = new System.Drawing.Point(94, 69);
+            this.cbTx4RateSelect.Name = "cbTx4RateSelect";
+            this.cbTx4RateSelect.Size = new System.Drawing.Size(40, 20);
+            this.cbTx4RateSelect.TabIndex = 21;
             // 
             // UcInformation
             // 
@@ -1156,7 +1323,7 @@
             this.Controls.Add(this.tbIdentifier);
             this.Controls.Add(this.lIdentifier);
             this.Name = "UcInformation";
-            this.Size = new System.Drawing.Size(781, 486);
+            this.Size = new System.Drawing.Size(786, 539);
             this.gbControlBytes.ResumeLayout(false);
             this.gbControlBytes.PerformLayout();
             this.gbSpecificationCompliance.ResumeLayout(false);
@@ -1279,5 +1446,21 @@
         private System.Windows.Forms.Button bStoreIntoFlash;
         private System.Windows.Forms.TextBox tbLinkCodes;
         private System.Windows.Forms.Label lLinkCodes;
+        private System.Windows.Forms.Label lTx1RateSelect;
+        private System.Windows.Forms.ComboBox cbTx1RateSelect;
+        private System.Windows.Forms.Label lTx2RateSelect;
+        private System.Windows.Forms.ComboBox cbTx2RateSelect;
+        private System.Windows.Forms.Label lTx3RateSelect;
+        private System.Windows.Forms.ComboBox cbTx3RateSelect;
+        private System.Windows.Forms.Label lTx4RateSelect;
+        private System.Windows.Forms.ComboBox cbTx4RateSelect;
+        private System.Windows.Forms.Label lRx1RateSelect;
+        private System.Windows.Forms.ComboBox cbRx1RateSelect;
+        private System.Windows.Forms.Label lRx2RateSelect;
+        private System.Windows.Forms.ComboBox cbRx2RateSelect;
+        private System.Windows.Forms.Label lRx3RateSelect;
+        private System.Windows.Forms.ComboBox cbRx3RateSelect;
+        private System.Windows.Forms.Label lRx4RateSelect;
+        private System.Windows.Forms.ComboBox cbRx4RateSelect;
     }
 }

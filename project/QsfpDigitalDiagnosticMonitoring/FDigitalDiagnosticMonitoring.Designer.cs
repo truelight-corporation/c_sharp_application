@@ -63,7 +63,7 @@
             this.tcDdmAndInformation.Location = new System.Drawing.Point(12, 34);
             this.tcDdmAndInformation.Name = "tcDdmAndInformation";
             this.tcDdmAndInformation.SelectedIndex = 0;
-            this.tcDdmAndInformation.Size = new System.Drawing.Size(800, 518);
+            this.tcDdmAndInformation.Size = new System.Drawing.Size(800, 568);
             this.tcDdmAndInformation.TabIndex = 2;
             // 
             // tpDigitalDiagnosticMonitoring
@@ -72,7 +72,7 @@
             this.tpDigitalDiagnosticMonitoring.Location = new System.Drawing.Point(4, 22);
             this.tpDigitalDiagnosticMonitoring.Name = "tpDigitalDiagnosticMonitoring";
             this.tpDigitalDiagnosticMonitoring.Padding = new System.Windows.Forms.Padding(3);
-            this.tpDigitalDiagnosticMonitoring.Size = new System.Drawing.Size(792, 492);
+            this.tpDigitalDiagnosticMonitoring.Size = new System.Drawing.Size(792, 542);
             this.tpDigitalDiagnosticMonitoring.TabIndex = 0;
             this.tpDigitalDiagnosticMonitoring.Text = "DDM";
             this.tpDigitalDiagnosticMonitoring.UseVisualStyleBackColor = true;
@@ -90,7 +90,7 @@
             this.tpInformation.Location = new System.Drawing.Point(4, 22);
             this.tpInformation.Name = "tpInformation";
             this.tpInformation.Padding = new System.Windows.Forms.Padding(3);
-            this.tpInformation.Size = new System.Drawing.Size(792, 492);
+            this.tpInformation.Size = new System.Drawing.Size(792, 542);
             this.tpInformation.TabIndex = 1;
             this.tpInformation.Text = "Information";
             this.tpInformation.UseVisualStyleBackColor = true;
@@ -99,7 +99,7 @@
             // 
             this.ucInformation.Location = new System.Drawing.Point(3, 3);
             this.ucInformation.Name = "ucInformation";
-            this.ucInformation.Size = new System.Drawing.Size(786, 488);
+            this.ucInformation.Size = new System.Drawing.Size(786, 538);
             this.ucInformation.TabIndex = 0;
             // 
             // lFirmwareVersion
@@ -165,7 +165,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ClientSize = new System.Drawing.Size(823, 555);
+            this.ClientSize = new System.Drawing.Size(821, 604);
             this.Controls.Add(this.cbFirmwareVersionCheck);
             this.Controls.Add(this.tbFirmwareDateCheck);
             this.Controls.Add(this.tbFirmwareVersionCheck);

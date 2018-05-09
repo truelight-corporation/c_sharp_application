@@ -20,7 +20,20 @@ namespace QsfpDigitalDiagnosticMonitoring
 
         public UcInformation()
         {
+            int i;
+
             InitializeComponent();
+
+            for (i = 0; i < 4; i++) {
+                cbRx4RateSelect.Items.Add(i);
+                cbRx3RateSelect.Items.Add(i);
+                cbRx2RateSelect.Items.Add(i);
+                cbRx1RateSelect.Items.Add(i);
+                cbTx4RateSelect.Items.Add(i);
+                cbTx3RateSelect.Items.Add(i);
+                cbTx2RateSelect.Items.Add(i);
+                cbTx1RateSelect.Items.Add(i);
+            }
         }
 
         public int SetI2cReadCBApi(I2cReadCB cb)
@@ -100,6 +113,22 @@ namespace QsfpDigitalDiagnosticMonitoring
                 cbTx1Disable.Checked = false;
             else
                 cbTx1Disable.Checked = true;
+        }
+
+        private void _ParserAddr87(byte data)
+        {
+            cbRx1RateSelect.SelectedIndex = data & 0x03;
+            cbRx2RateSelect.SelectedIndex = (data >> 2) & 0x03;
+            cbRx3RateSelect.SelectedIndex = (data >> 4) & 0x03;
+            cbRx4RateSelect.SelectedIndex = (data >> 6) & 0x03;
+        }
+
+        private void _ParserAddr88(byte data)
+        {
+            cbTx1RateSelect.SelectedIndex = data & 0x03;
+            cbTx2RateSelect.SelectedIndex = (data >> 2) & 0x03;
+            cbTx3RateSelect.SelectedIndex = (data >> 4) & 0x03;
+            cbTx4RateSelect.SelectedIndex = (data >> 6) & 0x03;
         }
 
         private void _ParserAddr93(byte data)
@@ -219,6 +248,12 @@ namespace QsfpDigitalDiagnosticMonitoring
 
             _ParserAddr86(data[0]);
 
+            if (i2cReadCB(80, 87, 2, data) != 2)
+                goto exit;
+
+            _ParserAddr87(data[0]);
+            _ParserAddr88(data[1]);
+
             if (i2cReadCB(80, 93, 1, data) != 1)
                 goto exit;
 
@@ -317,6 +352,44 @@ namespace QsfpDigitalDiagnosticMonitoring
                 data[0] |= 0x01;
 
             if (i2cWriteCB(80, 86, 1, data) < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr87()
+        {
+            byte[] data = new byte[1];
+
+            if (i2cWriteCB == null)
+                return -1;
+
+            data[0] = 0;
+            data[0] |= (byte)cbRx1RateSelect.SelectedIndex;
+            data[0] |= (byte)(cbRx2RateSelect.SelectedIndex << 2);
+            data[0] |= (byte)(cbRx3RateSelect.SelectedIndex << 4);
+            data[0] |= (byte)(cbRx4RateSelect.SelectedIndex << 6);
+
+            if (i2cWriteCB(80, 87, 1, data) < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr88()
+        {
+            byte[] data = new byte[1];
+
+            if (i2cWriteCB == null)
+                return -1;
+
+            data[0] = 0;
+            data[0] |= (byte)cbTx1RateSelect.SelectedIndex;
+            data[0] |= (byte)(cbTx2RateSelect.SelectedIndex << 2);
+            data[0] |= (byte)(cbTx3RateSelect.SelectedIndex << 4);
+            data[0] |= (byte)(cbTx4RateSelect.SelectedIndex << 6);
+
+            if (i2cWriteCB(80, 88, 1, data) < 0)
                 return -1;
 
             return 0;
@@ -642,6 +715,12 @@ namespace QsfpDigitalDiagnosticMonitoring
                 goto exit;
 
             if (_WriteAddr86() < 0)
+                goto exit;
+
+            if (_WriteAddr87() < 0)
+                goto exit;
+
+            if (_WriteAddr88() < 0)
                 goto exit;
 
             if (_WriteAddr93() < 0)
