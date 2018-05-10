@@ -609,7 +609,7 @@ namespace QsfpPlus40gSr4DcTest
             String sRead;
             byte[] data = new byte[12];
             byte[] baReadTmp = new byte[12];
-            int devAddr;
+            int devAddr, i;
 
             if (_WritePassword() < 0)
                 return -1;
@@ -630,20 +630,22 @@ namespace QsfpPlus40gSr4DcTest
                 return -1;
 
             data = System.Text.Encoding.Default.GetBytes(newSerialNumber);
-
-            if (i2cWriteCB((byte)devAddr, 240, 12, data) < 0)
-                return -1;
             
+            if (i2cWriteCB((byte)devAddr, 240, (byte)data.Length, data) < 0)
+                return -1;
+
             if (i2cReadCB((byte)devAddr, 240, 12, baReadTmp) != 12)
                 return -1;
-            sRead = System.Text.Encoding.Default.GetString(baReadTmp);
-
-            if (newSerialNumber != sRead) {
-                MessageBox.Show("設定 serial number 失敗!! 讀(" +
-                    sRead + ") != 寫(" + newSerialNumber + ")\n!!請重新記錄!!");
-                return -1;
+            for (i = 0; i < 12; i++) {
+                if (baReadTmp[i] != '\0') {
+                    if (data[i] != baReadTmp[i]) {
+                        sRead = System.Text.Encoding.Default.GetString(baReadTmp);
+                        MessageBox.Show("設定 serial number 失敗!! 讀(" +
+                            sRead + ") != 寫(" + newSerialNumber + ")\n!!請重新記錄!!");
+                        return -1;
+                    }
+                }
             }
-            
 
             return 0;
         }
