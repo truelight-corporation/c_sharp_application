@@ -29,6 +29,8 @@
         {
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.gbBeAlignmentMpd = new System.Windows.Forms.GroupBox();
+            this.tbBeAlignmentMpdMaxRange = new System.Windows.Forms.TextBox();
+            this.lBeAlignmentMpdMaxRange = new System.Windows.Forms.Label();
             this.tbBeAlignmentMpdLimit = new System.Windows.Forms.TextBox();
             this.lBeAlignmentMpdLimit = new System.Windows.Forms.Label();
             this.tbBeAlignmentMpdRegisterAddr = new System.Windows.Forms.TextBox();
@@ -42,6 +44,8 @@
             this.lBeAlignmentDeviceAddr = new System.Windows.Forms.Label();
             this.tbBeAlignmentDeviceAddr = new System.Windows.Forms.TextBox();
             this.gbBeAlignmentRx = new System.Windows.Forms.GroupBox();
+            this.tbBeAlignmentRxMaxRange = new System.Windows.Forms.TextBox();
+            this.lBeAlignmentRxMaxRange = new System.Windows.Forms.Label();
             this.tbBeAlignmentRxLimit = new System.Windows.Forms.TextBox();
             this.lBeAlignmentRxLimit = new System.Windows.Forms.Label();
             this.tbBeAlignmentRxRegisterAddr = new System.Windows.Forms.TextBox();
@@ -53,6 +57,12 @@
             this.amBeAlignmentRx2 = new AnalogMeterUserInterface.AnalogMeter();
             this.amBeAlignmentRx1 = new AnalogMeterUserInterface.AnalogMeter();
             this.gbLightSourceRx = new System.Windows.Forms.GroupBox();
+            this.lLightSourceRx1Rx4PowerDiffDb = new System.Windows.Forms.Label();
+            this.tbLightSourceRx1Rx4DiffPowerDb = new System.Windows.Forms.TextBox();
+            this.tbLightSourceRx1PowerDb = new System.Windows.Forms.TextBox();
+            this.tbLightSourceRx4PowerDb = new System.Windows.Forms.TextBox();
+            this.tbLightSourceRxMaxRange = new System.Windows.Forms.TextBox();
+            this.lLightSourceRxMaxRange = new System.Windows.Forms.Label();
             this.tbLightSourceRxLimit = new System.Windows.Forms.TextBox();
             this.lLightSourceRxLimit = new System.Windows.Forms.Label();
             this.tbLightSourceRxRegisterAddr = new System.Windows.Forms.TextBox();
@@ -87,12 +97,9 @@
             this.lTemperature = new System.Windows.Forms.Label();
             this.tbBeAlignmentVcc = new System.Windows.Forms.TextBox();
             this.bClearAllMaxValue = new System.Windows.Forms.Button();
-            this.lBeAlignmentMpdMaxRange = new System.Windows.Forms.Label();
-            this.tbBeAlignmentMpdMaxRange = new System.Windows.Forms.TextBox();
-            this.tbLightSourceRxMaxRange = new System.Windows.Forms.TextBox();
-            this.lLightSourceRxMaxRange = new System.Windows.Forms.Label();
-            this.tbBeAlignmentRxMaxRange = new System.Windows.Forms.TextBox();
-            this.lBeAlignmentRxMaxRange = new System.Windows.Forms.Label();
+            this.tbLightSourcePowerDiffMax = new System.Windows.Forms.TextBox();
+            this.lLightSourcePowerDiffRange = new System.Windows.Forms.Label();
+            this.tbLightSourcePowerDiffMin = new System.Windows.Forms.TextBox();
             this.gbBeAlignmentMpd.SuspendLayout();
             this.gbBeAlignmentRx.SuspendLayout();
             this.gbLightSourceRx.SuspendLayout();
@@ -121,6 +128,24 @@
             this.gbBeAlignmentMpd.TabIndex = 1;
             this.gbBeAlignmentMpd.TabStop = false;
             this.gbBeAlignmentMpd.Text = "Be Alignment MPD";
+            // 
+            // tbBeAlignmentMpdMaxRange
+            // 
+            this.tbBeAlignmentMpdMaxRange.Location = new System.Drawing.Point(115, 130);
+            this.tbBeAlignmentMpdMaxRange.Name = "tbBeAlignmentMpdMaxRange";
+            this.tbBeAlignmentMpdMaxRange.Size = new System.Drawing.Size(40, 22);
+            this.tbBeAlignmentMpdMaxRange.TabIndex = 23;
+            this.tbBeAlignmentMpdMaxRange.Text = "600";
+            this.tbBeAlignmentMpdMaxRange.TextChanged += new System.EventHandler(this.tbBeAlignmentMpdMaxRange_TextChanged);
+            // 
+            // lBeAlignmentMpdMaxRange
+            // 
+            this.lBeAlignmentMpdMaxRange.AutoSize = true;
+            this.lBeAlignmentMpdMaxRange.Location = new System.Drawing.Point(6, 134);
+            this.lBeAlignmentMpdMaxRange.Name = "lBeAlignmentMpdMaxRange";
+            this.lBeAlignmentMpdMaxRange.Size = new System.Drawing.Size(92, 12);
+            this.lBeAlignmentMpdMaxRange.TabIndex = 22;
+            this.lBeAlignmentMpdMaxRange.Text = "MPD Max Range :";
             // 
             // tbBeAlignmentMpdLimit
             // 
@@ -313,12 +338,30 @@
             this.gbBeAlignmentRx.Controls.Add(this.amBeAlignmentRx3);
             this.gbBeAlignmentRx.Controls.Add(this.amBeAlignmentRx2);
             this.gbBeAlignmentRx.Controls.Add(this.amBeAlignmentRx1);
-            this.gbBeAlignmentRx.Location = new System.Drawing.Point(3, 345);
+            this.gbBeAlignmentRx.Location = new System.Drawing.Point(3, 366);
             this.gbBeAlignmentRx.Name = "gbBeAlignmentRx";
             this.gbBeAlignmentRx.Size = new System.Drawing.Size(1238, 165);
             this.gbBeAlignmentRx.TabIndex = 12;
             this.gbBeAlignmentRx.TabStop = false;
             this.gbBeAlignmentRx.Text = "Be Alignment Rx RSSI(uA) or Power(uW)";
+            // 
+            // tbBeAlignmentRxMaxRange
+            // 
+            this.tbBeAlignmentRxMaxRange.Location = new System.Drawing.Point(115, 102);
+            this.tbBeAlignmentRxMaxRange.Name = "tbBeAlignmentRxMaxRange";
+            this.tbBeAlignmentRxMaxRange.Size = new System.Drawing.Size(40, 22);
+            this.tbBeAlignmentRxMaxRange.TabIndex = 29;
+            this.tbBeAlignmentRxMaxRange.Text = "600";
+            this.tbBeAlignmentRxMaxRange.TextChanged += new System.EventHandler(this.tbBeAlignmentRxMaxRange_TextChanged);
+            // 
+            // lBeAlignmentRxMaxRange
+            // 
+            this.lBeAlignmentRxMaxRange.AutoSize = true;
+            this.lBeAlignmentRxMaxRange.Location = new System.Drawing.Point(6, 105);
+            this.lBeAlignmentRxMaxRange.Name = "lBeAlignmentRxMaxRange";
+            this.lBeAlignmentRxMaxRange.Size = new System.Drawing.Size(82, 12);
+            this.lBeAlignmentRxMaxRange.TabIndex = 28;
+            this.lBeAlignmentRxMaxRange.Text = "Rx Max Range :";
             // 
             // tbBeAlignmentRxLimit
             // 
@@ -482,6 +525,13 @@
             // 
             // gbLightSourceRx
             // 
+            this.gbLightSourceRx.Controls.Add(this.tbLightSourcePowerDiffMin);
+            this.gbLightSourceRx.Controls.Add(this.tbLightSourcePowerDiffMax);
+            this.gbLightSourceRx.Controls.Add(this.lLightSourcePowerDiffRange);
+            this.gbLightSourceRx.Controls.Add(this.lLightSourceRx1Rx4PowerDiffDb);
+            this.gbLightSourceRx.Controls.Add(this.tbLightSourceRx1Rx4DiffPowerDb);
+            this.gbLightSourceRx.Controls.Add(this.tbLightSourceRx1PowerDb);
+            this.gbLightSourceRx.Controls.Add(this.tbLightSourceRx4PowerDb);
             this.gbLightSourceRx.Controls.Add(this.tbLightSourceRxMaxRange);
             this.gbLightSourceRx.Controls.Add(this.lLightSourceRxMaxRange);
             this.gbLightSourceRx.Controls.Add(this.tbLightSourceRxLimit);
@@ -498,10 +548,69 @@
             this.gbLightSourceRx.Controls.Add(this.amLightSourceRx4);
             this.gbLightSourceRx.Location = new System.Drawing.Point(3, 174);
             this.gbLightSourceRx.Name = "gbLightSourceRx";
-            this.gbLightSourceRx.Size = new System.Drawing.Size(1238, 165);
+            this.gbLightSourceRx.Size = new System.Drawing.Size(1238, 186);
             this.gbLightSourceRx.TabIndex = 13;
             this.gbLightSourceRx.TabStop = false;
             this.gbLightSourceRx.Text = "Light Source Rx Power";
+            // 
+            // lLightSourceRx1Rx4PowerDiffDb
+            // 
+            this.lLightSourceRx1Rx4PowerDiffDb.AutoSize = true;
+            this.lLightSourceRx1Rx4PowerDiffDb.Location = new System.Drawing.Point(546, 155);
+            this.lLightSourceRx1Rx4PowerDiffDb.Name = "lLightSourceRx1Rx4PowerDiffDb";
+            this.lLightSourceRx1Rx4PowerDiffDb.Size = new System.Drawing.Size(122, 12);
+            this.lLightSourceRx1Rx4PowerDiffDb.TabIndex = 41;
+            this.lLightSourceRx1Rx4PowerDiffDb.Text = "Tx1 - Tx4 power (dBm):";
+            // 
+            // tbLightSourceRx1Rx4DiffPowerDb
+            // 
+            this.tbLightSourceRx1Rx4DiffPowerDb.BackColor = System.Drawing.Color.Black;
+            this.tbLightSourceRx1Rx4DiffPowerDb.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbLightSourceRx1Rx4DiffPowerDb.ForeColor = System.Drawing.Color.Lime;
+            this.tbLightSourceRx1Rx4DiffPowerDb.Location = new System.Drawing.Point(674, 149);
+            this.tbLightSourceRx1Rx4DiffPowerDb.Name = "tbLightSourceRx1Rx4DiffPowerDb";
+            this.tbLightSourceRx1Rx4DiffPowerDb.Size = new System.Drawing.Size(60, 27);
+            this.tbLightSourceRx1Rx4DiffPowerDb.TabIndex = 40;
+            // 
+            // tbLightSourceRx1PowerDb
+            // 
+            this.tbLightSourceRx1PowerDb.BackColor = System.Drawing.Color.Black;
+            this.tbLightSourceRx1PowerDb.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbLightSourceRx1PowerDb.ForeColor = System.Drawing.Color.Lime;
+            this.tbLightSourceRx1PowerDb.Location = new System.Drawing.Point(1062, 149);
+            this.tbLightSourceRx1PowerDb.Name = "tbLightSourceRx1PowerDb";
+            this.tbLightSourceRx1PowerDb.Size = new System.Drawing.Size(80, 27);
+            this.tbLightSourceRx1PowerDb.TabIndex = 38;
+            this.tbLightSourceRx1PowerDb.Text = "dBm";
+            // 
+            // tbLightSourceRx4PowerDb
+            // 
+            this.tbLightSourceRx4PowerDb.BackColor = System.Drawing.Color.Black;
+            this.tbLightSourceRx4PowerDb.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbLightSourceRx4PowerDb.ForeColor = System.Drawing.Color.Lime;
+            this.tbLightSourceRx4PowerDb.Location = new System.Drawing.Point(264, 149);
+            this.tbLightSourceRx4PowerDb.Name = "tbLightSourceRx4PowerDb";
+            this.tbLightSourceRx4PowerDb.Size = new System.Drawing.Size(80, 27);
+            this.tbLightSourceRx4PowerDb.TabIndex = 36;
+            this.tbLightSourceRx4PowerDb.Text = "dBm";
+            // 
+            // tbLightSourceRxMaxRange
+            // 
+            this.tbLightSourceRxMaxRange.Location = new System.Drawing.Point(115, 130);
+            this.tbLightSourceRxMaxRange.Name = "tbLightSourceRxMaxRange";
+            this.tbLightSourceRxMaxRange.Size = new System.Drawing.Size(40, 22);
+            this.tbLightSourceRxMaxRange.TabIndex = 35;
+            this.tbLightSourceRxMaxRange.Text = "2000";
+            this.tbLightSourceRxMaxRange.TextChanged += new System.EventHandler(this.tbLightSourceRxMaxRange_TextChanged);
+            // 
+            // lLightSourceRxMaxRange
+            // 
+            this.lLightSourceRxMaxRange.AutoSize = true;
+            this.lLightSourceRxMaxRange.Location = new System.Drawing.Point(6, 133);
+            this.lLightSourceRxMaxRange.Name = "lLightSourceRxMaxRange";
+            this.lLightSourceRxMaxRange.Size = new System.Drawing.Size(82, 12);
+            this.lLightSourceRxMaxRange.TabIndex = 34;
+            this.lLightSourceRxMaxRange.Text = "Rx Max Range :";
             // 
             // tbLightSourceRxLimit
             // 
@@ -570,7 +679,7 @@
             this.amLightSourceRx1.FrameColor = System.Drawing.Color.Black;
             this.amLightSourceRx1.FramePadding = new System.Windows.Forms.Padding(0);
             this.amLightSourceRx1.InternalPadding = new System.Windows.Forms.Padding(0);
-            this.amLightSourceRx1.Location = new System.Drawing.Point(972, 21);
+            this.amLightSourceRx1.Location = new System.Drawing.Point(972, 18);
             this.amLightSourceRx1.MaxRange = 2000F;
             this.amLightSourceRx1.MaxThreshold = 1258F;
             this.amLightSourceRx1.MinRange = 0F;
@@ -597,7 +706,7 @@
             this.amLightSourceRx2.FrameColor = System.Drawing.Color.Black;
             this.amLightSourceRx2.FramePadding = new System.Windows.Forms.Padding(0);
             this.amLightSourceRx2.InternalPadding = new System.Windows.Forms.Padding(0);
-            this.amLightSourceRx2.Location = new System.Drawing.Point(706, 21);
+            this.amLightSourceRx2.Location = new System.Drawing.Point(706, 18);
             this.amLightSourceRx2.MaxRange = 2000F;
             this.amLightSourceRx2.MaxThreshold = 1258F;
             this.amLightSourceRx2.MinRange = 0F;
@@ -633,7 +742,7 @@
             this.amLightSourceRx3.FrameColor = System.Drawing.Color.Black;
             this.amLightSourceRx3.FramePadding = new System.Windows.Forms.Padding(0);
             this.amLightSourceRx3.InternalPadding = new System.Windows.Forms.Padding(0);
-            this.amLightSourceRx3.Location = new System.Drawing.Point(440, 21);
+            this.amLightSourceRx3.Location = new System.Drawing.Point(440, 18);
             this.amLightSourceRx3.MaxRange = 2000F;
             this.amLightSourceRx3.MaxThreshold = 1258F;
             this.amLightSourceRx3.MinRange = 0F;
@@ -660,7 +769,7 @@
             this.amLightSourceRx4.FrameColor = System.Drawing.Color.Black;
             this.amLightSourceRx4.FramePadding = new System.Windows.Forms.Padding(0);
             this.amLightSourceRx4.InternalPadding = new System.Windows.Forms.Padding(0);
-            this.amLightSourceRx4.Location = new System.Drawing.Point(174, 21);
+            this.amLightSourceRx4.Location = new System.Drawing.Point(174, 18);
             this.amLightSourceRx4.MaxRange = 2000F;
             this.amLightSourceRx4.MaxThreshold = 1258F;
             this.amLightSourceRx4.MinRange = 0F;
@@ -711,7 +820,7 @@
             this.gbModuleInfo.Controls.Add(this.lTemperature);
             this.gbModuleInfo.Controls.Add(this.tbBeAlignmentVcc);
             this.gbModuleInfo.Controls.Add(this.lVcc);
-            this.gbModuleInfo.Location = new System.Drawing.Point(3, 516);
+            this.gbModuleInfo.Location = new System.Drawing.Point(3, 537);
             this.gbModuleInfo.Name = "gbModuleInfo";
             this.gbModuleInfo.Size = new System.Drawing.Size(393, 90);
             this.gbModuleInfo.TabIndex = 15;
@@ -869,7 +978,7 @@
             // 
             this.bClearAllMaxValue.BackColor = System.Drawing.SystemColors.Control;
             this.bClearAllMaxValue.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.bClearAllMaxValue.Location = new System.Drawing.Point(1160, 580);
+            this.bClearAllMaxValue.Location = new System.Drawing.Point(1160, 601);
             this.bClearAllMaxValue.Name = "bClearAllMaxValue";
             this.bClearAllMaxValue.Size = new System.Drawing.Size(75, 23);
             this.bClearAllMaxValue.TabIndex = 16;
@@ -877,59 +986,30 @@
             this.bClearAllMaxValue.UseVisualStyleBackColor = false;
             this.bClearAllMaxValue.Click += new System.EventHandler(this.bClearAllMaxValue_Click);
             // 
-            // lBeAlignmentMpdMaxRange
+            // tbLightSourcePowerDiffMax
             // 
-            this.lBeAlignmentMpdMaxRange.AutoSize = true;
-            this.lBeAlignmentMpdMaxRange.Location = new System.Drawing.Point(6, 134);
-            this.lBeAlignmentMpdMaxRange.Name = "lBeAlignmentMpdMaxRange";
-            this.lBeAlignmentMpdMaxRange.Size = new System.Drawing.Size(92, 12);
-            this.lBeAlignmentMpdMaxRange.TabIndex = 22;
-            this.lBeAlignmentMpdMaxRange.Text = "MPD Max Range :";
+            this.tbLightSourcePowerDiffMax.Location = new System.Drawing.Point(115, 158);
+            this.tbLightSourcePowerDiffMax.Name = "tbLightSourcePowerDiffMax";
+            this.tbLightSourcePowerDiffMax.Size = new System.Drawing.Size(40, 22);
+            this.tbLightSourcePowerDiffMax.TabIndex = 43;
+            this.tbLightSourcePowerDiffMax.Text = "0.5";
             // 
-            // tbBeAlignmentMpdMaxRange
+            // lLightSourcePowerDiffRange
             // 
-            this.tbBeAlignmentMpdMaxRange.Location = new System.Drawing.Point(115, 130);
-            this.tbBeAlignmentMpdMaxRange.Name = "tbBeAlignmentMpdMaxRange";
-            this.tbBeAlignmentMpdMaxRange.Size = new System.Drawing.Size(40, 22);
-            this.tbBeAlignmentMpdMaxRange.TabIndex = 23;
-            this.tbBeAlignmentMpdMaxRange.Text = "600";
-            this.tbBeAlignmentMpdMaxRange.TextChanged += new System.EventHandler(this.tbBeAlignmentMpdMaxRange_TextChanged);
+            this.lLightSourcePowerDiffRange.AutoSize = true;
+            this.lLightSourcePowerDiffRange.Location = new System.Drawing.Point(6, 161);
+            this.lLightSourcePowerDiffRange.Name = "lLightSourcePowerDiffRange";
+            this.lLightSourcePowerDiffRange.Size = new System.Drawing.Size(95, 12);
+            this.lLightSourcePowerDiffRange.TabIndex = 42;
+            this.lLightSourcePowerDiffRange.Text = "Power Diff Range :";
             // 
-            // tbLightSourceRxMaxRange
+            // tbLightSourcePowerDiffMin
             // 
-            this.tbLightSourceRxMaxRange.Location = new System.Drawing.Point(115, 130);
-            this.tbLightSourceRxMaxRange.Name = "tbLightSourceRxMaxRange";
-            this.tbLightSourceRxMaxRange.Size = new System.Drawing.Size(40, 22);
-            this.tbLightSourceRxMaxRange.TabIndex = 35;
-            this.tbLightSourceRxMaxRange.Text = "2000";
-            this.tbLightSourceRxMaxRange.TextChanged += new System.EventHandler(this.tbLightSourceRxMaxRange_TextChanged);
-            // 
-            // lLightSourceRxMaxRange
-            // 
-            this.lLightSourceRxMaxRange.AutoSize = true;
-            this.lLightSourceRxMaxRange.Location = new System.Drawing.Point(6, 133);
-            this.lLightSourceRxMaxRange.Name = "lLightSourceRxMaxRange";
-            this.lLightSourceRxMaxRange.Size = new System.Drawing.Size(82, 12);
-            this.lLightSourceRxMaxRange.TabIndex = 34;
-            this.lLightSourceRxMaxRange.Text = "Rx Max Range :";
-            // 
-            // tbBeAlignmentRxMaxRange
-            // 
-            this.tbBeAlignmentRxMaxRange.Location = new System.Drawing.Point(115, 102);
-            this.tbBeAlignmentRxMaxRange.Name = "tbBeAlignmentRxMaxRange";
-            this.tbBeAlignmentRxMaxRange.Size = new System.Drawing.Size(40, 22);
-            this.tbBeAlignmentRxMaxRange.TabIndex = 29;
-            this.tbBeAlignmentRxMaxRange.Text = "600";
-            this.tbBeAlignmentRxMaxRange.TextChanged += new System.EventHandler(this.tbBeAlignmentRxMaxRange_TextChanged);
-            // 
-            // lBeAlignmentRxMaxRange
-            // 
-            this.lBeAlignmentRxMaxRange.AutoSize = true;
-            this.lBeAlignmentRxMaxRange.Location = new System.Drawing.Point(6, 105);
-            this.lBeAlignmentRxMaxRange.Name = "lBeAlignmentRxMaxRange";
-            this.lBeAlignmentRxMaxRange.Size = new System.Drawing.Size(82, 12);
-            this.lBeAlignmentRxMaxRange.TabIndex = 28;
-            this.lBeAlignmentRxMaxRange.Text = "Rx Max Range :";
+            this.tbLightSourcePowerDiffMin.Location = new System.Drawing.Point(161, 158);
+            this.tbLightSourcePowerDiffMin.Name = "tbLightSourcePowerDiffMin";
+            this.tbLightSourcePowerDiffMin.Size = new System.Drawing.Size(40, 22);
+            this.tbLightSourcePowerDiffMin.TabIndex = 44;
+            this.tbLightSourcePowerDiffMin.Text = "-0.5";
             // 
             // UcLensAlignment
             // 
@@ -943,7 +1023,7 @@
             this.Controls.Add(this.gbBeAlignmentMpd);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Name = "UcLensAlignment";
-            this.Size = new System.Drawing.Size(1244, 611);
+            this.Size = new System.Drawing.Size(1244, 629);
             this.gbBeAlignmentMpd.ResumeLayout(false);
             this.gbBeAlignmentMpd.PerformLayout();
             this.gbBeAlignmentRx.ResumeLayout(false);
@@ -1024,5 +1104,12 @@
         private System.Windows.Forms.Label lLightSourceRxMaxRange;
         private System.Windows.Forms.TextBox tbBeAlignmentRxMaxRange;
         private System.Windows.Forms.Label lBeAlignmentRxMaxRange;
+        private System.Windows.Forms.Label lLightSourceRx1Rx4PowerDiffDb;
+        private System.Windows.Forms.TextBox tbLightSourceRx1Rx4DiffPowerDb;
+        private System.Windows.Forms.TextBox tbLightSourceRx1PowerDb;
+        private System.Windows.Forms.TextBox tbLightSourceRx4PowerDb;
+        private System.Windows.Forms.TextBox tbLightSourcePowerDiffMin;
+        private System.Windows.Forms.TextBox tbLightSourcePowerDiffMax;
+        private System.Windows.Forms.Label lLightSourcePowerDiffRange;
     }
 }

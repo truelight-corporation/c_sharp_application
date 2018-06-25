@@ -258,7 +258,7 @@
             this.tcFunction.Location = new System.Drawing.Point(8, 38);
             this.tcFunction.Name = "tcFunction";
             this.tcFunction.SelectedIndex = 0;
-            this.tcFunction.Size = new System.Drawing.Size(1252, 637);
+            this.tcFunction.Size = new System.Drawing.Size(1252, 662);
             this.tcFunction.TabIndex = 15;
             // 
             // tpLensAlignment
@@ -269,7 +269,7 @@
             this.tpLensAlignment.Location = new System.Drawing.Point(4, 22);
             this.tpLensAlignment.Name = "tpLensAlignment";
             this.tpLensAlignment.Padding = new System.Windows.Forms.Padding(3);
-            this.tpLensAlignment.Size = new System.Drawing.Size(1244, 611);
+            this.tpLensAlignment.Size = new System.Drawing.Size(1244, 636);
             this.tpLensAlignment.TabIndex = 0;
             this.tpLensAlignment.Text = "Lens Alignment";
             // 
@@ -279,7 +279,7 @@
             this.ucLensAlignment.ForeColor = System.Drawing.SystemColors.ControlText;
             this.ucLensAlignment.Location = new System.Drawing.Point(0, 0);
             this.ucLensAlignment.Name = "ucLensAlignment";
-            this.ucLensAlignment.Size = new System.Drawing.Size(1244, 611);
+            this.ucLensAlignment.Size = new System.Drawing.Size(1244, 636);
             this.ucLensAlignment.TabIndex = 2;
             // 
             // tpLog
@@ -290,7 +290,7 @@
             this.tpLog.Location = new System.Drawing.Point(4, 22);
             this.tpLog.Name = "tpLog";
             this.tpLog.Padding = new System.Windows.Forms.Padding(3);
-            this.tpLog.Size = new System.Drawing.Size(1244, 611);
+            this.tpLog.Size = new System.Drawing.Size(1244, 644);
             this.tpLog.TabIndex = 1;
             this.tpLog.Text = "Log";
             // 
@@ -309,7 +309,7 @@
             this.tpCorrect.Location = new System.Drawing.Point(4, 22);
             this.tpCorrect.Name = "tpCorrect";
             this.tpCorrect.Padding = new System.Windows.Forms.Padding(3);
-            this.tpCorrect.Size = new System.Drawing.Size(1244, 611);
+            this.tpCorrect.Size = new System.Drawing.Size(1244, 644);
             this.tpCorrect.TabIndex = 2;
             this.tpCorrect.Text = "Correct";
             this.tpCorrect.UseVisualStyleBackColor = true;
@@ -778,7 +778,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.ClientSize = new System.Drawing.Size(1272, 683);
+            this.ClientSize = new System.Drawing.Size(1272, 703);
             this.Controls.Add(this.tbSerialNumber);
             this.Controls.Add(this.lSerialNumber);
             this.Controls.Add(this.tcFunction);
@@ -797,8 +797,8 @@
             this.Controls.Add(this.cbLightSourceConnected);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1280, 710);
-            this.MinimumSize = new System.Drawing.Size(1280, 710);
+            this.MaximumSize = new System.Drawing.Size(1280, 730);
+            this.MinimumSize = new System.Drawing.Size(1280, 730);
             this.Name = "fLensAlignment";
             this.Text = "Lens Alignment";
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecord)).EndInit();

@@ -523,6 +523,8 @@ namespace LensAlignment
 
         public void MonitorProgressChangedApi(object sender, ProgressChangedEventArgs e)
         {
+            float db1FTmp, db4FTmp, dbDiff, dbMax, dbMin;
+
             amBeAlignmentMpd1.Value = faBeAlignmentMpdValue[0];
             amBeAlignmentMpd2.Value = faBeAlignmentMpdValue[1];
             amBeAlignmentMpd3.Value = faBeAlignmentMpdValue[2];
@@ -532,6 +534,31 @@ namespace LensAlignment
             amLightSourceRx2.Value = faLightSourceRxValue[1];
             amLightSourceRx3.Value = faLightSourceRxValue[2];
             amLightSourceRx4.Value = faLightSourceRxValue[3];
+
+            dbMax = Convert.ToSingle(tbLightSourcePowerDiffMax.Text);
+            dbMin = Convert.ToSingle(tbLightSourcePowerDiffMin.Text);
+            db1FTmp = faLightSourceRxValue[0];
+            db1FTmp = db1FTmp / 1000000;
+            db1FTmp = Convert.ToSingle(Math.Log10(db1FTmp));
+            db1FTmp = 10 * db1FTmp;
+            db1FTmp = db1FTmp + 30;
+            tbLightSourceRx1PowerDb.Text = db1FTmp.ToString("0.##") + " dBm";
+            db4FTmp = faLightSourceRxValue[3];
+            db4FTmp = db4FTmp / 1000000;
+            db4FTmp = Convert.ToSingle(Math.Log10(db4FTmp));
+            db4FTmp = 10 * db4FTmp;
+            db4FTmp = db4FTmp + 30;
+            tbLightSourceRx4PowerDb.Text = db4FTmp.ToString("0.##") + " dBm";
+            dbDiff = db1FTmp - db4FTmp;
+            if ((dbDiff > dbMax) || (dbDiff < dbMin)) {
+                tbLightSourceRx1Rx4DiffPowerDb.ForeColor = Color.White;
+                tbLightSourceRx1Rx4DiffPowerDb.BackColor = Color.Red;
+            }
+            else {
+                tbLightSourceRx1Rx4DiffPowerDb.ForeColor = Color.Lime;
+                tbLightSourceRx1Rx4DiffPowerDb.BackColor = Color.Black;
+            }
+            tbLightSourceRx1Rx4DiffPowerDb.Text = dbDiff.ToString("0.##");
 
             amBeAlignmentRx1.Value = faBeAlignmentRxValue[0];
             amBeAlignmentRx2.Value = faBeAlignmentRxValue[1];
@@ -777,5 +804,6 @@ namespace LensAlignment
             float.TryParse(tbBeAlignmentRxMaxRange.Text, out tmpF);
             amBeAlignmentRx4.MaxRange = amBeAlignmentRx3.MaxRange = amBeAlignmentRx2.MaxRange = amBeAlignmentRx1.MaxRange = tmpF;
         }
+
     }
 }

@@ -63,13 +63,14 @@
   <PropertyGroup>
     <SignManifests>false</SignManifests>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
-  </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup>
     <StartupObject>LensAlignment.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AardvarkAdapter">
+      <HintPath>..\..\dll\device\AardvarkAdapter.dll</HintPath>
+    </Reference>
     <Reference Include="AnalogMeterUserInterface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\dll\AnalogMeterUserInterface.dll</HintPath>
@@ -118,7 +119,6 @@
     <EmbeddedResource Include="UcLensAlignment.resx">
       <DependentUpon>UcLensAlignment.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
