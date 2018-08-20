@@ -52,6 +52,7 @@
             this.lTemperatureOffset = new System.Windows.Forms.Label();
             this.tbTemperatureOffset = new System.Windows.Forms.TextBox();
             this.gbAutoCorrect = new System.Windows.Forms.GroupBox();
+            this.cbTxPowerRateCorrected = new System.Windows.Forms.CheckBox();
             this.cbVoltageCorrected = new System.Windows.Forms.CheckBox();
             this.bReset = new System.Windows.Forms.Button();
             this.cbRxPowerRateCorrected = new System.Windows.Forms.CheckBox();
@@ -92,7 +93,7 @@
             this.lRxCh3 = new System.Windows.Forms.Label();
             this.tbRxPower2 = new System.Windows.Forms.TextBox();
             this.tbRxPower1 = new System.Windows.Forms.TextBox();
-            this.lRxPower1 = new System.Windows.Forms.Label();
+            this.lRxPower = new System.Windows.Forms.Label();
             this.tbRxPowerRate2 = new System.Windows.Forms.TextBox();
             this.tbRssi2 = new System.Windows.Forms.TextBox();
             this.tbRxInputPower2 = new System.Windows.Forms.TextBox();
@@ -105,6 +106,9 @@
             this.lInputPower = new System.Windows.Forms.Label();
             this.lRxCh1 = new System.Windows.Forms.Label();
             this.gbAcMcEquation = new System.Windows.Forms.GroupBox();
+            this.bLutTemperatureUpdate = new System.Windows.Forms.Button();
+            this.tbLutTemperature = new System.Windows.Forms.TextBox();
+            this.lLutTemperature = new System.Windows.Forms.Label();
             this.tbPeakLenCtrlEquationCCh4 = new System.Windows.Forms.TextBox();
             this.tbPeakLenCtrlEquationBCh4 = new System.Windows.Forms.TextBox();
             this.tbPeakLenCtrlEquationACh4 = new System.Windows.Forms.TextBox();
@@ -190,9 +194,6 @@
             this.lAverageCurrentCh4 = new System.Windows.Forms.Label();
             this.lAverageCurrentCh3 = new System.Windows.Forms.Label();
             this.lAverageCurrentCh2 = new System.Windows.Forms.Label();
-            this.lEquationC2 = new System.Windows.Forms.Label();
-            this.lEquationA2 = new System.Windows.Forms.Label();
-            this.lEquationB2 = new System.Windows.Forms.Label();
             this.cbTemperatureCompensation = new System.Windows.Forms.CheckBox();
             this.bAcMcWrite = new System.Windows.Forms.Button();
             this.bAcMcRead = new System.Windows.Forms.Button();
@@ -239,28 +240,74 @@
             this.lVoltage = new System.Windows.Forms.Label();
             this.lVccOffset = new System.Windows.Forms.Label();
             this.tbVoltageOffset = new System.Windows.Forms.TextBox();
-            this.tbLutTemperature = new System.Windows.Forms.TextBox();
-            this.lLutTemperature = new System.Windows.Forms.Label();
-            this.bLutTemperatureUpdate = new System.Windows.Forms.Button();
+            this.gbTxPowerRate = new System.Windows.Forms.GroupBox();
+            this.tbTxOutputPowerRssi4 = new System.Windows.Forms.TextBox();
+            this.tbTxOutputPowerRssi3 = new System.Windows.Forms.TextBox();
+            this.tbTxOutputPowerRssi2 = new System.Windows.Forms.TextBox();
+            this.tbTxOutputPowerRssi1 = new System.Windows.Forms.TextBox();
+            this.lTxRssiRateDenominator = new System.Windows.Forms.Label();
+            this.tbTxRssiRateDenominator = new System.Windows.Forms.TextBox();
+            this.lTxRssiRateNumerator = new System.Windows.Forms.Label();
+            this.tbTxRssiRateNumerator = new System.Windows.Forms.TextBox();
+            this.lTxRssiRateAndConversion = new System.Windows.Forms.Label();
+            this.bTxPowerRateReset = new System.Windows.Forms.Button();
+            this.bTxPowerRateAutoCorrect = new System.Windows.Forms.Button();
+            this.tbTxPowerRateMin = new System.Windows.Forms.TextBox();
+            this.tbTxPowerRateMax = new System.Windows.Forms.TextBox();
+            this.lTxPowerRateMin = new System.Windows.Forms.Label();
+            this.lTxPowerRateMax = new System.Windows.Forms.Label();
+            this.lTxPowerRateDefault = new System.Windows.Forms.Label();
+            this.tbTxPowerRateDefault = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.bTxPowerRateWrite = new System.Windows.Forms.Button();
+            this.bTxPowerRateRead = new System.Windows.Forms.Button();
+            this.lTxPowerUW = new System.Windows.Forms.Label();
+            this.lOutputUW = new System.Windows.Forms.Label();
+            this.tbTxPower4 = new System.Windows.Forms.TextBox();
+            this.tbTxPowerRate4 = new System.Windows.Forms.TextBox();
+            this.tbTxRssi4 = new System.Windows.Forms.TextBox();
+            this.tbTxOutputPower4 = new System.Windows.Forms.TextBox();
+            this.lTxCh4 = new System.Windows.Forms.Label();
+            this.tbTxPower3 = new System.Windows.Forms.TextBox();
+            this.tbTxPowerRate3 = new System.Windows.Forms.TextBox();
+            this.tbTxRssi3 = new System.Windows.Forms.TextBox();
+            this.tbTxOutputPower3 = new System.Windows.Forms.TextBox();
+            this.lTxCh3 = new System.Windows.Forms.Label();
+            this.tbTxPower2 = new System.Windows.Forms.TextBox();
+            this.tbTxPower1 = new System.Windows.Forms.TextBox();
+            this.lTxPower = new System.Windows.Forms.Label();
+            this.tbTxPowerRate2 = new System.Windows.Forms.TextBox();
+            this.tbTxRssi2 = new System.Windows.Forms.TextBox();
+            this.tbTxOutputPower2 = new System.Windows.Forms.TextBox();
+            this.lTxCh2 = new System.Windows.Forms.Label();
+            this.tbTxPowerRate1 = new System.Windows.Forms.TextBox();
+            this.lTxPowerRate = new System.Windows.Forms.Label();
+            this.tbTxRssi1 = new System.Windows.Forms.TextBox();
+            this.lTxRssi = new System.Windows.Forms.Label();
+            this.tbTxOutputPower1 = new System.Windows.Forms.TextBox();
+            this.lOutputPower = new System.Windows.Forms.Label();
+            this.lTxCh1 = new System.Windows.Forms.Label();
             this.gbTemperature.SuspendLayout();
             this.gbAutoCorrect.SuspendLayout();
             this.gbRxPowerRate.SuspendLayout();
             this.gbAcMcEquation.SuspendLayout();
             this.gbVcc.SuspendLayout();
+            this.gbTxPowerRate.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbFilePath
             // 
+            this.tbFilePath.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbFilePath.Enabled = false;
-            this.tbFilePath.Location = new System.Drawing.Point(244, 5);
+            this.tbFilePath.Location = new System.Drawing.Point(63, 5);
             this.tbFilePath.Name = "tbFilePath";
-            this.tbFilePath.Size = new System.Drawing.Size(379, 22);
+            this.tbFilePath.Size = new System.Drawing.Size(547, 22);
             this.tbFilePath.TabIndex = 18;
             // 
             // lFilePath
             // 
             this.lFilePath.AutoSize = true;
-            this.lFilePath.Location = new System.Drawing.Point(187, 8);
+            this.lFilePath.Location = new System.Drawing.Point(3, 8);
             this.lFilePath.Name = "lFilePath";
             this.lFilePath.Size = new System.Drawing.Size(51, 12);
             this.lFilePath.TabIndex = 17;
@@ -268,7 +315,8 @@
             // 
             // tbPassword126
             // 
-            this.tbPassword126.Location = new System.Drawing.Point(156, 5);
+            this.tbPassword126.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbPassword126.Location = new System.Drawing.Point(156, 34);
             this.tbPassword126.Name = "tbPassword126";
             this.tbPassword126.PasswordChar = '*';
             this.tbPassword126.Size = new System.Drawing.Size(25, 22);
@@ -277,7 +325,8 @@
             // 
             // tbPassword125
             // 
-            this.tbPassword125.Location = new System.Drawing.Point(125, 5);
+            this.tbPassword125.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbPassword125.Location = new System.Drawing.Point(125, 34);
             this.tbPassword125.Name = "tbPassword125";
             this.tbPassword125.PasswordChar = '*';
             this.tbPassword125.Size = new System.Drawing.Size(25, 22);
@@ -286,7 +335,8 @@
             // 
             // tbPassword124
             // 
-            this.tbPassword124.Location = new System.Drawing.Point(94, 5);
+            this.tbPassword124.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbPassword124.Location = new System.Drawing.Point(94, 34);
             this.tbPassword124.Name = "tbPassword124";
             this.tbPassword124.PasswordChar = '*';
             this.tbPassword124.Size = new System.Drawing.Size(25, 22);
@@ -295,7 +345,8 @@
             // 
             // tbPassword123
             // 
-            this.tbPassword123.Location = new System.Drawing.Point(63, 5);
+            this.tbPassword123.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbPassword123.Location = new System.Drawing.Point(63, 34);
             this.tbPassword123.Name = "tbPassword123";
             this.tbPassword123.PasswordChar = '*';
             this.tbPassword123.Size = new System.Drawing.Size(25, 22);
@@ -305,7 +356,7 @@
             // lPassword
             // 
             this.lPassword.AutoSize = true;
-            this.lPassword.Location = new System.Drawing.Point(3, 8);
+            this.lPassword.Location = new System.Drawing.Point(3, 37);
             this.lPassword.Name = "lPassword";
             this.lPassword.Size = new System.Drawing.Size(54, 12);
             this.lPassword.TabIndex = 12;
@@ -313,21 +364,21 @@
             // 
             // bSaveFile
             // 
-            this.bSaveFile.Location = new System.Drawing.Point(629, 3);
+            this.bSaveFile.Location = new System.Drawing.Point(444, 32);
             this.bSaveFile.Name = "bSaveFile";
-            this.bSaveFile.Size = new System.Drawing.Size(60, 23);
+            this.bSaveFile.Size = new System.Drawing.Size(80, 23);
             this.bSaveFile.TabIndex = 11;
-            this.bSaveFile.Text = "Save File";
+            this.bSaveFile.Text = "參數存檔";
             this.bSaveFile.UseVisualStyleBackColor = true;
             this.bSaveFile.Click += new System.EventHandler(this.bSaveFile_Click);
             // 
             // bLoadFile
             // 
-            this.bLoadFile.Location = new System.Drawing.Point(695, 3);
+            this.bLoadFile.Location = new System.Drawing.Point(530, 32);
             this.bLoadFile.Name = "bLoadFile";
-            this.bLoadFile.Size = new System.Drawing.Size(60, 23);
+            this.bLoadFile.Size = new System.Drawing.Size(80, 23);
             this.bLoadFile.TabIndex = 10;
-            this.bLoadFile.Text = "Load File";
+            this.bLoadFile.Text = "載入參數";
             this.bLoadFile.UseVisualStyleBackColor = true;
             this.bLoadFile.Click += new System.EventHandler(this.bLoadFile_Click);
             // 
@@ -347,9 +398,9 @@
             this.gbTemperature.Controls.Add(this.bTemperatureRead);
             this.gbTemperature.Controls.Add(this.lTemperatureOffset);
             this.gbTemperature.Controls.Add(this.tbTemperatureOffset);
-            this.gbTemperature.Location = new System.Drawing.Point(5, 118);
+            this.gbTemperature.Location = new System.Drawing.Point(5, 195);
             this.gbTemperature.Name = "gbTemperature";
-            this.gbTemperature.Size = new System.Drawing.Size(494, 79);
+            this.gbTemperature.Size = new System.Drawing.Size(351, 94);
             this.gbTemperature.TabIndex = 19;
             this.gbTemperature.TabStop = false;
             this.gbTemperature.Text = "Temperature";
@@ -365,6 +416,7 @@
             // 
             // tbTemperatureSlope
             // 
+            this.tbTemperatureSlope.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbTemperatureSlope.Location = new System.Drawing.Point(281, 33);
             this.tbTemperatureSlope.Name = "tbTemperatureSlope";
             this.tbTemperatureSlope.Size = new System.Drawing.Size(60, 22);
@@ -372,21 +424,21 @@
             // 
             // bTemperatureReset
             // 
-            this.bTemperatureReset.Location = new System.Drawing.Point(439, 21);
+            this.bTemperatureReset.Location = new System.Drawing.Point(194, 61);
             this.bTemperatureReset.Name = "bTemperatureReset";
-            this.bTemperatureReset.Size = new System.Drawing.Size(45, 23);
+            this.bTemperatureReset.Size = new System.Drawing.Size(50, 23);
             this.bTemperatureReset.TabIndex = 13;
-            this.bTemperatureReset.Text = "Reset";
+            this.bTemperatureReset.Text = "重置";
             this.bTemperatureReset.UseVisualStyleBackColor = true;
             this.bTemperatureReset.Click += new System.EventHandler(this.bTemperatureReset_Click);
             // 
             // bTemperatureAutoCorrect
             // 
-            this.bTemperatureAutoCorrect.Location = new System.Drawing.Point(409, 50);
+            this.bTemperatureAutoCorrect.Location = new System.Drawing.Point(265, 61);
             this.bTemperatureAutoCorrect.Name = "bTemperatureAutoCorrect";
-            this.bTemperatureAutoCorrect.Size = new System.Drawing.Size(75, 23);
+            this.bTemperatureAutoCorrect.Size = new System.Drawing.Size(76, 23);
             this.bTemperatureAutoCorrect.TabIndex = 12;
-            this.bTemperatureAutoCorrect.Text = "Auto Correct";
+            this.bTemperatureAutoCorrect.Text = "自動校正";
             this.bTemperatureAutoCorrect.UseVisualStyleBackColor = true;
             this.bTemperatureAutoCorrect.Click += new System.EventHandler(this.bTemperatureAutoCorrect_Click);
             // 
@@ -401,6 +453,7 @@
             // 
             // tbTemperature
             // 
+            this.tbTemperature.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbTemperature.Location = new System.Drawing.Point(66, 33);
             this.tbTemperature.Name = "tbTemperature";
             this.tbTemperature.Size = new System.Drawing.Size(50, 22);
@@ -434,11 +487,11 @@
             // 
             // bTemperatureWrite
             // 
-            this.bTemperatureWrite.Location = new System.Drawing.Point(393, 21);
+            this.bTemperatureWrite.Location = new System.Drawing.Point(122, 61);
             this.bTemperatureWrite.Name = "bTemperatureWrite";
-            this.bTemperatureWrite.Size = new System.Drawing.Size(40, 23);
+            this.bTemperatureWrite.Size = new System.Drawing.Size(50, 23);
             this.bTemperatureWrite.TabIndex = 6;
-            this.bTemperatureWrite.Text = "Write";
+            this.bTemperatureWrite.Text = "寫入";
             this.bTemperatureWrite.UseVisualStyleBackColor = true;
             this.bTemperatureWrite.Click += new System.EventHandler(this.bTemperatureWrite_Click);
             // 
@@ -453,11 +506,11 @@
             // 
             // bTemperatureRead
             // 
-            this.bTemperatureRead.Location = new System.Drawing.Point(347, 21);
+            this.bTemperatureRead.Location = new System.Drawing.Point(66, 61);
             this.bTemperatureRead.Name = "bTemperatureRead";
-            this.bTemperatureRead.Size = new System.Drawing.Size(40, 23);
+            this.bTemperatureRead.Size = new System.Drawing.Size(50, 23);
             this.bTemperatureRead.TabIndex = 5;
-            this.bTemperatureRead.Text = "Read";
+            this.bTemperatureRead.Text = "讀取";
             this.bTemperatureRead.UseVisualStyleBackColor = true;
             this.bTemperatureRead.Click += new System.EventHandler(this.bTemperatureRead_Click);
             // 
@@ -472,6 +525,7 @@
             // 
             // tbTemperatureOffset
             // 
+            this.tbTemperatureOffset.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbTemperatureOffset.Location = new System.Drawing.Point(159, 33);
             this.tbTemperatureOffset.Name = "tbTemperatureOffset";
             this.tbTemperatureOffset.Size = new System.Drawing.Size(60, 22);
@@ -479,17 +533,29 @@
             // 
             // gbAutoCorrect
             // 
+            this.gbAutoCorrect.Controls.Add(this.cbTxPowerRateCorrected);
             this.gbAutoCorrect.Controls.Add(this.cbVoltageCorrected);
             this.gbAutoCorrect.Controls.Add(this.bReset);
             this.gbAutoCorrect.Controls.Add(this.cbRxPowerRateCorrected);
             this.gbAutoCorrect.Controls.Add(this.bAutoCorrect);
             this.gbAutoCorrect.Controls.Add(this.cbTemperatureCorrected);
-            this.gbAutoCorrect.Location = new System.Drawing.Point(505, 33);
+            this.gbAutoCorrect.Location = new System.Drawing.Point(362, 180);
             this.gbAutoCorrect.Name = "gbAutoCorrect";
-            this.gbAutoCorrect.Size = new System.Drawing.Size(190, 164);
+            this.gbAutoCorrect.Size = new System.Drawing.Size(248, 109);
             this.gbAutoCorrect.TabIndex = 20;
             this.gbAutoCorrect.TabStop = false;
             this.gbAutoCorrect.Text = "Auto Correct";
+            // 
+            // cbTxPowerRateCorrected
+            // 
+            this.cbTxPowerRateCorrected.AutoSize = true;
+            this.cbTxPowerRateCorrected.Enabled = false;
+            this.cbTxPowerRateCorrected.Location = new System.Drawing.Point(6, 87);
+            this.cbTxPowerRateCorrected.Name = "cbTxPowerRateCorrected";
+            this.cbTxPowerRateCorrected.Size = new System.Drawing.Size(93, 16);
+            this.cbTxPowerRateCorrected.TabIndex = 18;
+            this.cbTxPowerRateCorrected.Text = "Tx Power Rate";
+            this.cbTxPowerRateCorrected.UseVisualStyleBackColor = true;
             // 
             // cbVoltageCorrected
             // 
@@ -504,11 +570,11 @@
             // 
             // bReset
             // 
-            this.bReset.Location = new System.Drawing.Point(109, 106);
+            this.bReset.Location = new System.Drawing.Point(167, 51);
             this.bReset.Name = "bReset";
             this.bReset.Size = new System.Drawing.Size(75, 23);
             this.bReset.TabIndex = 16;
-            this.bReset.Text = "Reset";
+            this.bReset.Text = "重置";
             this.bReset.UseVisualStyleBackColor = true;
             this.bReset.Click += new System.EventHandler(this.bReset_Click);
             // 
@@ -525,11 +591,11 @@
             // 
             // bAutoCorrect
             // 
-            this.bAutoCorrect.Location = new System.Drawing.Point(109, 135);
+            this.bAutoCorrect.Location = new System.Drawing.Point(167, 80);
             this.bAutoCorrect.Name = "bAutoCorrect";
             this.bAutoCorrect.Size = new System.Drawing.Size(75, 23);
             this.bAutoCorrect.TabIndex = 13;
-            this.bAutoCorrect.Text = "Auto Correct";
+            this.bAutoCorrect.Text = "自動校正";
             this.bAutoCorrect.UseVisualStyleBackColor = true;
             this.bAutoCorrect.Click += new System.EventHandler(this.bAutoCorrect_Click);
             // 
@@ -580,7 +646,7 @@
             this.gbRxPowerRate.Controls.Add(this.lRxCh3);
             this.gbRxPowerRate.Controls.Add(this.tbRxPower2);
             this.gbRxPowerRate.Controls.Add(this.tbRxPower1);
-            this.gbRxPowerRate.Controls.Add(this.lRxPower1);
+            this.gbRxPowerRate.Controls.Add(this.lRxPower);
             this.gbRxPowerRate.Controls.Add(this.tbRxPowerRate2);
             this.gbRxPowerRate.Controls.Add(this.tbRssi2);
             this.gbRxPowerRate.Controls.Add(this.tbRxInputPower2);
@@ -592,9 +658,9 @@
             this.gbRxPowerRate.Controls.Add(this.tbRxInputPower1);
             this.gbRxPowerRate.Controls.Add(this.lInputPower);
             this.gbRxPowerRate.Controls.Add(this.lRxCh1);
-            this.gbRxPowerRate.Location = new System.Drawing.Point(5, 203);
+            this.gbRxPowerRate.Location = new System.Drawing.Point(5, 295);
             this.gbRxPowerRate.Name = "gbRxPowerRate";
-            this.gbRxPowerRate.Size = new System.Drawing.Size(749, 175);
+            this.gbRxPowerRate.Size = new System.Drawing.Size(605, 205);
             this.gbRxPowerRate.TabIndex = 21;
             this.gbRxPowerRate.TabStop = false;
             this.gbRxPowerRate.Text = "Rx Power Rate";
@@ -646,6 +712,7 @@
             // 
             // tbRxRssiRateDenominator
             // 
+            this.tbRxRssiRateDenominator.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbRxRssiRateDenominator.Location = new System.Drawing.Point(282, 61);
             this.tbRxRssiRateDenominator.Name = "tbRxRssiRateDenominator";
             this.tbRxRssiRateDenominator.Size = new System.Drawing.Size(60, 22);
@@ -664,6 +731,7 @@
             // 
             // tbRxRssiRateNumerator
             // 
+            this.tbRxRssiRateNumerator.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbRxRssiRateNumerator.Location = new System.Drawing.Point(216, 61);
             this.tbRxRssiRateNumerator.Name = "tbRxRssiRateNumerator";
             this.tbRxRssiRateNumerator.Size = new System.Drawing.Size(60, 22);
@@ -682,26 +750,27 @@
             // 
             // bRxPowerRateReset
             // 
-            this.bRxPowerRateReset.Location = new System.Drawing.Point(615, 115);
+            this.bRxPowerRateReset.Location = new System.Drawing.Point(194, 173);
             this.bRxPowerRateReset.Name = "bRxPowerRateReset";
-            this.bRxPowerRateReset.Size = new System.Drawing.Size(126, 23);
+            this.bRxPowerRateReset.Size = new System.Drawing.Size(50, 23);
             this.bRxPowerRateReset.TabIndex = 35;
-            this.bRxPowerRateReset.Text = "Reset";
+            this.bRxPowerRateReset.Text = "重置";
             this.bRxPowerRateReset.UseVisualStyleBackColor = true;
             this.bRxPowerRateReset.Click += new System.EventHandler(this.bRxPowerRateReset_Click);
             // 
             // bRxPowerRateAutoCorrect
             // 
-            this.bRxPowerRateAutoCorrect.Location = new System.Drawing.Point(615, 143);
+            this.bRxPowerRateAutoCorrect.Location = new System.Drawing.Point(265, 173);
             this.bRxPowerRateAutoCorrect.Name = "bRxPowerRateAutoCorrect";
-            this.bRxPowerRateAutoCorrect.Size = new System.Drawing.Size(126, 23);
+            this.bRxPowerRateAutoCorrect.Size = new System.Drawing.Size(76, 23);
             this.bRxPowerRateAutoCorrect.TabIndex = 34;
-            this.bRxPowerRateAutoCorrect.Text = "Auto Correct";
+            this.bRxPowerRateAutoCorrect.Text = "自動校正";
             this.bRxPowerRateAutoCorrect.UseVisualStyleBackColor = true;
             this.bRxPowerRateAutoCorrect.Click += new System.EventHandler(this.bRxPowerRateAutoCorrect_Click);
             // 
             // tbRxPowerRateMin
             // 
+            this.tbRxPowerRateMin.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbRxPowerRateMin.Location = new System.Drawing.Point(160, 117);
             this.tbRxPowerRateMin.Name = "tbRxPowerRateMin";
             this.tbRxPowerRateMin.Size = new System.Drawing.Size(50, 22);
@@ -709,6 +778,7 @@
             // 
             // tbRxPowerRateMax
             // 
+            this.tbRxPowerRateMax.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbRxPowerRateMax.Location = new System.Drawing.Point(104, 117);
             this.tbRxPowerRateMax.Name = "tbRxPowerRateMax";
             this.tbRxPowerRateMax.Size = new System.Drawing.Size(50, 22);
@@ -760,21 +830,21 @@
             // 
             // bRxPowerRateWrite
             // 
-            this.bRxPowerRateWrite.Location = new System.Drawing.Point(681, 87);
+            this.bRxPowerRateWrite.Location = new System.Drawing.Point(122, 173);
             this.bRxPowerRateWrite.Name = "bRxPowerRateWrite";
-            this.bRxPowerRateWrite.Size = new System.Drawing.Size(60, 23);
+            this.bRxPowerRateWrite.Size = new System.Drawing.Size(50, 23);
             this.bRxPowerRateWrite.TabIndex = 8;
-            this.bRxPowerRateWrite.Text = "Write";
+            this.bRxPowerRateWrite.Text = "寫入";
             this.bRxPowerRateWrite.UseVisualStyleBackColor = true;
             this.bRxPowerRateWrite.Click += new System.EventHandler(this.bRxPowerRateWrite_Click);
             // 
             // bRxPowerRateRead
             // 
-            this.bRxPowerRateRead.Location = new System.Drawing.Point(615, 87);
+            this.bRxPowerRateRead.Location = new System.Drawing.Point(66, 173);
             this.bRxPowerRateRead.Name = "bRxPowerRateRead";
-            this.bRxPowerRateRead.Size = new System.Drawing.Size(60, 23);
+            this.bRxPowerRateRead.Size = new System.Drawing.Size(50, 23);
             this.bRxPowerRateRead.TabIndex = 8;
-            this.bRxPowerRateRead.Text = "Read";
+            this.bRxPowerRateRead.Text = "讀取";
             this.bRxPowerRateRead.UseVisualStyleBackColor = true;
             this.bRxPowerRateRead.Click += new System.EventHandler(this.bRxPowerRateRead_Click);
             // 
@@ -806,6 +876,7 @@
             // 
             // tbRxPowerRate4
             // 
+            this.tbRxPowerRate4.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbRxPowerRate4.Location = new System.Drawing.Point(516, 117);
             this.tbRxPowerRate4.Name = "tbRxPowerRate4";
             this.tbRxPowerRate4.Size = new System.Drawing.Size(50, 22);
@@ -821,6 +892,7 @@
             // 
             // tbRxInputPower4
             // 
+            this.tbRxInputPower4.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbRxInputPower4.Location = new System.Drawing.Point(516, 33);
             this.tbRxInputPower4.Name = "tbRxInputPower4";
             this.tbRxInputPower4.Size = new System.Drawing.Size(50, 22);
@@ -847,6 +919,7 @@
             // 
             // tbRxPowerRate3
             // 
+            this.tbRxPowerRate3.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbRxPowerRate3.Location = new System.Drawing.Point(460, 117);
             this.tbRxPowerRate3.Name = "tbRxPowerRate3";
             this.tbRxPowerRate3.Size = new System.Drawing.Size(50, 22);
@@ -862,6 +935,7 @@
             // 
             // tbRxInputPower3
             // 
+            this.tbRxInputPower3.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbRxInputPower3.Location = new System.Drawing.Point(460, 33);
             this.tbRxInputPower3.Name = "tbRxInputPower3";
             this.tbRxInputPower3.Size = new System.Drawing.Size(50, 22);
@@ -894,17 +968,18 @@
             this.tbRxPower1.Size = new System.Drawing.Size(50, 22);
             this.tbRxPower1.TabIndex = 12;
             // 
-            // lRxPower1
+            // lRxPower
             // 
-            this.lRxPower1.AutoSize = true;
-            this.lRxPower1.Location = new System.Drawing.Point(6, 145);
-            this.lRxPower1.Name = "lRxPower1";
-            this.lRxPower1.Size = new System.Drawing.Size(40, 12);
-            this.lRxPower1.TabIndex = 11;
-            this.lRxPower1.Text = "Power :";
+            this.lRxPower.AutoSize = true;
+            this.lRxPower.Location = new System.Drawing.Point(6, 145);
+            this.lRxPower.Name = "lRxPower";
+            this.lRxPower.Size = new System.Drawing.Size(40, 12);
+            this.lRxPower.TabIndex = 11;
+            this.lRxPower.Text = "Power :";
             // 
             // tbRxPowerRate2
             // 
+            this.tbRxPowerRate2.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbRxPowerRate2.Location = new System.Drawing.Point(404, 117);
             this.tbRxPowerRate2.Name = "tbRxPowerRate2";
             this.tbRxPowerRate2.Size = new System.Drawing.Size(50, 22);
@@ -920,6 +995,7 @@
             // 
             // tbRxInputPower2
             // 
+            this.tbRxInputPower2.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbRxInputPower2.Location = new System.Drawing.Point(404, 33);
             this.tbRxInputPower2.Name = "tbRxInputPower2";
             this.tbRxInputPower2.Size = new System.Drawing.Size(50, 22);
@@ -938,6 +1014,7 @@
             // 
             // tbRxPowerRate1
             // 
+            this.tbRxPowerRate1.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbRxPowerRate1.Location = new System.Drawing.Point(348, 117);
             this.tbRxPowerRate1.Name = "tbRxPowerRate1";
             this.tbRxPowerRate1.Size = new System.Drawing.Size(50, 22);
@@ -971,6 +1048,7 @@
             // 
             // tbRxInputPower1
             // 
+            this.tbRxInputPower1.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbRxInputPower1.Location = new System.Drawing.Point(348, 33);
             this.tbRxInputPower1.Name = "tbRxInputPower1";
             this.tbRxInputPower1.Size = new System.Drawing.Size(50, 22);
@@ -1086,9 +1164,6 @@
             this.gbAcMcEquation.Controls.Add(this.lAverageCurrentCh4);
             this.gbAcMcEquation.Controls.Add(this.lAverageCurrentCh3);
             this.gbAcMcEquation.Controls.Add(this.lAverageCurrentCh2);
-            this.gbAcMcEquation.Controls.Add(this.lEquationC2);
-            this.gbAcMcEquation.Controls.Add(this.lEquationA2);
-            this.gbAcMcEquation.Controls.Add(this.lEquationB2);
             this.gbAcMcEquation.Controls.Add(this.cbTemperatureCompensation);
             this.gbAcMcEquation.Controls.Add(this.bAcMcWrite);
             this.gbAcMcEquation.Controls.Add(this.bAcMcRead);
@@ -1121,177 +1196,228 @@
             this.gbAcMcEquation.Controls.Add(this.lVhfCompProp);
             this.gbAcMcEquation.Controls.Add(this.lBaBmMaxCurrent);
             this.gbAcMcEquation.Controls.Add(this.tbAverageCurrentMin);
-            this.gbAcMcEquation.Location = new System.Drawing.Point(5, 384);
+            this.gbAcMcEquation.Location = new System.Drawing.Point(616, 3);
             this.gbAcMcEquation.Name = "gbAcMcEquation";
-            this.gbAcMcEquation.Size = new System.Drawing.Size(749, 371);
+            this.gbAcMcEquation.Size = new System.Drawing.Size(446, 707);
             this.gbAcMcEquation.TabIndex = 22;
             this.gbAcMcEquation.TabStop = false;
             this.gbAcMcEquation.Text = "Average and Modulation Current Equation, Drive Tune and Modulation Slope Table";
             // 
+            // bLutTemperatureUpdate
+            // 
+            this.bLutTemperatureUpdate.Location = new System.Drawing.Point(378, 199);
+            this.bLutTemperatureUpdate.Name = "bLutTemperatureUpdate";
+            this.bLutTemperatureUpdate.Size = new System.Drawing.Size(60, 23);
+            this.bLutTemperatureUpdate.TabIndex = 190;
+            this.bLutTemperatureUpdate.Text = "更新";
+            this.bLutTemperatureUpdate.UseVisualStyleBackColor = true;
+            this.bLutTemperatureUpdate.Click += new System.EventHandler(this.bLutTemperatureUpdate_Click);
+            // 
+            // tbLutTemperature
+            // 
+            this.tbLutTemperature.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbLutTemperature.Location = new System.Drawing.Point(382, 171);
+            this.tbLutTemperature.Name = "tbLutTemperature";
+            this.tbLutTemperature.Size = new System.Drawing.Size(50, 22);
+            this.tbLutTemperature.TabIndex = 189;
+            // 
+            // lLutTemperature
+            // 
+            this.lLutTemperature.AutoSize = true;
+            this.lLutTemperature.Location = new System.Drawing.Point(379, 147);
+            this.lLutTemperature.Name = "lLutTemperature";
+            this.lLutTemperature.Size = new System.Drawing.Size(57, 12);
+            this.lLutTemperature.TabIndex = 188;
+            this.lLutTemperature.Text = "LUT Temp";
+            // 
             // tbPeakLenCtrlEquationCCh4
             // 
-            this.tbPeakLenCtrlEquationCCh4.Location = new System.Drawing.Point(622, 339);
+            this.tbPeakLenCtrlEquationCCh4.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbPeakLenCtrlEquationCCh4.Location = new System.Drawing.Point(322, 676);
             this.tbPeakLenCtrlEquationCCh4.Name = "tbPeakLenCtrlEquationCCh4";
             this.tbPeakLenCtrlEquationCCh4.Size = new System.Drawing.Size(50, 22);
             this.tbPeakLenCtrlEquationCCh4.TabIndex = 187;
             // 
             // tbPeakLenCtrlEquationBCh4
             // 
-            this.tbPeakLenCtrlEquationBCh4.Location = new System.Drawing.Point(566, 339);
+            this.tbPeakLenCtrlEquationBCh4.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbPeakLenCtrlEquationBCh4.Location = new System.Drawing.Point(266, 676);
             this.tbPeakLenCtrlEquationBCh4.Name = "tbPeakLenCtrlEquationBCh4";
             this.tbPeakLenCtrlEquationBCh4.Size = new System.Drawing.Size(50, 22);
             this.tbPeakLenCtrlEquationBCh4.TabIndex = 186;
             // 
             // tbPeakLenCtrlEquationACh4
             // 
-            this.tbPeakLenCtrlEquationACh4.Location = new System.Drawing.Point(510, 339);
+            this.tbPeakLenCtrlEquationACh4.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbPeakLenCtrlEquationACh4.Location = new System.Drawing.Point(210, 676);
             this.tbPeakLenCtrlEquationACh4.Name = "tbPeakLenCtrlEquationACh4";
             this.tbPeakLenCtrlEquationACh4.Size = new System.Drawing.Size(50, 22);
             this.tbPeakLenCtrlEquationACh4.TabIndex = 185;
             // 
             // tbPeakLenCtrlEquationCCh3
             // 
-            this.tbPeakLenCtrlEquationCCh3.Location = new System.Drawing.Point(622, 311);
+            this.tbPeakLenCtrlEquationCCh3.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbPeakLenCtrlEquationCCh3.Location = new System.Drawing.Point(322, 648);
             this.tbPeakLenCtrlEquationCCh3.Name = "tbPeakLenCtrlEquationCCh3";
             this.tbPeakLenCtrlEquationCCh3.Size = new System.Drawing.Size(50, 22);
             this.tbPeakLenCtrlEquationCCh3.TabIndex = 184;
             // 
             // tbPeakLenCtrlEquationBCh3
             // 
-            this.tbPeakLenCtrlEquationBCh3.Location = new System.Drawing.Point(566, 311);
+            this.tbPeakLenCtrlEquationBCh3.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbPeakLenCtrlEquationBCh3.Location = new System.Drawing.Point(266, 648);
             this.tbPeakLenCtrlEquationBCh3.Name = "tbPeakLenCtrlEquationBCh3";
             this.tbPeakLenCtrlEquationBCh3.Size = new System.Drawing.Size(50, 22);
             this.tbPeakLenCtrlEquationBCh3.TabIndex = 183;
             // 
             // tbPeakLenCtrlEquationACh3
             // 
-            this.tbPeakLenCtrlEquationACh3.Location = new System.Drawing.Point(510, 311);
+            this.tbPeakLenCtrlEquationACh3.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbPeakLenCtrlEquationACh3.Location = new System.Drawing.Point(210, 648);
             this.tbPeakLenCtrlEquationACh3.Name = "tbPeakLenCtrlEquationACh3";
             this.tbPeakLenCtrlEquationACh3.Size = new System.Drawing.Size(50, 22);
             this.tbPeakLenCtrlEquationACh3.TabIndex = 182;
             // 
             // tbPeakLenCtrlEquationCCh2
             // 
-            this.tbPeakLenCtrlEquationCCh2.Location = new System.Drawing.Point(622, 283);
+            this.tbPeakLenCtrlEquationCCh2.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbPeakLenCtrlEquationCCh2.Location = new System.Drawing.Point(322, 620);
             this.tbPeakLenCtrlEquationCCh2.Name = "tbPeakLenCtrlEquationCCh2";
             this.tbPeakLenCtrlEquationCCh2.Size = new System.Drawing.Size(50, 22);
             this.tbPeakLenCtrlEquationCCh2.TabIndex = 181;
             // 
             // tbPeakLenCtrlEquationBCh2
             // 
-            this.tbPeakLenCtrlEquationBCh2.Location = new System.Drawing.Point(566, 283);
+            this.tbPeakLenCtrlEquationBCh2.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbPeakLenCtrlEquationBCh2.Location = new System.Drawing.Point(266, 620);
             this.tbPeakLenCtrlEquationBCh2.Name = "tbPeakLenCtrlEquationBCh2";
             this.tbPeakLenCtrlEquationBCh2.Size = new System.Drawing.Size(50, 22);
             this.tbPeakLenCtrlEquationBCh2.TabIndex = 180;
             // 
             // tbPeakLenCtrlEquationACh2
             // 
-            this.tbPeakLenCtrlEquationACh2.Location = new System.Drawing.Point(510, 283);
+            this.tbPeakLenCtrlEquationACh2.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbPeakLenCtrlEquationACh2.Location = new System.Drawing.Point(210, 620);
             this.tbPeakLenCtrlEquationACh2.Name = "tbPeakLenCtrlEquationACh2";
             this.tbPeakLenCtrlEquationACh2.Size = new System.Drawing.Size(50, 22);
             this.tbPeakLenCtrlEquationACh2.TabIndex = 179;
             // 
             // tbPeakEnEquationCCh4
             // 
-            this.tbPeakEnEquationCCh4.Location = new System.Drawing.Point(622, 227);
+            this.tbPeakEnEquationCCh4.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbPeakEnEquationCCh4.Location = new System.Drawing.Point(322, 564);
             this.tbPeakEnEquationCCh4.Name = "tbPeakEnEquationCCh4";
             this.tbPeakEnEquationCCh4.Size = new System.Drawing.Size(50, 22);
             this.tbPeakEnEquationCCh4.TabIndex = 178;
             // 
             // tbPeakEnEquationBCh4
             // 
-            this.tbPeakEnEquationBCh4.Location = new System.Drawing.Point(566, 227);
+            this.tbPeakEnEquationBCh4.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbPeakEnEquationBCh4.Location = new System.Drawing.Point(266, 564);
             this.tbPeakEnEquationBCh4.Name = "tbPeakEnEquationBCh4";
             this.tbPeakEnEquationBCh4.Size = new System.Drawing.Size(50, 22);
             this.tbPeakEnEquationBCh4.TabIndex = 177;
             // 
             // tbPeakEnEquationACh4
             // 
-            this.tbPeakEnEquationACh4.Location = new System.Drawing.Point(510, 227);
+            this.tbPeakEnEquationACh4.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbPeakEnEquationACh4.Location = new System.Drawing.Point(210, 564);
             this.tbPeakEnEquationACh4.Name = "tbPeakEnEquationACh4";
             this.tbPeakEnEquationACh4.Size = new System.Drawing.Size(50, 22);
             this.tbPeakEnEquationACh4.TabIndex = 176;
             // 
             // tbPeakEnEquationCCh3
             // 
-            this.tbPeakEnEquationCCh3.Location = new System.Drawing.Point(622, 199);
+            this.tbPeakEnEquationCCh3.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbPeakEnEquationCCh3.Location = new System.Drawing.Point(322, 536);
             this.tbPeakEnEquationCCh3.Name = "tbPeakEnEquationCCh3";
             this.tbPeakEnEquationCCh3.Size = new System.Drawing.Size(50, 22);
             this.tbPeakEnEquationCCh3.TabIndex = 175;
             // 
             // tbPeakEnEquationBCh3
             // 
-            this.tbPeakEnEquationBCh3.Location = new System.Drawing.Point(566, 199);
+            this.tbPeakEnEquationBCh3.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbPeakEnEquationBCh3.Location = new System.Drawing.Point(266, 536);
             this.tbPeakEnEquationBCh3.Name = "tbPeakEnEquationBCh3";
             this.tbPeakEnEquationBCh3.Size = new System.Drawing.Size(50, 22);
             this.tbPeakEnEquationBCh3.TabIndex = 174;
             // 
             // tbPeakEnEquationACh3
             // 
-            this.tbPeakEnEquationACh3.Location = new System.Drawing.Point(510, 199);
+            this.tbPeakEnEquationACh3.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbPeakEnEquationACh3.Location = new System.Drawing.Point(210, 536);
             this.tbPeakEnEquationACh3.Name = "tbPeakEnEquationACh3";
             this.tbPeakEnEquationACh3.Size = new System.Drawing.Size(50, 22);
             this.tbPeakEnEquationACh3.TabIndex = 173;
             // 
             // tbPeakEnEquationCCh2
             // 
-            this.tbPeakEnEquationCCh2.Location = new System.Drawing.Point(622, 171);
+            this.tbPeakEnEquationCCh2.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbPeakEnEquationCCh2.Location = new System.Drawing.Point(322, 508);
             this.tbPeakEnEquationCCh2.Name = "tbPeakEnEquationCCh2";
             this.tbPeakEnEquationCCh2.Size = new System.Drawing.Size(50, 22);
             this.tbPeakEnEquationCCh2.TabIndex = 172;
             // 
             // tbPeakEnEquationBCh2
             // 
-            this.tbPeakEnEquationBCh2.Location = new System.Drawing.Point(566, 171);
+            this.tbPeakEnEquationBCh2.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbPeakEnEquationBCh2.Location = new System.Drawing.Point(266, 508);
             this.tbPeakEnEquationBCh2.Name = "tbPeakEnEquationBCh2";
             this.tbPeakEnEquationBCh2.Size = new System.Drawing.Size(50, 22);
             this.tbPeakEnEquationBCh2.TabIndex = 171;
             // 
             // tbPeakEnEquationACh2
             // 
-            this.tbPeakEnEquationACh2.Location = new System.Drawing.Point(510, 171);
+            this.tbPeakEnEquationACh2.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbPeakEnEquationACh2.Location = new System.Drawing.Point(210, 508);
             this.tbPeakEnEquationACh2.Name = "tbPeakEnEquationACh2";
             this.tbPeakEnEquationACh2.Size = new System.Drawing.Size(50, 22);
             this.tbPeakEnEquationACh2.TabIndex = 170;
             // 
             // tbVhfCompConstEquationCCh4
             // 
-            this.tbVhfCompConstEquationCCh4.Location = new System.Drawing.Point(622, 115);
+            this.tbVhfCompConstEquationCCh4.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbVhfCompConstEquationCCh4.Location = new System.Drawing.Point(322, 451);
             this.tbVhfCompConstEquationCCh4.Name = "tbVhfCompConstEquationCCh4";
             this.tbVhfCompConstEquationCCh4.Size = new System.Drawing.Size(50, 22);
             this.tbVhfCompConstEquationCCh4.TabIndex = 169;
             // 
             // tbVhfCompConstEquationBCh4
             // 
-            this.tbVhfCompConstEquationBCh4.Location = new System.Drawing.Point(566, 115);
+            this.tbVhfCompConstEquationBCh4.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbVhfCompConstEquationBCh4.Location = new System.Drawing.Point(266, 451);
             this.tbVhfCompConstEquationBCh4.Name = "tbVhfCompConstEquationBCh4";
             this.tbVhfCompConstEquationBCh4.Size = new System.Drawing.Size(50, 22);
             this.tbVhfCompConstEquationBCh4.TabIndex = 168;
             // 
             // tbVhfCompConstEquationACh4
             // 
-            this.tbVhfCompConstEquationACh4.Location = new System.Drawing.Point(510, 115);
+            this.tbVhfCompConstEquationACh4.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbVhfCompConstEquationACh4.Location = new System.Drawing.Point(210, 451);
             this.tbVhfCompConstEquationACh4.Name = "tbVhfCompConstEquationACh4";
             this.tbVhfCompConstEquationACh4.Size = new System.Drawing.Size(50, 22);
             this.tbVhfCompConstEquationACh4.TabIndex = 167;
             // 
             // tbVhfCompConstEquationCCh3
             // 
-            this.tbVhfCompConstEquationCCh3.Location = new System.Drawing.Point(622, 87);
+            this.tbVhfCompConstEquationCCh3.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbVhfCompConstEquationCCh3.Location = new System.Drawing.Point(322, 423);
             this.tbVhfCompConstEquationCCh3.Name = "tbVhfCompConstEquationCCh3";
             this.tbVhfCompConstEquationCCh3.Size = new System.Drawing.Size(50, 22);
             this.tbVhfCompConstEquationCCh3.TabIndex = 166;
             // 
             // tbVhfCompConstEquationBCh3
             // 
-            this.tbVhfCompConstEquationBCh3.Location = new System.Drawing.Point(566, 87);
+            this.tbVhfCompConstEquationBCh3.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbVhfCompConstEquationBCh3.Location = new System.Drawing.Point(266, 423);
             this.tbVhfCompConstEquationBCh3.Name = "tbVhfCompConstEquationBCh3";
             this.tbVhfCompConstEquationBCh3.Size = new System.Drawing.Size(50, 22);
             this.tbVhfCompConstEquationBCh3.TabIndex = 165;
             // 
             // tbVhfCompConstEquationACh3
             // 
-            this.tbVhfCompConstEquationACh3.Location = new System.Drawing.Point(510, 87);
+            this.tbVhfCompConstEquationACh3.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbVhfCompConstEquationACh3.Location = new System.Drawing.Point(210, 423);
             this.tbVhfCompConstEquationACh3.Name = "tbVhfCompConstEquationACh3";
             this.tbVhfCompConstEquationACh3.Size = new System.Drawing.Size(50, 22);
             this.tbVhfCompConstEquationACh3.TabIndex = 164;
@@ -1300,7 +1426,7 @@
             // 
             this.lPeakLenCtrlCh4.AutoSize = true;
             this.lPeakLenCtrlCh4.BackColor = System.Drawing.SystemColors.Control;
-            this.lPeakLenCtrlCh4.Location = new System.Drawing.Point(479, 342);
+            this.lPeakLenCtrlCh4.Location = new System.Drawing.Point(179, 679);
             this.lPeakLenCtrlCh4.Name = "lPeakLenCtrlCh4";
             this.lPeakLenCtrlCh4.Size = new System.Drawing.Size(25, 12);
             this.lPeakLenCtrlCh4.TabIndex = 163;
@@ -1310,7 +1436,7 @@
             // 
             this.lPeakLenCtrlCh3.AutoSize = true;
             this.lPeakLenCtrlCh3.BackColor = System.Drawing.SystemColors.Control;
-            this.lPeakLenCtrlCh3.Location = new System.Drawing.Point(479, 314);
+            this.lPeakLenCtrlCh3.Location = new System.Drawing.Point(179, 651);
             this.lPeakLenCtrlCh3.Name = "lPeakLenCtrlCh3";
             this.lPeakLenCtrlCh3.Size = new System.Drawing.Size(25, 12);
             this.lPeakLenCtrlCh3.TabIndex = 162;
@@ -1320,7 +1446,7 @@
             // 
             this.lPeakLenCtrlCh2.AutoSize = true;
             this.lPeakLenCtrlCh2.BackColor = System.Drawing.SystemColors.Control;
-            this.lPeakLenCtrlCh2.Location = new System.Drawing.Point(479, 286);
+            this.lPeakLenCtrlCh2.Location = new System.Drawing.Point(179, 623);
             this.lPeakLenCtrlCh2.Name = "lPeakLenCtrlCh2";
             this.lPeakLenCtrlCh2.Size = new System.Drawing.Size(25, 12);
             this.lPeakLenCtrlCh2.TabIndex = 161;
@@ -1330,7 +1456,7 @@
             // 
             this.lPeakLenCtrlCh1.AutoSize = true;
             this.lPeakLenCtrlCh1.BackColor = System.Drawing.SystemColors.Control;
-            this.lPeakLenCtrlCh1.Location = new System.Drawing.Point(479, 258);
+            this.lPeakLenCtrlCh1.Location = new System.Drawing.Point(179, 595);
             this.lPeakLenCtrlCh1.Name = "lPeakLenCtrlCh1";
             this.lPeakLenCtrlCh1.Size = new System.Drawing.Size(25, 12);
             this.lPeakLenCtrlCh1.TabIndex = 160;
@@ -1340,7 +1466,7 @@
             // 
             this.lPeakEnCh4.AutoSize = true;
             this.lPeakEnCh4.BackColor = System.Drawing.SystemColors.Control;
-            this.lPeakEnCh4.Location = new System.Drawing.Point(479, 230);
+            this.lPeakEnCh4.Location = new System.Drawing.Point(179, 567);
             this.lPeakEnCh4.Name = "lPeakEnCh4";
             this.lPeakEnCh4.Size = new System.Drawing.Size(25, 12);
             this.lPeakEnCh4.TabIndex = 159;
@@ -1350,7 +1476,7 @@
             // 
             this.lPeakEnCh3.AutoSize = true;
             this.lPeakEnCh3.BackColor = System.Drawing.SystemColors.Control;
-            this.lPeakEnCh3.Location = new System.Drawing.Point(479, 202);
+            this.lPeakEnCh3.Location = new System.Drawing.Point(179, 539);
             this.lPeakEnCh3.Name = "lPeakEnCh3";
             this.lPeakEnCh3.Size = new System.Drawing.Size(25, 12);
             this.lPeakEnCh3.TabIndex = 158;
@@ -1360,7 +1486,7 @@
             // 
             this.lPeakEnCh2.AutoSize = true;
             this.lPeakEnCh2.BackColor = System.Drawing.SystemColors.Control;
-            this.lPeakEnCh2.Location = new System.Drawing.Point(479, 174);
+            this.lPeakEnCh2.Location = new System.Drawing.Point(179, 511);
             this.lPeakEnCh2.Name = "lPeakEnCh2";
             this.lPeakEnCh2.Size = new System.Drawing.Size(25, 12);
             this.lPeakEnCh2.TabIndex = 157;
@@ -1370,7 +1496,7 @@
             // 
             this.lPeakEnCh1.AutoSize = true;
             this.lPeakEnCh1.BackColor = System.Drawing.SystemColors.Control;
-            this.lPeakEnCh1.Location = new System.Drawing.Point(479, 146);
+            this.lPeakEnCh1.Location = new System.Drawing.Point(179, 483);
             this.lPeakEnCh1.Name = "lPeakEnCh1";
             this.lPeakEnCh1.Size = new System.Drawing.Size(25, 12);
             this.lPeakEnCh1.TabIndex = 156;
@@ -1380,7 +1506,7 @@
             // 
             this.lVhfCompConstCh4.AutoSize = true;
             this.lVhfCompConstCh4.BackColor = System.Drawing.SystemColors.Control;
-            this.lVhfCompConstCh4.Location = new System.Drawing.Point(479, 118);
+            this.lVhfCompConstCh4.Location = new System.Drawing.Point(179, 454);
             this.lVhfCompConstCh4.Name = "lVhfCompConstCh4";
             this.lVhfCompConstCh4.Size = new System.Drawing.Size(25, 12);
             this.lVhfCompConstCh4.TabIndex = 155;
@@ -1390,7 +1516,7 @@
             // 
             this.lVhfCompConstCh3.AutoSize = true;
             this.lVhfCompConstCh3.BackColor = System.Drawing.SystemColors.Control;
-            this.lVhfCompConstCh3.Location = new System.Drawing.Point(479, 90);
+            this.lVhfCompConstCh3.Location = new System.Drawing.Point(179, 426);
             this.lVhfCompConstCh3.Name = "lVhfCompConstCh3";
             this.lVhfCompConstCh3.Size = new System.Drawing.Size(25, 12);
             this.lVhfCompConstCh3.TabIndex = 154;
@@ -1400,7 +1526,7 @@
             // 
             this.lVhfCompConstCh2.AutoSize = true;
             this.lVhfCompConstCh2.BackColor = System.Drawing.SystemColors.Control;
-            this.lVhfCompConstCh2.Location = new System.Drawing.Point(479, 62);
+            this.lVhfCompConstCh2.Location = new System.Drawing.Point(179, 398);
             this.lVhfCompConstCh2.Name = "lVhfCompConstCh2";
             this.lVhfCompConstCh2.Size = new System.Drawing.Size(25, 12);
             this.lVhfCompConstCh2.TabIndex = 153;
@@ -1410,7 +1536,7 @@
             // 
             this.lVhfCompConstCh1.AutoSize = true;
             this.lVhfCompConstCh1.BackColor = System.Drawing.SystemColors.Control;
-            this.lVhfCompConstCh1.Location = new System.Drawing.Point(479, 34);
+            this.lVhfCompConstCh1.Location = new System.Drawing.Point(179, 370);
             this.lVhfCompConstCh1.Name = "lVhfCompConstCh1";
             this.lVhfCompConstCh1.Size = new System.Drawing.Size(25, 12);
             this.lVhfCompConstCh1.TabIndex = 152;
@@ -1418,27 +1544,31 @@
             // 
             // tbVhfCompConstEquationCCh2
             // 
-            this.tbVhfCompConstEquationCCh2.Location = new System.Drawing.Point(622, 59);
+            this.tbVhfCompConstEquationCCh2.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbVhfCompConstEquationCCh2.Location = new System.Drawing.Point(322, 395);
             this.tbVhfCompConstEquationCCh2.Name = "tbVhfCompConstEquationCCh2";
             this.tbVhfCompConstEquationCCh2.Size = new System.Drawing.Size(50, 22);
             this.tbVhfCompConstEquationCCh2.TabIndex = 151;
             // 
             // tbVhfCompConstEquationBCh2
             // 
-            this.tbVhfCompConstEquationBCh2.Location = new System.Drawing.Point(566, 59);
+            this.tbVhfCompConstEquationBCh2.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbVhfCompConstEquationBCh2.Location = new System.Drawing.Point(266, 395);
             this.tbVhfCompConstEquationBCh2.Name = "tbVhfCompConstEquationBCh2";
             this.tbVhfCompConstEquationBCh2.Size = new System.Drawing.Size(50, 22);
             this.tbVhfCompConstEquationBCh2.TabIndex = 150;
             // 
             // tbVhfCompConstEquationACh2
             // 
-            this.tbVhfCompConstEquationACh2.Location = new System.Drawing.Point(510, 59);
+            this.tbVhfCompConstEquationACh2.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbVhfCompConstEquationACh2.Location = new System.Drawing.Point(210, 395);
             this.tbVhfCompConstEquationACh2.Name = "tbVhfCompConstEquationACh2";
             this.tbVhfCompConstEquationACh2.Size = new System.Drawing.Size(50, 22);
             this.tbVhfCompConstEquationACh2.TabIndex = 149;
             // 
             // tbVhfCompPropEquationCCh4
             // 
+            this.tbVhfCompPropEquationCCh4.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbVhfCompPropEquationCCh4.Location = new System.Drawing.Point(322, 339);
             this.tbVhfCompPropEquationCCh4.Name = "tbVhfCompPropEquationCCh4";
             this.tbVhfCompPropEquationCCh4.Size = new System.Drawing.Size(50, 22);
@@ -1446,6 +1576,7 @@
             // 
             // tbVhfCompPropEquationBCh4
             // 
+            this.tbVhfCompPropEquationBCh4.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbVhfCompPropEquationBCh4.Location = new System.Drawing.Point(266, 339);
             this.tbVhfCompPropEquationBCh4.Name = "tbVhfCompPropEquationBCh4";
             this.tbVhfCompPropEquationBCh4.Size = new System.Drawing.Size(50, 22);
@@ -1453,6 +1584,7 @@
             // 
             // tbVhfCompPropEquationACh4
             // 
+            this.tbVhfCompPropEquationACh4.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbVhfCompPropEquationACh4.Location = new System.Drawing.Point(210, 339);
             this.tbVhfCompPropEquationACh4.Name = "tbVhfCompPropEquationACh4";
             this.tbVhfCompPropEquationACh4.Size = new System.Drawing.Size(50, 22);
@@ -1460,6 +1592,7 @@
             // 
             // tbVhfCompPropEquationCCh3
             // 
+            this.tbVhfCompPropEquationCCh3.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbVhfCompPropEquationCCh3.Location = new System.Drawing.Point(322, 311);
             this.tbVhfCompPropEquationCCh3.Name = "tbVhfCompPropEquationCCh3";
             this.tbVhfCompPropEquationCCh3.Size = new System.Drawing.Size(50, 22);
@@ -1467,6 +1600,7 @@
             // 
             // tbVhfCompPropEquationBCh3
             // 
+            this.tbVhfCompPropEquationBCh3.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbVhfCompPropEquationBCh3.Location = new System.Drawing.Point(266, 311);
             this.tbVhfCompPropEquationBCh3.Name = "tbVhfCompPropEquationBCh3";
             this.tbVhfCompPropEquationBCh3.Size = new System.Drawing.Size(50, 22);
@@ -1474,6 +1608,7 @@
             // 
             // tbVhfCompPropEquationACh3
             // 
+            this.tbVhfCompPropEquationACh3.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbVhfCompPropEquationACh3.Location = new System.Drawing.Point(210, 311);
             this.tbVhfCompPropEquationACh3.Name = "tbVhfCompPropEquationACh3";
             this.tbVhfCompPropEquationACh3.Size = new System.Drawing.Size(50, 22);
@@ -1481,6 +1616,7 @@
             // 
             // tbVhfCompPropEquationCCh2
             // 
+            this.tbVhfCompPropEquationCCh2.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbVhfCompPropEquationCCh2.Location = new System.Drawing.Point(322, 283);
             this.tbVhfCompPropEquationCCh2.Name = "tbVhfCompPropEquationCCh2";
             this.tbVhfCompPropEquationCCh2.Size = new System.Drawing.Size(50, 22);
@@ -1488,6 +1624,7 @@
             // 
             // tbVhfCompPropEquationBCh2
             // 
+            this.tbVhfCompPropEquationBCh2.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbVhfCompPropEquationBCh2.Location = new System.Drawing.Point(266, 283);
             this.tbVhfCompPropEquationBCh2.Name = "tbVhfCompPropEquationBCh2";
             this.tbVhfCompPropEquationBCh2.Size = new System.Drawing.Size(50, 22);
@@ -1495,6 +1632,7 @@
             // 
             // tbVhfCompPropEquationACh2
             // 
+            this.tbVhfCompPropEquationACh2.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbVhfCompPropEquationACh2.Location = new System.Drawing.Point(210, 283);
             this.tbVhfCompPropEquationACh2.Name = "tbVhfCompPropEquationACh2";
             this.tbVhfCompPropEquationACh2.Size = new System.Drawing.Size(50, 22);
@@ -1542,6 +1680,7 @@
             // 
             // tbModulationCurrentEquationCCh4
             // 
+            this.tbModulationCurrentEquationCCh4.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbModulationCurrentEquationCCh4.Location = new System.Drawing.Point(322, 227);
             this.tbModulationCurrentEquationCCh4.Name = "tbModulationCurrentEquationCCh4";
             this.tbModulationCurrentEquationCCh4.Size = new System.Drawing.Size(50, 22);
@@ -1549,6 +1688,7 @@
             // 
             // tbModulationCurrentEquationBCh4
             // 
+            this.tbModulationCurrentEquationBCh4.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbModulationCurrentEquationBCh4.Location = new System.Drawing.Point(266, 227);
             this.tbModulationCurrentEquationBCh4.Name = "tbModulationCurrentEquationBCh4";
             this.tbModulationCurrentEquationBCh4.Size = new System.Drawing.Size(50, 22);
@@ -1556,6 +1696,7 @@
             // 
             // tbModulationCurrentEquationACh4
             // 
+            this.tbModulationCurrentEquationACh4.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbModulationCurrentEquationACh4.Location = new System.Drawing.Point(210, 227);
             this.tbModulationCurrentEquationACh4.Name = "tbModulationCurrentEquationACh4";
             this.tbModulationCurrentEquationACh4.Size = new System.Drawing.Size(50, 22);
@@ -1563,6 +1704,7 @@
             // 
             // tbModulationCurrentEquationCCh3
             // 
+            this.tbModulationCurrentEquationCCh3.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbModulationCurrentEquationCCh3.Location = new System.Drawing.Point(322, 199);
             this.tbModulationCurrentEquationCCh3.Name = "tbModulationCurrentEquationCCh3";
             this.tbModulationCurrentEquationCCh3.Size = new System.Drawing.Size(50, 22);
@@ -1570,6 +1712,7 @@
             // 
             // tbModulationCurrentEquationBCh3
             // 
+            this.tbModulationCurrentEquationBCh3.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbModulationCurrentEquationBCh3.Location = new System.Drawing.Point(266, 199);
             this.tbModulationCurrentEquationBCh3.Name = "tbModulationCurrentEquationBCh3";
             this.tbModulationCurrentEquationBCh3.Size = new System.Drawing.Size(50, 22);
@@ -1577,6 +1720,7 @@
             // 
             // tbModulationCurrentEquationACh3
             // 
+            this.tbModulationCurrentEquationACh3.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbModulationCurrentEquationACh3.Location = new System.Drawing.Point(210, 199);
             this.tbModulationCurrentEquationACh3.Name = "tbModulationCurrentEquationACh3";
             this.tbModulationCurrentEquationACh3.Size = new System.Drawing.Size(50, 22);
@@ -1584,6 +1728,7 @@
             // 
             // tbModulationCurrentEquationCCh2
             // 
+            this.tbModulationCurrentEquationCCh2.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbModulationCurrentEquationCCh2.Location = new System.Drawing.Point(322, 171);
             this.tbModulationCurrentEquationCCh2.Name = "tbModulationCurrentEquationCCh2";
             this.tbModulationCurrentEquationCCh2.Size = new System.Drawing.Size(50, 22);
@@ -1591,6 +1736,7 @@
             // 
             // tbModulationCurrentEquationBCh2
             // 
+            this.tbModulationCurrentEquationBCh2.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbModulationCurrentEquationBCh2.Location = new System.Drawing.Point(266, 171);
             this.tbModulationCurrentEquationBCh2.Name = "tbModulationCurrentEquationBCh2";
             this.tbModulationCurrentEquationBCh2.Size = new System.Drawing.Size(50, 22);
@@ -1598,6 +1744,7 @@
             // 
             // tbModulationCurrentEquationACh2
             // 
+            this.tbModulationCurrentEquationACh2.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbModulationCurrentEquationACh2.Location = new System.Drawing.Point(210, 171);
             this.tbModulationCurrentEquationACh2.Name = "tbModulationCurrentEquationACh2";
             this.tbModulationCurrentEquationACh2.Size = new System.Drawing.Size(50, 22);
@@ -1645,6 +1792,7 @@
             // 
             // tbAverageCurrentEquationCCh4
             // 
+            this.tbAverageCurrentEquationCCh4.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbAverageCurrentEquationCCh4.Location = new System.Drawing.Point(322, 115);
             this.tbAverageCurrentEquationCCh4.Name = "tbAverageCurrentEquationCCh4";
             this.tbAverageCurrentEquationCCh4.Size = new System.Drawing.Size(50, 22);
@@ -1652,6 +1800,7 @@
             // 
             // tbAverageCurrentEquationBCh4
             // 
+            this.tbAverageCurrentEquationBCh4.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbAverageCurrentEquationBCh4.Location = new System.Drawing.Point(266, 115);
             this.tbAverageCurrentEquationBCh4.Name = "tbAverageCurrentEquationBCh4";
             this.tbAverageCurrentEquationBCh4.Size = new System.Drawing.Size(50, 22);
@@ -1659,6 +1808,7 @@
             // 
             // tbAverageCurrentEquationACh4
             // 
+            this.tbAverageCurrentEquationACh4.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbAverageCurrentEquationACh4.Location = new System.Drawing.Point(210, 115);
             this.tbAverageCurrentEquationACh4.Name = "tbAverageCurrentEquationACh4";
             this.tbAverageCurrentEquationACh4.Size = new System.Drawing.Size(50, 22);
@@ -1666,6 +1816,7 @@
             // 
             // tbAverageCurrentEquationCCh3
             // 
+            this.tbAverageCurrentEquationCCh3.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbAverageCurrentEquationCCh3.Location = new System.Drawing.Point(322, 87);
             this.tbAverageCurrentEquationCCh3.Name = "tbAverageCurrentEquationCCh3";
             this.tbAverageCurrentEquationCCh3.Size = new System.Drawing.Size(50, 22);
@@ -1673,6 +1824,7 @@
             // 
             // tbAverageCurrentEquationBCh3
             // 
+            this.tbAverageCurrentEquationBCh3.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbAverageCurrentEquationBCh3.Location = new System.Drawing.Point(266, 87);
             this.tbAverageCurrentEquationBCh3.Name = "tbAverageCurrentEquationBCh3";
             this.tbAverageCurrentEquationBCh3.Size = new System.Drawing.Size(50, 22);
@@ -1680,6 +1832,7 @@
             // 
             // tbAverageCurrentEquationACh3
             // 
+            this.tbAverageCurrentEquationACh3.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbAverageCurrentEquationACh3.Location = new System.Drawing.Point(210, 87);
             this.tbAverageCurrentEquationACh3.Name = "tbAverageCurrentEquationACh3";
             this.tbAverageCurrentEquationACh3.Size = new System.Drawing.Size(50, 22);
@@ -1687,6 +1840,7 @@
             // 
             // tbAverageCurrentEquationCCh2
             // 
+            this.tbAverageCurrentEquationCCh2.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbAverageCurrentEquationCCh2.Location = new System.Drawing.Point(322, 59);
             this.tbAverageCurrentEquationCCh2.Name = "tbAverageCurrentEquationCCh2";
             this.tbAverageCurrentEquationCCh2.Size = new System.Drawing.Size(50, 22);
@@ -1694,6 +1848,7 @@
             // 
             // tbAverageCurrentEquationBCh2
             // 
+            this.tbAverageCurrentEquationBCh2.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbAverageCurrentEquationBCh2.Location = new System.Drawing.Point(266, 59);
             this.tbAverageCurrentEquationBCh2.Name = "tbAverageCurrentEquationBCh2";
             this.tbAverageCurrentEquationBCh2.Size = new System.Drawing.Size(50, 22);
@@ -1701,6 +1856,7 @@
             // 
             // tbAverageCurrentEquationACh2
             // 
+            this.tbAverageCurrentEquationACh2.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbAverageCurrentEquationACh2.Location = new System.Drawing.Point(210, 59);
             this.tbAverageCurrentEquationACh2.Name = "tbAverageCurrentEquationACh2";
             this.tbAverageCurrentEquationACh2.Size = new System.Drawing.Size(50, 22);
@@ -1708,21 +1864,24 @@
             // 
             // tbPeakLenCtrlEquationCCh1
             // 
-            this.tbPeakLenCtrlEquationCCh1.Location = new System.Drawing.Point(622, 255);
+            this.tbPeakLenCtrlEquationCCh1.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbPeakLenCtrlEquationCCh1.Location = new System.Drawing.Point(322, 592);
             this.tbPeakLenCtrlEquationCCh1.Name = "tbPeakLenCtrlEquationCCh1";
             this.tbPeakLenCtrlEquationCCh1.Size = new System.Drawing.Size(50, 22);
             this.tbPeakLenCtrlEquationCCh1.TabIndex = 113;
             // 
             // tbPeakLenCtrlEquationBCh1
             // 
-            this.tbPeakLenCtrlEquationBCh1.Location = new System.Drawing.Point(566, 255);
+            this.tbPeakLenCtrlEquationBCh1.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbPeakLenCtrlEquationBCh1.Location = new System.Drawing.Point(266, 592);
             this.tbPeakLenCtrlEquationBCh1.Name = "tbPeakLenCtrlEquationBCh1";
             this.tbPeakLenCtrlEquationBCh1.Size = new System.Drawing.Size(50, 22);
             this.tbPeakLenCtrlEquationBCh1.TabIndex = 112;
             // 
             // tbPeakLenCtrlEquationACh1
             // 
-            this.tbPeakLenCtrlEquationACh1.Location = new System.Drawing.Point(510, 255);
+            this.tbPeakLenCtrlEquationACh1.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbPeakLenCtrlEquationACh1.Location = new System.Drawing.Point(210, 592);
             this.tbPeakLenCtrlEquationACh1.Name = "tbPeakLenCtrlEquationACh1";
             this.tbPeakLenCtrlEquationACh1.Size = new System.Drawing.Size(50, 22);
             this.tbPeakLenCtrlEquationACh1.TabIndex = 111;
@@ -1730,7 +1889,7 @@
             // lPeakLenCtrl
             // 
             this.lPeakLenCtrl.AutoSize = true;
-            this.lPeakLenCtrl.Location = new System.Drawing.Point(398, 258);
+            this.lPeakLenCtrl.Location = new System.Drawing.Point(98, 595);
             this.lPeakLenCtrl.Name = "lPeakLenCtrl";
             this.lPeakLenCtrl.Size = new System.Drawing.Size(75, 12);
             this.lPeakLenCtrl.TabIndex = 110;
@@ -1738,21 +1897,24 @@
             // 
             // tbPeakEnEquationCCh1
             // 
-            this.tbPeakEnEquationCCh1.Location = new System.Drawing.Point(622, 143);
+            this.tbPeakEnEquationCCh1.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbPeakEnEquationCCh1.Location = new System.Drawing.Point(322, 480);
             this.tbPeakEnEquationCCh1.Name = "tbPeakEnEquationCCh1";
             this.tbPeakEnEquationCCh1.Size = new System.Drawing.Size(50, 22);
             this.tbPeakEnEquationCCh1.TabIndex = 109;
             // 
             // tbPeakEnEquationBCh1
             // 
-            this.tbPeakEnEquationBCh1.Location = new System.Drawing.Point(566, 143);
+            this.tbPeakEnEquationBCh1.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbPeakEnEquationBCh1.Location = new System.Drawing.Point(266, 480);
             this.tbPeakEnEquationBCh1.Name = "tbPeakEnEquationBCh1";
             this.tbPeakEnEquationBCh1.Size = new System.Drawing.Size(50, 22);
             this.tbPeakEnEquationBCh1.TabIndex = 108;
             // 
             // tbPeakEnEquationACh1
             // 
-            this.tbPeakEnEquationACh1.Location = new System.Drawing.Point(510, 143);
+            this.tbPeakEnEquationACh1.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbPeakEnEquationACh1.Location = new System.Drawing.Point(210, 480);
             this.tbPeakEnEquationACh1.Name = "tbPeakEnEquationACh1";
             this.tbPeakEnEquationACh1.Size = new System.Drawing.Size(50, 22);
             this.tbPeakEnEquationACh1.TabIndex = 107;
@@ -1760,7 +1922,7 @@
             // lPeakEn
             // 
             this.lPeakEn.AutoSize = true;
-            this.lPeakEn.Location = new System.Drawing.Point(424, 146);
+            this.lPeakEn.Location = new System.Drawing.Point(124, 483);
             this.lPeakEn.Name = "lPeakEn";
             this.lPeakEn.Size = new System.Drawing.Size(49, 12);
             this.lPeakEn.TabIndex = 106;
@@ -1796,37 +1958,10 @@
             this.lAverageCurrentCh2.TabIndex = 79;
             this.lAverageCurrentCh2.Text = "Ch2";
             // 
-            // lEquationC2
-            // 
-            this.lEquationC2.AutoSize = true;
-            this.lEquationC2.Location = new System.Drawing.Point(633, 16);
-            this.lEquationC2.Name = "lEquationC2";
-            this.lEquationC2.Size = new System.Drawing.Size(24, 12);
-            this.lEquationC2.TabIndex = 78;
-            this.lEquationC2.Text = "X^0";
-            // 
-            // lEquationA2
-            // 
-            this.lEquationA2.AutoSize = true;
-            this.lEquationA2.Location = new System.Drawing.Point(521, 16);
-            this.lEquationA2.Name = "lEquationA2";
-            this.lEquationA2.Size = new System.Drawing.Size(24, 12);
-            this.lEquationA2.TabIndex = 76;
-            this.lEquationA2.Text = "X^2";
-            // 
-            // lEquationB2
-            // 
-            this.lEquationB2.AutoSize = true;
-            this.lEquationB2.Location = new System.Drawing.Point(577, 16);
-            this.lEquationB2.Name = "lEquationB2";
-            this.lEquationB2.Size = new System.Drawing.Size(24, 12);
-            this.lEquationB2.TabIndex = 77;
-            this.lEquationB2.Text = "X^1";
-            // 
             // cbTemperatureCompensation
             // 
             this.cbTemperatureCompensation.AutoSize = true;
-            this.cbTemperatureCompensation.Location = new System.Drawing.Point(681, 21);
+            this.cbTemperatureCompensation.Location = new System.Drawing.Point(378, 21);
             this.cbTemperatureCompensation.Name = "cbTemperatureCompensation";
             this.cbTemperatureCompensation.Size = new System.Drawing.Size(56, 16);
             this.cbTemperatureCompensation.TabIndex = 55;
@@ -1836,26 +1971,27 @@
             // 
             // bAcMcWrite
             // 
-            this.bAcMcWrite.Location = new System.Drawing.Point(681, 75);
+            this.bAcMcWrite.Location = new System.Drawing.Point(378, 75);
             this.bAcMcWrite.Name = "bAcMcWrite";
             this.bAcMcWrite.Size = new System.Drawing.Size(60, 23);
             this.bAcMcWrite.TabIndex = 36;
-            this.bAcMcWrite.Text = "Write";
+            this.bAcMcWrite.Text = "寫入";
             this.bAcMcWrite.UseVisualStyleBackColor = true;
             this.bAcMcWrite.Click += new System.EventHandler(this.bAcMcWrite_Click);
             // 
             // bAcMcRead
             // 
-            this.bAcMcRead.Location = new System.Drawing.Point(681, 46);
+            this.bAcMcRead.Location = new System.Drawing.Point(378, 46);
             this.bAcMcRead.Name = "bAcMcRead";
             this.bAcMcRead.Size = new System.Drawing.Size(60, 23);
             this.bAcMcRead.TabIndex = 36;
-            this.bAcMcRead.Text = "Read";
+            this.bAcMcRead.Text = "讀取";
             this.bAcMcRead.UseVisualStyleBackColor = true;
             this.bAcMcRead.Click += new System.EventHandler(this.bAcMcRead_Click);
             // 
             // tbModulationCurrentEquationCCh1
             // 
+            this.tbModulationCurrentEquationCCh1.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbModulationCurrentEquationCCh1.Location = new System.Drawing.Point(322, 143);
             this.tbModulationCurrentEquationCCh1.Name = "tbModulationCurrentEquationCCh1";
             this.tbModulationCurrentEquationCCh1.Size = new System.Drawing.Size(50, 22);
@@ -1872,14 +2008,16 @@
             // 
             // tbVhfCompConstEquationCCh1
             // 
-            this.tbVhfCompConstEquationCCh1.Location = new System.Drawing.Point(622, 31);
+            this.tbVhfCompConstEquationCCh1.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbVhfCompConstEquationCCh1.Location = new System.Drawing.Point(322, 367);
             this.tbVhfCompConstEquationCCh1.Name = "tbVhfCompConstEquationCCh1";
             this.tbVhfCompConstEquationCCh1.Size = new System.Drawing.Size(50, 22);
             this.tbVhfCompConstEquationCCh1.TabIndex = 75;
             // 
             // tbVhfCompConstEquationBCh1
             // 
-            this.tbVhfCompConstEquationBCh1.Location = new System.Drawing.Point(566, 31);
+            this.tbVhfCompConstEquationBCh1.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbVhfCompConstEquationBCh1.Location = new System.Drawing.Point(266, 367);
             this.tbVhfCompConstEquationBCh1.Name = "tbVhfCompConstEquationBCh1";
             this.tbVhfCompConstEquationBCh1.Size = new System.Drawing.Size(50, 22);
             this.tbVhfCompConstEquationBCh1.TabIndex = 74;
@@ -1895,7 +2033,8 @@
             // 
             // tbVhfCompConstEquationACh1
             // 
-            this.tbVhfCompConstEquationACh1.Location = new System.Drawing.Point(510, 31);
+            this.tbVhfCompConstEquationACh1.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbVhfCompConstEquationACh1.Location = new System.Drawing.Point(210, 367);
             this.tbVhfCompConstEquationACh1.Name = "tbVhfCompConstEquationACh1";
             this.tbVhfCompConstEquationACh1.Size = new System.Drawing.Size(50, 22);
             this.tbVhfCompConstEquationACh1.TabIndex = 73;
@@ -1913,7 +2052,7 @@
             // lDrvtnCst
             // 
             this.lDrvtnCst.AutoSize = true;
-            this.lDrvtnCst.Location = new System.Drawing.Point(378, 34);
+            this.lDrvtnCst.Location = new System.Drawing.Point(78, 370);
             this.lDrvtnCst.Name = "lDrvtnCst";
             this.lDrvtnCst.Size = new System.Drawing.Size(95, 12);
             this.lDrvtnCst.TabIndex = 72;
@@ -1921,6 +2060,7 @@
             // 
             // tbAverageCurrentEquationCCh1
             // 
+            this.tbAverageCurrentEquationCCh1.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbAverageCurrentEquationCCh1.Location = new System.Drawing.Point(322, 31);
             this.tbAverageCurrentEquationCCh1.Name = "tbAverageCurrentEquationCCh1";
             this.tbAverageCurrentEquationCCh1.Size = new System.Drawing.Size(50, 22);
@@ -1928,6 +2068,7 @@
             // 
             // tbModulationCurrentMin
             // 
+            this.tbModulationCurrentMin.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbModulationCurrentMin.Location = new System.Drawing.Point(95, 144);
             this.tbModulationCurrentMin.Name = "tbModulationCurrentMin";
             this.tbModulationCurrentMin.Size = new System.Drawing.Size(50, 22);
@@ -1935,6 +2076,7 @@
             // 
             // tbModulationCurrentMax
             // 
+            this.tbModulationCurrentMax.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbModulationCurrentMax.Location = new System.Drawing.Point(39, 143);
             this.tbModulationCurrentMax.Name = "tbModulationCurrentMax";
             this.tbModulationCurrentMax.Size = new System.Drawing.Size(50, 22);
@@ -1951,16 +2093,17 @@
             // 
             // bLutClear
             // 
-            this.bLutClear.Location = new System.Drawing.Point(681, 104);
+            this.bLutClear.Location = new System.Drawing.Point(378, 104);
             this.bLutClear.Name = "bLutClear";
             this.bLutClear.Size = new System.Drawing.Size(60, 23);
             this.bLutClear.TabIndex = 14;
-            this.bLutClear.Text = "Clear";
+            this.bLutClear.Text = "清除";
             this.bLutClear.UseVisualStyleBackColor = true;
             this.bLutClear.Click += new System.EventHandler(this.bLutReset_Click);
             // 
             // tbAverageCurrentEquationBCh1
             // 
+            this.tbAverageCurrentEquationBCh1.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbAverageCurrentEquationBCh1.Location = new System.Drawing.Point(266, 31);
             this.tbAverageCurrentEquationBCh1.Name = "tbAverageCurrentEquationBCh1";
             this.tbAverageCurrentEquationBCh1.Size = new System.Drawing.Size(50, 22);
@@ -1968,6 +2111,7 @@
             // 
             // tbModulationCurrentEquationBCh1
             // 
+            this.tbModulationCurrentEquationBCh1.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbModulationCurrentEquationBCh1.Location = new System.Drawing.Point(266, 143);
             this.tbModulationCurrentEquationBCh1.Name = "tbModulationCurrentEquationBCh1";
             this.tbModulationCurrentEquationBCh1.Size = new System.Drawing.Size(50, 22);
@@ -2002,6 +2146,7 @@
             // 
             // tbAverageCurrentEquationACh1
             // 
+            this.tbAverageCurrentEquationACh1.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbAverageCurrentEquationACh1.Location = new System.Drawing.Point(210, 31);
             this.tbAverageCurrentEquationACh1.Name = "tbAverageCurrentEquationACh1";
             this.tbAverageCurrentEquationACh1.Size = new System.Drawing.Size(50, 22);
@@ -2018,6 +2163,7 @@
             // 
             // tbVhfCompPropEquationCCh1
             // 
+            this.tbVhfCompPropEquationCCh1.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbVhfCompPropEquationCCh1.Location = new System.Drawing.Point(322, 255);
             this.tbVhfCompPropEquationCCh1.Name = "tbVhfCompPropEquationCCh1";
             this.tbVhfCompPropEquationCCh1.Size = new System.Drawing.Size(50, 22);
@@ -2034,6 +2180,7 @@
             // 
             // tbVhfCompPropEquationBCh1
             // 
+            this.tbVhfCompPropEquationBCh1.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbVhfCompPropEquationBCh1.Location = new System.Drawing.Point(266, 255);
             this.tbVhfCompPropEquationBCh1.Name = "tbVhfCompPropEquationBCh1";
             this.tbVhfCompPropEquationBCh1.Size = new System.Drawing.Size(50, 22);
@@ -2041,6 +2188,7 @@
             // 
             // tbModulationCurrentEquationACh1
             // 
+            this.tbModulationCurrentEquationACh1.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbModulationCurrentEquationACh1.Location = new System.Drawing.Point(210, 143);
             this.tbModulationCurrentEquationACh1.Name = "tbModulationCurrentEquationACh1";
             this.tbModulationCurrentEquationACh1.Size = new System.Drawing.Size(50, 22);
@@ -2048,6 +2196,7 @@
             // 
             // tbVhfCompPropEquationACh1
             // 
+            this.tbVhfCompPropEquationACh1.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbVhfCompPropEquationACh1.Location = new System.Drawing.Point(210, 255);
             this.tbVhfCompPropEquationACh1.Name = "tbVhfCompPropEquationACh1";
             this.tbVhfCompPropEquationACh1.Size = new System.Drawing.Size(50, 22);
@@ -2055,6 +2204,7 @@
             // 
             // tbAverageCurrentMax
             // 
+            this.tbAverageCurrentMax.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbAverageCurrentMax.Location = new System.Drawing.Point(39, 31);
             this.tbAverageCurrentMax.Name = "tbAverageCurrentMax";
             this.tbAverageCurrentMax.Size = new System.Drawing.Size(50, 22);
@@ -2080,6 +2230,7 @@
             // 
             // tbAverageCurrentMin
             // 
+            this.tbAverageCurrentMin.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbAverageCurrentMin.Location = new System.Drawing.Point(95, 31);
             this.tbAverageCurrentMin.Name = "tbAverageCurrentMin";
             this.tbAverageCurrentMin.Size = new System.Drawing.Size(50, 22);
@@ -2087,11 +2238,12 @@
             // 
             // bStoreIntoFlash
             // 
-            this.bStoreIntoFlash.Location = new System.Drawing.Point(701, 54);
+            this.bStoreIntoFlash.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.bStoreIntoFlash.Location = new System.Drawing.Point(363, 104);
             this.bStoreIntoFlash.Name = "bStoreIntoFlash";
-            this.bStoreIntoFlash.Size = new System.Drawing.Size(53, 58);
+            this.bStoreIntoFlash.Size = new System.Drawing.Size(247, 67);
             this.bStoreIntoFlash.TabIndex = 23;
-            this.bStoreIntoFlash.Text = "Store Into Flash";
+            this.bStoreIntoFlash.Text = "設定儲存於Flash";
             this.bStoreIntoFlash.UseVisualStyleBackColor = true;
             this.bStoreIntoFlash.Click += new System.EventHandler(this.bSaveIntoFlash_Click);
             // 
@@ -2109,50 +2261,50 @@
             this.gbVcc.Controls.Add(this.lVoltage);
             this.gbVcc.Controls.Add(this.lVccOffset);
             this.gbVcc.Controls.Add(this.tbVoltageOffset);
-            this.gbVcc.Location = new System.Drawing.Point(5, 33);
+            this.gbVcc.Location = new System.Drawing.Point(5, 98);
             this.gbVcc.Name = "gbVcc";
-            this.gbVcc.Size = new System.Drawing.Size(494, 79);
+            this.gbVcc.Size = new System.Drawing.Size(351, 91);
             this.gbVcc.TabIndex = 24;
             this.gbVcc.TabStop = false;
             this.gbVcc.Text = "Voltage";
             // 
             // bVoltageReset
             // 
-            this.bVoltageReset.Location = new System.Drawing.Point(438, 21);
+            this.bVoltageReset.Location = new System.Drawing.Point(194, 61);
             this.bVoltageReset.Name = "bVoltageReset";
-            this.bVoltageReset.Size = new System.Drawing.Size(45, 23);
+            this.bVoltageReset.Size = new System.Drawing.Size(50, 23);
             this.bVoltageReset.TabIndex = 192;
-            this.bVoltageReset.Text = "Reset";
+            this.bVoltageReset.Text = "重置";
             this.bVoltageReset.UseVisualStyleBackColor = true;
             this.bVoltageReset.Click += new System.EventHandler(this.bVoltageReset_Click);
             // 
             // bVoltageAutoCorrect
             // 
-            this.bVoltageAutoCorrect.Location = new System.Drawing.Point(408, 50);
+            this.bVoltageAutoCorrect.Location = new System.Drawing.Point(265, 61);
             this.bVoltageAutoCorrect.Name = "bVoltageAutoCorrect";
-            this.bVoltageAutoCorrect.Size = new System.Drawing.Size(75, 23);
+            this.bVoltageAutoCorrect.Size = new System.Drawing.Size(76, 23);
             this.bVoltageAutoCorrect.TabIndex = 191;
-            this.bVoltageAutoCorrect.Text = "Auto Correct";
+            this.bVoltageAutoCorrect.Text = "自動校正";
             this.bVoltageAutoCorrect.UseVisualStyleBackColor = true;
             this.bVoltageAutoCorrect.Click += new System.EventHandler(this.bVoltageAutoCorrect_Click);
             // 
             // bVoltageWrite
             // 
-            this.bVoltageWrite.Location = new System.Drawing.Point(392, 21);
+            this.bVoltageWrite.Location = new System.Drawing.Point(122, 61);
             this.bVoltageWrite.Name = "bVoltageWrite";
-            this.bVoltageWrite.Size = new System.Drawing.Size(40, 23);
+            this.bVoltageWrite.Size = new System.Drawing.Size(50, 23);
             this.bVoltageWrite.TabIndex = 190;
-            this.bVoltageWrite.Text = "Write";
+            this.bVoltageWrite.Text = "寫入";
             this.bVoltageWrite.UseVisualStyleBackColor = true;
             this.bVoltageWrite.Click += new System.EventHandler(this.bVoltageWrite_Click);
             // 
             // bVoltageRead
             // 
-            this.bVoltageRead.Location = new System.Drawing.Point(346, 21);
+            this.bVoltageRead.Location = new System.Drawing.Point(66, 61);
             this.bVoltageRead.Name = "bVoltageRead";
-            this.bVoltageRead.Size = new System.Drawing.Size(40, 23);
+            this.bVoltageRead.Size = new System.Drawing.Size(50, 23);
             this.bVoltageRead.TabIndex = 189;
-            this.bVoltageRead.Text = "Read";
+            this.bVoltageRead.Text = "讀取";
             this.bVoltageRead.UseVisualStyleBackColor = true;
             this.bVoltageRead.Click += new System.EventHandler(this.bVoltageRead_Click);
             // 
@@ -2176,6 +2328,7 @@
             // 
             // tbVoltage
             // 
+            this.tbVoltage.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbVoltage.Location = new System.Drawing.Point(66, 33);
             this.tbVoltage.Name = "tbVoltage";
             this.tbVoltage.Size = new System.Drawing.Size(50, 22);
@@ -2218,41 +2371,476 @@
             // 
             // tbVoltageOffset
             // 
+            this.tbVoltageOffset.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbVoltageOffset.Location = new System.Drawing.Point(159, 33);
             this.tbVoltageOffset.Name = "tbVoltageOffset";
             this.tbVoltageOffset.Size = new System.Drawing.Size(60, 22);
             this.tbVoltageOffset.TabIndex = 18;
             // 
-            // tbLutTemperature
+            // gbTxPowerRate
             // 
-            this.tbLutTemperature.Location = new System.Drawing.Point(685, 171);
-            this.tbLutTemperature.Name = "tbLutTemperature";
-            this.tbLutTemperature.Size = new System.Drawing.Size(50, 22);
-            this.tbLutTemperature.TabIndex = 189;
+            this.gbTxPowerRate.Controls.Add(this.tbTxOutputPowerRssi4);
+            this.gbTxPowerRate.Controls.Add(this.tbTxOutputPowerRssi3);
+            this.gbTxPowerRate.Controls.Add(this.tbTxOutputPowerRssi2);
+            this.gbTxPowerRate.Controls.Add(this.tbTxOutputPowerRssi1);
+            this.gbTxPowerRate.Controls.Add(this.lTxRssiRateDenominator);
+            this.gbTxPowerRate.Controls.Add(this.tbTxRssiRateDenominator);
+            this.gbTxPowerRate.Controls.Add(this.lTxRssiRateNumerator);
+            this.gbTxPowerRate.Controls.Add(this.tbTxRssiRateNumerator);
+            this.gbTxPowerRate.Controls.Add(this.lTxRssiRateAndConversion);
+            this.gbTxPowerRate.Controls.Add(this.bTxPowerRateReset);
+            this.gbTxPowerRate.Controls.Add(this.bTxPowerRateAutoCorrect);
+            this.gbTxPowerRate.Controls.Add(this.tbTxPowerRateMin);
+            this.gbTxPowerRate.Controls.Add(this.tbTxPowerRateMax);
+            this.gbTxPowerRate.Controls.Add(this.lTxPowerRateMin);
+            this.gbTxPowerRate.Controls.Add(this.lTxPowerRateMax);
+            this.gbTxPowerRate.Controls.Add(this.lTxPowerRateDefault);
+            this.gbTxPowerRate.Controls.Add(this.tbTxPowerRateDefault);
+            this.gbTxPowerRate.Controls.Add(this.label7);
+            this.gbTxPowerRate.Controls.Add(this.bTxPowerRateWrite);
+            this.gbTxPowerRate.Controls.Add(this.bTxPowerRateRead);
+            this.gbTxPowerRate.Controls.Add(this.lTxPowerUW);
+            this.gbTxPowerRate.Controls.Add(this.lOutputUW);
+            this.gbTxPowerRate.Controls.Add(this.tbTxPower4);
+            this.gbTxPowerRate.Controls.Add(this.tbTxPowerRate4);
+            this.gbTxPowerRate.Controls.Add(this.tbTxRssi4);
+            this.gbTxPowerRate.Controls.Add(this.tbTxOutputPower4);
+            this.gbTxPowerRate.Controls.Add(this.lTxCh4);
+            this.gbTxPowerRate.Controls.Add(this.tbTxPower3);
+            this.gbTxPowerRate.Controls.Add(this.tbTxPowerRate3);
+            this.gbTxPowerRate.Controls.Add(this.tbTxRssi3);
+            this.gbTxPowerRate.Controls.Add(this.tbTxOutputPower3);
+            this.gbTxPowerRate.Controls.Add(this.lTxCh3);
+            this.gbTxPowerRate.Controls.Add(this.tbTxPower2);
+            this.gbTxPowerRate.Controls.Add(this.tbTxPower1);
+            this.gbTxPowerRate.Controls.Add(this.lTxPower);
+            this.gbTxPowerRate.Controls.Add(this.tbTxPowerRate2);
+            this.gbTxPowerRate.Controls.Add(this.tbTxRssi2);
+            this.gbTxPowerRate.Controls.Add(this.tbTxOutputPower2);
+            this.gbTxPowerRate.Controls.Add(this.lTxCh2);
+            this.gbTxPowerRate.Controls.Add(this.tbTxPowerRate1);
+            this.gbTxPowerRate.Controls.Add(this.lTxPowerRate);
+            this.gbTxPowerRate.Controls.Add(this.tbTxRssi1);
+            this.gbTxPowerRate.Controls.Add(this.lTxRssi);
+            this.gbTxPowerRate.Controls.Add(this.tbTxOutputPower1);
+            this.gbTxPowerRate.Controls.Add(this.lOutputPower);
+            this.gbTxPowerRate.Controls.Add(this.lTxCh1);
+            this.gbTxPowerRate.Location = new System.Drawing.Point(5, 506);
+            this.gbTxPowerRate.Name = "gbTxPowerRate";
+            this.gbTxPowerRate.Size = new System.Drawing.Size(605, 204);
+            this.gbTxPowerRate.TabIndex = 45;
+            this.gbTxPowerRate.TabStop = false;
+            this.gbTxPowerRate.Text = "MPD Power Rate";
             // 
-            // lLutTemperature
+            // tbTxOutputPowerRssi4
             // 
-            this.lLutTemperature.AutoSize = true;
-            this.lLutTemperature.Location = new System.Drawing.Point(682, 147);
-            this.lLutTemperature.Name = "lLutTemperature";
-            this.lLutTemperature.Size = new System.Drawing.Size(57, 12);
-            this.lLutTemperature.TabIndex = 188;
-            this.lLutTemperature.Text = "LUT Temp";
+            this.tbTxOutputPowerRssi4.Location = new System.Drawing.Point(516, 61);
+            this.tbTxOutputPowerRssi4.Name = "tbTxOutputPowerRssi4";
+            this.tbTxOutputPowerRssi4.ReadOnly = true;
+            this.tbTxOutputPowerRssi4.Size = new System.Drawing.Size(50, 22);
+            this.tbTxOutputPowerRssi4.TabIndex = 44;
+            this.tbTxOutputPowerRssi4.Text = "16393.4";
             // 
-            // bLutTemperatureUpdate
+            // tbTxOutputPowerRssi3
             // 
-            this.bLutTemperatureUpdate.Location = new System.Drawing.Point(681, 199);
-            this.bLutTemperatureUpdate.Name = "bLutTemperatureUpdate";
-            this.bLutTemperatureUpdate.Size = new System.Drawing.Size(60, 23);
-            this.bLutTemperatureUpdate.TabIndex = 190;
-            this.bLutTemperatureUpdate.Text = "Update";
-            this.bLutTemperatureUpdate.UseVisualStyleBackColor = true;
-            this.bLutTemperatureUpdate.Click += new System.EventHandler(this.bLutTemperatureUpdate_Click);
+            this.tbTxOutputPowerRssi3.Location = new System.Drawing.Point(460, 61);
+            this.tbTxOutputPowerRssi3.Name = "tbTxOutputPowerRssi3";
+            this.tbTxOutputPowerRssi3.ReadOnly = true;
+            this.tbTxOutputPowerRssi3.Size = new System.Drawing.Size(50, 22);
+            this.tbTxOutputPowerRssi3.TabIndex = 43;
+            this.tbTxOutputPowerRssi3.Text = "16393.4";
+            // 
+            // tbTxOutputPowerRssi2
+            // 
+            this.tbTxOutputPowerRssi2.Location = new System.Drawing.Point(404, 61);
+            this.tbTxOutputPowerRssi2.Name = "tbTxOutputPowerRssi2";
+            this.tbTxOutputPowerRssi2.ReadOnly = true;
+            this.tbTxOutputPowerRssi2.Size = new System.Drawing.Size(50, 22);
+            this.tbTxOutputPowerRssi2.TabIndex = 42;
+            this.tbTxOutputPowerRssi2.Text = "16393.4";
+            // 
+            // tbTxOutputPowerRssi1
+            // 
+            this.tbTxOutputPowerRssi1.Location = new System.Drawing.Point(348, 61);
+            this.tbTxOutputPowerRssi1.Name = "tbTxOutputPowerRssi1";
+            this.tbTxOutputPowerRssi1.ReadOnly = true;
+            this.tbTxOutputPowerRssi1.Size = new System.Drawing.Size(50, 22);
+            this.tbTxOutputPowerRssi1.TabIndex = 41;
+            this.tbTxOutputPowerRssi1.Text = "16393.4";
+            // 
+            // lTxRssiRateDenominator
+            // 
+            this.lTxRssiRateDenominator.AutoSize = true;
+            this.lTxRssiRateDenominator.Location = new System.Drawing.Point(280, 18);
+            this.lTxRssiRateDenominator.Name = "lTxRssiRateDenominator";
+            this.lTxRssiRateDenominator.Size = new System.Drawing.Size(66, 12);
+            this.lTxRssiRateDenominator.TabIndex = 40;
+            this.lTxRssiRateDenominator.Text = "Denominator";
+            // 
+            // tbTxRssiRateDenominator
+            // 
+            this.tbTxRssiRateDenominator.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbTxRssiRateDenominator.Location = new System.Drawing.Point(282, 61);
+            this.tbTxRssiRateDenominator.Name = "tbTxRssiRateDenominator";
+            this.tbTxRssiRateDenominator.Size = new System.Drawing.Size(60, 22);
+            this.tbTxRssiRateDenominator.TabIndex = 39;
+            this.tbTxRssiRateDenominator.Text = "61";
+            // 
+            // lTxRssiRateNumerator
+            // 
+            this.lTxRssiRateNumerator.AutoSize = true;
+            this.lTxRssiRateNumerator.Location = new System.Drawing.Point(214, 18);
+            this.lTxRssiRateNumerator.Name = "lTxRssiRateNumerator";
+            this.lTxRssiRateNumerator.Size = new System.Drawing.Size(55, 12);
+            this.lTxRssiRateNumerator.TabIndex = 38;
+            this.lTxRssiRateNumerator.Text = "Numerator";
+            // 
+            // tbTxRssiRateNumerator
+            // 
+            this.tbTxRssiRateNumerator.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbTxRssiRateNumerator.Location = new System.Drawing.Point(216, 61);
+            this.tbTxRssiRateNumerator.Name = "tbTxRssiRateNumerator";
+            this.tbTxRssiRateNumerator.Size = new System.Drawing.Size(60, 22);
+            this.tbTxRssiRateNumerator.TabIndex = 37;
+            this.tbTxRssiRateNumerator.Text = "2000";
+            // 
+            // lTxRssiRateAndConversion
+            // 
+            this.lTxRssiRateAndConversion.AutoSize = true;
+            this.lTxRssiRateAndConversion.Location = new System.Drawing.Point(6, 64);
+            this.lTxRssiRateAndConversion.Name = "lTxRssiRateAndConversion";
+            this.lTxRssiRateAndConversion.Size = new System.Drawing.Size(133, 12);
+            this.lTxRssiRateAndConversion.TabIndex = 36;
+            this.lTxRssiRateAndConversion.Text = "RSSI Rate and Conversion:";
+            // 
+            // bTxPowerRateReset
+            // 
+            this.bTxPowerRateReset.Location = new System.Drawing.Point(194, 171);
+            this.bTxPowerRateReset.Name = "bTxPowerRateReset";
+            this.bTxPowerRateReset.Size = new System.Drawing.Size(50, 23);
+            this.bTxPowerRateReset.TabIndex = 35;
+            this.bTxPowerRateReset.Text = "重置";
+            this.bTxPowerRateReset.UseVisualStyleBackColor = true;
+            this.bTxPowerRateReset.Click += new System.EventHandler(this.bTxPowerRateReset_Click);
+            // 
+            // bTxPowerRateAutoCorrect
+            // 
+            this.bTxPowerRateAutoCorrect.Location = new System.Drawing.Point(265, 171);
+            this.bTxPowerRateAutoCorrect.Name = "bTxPowerRateAutoCorrect";
+            this.bTxPowerRateAutoCorrect.Size = new System.Drawing.Size(76, 23);
+            this.bTxPowerRateAutoCorrect.TabIndex = 34;
+            this.bTxPowerRateAutoCorrect.Text = "自動校正";
+            this.bTxPowerRateAutoCorrect.UseVisualStyleBackColor = true;
+            this.bTxPowerRateAutoCorrect.Click += new System.EventHandler(this.bTxPowerRateAutoCorrect_Click);
+            // 
+            // tbTxPowerRateMin
+            // 
+            this.tbTxPowerRateMin.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbTxPowerRateMin.Location = new System.Drawing.Point(160, 117);
+            this.tbTxPowerRateMin.Name = "tbTxPowerRateMin";
+            this.tbTxPowerRateMin.Size = new System.Drawing.Size(50, 22);
+            this.tbTxPowerRateMin.TabIndex = 33;
+            // 
+            // tbTxPowerRateMax
+            // 
+            this.tbTxPowerRateMax.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbTxPowerRateMax.Location = new System.Drawing.Point(104, 117);
+            this.tbTxPowerRateMax.Name = "tbTxPowerRateMax";
+            this.tbTxPowerRateMax.Size = new System.Drawing.Size(50, 22);
+            this.tbTxPowerRateMax.TabIndex = 32;
+            // 
+            // lTxPowerRateMin
+            // 
+            this.lTxPowerRateMin.AutoSize = true;
+            this.lTxPowerRateMin.Location = new System.Drawing.Point(173, 18);
+            this.lTxPowerRateMin.Name = "lTxPowerRateMin";
+            this.lTxPowerRateMin.Size = new System.Drawing.Size(24, 12);
+            this.lTxPowerRateMin.TabIndex = 31;
+            this.lTxPowerRateMin.Text = "Min";
+            // 
+            // lTxPowerRateMax
+            // 
+            this.lTxPowerRateMax.AutoSize = true;
+            this.lTxPowerRateMax.Location = new System.Drawing.Point(116, 18);
+            this.lTxPowerRateMax.Name = "lTxPowerRateMax";
+            this.lTxPowerRateMax.Size = new System.Drawing.Size(26, 12);
+            this.lTxPowerRateMax.TabIndex = 30;
+            this.lTxPowerRateMax.Text = "Max";
+            // 
+            // lTxPowerRateDefault
+            // 
+            this.lTxPowerRateDefault.AutoSize = true;
+            this.lTxPowerRateDefault.Location = new System.Drawing.Point(54, 18);
+            this.lTxPowerRateDefault.Name = "lTxPowerRateDefault";
+            this.lTxPowerRateDefault.Size = new System.Drawing.Size(39, 12);
+            this.lTxPowerRateDefault.TabIndex = 29;
+            this.lTxPowerRateDefault.Text = "Default";
+            // 
+            // tbTxPowerRateDefault
+            // 
+            this.tbTxPowerRateDefault.Location = new System.Drawing.Point(48, 117);
+            this.tbTxPowerRateDefault.Name = "tbTxPowerRateDefault";
+            this.tbTxPowerRateDefault.ReadOnly = true;
+            this.tbTxPowerRateDefault.Size = new System.Drawing.Size(50, 22);
+            this.tbTxPowerRateDefault.TabIndex = 28;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(570, 120);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(32, 12);
+            this.label7.TabIndex = 27;
+            this.label7.Text = "10^-4";
+            // 
+            // bTxPowerRateWrite
+            // 
+            this.bTxPowerRateWrite.Location = new System.Drawing.Point(122, 171);
+            this.bTxPowerRateWrite.Name = "bTxPowerRateWrite";
+            this.bTxPowerRateWrite.Size = new System.Drawing.Size(50, 23);
+            this.bTxPowerRateWrite.TabIndex = 8;
+            this.bTxPowerRateWrite.Text = "寫入";
+            this.bTxPowerRateWrite.UseVisualStyleBackColor = true;
+            this.bTxPowerRateWrite.Click += new System.EventHandler(this.bTxPowerRateWrite_Click);
+            // 
+            // bTxPowerRateRead
+            // 
+            this.bTxPowerRateRead.Location = new System.Drawing.Point(66, 171);
+            this.bTxPowerRateRead.Name = "bTxPowerRateRead";
+            this.bTxPowerRateRead.Size = new System.Drawing.Size(50, 23);
+            this.bTxPowerRateRead.TabIndex = 8;
+            this.bTxPowerRateRead.Text = "讀取";
+            this.bTxPowerRateRead.UseVisualStyleBackColor = true;
+            this.bTxPowerRateRead.Click += new System.EventHandler(this.bTxPowerRateRead_Click);
+            // 
+            // lTxPowerUW
+            // 
+            this.lTxPowerUW.AutoSize = true;
+            this.lTxPowerUW.Location = new System.Drawing.Point(572, 148);
+            this.lTxPowerUW.Name = "lTxPowerUW";
+            this.lTxPowerUW.Size = new System.Drawing.Size(22, 12);
+            this.lTxPowerUW.TabIndex = 26;
+            this.lTxPowerUW.Text = "uW";
+            // 
+            // lOutputUW
+            // 
+            this.lOutputUW.AutoSize = true;
+            this.lOutputUW.Location = new System.Drawing.Point(572, 36);
+            this.lOutputUW.Name = "lOutputUW";
+            this.lOutputUW.Size = new System.Drawing.Size(22, 12);
+            this.lOutputUW.TabIndex = 24;
+            this.lOutputUW.Text = "uW";
+            // 
+            // tbTxPower4
+            // 
+            this.tbTxPower4.Location = new System.Drawing.Point(516, 145);
+            this.tbTxPower4.Name = "tbTxPower4";
+            this.tbTxPower4.ReadOnly = true;
+            this.tbTxPower4.Size = new System.Drawing.Size(50, 22);
+            this.tbTxPower4.TabIndex = 23;
+            // 
+            // tbTxPowerRate4
+            // 
+            this.tbTxPowerRate4.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbTxPowerRate4.Location = new System.Drawing.Point(516, 117);
+            this.tbTxPowerRate4.Name = "tbTxPowerRate4";
+            this.tbTxPowerRate4.Size = new System.Drawing.Size(50, 22);
+            this.tbTxPowerRate4.TabIndex = 22;
+            // 
+            // tbTxRssi4
+            // 
+            this.tbTxRssi4.Location = new System.Drawing.Point(516, 89);
+            this.tbTxRssi4.Name = "tbTxRssi4";
+            this.tbTxRssi4.ReadOnly = true;
+            this.tbTxRssi4.Size = new System.Drawing.Size(50, 22);
+            this.tbTxRssi4.TabIndex = 21;
+            // 
+            // tbTxOutputPower4
+            // 
+            this.tbTxOutputPower4.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbTxOutputPower4.Location = new System.Drawing.Point(516, 33);
+            this.tbTxOutputPower4.Name = "tbTxOutputPower4";
+            this.tbTxOutputPower4.Size = new System.Drawing.Size(50, 22);
+            this.tbTxOutputPower4.TabIndex = 20;
+            this.tbTxOutputPower4.TextChanged += new System.EventHandler(this.tbTxOutputPower4_TextChanged);
+            // 
+            // lTxCh4
+            // 
+            this.lTxCh4.AutoSize = true;
+            this.lTxCh4.Location = new System.Drawing.Point(529, 18);
+            this.lTxCh4.Name = "lTxCh4";
+            this.lTxCh4.Size = new System.Drawing.Size(24, 12);
+            this.lTxCh4.TabIndex = 19;
+            this.lTxCh4.Text = "Tx4";
+            // 
+            // tbTxPower3
+            // 
+            this.tbTxPower3.Location = new System.Drawing.Point(460, 145);
+            this.tbTxPower3.Name = "tbTxPower3";
+            this.tbTxPower3.ReadOnly = true;
+            this.tbTxPower3.Size = new System.Drawing.Size(50, 22);
+            this.tbTxPower3.TabIndex = 18;
+            // 
+            // tbTxPowerRate3
+            // 
+            this.tbTxPowerRate3.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbTxPowerRate3.Location = new System.Drawing.Point(460, 117);
+            this.tbTxPowerRate3.Name = "tbTxPowerRate3";
+            this.tbTxPowerRate3.Size = new System.Drawing.Size(50, 22);
+            this.tbTxPowerRate3.TabIndex = 17;
+            // 
+            // tbTxRssi3
+            // 
+            this.tbTxRssi3.Location = new System.Drawing.Point(460, 89);
+            this.tbTxRssi3.Name = "tbTxRssi3";
+            this.tbTxRssi3.ReadOnly = true;
+            this.tbTxRssi3.Size = new System.Drawing.Size(50, 22);
+            this.tbTxRssi3.TabIndex = 16;
+            // 
+            // tbTxOutputPower3
+            // 
+            this.tbTxOutputPower3.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbTxOutputPower3.Location = new System.Drawing.Point(460, 33);
+            this.tbTxOutputPower3.Name = "tbTxOutputPower3";
+            this.tbTxOutputPower3.Size = new System.Drawing.Size(50, 22);
+            this.tbTxOutputPower3.TabIndex = 15;
+            this.tbTxOutputPower3.TextChanged += new System.EventHandler(this.tbTxOutputPower3_TextChanged);
+            // 
+            // lTxCh3
+            // 
+            this.lTxCh3.AutoSize = true;
+            this.lTxCh3.Location = new System.Drawing.Point(473, 18);
+            this.lTxCh3.Name = "lTxCh3";
+            this.lTxCh3.Size = new System.Drawing.Size(24, 12);
+            this.lTxCh3.TabIndex = 14;
+            this.lTxCh3.Text = "Tx3";
+            // 
+            // tbTxPower2
+            // 
+            this.tbTxPower2.Location = new System.Drawing.Point(404, 145);
+            this.tbTxPower2.Name = "tbTxPower2";
+            this.tbTxPower2.ReadOnly = true;
+            this.tbTxPower2.Size = new System.Drawing.Size(50, 22);
+            this.tbTxPower2.TabIndex = 13;
+            // 
+            // tbTxPower1
+            // 
+            this.tbTxPower1.Location = new System.Drawing.Point(348, 145);
+            this.tbTxPower1.Name = "tbTxPower1";
+            this.tbTxPower1.ReadOnly = true;
+            this.tbTxPower1.Size = new System.Drawing.Size(50, 22);
+            this.tbTxPower1.TabIndex = 12;
+            // 
+            // lTxPower
+            // 
+            this.lTxPower.AutoSize = true;
+            this.lTxPower.Location = new System.Drawing.Point(6, 145);
+            this.lTxPower.Name = "lTxPower";
+            this.lTxPower.Size = new System.Drawing.Size(40, 12);
+            this.lTxPower.TabIndex = 11;
+            this.lTxPower.Text = "Power :";
+            // 
+            // tbTxPowerRate2
+            // 
+            this.tbTxPowerRate2.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbTxPowerRate2.Location = new System.Drawing.Point(404, 117);
+            this.tbTxPowerRate2.Name = "tbTxPowerRate2";
+            this.tbTxPowerRate2.Size = new System.Drawing.Size(50, 22);
+            this.tbTxPowerRate2.TabIndex = 10;
+            // 
+            // tbTxRssi2
+            // 
+            this.tbTxRssi2.Location = new System.Drawing.Point(404, 89);
+            this.tbTxRssi2.Name = "tbTxRssi2";
+            this.tbTxRssi2.ReadOnly = true;
+            this.tbTxRssi2.Size = new System.Drawing.Size(50, 22);
+            this.tbTxRssi2.TabIndex = 9;
+            // 
+            // tbTxOutputPower2
+            // 
+            this.tbTxOutputPower2.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbTxOutputPower2.Location = new System.Drawing.Point(404, 33);
+            this.tbTxOutputPower2.Name = "tbTxOutputPower2";
+            this.tbTxOutputPower2.Size = new System.Drawing.Size(50, 22);
+            this.tbTxOutputPower2.TabIndex = 8;
+            this.tbTxOutputPower2.TextChanged += new System.EventHandler(this.tbTxOutputPower2_TextChanged);
+            // 
+            // lTxCh2
+            // 
+            this.lTxCh2.AutoSize = true;
+            this.lTxCh2.Location = new System.Drawing.Point(417, 18);
+            this.lTxCh2.Name = "lTxCh2";
+            this.lTxCh2.Size = new System.Drawing.Size(24, 12);
+            this.lTxCh2.TabIndex = 7;
+            this.lTxCh2.Text = "Tx2";
+            // 
+            // tbTxPowerRate1
+            // 
+            this.tbTxPowerRate1.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbTxPowerRate1.Location = new System.Drawing.Point(348, 117);
+            this.tbTxPowerRate1.Name = "tbTxPowerRate1";
+            this.tbTxPowerRate1.Size = new System.Drawing.Size(50, 22);
+            this.tbTxPowerRate1.TabIndex = 6;
+            // 
+            // lTxPowerRate
+            // 
+            this.lTxPowerRate.AutoSize = true;
+            this.lTxPowerRate.Location = new System.Drawing.Point(6, 120);
+            this.lTxPowerRate.Name = "lTxPowerRate";
+            this.lTxPowerRate.Size = new System.Drawing.Size(32, 12);
+            this.lTxPowerRate.TabIndex = 5;
+            this.lTxPowerRate.Text = "Rate :";
+            // 
+            // tbTxRssi1
+            // 
+            this.tbTxRssi1.Location = new System.Drawing.Point(348, 89);
+            this.tbTxRssi1.Name = "tbTxRssi1";
+            this.tbTxRssi1.ReadOnly = true;
+            this.tbTxRssi1.Size = new System.Drawing.Size(50, 22);
+            this.tbTxRssi1.TabIndex = 4;
+            // 
+            // lTxRssi
+            // 
+            this.lTxRssi.AutoSize = true;
+            this.lTxRssi.Location = new System.Drawing.Point(6, 92);
+            this.lTxRssi.Name = "lTxRssi";
+            this.lTxRssi.Size = new System.Drawing.Size(35, 12);
+            this.lTxRssi.TabIndex = 3;
+            this.lTxRssi.Text = "RSSI :";
+            // 
+            // tbTxOutputPower1
+            // 
+            this.tbTxOutputPower1.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbTxOutputPower1.Location = new System.Drawing.Point(348, 33);
+            this.tbTxOutputPower1.Name = "tbTxOutputPower1";
+            this.tbTxOutputPower1.Size = new System.Drawing.Size(50, 22);
+            this.tbTxOutputPower1.TabIndex = 2;
+            this.tbTxOutputPower1.TextChanged += new System.EventHandler(this.tbTxOutputPower1_TextChanged);
+            // 
+            // lOutputPower
+            // 
+            this.lOutputPower.AutoSize = true;
+            this.lOutputPower.Location = new System.Drawing.Point(6, 36);
+            this.lOutputPower.Name = "lOutputPower";
+            this.lOutputPower.Size = new System.Drawing.Size(43, 12);
+            this.lOutputPower.TabIndex = 1;
+            this.lOutputPower.Text = "Output :";
+            // 
+            // lTxCh1
+            // 
+            this.lTxCh1.AutoSize = true;
+            this.lTxCh1.Location = new System.Drawing.Point(361, 18);
+            this.lTxCh1.Name = "lTxCh1";
+            this.lTxCh1.Size = new System.Drawing.Size(24, 12);
+            this.lTxCh1.TabIndex = 0;
+            this.lTxCh1.Text = "Tx1";
             // 
             // UcGn1190Corrector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.gbTxPowerRate);
             this.Controls.Add(this.gbVcc);
             this.Controls.Add(this.bStoreIntoFlash);
             this.Controls.Add(this.gbAcMcEquation);
@@ -2269,7 +2857,7 @@
             this.Controls.Add(this.bSaveFile);
             this.Controls.Add(this.bLoadFile);
             this.Name = "UcGn1190Corrector";
-            this.Size = new System.Drawing.Size(758, 760);
+            this.Size = new System.Drawing.Size(1066, 713);
             this.gbTemperature.ResumeLayout(false);
             this.gbTemperature.PerformLayout();
             this.gbAutoCorrect.ResumeLayout(false);
@@ -2280,6 +2868,8 @@
             this.gbAcMcEquation.PerformLayout();
             this.gbVcc.ResumeLayout(false);
             this.gbVcc.PerformLayout();
+            this.gbTxPowerRate.ResumeLayout(false);
+            this.gbTxPowerRate.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2340,7 +2930,7 @@
         private System.Windows.Forms.Label lRxCh3;
         private System.Windows.Forms.TextBox tbRxPower2;
         private System.Windows.Forms.TextBox tbRxPower1;
-        private System.Windows.Forms.Label lRxPower1;
+        private System.Windows.Forms.Label lRxPower;
         private System.Windows.Forms.TextBox tbRxPowerRate2;
         private System.Windows.Forms.TextBox tbRssi2;
         private System.Windows.Forms.TextBox tbRxInputPower2;
@@ -2353,9 +2943,6 @@
         private System.Windows.Forms.Label lInputPower;
         private System.Windows.Forms.Label lRxCh1;
         private System.Windows.Forms.GroupBox gbAcMcEquation;
-        private System.Windows.Forms.Label lEquationC2;
-        private System.Windows.Forms.Label lEquationA2;
-        private System.Windows.Forms.Label lEquationB2;
         private System.Windows.Forms.CheckBox cbTemperatureCompensation;
         private System.Windows.Forms.Button bAcMcWrite;
         private System.Windows.Forms.Button bAcMcRead;
@@ -2502,5 +3089,53 @@
         private System.Windows.Forms.TextBox tbLutTemperature;
         private System.Windows.Forms.Label lLutTemperature;
         private System.Windows.Forms.Button bLutTemperatureUpdate;
+        private System.Windows.Forms.CheckBox cbTxPowerRateCorrected;
+        private System.Windows.Forms.GroupBox gbTxPowerRate;
+        private System.Windows.Forms.TextBox tbTxOutputPowerRssi4;
+        private System.Windows.Forms.TextBox tbTxOutputPowerRssi3;
+        private System.Windows.Forms.TextBox tbTxOutputPowerRssi2;
+        private System.Windows.Forms.TextBox tbTxOutputPowerRssi1;
+        private System.Windows.Forms.Label lTxRssiRateDenominator;
+        private System.Windows.Forms.TextBox tbTxRssiRateDenominator;
+        private System.Windows.Forms.Label lTxRssiRateNumerator;
+        private System.Windows.Forms.TextBox tbTxRssiRateNumerator;
+        private System.Windows.Forms.Label lTxRssiRateAndConversion;
+        private System.Windows.Forms.Button bTxPowerRateReset;
+        private System.Windows.Forms.Button bTxPowerRateAutoCorrect;
+        private System.Windows.Forms.TextBox tbTxPowerRateMin;
+        private System.Windows.Forms.TextBox tbTxPowerRateMax;
+        private System.Windows.Forms.Label lTxPowerRateMin;
+        private System.Windows.Forms.Label lTxPowerRateMax;
+        private System.Windows.Forms.Label lTxPowerRateDefault;
+        private System.Windows.Forms.TextBox tbTxPowerRateDefault;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button bTxPowerRateWrite;
+        private System.Windows.Forms.Button bTxPowerRateRead;
+        private System.Windows.Forms.Label lTxPowerUW;
+        private System.Windows.Forms.Label lOutputUW;
+        private System.Windows.Forms.TextBox tbTxPower4;
+        private System.Windows.Forms.TextBox tbTxPowerRate4;
+        private System.Windows.Forms.TextBox tbTxRssi4;
+        private System.Windows.Forms.TextBox tbTxOutputPower4;
+        private System.Windows.Forms.Label lTxCh4;
+        private System.Windows.Forms.TextBox tbTxPower3;
+        private System.Windows.Forms.TextBox tbTxPowerRate3;
+        private System.Windows.Forms.TextBox tbTxRssi3;
+        private System.Windows.Forms.TextBox tbTxOutputPower3;
+        private System.Windows.Forms.Label lTxCh3;
+        private System.Windows.Forms.TextBox tbTxPower2;
+        private System.Windows.Forms.TextBox tbTxPower1;
+        private System.Windows.Forms.Label lTxPower;
+        private System.Windows.Forms.TextBox tbTxPowerRate2;
+        private System.Windows.Forms.TextBox tbTxRssi2;
+        private System.Windows.Forms.TextBox tbTxOutputPower2;
+        private System.Windows.Forms.Label lTxCh2;
+        private System.Windows.Forms.TextBox tbTxPowerRate1;
+        private System.Windows.Forms.Label lTxPowerRate;
+        private System.Windows.Forms.TextBox tbTxRssi1;
+        private System.Windows.Forms.Label lTxRssi;
+        private System.Windows.Forms.TextBox tbTxOutputPower1;
+        private System.Windows.Forms.Label lOutputPower;
+        private System.Windows.Forms.Label lTxCh1;
     }
 }

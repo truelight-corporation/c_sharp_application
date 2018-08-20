@@ -8,12 +8,14 @@ using System.Text;
 using System.Windows.Forms;
 
 using I2cMasterInterface;
+using ExfoIqs1600ScpiInterface;
 
 namespace Gn1190Corrector
 {
     public partial class FGn1190Corrector : Form
     {
         private I2cMaster i2cMaster = new I2cMaster();
+        private ExfoIqs1600Scpi powerMeter = new ExfoIqs1600Scpi();
 
         private int _I2cConnect()
         {
@@ -72,6 +74,43 @@ namespace Gn1190Corrector
             return rv;
         }
 
+        private int _PowerMeterConnect()
+        {
+            tbPowerMeterIpAddr.Enabled = false;
+
+            if (tbPowerMeterIpAddr.Text.Length < 7)
+            {
+                MessageBox.Show("Please input Power meter device IP address!!");
+                tbPowerMeterIpAddr.Enabled = true;
+                return -1;
+            }
+
+            if (powerMeter.ConnectApi(tbPowerMeterIpAddr.Text) < 0)
+            {
+                tbPowerMeterIpAddr.Enabled = true;
+                return -1;
+            }
+
+            return 0;
+        }
+
+        private int _PowerMeterRead(string[] buffer)
+        {
+            if (cbPowerMeterConnected.Checked == false)
+            {
+                if (_PowerMeterConnect() < 0)
+                {
+                    buffer[0] = buffer[1] = buffer[2] = buffer[3] = "NA";
+                    return -1;
+                }
+            }
+
+            if (powerMeter.ReadPower(buffer) < 0)
+                return -1;
+
+            return 0;
+        }
+
         public FGn1190Corrector()
         {
             InitializeComponent();
@@ -84,6 +123,11 @@ namespace Gn1190Corrector
                 MessageBox.Show("ucQsfpCorrector.SetQsfpI2cWriteCBApi() faile Error!!");
                 return;
             }
+            if (ucGn1190Corrector.SetPowerMeterReadCBApi(_PowerMeterRead) < 0)
+            {
+                MessageBox.Show("ucGn1190Corrector.SetPowerMeterReadCBApi() faile Error!!");
+                return;
+            }
         }
 
         private void cbConnected_CheckedChanged(object sender, EventArgs e)
@@ -92,6 +136,23 @@ namespace Gn1190Corrector
                 _I2cConnect();
             else
                 _I2cDisconnect();
+        }
+
+        private void cbPowerMeterConnected_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbPowerMeterConnected.Checked == true) {
+                if (_PowerMeterConnect() < 0) {
+                    cbPowerMeterConnected.Checked = false;
+                    return;
+                }
+                tbPowerMeterIpAddr.Enabled = false;
+                cbPowerMeterConnected.Enabled = false;
+            }
+            else
+            {
+                cbPowerMeterConnected.Checked = false;
+                tbPowerMeterIpAddr.Enabled = true;
+            }
         }
     }
 }
