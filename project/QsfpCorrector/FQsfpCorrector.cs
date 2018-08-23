@@ -92,6 +92,5 @@ namespace QsfpCorrector
             else
                 qsfpI2cMaster.DisconnectApi();
         }
-
     }
 }

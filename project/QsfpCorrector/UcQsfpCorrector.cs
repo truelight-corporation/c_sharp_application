@@ -280,7 +280,7 @@ namespace QsfpCorrector
                 return;
         }
 
-        private int _ReadPowerRate()
+        private int _ReadRxPowerRate()
         {
             byte[] data = new byte[2];
             byte[] reverseData;
@@ -293,34 +293,6 @@ namespace QsfpCorrector
 
             if (qsfpI2cReadCB == null)
                 return -1;
-
-            if (qsfpI2cReadCB(80, 108, 2, data) != 2)
-                return -1;
-
-            reverseData = data.Reverse().ToArray();
-            tmp = BitConverter.ToInt16(reverseData, 0);
-            tbRssi1.Text = tmp.ToString();
-
-            if (qsfpI2cReadCB(80, 110, 2, data) != 2)
-                return -1;
-
-            reverseData = data.Reverse().ToArray();
-            tmp = BitConverter.ToInt16(reverseData, 0);
-            tbRssi2.Text = tmp.ToString();
-
-            if (qsfpI2cReadCB(80, 112, 2, data) != 2)
-                return -1;
-
-            reverseData = data.Reverse().ToArray();
-            tmp = BitConverter.ToInt16(reverseData, 0);
-            tbRssi3.Text = tmp.ToString();
-
-            if (qsfpI2cReadCB(80, 114, 2, data) != 2)
-                return -1;
-
-            reverseData = data.Reverse().ToArray();
-            tmp = BitConverter.ToInt16(reverseData, 0);
-            tbRssi4.Text = tmp.ToString();
 
             if (qsfpI2cReadCB(80, 34, 2, data) != 2)
                 return -1;
@@ -357,8 +329,36 @@ namespace QsfpCorrector
             if (qsfpI2cWriteCB == null)
                 return -1;
 
-            data = new byte[] { 32, 0, 0, 0 };
+            data[0] = 32;
             qsfpI2cWriteCB(80, 127, 1, data);
+            if (qsfpI2cReadCB(80, 128, 2, data) != 2)
+                return -1;
+
+            reverseData = data.Reverse().ToArray();
+            tmp = BitConverter.ToInt16(reverseData, 0);
+            tbRssi1.Text = tmp.ToString();
+
+            if (qsfpI2cReadCB(80, 130, 2, data) != 2)
+                return -1;
+
+            reverseData = data.Reverse().ToArray();
+            tmp = BitConverter.ToInt16(reverseData, 0);
+            tbRssi2.Text = tmp.ToString();
+
+            if (qsfpI2cReadCB(80, 132, 2, data) != 2)
+                return -1;
+
+            reverseData = data.Reverse().ToArray();
+            tmp = BitConverter.ToInt16(reverseData, 0);
+            tbRssi3.Text = tmp.ToString();
+
+            if (qsfpI2cReadCB(80, 134, 2, data) != 2)
+                return -1;
+
+            reverseData = data.Reverse().ToArray();
+            tmp = BitConverter.ToInt16(reverseData, 0);
+            tbRssi4.Text = tmp.ToString();
+
             if (qsfpI2cReadCB(80, 163, 1, data) != 1)
                 return -1;
 
@@ -370,9 +370,9 @@ namespace QsfpCorrector
             if (tbRxPowerRateMin.Text.Length == 0)
                 tbRxPowerRateMin.Text = (data[0] - 12).ToString();
 
-            data = new byte[] { 2, 0, 0, 0};
+            data = new byte[] { 4, 0, 0, 0};
             qsfpI2cWriteCB(80, 127, 1, data);
-            if (qsfpI2cReadCB(80, 133, 4, data) != 4)
+            if (qsfpI2cReadCB(80, 244, 4, data) != 4)
                 return -1;
 
             tbRxPowerRate1.Text = data[0].ToString();
@@ -385,13 +385,13 @@ namespace QsfpCorrector
 
         private void _bRxPowerRateReadClick(object sender, EventArgs e)
         {
-            if (_ReadPowerRate() < 0)
+            if (_ReadRxPowerRate() < 0)
                 return;
         }
 
         private int _WritePowerRate()
         {
-            byte[] data = new byte[] {2, 0, 0, 0};;
+            byte[] data = new byte[] {4, 0, 0, 0};;
 
             if ((tbRxPowerRate1.Text.Length == 0) || (tbRxPowerRate2.Text.Length == 0) ||
                 (tbRxPowerRate3.Text.Length == 0) || (tbRxPowerRate4.Text.Length == 0)) {
@@ -421,7 +421,7 @@ namespace QsfpCorrector
                 return -1;
             }
 
-            qsfpI2cWriteCB(80, 133, 4, data);
+            qsfpI2cWriteCB(80, 244, 4, data);
 
             _ClearPassword();
             _SetQsfpMode(0);
@@ -438,7 +438,7 @@ namespace QsfpCorrector
         private int _ResetRxPowerRate()
         {
             if (tbRxPowerRateDefault.Text.Length == 0) {
-                if (_ReadPowerRate() < 0)
+                if (_ReadRxPowerRate() < 0)
                     return -1;
             }
 
@@ -473,7 +473,7 @@ namespace QsfpCorrector
             }
 
             if (tbRxPowerRateDefault.Text.Length == 0) {
-                if (_ReadPowerRate() < 0)
+                if (_ReadRxPowerRate() < 0)
                     return -1;
             }
 
@@ -1499,6 +1499,9 @@ namespace QsfpCorrector
             if (_ResetRxPowerRate() < 0)
                 return;
 
+            if (_ResetTxPowerRate() < 0)
+                return;
+
             if (_ResetAcMcEquation() < 0)
                 return;
         }
@@ -1509,6 +1512,9 @@ namespace QsfpCorrector
                 return;
 
             if (_AutoCorrectRxPowerRate() < 0)
+                return;
+
+            if (_AutoCorrectTxPowerRate() < 0)
                 return;
 
             if (_AutoCorrectAcMc() < 0)
@@ -1641,5 +1647,292 @@ namespace QsfpCorrector
             }
         }
 
+        private int _ReadTxPowerRate()
+        {
+            byte[] data = new byte[2];
+            byte[] reverseData;
+            int tmp;
+            float power;
+
+            tbTxRssi1.Text = tbTxRssi2.Text = tbTxRssi3.Text = tbTxRssi4.Text = "";
+            tbTxPowerRate1.Text = tbTxPowerRate2.Text = tbTxPowerRate3.Text = tbTxPowerRate4.Text = "";
+            tbTxPower1.Text = tbTxPower2.Text = tbTxPower3.Text = tbTxPower4.Text = "";
+
+            if (qsfpI2cReadCB == null)
+                return -1;
+
+            if (qsfpI2cReadCB(80, 50, 2, data) != 2)
+                return -1;
+
+            reverseData = data.Reverse().ToArray();
+            tmp = BitConverter.ToInt16(reverseData, 0);
+            power = tmp / 10;
+            tbTxPower1.Text = power.ToString("#0.0");
+
+            if (qsfpI2cReadCB(80, 52, 2, data) != 2)
+                return -1;
+
+            reverseData = data.Reverse().ToArray();
+            tmp = BitConverter.ToInt16(reverseData, 0);
+            power = tmp / 10;
+            tbTxPower2.Text = power.ToString("#0.0");
+
+            if (qsfpI2cReadCB(80, 54, 2, data) != 2)
+                return -1;
+
+            reverseData = data.Reverse().ToArray();
+            tmp = BitConverter.ToInt16(reverseData, 0);
+            power = tmp / 10;
+            tbTxPower3.Text = power.ToString("#0.0");
+
+            if (qsfpI2cReadCB(80, 56, 2, data) != 2)
+                return -1;
+
+            reverseData = data.Reverse().ToArray();
+            tmp = BitConverter.ToInt16(reverseData, 0);
+            power = tmp / 10;
+            tbTxPower4.Text = power.ToString("#0.0");
+
+            if (qsfpI2cWriteCB == null)
+                return -1;
+
+            data[0] = 32;
+            qsfpI2cWriteCB(80, 127, 1, data);
+            if (qsfpI2cReadCB(80, 136, 2, data) != 2)
+                return -1;
+
+            reverseData = data.Reverse().ToArray();
+            tmp = BitConverter.ToInt16(reverseData, 0);
+            tbTxRssi1.Text = tmp.ToString();
+
+            if (qsfpI2cReadCB(80, 138, 2, data) != 2)
+                return -1;
+
+            reverseData = data.Reverse().ToArray();
+            tmp = BitConverter.ToInt16(reverseData, 0);
+            tbTxRssi2.Text = tmp.ToString();
+
+            if (qsfpI2cReadCB(80, 140, 2, data) != 2)
+                return -1;
+
+            reverseData = data.Reverse().ToArray();
+            tmp = BitConverter.ToInt16(reverseData, 0);
+            tbTxRssi3.Text = tmp.ToString();
+
+            if (qsfpI2cReadCB(80, 142, 2, data) != 2)
+                return -1;
+
+            reverseData = data.Reverse().ToArray();
+            tmp = BitConverter.ToInt16(reverseData, 0);
+            tbTxRssi4.Text = tmp.ToString();
+
+            if (qsfpI2cReadCB(80, 162, 1, data) != 1)
+                return -1;
+
+            tbTxPowerRateDefault.Text = data[0].ToString();
+
+            if (tbTxPowerRateMax.Text.Length == 0)
+                tbTxPowerRateMax.Text = (data[0] + 15).ToString();
+
+            if (tbTxPowerRateMin.Text.Length == 0)
+                tbTxPowerRateMin.Text = (data[0] - 12).ToString();
+
+            data = new byte[] { 4, 0, 0, 0 };
+            qsfpI2cWriteCB(80, 127, 1, data);
+            if (qsfpI2cReadCB(80, 248, 4, data) != 4)
+                return -1;
+
+            tbTxPowerRate1.Text = data[0].ToString();
+            tbTxPowerRate2.Text = data[1].ToString();
+            tbTxPowerRate3.Text = data[2].ToString();
+            tbTxPowerRate4.Text = data[3].ToString();
+
+            return 0;
+        }
+
+        private void bTxPowerRateRead_Click(object sender, EventArgs e)
+        {
+            if (_ReadTxPowerRate() < 0)
+                return;
+        }
+
+        private int _WriteTxPowerRate()
+        {
+            byte[] data = new byte[] { 4, 0, 0, 0 }; ;
+
+            if ((tbTxPowerRate1.Text.Length == 0) || (tbTxPowerRate2.Text.Length == 0) ||
+                (tbTxPowerRate3.Text.Length == 0) || (tbTxPowerRate4.Text.Length == 0))
+            {
+                MessageBox.Show("Please input Tx power rate!!");
+                return -1;
+            }
+
+            if (_WritePassword() < 0)
+                return -1;
+
+            if (_SetQsfpMode(0x4D) < 0)
+                return -1;
+
+            if (qsfpI2cWriteCB == null)
+                return -1;
+
+            qsfpI2cWriteCB(80, 127, 1, data);
+
+            try
+            {
+                data[0] = Convert.ToByte(tbTxPowerRate1.Text);
+                data[1] = Convert.ToByte(tbTxPowerRate2.Text);
+                data[2] = Convert.ToByte(tbTxPowerRate3.Text);
+                data[3] = Convert.ToByte(tbTxPowerRate4.Text);
+            }
+            catch (Exception eTB)
+            {
+                MessageBox.Show("Tx power rate out of range (0 ~ 255)!!\n" + eTB.ToString());
+                return -1;
+            }
+
+            qsfpI2cWriteCB(80, 248, 4, data);
+
+            _ClearPassword();
+            _SetQsfpMode(0);
+
+            return 0;
+        }
+
+        private void bTxPowerRateWrite_Click(object sender, EventArgs e)
+        {
+            if (_WriteTxPowerRate() < 0)
+                return;
+        }
+
+        private int _ResetTxPowerRate()
+        {
+            if (tbTxPowerRateDefault.Text.Length == 0)
+            {
+                if (_ReadTxPowerRate() < 0)
+                    return -1;
+            }
+
+            tbTxPowerRate1.Text = tbTxPowerRate2.Text = tbTxPowerRate3.Text = tbTxPowerRate4.Text =
+                tbTxPowerRateDefault.Text;
+
+            if (_WriteTxPowerRate() < 0)
+                return -1;
+
+            cbTxPowerRateCorrected.Checked = false;
+
+            return 0;
+        }
+
+        private void bTxPowerRateReset_Click(object sender, EventArgs e)
+        {
+            if (_ResetTxPowerRate() < 0)
+                return;
+        }
+
+        private int _AutoCorrectTxPowerRate()
+        {
+            float input, rssi;
+            int rate, rateMax, rateMin;
+
+            rate = rateMax = rateMin = 0;
+
+            if ((tbTxOutputPower1.Text.Length == 0) || (tbTxOutputPower2.Text.Length == 0) ||
+                (tbTxOutputPower3.Text.Length == 0) || (tbTxOutputPower4.Text.Length == 0))
+            {
+                MessageBox.Show("Output power empty!!");
+                return -1;
+            }
+
+            if (tbTxPowerRateDefault.Text.Length == 0)
+            {
+                if (_ReadTxPowerRate() < 0)
+                    return -1;
+            }
+
+            try
+            {
+                rateMax = Convert.ToInt32(tbTxPowerRateMax.Text);
+                rateMin = Convert.ToInt32(tbTxPowerRateMin.Text);
+            }
+            catch (Exception eTI)
+            {
+                MessageBox.Show(eTI.ToString());
+                return -1;
+            }
+
+            try
+            {
+                input = Convert.ToSingle(tbTxOutputPower1.Text);
+                rssi = Convert.ToSingle(tbTxRssi1.Text);
+                rate = Convert.ToInt32(Math.Ceiling(rssi * 100 / input));
+            }
+            catch (Exception eCT)
+            {
+                MessageBox.Show(eCT.ToString());
+            }
+            tbTxPowerRate1.Text = rate.ToString();
+
+            if ((rate > rateMax) || (rate < rateMin))
+                MessageBox.Show("Tx1 rate: " + rate + " out of bound!!");
+
+            try
+            {
+                input = Convert.ToSingle(tbTxOutputPower2.Text);
+                rssi = Convert.ToSingle(tbTxRssi2.Text);
+                rate = Convert.ToInt32(Math.Ceiling(rssi * 100 / input));
+            }
+            catch (Exception eCT)
+            {
+                MessageBox.Show(eCT.ToString());
+            }
+            tbTxPowerRate2.Text = rate.ToString();
+
+            if ((rate > rateMax) || (rate < rateMin))
+                MessageBox.Show("Tx2 rate: " + rate + " out of bound!!");
+
+            try
+            {
+                input = Convert.ToSingle(tbTxOutputPower3.Text);
+                rssi = Convert.ToSingle(tbTxRssi3.Text);
+                rate = Convert.ToInt32(Math.Ceiling(rssi * 100 / input));
+            }
+            catch (Exception eCT)
+            {
+                MessageBox.Show(eCT.ToString());
+            }
+            tbTxPowerRate3.Text = rate.ToString();
+
+            if ((rate > rateMax) || (rate < rateMin))
+                MessageBox.Show("Tx3 rate: " + rate + " out of bound!!");
+
+            try
+            {
+                input = Convert.ToSingle(tbTxOutputPower4.Text);
+                rssi = Convert.ToSingle(tbTxRssi4.Text);
+                rate = Convert.ToInt32(Math.Ceiling(rssi * 100 / input));
+            }
+            catch (Exception eCT)
+            {
+                MessageBox.Show(eCT.ToString());
+            }
+            tbTxPowerRate4.Text = rate.ToString();
+
+            if ((rate > rateMax) || (rate < rateMin))
+                MessageBox.Show("Tx4 rate: " + rate + " out of bound!!");
+
+            if (_WriteTxPowerRate() < 0)
+                return -1;
+
+            cbTxPowerRateCorrected.Checked = true;
+
+            return 0;
+        }
+
+        private void bTxPowerRateAutoCorrect_Click(object sender, EventArgs e)
+        {
+            if (_AutoCorrectTxPowerRate() < 0)
+                return;
+        }
     }
 }
