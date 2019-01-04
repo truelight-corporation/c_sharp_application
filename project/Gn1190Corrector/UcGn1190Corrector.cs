@@ -20,6 +20,7 @@ namespace Gn1190Corrector
         private I2cReadCB qsfpI2cReadCB = null;
         private I2cWriteCB qsfpI2cWriteCB = null;
         private PowerMeterReadCB powerMeterReadCB = null;
+        private String sAcConfig;
 
         public UcGn1190Corrector()
         {
@@ -240,8 +241,12 @@ namespace Gn1190Corrector
                 return -1;
             }
 
-            if (qsfpI2cWriteCB(80, 123, 4, data) < 0)
-                return -1;
+            if (bStoreAcConfigToFile.Enabled == false)
+                _I2cWriteToString(80, 123, 4, data, ref sAcConfig);
+            else {
+                if (qsfpI2cWriteCB(80, 123, 4, data) < 0)
+                    return -1;
+            }
 
             return 0;
         }
@@ -253,13 +258,21 @@ namespace Gn1190Corrector
             if (qsfpI2cWriteCB == null)
                 return -1;
 
-            if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
-                return -1;
+            if (bStoreAcConfigToFile.Enabled == false)
+                _I2cWriteToString(80, 127, 1, data, ref sAcConfig);
+            else {
+                if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
+                    return -1;
+            }
 
             data[0] = mode;
-
-            if (qsfpI2cWriteCB(80, 164, 1, data) < 0)
-                return -1;
+            if (bStoreAcConfigToFile.Enabled == false)
+                _I2cWriteToString(80, 164, 1, data, ref sAcConfig);
+            else
+            {
+                if (qsfpI2cWriteCB(80, 164, 1, data) < 0)
+                    return -1;
+            }
 
             return 0;
         }
@@ -341,7 +354,10 @@ namespace Gn1190Corrector
             }
 
             data[0] = 4;
-            qsfpI2cWriteCB(80, 127, 1, data);
+            if (bStoreAcConfigToFile.Enabled == false)
+                _I2cWriteToString(80, 127, 1, data, ref sAcConfig);
+            else
+                qsfpI2cWriteCB(80, 127, 1, data);
 
             try {
                 Buffer.BlockCopy(tmp, 0, data, 0, 1);
@@ -350,8 +366,13 @@ namespace Gn1190Corrector
                 MessageBox.Show(e2.ToString());
                 return -1;
             }
-
-            qsfpI2cWriteCB(80, 240, 1, data);
+            if (bStoreAcConfigToFile.Enabled == false) {
+                _I2cWriteToString(80, 240, 1, data, ref sAcConfig);
+                sAcConfig += "Delay10mSec,0x14\n";
+                _I2cReadToString(80, 240, 1, data, ref sAcConfig);
+            }
+            else
+                qsfpI2cWriteCB(80, 240, 1, data);
 
             return 0;
         }
@@ -476,7 +497,10 @@ namespace Gn1190Corrector
             }
 
             data[0] = 4;
-            qsfpI2cWriteCB(80, 127, 1, data);
+            if (bStoreAcConfigToFile.Enabled == false)
+                _I2cWriteToString(80, 127, 1, data, ref sAcConfig);
+            else
+                qsfpI2cWriteCB(80, 127, 1, data);
 
             try {
                 Buffer.BlockCopy(tmp, 0, data, 0, 1);
@@ -486,13 +510,25 @@ namespace Gn1190Corrector
                 return -1;
             }
 
-            qsfpI2cWriteCB(80, 241, 1, data);
+            if (bStoreAcConfigToFile.Enabled == false) {
+                _I2cWriteToString(80, 241, 1, data, ref sAcConfig);
+                sAcConfig += "Delay10mSec,0x14\n";
+                _I2cReadToString(80, 241, 1, data, ref sAcConfig);
+            }
+            else
+                qsfpI2cWriteCB(80, 241, 1, data);
 
             bATmp = BitConverter.GetBytes(tmpS16);
             data[0] = bATmp[0];
             data[1] = bATmp[1];
 
-            qsfpI2cWriteCB(80, 242, 2, data);
+            if (bStoreAcConfigToFile.Enabled == false) {
+                _I2cWriteToString(80, 242, 2, data, ref sAcConfig);
+                sAcConfig += "Delay10mSec,0x14\n";
+                _I2cReadToString(80, 242, 2, data, ref sAcConfig);
+            }
+            else
+                qsfpI2cWriteCB(80, 242, 2, data);
 
             return 0;
         }
@@ -1264,6 +1300,30 @@ namespace Gn1190Corrector
             bAcMcRead.Enabled = true;
         }
 
+        private int _I2cWriteToString(byte devAddr, byte regAddr, byte length, byte[] data, ref String sTmp)
+        {
+            int i;
+
+            for (i = 0; i < length; i++) {
+                sTmp += "Write,0x" + devAddr.ToString("X2") + ",0x" + (regAddr + i).ToString("X2") + ",0x" +
+                    data[i].ToString("X2") + "\n";
+            }
+
+            return 0;
+        }
+
+        private int _I2cReadToString(byte devAddr, byte regAddr, byte length, byte[] data, ref String sTmp)
+        {
+            int i;
+
+            for (i = 0; i < length; i++) {
+                sTmp += "Read,0x" + devAddr.ToString("X2") + ",0x" + (regAddr + i).ToString("X2") + ",0x" +
+                    data[i].ToString("X2") + "\n";
+            }
+
+            return 0;
+        }
+
         private int _WriteAcMcCorrectData()
         {
 
@@ -1363,8 +1423,12 @@ namespace Gn1190Corrector
                 return -1;
 
             data[0] = 5;
-            if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
-                return -1;
+            if (bStoreAcConfigToFile.Enabled == false)
+                _I2cWriteToString(80, 127, 1, data, ref sAcConfig);
+            else {
+                if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
+                    return -1;
+            }
 
             if ((Convert.ToSingle(tbAverageCurrentMin.Text) < 0) ||
                 Convert.ToSingle(tbAverageCurrentMin.Text) > 10.2) {
@@ -1766,14 +1830,26 @@ namespace Gn1190Corrector
             data[42] = bATmp[1];
             data[43] = bATmp[0];
 
-            if (qsfpI2cWriteCB(80, 128, 44, data) < 0)
-                return -1;
+            if (bStoreAcConfigToFile.Enabled == false) {
+                _I2cWriteToString(80, 128, 44, data, ref sAcConfig);
+                sAcConfig += "Delay10mSec,0x64\n";
+                _I2cReadToString(80, 128, 44, data, ref sAcConfig);
+            }
+            else
+            {
+                if (qsfpI2cWriteCB(80, 128, 44, data) < 0)
+                    return -1;
+            }
 
             Thread.Sleep(1);
 
             data[0] = 4;
-            if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
-                return -1;
+            if (bStoreAcConfigToFile.Enabled == false)
+                _I2cWriteToString(80, 127, 1, data, ref sAcConfig);
+            else {
+                if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
+                    return -1;
+            }
 
             if ((Convert.ToSingle(tbVhfCompPropEquationACh1.Text) < -0.32768) ||
                 (Convert.ToSingle(tbVhfCompPropEquationACh1.Text) > 0.32767)) {
@@ -2639,22 +2715,42 @@ namespace Gn1190Corrector
             data[94] = bATmp[1];
             data[95] = bATmp[0];
 
-            if (qsfpI2cWriteCB(80, 128, 96, data) < 0)
-                return -1;
+            if (bStoreAcConfigToFile.Enabled == false) {
+                _I2cWriteToString(80, 128, 96, data, ref sAcConfig);
+                sAcConfig += "Delay10mSec,0x64\n";
+                _I2cReadToString(80, 128, 96, data, ref sAcConfig);
+            }
+            else
+            {
+                if (qsfpI2cWriteCB(80, 128, 96, data) < 0)
+                    return -1;
+            }
 
             Thread.Sleep(1);
 
             data[0] = 5;
-            if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
-                return -1;
+            if (bStoreAcConfigToFile.Enabled == false)
+                _I2cWriteToString(80, 127, 1, data, ref sAcConfig);
+            else {
+                if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
+                    return -1;
+            }
 
             if (cbTemperatureCompensation.Checked)
                 data[0] = 0x01;
             else
                 data[0] = 0x00;
 
-            if (qsfpI2cWriteCB(80, 252, 1, data) < 0)
-                return -1;
+            if (bStoreAcConfigToFile.Enabled == false) {
+                _I2cWriteToString(80, 252, 1, data, ref sAcConfig);
+                sAcConfig += "Delay10mSec,0x14\n";
+                _I2cReadToString(80, 252, 1, data, ref sAcConfig);
+            }
+            else
+            {
+                if (qsfpI2cWriteCB(80, 252, 1, data) < 0)
+                    return -1;
+            }
 
             return 0;
         }
@@ -3323,6 +3419,26 @@ namespace Gn1190Corrector
             {
                 MessageBox.Show(eCT.ToString());
             }
+        }
+
+        private void bStoreAcConfigToFile_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfdSelectFile = new SaveFileDialog();
+
+            
+            bStoreAcConfigToFile.Enabled = false;
+            sAcConfig = "//Write,DevAddr,RegAddr,Value\n" + "//Read,DevAddr,RegAddr,Value\n" + 
+                "//Delay10mSec,Time\n";
+            _WriteVoltageCorrector();
+            _WriteTemperatureCorrector();
+            _WriteAcMcCorrectData();
+
+            sfdSelectFile.Filter = "cfg files (*.cfg)|*.cfg";
+            if (sfdSelectFile.ShowDialog() != DialogResult.OK)
+                goto exit;
+            System.IO.File.WriteAllText(sfdSelectFile.FileName, sAcConfig);
+        exit:
+            bStoreAcConfigToFile.Enabled = true;
         }
     }
 }

@@ -106,6 +106,7 @@
             this.lInputPower = new System.Windows.Forms.Label();
             this.lRxCh1 = new System.Windows.Forms.Label();
             this.gbAcMcEquation = new System.Windows.Forms.GroupBox();
+            this.bStoreAcConfigToFile = new System.Windows.Forms.Button();
             this.bLutTemperatureUpdate = new System.Windows.Forms.Button();
             this.tbLutTemperature = new System.Windows.Forms.TextBox();
             this.lLutTemperature = new System.Windows.Forms.Label();
@@ -1203,9 +1204,19 @@
             this.gbAcMcEquation.TabStop = false;
             this.gbAcMcEquation.Text = "Average and Modulation Current Equation, Drive Tune and Modulation Slope Table";
             // 
+            // bStoreAcConfigToFile
+            // 
+            this.bStoreAcConfigToFile.Location = new System.Drawing.Point(187, 32);
+            this.bStoreAcConfigToFile.Name = "bStoreAcConfigToFile";
+            this.bStoreAcConfigToFile.Size = new System.Drawing.Size(100, 23);
+            this.bStoreAcConfigToFile.TabIndex = 191;
+            this.bStoreAcConfigToFile.Text = "儲存DC站格式";
+            this.bStoreAcConfigToFile.UseVisualStyleBackColor = true;
+            this.bStoreAcConfigToFile.Click += new System.EventHandler(this.bStoreAcConfigToFile_Click);
+            // 
             // bLutTemperatureUpdate
             // 
-            this.bLutTemperatureUpdate.Location = new System.Drawing.Point(378, 199);
+            this.bLutTemperatureUpdate.Location = new System.Drawing.Point(378, 255);
             this.bLutTemperatureUpdate.Name = "bLutTemperatureUpdate";
             this.bLutTemperatureUpdate.Size = new System.Drawing.Size(60, 23);
             this.bLutTemperatureUpdate.TabIndex = 190;
@@ -1216,7 +1227,7 @@
             // tbLutTemperature
             // 
             this.tbLutTemperature.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbLutTemperature.Location = new System.Drawing.Point(382, 171);
+            this.tbLutTemperature.Location = new System.Drawing.Point(382, 227);
             this.tbLutTemperature.Name = "tbLutTemperature";
             this.tbLutTemperature.Size = new System.Drawing.Size(50, 22);
             this.tbLutTemperature.TabIndex = 189;
@@ -1224,7 +1235,7 @@
             // lLutTemperature
             // 
             this.lLutTemperature.AutoSize = true;
-            this.lLutTemperature.Location = new System.Drawing.Point(379, 147);
+            this.lLutTemperature.Location = new System.Drawing.Point(379, 203);
             this.lLutTemperature.Name = "lLutTemperature";
             this.lLutTemperature.Size = new System.Drawing.Size(57, 12);
             this.lLutTemperature.TabIndex = 188;
@@ -1961,7 +1972,7 @@
             // cbTemperatureCompensation
             // 
             this.cbTemperatureCompensation.AutoSize = true;
-            this.cbTemperatureCompensation.Location = new System.Drawing.Point(378, 21);
+            this.cbTemperatureCompensation.Location = new System.Drawing.Point(378, 34);
             this.cbTemperatureCompensation.Name = "cbTemperatureCompensation";
             this.cbTemperatureCompensation.Size = new System.Drawing.Size(56, 16);
             this.cbTemperatureCompensation.TabIndex = 55;
@@ -1971,7 +1982,7 @@
             // 
             // bAcMcWrite
             // 
-            this.bAcMcWrite.Location = new System.Drawing.Point(378, 75);
+            this.bAcMcWrite.Location = new System.Drawing.Point(378, 85);
             this.bAcMcWrite.Name = "bAcMcWrite";
             this.bAcMcWrite.Size = new System.Drawing.Size(60, 23);
             this.bAcMcWrite.TabIndex = 36;
@@ -1981,7 +1992,7 @@
             // 
             // bAcMcRead
             // 
-            this.bAcMcRead.Location = new System.Drawing.Point(378, 46);
+            this.bAcMcRead.Location = new System.Drawing.Point(378, 56);
             this.bAcMcRead.Name = "bAcMcRead";
             this.bAcMcRead.Size = new System.Drawing.Size(60, 23);
             this.bAcMcRead.TabIndex = 36;
@@ -2093,7 +2104,7 @@
             // 
             // bLutClear
             // 
-            this.bLutClear.Location = new System.Drawing.Point(378, 104);
+            this.bLutClear.Location = new System.Drawing.Point(378, 114);
             this.bLutClear.Name = "bLutClear";
             this.bLutClear.Size = new System.Drawing.Size(60, 23);
             this.bLutClear.TabIndex = 14;
@@ -2840,6 +2851,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.bStoreAcConfigToFile);
             this.Controls.Add(this.gbTxPowerRate);
             this.Controls.Add(this.gbVcc);
             this.Controls.Add(this.bStoreIntoFlash);
@@ -3137,5 +3149,6 @@
         private System.Windows.Forms.TextBox tbTxOutputPower1;
         private System.Windows.Forms.Label lOutputPower;
         private System.Windows.Forms.Label lTxCh1;
+        private System.Windows.Forms.Button bStoreAcConfigToFile;
     }
 }
