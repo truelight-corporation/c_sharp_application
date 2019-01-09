@@ -2755,6 +2755,38 @@ namespace Gn1190Corrector
             return 0;
         }
 
+        private int _WriteBootLoaderIdentify()
+        {
+            byte[] data = new byte[2];
+
+            if (_WritePassword() < 0)
+                return -1;
+
+            if (_SetQsfpMode(0x4D) < 0)
+                return -1;
+
+            if (qsfpI2cWriteCB == null)
+                return -1;
+
+            data[0] = 5;
+            if (bStoreAcConfigToFile.Enabled == false)
+                _I2cWriteToString(80, 127, 1, data, ref sAcConfig);
+            else
+                qsfpI2cWriteCB(80, 127, 1, data);
+
+            data[0] = 0x19;
+            data[1] = 0x3A;
+            if (bStoreAcConfigToFile.Enabled == false) {
+                _I2cWriteToString(80, 253, 2, data, ref sAcConfig);
+                sAcConfig += "Delay10mSec,0x14\n";
+                _I2cReadToString(80, 253, 2, data, ref sAcConfig);
+            }
+            else
+                qsfpI2cWriteCB(80, 253, 2, data);
+
+            return 0;
+        }
+
         private void bAcMcWrite_Click(object sender, EventArgs e)
         {
             bAcMcWrite.Enabled = false;
@@ -2987,11 +3019,10 @@ namespace Gn1190Corrector
             tbRxInputPower4_TextChanged(sender, e);
         }
 
-        private void bSaveIntoFlash_Click(object sender, EventArgs e)
+        private int _SaveIntoFlash()
         {
             byte[] data = new byte[1];
 
-            bStoreIntoFlash.Enabled = false;
             if (_WritePassword() < 0)
                 goto exit;
 
@@ -3002,16 +3033,35 @@ namespace Gn1190Corrector
                 goto exit;
 
             data[0] = 32;
-            if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
-                goto exit;
+            if (bStoreAcConfigToFile.Enabled == false)
+                _I2cWriteToString(80, 127, 1, data, ref sAcConfig);
+            else
+            {
+                if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
+                    goto exit;
+            }
 
             data[0] = 0xAA;
-            if (qsfpI2cWriteCB(80, 162, 1, data) < 0)
-                goto exit;
-
-            Thread.Sleep(1000);
+            if (bStoreAcConfigToFile.Enabled == false)
+            {
+                _I2cWriteToString(80, 162, 1, data, ref sAcConfig);
+                sAcConfig += "Delay10mSec,0x64\n"; //* Wait flash write done */
+            }
+            else
+            {
+                if (qsfpI2cWriteCB(80, 162, 1, data) < 0)
+                    goto exit;
+                Thread.Sleep(1000);
+            }
 
         exit:
+            return 0;
+        }
+
+        private void bSaveIntoFlash_Click(object sender, EventArgs e)
+        {
+            bStoreIntoFlash.Enabled = false;
+            _SaveIntoFlash();
             bStoreIntoFlash.Enabled = true;
         }
 
@@ -3432,6 +3482,8 @@ namespace Gn1190Corrector
             _WriteVoltageCorrector();
             _WriteTemperatureCorrector();
             _WriteAcMcCorrectData();
+            _WriteBootLoaderIdentify();
+            _SaveIntoFlash();
 
             sfdSelectFile.Filter = "cfg files (*.cfg)|*.cfg";
             if (sfdSelectFile.ShowDialog() != DialogResult.OK)
