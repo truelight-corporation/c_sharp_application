@@ -86,7 +86,7 @@
             this.Controls.Add(this.cbLightSourceI2cConnected);
             this.KeyPreview = true;
             this.Name = "MainForm";
-            this.Text = "RSSI Measure";
+            this.Text = "RSSI Measure 20190201";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.ResumeLayout(false);

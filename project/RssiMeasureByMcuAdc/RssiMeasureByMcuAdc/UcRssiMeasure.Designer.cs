@@ -28,24 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tcFunctionSelect = new System.Windows.Forms.TabControl();
             this.tpLog = new System.Windows.Forms.TabPage();
-            this.tbRssi4 = new System.Windows.Forms.TextBox();
-            this.lRssi4 = new System.Windows.Forms.Label();
-            this.tbRssi3 = new System.Windows.Forms.TextBox();
-            this.lRssi3 = new System.Windows.Forms.Label();
-            this.tbRssi2 = new System.Windows.Forms.TextBox();
-            this.lRssi2 = new System.Windows.Forms.Label();
+            this.tbRxCurrent4 = new System.Windows.Forms.TextBox();
+            this.lRxCurrent4 = new System.Windows.Forms.Label();
+            this.tbRxCurrent3 = new System.Windows.Forms.TextBox();
+            this.lRxCurrent3 = new System.Windows.Forms.Label();
+            this.tbRxCurrent2 = new System.Windows.Forms.TextBox();
+            this.lRxCurrent2 = new System.Windows.Forms.Label();
             this.lClassification = new System.Windows.Forms.Label();
             this.bDelRecord = new System.Windows.Forms.Button();
             this.bSaveFile = new System.Windows.Forms.Button();
             this.tbLogFilePath = new System.Windows.Forms.TextBox();
             this.lLogFilePath = new System.Windows.Forms.Label();
             this.dgvRecord = new System.Windows.Forms.DataGridView();
-            this.tbRssi1 = new System.Windows.Forms.TextBox();
-            this.lRssi1 = new System.Windows.Forms.Label();
+            this.tbRxCurrent1 = new System.Windows.Forms.TextBox();
+            this.lRxCurrent1 = new System.Windows.Forms.Label();
             this.bLog = new System.Windows.Forms.Button();
             this.tbSerialNumber = new System.Windows.Forms.TextBox();
             this.lSnNumber = new System.Windows.Forms.Label();
@@ -68,11 +68,11 @@
             this.tpConfig = new System.Windows.Forms.TabPage();
             this.bSaveConfig = new System.Windows.Forms.Button();
             this.gbMonitorThreshold = new System.Windows.Forms.GroupBox();
-            this.lRssiThreshold = new System.Windows.Forms.Label();
-            this.tbRssi4Threshold = new System.Windows.Forms.TextBox();
-            this.tbRssi1Threshold = new System.Windows.Forms.TextBox();
-            this.tbRssi2Threshold = new System.Windows.Forms.TextBox();
-            this.tbRssi3Threshold = new System.Windows.Forms.TextBox();
+            this.lCurrentThreshold = new System.Windows.Forms.Label();
+            this.tbCurrent4Threshold = new System.Windows.Forms.TextBox();
+            this.tbCurrent1Threshold = new System.Windows.Forms.TextBox();
+            this.tbCurrent2Threshold = new System.Windows.Forms.TextBox();
+            this.tbCurrent3Threshold = new System.Windows.Forms.TextBox();
             this.lCh1Threshold = new System.Windows.Forms.Label();
             this.lCh2Threshold = new System.Windows.Forms.Label();
             this.lCh3Threshold = new System.Windows.Forms.Label();
@@ -89,6 +89,8 @@
             this.tbI2cLightSourseRegisterPage = new System.Windows.Forms.TextBox();
             this.lBeTestedRegisterAddr = new System.Windows.Forms.Label();
             this.tbI2cLightSourseRegisterAddr = new System.Windows.Forms.TextBox();
+            this.lRssiToUaRate = new System.Windows.Forms.Label();
+            this.tbRssiToUaRate = new System.Windows.Forms.TextBox();
             this.tcFunctionSelect.SuspendLayout();
             this.tpLog.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecord)).BeginInit();
@@ -111,20 +113,20 @@
             // 
             // tpLog
             // 
-            this.tpLog.Controls.Add(this.tbRssi4);
-            this.tpLog.Controls.Add(this.lRssi4);
-            this.tpLog.Controls.Add(this.tbRssi3);
-            this.tpLog.Controls.Add(this.lRssi3);
-            this.tpLog.Controls.Add(this.tbRssi2);
-            this.tpLog.Controls.Add(this.lRssi2);
+            this.tpLog.Controls.Add(this.tbRxCurrent4);
+            this.tpLog.Controls.Add(this.lRxCurrent4);
+            this.tpLog.Controls.Add(this.tbRxCurrent3);
+            this.tpLog.Controls.Add(this.lRxCurrent3);
+            this.tpLog.Controls.Add(this.tbRxCurrent2);
+            this.tpLog.Controls.Add(this.lRxCurrent2);
             this.tpLog.Controls.Add(this.lClassification);
             this.tpLog.Controls.Add(this.bDelRecord);
             this.tpLog.Controls.Add(this.bSaveFile);
             this.tpLog.Controls.Add(this.tbLogFilePath);
             this.tpLog.Controls.Add(this.lLogFilePath);
             this.tpLog.Controls.Add(this.dgvRecord);
-            this.tpLog.Controls.Add(this.tbRssi1);
-            this.tpLog.Controls.Add(this.lRssi1);
+            this.tpLog.Controls.Add(this.tbRxCurrent1);
+            this.tpLog.Controls.Add(this.lRxCurrent1);
             this.tpLog.Controls.Add(this.bLog);
             this.tpLog.Controls.Add(this.tbSerialNumber);
             this.tpLog.Controls.Add(this.lSnNumber);
@@ -151,65 +153,65 @@
             this.tpLog.Text = "紀錄";
             this.tpLog.UseVisualStyleBackColor = true;
             // 
-            // tbRssi4
+            // tbRxCurrent4
             // 
-            this.tbRssi4.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRssi4.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbRssi4.Location = new System.Drawing.Point(328, 154);
-            this.tbRssi4.Name = "tbRssi4";
-            this.tbRssi4.ReadOnly = true;
-            this.tbRssi4.Size = new System.Drawing.Size(100, 36);
-            this.tbRssi4.TabIndex = 127;
+            this.tbRxCurrent4.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbRxCurrent4.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRxCurrent4.Location = new System.Drawing.Point(328, 154);
+            this.tbRxCurrent4.Name = "tbRxCurrent4";
+            this.tbRxCurrent4.ReadOnly = true;
+            this.tbRxCurrent4.Size = new System.Drawing.Size(100, 36);
+            this.tbRxCurrent4.TabIndex = 127;
             // 
-            // lRssi4
+            // lRxCurrent4
             // 
-            this.lRssi4.AutoSize = true;
-            this.lRssi4.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lRssi4.Location = new System.Drawing.Point(343, 127);
-            this.lRssi4.Name = "lRssi4";
-            this.lRssi4.Size = new System.Drawing.Size(70, 24);
-            this.lRssi4.TabIndex = 126;
-            this.lRssi4.Text = "RSSI4";
+            this.lRxCurrent4.AutoSize = true;
+            this.lRxCurrent4.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lRxCurrent4.Location = new System.Drawing.Point(355, 127);
+            this.lRxCurrent4.Name = "lRxCurrent4";
+            this.lRxCurrent4.Size = new System.Drawing.Size(47, 24);
+            this.lRxCurrent4.TabIndex = 126;
+            this.lRxCurrent4.Text = "Rx4";
             // 
-            // tbRssi3
+            // tbRxCurrent3
             // 
-            this.tbRssi3.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRssi3.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbRssi3.Location = new System.Drawing.Point(222, 154);
-            this.tbRssi3.Name = "tbRssi3";
-            this.tbRssi3.ReadOnly = true;
-            this.tbRssi3.Size = new System.Drawing.Size(100, 36);
-            this.tbRssi3.TabIndex = 125;
+            this.tbRxCurrent3.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbRxCurrent3.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRxCurrent3.Location = new System.Drawing.Point(222, 154);
+            this.tbRxCurrent3.Name = "tbRxCurrent3";
+            this.tbRxCurrent3.ReadOnly = true;
+            this.tbRxCurrent3.Size = new System.Drawing.Size(100, 36);
+            this.tbRxCurrent3.TabIndex = 125;
             // 
-            // lRssi3
+            // lRxCurrent3
             // 
-            this.lRssi3.AutoSize = true;
-            this.lRssi3.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lRssi3.Location = new System.Drawing.Point(237, 127);
-            this.lRssi3.Name = "lRssi3";
-            this.lRssi3.Size = new System.Drawing.Size(70, 24);
-            this.lRssi3.TabIndex = 124;
-            this.lRssi3.Text = "RSSI3";
+            this.lRxCurrent3.AutoSize = true;
+            this.lRxCurrent3.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lRxCurrent3.Location = new System.Drawing.Point(249, 127);
+            this.lRxCurrent3.Name = "lRxCurrent3";
+            this.lRxCurrent3.Size = new System.Drawing.Size(47, 24);
+            this.lRxCurrent3.TabIndex = 124;
+            this.lRxCurrent3.Text = "Rx3";
             // 
-            // tbRssi2
+            // tbRxCurrent2
             // 
-            this.tbRssi2.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRssi2.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbRssi2.Location = new System.Drawing.Point(116, 154);
-            this.tbRssi2.Name = "tbRssi2";
-            this.tbRssi2.ReadOnly = true;
-            this.tbRssi2.Size = new System.Drawing.Size(100, 36);
-            this.tbRssi2.TabIndex = 123;
+            this.tbRxCurrent2.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbRxCurrent2.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRxCurrent2.Location = new System.Drawing.Point(116, 154);
+            this.tbRxCurrent2.Name = "tbRxCurrent2";
+            this.tbRxCurrent2.ReadOnly = true;
+            this.tbRxCurrent2.Size = new System.Drawing.Size(100, 36);
+            this.tbRxCurrent2.TabIndex = 123;
             // 
-            // lRssi2
+            // lRxCurrent2
             // 
-            this.lRssi2.AutoSize = true;
-            this.lRssi2.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lRssi2.Location = new System.Drawing.Point(131, 127);
-            this.lRssi2.Name = "lRssi2";
-            this.lRssi2.Size = new System.Drawing.Size(70, 24);
-            this.lRssi2.TabIndex = 122;
-            this.lRssi2.Text = "RSSI2";
+            this.lRxCurrent2.AutoSize = true;
+            this.lRxCurrent2.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lRxCurrent2.Location = new System.Drawing.Point(143, 127);
+            this.lRxCurrent2.Name = "lRxCurrent2";
+            this.lRxCurrent2.Size = new System.Drawing.Size(47, 24);
+            this.lRxCurrent2.TabIndex = 122;
+            this.lRxCurrent2.Text = "Rx2";
             // 
             // lClassification
             // 
@@ -268,19 +270,19 @@
             // 
             this.dgvRecord.AllowUserToResizeColumns = false;
             this.dgvRecord.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.YellowGreen;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("PMingLiU", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dgvRecord.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.YellowGreen;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("PMingLiU", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dgvRecord.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvRecord.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvRecord.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.DarkSeaGreen;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("PMingLiU", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvRecord.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.DarkSeaGreen;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("PMingLiU", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvRecord.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvRecord.Location = new System.Drawing.Point(10, 199);
             this.dgvRecord.Name = "dgvRecord";
             this.dgvRecord.ReadOnly = true;
@@ -288,25 +290,25 @@
             this.dgvRecord.Size = new System.Drawing.Size(1076, 341);
             this.dgvRecord.TabIndex = 116;
             // 
-            // tbRssi1
+            // tbRxCurrent1
             // 
-            this.tbRssi1.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRssi1.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbRssi1.Location = new System.Drawing.Point(10, 154);
-            this.tbRssi1.Name = "tbRssi1";
-            this.tbRssi1.ReadOnly = true;
-            this.tbRssi1.Size = new System.Drawing.Size(100, 36);
-            this.tbRssi1.TabIndex = 115;
+            this.tbRxCurrent1.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbRxCurrent1.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRxCurrent1.Location = new System.Drawing.Point(10, 154);
+            this.tbRxCurrent1.Name = "tbRxCurrent1";
+            this.tbRxCurrent1.ReadOnly = true;
+            this.tbRxCurrent1.Size = new System.Drawing.Size(100, 36);
+            this.tbRxCurrent1.TabIndex = 115;
             // 
-            // lRssi1
+            // lRxCurrent1
             // 
-            this.lRssi1.AutoSize = true;
-            this.lRssi1.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lRssi1.Location = new System.Drawing.Point(25, 127);
-            this.lRssi1.Name = "lRssi1";
-            this.lRssi1.Size = new System.Drawing.Size(70, 24);
-            this.lRssi1.TabIndex = 114;
-            this.lRssi1.Text = "RSSI1";
+            this.lRxCurrent1.AutoSize = true;
+            this.lRxCurrent1.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lRxCurrent1.Location = new System.Drawing.Point(37, 127);
+            this.lRxCurrent1.Name = "lRxCurrent1";
+            this.lRxCurrent1.Size = new System.Drawing.Size(47, 24);
+            this.lRxCurrent1.TabIndex = 114;
+            this.lRxCurrent1.Text = "Rx1";
             // 
             // bLog
             // 
@@ -324,9 +326,9 @@
             // 
             this.tbSerialNumber.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbSerialNumber.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbSerialNumber.Location = new System.Drawing.Point(382, 88);
+            this.tbSerialNumber.Location = new System.Drawing.Point(276, 88);
             this.tbSerialNumber.Name = "tbSerialNumber";
-            this.tbSerialNumber.Size = new System.Drawing.Size(100, 36);
+            this.tbSerialNumber.Size = new System.Drawing.Size(206, 36);
             this.tbSerialNumber.TabIndex = 107;
             this.tbSerialNumber.TextChanged += new System.EventHandler(this.tbSerialNumber_TextChanged);
             this.tbSerialNumber.Enter += new System.EventHandler(this.tbSerialNumber_Enter);
@@ -336,7 +338,7 @@
             // 
             this.lSnNumber.AutoSize = true;
             this.lSnNumber.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lSnNumber.Location = new System.Drawing.Point(312, 91);
+            this.lSnNumber.Location = new System.Drawing.Point(206, 91);
             this.lSnNumber.Name = "lSnNumber";
             this.lSnNumber.Size = new System.Drawing.Size(64, 24);
             this.lSnNumber.TabIndex = 106;
@@ -512,6 +514,8 @@
             // 
             // tpConfig
             // 
+            this.tpConfig.Controls.Add(this.lRssiToUaRate);
+            this.tpConfig.Controls.Add(this.tbRssiToUaRate);
             this.tpConfig.Controls.Add(this.bSaveConfig);
             this.tpConfig.Controls.Add(this.gbMonitorThreshold);
             this.tpConfig.Controls.Add(this.gbI2cConfig);
@@ -535,11 +539,11 @@
             // 
             // gbMonitorThreshold
             // 
-            this.gbMonitorThreshold.Controls.Add(this.lRssiThreshold);
-            this.gbMonitorThreshold.Controls.Add(this.tbRssi4Threshold);
-            this.gbMonitorThreshold.Controls.Add(this.tbRssi1Threshold);
-            this.gbMonitorThreshold.Controls.Add(this.tbRssi2Threshold);
-            this.gbMonitorThreshold.Controls.Add(this.tbRssi3Threshold);
+            this.gbMonitorThreshold.Controls.Add(this.lCurrentThreshold);
+            this.gbMonitorThreshold.Controls.Add(this.tbCurrent4Threshold);
+            this.gbMonitorThreshold.Controls.Add(this.tbCurrent1Threshold);
+            this.gbMonitorThreshold.Controls.Add(this.tbCurrent2Threshold);
+            this.gbMonitorThreshold.Controls.Add(this.tbCurrent3Threshold);
             this.gbMonitorThreshold.Controls.Add(this.lCh1Threshold);
             this.gbMonitorThreshold.Controls.Add(this.lCh2Threshold);
             this.gbMonitorThreshold.Controls.Add(this.lCh3Threshold);
@@ -551,61 +555,61 @@
             this.gbMonitorThreshold.TabStop = false;
             this.gbMonitorThreshold.Text = "量測數值門檻設定";
             // 
-            // lRssiThreshold
+            // lCurrentThreshold
             // 
-            this.lRssiThreshold.AutoSize = true;
-            this.lRssiThreshold.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lRssiThreshold.Location = new System.Drawing.Point(6, 62);
-            this.lRssiThreshold.Name = "lRssiThreshold";
-            this.lRssiThreshold.Size = new System.Drawing.Size(65, 24);
-            this.lRssiThreshold.TabIndex = 86;
-            this.lRssiThreshold.Text = "RSSI:";
+            this.lCurrentThreshold.AutoSize = true;
+            this.lCurrentThreshold.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lCurrentThreshold.Location = new System.Drawing.Point(6, 62);
+            this.lCurrentThreshold.Name = "lCurrentThreshold";
+            this.lCurrentThreshold.Size = new System.Drawing.Size(43, 24);
+            this.lCurrentThreshold.TabIndex = 86;
+            this.lCurrentThreshold.Text = "uA:";
             // 
-            // tbRssi4Threshold
+            // tbCurrent4Threshold
             // 
-            this.tbRssi4Threshold.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRssi4Threshold.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbRssi4Threshold.Location = new System.Drawing.Point(275, 59);
-            this.tbRssi4Threshold.Name = "tbRssi4Threshold";
-            this.tbRssi4Threshold.Size = new System.Drawing.Size(60, 36);
-            this.tbRssi4Threshold.TabIndex = 85;
-            this.tbRssi4Threshold.Text = "10";
+            this.tbCurrent4Threshold.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbCurrent4Threshold.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbCurrent4Threshold.Location = new System.Drawing.Point(253, 62);
+            this.tbCurrent4Threshold.Name = "tbCurrent4Threshold";
+            this.tbCurrent4Threshold.Size = new System.Drawing.Size(60, 36);
+            this.tbCurrent4Threshold.TabIndex = 85;
+            this.tbCurrent4Threshold.Text = "10";
             // 
-            // tbRssi1Threshold
+            // tbCurrent1Threshold
             // 
-            this.tbRssi1Threshold.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRssi1Threshold.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbRssi1Threshold.Location = new System.Drawing.Point(77, 59);
-            this.tbRssi1Threshold.Name = "tbRssi1Threshold";
-            this.tbRssi1Threshold.Size = new System.Drawing.Size(60, 36);
-            this.tbRssi1Threshold.TabIndex = 82;
-            this.tbRssi1Threshold.Text = "10";
+            this.tbCurrent1Threshold.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbCurrent1Threshold.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbCurrent1Threshold.Location = new System.Drawing.Point(55, 62);
+            this.tbCurrent1Threshold.Name = "tbCurrent1Threshold";
+            this.tbCurrent1Threshold.Size = new System.Drawing.Size(60, 36);
+            this.tbCurrent1Threshold.TabIndex = 82;
+            this.tbCurrent1Threshold.Text = "10";
             // 
-            // tbRssi2Threshold
+            // tbCurrent2Threshold
             // 
-            this.tbRssi2Threshold.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRssi2Threshold.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbRssi2Threshold.Location = new System.Drawing.Point(143, 59);
-            this.tbRssi2Threshold.Name = "tbRssi2Threshold";
-            this.tbRssi2Threshold.Size = new System.Drawing.Size(60, 36);
-            this.tbRssi2Threshold.TabIndex = 83;
-            this.tbRssi2Threshold.Text = "10";
+            this.tbCurrent2Threshold.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbCurrent2Threshold.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbCurrent2Threshold.Location = new System.Drawing.Point(121, 62);
+            this.tbCurrent2Threshold.Name = "tbCurrent2Threshold";
+            this.tbCurrent2Threshold.Size = new System.Drawing.Size(60, 36);
+            this.tbCurrent2Threshold.TabIndex = 83;
+            this.tbCurrent2Threshold.Text = "10";
             // 
-            // tbRssi3Threshold
+            // tbCurrent3Threshold
             // 
-            this.tbRssi3Threshold.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRssi3Threshold.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbRssi3Threshold.Location = new System.Drawing.Point(209, 59);
-            this.tbRssi3Threshold.Name = "tbRssi3Threshold";
-            this.tbRssi3Threshold.Size = new System.Drawing.Size(60, 36);
-            this.tbRssi3Threshold.TabIndex = 84;
-            this.tbRssi3Threshold.Text = "10";
+            this.tbCurrent3Threshold.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbCurrent3Threshold.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbCurrent3Threshold.Location = new System.Drawing.Point(187, 62);
+            this.tbCurrent3Threshold.Name = "tbCurrent3Threshold";
+            this.tbCurrent3Threshold.Size = new System.Drawing.Size(60, 36);
+            this.tbCurrent3Threshold.TabIndex = 84;
+            this.tbCurrent3Threshold.Text = "10";
             // 
             // lCh1Threshold
             // 
             this.lCh1Threshold.AutoSize = true;
             this.lCh1Threshold.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lCh1Threshold.Location = new System.Drawing.Point(84, 32);
+            this.lCh1Threshold.Location = new System.Drawing.Point(62, 35);
             this.lCh1Threshold.Name = "lCh1Threshold";
             this.lCh1Threshold.Size = new System.Drawing.Size(47, 24);
             this.lCh1Threshold.TabIndex = 25;
@@ -615,7 +619,7 @@
             // 
             this.lCh2Threshold.AutoSize = true;
             this.lCh2Threshold.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lCh2Threshold.Location = new System.Drawing.Point(150, 32);
+            this.lCh2Threshold.Location = new System.Drawing.Point(128, 35);
             this.lCh2Threshold.Name = "lCh2Threshold";
             this.lCh2Threshold.Size = new System.Drawing.Size(47, 24);
             this.lCh2Threshold.TabIndex = 26;
@@ -625,7 +629,7 @@
             // 
             this.lCh3Threshold.AutoSize = true;
             this.lCh3Threshold.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lCh3Threshold.Location = new System.Drawing.Point(216, 32);
+            this.lCh3Threshold.Location = new System.Drawing.Point(194, 35);
             this.lCh3Threshold.Name = "lCh3Threshold";
             this.lCh3Threshold.Size = new System.Drawing.Size(47, 24);
             this.lCh3Threshold.TabIndex = 27;
@@ -635,7 +639,7 @@
             // 
             this.lCh4Threshold.AutoSize = true;
             this.lCh4Threshold.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lCh4Threshold.Location = new System.Drawing.Point(282, 32);
+            this.lCh4Threshold.Location = new System.Drawing.Point(260, 35);
             this.lCh4Threshold.Name = "lCh4Threshold";
             this.lCh4Threshold.Size = new System.Drawing.Size(47, 24);
             this.lCh4Threshold.TabIndex = 28;
@@ -771,6 +775,26 @@
             this.tbI2cLightSourseRegisterAddr.TabIndex = 39;
             this.tbI2cLightSourseRegisterAddr.Text = "86";
             // 
+            // lRssiToUaRate
+            // 
+            this.lRssiToUaRate.AutoSize = true;
+            this.lRssiToUaRate.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lRssiToUaRate.Location = new System.Drawing.Point(12, 275);
+            this.lRssiToUaRate.Name = "lRssiToUaRate";
+            this.lRssiToUaRate.Size = new System.Drawing.Size(168, 24);
+            this.lRssiToUaRate.TabIndex = 88;
+            this.lRssiToUaRate.Text = "RSSI to uA Rate:";
+            // 
+            // tbRssiToUaRate
+            // 
+            this.tbRssiToUaRate.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbRssiToUaRate.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRssiToUaRate.Location = new System.Drawing.Point(186, 272);
+            this.tbRssiToUaRate.Name = "tbRssiToUaRate";
+            this.tbRssiToUaRate.Size = new System.Drawing.Size(155, 36);
+            this.tbRssiToUaRate.TabIndex = 87;
+            this.tbRssiToUaRate.Text = "0.3628";
+            // 
             // UcRssiMeasure
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -785,6 +809,7 @@
             this.gbStatus.ResumeLayout(false);
             this.gbStatus.PerformLayout();
             this.tpConfig.ResumeLayout(false);
+            this.tpConfig.PerformLayout();
             this.gbMonitorThreshold.ResumeLayout(false);
             this.gbMonitorThreshold.PerformLayout();
             this.gbI2cConfig.ResumeLayout(false);
@@ -815,8 +840,8 @@
         private System.Windows.Forms.TextBox tbLogFilePath;
         private System.Windows.Forms.Label lLogFilePath;
         private System.Windows.Forms.DataGridView dgvRecord;
-        private System.Windows.Forms.TextBox tbRssi1;
-        private System.Windows.Forms.Label lRssi1;
+        private System.Windows.Forms.TextBox tbRxCurrent1;
+        private System.Windows.Forms.Label lRxCurrent1;
         private System.Windows.Forms.Button bLog;
         private System.Windows.Forms.TextBox tbSerialNumber;
         private System.Windows.Forms.Label lSnNumber;
@@ -825,19 +850,19 @@
         private System.Windows.Forms.Label lResult;
         private System.Windows.Forms.ComboBox cbLogMode;
         private System.Windows.Forms.Label lLogMode;
-        private System.Windows.Forms.TextBox tbRssi4;
-        private System.Windows.Forms.Label lRssi4;
-        private System.Windows.Forms.TextBox tbRssi3;
-        private System.Windows.Forms.Label lRssi3;
-        private System.Windows.Forms.TextBox tbRssi2;
-        private System.Windows.Forms.Label lRssi2;
+        private System.Windows.Forms.TextBox tbRxCurrent4;
+        private System.Windows.Forms.Label lRxCurrent4;
+        private System.Windows.Forms.TextBox tbRxCurrent3;
+        private System.Windows.Forms.Label lRxCurrent3;
+        private System.Windows.Forms.TextBox tbRxCurrent2;
+        private System.Windows.Forms.Label lRxCurrent2;
         private System.Windows.Forms.Button bSaveConfig;
         private System.Windows.Forms.GroupBox gbMonitorThreshold;
-        private System.Windows.Forms.Label lRssiThreshold;
-        private System.Windows.Forms.TextBox tbRssi4Threshold;
-        private System.Windows.Forms.TextBox tbRssi1Threshold;
-        private System.Windows.Forms.TextBox tbRssi2Threshold;
-        private System.Windows.Forms.TextBox tbRssi3Threshold;
+        private System.Windows.Forms.Label lCurrentThreshold;
+        private System.Windows.Forms.TextBox tbCurrent4Threshold;
+        private System.Windows.Forms.TextBox tbCurrent1Threshold;
+        private System.Windows.Forms.TextBox tbCurrent2Threshold;
+        private System.Windows.Forms.TextBox tbCurrent3Threshold;
         private System.Windows.Forms.Label lCh1Threshold;
         private System.Windows.Forms.Label lCh2Threshold;
         private System.Windows.Forms.Label lCh3Threshold;
@@ -854,5 +879,7 @@
         private System.Windows.Forms.TextBox tbI2cLightSourseRegisterPage;
         private System.Windows.Forms.Label lBeTestedRegisterAddr;
         private System.Windows.Forms.TextBox tbI2cLightSourseRegisterAddr;
+        private System.Windows.Forms.Label lRssiToUaRate;
+        private System.Windows.Forms.TextBox tbRssiToUaRate;
     }
 }

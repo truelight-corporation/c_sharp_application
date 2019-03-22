@@ -28,7 +28,7 @@ namespace RssiMeasureByMcuAdc
 
         private BackgroundWorker bwMonitor;
         private DialogResult drAskOverwrite;
-        private volatile String[] rxRssiValue = new String[4];
+        private volatile String[] rxCurrentValue = new String[4];
         private volatile String logModeSelect;
         private volatile String serialNumber;
         private volatile String lastNote;
@@ -40,7 +40,7 @@ namespace RssiMeasureByMcuAdc
         {
             InitializeComponent();
 
-            rxRssiValue[0] = rxRssiValue[1] = rxRssiValue[2] = rxRssiValue[3] = "0";
+            rxCurrentValue[0] = rxCurrentValue[1] = rxCurrentValue[2] = rxCurrentValue[3] = "0";
             lastNote = serialNumber = "";
 
             bwMonitor = new BackgroundWorker();
@@ -56,10 +56,10 @@ namespace RssiMeasureByMcuAdc
             dtValue.Columns.Add("時間", typeof(String));
             dtValue.Columns.Add("序號", typeof(String));
 
-            dtValue.Columns.Add("Rssi1", typeof(String));
-            dtValue.Columns.Add("Rssi2", typeof(String));
-            dtValue.Columns.Add("Rssi3", typeof(String));
-            dtValue.Columns.Add("Rssi4", typeof(String));
+            dtValue.Columns.Add("Rx1(uA)", typeof(String));
+            dtValue.Columns.Add("Rx2(uA)", typeof(String));
+            dtValue.Columns.Add("Rx3(uA)", typeof(String));
+            dtValue.Columns.Add("Rx4(uA)", typeof(String));
 
             dtValue.Columns.Add("操作員", typeof(String));
             dtValue.Columns.Add("Note", typeof(String));
@@ -153,6 +153,7 @@ namespace RssiMeasureByMcuAdc
             byte[] bATmp = new byte[2];
             byte[] reverseData;
             int devAddr, page, regAddr;
+            float fRssi, fRate, fCurrent;
 
             if (rssiMeasureI2cWriteCB == null)
                 return -1;
@@ -188,12 +189,15 @@ namespace RssiMeasureByMcuAdc
             }
 
             reverseData = bATmp.Reverse().ToArray();
-            rxRssiValue[channel] = (BitConverter.ToUInt16(reverseData, 0)).ToString();
+            fRssi = BitConverter.ToUInt16(reverseData, 0);
+            fRate = float.Parse(tbRssiToUaRate.Text);
+            fCurrent = fRssi * fRate;
+            rxCurrentValue[channel] = fCurrent.ToString("0.0");
 
             return 0;
 
         clearData:
-            rxRssiValue[channel] = "0";
+            rxCurrentValue[channel] = "0";
 
             return 0;
         }
@@ -362,9 +366,26 @@ namespace RssiMeasureByMcuAdc
                 MessageBox.Show("請輸入序號!!");
                 return;
             }
-            if (tbRssi1.Text == "0")
+            if (tbSerialNumber.Text.Length == 9) {
+                if ((lastLogFileName.Length != 0) &&
+                    (!tbLotNumber.Text.Substring(2, 2).Equals(tbSerialNumber.Text.Substring(0, 2)) ||
+                    (!tbLotNumber.Text.Substring(5, 3).Equals(tbSerialNumber.Text.Substring(2, 3)))) &&
+                    (dtValue.Rows.Count > 0))
+                    bSaveFile_Click(sender, e);
+
+                tbLotNumber.Text = "YC" + tbSerialNumber.Text.Substring(0, 2) + "0" + tbSerialNumber.Text.Substring(2, 3);
+                tbLotNumber.Update();
+                tbSubLotNumber.Text = "001";
+                tbSubLotNumber.Update();
+                _OpenLogFile();
+
+                tbSerialNumber.Text = tbSerialNumber.Text.Substring(5, 4);
+            }
+
+
+            if (tbRxCurrent1.Text == "0")
             {
-                DialogResult drRxZero = MessageBox.Show("RSSI無讀值異常, 請檢查待測物!!\n(或按No忽略)", "請選擇Yes或No", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult drRxZero = MessageBox.Show("Rx電流無讀值異常, 請檢查待測物!!\n(或按No忽略)", "請選擇Yes或No", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (drRxZero == DialogResult.Yes)
                     return;
             }
@@ -386,41 +407,41 @@ namespace RssiMeasureByMcuAdc
         {
             float fTmp, fThreshold;
 
-            fThreshold = float.Parse(tbRssi1Threshold.Text);
-            fTmp = float.Parse(rxRssiValue[0]);
+            fThreshold = float.Parse(tbCurrent1Threshold.Text);
+            fTmp = float.Parse(rxCurrentValue[0]);
             if (fTmp < fThreshold)
-                tbRssi1.ForeColor = System.Drawing.Color.Red;
+                tbRxCurrent1.ForeColor = System.Drawing.Color.Red;
             else
-                tbRssi1.ForeColor = SystemColors.ControlText;
-            tbRssi1.Text = rxRssiValue[0];
-            tbRssi1.Update();
+                tbRxCurrent1.ForeColor = SystemColors.ControlText;
+            tbRxCurrent1.Text = rxCurrentValue[0];
+            tbRxCurrent1.Update();
 
-            fThreshold = float.Parse(tbRssi2Threshold.Text);
-            fTmp = float.Parse(rxRssiValue[1]);
+            fThreshold = float.Parse(tbCurrent2Threshold.Text);
+            fTmp = float.Parse(rxCurrentValue[1]);
             if (fTmp < fThreshold)
-                tbRssi2.ForeColor = System.Drawing.Color.Red;
+                tbRxCurrent2.ForeColor = System.Drawing.Color.Red;
             else
-                tbRssi2.ForeColor = SystemColors.ControlText;
-            tbRssi2.Text = rxRssiValue[1];
-            tbRssi2.Update();
+                tbRxCurrent2.ForeColor = SystemColors.ControlText;
+            tbRxCurrent2.Text = rxCurrentValue[1];
+            tbRxCurrent2.Update();
 
-            fThreshold = float.Parse(tbRssi3Threshold.Text);
-            fTmp = float.Parse(rxRssiValue[2]);
+            fThreshold = float.Parse(tbCurrent3Threshold.Text);
+            fTmp = float.Parse(rxCurrentValue[2]);
             if (fTmp < fThreshold)
-                tbRssi3.ForeColor = System.Drawing.Color.Red;
+                tbRxCurrent3.ForeColor = System.Drawing.Color.Red;
             else
-                tbRssi3.ForeColor = SystemColors.ControlText;
-            tbRssi3.Text = rxRssiValue[2];
-            tbRssi3.Update();
+                tbRxCurrent3.ForeColor = SystemColors.ControlText;
+            tbRxCurrent3.Text = rxCurrentValue[2];
+            tbRxCurrent3.Update();
 
-            fThreshold = float.Parse(tbRssi4Threshold.Text);
-            fTmp = float.Parse(rxRssiValue[3]);
+            fThreshold = float.Parse(tbCurrent4Threshold.Text);
+            fTmp = float.Parse(rxCurrentValue[3]);
             if (fTmp < fThreshold)
-                tbRssi4.ForeColor = System.Drawing.Color.Red;
+                tbRxCurrent4.ForeColor = System.Drawing.Color.Red;
             else
-                tbRssi4.ForeColor = SystemColors.ControlText;
-            tbRssi4.Text = rxRssiValue[3];
-            tbRssi4.Update();
+                tbRxCurrent4.ForeColor = SystemColors.ControlText;
+            tbRxCurrent4.Text = rxCurrentValue[3];
+            tbRxCurrent4.Update();
 
             return 0;
         }
@@ -449,35 +470,35 @@ namespace RssiMeasureByMcuAdc
             if (lClassification.Text.Equals("T"))
                 bPass = false;
 
-            fThreshold = float.Parse(tbRssi1Threshold.Text);
+            fThreshold = float.Parse(tbCurrent1Threshold.Text);
             fTmp = float.Parse(rssiValue[0]);
             if (fTmp < fThreshold)
             {
-                lastNote += "Rssi1 value (" + rssiValue[0] + ") < Threshold (" + tbRssi1Threshold.Text + "); ";
+                lastNote += "Rssi1 value (" + rssiValue[0] + ") < Threshold (" + tbCurrent1Threshold.Text + "); ";
                 bPass = false;
             }
 
-            fThreshold = float.Parse(tbRssi2Threshold.Text);
+            fThreshold = float.Parse(tbCurrent2Threshold.Text);
             fTmp = float.Parse(rssiValue[1]);
             if (fTmp < fThreshold)
             {
-                lastNote += "Rssi2 value (" + rssiValue[1] + ") < Threshold (" + tbRssi2Threshold.Text + "); ";
+                lastNote += "Rssi2 value (" + rssiValue[1] + ") < Threshold (" + tbCurrent2Threshold.Text + "); ";
                 bPass = false;
             }
 
-            fThreshold = float.Parse(tbRssi3Threshold.Text);
+            fThreshold = float.Parse(tbCurrent3Threshold.Text);
             fTmp = float.Parse(rssiValue[2]);
             if (fTmp < fThreshold)
             {
-                lastNote += "Rssi3 value (" + rssiValue[2] + ") < Threshold (" + tbRssi3Threshold.Text + "); ";
+                lastNote += "Rssi3 value (" + rssiValue[2] + ") < Threshold (" + tbCurrent3Threshold.Text + "); ";
                 bPass = false;
             }
 
-            fThreshold = float.Parse(tbRssi4Threshold.Text);
+            fThreshold = float.Parse(tbCurrent4Threshold.Text);
             fTmp = float.Parse(rssiValue[3]);
             if (fTmp < fThreshold)
             {
-                lastNote += "Rssi4 value (" + rssiValue[3] + ") < Threshold (" + tbRssi4Threshold.Text + "); ";
+                lastNote += "Rssi4 value (" + rssiValue[3] + ") < Threshold (" + tbCurrent4Threshold.Text + "); ";
                 bPass = false;
             }
 
@@ -517,10 +538,10 @@ namespace RssiMeasureByMcuAdc
             if (_CheckDuplicationLog(tbLogLable.Text, tbSerialNumber.Text) < 0)
                 return;
 
-            saRssiValue[0] = tbRssi1.Text;
-            saRssiValue[1] = tbRssi2.Text;
-            saRssiValue[2] = tbRssi3.Text;
-            saRssiValue[3] = tbRssi4.Text;
+            saRssiValue[0] = tbRxCurrent1.Text;
+            saRssiValue[1] = tbRxCurrent2.Text;
+            saRssiValue[2] = tbRxCurrent3.Text;
+            saRssiValue[3] = tbRxCurrent4.Text;
 
             _CheckRxValueThreshold(saRssiValue);
 
@@ -790,12 +811,14 @@ namespace RssiMeasureByMcuAdc
 
                     xwConfig.WriteStartElement("MonitorThresholdConfig");
                     {
-                        xwConfig.WriteElementString("Rssi1Threshold", tbRssi1Threshold.Text);
-                        xwConfig.WriteElementString("Rssi2Threshold", tbRssi2Threshold.Text);
-                        xwConfig.WriteElementString("Rssi3Threshold", tbRssi3Threshold.Text);
-                        xwConfig.WriteElementString("Rssi4Threshold", tbRssi4Threshold.Text);
+                        xwConfig.WriteElementString("Current1Threshold", tbCurrent1Threshold.Text);
+                        xwConfig.WriteElementString("Current2Threshold", tbCurrent2Threshold.Text);
+                        xwConfig.WriteElementString("Current3Threshold", tbCurrent3Threshold.Text);
+                        xwConfig.WriteElementString("Current4Threshold", tbCurrent4Threshold.Text);
                     }
                     xwConfig.WriteEndElement(); //MonitorThresholdConfig
+
+                    xwConfig.WriteElementString("RssiToUaRate", tbRssiToUaRate.Text);
                 }
                 xwConfig.WriteEndElement(); //RssiMeasureConfig
                 xwConfig.WriteEndDocument();
@@ -857,21 +880,21 @@ namespace RssiMeasureByMcuAdc
                 {
                     switch (reader.Name)
                     {
-                        case "Rssi1Threshold":
-                            tbRssi1Threshold.Text = reader.ReadElementContentAsString();
+                        case "Current1Threshold":
+                            tbCurrent1Threshold.Text = reader.ReadElementContentAsString();
                             break;
 
-                        case "Rssi2Threshold":
-                            tbRssi2Threshold.Text = reader.ReadElementContentAsString();
+                        case "Current2Threshold":
+                            tbCurrent2Threshold.Text = reader.ReadElementContentAsString();
                             break;
 
-                        case "Rssi3Threshold":
-                            tbRssi3Threshold.Text = reader.ReadElementContentAsString();
+                        case "Current3Threshold":
+                            tbCurrent3Threshold.Text = reader.ReadElementContentAsString();
                             break;
 
-                        case "Rssi4Threshold":
-                            tbRssi4Threshold.Text = reader.ReadElementContentAsString();
-                            break;
+                        case "Current4Threshold":
+                            tbCurrent4Threshold.Text = reader.ReadElementContentAsString();
+                            return;
 
                         default:
                             return;
@@ -888,7 +911,7 @@ namespace RssiMeasureByMcuAdc
 
         private void _PaserRssiMeasureConfigXml(XmlReader reader)
         {
-            do
+            while (true)
             {
                 if (reader.IsStartElement())
                 {
@@ -896,10 +919,16 @@ namespace RssiMeasureByMcuAdc
                     {
                         case "I2cConfig":
                             _PaserI2cConfigXml(reader);
+                            reader.Read();
                             break;
 
                         case "MonitorThresholdConfig":
                             _PaserMonitorThresholdConfigXml(reader);
+                            reader.Read();
+                            break;
+
+                        case "RssiToUaRate":
+                            tbRssiToUaRate.Text = reader.ReadElementContentAsString();
                             break;
 
                         default:
@@ -912,7 +941,7 @@ namespace RssiMeasureByMcuAdc
                     reader.ReadEndElement();
                     break;
                 }
-            } while (reader.Read());
+            }
         }
 
         private void bOpenConfigFile_Click(object sender, EventArgs e)
