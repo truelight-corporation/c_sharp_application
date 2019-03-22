@@ -17,10 +17,12 @@ namespace QsfpCorrector
 
         private int _QsfpI2cConnect()
         {
-            if (qsfpI2cMaster.ConnectApi() < 0)
+            if (qsfpI2cMaster.ConnectApi(100) < 0)
                 return -1;
 
-            cbQsfpConnected.Checked = true;
+            qsfpI2cMaster.SetTimeoutApi(50);
+
+            cbI2cAdapterConnected.Checked = true;
 
             return 0;
         }
@@ -30,7 +32,7 @@ namespace QsfpCorrector
             if (qsfpI2cMaster.DisconnectApi() < 0)
                 return -1;
 
-            cbQsfpConnected.Checked = false;
+            cbI2cAdapterConnected.Checked = false;
 
             return 0;
         }
@@ -48,8 +50,6 @@ namespace QsfpCorrector
                 MessageBox.Show("QSFP+ module no response!!");
                 _QsfpI2cDisconnect();
             }
-            else if (rv != length)
-                MessageBox.Show("Only read " + rv + " not " + length + " byte Error!!");
 
             return rv;
         }
@@ -87,10 +87,26 @@ namespace QsfpCorrector
 
         private void _cbQsfpConnected_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbQsfpConnected.Checked == true)
+            if (cbI2cAdapterConnected.Checked == true) {
                 qsfpI2cMaster.ConnectApi();
-            else
+                if (qsfpI2cMaster.connected == true)
+                    cbAutoRead.Checked = true;
+            }
+            else {
+                if (cbAutoRead.Checked == true) {
+                    cbAutoRead.Checked = false;
+                    System.Threading.Thread.Sleep(300);
+                }
                 qsfpI2cMaster.DisconnectApi();
+            }
+        }
+
+        private void cbAutoRead_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbAutoRead.Checked == true)
+                ucQsfpCorrector.StartAutoReadApi();
+            else
+                ucQsfpCorrector.StopAutoReadApi();
         }
     }
 }

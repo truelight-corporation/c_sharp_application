@@ -27,47 +27,47 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.cbQsfpConnected = new System.Windows.Forms.CheckBox();
-            this.cbMonitorConnected = new System.Windows.Forms.CheckBox();
+            this.cbI2cAdapterConnected = new System.Windows.Forms.CheckBox();
             this.ucQsfpCorrector = new QsfpCorrector.UcQsfpCorrector();
+            this.cbAutoRead = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
-            // cbQsfpConnected
+            // cbI2cAdapterConnected
             // 
-            this.cbQsfpConnected.AutoSize = true;
-            this.cbQsfpConnected.Location = new System.Drawing.Point(395, 10);
-            this.cbQsfpConnected.Name = "cbQsfpConnected";
-            this.cbQsfpConnected.Size = new System.Drawing.Size(103, 16);
-            this.cbQsfpConnected.TabIndex = 1;
-            this.cbQsfpConnected.Text = "QSFP Connected";
-            this.cbQsfpConnected.UseVisualStyleBackColor = true;
-            this.cbQsfpConnected.CheckedChanged += new System.EventHandler(this._cbQsfpConnected_CheckedChanged);
-            // 
-            // cbMonitorConnected
-            // 
-            this.cbMonitorConnected.AutoSize = true;
-            this.cbMonitorConnected.Location = new System.Drawing.Point(504, 10);
-            this.cbMonitorConnected.Name = "cbMonitorConnected";
-            this.cbMonitorConnected.Size = new System.Drawing.Size(115, 16);
-            this.cbMonitorConnected.TabIndex = 2;
-            this.cbMonitorConnected.Text = "Monitor Connected";
-            this.cbMonitorConnected.UseVisualStyleBackColor = true;
-            this.cbMonitorConnected.Visible = false;
+            this.cbI2cAdapterConnected.AutoSize = true;
+            this.cbI2cAdapterConnected.Location = new System.Drawing.Point(12, 10);
+            this.cbI2cAdapterConnected.Name = "cbI2cAdapterConnected";
+            this.cbI2cAdapterConnected.Size = new System.Drawing.Size(78, 16);
+            this.cbI2cAdapterConnected.TabIndex = 1;
+            this.cbI2cAdapterConnected.Text = "I2C已連接";
+            this.cbI2cAdapterConnected.UseVisualStyleBackColor = true;
+            this.cbI2cAdapterConnected.CheckedChanged += new System.EventHandler(this._cbQsfpConnected_CheckedChanged);
             // 
             // ucQsfpCorrector
             // 
             this.ucQsfpCorrector.Location = new System.Drawing.Point(3, 32);
             this.ucQsfpCorrector.Name = "ucQsfpCorrector";
-            this.ucQsfpCorrector.Size = new System.Drawing.Size(627, 677);
+            this.ucQsfpCorrector.Size = new System.Drawing.Size(1010, 653);
             this.ucQsfpCorrector.TabIndex = 0;
+            // 
+            // cbAutoRead
+            // 
+            this.cbAutoRead.AutoSize = true;
+            this.cbAutoRead.Location = new System.Drawing.Point(934, 10);
+            this.cbAutoRead.Name = "cbAutoRead";
+            this.cbAutoRead.Size = new System.Drawing.Size(72, 16);
+            this.cbAutoRead.TabIndex = 2;
+            this.cbAutoRead.Text = "自動讀取";
+            this.cbAutoRead.UseVisualStyleBackColor = true;
+            this.cbAutoRead.CheckedChanged += new System.EventHandler(this.cbAutoRead_CheckedChanged);
             // 
             // FQsfpCorrector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(625, 706);
-            this.Controls.Add(this.cbMonitorConnected);
-            this.Controls.Add(this.cbQsfpConnected);
+            this.ClientSize = new System.Drawing.Size(1018, 686);
+            this.Controls.Add(this.cbAutoRead);
+            this.Controls.Add(this.cbI2cAdapterConnected);
             this.Controls.Add(this.ucQsfpCorrector);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -81,8 +81,8 @@
         #endregion
 
         private UcQsfpCorrector ucQsfpCorrector;
-        private System.Windows.Forms.CheckBox cbQsfpConnected;
-        private System.Windows.Forms.CheckBox cbMonitorConnected;
+        private System.Windows.Forms.CheckBox cbI2cAdapterConnected;
+        private System.Windows.Forms.CheckBox cbAutoRead;
     }
 }
 
