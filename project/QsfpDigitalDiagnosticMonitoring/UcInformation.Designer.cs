@@ -27,10 +27,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lIdentifier = new System.Windows.Forms.Label();
-            this.cbFlatMem = new System.Windows.Forms.CheckBox();
-            this.cbIntL = new System.Windows.Forms.CheckBox();
-            this.cbDataNotReady = new System.Windows.Forms.CheckBox();
             this.bRead = new System.Windows.Forms.Button();
             this.bWrite = new System.Windows.Forms.Button();
             this.cbTx4Disable = new System.Windows.Forms.CheckBox();
@@ -40,6 +36,43 @@
             this.cbPowerSet = new System.Windows.Forms.CheckBox();
             this.cbPowerOverride = new System.Windows.Forms.CheckBox();
             this.gbControlBytes = new System.Windows.Forms.GroupBox();
+            this.lControlBytesTx4 = new System.Windows.Forms.Label();
+            this.lControlBytesTx3 = new System.Windows.Forms.Label();
+            this.lControlBytesTx2 = new System.Windows.Forms.Label();
+            this.lControlBytesTx1 = new System.Windows.Forms.Label();
+            this.cbCdrOnRx4 = new System.Windows.Forms.CheckBox();
+            this.cbCdrOnRx3 = new System.Windows.Forms.CheckBox();
+            this.cbCdrOnRx2 = new System.Windows.Forms.CheckBox();
+            this.cbCdrOnRx1 = new System.Windows.Forms.CheckBox();
+            this.cbCdrOnTx4 = new System.Windows.Forms.CheckBox();
+            this.cbCdrOnTx3 = new System.Windows.Forms.CheckBox();
+            this.cbCdrOnTx2 = new System.Windows.Forms.CheckBox();
+            this.cbCdrOnTx1 = new System.Windows.Forms.CheckBox();
+            this.lTxApplicationSelect = new System.Windows.Forms.Label();
+            this.cbApplicationSelectTx1 = new System.Windows.Forms.ComboBox();
+            this.cbApplicationSelectTx2 = new System.Windows.Forms.ComboBox();
+            this.cbApplicationSelectTx3 = new System.Windows.Forms.ComboBox();
+            this.cbApplicationSelectTx4 = new System.Windows.Forms.ComboBox();
+            this.cbHighPowerClassEnable = new System.Windows.Forms.CheckBox();
+            this.lRxApplicationSelect = new System.Windows.Forms.Label();
+            this.cbApplicationSelectRx1 = new System.Windows.Forms.ComboBox();
+            this.cbApplicationSelectRx2 = new System.Windows.Forms.ComboBox();
+            this.cbApplicationSelectRx3 = new System.Windows.Forms.ComboBox();
+            this.cbApplicationSelectRx4 = new System.Windows.Forms.ComboBox();
+            this.lRxRateSelect = new System.Windows.Forms.Label();
+            this.lControlByteRx4 = new System.Windows.Forms.Label();
+            this.lControlByteRx3 = new System.Windows.Forms.Label();
+            this.lControlByteRx2 = new System.Windows.Forms.Label();
+            this.lControlByteRx1 = new System.Windows.Forms.Label();
+            this.cbTx1RateSelect = new System.Windows.Forms.ComboBox();
+            this.cbTx2RateSelect = new System.Windows.Forms.ComboBox();
+            this.cbTx3RateSelect = new System.Windows.Forms.ComboBox();
+            this.lTxRateSelect = new System.Windows.Forms.Label();
+            this.cbTx4RateSelect = new System.Windows.Forms.ComboBox();
+            this.cbRx1RateSelect = new System.Windows.Forms.ComboBox();
+            this.cbRx2RateSelect = new System.Windows.Forms.ComboBox();
+            this.cbRx3RateSelect = new System.Windows.Forms.ComboBox();
+            this.cbRx4RateSelect = new System.Windows.Forms.ComboBox();
             this.lExtIdentifier = new System.Windows.Forms.Label();
             this.tbExtIdentifier = new System.Windows.Forms.TextBox();
             this.tbConnector = new System.Windows.Forms.TextBox();
@@ -50,7 +83,6 @@
             this.lSonetCompliance = new System.Windows.Forms.Label();
             this.tbSasSataCompliance = new System.Windows.Forms.TextBox();
             this.lSasSataCompliance = new System.Windows.Forms.Label();
-            this.tbIdentifier = new System.Windows.Forms.TextBox();
             this.gbSpecificationCompliance = new System.Windows.Forms.GroupBox();
             this.tbFibreChannelSpeed = new System.Windows.Forms.TextBox();
             this.lFibreChannelSpeed = new System.Windows.Forms.Label();
@@ -63,12 +95,9 @@
             this.tbGigabitEthernetCompliant = new System.Windows.Forms.TextBox();
             this.lGigabitEthernetCompliant = new System.Windows.Forms.Label();
             this.gbUpPage0 = new System.Windows.Forms.GroupBox();
+            this.cbExtendedRateSelectV2 = new System.Windows.Forms.CheckBox();
             this.tbLinkCodes = new System.Windows.Forms.TextBox();
             this.lLinkCodes = new System.Windows.Forms.Label();
-            this.tbNewPassword = new System.Windows.Forms.TextBox();
-            this.lNewPassword = new System.Windows.Forms.Label();
-            this.tbPassword = new System.Windows.Forms.TextBox();
-            this.lPassword = new System.Windows.Forms.Label();
             this.tbEncoding = new System.Windows.Forms.TextBox();
             this.lEncoding = new System.Windows.Forms.Label();
             this.tbCcExt = new System.Windows.Forms.TextBox();
@@ -82,6 +111,13 @@
             this.tbVendorSn = new System.Windows.Forms.TextBox();
             this.lVendorSn = new System.Windows.Forms.Label();
             this.gbOptions = new System.Windows.Forms.GroupBox();
+            this.cbTxCdrOnOffControl = new System.Windows.Forms.CheckBox();
+            this.cbRxCdrOnOffControl = new System.Windows.Forms.CheckBox();
+            this.cbTxCdrLolFlag = new System.Windows.Forms.CheckBox();
+            this.cbRxCdrLolFlag = new System.Windows.Forms.CheckBox();
+            this.cbTxInputEqualizationAutoAdaptive = new System.Windows.Forms.CheckBox();
+            this.cbTxInputEqualizationProgrammable = new System.Windows.Forms.CheckBox();
+            this.cbRxOutputEmphasisProgramming = new System.Windows.Forms.CheckBox();
             this.cbTxLossOfSignal = new System.Windows.Forms.CheckBox();
             this.cbTxSquelchImplementedToReduceOma = new System.Windows.Forms.CheckBox();
             this.cbTxFaultSignalImplemented = new System.Windows.Forms.CheckBox();
@@ -125,142 +161,160 @@
             this.lOm3Length = new System.Windows.Forms.Label();
             this.tbStandardSmFiberLength = new System.Windows.Forms.TextBox();
             this.lStandardSmFiberLength = new System.Windows.Forms.Label();
-            this.cbExtendedRateSelect = new System.Windows.Forms.CheckBox();
+            this.cbExtendedRateSelectV1 = new System.Windows.Forms.CheckBox();
             this.tbBitRate = new System.Windows.Forms.TextBox();
             this.lBitRate = new System.Windows.Forms.Label();
             this.tbUpPage0Identifier = new System.Windows.Forms.TextBox();
             this.lUpPage0Identifier = new System.Windows.Forms.Label();
+            this.tbNewPassword = new System.Windows.Forms.TextBox();
+            this.lNewPassword = new System.Windows.Forms.Label();
+            this.tbPassword = new System.Windows.Forms.TextBox();
+            this.lPassword = new System.Windows.Forms.Label();
             this.bPasswordReset = new System.Windows.Forms.Button();
             this.bStoreIntoFlash = new System.Windows.Forms.Button();
-            this.cbRx4RateSelect = new System.Windows.Forms.ComboBox();
-            this.lRx4RateSelect = new System.Windows.Forms.Label();
-            this.lRx3RateSelect = new System.Windows.Forms.Label();
-            this.cbRx3RateSelect = new System.Windows.Forms.ComboBox();
-            this.lRx2RateSelect = new System.Windows.Forms.Label();
-            this.cbRx2RateSelect = new System.Windows.Forms.ComboBox();
-            this.lRx1RateSelect = new System.Windows.Forms.Label();
-            this.cbRx1RateSelect = new System.Windows.Forms.ComboBox();
-            this.lTx1RateSelect = new System.Windows.Forms.Label();
-            this.cbTx1RateSelect = new System.Windows.Forms.ComboBox();
-            this.lTx2RateSelect = new System.Windows.Forms.Label();
-            this.cbTx2RateSelect = new System.Windows.Forms.ComboBox();
-            this.lTx3RateSelect = new System.Windows.Forms.Label();
-            this.cbTx3RateSelect = new System.Windows.Forms.ComboBox();
-            this.lTx4RateSelect = new System.Windows.Forms.Label();
-            this.cbTx4RateSelect = new System.Windows.Forms.ComboBox();
+            this.gbFreeSideDeviceProperties = new System.Windows.Forms.GroupBox();
+            this.tbFarEndImplementation = new System.Windows.Forms.TextBox();
+            this.lFarEndImplementation = new System.Windows.Forms.Label();
+            this.tbNearEndImplementation = new System.Windows.Forms.TextBox();
+            this.lNearEndImplementation = new System.Windows.Forms.Label();
+            this.tbPciExpress = new System.Windows.Forms.TextBox();
+            this.lPciExpress = new System.Windows.Forms.Label();
+            this.tbAdvaancedLowPowerMode = new System.Windows.Forms.TextBox();
+            this.lAdvancedLowPowerMode = new System.Windows.Forms.Label();
+            this.cbFarSideManaged = new System.Windows.Forms.CheckBox();
+            this.tbMinOperatingVoltage = new System.Windows.Forms.TextBox();
+            this.lMinOperationVoltage = new System.Windows.Forms.Label();
+            this.tbPropagationDelay = new System.Windows.Forms.TextBox();
+            this.lPropagationDelay = new System.Windows.Forms.Label();
+            this.gbOptionalChannelControl = new System.Windows.Forms.GroupBox();
+            this.cbRxOutputEmphasisType = new System.Windows.Forms.ComboBox();
+            this.cbAdaptiveEqualizationControlTx4 = new System.Windows.Forms.CheckBox();
+            this.cbAdaptiveEqualizationControlTx3 = new System.Windows.Forms.CheckBox();
+            this.cbAdaptiveEqualizationControlTx2 = new System.Windows.Forms.CheckBox();
+            this.cbAdaptiveEqualizationControlTx1 = new System.Windows.Forms.CheckBox();
+            this.lRxOutputEmphasisType = new System.Windows.Forms.Label();
+            this.cbOutputDisableRx4 = new System.Windows.Forms.CheckBox();
+            this.cbOutputDisableRx3 = new System.Windows.Forms.CheckBox();
+            this.cbOutputDisableRx2 = new System.Windows.Forms.CheckBox();
+            this.cbOutputDisableRx1 = new System.Windows.Forms.CheckBox();
+            this.cbSqDisableRx4 = new System.Windows.Forms.CheckBox();
+            this.cbSqDisableRx3 = new System.Windows.Forms.CheckBox();
+            this.cbSqDisableRx2 = new System.Windows.Forms.CheckBox();
+            this.cbSqDisableRx1 = new System.Windows.Forms.CheckBox();
+            this.cbSqDisableTx4 = new System.Windows.Forms.CheckBox();
+            this.cbSqDisableTx3 = new System.Windows.Forms.CheckBox();
+            this.cbSqDisableTx2 = new System.Windows.Forms.CheckBox();
+            this.cbSqDisableTx1 = new System.Windows.Forms.CheckBox();
+            this.lOptionalChannelControlTx4 = new System.Windows.Forms.Label();
+            this.lOptionalChannelControlTx3 = new System.Windows.Forms.Label();
+            this.lOptionalChannelControlTx2 = new System.Windows.Forms.Label();
+            this.lOptionalChannelControlTx1 = new System.Windows.Forms.Label();
+            this.cbRxOutputEmphasisMagnitudeRx4 = new System.Windows.Forms.CheckBox();
+            this.cbRxOutputEmphasisMagnitudeRx3 = new System.Windows.Forms.CheckBox();
+            this.cbRxOutputEmphasisMagnitudeRx2 = new System.Windows.Forms.CheckBox();
+            this.cbRxOutputEmphasisMagnitudeRx1 = new System.Windows.Forms.CheckBox();
+            this.cbOutputAmplitudeSupportRx4 = new System.Windows.Forms.CheckBox();
+            this.cbOutputAmplitudeSupportRx3 = new System.Windows.Forms.CheckBox();
+            this.cbOutputAmplitudeSupportRx2 = new System.Windows.Forms.CheckBox();
+            this.cbOutputAmplitudeSupportRx1 = new System.Windows.Forms.CheckBox();
+            this.lRxOutputAmplitudeControl = new System.Windows.Forms.Label();
+            this.cbOutputAmplitudeRx1 = new System.Windows.Forms.ComboBox();
+            this.cbOutputAmplitudeRx2 = new System.Windows.Forms.ComboBox();
+            this.cbOutputAmplitudeRx3 = new System.Windows.Forms.ComboBox();
+            this.cbOutputAmplitudeRx4 = new System.Windows.Forms.ComboBox();
+            this.lRxOutputEmphasis = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.cbInputEqualizationTx1 = new System.Windows.Forms.ComboBox();
+            this.cbInputEqualizationTx2 = new System.Windows.Forms.ComboBox();
+            this.cbInputEqualizationTx3 = new System.Windows.Forms.ComboBox();
+            this.lTxInputEqualizationMagnitude = new System.Windows.Forms.Label();
+            this.cbInputEqualizationTx4 = new System.Windows.Forms.ComboBox();
+            this.cbRxOutputEmphasisRx1 = new System.Windows.Forms.ComboBox();
+            this.cbRxOutputEmphasisRx2 = new System.Windows.Forms.ComboBox();
+            this.cbRxOutputEmphasisRx3 = new System.Windows.Forms.ComboBox();
+            this.cbRxOutputEmphasisRx4 = new System.Windows.Forms.ComboBox();
+            this.cbInputEqualizationMagnitudeTx4 = new System.Windows.Forms.CheckBox();
+            this.cbInputEqualizationMagnitudeTx3 = new System.Windows.Forms.CheckBox();
+            this.cbInputEqualizationMagnitudeTx2 = new System.Windows.Forms.CheckBox();
+            this.cbInputEqualizationMagnitudeTx1 = new System.Windows.Forms.CheckBox();
+            this.gbUpPage3 = new System.Windows.Forms.GroupBox();
             this.gbControlBytes.SuspendLayout();
             this.gbSpecificationCompliance.SuspendLayout();
             this.gbUpPage0.SuspendLayout();
             this.gbOptions.SuspendLayout();
             this.gbLength.SuspendLayout();
+            this.gbFreeSideDeviceProperties.SuspendLayout();
+            this.gbOptionalChannelControl.SuspendLayout();
+            this.gbUpPage3.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // lIdentifier
-            // 
-            this.lIdentifier.AutoSize = true;
-            this.lIdentifier.Location = new System.Drawing.Point(3, 8);
-            this.lIdentifier.Name = "lIdentifier";
-            this.lIdentifier.Size = new System.Drawing.Size(54, 12);
-            this.lIdentifier.TabIndex = 0;
-            this.lIdentifier.Text = "Identifier :";
-            // 
-            // cbFlatMem
-            // 
-            this.cbFlatMem.AutoSize = true;
-            this.cbFlatMem.Enabled = false;
-            this.cbFlatMem.Location = new System.Drawing.Point(109, 7);
-            this.cbFlatMem.Name = "cbFlatMem";
-            this.cbFlatMem.Size = new System.Drawing.Size(70, 16);
-            this.cbFlatMem.TabIndex = 2;
-            this.cbFlatMem.Text = "Flat_mem";
-            this.cbFlatMem.UseVisualStyleBackColor = true;
-            // 
-            // cbIntL
-            // 
-            this.cbIntL.AutoSize = true;
-            this.cbIntL.Enabled = false;
-            this.cbIntL.Location = new System.Drawing.Point(185, 7);
-            this.cbIntL.Name = "cbIntL";
-            this.cbIntL.Size = new System.Drawing.Size(44, 16);
-            this.cbIntL.TabIndex = 3;
-            this.cbIntL.Text = "IntL";
-            this.cbIntL.UseVisualStyleBackColor = true;
-            // 
-            // cbDataNotReady
-            // 
-            this.cbDataNotReady.AutoSize = true;
-            this.cbDataNotReady.Enabled = false;
-            this.cbDataNotReady.Location = new System.Drawing.Point(235, 7);
-            this.cbDataNotReady.Name = "cbDataNotReady";
-            this.cbDataNotReady.Size = new System.Drawing.Size(98, 16);
-            this.cbDataNotReady.TabIndex = 4;
-            this.cbDataNotReady.Text = "Data Not Ready";
-            this.cbDataNotReady.UseVisualStyleBackColor = true;
             // 
             // bRead
             // 
-            this.bRead.Location = new System.Drawing.Point(627, 3);
+            this.bRead.Location = new System.Drawing.Point(827, 157);
             this.bRead.Name = "bRead";
             this.bRead.Size = new System.Drawing.Size(75, 23);
             this.bRead.TabIndex = 5;
-            this.bRead.Text = "Read";
+            this.bRead.Text = "Read All";
             this.bRead.UseVisualStyleBackColor = true;
             this.bRead.Click += new System.EventHandler(this._bRead_Click);
             // 
             // bWrite
             // 
-            this.bWrite.Location = new System.Drawing.Point(708, 3);
+            this.bWrite.Location = new System.Drawing.Point(827, 186);
             this.bWrite.Name = "bWrite";
             this.bWrite.Size = new System.Drawing.Size(75, 23);
             this.bWrite.TabIndex = 6;
-            this.bWrite.Text = "Write";
+            this.bWrite.Text = "Write All";
             this.bWrite.UseVisualStyleBackColor = true;
             this.bWrite.Click += new System.EventHandler(this._bWrite_Click);
             // 
             // cbTx4Disable
             // 
             this.cbTx4Disable.AutoSize = true;
-            this.cbTx4Disable.Location = new System.Drawing.Point(6, 21);
+            this.cbTx4Disable.Location = new System.Drawing.Point(43, 105);
             this.cbTx4Disable.Name = "cbTx4Disable";
-            this.cbTx4Disable.Size = new System.Drawing.Size(80, 16);
+            this.cbTx4Disable.Size = new System.Drawing.Size(58, 16);
             this.cbTx4Disable.TabIndex = 7;
-            this.cbTx4Disable.Text = "Tx4 Disable";
+            this.cbTx4Disable.Text = "Disable";
             this.cbTx4Disable.UseVisualStyleBackColor = true;
             // 
             // cbTx3Disable
             // 
             this.cbTx3Disable.AutoSize = true;
-            this.cbTx3Disable.Location = new System.Drawing.Point(92, 21);
+            this.cbTx3Disable.Location = new System.Drawing.Point(43, 79);
             this.cbTx3Disable.Name = "cbTx3Disable";
-            this.cbTx3Disable.Size = new System.Drawing.Size(80, 16);
+            this.cbTx3Disable.Size = new System.Drawing.Size(58, 16);
             this.cbTx3Disable.TabIndex = 8;
-            this.cbTx3Disable.Text = "Tx3 Disable";
+            this.cbTx3Disable.Text = "Disable";
             this.cbTx3Disable.UseVisualStyleBackColor = true;
             // 
             // cbTx2Disable
             // 
             this.cbTx2Disable.AutoSize = true;
-            this.cbTx2Disable.Location = new System.Drawing.Point(178, 21);
+            this.cbTx2Disable.Location = new System.Drawing.Point(43, 53);
             this.cbTx2Disable.Name = "cbTx2Disable";
-            this.cbTx2Disable.Size = new System.Drawing.Size(80, 16);
+            this.cbTx2Disable.Size = new System.Drawing.Size(58, 16);
             this.cbTx2Disable.TabIndex = 9;
-            this.cbTx2Disable.Text = "Tx2 Disable";
+            this.cbTx2Disable.Text = "Disable";
             this.cbTx2Disable.UseVisualStyleBackColor = true;
             // 
             // cbTx1Disable
             // 
             this.cbTx1Disable.AutoSize = true;
-            this.cbTx1Disable.Location = new System.Drawing.Point(264, 21);
+            this.cbTx1Disable.Location = new System.Drawing.Point(43, 28);
             this.cbTx1Disable.Name = "cbTx1Disable";
-            this.cbTx1Disable.Size = new System.Drawing.Size(80, 16);
+            this.cbTx1Disable.Size = new System.Drawing.Size(58, 16);
             this.cbTx1Disable.TabIndex = 10;
-            this.cbTx1Disable.Text = "Tx1 Disable";
+            this.cbTx1Disable.Text = "Disable";
             this.cbTx1Disable.UseVisualStyleBackColor = true;
             // 
             // cbPowerSet
             // 
             this.cbPowerSet.AutoSize = true;
-            this.cbPowerSet.Location = new System.Drawing.Point(350, 21);
+            this.cbPowerSet.Location = new System.Drawing.Point(462, 43);
             this.cbPowerSet.Name = "cbPowerSet";
             this.cbPowerSet.Size = new System.Drawing.Size(68, 16);
             this.cbPowerSet.TabIndex = 11;
@@ -270,7 +324,7 @@
             // cbPowerOverride
             // 
             this.cbPowerOverride.AutoSize = true;
-            this.cbPowerOverride.Location = new System.Drawing.Point(424, 21);
+            this.cbPowerOverride.Location = new System.Drawing.Point(462, 21);
             this.cbPowerOverride.Name = "cbPowerOverride";
             this.cbPowerOverride.Size = new System.Drawing.Size(95, 16);
             this.cbPowerOverride.TabIndex = 12;
@@ -279,21 +333,42 @@
             // 
             // gbControlBytes
             // 
-            this.gbControlBytes.Controls.Add(this.lTx1RateSelect);
+            this.gbControlBytes.Controls.Add(this.lControlBytesTx4);
+            this.gbControlBytes.Controls.Add(this.lControlBytesTx3);
+            this.gbControlBytes.Controls.Add(this.lControlBytesTx2);
+            this.gbControlBytes.Controls.Add(this.lControlBytesTx1);
+            this.gbControlBytes.Controls.Add(this.cbCdrOnRx4);
+            this.gbControlBytes.Controls.Add(this.cbCdrOnRx3);
+            this.gbControlBytes.Controls.Add(this.cbCdrOnRx2);
+            this.gbControlBytes.Controls.Add(this.cbCdrOnRx1);
+            this.gbControlBytes.Controls.Add(this.cbCdrOnTx4);
+            this.gbControlBytes.Controls.Add(this.cbCdrOnTx3);
+            this.gbControlBytes.Controls.Add(this.cbCdrOnTx2);
+            this.gbControlBytes.Controls.Add(this.cbCdrOnTx1);
+            this.gbControlBytes.Controls.Add(this.lTxApplicationSelect);
+            this.gbControlBytes.Controls.Add(this.cbApplicationSelectTx1);
+            this.gbControlBytes.Controls.Add(this.cbApplicationSelectTx2);
+            this.gbControlBytes.Controls.Add(this.cbApplicationSelectTx3);
+            this.gbControlBytes.Controls.Add(this.cbApplicationSelectTx4);
+            this.gbControlBytes.Controls.Add(this.cbHighPowerClassEnable);
+            this.gbControlBytes.Controls.Add(this.lRxApplicationSelect);
+            this.gbControlBytes.Controls.Add(this.cbApplicationSelectRx1);
+            this.gbControlBytes.Controls.Add(this.cbApplicationSelectRx2);
+            this.gbControlBytes.Controls.Add(this.cbApplicationSelectRx3);
+            this.gbControlBytes.Controls.Add(this.cbApplicationSelectRx4);
+            this.gbControlBytes.Controls.Add(this.lRxRateSelect);
+            this.gbControlBytes.Controls.Add(this.lControlByteRx4);
+            this.gbControlBytes.Controls.Add(this.lControlByteRx3);
+            this.gbControlBytes.Controls.Add(this.lControlByteRx2);
+            this.gbControlBytes.Controls.Add(this.lControlByteRx1);
             this.gbControlBytes.Controls.Add(this.cbTx1RateSelect);
-            this.gbControlBytes.Controls.Add(this.lTx2RateSelect);
             this.gbControlBytes.Controls.Add(this.cbTx2RateSelect);
-            this.gbControlBytes.Controls.Add(this.lTx3RateSelect);
             this.gbControlBytes.Controls.Add(this.cbTx3RateSelect);
-            this.gbControlBytes.Controls.Add(this.lTx4RateSelect);
+            this.gbControlBytes.Controls.Add(this.lTxRateSelect);
             this.gbControlBytes.Controls.Add(this.cbTx4RateSelect);
-            this.gbControlBytes.Controls.Add(this.lRx1RateSelect);
             this.gbControlBytes.Controls.Add(this.cbRx1RateSelect);
-            this.gbControlBytes.Controls.Add(this.lRx2RateSelect);
             this.gbControlBytes.Controls.Add(this.cbRx2RateSelect);
-            this.gbControlBytes.Controls.Add(this.lRx3RateSelect);
             this.gbControlBytes.Controls.Add(this.cbRx3RateSelect);
-            this.gbControlBytes.Controls.Add(this.lRx4RateSelect);
             this.gbControlBytes.Controls.Add(this.cbRx4RateSelect);
             this.gbControlBytes.Controls.Add(this.cbTx4Disable);
             this.gbControlBytes.Controls.Add(this.cbPowerOverride);
@@ -301,12 +376,338 @@
             this.gbControlBytes.Controls.Add(this.cbPowerSet);
             this.gbControlBytes.Controls.Add(this.cbTx2Disable);
             this.gbControlBytes.Controls.Add(this.cbTx1Disable);
-            this.gbControlBytes.Location = new System.Drawing.Point(3, 33);
+            this.gbControlBytes.Location = new System.Drawing.Point(3, 3);
             this.gbControlBytes.Name = "gbControlBytes";
-            this.gbControlBytes.Size = new System.Drawing.Size(581, 96);
+            this.gbControlBytes.Size = new System.Drawing.Size(570, 129);
             this.gbControlBytes.TabIndex = 13;
             this.gbControlBytes.TabStop = false;
             this.gbControlBytes.Text = "Control Bytes";
+            // 
+            // lControlBytesTx4
+            // 
+            this.lControlBytesTx4.AutoSize = true;
+            this.lControlBytesTx4.Location = new System.Drawing.Point(6, 106);
+            this.lControlBytesTx4.Name = "lControlBytesTx4";
+            this.lControlBytesTx4.Size = new System.Drawing.Size(30, 12);
+            this.lControlBytesTx4.TabIndex = 60;
+            this.lControlBytesTx4.Text = "Tx4 :";
+            // 
+            // lControlBytesTx3
+            // 
+            this.lControlBytesTx3.AutoSize = true;
+            this.lControlBytesTx3.Location = new System.Drawing.Point(6, 80);
+            this.lControlBytesTx3.Name = "lControlBytesTx3";
+            this.lControlBytesTx3.Size = new System.Drawing.Size(30, 12);
+            this.lControlBytesTx3.TabIndex = 59;
+            this.lControlBytesTx3.Text = "Tx3 :";
+            // 
+            // lControlBytesTx2
+            // 
+            this.lControlBytesTx2.AutoSize = true;
+            this.lControlBytesTx2.Location = new System.Drawing.Point(6, 54);
+            this.lControlBytesTx2.Name = "lControlBytesTx2";
+            this.lControlBytesTx2.Size = new System.Drawing.Size(30, 12);
+            this.lControlBytesTx2.TabIndex = 58;
+            this.lControlBytesTx2.Text = "Tx2 :";
+            // 
+            // lControlBytesTx1
+            // 
+            this.lControlBytesTx1.AutoSize = true;
+            this.lControlBytesTx1.Location = new System.Drawing.Point(6, 29);
+            this.lControlBytesTx1.Name = "lControlBytesTx1";
+            this.lControlBytesTx1.Size = new System.Drawing.Size(30, 12);
+            this.lControlBytesTx1.TabIndex = 57;
+            this.lControlBytesTx1.Text = "Tx1 :";
+            // 
+            // cbCdrOnRx4
+            // 
+            this.cbCdrOnRx4.AutoSize = true;
+            this.cbCdrOnRx4.Location = new System.Drawing.Point(408, 105);
+            this.cbCdrOnRx4.Name = "cbCdrOnRx4";
+            this.cbCdrOnRx4.Size = new System.Drawing.Size(48, 16);
+            this.cbCdrOnRx4.TabIndex = 53;
+            this.cbCdrOnRx4.Text = "CDR";
+            this.cbCdrOnRx4.UseVisualStyleBackColor = true;
+            // 
+            // cbCdrOnRx3
+            // 
+            this.cbCdrOnRx3.AutoSize = true;
+            this.cbCdrOnRx3.Location = new System.Drawing.Point(408, 79);
+            this.cbCdrOnRx3.Name = "cbCdrOnRx3";
+            this.cbCdrOnRx3.Size = new System.Drawing.Size(48, 16);
+            this.cbCdrOnRx3.TabIndex = 54;
+            this.cbCdrOnRx3.Text = "CDR";
+            this.cbCdrOnRx3.UseVisualStyleBackColor = true;
+            // 
+            // cbCdrOnRx2
+            // 
+            this.cbCdrOnRx2.AutoSize = true;
+            this.cbCdrOnRx2.Location = new System.Drawing.Point(408, 53);
+            this.cbCdrOnRx2.Name = "cbCdrOnRx2";
+            this.cbCdrOnRx2.Size = new System.Drawing.Size(48, 16);
+            this.cbCdrOnRx2.TabIndex = 55;
+            this.cbCdrOnRx2.Text = "CDR";
+            this.cbCdrOnRx2.UseVisualStyleBackColor = true;
+            // 
+            // cbCdrOnRx1
+            // 
+            this.cbCdrOnRx1.AutoSize = true;
+            this.cbCdrOnRx1.Location = new System.Drawing.Point(408, 28);
+            this.cbCdrOnRx1.Name = "cbCdrOnRx1";
+            this.cbCdrOnRx1.Size = new System.Drawing.Size(48, 16);
+            this.cbCdrOnRx1.TabIndex = 56;
+            this.cbCdrOnRx1.Text = "CDR";
+            this.cbCdrOnRx1.UseVisualStyleBackColor = true;
+            // 
+            // cbCdrOnTx4
+            // 
+            this.cbCdrOnTx4.AutoSize = true;
+            this.cbCdrOnTx4.Location = new System.Drawing.Point(214, 105);
+            this.cbCdrOnTx4.Name = "cbCdrOnTx4";
+            this.cbCdrOnTx4.Size = new System.Drawing.Size(48, 16);
+            this.cbCdrOnTx4.TabIndex = 49;
+            this.cbCdrOnTx4.Text = "CDR";
+            this.cbCdrOnTx4.UseVisualStyleBackColor = true;
+            // 
+            // cbCdrOnTx3
+            // 
+            this.cbCdrOnTx3.AutoSize = true;
+            this.cbCdrOnTx3.Location = new System.Drawing.Point(214, 79);
+            this.cbCdrOnTx3.Name = "cbCdrOnTx3";
+            this.cbCdrOnTx3.Size = new System.Drawing.Size(48, 16);
+            this.cbCdrOnTx3.TabIndex = 50;
+            this.cbCdrOnTx3.Text = "CDR";
+            this.cbCdrOnTx3.UseVisualStyleBackColor = true;
+            // 
+            // cbCdrOnTx2
+            // 
+            this.cbCdrOnTx2.AutoSize = true;
+            this.cbCdrOnTx2.Location = new System.Drawing.Point(214, 53);
+            this.cbCdrOnTx2.Name = "cbCdrOnTx2";
+            this.cbCdrOnTx2.Size = new System.Drawing.Size(48, 16);
+            this.cbCdrOnTx2.TabIndex = 51;
+            this.cbCdrOnTx2.Text = "CDR";
+            this.cbCdrOnTx2.UseVisualStyleBackColor = true;
+            // 
+            // cbCdrOnTx1
+            // 
+            this.cbCdrOnTx1.AutoSize = true;
+            this.cbCdrOnTx1.Location = new System.Drawing.Point(214, 28);
+            this.cbCdrOnTx1.Name = "cbCdrOnTx1";
+            this.cbCdrOnTx1.Size = new System.Drawing.Size(48, 16);
+            this.cbCdrOnTx1.TabIndex = 52;
+            this.cbCdrOnTx1.Text = "CDR";
+            this.cbCdrOnTx1.UseVisualStyleBackColor = true;
+            // 
+            // lTxApplicationSelect
+            // 
+            this.lTxApplicationSelect.AutoSize = true;
+            this.lTxApplicationSelect.Location = new System.Drawing.Point(161, 11);
+            this.lTxApplicationSelect.Name = "lTxApplicationSelect";
+            this.lTxApplicationSelect.Size = new System.Drawing.Size(55, 12);
+            this.lTxApplicationSelect.TabIndex = 48;
+            this.lTxApplicationSelect.Text = "App Select";
+            // 
+            // cbApplicationSelectTx1
+            // 
+            this.cbApplicationSelectTx1.FormattingEnabled = true;
+            this.cbApplicationSelectTx1.Location = new System.Drawing.Point(168, 26);
+            this.cbApplicationSelectTx1.Name = "cbApplicationSelectTx1";
+            this.cbApplicationSelectTx1.Size = new System.Drawing.Size(40, 20);
+            this.cbApplicationSelectTx1.TabIndex = 47;
+            // 
+            // cbApplicationSelectTx2
+            // 
+            this.cbApplicationSelectTx2.FormattingEnabled = true;
+            this.cbApplicationSelectTx2.Location = new System.Drawing.Point(168, 51);
+            this.cbApplicationSelectTx2.Name = "cbApplicationSelectTx2";
+            this.cbApplicationSelectTx2.Size = new System.Drawing.Size(40, 20);
+            this.cbApplicationSelectTx2.TabIndex = 46;
+            // 
+            // cbApplicationSelectTx3
+            // 
+            this.cbApplicationSelectTx3.FormattingEnabled = true;
+            this.cbApplicationSelectTx3.Location = new System.Drawing.Point(168, 77);
+            this.cbApplicationSelectTx3.Name = "cbApplicationSelectTx3";
+            this.cbApplicationSelectTx3.Size = new System.Drawing.Size(40, 20);
+            this.cbApplicationSelectTx3.TabIndex = 45;
+            // 
+            // cbApplicationSelectTx4
+            // 
+            this.cbApplicationSelectTx4.FormattingEnabled = true;
+            this.cbApplicationSelectTx4.Location = new System.Drawing.Point(168, 103);
+            this.cbApplicationSelectTx4.Name = "cbApplicationSelectTx4";
+            this.cbApplicationSelectTx4.Size = new System.Drawing.Size(40, 20);
+            this.cbApplicationSelectTx4.TabIndex = 44;
+            // 
+            // cbHighPowerClassEnable
+            // 
+            this.cbHighPowerClassEnable.AutoSize = true;
+            this.cbHighPowerClassEnable.Location = new System.Drawing.Point(462, 65);
+            this.cbHighPowerClassEnable.Name = "cbHighPowerClassEnable";
+            this.cbHighPowerClassEnable.Size = new System.Drawing.Size(106, 16);
+            this.cbHighPowerClassEnable.TabIndex = 43;
+            this.cbHighPowerClassEnable.Text = "High Power Class";
+            this.cbHighPowerClassEnable.UseVisualStyleBackColor = true;
+            // 
+            // lRxApplicationSelect
+            // 
+            this.lRxApplicationSelect.AutoSize = true;
+            this.lRxApplicationSelect.Location = new System.Drawing.Point(355, 11);
+            this.lRxApplicationSelect.Name = "lRxApplicationSelect";
+            this.lRxApplicationSelect.Size = new System.Drawing.Size(55, 12);
+            this.lRxApplicationSelect.TabIndex = 42;
+            this.lRxApplicationSelect.Text = "App Select";
+            // 
+            // cbApplicationSelectRx1
+            // 
+            this.cbApplicationSelectRx1.FormattingEnabled = true;
+            this.cbApplicationSelectRx1.Location = new System.Drawing.Point(362, 26);
+            this.cbApplicationSelectRx1.Name = "cbApplicationSelectRx1";
+            this.cbApplicationSelectRx1.Size = new System.Drawing.Size(40, 20);
+            this.cbApplicationSelectRx1.TabIndex = 41;
+            // 
+            // cbApplicationSelectRx2
+            // 
+            this.cbApplicationSelectRx2.FormattingEnabled = true;
+            this.cbApplicationSelectRx2.Location = new System.Drawing.Point(362, 51);
+            this.cbApplicationSelectRx2.Name = "cbApplicationSelectRx2";
+            this.cbApplicationSelectRx2.Size = new System.Drawing.Size(40, 20);
+            this.cbApplicationSelectRx2.TabIndex = 40;
+            // 
+            // cbApplicationSelectRx3
+            // 
+            this.cbApplicationSelectRx3.FormattingEnabled = true;
+            this.cbApplicationSelectRx3.Location = new System.Drawing.Point(362, 77);
+            this.cbApplicationSelectRx3.Name = "cbApplicationSelectRx3";
+            this.cbApplicationSelectRx3.Size = new System.Drawing.Size(40, 20);
+            this.cbApplicationSelectRx3.TabIndex = 39;
+            // 
+            // cbApplicationSelectRx4
+            // 
+            this.cbApplicationSelectRx4.FormattingEnabled = true;
+            this.cbApplicationSelectRx4.Location = new System.Drawing.Point(362, 103);
+            this.cbApplicationSelectRx4.Name = "cbApplicationSelectRx4";
+            this.cbApplicationSelectRx4.Size = new System.Drawing.Size(40, 20);
+            this.cbApplicationSelectRx4.TabIndex = 38;
+            // 
+            // lRxRateSelect
+            // 
+            this.lRxRateSelect.AutoSize = true;
+            this.lRxRateSelect.Location = new System.Drawing.Point(293, 11);
+            this.lRxRateSelect.Name = "lRxRateSelect";
+            this.lRxRateSelect.Size = new System.Drawing.Size(56, 12);
+            this.lRxRateSelect.TabIndex = 37;
+            this.lRxRateSelect.Text = "Rate Select";
+            // 
+            // lControlByteRx4
+            // 
+            this.lControlByteRx4.AutoSize = true;
+            this.lControlByteRx4.Location = new System.Drawing.Point(268, 106);
+            this.lControlByteRx4.Name = "lControlByteRx4";
+            this.lControlByteRx4.Size = new System.Drawing.Size(28, 12);
+            this.lControlByteRx4.TabIndex = 36;
+            this.lControlByteRx4.Text = "Rx4:";
+            // 
+            // lControlByteRx3
+            // 
+            this.lControlByteRx3.AutoSize = true;
+            this.lControlByteRx3.Location = new System.Drawing.Point(268, 80);
+            this.lControlByteRx3.Name = "lControlByteRx3";
+            this.lControlByteRx3.Size = new System.Drawing.Size(28, 12);
+            this.lControlByteRx3.TabIndex = 35;
+            this.lControlByteRx3.Text = "Rx3:";
+            // 
+            // lControlByteRx2
+            // 
+            this.lControlByteRx2.AutoSize = true;
+            this.lControlByteRx2.Location = new System.Drawing.Point(268, 54);
+            this.lControlByteRx2.Name = "lControlByteRx2";
+            this.lControlByteRx2.Size = new System.Drawing.Size(28, 12);
+            this.lControlByteRx2.TabIndex = 34;
+            this.lControlByteRx2.Text = "Rx2:";
+            // 
+            // lControlByteRx1
+            // 
+            this.lControlByteRx1.AutoSize = true;
+            this.lControlByteRx1.Location = new System.Drawing.Point(268, 29);
+            this.lControlByteRx1.Name = "lControlByteRx1";
+            this.lControlByteRx1.Size = new System.Drawing.Size(28, 12);
+            this.lControlByteRx1.TabIndex = 33;
+            this.lControlByteRx1.Text = "Rx1:";
+            // 
+            // cbTx1RateSelect
+            // 
+            this.cbTx1RateSelect.FormattingEnabled = true;
+            this.cbTx1RateSelect.Location = new System.Drawing.Point(107, 26);
+            this.cbTx1RateSelect.Name = "cbTx1RateSelect";
+            this.cbTx1RateSelect.Size = new System.Drawing.Size(40, 20);
+            this.cbTx1RateSelect.TabIndex = 27;
+            // 
+            // cbTx2RateSelect
+            // 
+            this.cbTx2RateSelect.FormattingEnabled = true;
+            this.cbTx2RateSelect.Location = new System.Drawing.Point(107, 51);
+            this.cbTx2RateSelect.Name = "cbTx2RateSelect";
+            this.cbTx2RateSelect.Size = new System.Drawing.Size(40, 20);
+            this.cbTx2RateSelect.TabIndex = 25;
+            // 
+            // cbTx3RateSelect
+            // 
+            this.cbTx3RateSelect.FormattingEnabled = true;
+            this.cbTx3RateSelect.Location = new System.Drawing.Point(107, 77);
+            this.cbTx3RateSelect.Name = "cbTx3RateSelect";
+            this.cbTx3RateSelect.Size = new System.Drawing.Size(40, 20);
+            this.cbTx3RateSelect.TabIndex = 23;
+            // 
+            // lTxRateSelect
+            // 
+            this.lTxRateSelect.AutoSize = true;
+            this.lTxRateSelect.Location = new System.Drawing.Point(99, 11);
+            this.lTxRateSelect.Name = "lTxRateSelect";
+            this.lTxRateSelect.Size = new System.Drawing.Size(56, 12);
+            this.lTxRateSelect.TabIndex = 22;
+            this.lTxRateSelect.Text = "Rate Select";
+            // 
+            // cbTx4RateSelect
+            // 
+            this.cbTx4RateSelect.FormattingEnabled = true;
+            this.cbTx4RateSelect.Location = new System.Drawing.Point(107, 103);
+            this.cbTx4RateSelect.Name = "cbTx4RateSelect";
+            this.cbTx4RateSelect.Size = new System.Drawing.Size(40, 20);
+            this.cbTx4RateSelect.TabIndex = 21;
+            // 
+            // cbRx1RateSelect
+            // 
+            this.cbRx1RateSelect.FormattingEnabled = true;
+            this.cbRx1RateSelect.Location = new System.Drawing.Point(301, 26);
+            this.cbRx1RateSelect.Name = "cbRx1RateSelect";
+            this.cbRx1RateSelect.Size = new System.Drawing.Size(40, 20);
+            this.cbRx1RateSelect.TabIndex = 19;
+            // 
+            // cbRx2RateSelect
+            // 
+            this.cbRx2RateSelect.FormattingEnabled = true;
+            this.cbRx2RateSelect.Location = new System.Drawing.Point(301, 51);
+            this.cbRx2RateSelect.Name = "cbRx2RateSelect";
+            this.cbRx2RateSelect.Size = new System.Drawing.Size(40, 20);
+            this.cbRx2RateSelect.TabIndex = 17;
+            // 
+            // cbRx3RateSelect
+            // 
+            this.cbRx3RateSelect.FormattingEnabled = true;
+            this.cbRx3RateSelect.Location = new System.Drawing.Point(301, 77);
+            this.cbRx3RateSelect.Name = "cbRx3RateSelect";
+            this.cbRx3RateSelect.Size = new System.Drawing.Size(40, 20);
+            this.cbRx3RateSelect.TabIndex = 15;
+            // 
+            // cbRx4RateSelect
+            // 
+            this.cbRx4RateSelect.FormattingEnabled = true;
+            this.cbRx4RateSelect.Location = new System.Drawing.Point(301, 103);
+            this.cbRx4RateSelect.Name = "cbRx4RateSelect";
+            this.cbRx4RateSelect.Size = new System.Drawing.Size(40, 20);
+            this.cbRx4RateSelect.TabIndex = 13;
             // 
             // lExtIdentifier
             // 
@@ -388,14 +789,6 @@
             this.lSasSataCompliance.TabIndex = 24;
             this.lSasSataCompliance.Text = "SAS, SATA :";
             // 
-            // tbIdentifier
-            // 
-            this.tbIdentifier.Location = new System.Drawing.Point(63, 5);
-            this.tbIdentifier.Name = "tbIdentifier";
-            this.tbIdentifier.ReadOnly = true;
-            this.tbIdentifier.Size = new System.Drawing.Size(40, 22);
-            this.tbIdentifier.TabIndex = 1;
-            // 
             // gbSpecificationCompliance
             // 
             this.gbSpecificationCompliance.Controls.Add(this.tbFibreChannelSpeed);
@@ -416,7 +809,7 @@
             this.gbSpecificationCompliance.Controls.Add(this.tbSonetCompliance);
             this.gbSpecificationCompliance.Location = new System.Drawing.Point(8, 49);
             this.gbSpecificationCompliance.Name = "gbSpecificationCompliance";
-            this.gbSpecificationCompliance.Size = new System.Drawing.Size(759, 79);
+            this.gbSpecificationCompliance.Size = new System.Drawing.Size(804, 76);
             this.gbSpecificationCompliance.TabIndex = 26;
             this.gbSpecificationCompliance.TabStop = false;
             this.gbSpecificationCompliance.Text = "Specification Compliance";
@@ -503,12 +896,9 @@
             // 
             // gbUpPage0
             // 
+            this.gbUpPage0.Controls.Add(this.cbExtendedRateSelectV2);
             this.gbUpPage0.Controls.Add(this.tbLinkCodes);
             this.gbUpPage0.Controls.Add(this.lLinkCodes);
-            this.gbUpPage0.Controls.Add(this.tbNewPassword);
-            this.gbUpPage0.Controls.Add(this.lNewPassword);
-            this.gbUpPage0.Controls.Add(this.tbPassword);
-            this.gbUpPage0.Controls.Add(this.lPassword);
             this.gbUpPage0.Controls.Add(this.tbEncoding);
             this.gbUpPage0.Controls.Add(this.lEncoding);
             this.gbUpPage0.Controls.Add(this.tbCcExt);
@@ -543,7 +933,7 @@
             this.gbUpPage0.Controls.Add(this.tbDeviceTech);
             this.gbUpPage0.Controls.Add(this.lDeviceTech);
             this.gbUpPage0.Controls.Add(this.gbLength);
-            this.gbUpPage0.Controls.Add(this.cbExtendedRateSelect);
+            this.gbUpPage0.Controls.Add(this.cbExtendedRateSelectV1);
             this.gbUpPage0.Controls.Add(this.tbBitRate);
             this.gbUpPage0.Controls.Add(this.lBitRate);
             this.gbUpPage0.Controls.Add(this.tbUpPage0Identifier);
@@ -553,16 +943,26 @@
             this.gbUpPage0.Controls.Add(this.tbExtIdentifier);
             this.gbUpPage0.Controls.Add(this.lConnector);
             this.gbUpPage0.Controls.Add(this.lExtIdentifier);
-            this.gbUpPage0.Location = new System.Drawing.Point(3, 135);
+            this.gbUpPage0.Location = new System.Drawing.Point(3, 138);
             this.gbUpPage0.Name = "gbUpPage0";
-            this.gbUpPage0.Size = new System.Drawing.Size(773, 399);
+            this.gbUpPage0.Size = new System.Drawing.Size(818, 413);
             this.gbUpPage0.TabIndex = 27;
             this.gbUpPage0.TabStop = false;
             this.gbUpPage0.Text = "UP Page 0";
             // 
+            // cbExtendedRateSelectV2
+            // 
+            this.cbExtendedRateSelectV2.AutoSize = true;
+            this.cbExtendedRateSelectV2.Location = new System.Drawing.Point(357, 133);
+            this.cbExtendedRateSelectV2.Name = "cbExtendedRateSelectV2";
+            this.cbExtendedRateSelectV2.Size = new System.Drawing.Size(136, 16);
+            this.cbExtendedRateSelectV2.TabIndex = 72;
+            this.cbExtendedRateSelectV2.Text = "Extended RateSelect V2";
+            this.cbExtendedRateSelectV2.UseVisualStyleBackColor = true;
+            // 
             // tbLinkCodes
             // 
-            this.tbLinkCodes.Location = new System.Drawing.Point(330, 270);
+            this.tbLinkCodes.Location = new System.Drawing.Point(191, 269);
             this.tbLinkCodes.Name = "tbLinkCodes";
             this.tbLinkCodes.Size = new System.Drawing.Size(40, 22);
             this.tbLinkCodes.TabIndex = 71;
@@ -570,50 +970,15 @@
             // lLinkCodes
             // 
             this.lLinkCodes.AutoSize = true;
-            this.lLinkCodes.Location = new System.Drawing.Point(259, 273);
+            this.lLinkCodes.Location = new System.Drawing.Point(120, 272);
             this.lLinkCodes.Name = "lLinkCodes";
             this.lLinkCodes.Size = new System.Drawing.Size(65, 12);
             this.lLinkCodes.TabIndex = 70;
             this.lLinkCodes.Text = "Link Codes :";
             // 
-            // tbNewPassword
-            // 
-            this.tbNewPassword.Location = new System.Drawing.Point(559, 21);
-            this.tbNewPassword.Name = "tbNewPassword";
-            this.tbNewPassword.Size = new System.Drawing.Size(60, 22);
-            this.tbNewPassword.TabIndex = 69;
-            this.tbNewPassword.UseSystemPasswordChar = true;
-            // 
-            // lNewPassword
-            // 
-            this.lNewPassword.AutoSize = true;
-            this.lNewPassword.Location = new System.Drawing.Point(475, 24);
-            this.lNewPassword.Name = "lNewPassword";
-            this.lNewPassword.Size = new System.Drawing.Size(78, 12);
-            this.lNewPassword.TabIndex = 68;
-            this.lNewPassword.Text = "New Password :";
-            // 
-            // tbPassword
-            // 
-            this.tbPassword.Location = new System.Drawing.Point(409, 21);
-            this.tbPassword.Name = "tbPassword";
-            this.tbPassword.Size = new System.Drawing.Size(60, 22);
-            this.tbPassword.TabIndex = 67;
-            this.tbPassword.Text = "3234";
-            this.tbPassword.UseSystemPasswordChar = true;
-            // 
-            // lPassword
-            // 
-            this.lPassword.AutoSize = true;
-            this.lPassword.Location = new System.Drawing.Point(349, 24);
-            this.lPassword.Name = "lPassword";
-            this.lPassword.Size = new System.Drawing.Size(54, 12);
-            this.lPassword.TabIndex = 66;
-            this.lPassword.Text = "Password :";
-            // 
             // tbEncoding
             // 
-            this.tbEncoding.Location = new System.Drawing.Point(68, 134);
+            this.tbEncoding.Location = new System.Drawing.Point(68, 131);
             this.tbEncoding.Name = "tbEncoding";
             this.tbEncoding.Size = new System.Drawing.Size(40, 22);
             this.tbEncoding.TabIndex = 65;
@@ -621,7 +986,7 @@
             // lEncoding
             // 
             this.lEncoding.AutoSize = true;
-            this.lEncoding.Location = new System.Drawing.Point(6, 137);
+            this.lEncoding.Location = new System.Drawing.Point(6, 134);
             this.lEncoding.Name = "lEncoding";
             this.lEncoding.Size = new System.Drawing.Size(56, 12);
             this.lEncoding.TabIndex = 64;
@@ -629,7 +994,7 @@
             // 
             // tbCcExt
             // 
-            this.tbCcExt.Location = new System.Drawing.Point(650, 370);
+            this.tbCcExt.Location = new System.Drawing.Point(651, 388);
             this.tbCcExt.Name = "tbCcExt";
             this.tbCcExt.ReadOnly = true;
             this.tbCcExt.Size = new System.Drawing.Size(40, 22);
@@ -638,7 +1003,7 @@
             // lCcExt
             // 
             this.lCcExt.AutoSize = true;
-            this.lCcExt.Location = new System.Drawing.Point(589, 373);
+            this.lCcExt.Location = new System.Drawing.Point(589, 391);
             this.lCcExt.Name = "lCcExt";
             this.lCcExt.Size = new System.Drawing.Size(55, 12);
             this.lCcExt.TabIndex = 62;
@@ -646,7 +1011,7 @@
             // 
             // tbEnhancedOptions
             // 
-            this.tbEnhancedOptions.Location = new System.Drawing.Point(543, 370);
+            this.tbEnhancedOptions.Location = new System.Drawing.Point(543, 388);
             this.tbEnhancedOptions.Name = "tbEnhancedOptions";
             this.tbEnhancedOptions.Size = new System.Drawing.Size(40, 22);
             this.tbEnhancedOptions.TabIndex = 61;
@@ -654,7 +1019,7 @@
             // lEnhancedOptions
             // 
             this.lEnhancedOptions.AutoSize = true;
-            this.lEnhancedOptions.Location = new System.Drawing.Point(441, 373);
+            this.lEnhancedOptions.Location = new System.Drawing.Point(441, 391);
             this.lEnhancedOptions.Name = "lEnhancedOptions";
             this.lEnhancedOptions.Size = new System.Drawing.Size(96, 12);
             this.lEnhancedOptions.TabIndex = 60;
@@ -662,7 +1027,7 @@
             // 
             // tbDiagnosticMonitoringType
             // 
-            this.tbDiagnosticMonitoringType.Location = new System.Drawing.Point(395, 370);
+            this.tbDiagnosticMonitoringType.Location = new System.Drawing.Point(395, 388);
             this.tbDiagnosticMonitoringType.Name = "tbDiagnosticMonitoringType";
             this.tbDiagnosticMonitoringType.Size = new System.Drawing.Size(40, 22);
             this.tbDiagnosticMonitoringType.TabIndex = 59;
@@ -670,7 +1035,7 @@
             // lDiagnosticMonitoringType
             // 
             this.lDiagnosticMonitoringType.AutoSize = true;
-            this.lDiagnosticMonitoringType.Location = new System.Drawing.Point(333, 373);
+            this.lDiagnosticMonitoringType.Location = new System.Drawing.Point(333, 391);
             this.lDiagnosticMonitoringType.Name = "lDiagnosticMonitoringType";
             this.lDiagnosticMonitoringType.Size = new System.Drawing.Size(56, 12);
             this.lDiagnosticMonitoringType.TabIndex = 58;
@@ -678,7 +1043,7 @@
             // 
             // tbDateCode
             // 
-            this.tbDateCode.Location = new System.Drawing.Point(267, 370);
+            this.tbDateCode.Location = new System.Drawing.Point(267, 388);
             this.tbDateCode.Name = "tbDateCode";
             this.tbDateCode.Size = new System.Drawing.Size(60, 22);
             this.tbDateCode.TabIndex = 57;
@@ -686,7 +1051,7 @@
             // lDateCode
             // 
             this.lDateCode.AutoSize = true;
-            this.lDateCode.Location = new System.Drawing.Point(201, 373);
+            this.lDateCode.Location = new System.Drawing.Point(201, 391);
             this.lDateCode.Name = "lDateCode";
             this.lDateCode.Size = new System.Drawing.Size(60, 12);
             this.lDateCode.TabIndex = 56;
@@ -694,7 +1059,7 @@
             // 
             // tbVendorSn
             // 
-            this.tbVendorSn.Location = new System.Drawing.Point(75, 370);
+            this.tbVendorSn.Location = new System.Drawing.Point(75, 388);
             this.tbVendorSn.Name = "tbVendorSn";
             this.tbVendorSn.Size = new System.Drawing.Size(120, 22);
             this.tbVendorSn.TabIndex = 55;
@@ -702,7 +1067,7 @@
             // lVendorSn
             // 
             this.lVendorSn.AutoSize = true;
-            this.lVendorSn.Location = new System.Drawing.Point(6, 373);
+            this.lVendorSn.Location = new System.Drawing.Point(6, 391);
             this.lVendorSn.Name = "lVendorSn";
             this.lVendorSn.Size = new System.Drawing.Size(63, 12);
             this.lVendorSn.TabIndex = 54;
@@ -710,6 +1075,13 @@
             // 
             // gbOptions
             // 
+            this.gbOptions.Controls.Add(this.cbTxCdrOnOffControl);
+            this.gbOptions.Controls.Add(this.cbRxCdrOnOffControl);
+            this.gbOptions.Controls.Add(this.cbTxCdrLolFlag);
+            this.gbOptions.Controls.Add(this.cbRxCdrLolFlag);
+            this.gbOptions.Controls.Add(this.cbTxInputEqualizationAutoAdaptive);
+            this.gbOptions.Controls.Add(this.cbTxInputEqualizationProgrammable);
+            this.gbOptions.Controls.Add(this.cbRxOutputEmphasisProgramming);
             this.gbOptions.Controls.Add(this.cbTxLossOfSignal);
             this.gbOptions.Controls.Add(this.cbTxSquelchImplementedToReduceOma);
             this.gbOptions.Controls.Add(this.cbTxFaultSignalImplemented);
@@ -722,17 +1094,87 @@
             this.gbOptions.Controls.Add(this.cbRxOutputDisableCapable);
             this.gbOptions.Controls.Add(this.cbRxSquelchDisableImplemented);
             this.gbOptions.Controls.Add(this.cbRxOutputAmplitudeProgramming);
-            this.gbOptions.Location = new System.Drawing.Point(8, 298);
+            this.gbOptions.Location = new System.Drawing.Point(8, 297);
             this.gbOptions.Name = "gbOptions";
-            this.gbOptions.Size = new System.Drawing.Size(758, 66);
+            this.gbOptions.Size = new System.Drawing.Size(804, 85);
             this.gbOptions.TabIndex = 53;
             this.gbOptions.TabStop = false;
             this.gbOptions.Text = "Options";
             // 
+            // cbTxCdrOnOffControl
+            // 
+            this.cbTxCdrOnOffControl.AutoSize = true;
+            this.cbTxCdrOnOffControl.Location = new System.Drawing.Point(694, 43);
+            this.cbTxCdrOnOffControl.Name = "cbTxCdrOnOffControl";
+            this.cbTxCdrOnOffControl.Size = new System.Drawing.Size(64, 16);
+            this.cbTxCdrOnOffControl.TabIndex = 46;
+            this.cbTxCdrOnOffControl.Text = "Tx CDR";
+            this.cbTxCdrOnOffControl.UseVisualStyleBackColor = true;
+            // 
+            // cbRxCdrOnOffControl
+            // 
+            this.cbRxCdrOnOffControl.AutoSize = true;
+            this.cbRxCdrOnOffControl.Location = new System.Drawing.Point(623, 43);
+            this.cbRxCdrOnOffControl.Name = "cbRxCdrOnOffControl";
+            this.cbRxCdrOnOffControl.Size = new System.Drawing.Size(65, 16);
+            this.cbRxCdrOnOffControl.TabIndex = 45;
+            this.cbRxCdrOnOffControl.Text = "Rx CDR";
+            this.cbRxCdrOnOffControl.UseVisualStyleBackColor = true;
+            // 
+            // cbTxCdrLolFlag
+            // 
+            this.cbTxCdrLolFlag.AutoSize = true;
+            this.cbTxCdrLolFlag.Location = new System.Drawing.Point(528, 43);
+            this.cbTxCdrLolFlag.Name = "cbTxCdrLolFlag";
+            this.cbTxCdrLolFlag.Size = new System.Drawing.Size(89, 16);
+            this.cbTxCdrLolFlag.TabIndex = 44;
+            this.cbTxCdrLolFlag.Text = "Tx CDR LOL";
+            this.cbTxCdrLolFlag.UseVisualStyleBackColor = true;
+            // 
+            // cbRxCdrLolFlag
+            // 
+            this.cbRxCdrLolFlag.AutoSize = true;
+            this.cbRxCdrLolFlag.Location = new System.Drawing.Point(432, 43);
+            this.cbRxCdrLolFlag.Name = "cbRxCdrLolFlag";
+            this.cbRxCdrLolFlag.Size = new System.Drawing.Size(90, 16);
+            this.cbRxCdrLolFlag.TabIndex = 43;
+            this.cbRxCdrLolFlag.Text = "Rx CDR LOL";
+            this.cbRxCdrLolFlag.UseVisualStyleBackColor = true;
+            // 
+            // cbTxInputEqualizationAutoAdaptive
+            // 
+            this.cbTxInputEqualizationAutoAdaptive.AutoSize = true;
+            this.cbTxInputEqualizationAutoAdaptive.Location = new System.Drawing.Point(588, 21);
+            this.cbTxInputEqualizationAutoAdaptive.Name = "cbTxInputEqualizationAutoAdaptive";
+            this.cbTxInputEqualizationAutoAdaptive.Size = new System.Drawing.Size(188, 16);
+            this.cbTxInputEqualizationAutoAdaptive.TabIndex = 42;
+            this.cbTxInputEqualizationAutoAdaptive.Text = "Tx input equalization auto adaptive";
+            this.cbTxInputEqualizationAutoAdaptive.UseVisualStyleBackColor = true;
+            // 
+            // cbTxInputEqualizationProgrammable
+            // 
+            this.cbTxInputEqualizationProgrammable.AutoSize = true;
+            this.cbTxInputEqualizationProgrammable.Location = new System.Drawing.Point(388, 21);
+            this.cbTxInputEqualizationProgrammable.Name = "cbTxInputEqualizationProgrammable";
+            this.cbTxInputEqualizationProgrammable.Size = new System.Drawing.Size(194, 16);
+            this.cbTxInputEqualizationProgrammable.TabIndex = 41;
+            this.cbTxInputEqualizationProgrammable.Text = "Tx input equalization programmable";
+            this.cbTxInputEqualizationProgrammable.UseVisualStyleBackColor = true;
+            // 
+            // cbRxOutputEmphasisProgramming
+            // 
+            this.cbRxOutputEmphasisProgramming.AutoSize = true;
+            this.cbRxOutputEmphasisProgramming.Location = new System.Drawing.Point(199, 21);
+            this.cbRxOutputEmphasisProgramming.Name = "cbRxOutputEmphasisProgramming";
+            this.cbRxOutputEmphasisProgramming.Size = new System.Drawing.Size(183, 16);
+            this.cbRxOutputEmphasisProgramming.TabIndex = 40;
+            this.cbRxOutputEmphasisProgramming.Text = "Rx output emphasis programming";
+            this.cbRxOutputEmphasisProgramming.UseVisualStyleBackColor = true;
+            // 
             // cbTxLossOfSignal
             // 
             this.cbTxLossOfSignal.AutoSize = true;
-            this.cbTxLossOfSignal.Location = new System.Drawing.Point(512, 43);
+            this.cbTxLossOfSignal.Location = new System.Drawing.Point(6, 65);
             this.cbTxLossOfSignal.Name = "cbTxLossOfSignal";
             this.cbTxLossOfSignal.Size = new System.Drawing.Size(61, 16);
             this.cbTxLossOfSignal.TabIndex = 39;
@@ -742,7 +1184,7 @@
             // cbTxSquelchImplementedToReduceOma
             // 
             this.cbTxSquelchImplementedToReduceOma.AutoSize = true;
-            this.cbTxSquelchImplementedToReduceOma.Location = new System.Drawing.Point(356, 43);
+            this.cbTxSquelchImplementedToReduceOma.Location = new System.Drawing.Point(73, 65);
             this.cbTxSquelchImplementedToReduceOma.Name = "cbTxSquelchImplementedToReduceOma";
             this.cbTxSquelchImplementedToReduceOma.Size = new System.Drawing.Size(150, 16);
             this.cbTxSquelchImplementedToReduceOma.TabIndex = 38;
@@ -752,7 +1194,7 @@
             // cbTxFaultSignalImplemented
             // 
             this.cbTxFaultSignalImplemented.AutoSize = true;
-            this.cbTxFaultSignalImplemented.Location = new System.Drawing.Point(259, 43);
+            this.cbTxFaultSignalImplemented.Location = new System.Drawing.Point(229, 65);
             this.cbTxFaultSignalImplemented.Name = "cbTxFaultSignalImplemented";
             this.cbTxFaultSignalImplemented.Size = new System.Drawing.Size(91, 16);
             this.cbTxFaultSignalImplemented.TabIndex = 37;
@@ -762,7 +1204,7 @@
             // cbTxDisableImplemented
             // 
             this.cbTxDisableImplemented.AutoSize = true;
-            this.cbTxDisableImplemented.Location = new System.Drawing.Point(181, 43);
+            this.cbTxDisableImplemented.Location = new System.Drawing.Point(326, 65);
             this.cbTxDisableImplemented.Name = "cbTxDisableImplemented";
             this.cbTxDisableImplemented.Size = new System.Drawing.Size(72, 16);
             this.cbTxDisableImplemented.TabIndex = 36;
@@ -772,7 +1214,7 @@
             // cbRateSelectImplemented
             // 
             this.cbRateSelectImplemented.AutoSize = true;
-            this.cbRateSelectImplemented.Location = new System.Drawing.Point(100, 43);
+            this.cbRateSelectImplemented.Location = new System.Drawing.Point(404, 65);
             this.cbRateSelectImplemented.Name = "cbRateSelectImplemented";
             this.cbRateSelectImplemented.Size = new System.Drawing.Size(75, 16);
             this.cbRateSelectImplemented.TabIndex = 35;
@@ -782,7 +1224,7 @@
             // cbMemoryPage01Provided
             // 
             this.cbMemoryPage01Provided.AutoSize = true;
-            this.cbMemoryPage01Provided.Location = new System.Drawing.Point(6, 43);
+            this.cbMemoryPage01Provided.Location = new System.Drawing.Point(485, 65);
             this.cbMemoryPage01Provided.Name = "cbMemoryPage01Provided";
             this.cbMemoryPage01Provided.Size = new System.Drawing.Size(88, 16);
             this.cbMemoryPage01Provided.TabIndex = 34;
@@ -792,7 +1234,7 @@
             // cbMemoryPage02Provided
             // 
             this.cbMemoryPage02Provided.AutoSize = true;
-            this.cbMemoryPage02Provided.Location = new System.Drawing.Point(625, 21);
+            this.cbMemoryPage02Provided.Location = new System.Drawing.Point(579, 65);
             this.cbMemoryPage02Provided.Name = "cbMemoryPage02Provided";
             this.cbMemoryPage02Provided.Size = new System.Drawing.Size(88, 16);
             this.cbMemoryPage02Provided.TabIndex = 33;
@@ -802,7 +1244,7 @@
             // cbTxSquelchImplemented
             // 
             this.cbTxSquelchImplemented.AutoSize = true;
-            this.cbTxSquelchImplemented.Location = new System.Drawing.Point(544, 21);
+            this.cbTxSquelchImplemented.Location = new System.Drawing.Point(6, 43);
             this.cbTxSquelchImplemented.Name = "cbTxSquelchImplemented";
             this.cbTxSquelchImplemented.Size = new System.Drawing.Size(75, 16);
             this.cbTxSquelchImplemented.TabIndex = 32;
@@ -812,7 +1254,7 @@
             // cbTxSquelchDisableImplemented
             // 
             this.cbTxSquelchDisableImplemented.AutoSize = true;
-            this.cbTxSquelchDisableImplemented.Location = new System.Drawing.Point(428, 21);
+            this.cbTxSquelchDisableImplemented.Location = new System.Drawing.Point(87, 43);
             this.cbTxSquelchDisableImplemented.Name = "cbTxSquelchDisableImplemented";
             this.cbTxSquelchDisableImplemented.Size = new System.Drawing.Size(110, 16);
             this.cbTxSquelchDisableImplemented.TabIndex = 31;
@@ -822,7 +1264,7 @@
             // cbRxOutputDisableCapable
             // 
             this.cbRxOutputDisableCapable.AutoSize = true;
-            this.cbRxOutputDisableCapable.Location = new System.Drawing.Point(316, 21);
+            this.cbRxOutputDisableCapable.Location = new System.Drawing.Point(203, 43);
             this.cbRxOutputDisableCapable.Name = "cbRxOutputDisableCapable";
             this.cbRxOutputDisableCapable.Size = new System.Drawing.Size(106, 16);
             this.cbRxOutputDisableCapable.TabIndex = 30;
@@ -832,7 +1274,7 @@
             // cbRxSquelchDisableImplemented
             // 
             this.cbRxSquelchDisableImplemented.AutoSize = true;
-            this.cbRxSquelchDisableImplemented.Location = new System.Drawing.Point(199, 21);
+            this.cbRxSquelchDisableImplemented.Location = new System.Drawing.Point(315, 43);
             this.cbRxSquelchDisableImplemented.Name = "cbRxSquelchDisableImplemented";
             this.cbRxSquelchDisableImplemented.Size = new System.Drawing.Size(111, 16);
             this.cbRxSquelchDisableImplemented.TabIndex = 29;
@@ -851,7 +1293,7 @@
             // 
             // tbCcBase
             // 
-            this.tbCcBase.Location = new System.Drawing.Point(213, 270);
+            this.tbCcBase.Location = new System.Drawing.Point(74, 269);
             this.tbCcBase.Name = "tbCcBase";
             this.tbCcBase.ReadOnly = true;
             this.tbCcBase.Size = new System.Drawing.Size(40, 22);
@@ -860,7 +1302,7 @@
             // lCcBase
             // 
             this.lCcBase.AutoSize = true;
-            this.lCcBase.Location = new System.Drawing.Point(145, 273);
+            this.lCcBase.Location = new System.Drawing.Point(6, 272);
             this.lCcBase.Name = "lCcBase";
             this.lCcBase.Size = new System.Drawing.Size(62, 12);
             this.lCcBase.TabIndex = 51;
@@ -868,7 +1310,7 @@
             // 
             // tbMaxCaseTemp
             // 
-            this.tbMaxCaseTemp.Location = new System.Drawing.Point(99, 270);
+            this.tbMaxCaseTemp.Location = new System.Drawing.Point(742, 241);
             this.tbMaxCaseTemp.Name = "tbMaxCaseTemp";
             this.tbMaxCaseTemp.Size = new System.Drawing.Size(40, 22);
             this.tbMaxCaseTemp.TabIndex = 50;
@@ -876,7 +1318,7 @@
             // lMaxCaseTemp
             // 
             this.lMaxCaseTemp.AutoSize = true;
-            this.lMaxCaseTemp.Location = new System.Drawing.Point(6, 273);
+            this.lMaxCaseTemp.Location = new System.Drawing.Point(649, 244);
             this.lMaxCaseTemp.Name = "lMaxCaseTemp";
             this.lMaxCaseTemp.Size = new System.Drawing.Size(87, 12);
             this.lMaxCaseTemp.TabIndex = 49;
@@ -884,7 +1326,7 @@
             // 
             // tbWavelengthTolerance
             // 
-            this.tbWavelengthTolerance.Location = new System.Drawing.Point(583, 242);
+            this.tbWavelengthTolerance.Location = new System.Drawing.Point(583, 241);
             this.tbWavelengthTolerance.Name = "tbWavelengthTolerance";
             this.tbWavelengthTolerance.Size = new System.Drawing.Size(60, 22);
             this.tbWavelengthTolerance.TabIndex = 48;
@@ -892,7 +1334,7 @@
             // lWavelengthTolerance
             // 
             this.lWavelengthTolerance.AutoSize = true;
-            this.lWavelengthTolerance.Location = new System.Drawing.Point(461, 245);
+            this.lWavelengthTolerance.Location = new System.Drawing.Point(461, 244);
             this.lWavelengthTolerance.Name = "lWavelengthTolerance";
             this.lWavelengthTolerance.Size = new System.Drawing.Size(116, 12);
             this.lWavelengthTolerance.TabIndex = 47;
@@ -900,7 +1342,7 @@
             // 
             // tbWavelength
             // 
-            this.tbWavelength.Location = new System.Drawing.Point(395, 242);
+            this.tbWavelength.Location = new System.Drawing.Point(395, 241);
             this.tbWavelength.Name = "tbWavelength";
             this.tbWavelength.Size = new System.Drawing.Size(60, 22);
             this.tbWavelength.TabIndex = 46;
@@ -908,7 +1350,7 @@
             // lWavelength
             // 
             this.lWavelength.AutoSize = true;
-            this.lWavelength.Location = new System.Drawing.Point(321, 245);
+            this.lWavelength.Location = new System.Drawing.Point(321, 244);
             this.lWavelength.Name = "lWavelength";
             this.lWavelength.Size = new System.Drawing.Size(67, 12);
             this.lWavelength.TabIndex = 45;
@@ -916,7 +1358,7 @@
             // 
             // tbVendorRev
             // 
-            this.tbVendorRev.Location = new System.Drawing.Point(275, 242);
+            this.tbVendorRev.Location = new System.Drawing.Point(275, 241);
             this.tbVendorRev.Name = "tbVendorRev";
             this.tbVendorRev.Size = new System.Drawing.Size(40, 22);
             this.tbVendorRev.TabIndex = 44;
@@ -924,7 +1366,7 @@
             // lVendorRev
             // 
             this.lVendorRev.AutoSize = true;
-            this.lVendorRev.Location = new System.Drawing.Point(201, 245);
+            this.lVendorRev.Location = new System.Drawing.Point(201, 244);
             this.lVendorRev.Name = "lVendorRev";
             this.lVendorRev.Size = new System.Drawing.Size(68, 12);
             this.lVendorRev.TabIndex = 43;
@@ -932,7 +1374,7 @@
             // 
             // tbVendorPn
             // 
-            this.tbVendorPn.Location = new System.Drawing.Point(75, 242);
+            this.tbVendorPn.Location = new System.Drawing.Point(75, 241);
             this.tbVendorPn.Name = "tbVendorPn";
             this.tbVendorPn.Size = new System.Drawing.Size(120, 22);
             this.tbVendorPn.TabIndex = 42;
@@ -940,7 +1382,7 @@
             // lVendorPn
             // 
             this.lVendorPn.AutoSize = true;
-            this.lVendorPn.Location = new System.Drawing.Point(6, 245);
+            this.lVendorPn.Location = new System.Drawing.Point(6, 244);
             this.lVendorPn.Name = "lVendorPn";
             this.lVendorPn.Size = new System.Drawing.Size(63, 12);
             this.lVendorPn.TabIndex = 41;
@@ -948,7 +1390,7 @@
             // 
             // tbVendorOui
             // 
-            this.tbVendorOui.Location = new System.Drawing.Point(588, 214);
+            this.tbVendorOui.Location = new System.Drawing.Point(588, 213);
             this.tbVendorOui.Name = "tbVendorOui";
             this.tbVendorOui.Size = new System.Drawing.Size(60, 22);
             this.tbVendorOui.TabIndex = 40;
@@ -956,7 +1398,7 @@
             // lVendorOui
             // 
             this.lVendorOui.AutoSize = true;
-            this.lVendorOui.Location = new System.Drawing.Point(513, 217);
+            this.lVendorOui.Location = new System.Drawing.Point(513, 216);
             this.lVendorOui.Name = "lVendorOui";
             this.lVendorOui.Size = new System.Drawing.Size(69, 12);
             this.lVendorOui.TabIndex = 39;
@@ -964,7 +1406,7 @@
             // 
             // tbExtendedModuleCodes
             // 
-            this.tbExtendedModuleCodes.Location = new System.Drawing.Point(467, 214);
+            this.tbExtendedModuleCodes.Location = new System.Drawing.Point(467, 213);
             this.tbExtendedModuleCodes.Name = "tbExtendedModuleCodes";
             this.tbExtendedModuleCodes.Size = new System.Drawing.Size(40, 22);
             this.tbExtendedModuleCodes.TabIndex = 38;
@@ -972,7 +1414,7 @@
             // lExtendedModuleCodes
             // 
             this.lExtendedModuleCodes.AutoSize = true;
-            this.lExtendedModuleCodes.Location = new System.Drawing.Point(335, 217);
+            this.lExtendedModuleCodes.Location = new System.Drawing.Point(335, 216);
             this.lExtendedModuleCodes.Name = "lExtendedModuleCodes";
             this.lExtendedModuleCodes.Size = new System.Drawing.Size(126, 12);
             this.lExtendedModuleCodes.TabIndex = 37;
@@ -980,7 +1422,7 @@
             // 
             // tbVendorName
             // 
-            this.tbVendorName.Location = new System.Drawing.Point(209, 214);
+            this.tbVendorName.Location = new System.Drawing.Point(209, 213);
             this.tbVendorName.Name = "tbVendorName";
             this.tbVendorName.Size = new System.Drawing.Size(120, 22);
             this.tbVendorName.TabIndex = 36;
@@ -988,7 +1430,7 @@
             // lVendorName
             // 
             this.lVendorName.AutoSize = true;
-            this.lVendorName.Location = new System.Drawing.Point(127, 217);
+            this.lVendorName.Location = new System.Drawing.Point(127, 216);
             this.lVendorName.Name = "lVendorName";
             this.lVendorName.Size = new System.Drawing.Size(76, 12);
             this.lVendorName.TabIndex = 35;
@@ -996,7 +1438,7 @@
             // 
             // tbDeviceTech
             // 
-            this.tbDeviceTech.Location = new System.Drawing.Point(81, 214);
+            this.tbDeviceTech.Location = new System.Drawing.Point(81, 213);
             this.tbDeviceTech.Name = "tbDeviceTech";
             this.tbDeviceTech.Size = new System.Drawing.Size(40, 22);
             this.tbDeviceTech.TabIndex = 34;
@@ -1004,7 +1446,7 @@
             // lDeviceTech
             // 
             this.lDeviceTech.AutoSize = true;
-            this.lDeviceTech.Location = new System.Drawing.Point(6, 217);
+            this.lDeviceTech.Location = new System.Drawing.Point(6, 216);
             this.lDeviceTech.Name = "lDeviceTech";
             this.lDeviceTech.Size = new System.Drawing.Size(69, 12);
             this.lDeviceTech.TabIndex = 33;
@@ -1022,9 +1464,9 @@
             this.gbLength.Controls.Add(this.lOm3Length);
             this.gbLength.Controls.Add(this.tbStandardSmFiberLength);
             this.gbLength.Controls.Add(this.lStandardSmFiberLength);
-            this.gbLength.Location = new System.Drawing.Point(8, 158);
+            this.gbLength.Location = new System.Drawing.Point(8, 159);
             this.gbLength.Name = "gbLength";
-            this.gbLength.Size = new System.Drawing.Size(759, 50);
+            this.gbLength.Size = new System.Drawing.Size(804, 48);
             this.gbLength.TabIndex = 32;
             this.gbLength.TabStop = false;
             this.gbLength.Text = "Length";
@@ -1109,19 +1551,19 @@
             this.lStandardSmFiberLength.TabIndex = 33;
             this.lStandardSmFiberLength.Text = "Standard SM Fiber :";
             // 
-            // cbExtendedRateSelect
+            // cbExtendedRateSelectV1
             // 
-            this.cbExtendedRateSelect.AutoSize = true;
-            this.cbExtendedRateSelect.Location = new System.Drawing.Point(215, 136);
-            this.cbExtendedRateSelect.Name = "cbExtendedRateSelect";
-            this.cbExtendedRateSelect.Size = new System.Drawing.Size(119, 16);
-            this.cbExtendedRateSelect.TabIndex = 28;
-            this.cbExtendedRateSelect.Text = "Extended RateSelect";
-            this.cbExtendedRateSelect.UseVisualStyleBackColor = true;
+            this.cbExtendedRateSelectV1.AutoSize = true;
+            this.cbExtendedRateSelectV1.Location = new System.Drawing.Point(215, 133);
+            this.cbExtendedRateSelectV1.Name = "cbExtendedRateSelectV1";
+            this.cbExtendedRateSelectV1.Size = new System.Drawing.Size(136, 16);
+            this.cbExtendedRateSelectV1.TabIndex = 28;
+            this.cbExtendedRateSelectV1.Text = "Extended RateSelect V1";
+            this.cbExtendedRateSelectV1.UseVisualStyleBackColor = true;
             // 
             // tbBitRate
             // 
-            this.tbBitRate.Location = new System.Drawing.Point(169, 134);
+            this.tbBitRate.Location = new System.Drawing.Point(169, 131);
             this.tbBitRate.Name = "tbBitRate";
             this.tbBitRate.Size = new System.Drawing.Size(40, 22);
             this.tbBitRate.TabIndex = 31;
@@ -1129,7 +1571,7 @@
             // lBitRate
             // 
             this.lBitRate.AutoSize = true;
-            this.lBitRate.Location = new System.Drawing.Point(114, 137);
+            this.lBitRate.Location = new System.Drawing.Point(114, 134);
             this.lBitRate.Name = "lBitRate";
             this.lBitRate.Size = new System.Drawing.Size(49, 12);
             this.lBitRate.TabIndex = 30;
@@ -1151,11 +1593,46 @@
             this.lUpPage0Identifier.TabIndex = 28;
             this.lUpPage0Identifier.Text = "Identifier :";
             // 
+            // tbNewPassword
+            // 
+            this.tbNewPassword.Location = new System.Drawing.Point(842, 487);
+            this.tbNewPassword.Name = "tbNewPassword";
+            this.tbNewPassword.Size = new System.Drawing.Size(60, 22);
+            this.tbNewPassword.TabIndex = 69;
+            this.tbNewPassword.UseSystemPasswordChar = true;
+            // 
+            // lNewPassword
+            // 
+            this.lNewPassword.AutoSize = true;
+            this.lNewPassword.Location = new System.Drawing.Point(827, 472);
+            this.lNewPassword.Name = "lNewPassword";
+            this.lNewPassword.Size = new System.Drawing.Size(78, 12);
+            this.lNewPassword.TabIndex = 68;
+            this.lNewPassword.Text = "New Password :";
+            // 
+            // tbPassword
+            // 
+            this.tbPassword.Location = new System.Drawing.Point(842, 447);
+            this.tbPassword.Name = "tbPassword";
+            this.tbPassword.Size = new System.Drawing.Size(60, 22);
+            this.tbPassword.TabIndex = 67;
+            this.tbPassword.Text = "3234";
+            this.tbPassword.UseSystemPasswordChar = true;
+            // 
+            // lPassword
+            // 
+            this.lPassword.AutoSize = true;
+            this.lPassword.Location = new System.Drawing.Point(827, 432);
+            this.lPassword.Name = "lPassword";
+            this.lPassword.Size = new System.Drawing.Size(54, 12);
+            this.lPassword.TabIndex = 66;
+            this.lPassword.Text = "Password :";
+            // 
             // bPasswordReset
             // 
-            this.bPasswordReset.Location = new System.Drawing.Point(521, 3);
+            this.bPasswordReset.Location = new System.Drawing.Point(827, 515);
             this.bPasswordReset.Name = "bPasswordReset";
-            this.bPasswordReset.Size = new System.Drawing.Size(100, 23);
+            this.bPasswordReset.Size = new System.Drawing.Size(75, 40);
             this.bPasswordReset.TabIndex = 28;
             this.bPasswordReset.Text = "Password Reset";
             this.bPasswordReset.UseVisualStyleBackColor = true;
@@ -1163,167 +1640,731 @@
             // 
             // bStoreIntoFlash
             // 
-            this.bStoreIntoFlash.Location = new System.Drawing.Point(627, 33);
+            this.bStoreIntoFlash.Location = new System.Drawing.Point(827, 306);
             this.bStoreIntoFlash.Name = "bStoreIntoFlash";
-            this.bStoreIntoFlash.Size = new System.Drawing.Size(75, 40);
+            this.bStoreIntoFlash.Size = new System.Drawing.Size(75, 43);
             this.bStoreIntoFlash.TabIndex = 29;
             this.bStoreIntoFlash.Text = "Store Into Flash";
             this.bStoreIntoFlash.UseVisualStyleBackColor = true;
             this.bStoreIntoFlash.Click += new System.EventHandler(this.bStoreIntoFlash_Click);
             // 
-            // cbRx4RateSelect
+            // gbFreeSideDeviceProperties
             // 
-            this.cbRx4RateSelect.FormattingEnabled = true;
-            this.cbRx4RateSelect.Location = new System.Drawing.Point(94, 43);
-            this.cbRx4RateSelect.Name = "cbRx4RateSelect";
-            this.cbRx4RateSelect.Size = new System.Drawing.Size(40, 20);
-            this.cbRx4RateSelect.TabIndex = 13;
+            this.gbFreeSideDeviceProperties.Controls.Add(this.tbFarEndImplementation);
+            this.gbFreeSideDeviceProperties.Controls.Add(this.lFarEndImplementation);
+            this.gbFreeSideDeviceProperties.Controls.Add(this.tbNearEndImplementation);
+            this.gbFreeSideDeviceProperties.Controls.Add(this.lNearEndImplementation);
+            this.gbFreeSideDeviceProperties.Controls.Add(this.tbPciExpress);
+            this.gbFreeSideDeviceProperties.Controls.Add(this.lPciExpress);
+            this.gbFreeSideDeviceProperties.Controls.Add(this.tbAdvaancedLowPowerMode);
+            this.gbFreeSideDeviceProperties.Controls.Add(this.lAdvancedLowPowerMode);
+            this.gbFreeSideDeviceProperties.Controls.Add(this.cbFarSideManaged);
+            this.gbFreeSideDeviceProperties.Controls.Add(this.tbMinOperatingVoltage);
+            this.gbFreeSideDeviceProperties.Controls.Add(this.lMinOperationVoltage);
+            this.gbFreeSideDeviceProperties.Controls.Add(this.tbPropagationDelay);
+            this.gbFreeSideDeviceProperties.Controls.Add(this.lPropagationDelay);
+            this.gbFreeSideDeviceProperties.Location = new System.Drawing.Point(577, 3);
+            this.gbFreeSideDeviceProperties.Name = "gbFreeSideDeviceProperties";
+            this.gbFreeSideDeviceProperties.Size = new System.Drawing.Size(325, 129);
+            this.gbFreeSideDeviceProperties.TabIndex = 30;
+            this.gbFreeSideDeviceProperties.TabStop = false;
+            this.gbFreeSideDeviceProperties.Text = "Free side device properities";
             // 
-            // lRx4RateSelect
+            // tbFarEndImplementation
             // 
-            this.lRx4RateSelect.AutoSize = true;
-            this.lRx4RateSelect.Location = new System.Drawing.Point(6, 46);
-            this.lRx4RateSelect.Name = "lRx4RateSelect";
-            this.lRx4RateSelect.Size = new System.Drawing.Size(82, 12);
-            this.lRx4RateSelect.TabIndex = 14;
-            this.lRx4RateSelect.Text = "Rx4 Rate Select:";
+            this.tbFarEndImplementation.Location = new System.Drawing.Point(130, 103);
+            this.tbFarEndImplementation.Name = "tbFarEndImplementation";
+            this.tbFarEndImplementation.ReadOnly = true;
+            this.tbFarEndImplementation.Size = new System.Drawing.Size(40, 22);
+            this.tbFarEndImplementation.TabIndex = 69;
             // 
-            // lRx3RateSelect
+            // lFarEndImplementation
             // 
-            this.lRx3RateSelect.AutoSize = true;
-            this.lRx3RateSelect.Location = new System.Drawing.Point(140, 46);
-            this.lRx3RateSelect.Name = "lRx3RateSelect";
-            this.lRx3RateSelect.Size = new System.Drawing.Size(82, 12);
-            this.lRx3RateSelect.TabIndex = 16;
-            this.lRx3RateSelect.Text = "Rx3 Rate Select:";
+            this.lFarEndImplementation.AutoSize = true;
+            this.lFarEndImplementation.Location = new System.Drawing.Point(6, 106);
+            this.lFarEndImplementation.Name = "lFarEndImplementation";
+            this.lFarEndImplementation.Size = new System.Drawing.Size(118, 12);
+            this.lFarEndImplementation.TabIndex = 68;
+            this.lFarEndImplementation.Text = "Far end implementation:";
             // 
-            // cbRx3RateSelect
+            // tbNearEndImplementation
             // 
-            this.cbRx3RateSelect.FormattingEnabled = true;
-            this.cbRx3RateSelect.Location = new System.Drawing.Point(228, 43);
-            this.cbRx3RateSelect.Name = "cbRx3RateSelect";
-            this.cbRx3RateSelect.Size = new System.Drawing.Size(40, 20);
-            this.cbRx3RateSelect.TabIndex = 15;
+            this.tbNearEndImplementation.Location = new System.Drawing.Point(259, 75);
+            this.tbNearEndImplementation.Name = "tbNearEndImplementation";
+            this.tbNearEndImplementation.ReadOnly = true;
+            this.tbNearEndImplementation.Size = new System.Drawing.Size(40, 22);
+            this.tbNearEndImplementation.TabIndex = 67;
             // 
-            // lRx2RateSelect
+            // lNearEndImplementation
             // 
-            this.lRx2RateSelect.AutoSize = true;
-            this.lRx2RateSelect.Location = new System.Drawing.Point(274, 46);
-            this.lRx2RateSelect.Name = "lRx2RateSelect";
-            this.lRx2RateSelect.Size = new System.Drawing.Size(82, 12);
-            this.lRx2RateSelect.TabIndex = 18;
-            this.lRx2RateSelect.Text = "Rx2 Rate Select:";
+            this.lNearEndImplementation.AutoSize = true;
+            this.lNearEndImplementation.Location = new System.Drawing.Point(128, 78);
+            this.lNearEndImplementation.Name = "lNearEndImplementation";
+            this.lNearEndImplementation.Size = new System.Drawing.Size(125, 12);
+            this.lNearEndImplementation.TabIndex = 66;
+            this.lNearEndImplementation.Text = "Near end implementation:";
             // 
-            // cbRx2RateSelect
+            // tbPciExpress
             // 
-            this.cbRx2RateSelect.FormattingEnabled = true;
-            this.cbRx2RateSelect.Location = new System.Drawing.Point(362, 43);
-            this.cbRx2RateSelect.Name = "cbRx2RateSelect";
-            this.cbRx2RateSelect.Size = new System.Drawing.Size(40, 20);
-            this.cbRx2RateSelect.TabIndex = 17;
+            this.tbPciExpress.Location = new System.Drawing.Point(75, 75);
+            this.tbPciExpress.Name = "tbPciExpress";
+            this.tbPciExpress.ReadOnly = true;
+            this.tbPciExpress.Size = new System.Drawing.Size(45, 22);
+            this.tbPciExpress.TabIndex = 65;
             // 
-            // lRx1RateSelect
+            // lPciExpress
             // 
-            this.lRx1RateSelect.AutoSize = true;
-            this.lRx1RateSelect.Location = new System.Drawing.Point(408, 46);
-            this.lRx1RateSelect.Name = "lRx1RateSelect";
-            this.lRx1RateSelect.Size = new System.Drawing.Size(82, 12);
-            this.lRx1RateSelect.TabIndex = 20;
-            this.lRx1RateSelect.Text = "Rx1 Rate Select:";
+            this.lPciExpress.AutoSize = true;
+            this.lPciExpress.Location = new System.Drawing.Point(6, 78);
+            this.lPciExpress.Name = "lPciExpress";
+            this.lPciExpress.Size = new System.Drawing.Size(63, 12);
+            this.lPciExpress.TabIndex = 64;
+            this.lPciExpress.Text = "PCI express:";
             // 
-            // cbRx1RateSelect
+            // tbAdvaancedLowPowerMode
             // 
-            this.cbRx1RateSelect.FormattingEnabled = true;
-            this.cbRx1RateSelect.Location = new System.Drawing.Point(496, 43);
-            this.cbRx1RateSelect.Name = "cbRx1RateSelect";
-            this.cbRx1RateSelect.Size = new System.Drawing.Size(40, 20);
-            this.cbRx1RateSelect.TabIndex = 19;
+            this.tbAdvaancedLowPowerMode.Location = new System.Drawing.Point(259, 47);
+            this.tbAdvaancedLowPowerMode.Name = "tbAdvaancedLowPowerMode";
+            this.tbAdvaancedLowPowerMode.ReadOnly = true;
+            this.tbAdvaancedLowPowerMode.Size = new System.Drawing.Size(40, 22);
+            this.tbAdvaancedLowPowerMode.TabIndex = 63;
             // 
-            // lTx1RateSelect
+            // lAdvancedLowPowerMode
             // 
-            this.lTx1RateSelect.AutoSize = true;
-            this.lTx1RateSelect.Location = new System.Drawing.Point(408, 72);
-            this.lTx1RateSelect.Name = "lTx1RateSelect";
-            this.lTx1RateSelect.Size = new System.Drawing.Size(81, 12);
-            this.lTx1RateSelect.TabIndex = 28;
-            this.lTx1RateSelect.Text = "Tx1 Rate Select:";
+            this.lAdvancedLowPowerMode.AutoSize = true;
+            this.lAdvancedLowPowerMode.Location = new System.Drawing.Point(117, 50);
+            this.lAdvancedLowPowerMode.Name = "lAdvancedLowPowerMode";
+            this.lAdvancedLowPowerMode.Size = new System.Drawing.Size(136, 12);
+            this.lAdvancedLowPowerMode.TabIndex = 62;
+            this.lAdvancedLowPowerMode.Text = "Advanced low power mode:";
             // 
-            // cbTx1RateSelect
+            // cbFarSideManaged
             // 
-            this.cbTx1RateSelect.FormattingEnabled = true;
-            this.cbTx1RateSelect.Location = new System.Drawing.Point(496, 69);
-            this.cbTx1RateSelect.Name = "cbTx1RateSelect";
-            this.cbTx1RateSelect.Size = new System.Drawing.Size(40, 20);
-            this.cbTx1RateSelect.TabIndex = 27;
+            this.cbFarSideManaged.AutoSize = true;
+            this.cbFarSideManaged.Enabled = false;
+            this.cbFarSideManaged.Location = new System.Drawing.Point(6, 49);
+            this.cbFarSideManaged.Name = "cbFarSideManaged";
+            this.cbFarSideManaged.Size = new System.Drawing.Size(105, 16);
+            this.cbFarSideManaged.TabIndex = 61;
+            this.cbFarSideManaged.Text = "Far side managed";
+            this.cbFarSideManaged.UseVisualStyleBackColor = true;
             // 
-            // lTx2RateSelect
+            // tbMinOperatingVoltage
             // 
-            this.lTx2RateSelect.AutoSize = true;
-            this.lTx2RateSelect.Location = new System.Drawing.Point(274, 72);
-            this.lTx2RateSelect.Name = "lTx2RateSelect";
-            this.lTx2RateSelect.Size = new System.Drawing.Size(81, 12);
-            this.lTx2RateSelect.TabIndex = 26;
-            this.lTx2RateSelect.Text = "Tx2 Rate Select:";
+            this.tbMinOperatingVoltage.Location = new System.Drawing.Point(279, 19);
+            this.tbMinOperatingVoltage.Name = "tbMinOperatingVoltage";
+            this.tbMinOperatingVoltage.ReadOnly = true;
+            this.tbMinOperatingVoltage.Size = new System.Drawing.Size(40, 22);
+            this.tbMinOperatingVoltage.TabIndex = 33;
             // 
-            // cbTx2RateSelect
+            // lMinOperationVoltage
             // 
-            this.cbTx2RateSelect.FormattingEnabled = true;
-            this.cbTx2RateSelect.Location = new System.Drawing.Point(362, 69);
-            this.cbTx2RateSelect.Name = "cbTx2RateSelect";
-            this.cbTx2RateSelect.Size = new System.Drawing.Size(40, 20);
-            this.cbTx2RateSelect.TabIndex = 25;
+            this.lMinOperationVoltage.AutoSize = true;
+            this.lMinOperationVoltage.Location = new System.Drawing.Point(158, 22);
+            this.lMinOperationVoltage.Name = "lMinOperationVoltage";
+            this.lMinOperationVoltage.Size = new System.Drawing.Size(115, 12);
+            this.lMinOperationVoltage.TabIndex = 32;
+            this.lMinOperationVoltage.Text = "Min Operating Voltage:";
             // 
-            // lTx3RateSelect
+            // tbPropagationDelay
             // 
-            this.lTx3RateSelect.AutoSize = true;
-            this.lTx3RateSelect.Location = new System.Drawing.Point(140, 72);
-            this.lTx3RateSelect.Name = "lTx3RateSelect";
-            this.lTx3RateSelect.Size = new System.Drawing.Size(81, 12);
-            this.lTx3RateSelect.TabIndex = 24;
-            this.lTx3RateSelect.Text = "Tx3 Rate Select:";
+            this.tbPropagationDelay.Location = new System.Drawing.Point(106, 19);
+            this.tbPropagationDelay.Name = "tbPropagationDelay";
+            this.tbPropagationDelay.ReadOnly = true;
+            this.tbPropagationDelay.Size = new System.Drawing.Size(45, 22);
+            this.tbPropagationDelay.TabIndex = 31;
             // 
-            // cbTx3RateSelect
+            // lPropagationDelay
             // 
-            this.cbTx3RateSelect.FormattingEnabled = true;
-            this.cbTx3RateSelect.Location = new System.Drawing.Point(228, 69);
-            this.cbTx3RateSelect.Name = "cbTx3RateSelect";
-            this.cbTx3RateSelect.Size = new System.Drawing.Size(40, 20);
-            this.cbTx3RateSelect.TabIndex = 23;
+            this.lPropagationDelay.AutoSize = true;
+            this.lPropagationDelay.Location = new System.Drawing.Point(6, 22);
+            this.lPropagationDelay.Name = "lPropagationDelay";
+            this.lPropagationDelay.Size = new System.Drawing.Size(94, 12);
+            this.lPropagationDelay.TabIndex = 30;
+            this.lPropagationDelay.Text = "Propagation Delay:";
             // 
-            // lTx4RateSelect
+            // gbOptionalChannelControl
             // 
-            this.lTx4RateSelect.AutoSize = true;
-            this.lTx4RateSelect.Location = new System.Drawing.Point(6, 72);
-            this.lTx4RateSelect.Name = "lTx4RateSelect";
-            this.lTx4RateSelect.Size = new System.Drawing.Size(81, 12);
-            this.lTx4RateSelect.TabIndex = 22;
-            this.lTx4RateSelect.Text = "Tx4 Rate Select:";
+            this.gbOptionalChannelControl.Controls.Add(this.cbRxOutputEmphasisType);
+            this.gbOptionalChannelControl.Controls.Add(this.cbAdaptiveEqualizationControlTx4);
+            this.gbOptionalChannelControl.Controls.Add(this.cbAdaptiveEqualizationControlTx3);
+            this.gbOptionalChannelControl.Controls.Add(this.cbAdaptiveEqualizationControlTx2);
+            this.gbOptionalChannelControl.Controls.Add(this.cbAdaptiveEqualizationControlTx1);
+            this.gbOptionalChannelControl.Controls.Add(this.lRxOutputEmphasisType);
+            this.gbOptionalChannelControl.Controls.Add(this.cbOutputDisableRx4);
+            this.gbOptionalChannelControl.Controls.Add(this.cbOutputDisableRx3);
+            this.gbOptionalChannelControl.Controls.Add(this.cbOutputDisableRx2);
+            this.gbOptionalChannelControl.Controls.Add(this.cbOutputDisableRx1);
+            this.gbOptionalChannelControl.Controls.Add(this.cbSqDisableRx4);
+            this.gbOptionalChannelControl.Controls.Add(this.cbSqDisableRx3);
+            this.gbOptionalChannelControl.Controls.Add(this.cbSqDisableRx2);
+            this.gbOptionalChannelControl.Controls.Add(this.cbSqDisableRx1);
+            this.gbOptionalChannelControl.Controls.Add(this.cbSqDisableTx4);
+            this.gbOptionalChannelControl.Controls.Add(this.cbSqDisableTx3);
+            this.gbOptionalChannelControl.Controls.Add(this.cbSqDisableTx2);
+            this.gbOptionalChannelControl.Controls.Add(this.cbSqDisableTx1);
+            this.gbOptionalChannelControl.Controls.Add(this.lOptionalChannelControlTx4);
+            this.gbOptionalChannelControl.Controls.Add(this.lOptionalChannelControlTx3);
+            this.gbOptionalChannelControl.Controls.Add(this.lOptionalChannelControlTx2);
+            this.gbOptionalChannelControl.Controls.Add(this.lOptionalChannelControlTx1);
+            this.gbOptionalChannelControl.Controls.Add(this.cbRxOutputEmphasisMagnitudeRx4);
+            this.gbOptionalChannelControl.Controls.Add(this.cbRxOutputEmphasisMagnitudeRx3);
+            this.gbOptionalChannelControl.Controls.Add(this.cbRxOutputEmphasisMagnitudeRx2);
+            this.gbOptionalChannelControl.Controls.Add(this.cbRxOutputEmphasisMagnitudeRx1);
+            this.gbOptionalChannelControl.Controls.Add(this.cbOutputAmplitudeSupportRx4);
+            this.gbOptionalChannelControl.Controls.Add(this.cbOutputAmplitudeSupportRx3);
+            this.gbOptionalChannelControl.Controls.Add(this.cbOutputAmplitudeSupportRx2);
+            this.gbOptionalChannelControl.Controls.Add(this.cbOutputAmplitudeSupportRx1);
+            this.gbOptionalChannelControl.Controls.Add(this.lRxOutputAmplitudeControl);
+            this.gbOptionalChannelControl.Controls.Add(this.cbOutputAmplitudeRx1);
+            this.gbOptionalChannelControl.Controls.Add(this.cbOutputAmplitudeRx2);
+            this.gbOptionalChannelControl.Controls.Add(this.cbOutputAmplitudeRx3);
+            this.gbOptionalChannelControl.Controls.Add(this.cbOutputAmplitudeRx4);
+            this.gbOptionalChannelControl.Controls.Add(this.lRxOutputEmphasis);
+            this.gbOptionalChannelControl.Controls.Add(this.label8);
+            this.gbOptionalChannelControl.Controls.Add(this.label9);
+            this.gbOptionalChannelControl.Controls.Add(this.label10);
+            this.gbOptionalChannelControl.Controls.Add(this.label11);
+            this.gbOptionalChannelControl.Controls.Add(this.cbInputEqualizationTx1);
+            this.gbOptionalChannelControl.Controls.Add(this.cbInputEqualizationTx2);
+            this.gbOptionalChannelControl.Controls.Add(this.cbInputEqualizationTx3);
+            this.gbOptionalChannelControl.Controls.Add(this.lTxInputEqualizationMagnitude);
+            this.gbOptionalChannelControl.Controls.Add(this.cbInputEqualizationTx4);
+            this.gbOptionalChannelControl.Controls.Add(this.cbRxOutputEmphasisRx1);
+            this.gbOptionalChannelControl.Controls.Add(this.cbRxOutputEmphasisRx2);
+            this.gbOptionalChannelControl.Controls.Add(this.cbRxOutputEmphasisRx3);
+            this.gbOptionalChannelControl.Controls.Add(this.cbRxOutputEmphasisRx4);
+            this.gbOptionalChannelControl.Controls.Add(this.cbInputEqualizationMagnitudeTx4);
+            this.gbOptionalChannelControl.Controls.Add(this.cbInputEqualizationMagnitudeTx3);
+            this.gbOptionalChannelControl.Controls.Add(this.cbInputEqualizationMagnitudeTx2);
+            this.gbOptionalChannelControl.Controls.Add(this.cbInputEqualizationMagnitudeTx1);
+            this.gbOptionalChannelControl.Location = new System.Drawing.Point(8, 21);
+            this.gbOptionalChannelControl.Name = "gbOptionalChannelControl";
+            this.gbOptionalChannelControl.Size = new System.Drawing.Size(804, 129);
+            this.gbOptionalChannelControl.TabIndex = 61;
+            this.gbOptionalChannelControl.TabStop = false;
+            this.gbOptionalChannelControl.Text = "Optional Channel Control";
             // 
-            // cbTx4RateSelect
+            // cbRxOutputEmphasisType
             // 
-            this.cbTx4RateSelect.FormattingEnabled = true;
-            this.cbTx4RateSelect.Location = new System.Drawing.Point(94, 69);
-            this.cbTx4RateSelect.Name = "cbTx4RateSelect";
-            this.cbTx4RateSelect.Size = new System.Drawing.Size(40, 20);
-            this.cbTx4RateSelect.TabIndex = 21;
+            this.cbRxOutputEmphasisType.FormattingEnabled = true;
+            this.cbRxOutputEmphasisType.Location = new System.Drawing.Point(458, 26);
+            this.cbRxOutputEmphasisType.Name = "cbRxOutputEmphasisType";
+            this.cbRxOutputEmphasisType.Size = new System.Drawing.Size(40, 20);
+            this.cbRxOutputEmphasisType.TabIndex = 79;
+            // 
+            // cbAdaptiveEqualizationControlTx4
+            // 
+            this.cbAdaptiveEqualizationControlTx4.AutoSize = true;
+            this.cbAdaptiveEqualizationControlTx4.Location = new System.Drawing.Point(214, 105);
+            this.cbAdaptiveEqualizationControlTx4.Name = "cbAdaptiveEqualizationControlTx4";
+            this.cbAdaptiveEqualizationControlTx4.Size = new System.Drawing.Size(84, 16);
+            this.cbAdaptiveEqualizationControlTx4.TabIndex = 75;
+            this.cbAdaptiveEqualizationControlTx4.Text = "Adaptive EQ";
+            this.cbAdaptiveEqualizationControlTx4.UseVisualStyleBackColor = true;
+            // 
+            // cbAdaptiveEqualizationControlTx3
+            // 
+            this.cbAdaptiveEqualizationControlTx3.AutoSize = true;
+            this.cbAdaptiveEqualizationControlTx3.Location = new System.Drawing.Point(214, 79);
+            this.cbAdaptiveEqualizationControlTx3.Name = "cbAdaptiveEqualizationControlTx3";
+            this.cbAdaptiveEqualizationControlTx3.Size = new System.Drawing.Size(84, 16);
+            this.cbAdaptiveEqualizationControlTx3.TabIndex = 76;
+            this.cbAdaptiveEqualizationControlTx3.Text = "Adaptive EQ";
+            this.cbAdaptiveEqualizationControlTx3.UseVisualStyleBackColor = true;
+            // 
+            // cbAdaptiveEqualizationControlTx2
+            // 
+            this.cbAdaptiveEqualizationControlTx2.AutoSize = true;
+            this.cbAdaptiveEqualizationControlTx2.Location = new System.Drawing.Point(214, 53);
+            this.cbAdaptiveEqualizationControlTx2.Name = "cbAdaptiveEqualizationControlTx2";
+            this.cbAdaptiveEqualizationControlTx2.Size = new System.Drawing.Size(84, 16);
+            this.cbAdaptiveEqualizationControlTx2.TabIndex = 77;
+            this.cbAdaptiveEqualizationControlTx2.Text = "Adaptive EQ";
+            this.cbAdaptiveEqualizationControlTx2.UseVisualStyleBackColor = true;
+            // 
+            // cbAdaptiveEqualizationControlTx1
+            // 
+            this.cbAdaptiveEqualizationControlTx1.AutoSize = true;
+            this.cbAdaptiveEqualizationControlTx1.Location = new System.Drawing.Point(214, 28);
+            this.cbAdaptiveEqualizationControlTx1.Name = "cbAdaptiveEqualizationControlTx1";
+            this.cbAdaptiveEqualizationControlTx1.Size = new System.Drawing.Size(84, 16);
+            this.cbAdaptiveEqualizationControlTx1.TabIndex = 78;
+            this.cbAdaptiveEqualizationControlTx1.Text = "Adaptive EQ";
+            this.cbAdaptiveEqualizationControlTx1.UseVisualStyleBackColor = true;
+            // 
+            // lRxOutputEmphasisType
+            // 
+            this.lRxOutputEmphasisType.AutoSize = true;
+            this.lRxOutputEmphasisType.Location = new System.Drawing.Point(464, 11);
+            this.lRxOutputEmphasisType.Name = "lRxOutputEmphasisType";
+            this.lRxOutputEmphasisType.Size = new System.Drawing.Size(29, 12);
+            this.lRxOutputEmphasisType.TabIndex = 74;
+            this.lRxOutputEmphasisType.Text = "Type";
+            // 
+            // cbOutputDisableRx4
+            // 
+            this.cbOutputDisableRx4.AutoSize = true;
+            this.cbOutputDisableRx4.Location = new System.Drawing.Point(710, 105);
+            this.cbOutputDisableRx4.Name = "cbOutputDisableRx4";
+            this.cbOutputDisableRx4.Size = new System.Drawing.Size(58, 16);
+            this.cbOutputDisableRx4.TabIndex = 69;
+            this.cbOutputDisableRx4.Text = "Disable";
+            this.cbOutputDisableRx4.UseVisualStyleBackColor = true;
+            // 
+            // cbOutputDisableRx3
+            // 
+            this.cbOutputDisableRx3.AutoSize = true;
+            this.cbOutputDisableRx3.Location = new System.Drawing.Point(710, 79);
+            this.cbOutputDisableRx3.Name = "cbOutputDisableRx3";
+            this.cbOutputDisableRx3.Size = new System.Drawing.Size(58, 16);
+            this.cbOutputDisableRx3.TabIndex = 70;
+            this.cbOutputDisableRx3.Text = "Disable";
+            this.cbOutputDisableRx3.UseVisualStyleBackColor = true;
+            // 
+            // cbOutputDisableRx2
+            // 
+            this.cbOutputDisableRx2.AutoSize = true;
+            this.cbOutputDisableRx2.Location = new System.Drawing.Point(710, 53);
+            this.cbOutputDisableRx2.Name = "cbOutputDisableRx2";
+            this.cbOutputDisableRx2.Size = new System.Drawing.Size(58, 16);
+            this.cbOutputDisableRx2.TabIndex = 71;
+            this.cbOutputDisableRx2.Text = "Disable";
+            this.cbOutputDisableRx2.UseVisualStyleBackColor = true;
+            // 
+            // cbOutputDisableRx1
+            // 
+            this.cbOutputDisableRx1.AutoSize = true;
+            this.cbOutputDisableRx1.Location = new System.Drawing.Point(710, 28);
+            this.cbOutputDisableRx1.Name = "cbOutputDisableRx1";
+            this.cbOutputDisableRx1.Size = new System.Drawing.Size(58, 16);
+            this.cbOutputDisableRx1.TabIndex = 72;
+            this.cbOutputDisableRx1.Text = "Disable";
+            this.cbOutputDisableRx1.UseVisualStyleBackColor = true;
+            // 
+            // cbSqDisableRx4
+            // 
+            this.cbSqDisableRx4.AutoSize = true;
+            this.cbSqDisableRx4.Location = new System.Drawing.Point(629, 105);
+            this.cbSqDisableRx4.Name = "cbSqDisableRx4";
+            this.cbSqDisableRx4.Size = new System.Drawing.Size(75, 16);
+            this.cbSqDisableRx4.TabIndex = 65;
+            this.cbSqDisableRx4.Text = "SQ Disable";
+            this.cbSqDisableRx4.UseVisualStyleBackColor = true;
+            // 
+            // cbSqDisableRx3
+            // 
+            this.cbSqDisableRx3.AutoSize = true;
+            this.cbSqDisableRx3.Location = new System.Drawing.Point(629, 79);
+            this.cbSqDisableRx3.Name = "cbSqDisableRx3";
+            this.cbSqDisableRx3.Size = new System.Drawing.Size(75, 16);
+            this.cbSqDisableRx3.TabIndex = 66;
+            this.cbSqDisableRx3.Text = "SQ Disable";
+            this.cbSqDisableRx3.UseVisualStyleBackColor = true;
+            // 
+            // cbSqDisableRx2
+            // 
+            this.cbSqDisableRx2.AutoSize = true;
+            this.cbSqDisableRx2.Location = new System.Drawing.Point(629, 53);
+            this.cbSqDisableRx2.Name = "cbSqDisableRx2";
+            this.cbSqDisableRx2.Size = new System.Drawing.Size(75, 16);
+            this.cbSqDisableRx2.TabIndex = 67;
+            this.cbSqDisableRx2.Text = "SQ Disable";
+            this.cbSqDisableRx2.UseVisualStyleBackColor = true;
+            // 
+            // cbSqDisableRx1
+            // 
+            this.cbSqDisableRx1.AutoSize = true;
+            this.cbSqDisableRx1.Location = new System.Drawing.Point(629, 28);
+            this.cbSqDisableRx1.Name = "cbSqDisableRx1";
+            this.cbSqDisableRx1.Size = new System.Drawing.Size(75, 16);
+            this.cbSqDisableRx1.TabIndex = 68;
+            this.cbSqDisableRx1.Text = "SQ Disable";
+            this.cbSqDisableRx1.UseVisualStyleBackColor = true;
+            // 
+            // cbSqDisableTx4
+            // 
+            this.cbSqDisableTx4.AutoSize = true;
+            this.cbSqDisableTx4.Location = new System.Drawing.Point(133, 105);
+            this.cbSqDisableTx4.Name = "cbSqDisableTx4";
+            this.cbSqDisableTx4.Size = new System.Drawing.Size(75, 16);
+            this.cbSqDisableTx4.TabIndex = 61;
+            this.cbSqDisableTx4.Text = "SQ Disable";
+            this.cbSqDisableTx4.UseVisualStyleBackColor = true;
+            // 
+            // cbSqDisableTx3
+            // 
+            this.cbSqDisableTx3.AutoSize = true;
+            this.cbSqDisableTx3.Location = new System.Drawing.Point(133, 79);
+            this.cbSqDisableTx3.Name = "cbSqDisableTx3";
+            this.cbSqDisableTx3.Size = new System.Drawing.Size(75, 16);
+            this.cbSqDisableTx3.TabIndex = 62;
+            this.cbSqDisableTx3.Text = "SQ Disable";
+            this.cbSqDisableTx3.UseVisualStyleBackColor = true;
+            // 
+            // cbSqDisableTx2
+            // 
+            this.cbSqDisableTx2.AutoSize = true;
+            this.cbSqDisableTx2.Location = new System.Drawing.Point(133, 53);
+            this.cbSqDisableTx2.Name = "cbSqDisableTx2";
+            this.cbSqDisableTx2.Size = new System.Drawing.Size(75, 16);
+            this.cbSqDisableTx2.TabIndex = 63;
+            this.cbSqDisableTx2.Text = "SQ Disable";
+            this.cbSqDisableTx2.UseVisualStyleBackColor = true;
+            // 
+            // cbSqDisableTx1
+            // 
+            this.cbSqDisableTx1.AutoSize = true;
+            this.cbSqDisableTx1.Location = new System.Drawing.Point(133, 28);
+            this.cbSqDisableTx1.Name = "cbSqDisableTx1";
+            this.cbSqDisableTx1.Size = new System.Drawing.Size(75, 16);
+            this.cbSqDisableTx1.TabIndex = 64;
+            this.cbSqDisableTx1.Text = "SQ Disable";
+            this.cbSqDisableTx1.UseVisualStyleBackColor = true;
+            // 
+            // lOptionalChannelControlTx4
+            // 
+            this.lOptionalChannelControlTx4.AutoSize = true;
+            this.lOptionalChannelControlTx4.Location = new System.Drawing.Point(6, 106);
+            this.lOptionalChannelControlTx4.Name = "lOptionalChannelControlTx4";
+            this.lOptionalChannelControlTx4.Size = new System.Drawing.Size(30, 12);
+            this.lOptionalChannelControlTx4.TabIndex = 60;
+            this.lOptionalChannelControlTx4.Text = "Tx4 :";
+            // 
+            // lOptionalChannelControlTx3
+            // 
+            this.lOptionalChannelControlTx3.AutoSize = true;
+            this.lOptionalChannelControlTx3.Location = new System.Drawing.Point(6, 80);
+            this.lOptionalChannelControlTx3.Name = "lOptionalChannelControlTx3";
+            this.lOptionalChannelControlTx3.Size = new System.Drawing.Size(30, 12);
+            this.lOptionalChannelControlTx3.TabIndex = 59;
+            this.lOptionalChannelControlTx3.Text = "Tx3 :";
+            // 
+            // lOptionalChannelControlTx2
+            // 
+            this.lOptionalChannelControlTx2.AutoSize = true;
+            this.lOptionalChannelControlTx2.Location = new System.Drawing.Point(6, 54);
+            this.lOptionalChannelControlTx2.Name = "lOptionalChannelControlTx2";
+            this.lOptionalChannelControlTx2.Size = new System.Drawing.Size(30, 12);
+            this.lOptionalChannelControlTx2.TabIndex = 58;
+            this.lOptionalChannelControlTx2.Text = "Tx2 :";
+            // 
+            // lOptionalChannelControlTx1
+            // 
+            this.lOptionalChannelControlTx1.AutoSize = true;
+            this.lOptionalChannelControlTx1.Location = new System.Drawing.Point(6, 29);
+            this.lOptionalChannelControlTx1.Name = "lOptionalChannelControlTx1";
+            this.lOptionalChannelControlTx1.Size = new System.Drawing.Size(30, 12);
+            this.lOptionalChannelControlTx1.TabIndex = 57;
+            this.lOptionalChannelControlTx1.Text = "Tx1 :";
+            // 
+            // cbRxOutputEmphasisMagnitudeRx4
+            // 
+            this.cbRxOutputEmphasisMagnitudeRx4.AutoSize = true;
+            this.cbRxOutputEmphasisMagnitudeRx4.Location = new System.Drawing.Point(338, 105);
+            this.cbRxOutputEmphasisMagnitudeRx4.Name = "cbRxOutputEmphasisMagnitudeRx4";
+            this.cbRxOutputEmphasisMagnitudeRx4.Size = new System.Drawing.Size(68, 16);
+            this.cbRxOutputEmphasisMagnitudeRx4.TabIndex = 53;
+            this.cbRxOutputEmphasisMagnitudeRx4.Text = "Emphasis";
+            this.cbRxOutputEmphasisMagnitudeRx4.UseVisualStyleBackColor = true;
+            // 
+            // cbRxOutputEmphasisMagnitudeRx3
+            // 
+            this.cbRxOutputEmphasisMagnitudeRx3.AutoSize = true;
+            this.cbRxOutputEmphasisMagnitudeRx3.Location = new System.Drawing.Point(338, 79);
+            this.cbRxOutputEmphasisMagnitudeRx3.Name = "cbRxOutputEmphasisMagnitudeRx3";
+            this.cbRxOutputEmphasisMagnitudeRx3.Size = new System.Drawing.Size(68, 16);
+            this.cbRxOutputEmphasisMagnitudeRx3.TabIndex = 54;
+            this.cbRxOutputEmphasisMagnitudeRx3.Text = "Emphasis";
+            this.cbRxOutputEmphasisMagnitudeRx3.UseVisualStyleBackColor = true;
+            // 
+            // cbRxOutputEmphasisMagnitudeRx2
+            // 
+            this.cbRxOutputEmphasisMagnitudeRx2.AutoSize = true;
+            this.cbRxOutputEmphasisMagnitudeRx2.Location = new System.Drawing.Point(338, 53);
+            this.cbRxOutputEmphasisMagnitudeRx2.Name = "cbRxOutputEmphasisMagnitudeRx2";
+            this.cbRxOutputEmphasisMagnitudeRx2.Size = new System.Drawing.Size(68, 16);
+            this.cbRxOutputEmphasisMagnitudeRx2.TabIndex = 55;
+            this.cbRxOutputEmphasisMagnitudeRx2.Text = "Emphasis";
+            this.cbRxOutputEmphasisMagnitudeRx2.UseVisualStyleBackColor = true;
+            // 
+            // cbRxOutputEmphasisMagnitudeRx1
+            // 
+            this.cbRxOutputEmphasisMagnitudeRx1.AutoSize = true;
+            this.cbRxOutputEmphasisMagnitudeRx1.Location = new System.Drawing.Point(338, 28);
+            this.cbRxOutputEmphasisMagnitudeRx1.Name = "cbRxOutputEmphasisMagnitudeRx1";
+            this.cbRxOutputEmphasisMagnitudeRx1.Size = new System.Drawing.Size(68, 16);
+            this.cbRxOutputEmphasisMagnitudeRx1.TabIndex = 56;
+            this.cbRxOutputEmphasisMagnitudeRx1.Text = "Emphasis";
+            this.cbRxOutputEmphasisMagnitudeRx1.UseVisualStyleBackColor = true;
+            // 
+            // cbOutputAmplitudeSupportRx4
+            // 
+            this.cbOutputAmplitudeSupportRx4.AutoSize = true;
+            this.cbOutputAmplitudeSupportRx4.Location = new System.Drawing.Point(504, 105);
+            this.cbOutputAmplitudeSupportRx4.Name = "cbOutputAmplitudeSupportRx4";
+            this.cbOutputAmplitudeSupportRx4.Size = new System.Drawing.Size(73, 16);
+            this.cbOutputAmplitudeSupportRx4.TabIndex = 49;
+            this.cbOutputAmplitudeSupportRx4.Text = "Amplitude";
+            this.cbOutputAmplitudeSupportRx4.UseVisualStyleBackColor = true;
+            // 
+            // cbOutputAmplitudeSupportRx3
+            // 
+            this.cbOutputAmplitudeSupportRx3.AutoSize = true;
+            this.cbOutputAmplitudeSupportRx3.Location = new System.Drawing.Point(504, 79);
+            this.cbOutputAmplitudeSupportRx3.Name = "cbOutputAmplitudeSupportRx3";
+            this.cbOutputAmplitudeSupportRx3.Size = new System.Drawing.Size(73, 16);
+            this.cbOutputAmplitudeSupportRx3.TabIndex = 50;
+            this.cbOutputAmplitudeSupportRx3.Text = "Amplitude";
+            this.cbOutputAmplitudeSupportRx3.UseVisualStyleBackColor = true;
+            // 
+            // cbOutputAmplitudeSupportRx2
+            // 
+            this.cbOutputAmplitudeSupportRx2.AutoSize = true;
+            this.cbOutputAmplitudeSupportRx2.Location = new System.Drawing.Point(504, 53);
+            this.cbOutputAmplitudeSupportRx2.Name = "cbOutputAmplitudeSupportRx2";
+            this.cbOutputAmplitudeSupportRx2.Size = new System.Drawing.Size(73, 16);
+            this.cbOutputAmplitudeSupportRx2.TabIndex = 51;
+            this.cbOutputAmplitudeSupportRx2.Text = "Amplitude";
+            this.cbOutputAmplitudeSupportRx2.UseVisualStyleBackColor = true;
+            // 
+            // cbOutputAmplitudeSupportRx1
+            // 
+            this.cbOutputAmplitudeSupportRx1.AutoSize = true;
+            this.cbOutputAmplitudeSupportRx1.Location = new System.Drawing.Point(504, 28);
+            this.cbOutputAmplitudeSupportRx1.Name = "cbOutputAmplitudeSupportRx1";
+            this.cbOutputAmplitudeSupportRx1.Size = new System.Drawing.Size(73, 16);
+            this.cbOutputAmplitudeSupportRx1.TabIndex = 52;
+            this.cbOutputAmplitudeSupportRx1.Text = "Amplitude";
+            this.cbOutputAmplitudeSupportRx1.UseVisualStyleBackColor = true;
+            // 
+            // lRxOutputAmplitudeControl
+            // 
+            this.lRxOutputAmplitudeControl.AutoSize = true;
+            this.lRxOutputAmplitudeControl.Location = new System.Drawing.Point(576, 11);
+            this.lRxOutputAmplitudeControl.Name = "lRxOutputAmplitudeControl";
+            this.lRxOutputAmplitudeControl.Size = new System.Drawing.Size(54, 12);
+            this.lRxOutputAmplitudeControl.TabIndex = 42;
+            this.lRxOutputAmplitudeControl.Text = "Amplitude";
+            // 
+            // cbOutputAmplitudeRx1
+            // 
+            this.cbOutputAmplitudeRx1.FormattingEnabled = true;
+            this.cbOutputAmplitudeRx1.Location = new System.Drawing.Point(583, 26);
+            this.cbOutputAmplitudeRx1.Name = "cbOutputAmplitudeRx1";
+            this.cbOutputAmplitudeRx1.Size = new System.Drawing.Size(40, 20);
+            this.cbOutputAmplitudeRx1.TabIndex = 41;
+            // 
+            // cbOutputAmplitudeRx2
+            // 
+            this.cbOutputAmplitudeRx2.FormattingEnabled = true;
+            this.cbOutputAmplitudeRx2.Location = new System.Drawing.Point(583, 51);
+            this.cbOutputAmplitudeRx2.Name = "cbOutputAmplitudeRx2";
+            this.cbOutputAmplitudeRx2.Size = new System.Drawing.Size(40, 20);
+            this.cbOutputAmplitudeRx2.TabIndex = 40;
+            // 
+            // cbOutputAmplitudeRx3
+            // 
+            this.cbOutputAmplitudeRx3.FormattingEnabled = true;
+            this.cbOutputAmplitudeRx3.Location = new System.Drawing.Point(583, 77);
+            this.cbOutputAmplitudeRx3.Name = "cbOutputAmplitudeRx3";
+            this.cbOutputAmplitudeRx3.Size = new System.Drawing.Size(40, 20);
+            this.cbOutputAmplitudeRx3.TabIndex = 39;
+            // 
+            // cbOutputAmplitudeRx4
+            // 
+            this.cbOutputAmplitudeRx4.FormattingEnabled = true;
+            this.cbOutputAmplitudeRx4.Location = new System.Drawing.Point(583, 103);
+            this.cbOutputAmplitudeRx4.Name = "cbOutputAmplitudeRx4";
+            this.cbOutputAmplitudeRx4.Size = new System.Drawing.Size(40, 20);
+            this.cbOutputAmplitudeRx4.TabIndex = 38;
+            // 
+            // lRxOutputEmphasis
+            // 
+            this.lRxOutputEmphasis.AutoSize = true;
+            this.lRxOutputEmphasis.Location = new System.Drawing.Point(408, 11);
+            this.lRxOutputEmphasis.Name = "lRxOutputEmphasis";
+            this.lRxOutputEmphasis.Size = new System.Drawing.Size(49, 12);
+            this.lRxOutputEmphasis.TabIndex = 37;
+            this.lRxOutputEmphasis.Text = "Emphasis";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(304, 106);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(28, 12);
+            this.label8.TabIndex = 36;
+            this.label8.Text = "Rx4:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(304, 80);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(28, 12);
+            this.label9.TabIndex = 35;
+            this.label9.Text = "Rx3:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(304, 54);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(28, 12);
+            this.label10.TabIndex = 34;
+            this.label10.Text = "Rx2:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(304, 29);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(28, 12);
+            this.label11.TabIndex = 33;
+            this.label11.Text = "Rx1:";
+            // 
+            // cbInputEqualizationTx1
+            // 
+            this.cbInputEqualizationTx1.FormattingEnabled = true;
+            this.cbInputEqualizationTx1.Location = new System.Drawing.Point(87, 26);
+            this.cbInputEqualizationTx1.Name = "cbInputEqualizationTx1";
+            this.cbInputEqualizationTx1.Size = new System.Drawing.Size(40, 20);
+            this.cbInputEqualizationTx1.TabIndex = 27;
+            // 
+            // cbInputEqualizationTx2
+            // 
+            this.cbInputEqualizationTx2.FormattingEnabled = true;
+            this.cbInputEqualizationTx2.Location = new System.Drawing.Point(87, 51);
+            this.cbInputEqualizationTx2.Name = "cbInputEqualizationTx2";
+            this.cbInputEqualizationTx2.Size = new System.Drawing.Size(40, 20);
+            this.cbInputEqualizationTx2.TabIndex = 25;
+            // 
+            // cbInputEqualizationTx3
+            // 
+            this.cbInputEqualizationTx3.FormattingEnabled = true;
+            this.cbInputEqualizationTx3.Location = new System.Drawing.Point(87, 77);
+            this.cbInputEqualizationTx3.Name = "cbInputEqualizationTx3";
+            this.cbInputEqualizationTx3.Size = new System.Drawing.Size(40, 20);
+            this.cbInputEqualizationTx3.TabIndex = 23;
+            // 
+            // lTxInputEqualizationMagnitude
+            // 
+            this.lTxInputEqualizationMagnitude.AutoSize = true;
+            this.lTxInputEqualizationMagnitude.Location = new System.Drawing.Point(97, 11);
+            this.lTxInputEqualizationMagnitude.Name = "lTxInputEqualizationMagnitude";
+            this.lTxInputEqualizationMagnitude.Size = new System.Drawing.Size(20, 12);
+            this.lTxInputEqualizationMagnitude.TabIndex = 22;
+            this.lTxInputEqualizationMagnitude.Text = "EQ";
+            // 
+            // cbInputEqualizationTx4
+            // 
+            this.cbInputEqualizationTx4.FormattingEnabled = true;
+            this.cbInputEqualizationTx4.Location = new System.Drawing.Point(87, 103);
+            this.cbInputEqualizationTx4.Name = "cbInputEqualizationTx4";
+            this.cbInputEqualizationTx4.Size = new System.Drawing.Size(40, 20);
+            this.cbInputEqualizationTx4.TabIndex = 21;
+            // 
+            // cbRxOutputEmphasisRx1
+            // 
+            this.cbRxOutputEmphasisRx1.FormattingEnabled = true;
+            this.cbRxOutputEmphasisRx1.Location = new System.Drawing.Point(412, 26);
+            this.cbRxOutputEmphasisRx1.Name = "cbRxOutputEmphasisRx1";
+            this.cbRxOutputEmphasisRx1.Size = new System.Drawing.Size(40, 20);
+            this.cbRxOutputEmphasisRx1.TabIndex = 19;
+            // 
+            // cbRxOutputEmphasisRx2
+            // 
+            this.cbRxOutputEmphasisRx2.FormattingEnabled = true;
+            this.cbRxOutputEmphasisRx2.Location = new System.Drawing.Point(412, 51);
+            this.cbRxOutputEmphasisRx2.Name = "cbRxOutputEmphasisRx2";
+            this.cbRxOutputEmphasisRx2.Size = new System.Drawing.Size(40, 20);
+            this.cbRxOutputEmphasisRx2.TabIndex = 17;
+            // 
+            // cbRxOutputEmphasisRx3
+            // 
+            this.cbRxOutputEmphasisRx3.FormattingEnabled = true;
+            this.cbRxOutputEmphasisRx3.Location = new System.Drawing.Point(412, 77);
+            this.cbRxOutputEmphasisRx3.Name = "cbRxOutputEmphasisRx3";
+            this.cbRxOutputEmphasisRx3.Size = new System.Drawing.Size(40, 20);
+            this.cbRxOutputEmphasisRx3.TabIndex = 15;
+            // 
+            // cbRxOutputEmphasisRx4
+            // 
+            this.cbRxOutputEmphasisRx4.FormattingEnabled = true;
+            this.cbRxOutputEmphasisRx4.Location = new System.Drawing.Point(412, 103);
+            this.cbRxOutputEmphasisRx4.Name = "cbRxOutputEmphasisRx4";
+            this.cbRxOutputEmphasisRx4.Size = new System.Drawing.Size(40, 20);
+            this.cbRxOutputEmphasisRx4.TabIndex = 13;
+            // 
+            // cbInputEqualizationMagnitudeTx4
+            // 
+            this.cbInputEqualizationMagnitudeTx4.AutoSize = true;
+            this.cbInputEqualizationMagnitudeTx4.Location = new System.Drawing.Point(42, 105);
+            this.cbInputEqualizationMagnitudeTx4.Name = "cbInputEqualizationMagnitudeTx4";
+            this.cbInputEqualizationMagnitudeTx4.Size = new System.Drawing.Size(39, 16);
+            this.cbInputEqualizationMagnitudeTx4.TabIndex = 7;
+            this.cbInputEqualizationMagnitudeTx4.Text = "EQ";
+            this.cbInputEqualizationMagnitudeTx4.UseVisualStyleBackColor = true;
+            // 
+            // cbInputEqualizationMagnitudeTx3
+            // 
+            this.cbInputEqualizationMagnitudeTx3.AutoSize = true;
+            this.cbInputEqualizationMagnitudeTx3.Location = new System.Drawing.Point(42, 79);
+            this.cbInputEqualizationMagnitudeTx3.Name = "cbInputEqualizationMagnitudeTx3";
+            this.cbInputEqualizationMagnitudeTx3.Size = new System.Drawing.Size(39, 16);
+            this.cbInputEqualizationMagnitudeTx3.TabIndex = 8;
+            this.cbInputEqualizationMagnitudeTx3.Text = "EQ";
+            this.cbInputEqualizationMagnitudeTx3.UseVisualStyleBackColor = true;
+            // 
+            // cbInputEqualizationMagnitudeTx2
+            // 
+            this.cbInputEqualizationMagnitudeTx2.AutoSize = true;
+            this.cbInputEqualizationMagnitudeTx2.Location = new System.Drawing.Point(42, 53);
+            this.cbInputEqualizationMagnitudeTx2.Name = "cbInputEqualizationMagnitudeTx2";
+            this.cbInputEqualizationMagnitudeTx2.Size = new System.Drawing.Size(39, 16);
+            this.cbInputEqualizationMagnitudeTx2.TabIndex = 9;
+            this.cbInputEqualizationMagnitudeTx2.Text = "EQ";
+            this.cbInputEqualizationMagnitudeTx2.UseVisualStyleBackColor = true;
+            // 
+            // cbInputEqualizationMagnitudeTx1
+            // 
+            this.cbInputEqualizationMagnitudeTx1.AutoSize = true;
+            this.cbInputEqualizationMagnitudeTx1.Location = new System.Drawing.Point(42, 28);
+            this.cbInputEqualizationMagnitudeTx1.Name = "cbInputEqualizationMagnitudeTx1";
+            this.cbInputEqualizationMagnitudeTx1.Size = new System.Drawing.Size(39, 16);
+            this.cbInputEqualizationMagnitudeTx1.TabIndex = 10;
+            this.cbInputEqualizationMagnitudeTx1.Text = "EQ";
+            this.cbInputEqualizationMagnitudeTx1.UseVisualStyleBackColor = true;
+            // 
+            // gbUpPage3
+            // 
+            this.gbUpPage3.Controls.Add(this.gbOptionalChannelControl);
+            this.gbUpPage3.Location = new System.Drawing.Point(3, 557);
+            this.gbUpPage3.Name = "gbUpPage3";
+            this.gbUpPage3.Size = new System.Drawing.Size(818, 156);
+            this.gbUpPage3.TabIndex = 70;
+            this.gbUpPage3.TabStop = false;
+            this.gbUpPage3.Text = "UP Page 3";
             // 
             // UcInformation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.gbUpPage3);
+            this.Controls.Add(this.gbFreeSideDeviceProperties);
             this.Controls.Add(this.bStoreIntoFlash);
+            this.Controls.Add(this.tbNewPassword);
             this.Controls.Add(this.bPasswordReset);
+            this.Controls.Add(this.lNewPassword);
             this.Controls.Add(this.gbUpPage0);
+            this.Controls.Add(this.tbPassword);
             this.Controls.Add(this.gbControlBytes);
+            this.Controls.Add(this.lPassword);
             this.Controls.Add(this.bWrite);
             this.Controls.Add(this.bRead);
-            this.Controls.Add(this.cbDataNotReady);
-            this.Controls.Add(this.cbIntL);
-            this.Controls.Add(this.cbFlatMem);
-            this.Controls.Add(this.tbIdentifier);
-            this.Controls.Add(this.lIdentifier);
             this.Name = "UcInformation";
-            this.Size = new System.Drawing.Size(786, 539);
+            this.Size = new System.Drawing.Size(908, 716);
             this.gbControlBytes.ResumeLayout(false);
             this.gbControlBytes.PerformLayout();
             this.gbSpecificationCompliance.ResumeLayout(false);
@@ -1334,17 +2375,17 @@
             this.gbOptions.PerformLayout();
             this.gbLength.ResumeLayout(false);
             this.gbLength.PerformLayout();
+            this.gbFreeSideDeviceProperties.ResumeLayout(false);
+            this.gbFreeSideDeviceProperties.PerformLayout();
+            this.gbOptionalChannelControl.ResumeLayout(false);
+            this.gbOptionalChannelControl.PerformLayout();
+            this.gbUpPage3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lIdentifier;
-        private System.Windows.Forms.CheckBox cbFlatMem;
-        private System.Windows.Forms.CheckBox cbIntL;
-        private System.Windows.Forms.CheckBox cbDataNotReady;
         private System.Windows.Forms.Button bRead;
         private System.Windows.Forms.Button bWrite;
         private System.Windows.Forms.CheckBox cbTx4Disable;
@@ -1364,7 +2405,6 @@
         private System.Windows.Forms.Label lSonetCompliance;
         private System.Windows.Forms.TextBox tbSasSataCompliance;
         private System.Windows.Forms.Label lSasSataCompliance;
-        private System.Windows.Forms.TextBox tbIdentifier;
         private System.Windows.Forms.GroupBox gbSpecificationCompliance;
         private System.Windows.Forms.TextBox tbFibreChannelSpeed;
         private System.Windows.Forms.Label lFibreChannelSpeed;
@@ -1417,7 +2457,7 @@
         private System.Windows.Forms.Label lOm3Length;
         private System.Windows.Forms.TextBox tbStandardSmFiberLength;
         private System.Windows.Forms.Label lStandardSmFiberLength;
-        private System.Windows.Forms.CheckBox cbExtendedRateSelect;
+        private System.Windows.Forms.CheckBox cbExtendedRateSelectV1;
         private System.Windows.Forms.TextBox tbBitRate;
         private System.Windows.Forms.Label lBitRate;
         private System.Windows.Forms.TextBox tbUpPage0Identifier;
@@ -1446,21 +2486,119 @@
         private System.Windows.Forms.Button bStoreIntoFlash;
         private System.Windows.Forms.TextBox tbLinkCodes;
         private System.Windows.Forms.Label lLinkCodes;
-        private System.Windows.Forms.Label lTx1RateSelect;
         private System.Windows.Forms.ComboBox cbTx1RateSelect;
-        private System.Windows.Forms.Label lTx2RateSelect;
         private System.Windows.Forms.ComboBox cbTx2RateSelect;
-        private System.Windows.Forms.Label lTx3RateSelect;
         private System.Windows.Forms.ComboBox cbTx3RateSelect;
-        private System.Windows.Forms.Label lTx4RateSelect;
+        private System.Windows.Forms.Label lTxRateSelect;
         private System.Windows.Forms.ComboBox cbTx4RateSelect;
-        private System.Windows.Forms.Label lRx1RateSelect;
         private System.Windows.Forms.ComboBox cbRx1RateSelect;
-        private System.Windows.Forms.Label lRx2RateSelect;
         private System.Windows.Forms.ComboBox cbRx2RateSelect;
-        private System.Windows.Forms.Label lRx3RateSelect;
         private System.Windows.Forms.ComboBox cbRx3RateSelect;
-        private System.Windows.Forms.Label lRx4RateSelect;
         private System.Windows.Forms.ComboBox cbRx4RateSelect;
+        private System.Windows.Forms.Label lRxRateSelect;
+        private System.Windows.Forms.Label lControlByteRx4;
+        private System.Windows.Forms.Label lControlByteRx3;
+        private System.Windows.Forms.Label lControlByteRx2;
+        private System.Windows.Forms.Label lControlByteRx1;
+        private System.Windows.Forms.Label lRxApplicationSelect;
+        private System.Windows.Forms.ComboBox cbApplicationSelectRx1;
+        private System.Windows.Forms.ComboBox cbApplicationSelectRx2;
+        private System.Windows.Forms.ComboBox cbApplicationSelectRx3;
+        private System.Windows.Forms.ComboBox cbApplicationSelectRx4;
+        private System.Windows.Forms.Label lTxApplicationSelect;
+        private System.Windows.Forms.ComboBox cbApplicationSelectTx1;
+        private System.Windows.Forms.ComboBox cbApplicationSelectTx2;
+        private System.Windows.Forms.ComboBox cbApplicationSelectTx3;
+        private System.Windows.Forms.ComboBox cbApplicationSelectTx4;
+        private System.Windows.Forms.CheckBox cbHighPowerClassEnable;
+        private System.Windows.Forms.CheckBox cbCdrOnRx4;
+        private System.Windows.Forms.CheckBox cbCdrOnRx3;
+        private System.Windows.Forms.CheckBox cbCdrOnRx2;
+        private System.Windows.Forms.CheckBox cbCdrOnRx1;
+        private System.Windows.Forms.CheckBox cbCdrOnTx4;
+        private System.Windows.Forms.CheckBox cbCdrOnTx3;
+        private System.Windows.Forms.CheckBox cbCdrOnTx2;
+        private System.Windows.Forms.CheckBox cbCdrOnTx1;
+        private System.Windows.Forms.Label lControlBytesTx4;
+        private System.Windows.Forms.Label lControlBytesTx3;
+        private System.Windows.Forms.Label lControlBytesTx2;
+        private System.Windows.Forms.Label lControlBytesTx1;
+        private System.Windows.Forms.GroupBox gbFreeSideDeviceProperties;
+        private System.Windows.Forms.TextBox tbPciExpress;
+        private System.Windows.Forms.Label lPciExpress;
+        private System.Windows.Forms.TextBox tbAdvaancedLowPowerMode;
+        private System.Windows.Forms.Label lAdvancedLowPowerMode;
+        private System.Windows.Forms.CheckBox cbFarSideManaged;
+        private System.Windows.Forms.TextBox tbMinOperatingVoltage;
+        private System.Windows.Forms.Label lMinOperationVoltage;
+        private System.Windows.Forms.TextBox tbPropagationDelay;
+        private System.Windows.Forms.Label lPropagationDelay;
+        private System.Windows.Forms.TextBox tbFarEndImplementation;
+        private System.Windows.Forms.Label lFarEndImplementation;
+        private System.Windows.Forms.TextBox tbNearEndImplementation;
+        private System.Windows.Forms.Label lNearEndImplementation;
+        private System.Windows.Forms.CheckBox cbExtendedRateSelectV2;
+        private System.Windows.Forms.CheckBox cbRxOutputEmphasisProgramming;
+        private System.Windows.Forms.CheckBox cbTxInputEqualizationProgrammable;
+        private System.Windows.Forms.CheckBox cbTxInputEqualizationAutoAdaptive;
+        private System.Windows.Forms.CheckBox cbRxCdrLolFlag;
+        private System.Windows.Forms.CheckBox cbTxCdrOnOffControl;
+        private System.Windows.Forms.CheckBox cbRxCdrOnOffControl;
+        private System.Windows.Forms.CheckBox cbTxCdrLolFlag;
+        private System.Windows.Forms.GroupBox gbOptionalChannelControl;
+        private System.Windows.Forms.Label lOptionalChannelControlTx4;
+        private System.Windows.Forms.Label lOptionalChannelControlTx3;
+        private System.Windows.Forms.Label lOptionalChannelControlTx2;
+        private System.Windows.Forms.Label lOptionalChannelControlTx1;
+        private System.Windows.Forms.CheckBox cbRxOutputEmphasisMagnitudeRx4;
+        private System.Windows.Forms.CheckBox cbRxOutputEmphasisMagnitudeRx3;
+        private System.Windows.Forms.CheckBox cbRxOutputEmphasisMagnitudeRx2;
+        private System.Windows.Forms.CheckBox cbRxOutputEmphasisMagnitudeRx1;
+        private System.Windows.Forms.CheckBox cbOutputAmplitudeSupportRx4;
+        private System.Windows.Forms.CheckBox cbOutputAmplitudeSupportRx3;
+        private System.Windows.Forms.CheckBox cbOutputAmplitudeSupportRx2;
+        private System.Windows.Forms.CheckBox cbOutputAmplitudeSupportRx1;
+        private System.Windows.Forms.Label lRxOutputAmplitudeControl;
+        private System.Windows.Forms.ComboBox cbOutputAmplitudeRx1;
+        private System.Windows.Forms.ComboBox cbOutputAmplitudeRx2;
+        private System.Windows.Forms.ComboBox cbOutputAmplitudeRx3;
+        private System.Windows.Forms.ComboBox cbOutputAmplitudeRx4;
+        private System.Windows.Forms.Label lRxOutputEmphasis;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ComboBox cbInputEqualizationTx1;
+        private System.Windows.Forms.ComboBox cbInputEqualizationTx2;
+        private System.Windows.Forms.ComboBox cbInputEqualizationTx3;
+        private System.Windows.Forms.Label lTxInputEqualizationMagnitude;
+        private System.Windows.Forms.ComboBox cbInputEqualizationTx4;
+        private System.Windows.Forms.ComboBox cbRxOutputEmphasisRx1;
+        private System.Windows.Forms.ComboBox cbRxOutputEmphasisRx2;
+        private System.Windows.Forms.ComboBox cbRxOutputEmphasisRx3;
+        private System.Windows.Forms.ComboBox cbRxOutputEmphasisRx4;
+        private System.Windows.Forms.CheckBox cbInputEqualizationMagnitudeTx4;
+        private System.Windows.Forms.CheckBox cbInputEqualizationMagnitudeTx3;
+        private System.Windows.Forms.CheckBox cbInputEqualizationMagnitudeTx2;
+        private System.Windows.Forms.CheckBox cbInputEqualizationMagnitudeTx1;
+        private System.Windows.Forms.CheckBox cbOutputDisableRx4;
+        private System.Windows.Forms.CheckBox cbOutputDisableRx3;
+        private System.Windows.Forms.CheckBox cbOutputDisableRx2;
+        private System.Windows.Forms.CheckBox cbOutputDisableRx1;
+        private System.Windows.Forms.CheckBox cbSqDisableRx4;
+        private System.Windows.Forms.CheckBox cbSqDisableRx3;
+        private System.Windows.Forms.CheckBox cbSqDisableRx2;
+        private System.Windows.Forms.CheckBox cbSqDisableRx1;
+        private System.Windows.Forms.CheckBox cbSqDisableTx4;
+        private System.Windows.Forms.CheckBox cbSqDisableTx3;
+        private System.Windows.Forms.CheckBox cbSqDisableTx2;
+        private System.Windows.Forms.CheckBox cbSqDisableTx1;
+        private System.Windows.Forms.GroupBox gbUpPage3;
+        private System.Windows.Forms.Label lRxOutputEmphasisType;
+        private System.Windows.Forms.CheckBox cbAdaptiveEqualizationControlTx4;
+        private System.Windows.Forms.CheckBox cbAdaptiveEqualizationControlTx3;
+        private System.Windows.Forms.CheckBox cbAdaptiveEqualizationControlTx2;
+        private System.Windows.Forms.CheckBox cbAdaptiveEqualizationControlTx1;
+        private System.Windows.Forms.ComboBox cbRxOutputEmphasisType;
     }
 }

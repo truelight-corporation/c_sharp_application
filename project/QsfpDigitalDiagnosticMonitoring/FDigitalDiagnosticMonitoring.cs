@@ -146,7 +146,7 @@ namespace QsfpDigitalDiagnosticMonitoring
         {
             int rv;
             if (cbConnected.Checked == true) {
-                rv = i2cMaster.ConnectApi();
+                rv = i2cMaster.ConnectApi(400);
                 if (rv < 0)
                     return;
                 _CheckFirmwareVersion();    
