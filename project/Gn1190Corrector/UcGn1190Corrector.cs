@@ -285,7 +285,7 @@ namespace Gn1190Corrector
             float voltage;
             int tmp;
 
-            tbTxTemperature.Text = "";
+            tbTxVoltage.Text = "";
 
             if (qsfpI2cReadCB == null)
                 return -1;
@@ -368,7 +368,7 @@ namespace Gn1190Corrector
             }
             if (bStoreAcConfigToFile.Enabled == false) {
                 _I2cWriteToString(80, 240, 1, data, ref sAcConfig);
-                sAcConfig += "Delay10mSec,0x14\n";
+                sAcConfig += "Delay10mSec,0x1\n";
                 _I2cReadToString(80, 240, 1, data, ref sAcConfig);
             }
             else
@@ -512,7 +512,7 @@ namespace Gn1190Corrector
 
             if (bStoreAcConfigToFile.Enabled == false) {
                 _I2cWriteToString(80, 241, 1, data, ref sAcConfig);
-                sAcConfig += "Delay10mSec,0x14\n";
+                sAcConfig += "Delay10mSec,0x1\n";
                 _I2cReadToString(80, 241, 1, data, ref sAcConfig);
             }
             else
@@ -524,7 +524,7 @@ namespace Gn1190Corrector
 
             if (bStoreAcConfigToFile.Enabled == false) {
                 _I2cWriteToString(80, 242, 2, data, ref sAcConfig);
-                sAcConfig += "Delay10mSec,0x14\n";
+                sAcConfig += "Delay10mSec,0x1\n";
                 _I2cReadToString(80, 242, 2, data, ref sAcConfig);
             }
             else
@@ -667,7 +667,7 @@ namespace Gn1190Corrector
             if (qsfpI2cWriteCB == null)
                 return -1;
 
-            data[0] =32;
+            data[0] = 32;
             qsfpI2cWriteCB(80, 127, 1, data);
             if (qsfpI2cReadCB(80, 128, 2, data) != 2)
                 return -1;
@@ -1832,7 +1832,7 @@ namespace Gn1190Corrector
 
             if (bStoreAcConfigToFile.Enabled == false) {
                 _I2cWriteToString(80, 128, 44, data, ref sAcConfig);
-                sAcConfig += "Delay10mSec,0x64\n";
+                sAcConfig += "Delay10mSec,0x14\n";
                 _I2cReadToString(80, 128, 44, data, ref sAcConfig);
             }
             else
@@ -2717,7 +2717,7 @@ namespace Gn1190Corrector
 
             if (bStoreAcConfigToFile.Enabled == false) {
                 _I2cWriteToString(80, 128, 96, data, ref sAcConfig);
-                sAcConfig += "Delay10mSec,0x64\n";
+                sAcConfig += "Delay10mSec,0x14\n";
                 _I2cReadToString(80, 128, 96, data, ref sAcConfig);
             }
             else
@@ -2743,7 +2743,7 @@ namespace Gn1190Corrector
 
             if (bStoreAcConfigToFile.Enabled == false) {
                 _I2cWriteToString(80, 252, 1, data, ref sAcConfig);
-                sAcConfig += "Delay10mSec,0x14\n";
+                sAcConfig += "Delay10mSec,0x1\n";
                 _I2cReadToString(80, 252, 1, data, ref sAcConfig);
             }
             else
@@ -2778,7 +2778,7 @@ namespace Gn1190Corrector
             data[1] = 0x3A;
             if (bStoreAcConfigToFile.Enabled == false) {
                 _I2cWriteToString(80, 253, 2, data, ref sAcConfig);
-                sAcConfig += "Delay10mSec,0x14\n";
+                sAcConfig += "Delay10mSec,0x1\n";
                 _I2cReadToString(80, 253, 2, data, ref sAcConfig);
             }
             else
@@ -3035,20 +3035,17 @@ namespace Gn1190Corrector
             data[0] = 32;
             if (bStoreAcConfigToFile.Enabled == false)
                 _I2cWriteToString(80, 127, 1, data, ref sAcConfig);
-            else
-            {
+            else {
                 if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
                     goto exit;
             }
 
             data[0] = 0xAA;
-            if (bStoreAcConfigToFile.Enabled == false)
-            {
+            if (bStoreAcConfigToFile.Enabled == false) {
                 _I2cWriteToString(80, 162, 1, data, ref sAcConfig);
                 sAcConfig += "Delay10mSec,0x64\n"; //* Wait flash write done */
             }
-            else
-            {
+            else {
                 if (qsfpI2cWriteCB(80, 162, 1, data) < 0)
                     goto exit;
                 Thread.Sleep(1000);
