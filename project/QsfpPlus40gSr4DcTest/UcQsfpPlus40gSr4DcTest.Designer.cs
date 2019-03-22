@@ -38,6 +38,15 @@
             this.lResult = new System.Windows.Forms.Label();
             this.tcFunctionSelect = new System.Windows.Forms.TabControl();
             this.tpLog = new System.Windows.Forms.TabPage();
+            this.lCobSerialNumber = new System.Windows.Forms.Label();
+            this.cbTx4Los = new System.Windows.Forms.CheckBox();
+            this.cbTx3Los = new System.Windows.Forms.CheckBox();
+            this.cbTx2Los = new System.Windows.Forms.CheckBox();
+            this.cbTx1Los = new System.Windows.Forms.CheckBox();
+            this.cbRx4Los = new System.Windows.Forms.CheckBox();
+            this.cbRx3Los = new System.Windows.Forms.CheckBox();
+            this.cbRx2Los = new System.Windows.Forms.CheckBox();
+            this.cbRx1Los = new System.Windows.Forms.CheckBox();
             this.lClassification = new System.Windows.Forms.Label();
             this.cbAutoLogWithLableTemperature = new System.Windows.Forms.CheckBox();
             this.tbModuleSerialNumber = new System.Windows.Forms.TextBox();
@@ -95,8 +104,7 @@
             this.lLogFilePath = new System.Windows.Forms.Label();
             this.lLogMode = new System.Windows.Forms.Label();
             this.tpConfig = new System.Windows.Forms.TabPage();
-            this.gbAfterBurnInConfig = new System.Windows.Forms.GroupBox();
-            this.bReadRecordValue = new System.Windows.Forms.Button();
+            this.gbAfterBurnInAcConfig = new System.Windows.Forms.GroupBox();
             this.dgvAfterBurnInConfig = new System.Windows.Forms.DataGridView();
             this.tbBeforeAndAfterBurnInDcTestBiasCurrent = new System.Windows.Forms.TextBox();
             this.lBeforeAndAfterBurnInDcTestBiasCurrent = new System.Windows.Forms.Label();
@@ -180,7 +188,7 @@
             this.tpLog.SuspendLayout();
             this.gbStatus.SuspendLayout();
             this.tpConfig.SuspendLayout();
-            this.gbAfterBurnInConfig.SuspendLayout();
+            this.gbAfterBurnInAcConfig.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAfterBurnInConfig)).BeginInit();
             this.gbMonitorThreshold.SuspendLayout();
             this.gbRxPowerRateConfig.SuspendLayout();
@@ -191,23 +199,23 @@
             // 
             this.lSnNumber.AutoSize = true;
             this.lSnNumber.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lSnNumber.Location = new System.Drawing.Point(554, 93);
+            this.lSnNumber.Location = new System.Drawing.Point(430, 135);
             this.lSnNumber.Name = "lSnNumber";
-            this.lSnNumber.Size = new System.Drawing.Size(64, 24);
+            this.lSnNumber.Size = new System.Drawing.Size(112, 24);
             this.lSnNumber.TabIndex = 2;
-            this.lSnNumber.Text = "序號:";
+            this.lSnNumber.Text = "輸入序號:";
             // 
             // tbSerialNumber
             // 
-            this.tbSerialNumber.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbSerialNumber.BackColor = System.Drawing.Color.YellowGreen;
             this.tbSerialNumber.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbSerialNumber.Location = new System.Drawing.Point(642, 90);
+            this.tbSerialNumber.Location = new System.Drawing.Point(548, 132);
             this.tbSerialNumber.Name = "tbSerialNumber";
-            this.tbSerialNumber.Size = new System.Drawing.Size(100, 36);
+            this.tbSerialNumber.Size = new System.Drawing.Size(300, 36);
             this.tbSerialNumber.TabIndex = 3;
             this.tbSerialNumber.TextChanged += new System.EventHandler(this.tbSerialNumber_TextChanged);
             this.tbSerialNumber.Enter += new System.EventHandler(this.tbSerialNumber_Enter);
-            this.tbSerialNumber.Leave += new System.EventHandler(this.tbSnNumber_Leave);
+            this.tbSerialNumber.Leave += new System.EventHandler(this.tbSerialNumberNumber_Leave);
             // 
             // dgvRecord
             // 
@@ -226,20 +234,20 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvRecord.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvRecord.Location = new System.Drawing.Point(3, 264);
+            this.dgvRecord.Location = new System.Drawing.Point(3, 340);
             this.dgvRecord.Name = "dgvRecord";
             this.dgvRecord.ReadOnly = true;
             this.dgvRecord.RowTemplate.Height = 24;
-            this.dgvRecord.Size = new System.Drawing.Size(1257, 341);
+            this.dgvRecord.Size = new System.Drawing.Size(1257, 265);
             this.dgvRecord.TabIndex = 4;
             // 
             // bLog
             // 
             this.bLog.Enabled = false;
             this.bLog.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.bLog.Location = new System.Drawing.Point(854, 132);
+            this.bLog.Location = new System.Drawing.Point(854, 115);
             this.bLog.Name = "bLog";
-            this.bLog.Size = new System.Drawing.Size(145, 126);
+            this.bLog.Size = new System.Drawing.Size(182, 219);
             this.bLog.TabIndex = 7;
             this.bLog.Text = "紀錄";
             this.bLog.UseVisualStyleBackColor = true;
@@ -288,6 +296,15 @@
             // 
             // tpLog
             // 
+            this.tpLog.Controls.Add(this.lCobSerialNumber);
+            this.tpLog.Controls.Add(this.cbTx4Los);
+            this.tpLog.Controls.Add(this.cbTx3Los);
+            this.tpLog.Controls.Add(this.cbTx2Los);
+            this.tpLog.Controls.Add(this.cbTx1Los);
+            this.tpLog.Controls.Add(this.cbRx4Los);
+            this.tpLog.Controls.Add(this.cbRx3Los);
+            this.tpLog.Controls.Add(this.cbRx2Los);
+            this.tpLog.Controls.Add(this.cbRx1Los);
             this.tpLog.Controls.Add(this.lClassification);
             this.tpLog.Controls.Add(this.cbAutoLogWithLableTemperature);
             this.tpLog.Controls.Add(this.tbModuleSerialNumber);
@@ -356,22 +373,120 @@
             this.tpLog.Text = "紀錄";
             this.tpLog.UseVisualStyleBackColor = true;
             // 
+            // lCobSerialNumber
+            // 
+            this.lCobSerialNumber.AutoSize = true;
+            this.lCobSerialNumber.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lCobSerialNumber.Location = new System.Drawing.Point(6, 135);
+            this.lCobSerialNumber.Name = "lCobSerialNumber";
+            this.lCobSerialNumber.Size = new System.Drawing.Size(112, 24);
+            this.lCobSerialNumber.TabIndex = 115;
+            this.lCobSerialNumber.Text = "模組序號:";
+            // 
+            // cbTx4Los
+            // 
+            this.cbTx4Los.AutoSize = true;
+            this.cbTx4Los.Enabled = false;
+            this.cbTx4Los.Location = new System.Drawing.Point(750, 311);
+            this.cbTx4Los.Name = "cbTx4Los";
+            this.cbTx4Los.Size = new System.Drawing.Size(96, 23);
+            this.cbTx4Los.TabIndex = 114;
+            this.cbTx4Los.Text = "Tx4 LOS";
+            this.cbTx4Los.UseVisualStyleBackColor = true;
+            // 
+            // cbTx3Los
+            // 
+            this.cbTx3Los.AutoSize = true;
+            this.cbTx3Los.Enabled = false;
+            this.cbTx3Los.Location = new System.Drawing.Point(644, 311);
+            this.cbTx3Los.Name = "cbTx3Los";
+            this.cbTx3Los.Size = new System.Drawing.Size(96, 23);
+            this.cbTx3Los.TabIndex = 113;
+            this.cbTx3Los.Text = "Tx3 LOS";
+            this.cbTx3Los.UseVisualStyleBackColor = true;
+            // 
+            // cbTx2Los
+            // 
+            this.cbTx2Los.AutoSize = true;
+            this.cbTx2Los.Enabled = false;
+            this.cbTx2Los.Location = new System.Drawing.Point(538, 311);
+            this.cbTx2Los.Name = "cbTx2Los";
+            this.cbTx2Los.Size = new System.Drawing.Size(96, 23);
+            this.cbTx2Los.TabIndex = 112;
+            this.cbTx2Los.Text = "Tx2 LOS";
+            this.cbTx2Los.UseVisualStyleBackColor = true;
+            // 
+            // cbTx1Los
+            // 
+            this.cbTx1Los.AutoSize = true;
+            this.cbTx1Los.Enabled = false;
+            this.cbTx1Los.Location = new System.Drawing.Point(432, 311);
+            this.cbTx1Los.Name = "cbTx1Los";
+            this.cbTx1Los.Size = new System.Drawing.Size(96, 23);
+            this.cbTx1Los.TabIndex = 111;
+            this.cbTx1Los.Text = "Tx1 LOS";
+            this.cbTx1Los.UseVisualStyleBackColor = true;
+            // 
+            // cbRx4Los
+            // 
+            this.cbRx4Los.AutoSize = true;
+            this.cbRx4Los.Enabled = false;
+            this.cbRx4Los.Location = new System.Drawing.Point(326, 311);
+            this.cbRx4Los.Name = "cbRx4Los";
+            this.cbRx4Los.Size = new System.Drawing.Size(97, 23);
+            this.cbRx4Los.TabIndex = 110;
+            this.cbRx4Los.Text = "Rx4 LOS";
+            this.cbRx4Los.UseVisualStyleBackColor = true;
+            // 
+            // cbRx3Los
+            // 
+            this.cbRx3Los.AutoSize = true;
+            this.cbRx3Los.Enabled = false;
+            this.cbRx3Los.Location = new System.Drawing.Point(220, 311);
+            this.cbRx3Los.Name = "cbRx3Los";
+            this.cbRx3Los.Size = new System.Drawing.Size(97, 23);
+            this.cbRx3Los.TabIndex = 109;
+            this.cbRx3Los.Text = "Rx3 LOS";
+            this.cbRx3Los.UseVisualStyleBackColor = true;
+            // 
+            // cbRx2Los
+            // 
+            this.cbRx2Los.AutoSize = true;
+            this.cbRx2Los.Enabled = false;
+            this.cbRx2Los.Location = new System.Drawing.Point(114, 311);
+            this.cbRx2Los.Name = "cbRx2Los";
+            this.cbRx2Los.Size = new System.Drawing.Size(97, 23);
+            this.cbRx2Los.TabIndex = 108;
+            this.cbRx2Los.Text = "Rx2 LOS";
+            this.cbRx2Los.UseVisualStyleBackColor = true;
+            // 
+            // cbRx1Los
+            // 
+            this.cbRx1Los.AutoSize = true;
+            this.cbRx1Los.Enabled = false;
+            this.cbRx1Los.Location = new System.Drawing.Point(8, 311);
+            this.cbRx1Los.Name = "cbRx1Los";
+            this.cbRx1Los.Size = new System.Drawing.Size(97, 23);
+            this.cbRx1Los.TabIndex = 107;
+            this.cbRx1Los.Text = "Rx1 LOS";
+            this.cbRx1Los.UseVisualStyleBackColor = true;
+            // 
             // lClassification
             // 
             this.lClassification.AutoSize = true;
             this.lClassification.BackColor = System.Drawing.Color.Green;
-            this.lClassification.Font = new System.Drawing.Font("PMingLiU", 192F);
+            this.lClassification.Font = new System.Drawing.Font("PMingLiU", 164.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.lClassification.ForeColor = System.Drawing.Color.White;
-            this.lClassification.Location = new System.Drawing.Point(1005, 3);
+            this.lClassification.Location = new System.Drawing.Point(1042, 115);
             this.lClassification.Name = "lClassification";
-            this.lClassification.Size = new System.Drawing.Size(0, 256);
+            this.lClassification.Size = new System.Drawing.Size(0, 219);
             this.lClassification.TabIndex = 106;
             // 
             // cbAutoLogWithLableTemperature
             // 
             this.cbAutoLogWithLableTemperature.AutoSize = true;
             this.cbAutoLogWithLableTemperature.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.cbAutoLogWithLableTemperature.Location = new System.Drawing.Point(218, 92);
+            this.cbAutoLogWithLableTemperature.Location = new System.Drawing.Point(230, 92);
             this.cbAutoLogWithLableTemperature.Name = "cbAutoLogWithLableTemperature";
             this.cbAutoLogWithLableTemperature.Size = new System.Drawing.Size(125, 28);
             this.cbAutoLogWithLableTemperature.TabIndex = 105;
@@ -382,17 +497,17 @@
             // 
             this.tbModuleSerialNumber.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbModuleSerialNumber.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbModuleSerialNumber.Location = new System.Drawing.Point(748, 90);
+            this.tbModuleSerialNumber.Location = new System.Drawing.Point(124, 132);
             this.tbModuleSerialNumber.Name = "tbModuleSerialNumber";
             this.tbModuleSerialNumber.ReadOnly = true;
-            this.tbModuleSerialNumber.Size = new System.Drawing.Size(251, 36);
+            this.tbModuleSerialNumber.Size = new System.Drawing.Size(300, 36);
             this.tbModuleSerialNumber.TabIndex = 104;
             // 
             // tbTxBias1
             // 
             this.tbTxBias1.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbTxBias1.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbTxBias1.Location = new System.Drawing.Point(6, 156);
+            this.tbTxBias1.Location = new System.Drawing.Point(6, 203);
             this.tbTxBias1.Name = "tbTxBias1";
             this.tbTxBias1.ReadOnly = true;
             this.tbTxBias1.Size = new System.Drawing.Size(100, 36);
@@ -402,7 +517,7 @@
             // 
             this.lTxBias1.AutoSize = true;
             this.lTxBias1.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lTxBias1.Location = new System.Drawing.Point(26, 129);
+            this.lTxBias1.Location = new System.Drawing.Point(26, 176);
             this.lTxBias1.Name = "lTxBias1";
             this.lTxBias1.Size = new System.Drawing.Size(61, 24);
             this.lTxBias1.TabIndex = 102;
@@ -412,7 +527,7 @@
             // 
             this.tbTxBias2.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbTxBias2.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbTxBias2.Location = new System.Drawing.Point(112, 156);
+            this.tbTxBias2.Location = new System.Drawing.Point(112, 203);
             this.tbTxBias2.Name = "tbTxBias2";
             this.tbTxBias2.ReadOnly = true;
             this.tbTxBias2.Size = new System.Drawing.Size(100, 36);
@@ -422,7 +537,7 @@
             // 
             this.lTxBias2.AutoSize = true;
             this.lTxBias2.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lTxBias2.Location = new System.Drawing.Point(132, 129);
+            this.lTxBias2.Location = new System.Drawing.Point(132, 176);
             this.lTxBias2.Name = "lTxBias2";
             this.lTxBias2.Size = new System.Drawing.Size(61, 24);
             this.lTxBias2.TabIndex = 100;
@@ -432,7 +547,7 @@
             // 
             this.tbTxBias3.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbTxBias3.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbTxBias3.Location = new System.Drawing.Point(218, 156);
+            this.tbTxBias3.Location = new System.Drawing.Point(218, 203);
             this.tbTxBias3.Name = "tbTxBias3";
             this.tbTxBias3.ReadOnly = true;
             this.tbTxBias3.Size = new System.Drawing.Size(100, 36);
@@ -442,7 +557,7 @@
             // 
             this.lTxBias3.AutoSize = true;
             this.lTxBias3.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lTxBias3.Location = new System.Drawing.Point(238, 129);
+            this.lTxBias3.Location = new System.Drawing.Point(238, 176);
             this.lTxBias3.Name = "lTxBias3";
             this.lTxBias3.Size = new System.Drawing.Size(61, 24);
             this.lTxBias3.TabIndex = 98;
@@ -452,7 +567,7 @@
             // 
             this.tbTxBias4.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbTxBias4.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbTxBias4.Location = new System.Drawing.Point(324, 156);
+            this.tbTxBias4.Location = new System.Drawing.Point(324, 203);
             this.tbTxBias4.Name = "tbTxBias4";
             this.tbTxBias4.ReadOnly = true;
             this.tbTxBias4.Size = new System.Drawing.Size(100, 36);
@@ -462,7 +577,7 @@
             // 
             this.lTxBias4.AutoSize = true;
             this.lTxBias4.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lTxBias4.Location = new System.Drawing.Point(344, 129);
+            this.lTxBias4.Location = new System.Drawing.Point(344, 176);
             this.lTxBias4.Name = "lTxBias4";
             this.lTxBias4.Size = new System.Drawing.Size(61, 24);
             this.lTxBias4.TabIndex = 96;
@@ -474,7 +589,7 @@
             this.gbStatus.Controls.Add(this.lResult);
             this.gbStatus.Location = new System.Drawing.Point(854, 6);
             this.gbStatus.Name = "gbStatus";
-            this.gbStatus.Size = new System.Drawing.Size(145, 75);
+            this.gbStatus.Size = new System.Drawing.Size(406, 103);
             this.gbStatus.TabIndex = 95;
             this.gbStatus.TabStop = false;
             this.gbStatus.Text = "狀態";
@@ -495,14 +610,14 @@
             this.tbTemperature.Location = new System.Drawing.Point(430, 90);
             this.tbTemperature.Name = "tbTemperature";
             this.tbTemperature.ReadOnly = true;
-            this.tbTemperature.Size = new System.Drawing.Size(100, 36);
+            this.tbTemperature.Size = new System.Drawing.Size(98, 36);
             this.tbTemperature.TabIndex = 94;
             // 
             // lTemperature
             // 
             this.lTemperature.AutoSize = true;
             this.lTemperature.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lTemperature.Location = new System.Drawing.Point(342, 93);
+            this.lTemperature.Location = new System.Drawing.Point(359, 93);
             this.lTemperature.Name = "lTemperature";
             this.lTemperature.Size = new System.Drawing.Size(64, 24);
             this.lTemperature.TabIndex = 93;
@@ -533,7 +648,7 @@
             // 
             this.tbRx1.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbRx1.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbRx1.Location = new System.Drawing.Point(6, 222);
+            this.tbRx1.Location = new System.Drawing.Point(6, 269);
             this.tbRx1.Name = "tbRx1";
             this.tbRx1.ReadOnly = true;
             this.tbRx1.Size = new System.Drawing.Size(100, 36);
@@ -543,7 +658,7 @@
             // 
             this.tbMpd4Value.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbMpd4Value.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbMpd4Value.Location = new System.Drawing.Point(430, 156);
+            this.tbMpd4Value.Location = new System.Drawing.Point(430, 203);
             this.tbMpd4Value.Name = "tbMpd4Value";
             this.tbMpd4Value.ReadOnly = true;
             this.tbMpd4Value.Size = new System.Drawing.Size(100, 36);
@@ -553,7 +668,7 @@
             // 
             this.lRx1.AutoSize = true;
             this.lRx1.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lRx1.Location = new System.Drawing.Point(33, 195);
+            this.lRx1.Location = new System.Drawing.Point(33, 242);
             this.lRx1.Name = "lRx1";
             this.lRx1.Size = new System.Drawing.Size(47, 24);
             this.lRx1.TabIndex = 26;
@@ -563,7 +678,7 @@
             // 
             this.lRx2.AutoSize = true;
             this.lRx2.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lRx2.Location = new System.Drawing.Point(139, 195);
+            this.lRx2.Location = new System.Drawing.Point(139, 242);
             this.lRx2.Name = "lRx2";
             this.lRx2.Size = new System.Drawing.Size(47, 24);
             this.lRx2.TabIndex = 28;
@@ -573,7 +688,7 @@
             // 
             this.tbRx2.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbRx2.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbRx2.Location = new System.Drawing.Point(112, 222);
+            this.tbRx2.Location = new System.Drawing.Point(112, 269);
             this.tbRx2.Name = "tbRx2";
             this.tbRx2.ReadOnly = true;
             this.tbRx2.Size = new System.Drawing.Size(100, 36);
@@ -583,7 +698,7 @@
             // 
             this.lRx3.AutoSize = true;
             this.lRx3.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lRx3.Location = new System.Drawing.Point(245, 195);
+            this.lRx3.Location = new System.Drawing.Point(245, 242);
             this.lRx3.Name = "lRx3";
             this.lRx3.Size = new System.Drawing.Size(47, 24);
             this.lRx3.TabIndex = 30;
@@ -593,7 +708,7 @@
             // 
             this.lMpd4.AutoSize = true;
             this.lMpd4.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lMpd4.Location = new System.Drawing.Point(445, 129);
+            this.lMpd4.Location = new System.Drawing.Point(445, 176);
             this.lMpd4.Name = "lMpd4";
             this.lMpd4.Size = new System.Drawing.Size(70, 24);
             this.lMpd4.TabIndex = 88;
@@ -603,7 +718,7 @@
             // 
             this.tbRx3.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbRx3.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbRx3.Location = new System.Drawing.Point(218, 222);
+            this.tbRx3.Location = new System.Drawing.Point(218, 269);
             this.tbRx3.Name = "tbRx3";
             this.tbRx3.ReadOnly = true;
             this.tbRx3.Size = new System.Drawing.Size(100, 36);
@@ -613,7 +728,7 @@
             // 
             this.lRx4.AutoSize = true;
             this.lRx4.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lRx4.Location = new System.Drawing.Point(351, 195);
+            this.lRx4.Location = new System.Drawing.Point(351, 242);
             this.lRx4.Name = "lRx4";
             this.lRx4.Size = new System.Drawing.Size(47, 24);
             this.lRx4.TabIndex = 32;
@@ -623,7 +738,7 @@
             // 
             this.tbMpd3Value.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbMpd3Value.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbMpd3Value.Location = new System.Drawing.Point(536, 156);
+            this.tbMpd3Value.Location = new System.Drawing.Point(536, 203);
             this.tbMpd3Value.Name = "tbMpd3Value";
             this.tbMpd3Value.ReadOnly = true;
             this.tbMpd3Value.Size = new System.Drawing.Size(100, 36);
@@ -633,7 +748,7 @@
             // 
             this.tbRx4.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbRx4.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbRx4.Location = new System.Drawing.Point(324, 222);
+            this.tbRx4.Location = new System.Drawing.Point(324, 269);
             this.tbRx4.Name = "tbRx4";
             this.tbRx4.ReadOnly = true;
             this.tbRx4.Size = new System.Drawing.Size(100, 36);
@@ -643,7 +758,7 @@
             // 
             this.lMpd3.AutoSize = true;
             this.lMpd3.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lMpd3.Location = new System.Drawing.Point(551, 129);
+            this.lMpd3.Location = new System.Drawing.Point(551, 176);
             this.lMpd3.Name = "lMpd3";
             this.lMpd3.Size = new System.Drawing.Size(70, 24);
             this.lMpd3.TabIndex = 86;
@@ -653,7 +768,7 @@
             // 
             this.tbTx4Power.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbTx4Power.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbTx4Power.Location = new System.Drawing.Point(430, 222);
+            this.tbTx4Power.Location = new System.Drawing.Point(430, 269);
             this.tbTx4Power.Name = "tbTx4Power";
             this.tbTx4Power.ReadOnly = true;
             this.tbTx4Power.Size = new System.Drawing.Size(100, 36);
@@ -663,7 +778,7 @@
             // 
             this.tbMpd2Value.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbMpd2Value.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbMpd2Value.Location = new System.Drawing.Point(642, 156);
+            this.tbMpd2Value.Location = new System.Drawing.Point(642, 203);
             this.tbMpd2Value.Name = "tbMpd2Value";
             this.tbMpd2Value.ReadOnly = true;
             this.tbMpd2Value.Size = new System.Drawing.Size(100, 36);
@@ -673,7 +788,7 @@
             // 
             this.lTx1Power.AutoSize = true;
             this.lTx1Power.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lTx1Power.Location = new System.Drawing.Point(775, 195);
+            this.lTx1Power.Location = new System.Drawing.Point(775, 242);
             this.lTx1Power.Name = "lTx1Power";
             this.lTx1Power.Size = new System.Drawing.Size(46, 24);
             this.lTx1Power.TabIndex = 18;
@@ -683,7 +798,7 @@
             // 
             this.lMpd2.AutoSize = true;
             this.lMpd2.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lMpd2.Location = new System.Drawing.Point(657, 129);
+            this.lMpd2.Location = new System.Drawing.Point(657, 176);
             this.lMpd2.Name = "lMpd2";
             this.lMpd2.Size = new System.Drawing.Size(70, 24);
             this.lMpd2.TabIndex = 84;
@@ -693,7 +808,7 @@
             // 
             this.tbTx1Power.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbTx1Power.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbTx1Power.Location = new System.Drawing.Point(748, 222);
+            this.tbTx1Power.Location = new System.Drawing.Point(748, 269);
             this.tbTx1Power.Name = "tbTx1Power";
             this.tbTx1Power.ReadOnly = true;
             this.tbTx1Power.Size = new System.Drawing.Size(100, 36);
@@ -703,7 +818,7 @@
             // 
             this.lTx2Power.AutoSize = true;
             this.lTx2Power.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lTx2Power.Location = new System.Drawing.Point(669, 195);
+            this.lTx2Power.Location = new System.Drawing.Point(669, 242);
             this.lTx2Power.Name = "lTx2Power";
             this.lTx2Power.Size = new System.Drawing.Size(46, 24);
             this.lTx2Power.TabIndex = 20;
@@ -713,7 +828,7 @@
             // 
             this.tbMpd1Value.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbMpd1Value.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbMpd1Value.Location = new System.Drawing.Point(748, 156);
+            this.tbMpd1Value.Location = new System.Drawing.Point(748, 203);
             this.tbMpd1Value.Name = "tbMpd1Value";
             this.tbMpd1Value.ReadOnly = true;
             this.tbMpd1Value.Size = new System.Drawing.Size(100, 36);
@@ -723,7 +838,7 @@
             // 
             this.tbTx2Power.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbTx2Power.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbTx2Power.Location = new System.Drawing.Point(642, 222);
+            this.tbTx2Power.Location = new System.Drawing.Point(642, 269);
             this.tbTx2Power.Name = "tbTx2Power";
             this.tbTx2Power.ReadOnly = true;
             this.tbTx2Power.Size = new System.Drawing.Size(100, 36);
@@ -733,7 +848,7 @@
             // 
             this.lMpd1.AutoSize = true;
             this.lMpd1.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lMpd1.Location = new System.Drawing.Point(763, 129);
+            this.lMpd1.Location = new System.Drawing.Point(763, 176);
             this.lMpd1.Name = "lMpd1";
             this.lMpd1.Size = new System.Drawing.Size(70, 24);
             this.lMpd1.TabIndex = 82;
@@ -743,7 +858,7 @@
             // 
             this.lTx3Power.AutoSize = true;
             this.lTx3Power.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lTx3Power.Location = new System.Drawing.Point(563, 195);
+            this.lTx3Power.Location = new System.Drawing.Point(563, 242);
             this.lTx3Power.Name = "lTx3Power";
             this.lTx3Power.Size = new System.Drawing.Size(46, 24);
             this.lTx3Power.TabIndex = 22;
@@ -753,7 +868,7 @@
             // 
             this.lSubLotNumber.AutoSize = true;
             this.lSubLotNumber.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lSubLotNumber.Location = new System.Drawing.Point(342, 51);
+            this.lSubLotNumber.Location = new System.Drawing.Point(359, 51);
             this.lSubLotNumber.Name = "lSubLotNumber";
             this.lSubLotNumber.Size = new System.Drawing.Size(64, 24);
             this.lSubLotNumber.TabIndex = 80;
@@ -763,7 +878,7 @@
             // 
             this.tbTx3Power.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbTx3Power.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbTx3Power.Location = new System.Drawing.Point(536, 222);
+            this.tbTx3Power.Location = new System.Drawing.Point(536, 269);
             this.tbTx3Power.Name = "tbTx3Power";
             this.tbTx3Power.ReadOnly = true;
             this.tbTx3Power.Size = new System.Drawing.Size(100, 36);
@@ -773,7 +888,7 @@
             // 
             this.lTx4Power.AutoSize = true;
             this.lTx4Power.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lTx4Power.Location = new System.Drawing.Point(457, 195);
+            this.lTx4Power.Location = new System.Drawing.Point(457, 242);
             this.lTx4Power.Name = "lTx4Power";
             this.lTx4Power.Size = new System.Drawing.Size(46, 24);
             this.lTx4Power.TabIndex = 24;
@@ -782,9 +897,9 @@
             // bOpenConfigFile
             // 
             this.bOpenConfigFile.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.bOpenConfigFile.Location = new System.Drawing.Point(324, 6);
+            this.bOpenConfigFile.Location = new System.Drawing.Point(363, 6);
             this.bOpenConfigFile.Name = "bOpenConfigFile";
-            this.bOpenConfigFile.Size = new System.Drawing.Size(206, 36);
+            this.bOpenConfigFile.Size = new System.Drawing.Size(165, 36);
             this.bOpenConfigFile.TabIndex = 79;
             this.bOpenConfigFile.Text = "選擇設定檔";
             this.bOpenConfigFile.UseVisualStyleBackColor = true;
@@ -816,9 +931,9 @@
             this.tbConfigFilePath.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbConfigFilePath.Enabled = false;
             this.tbConfigFilePath.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbConfigFilePath.Location = new System.Drawing.Point(112, 6);
+            this.tbConfigFilePath.Location = new System.Drawing.Point(124, 6);
             this.tbConfigFilePath.Name = "tbConfigFilePath";
-            this.tbConfigFilePath.Size = new System.Drawing.Size(206, 36);
+            this.tbConfigFilePath.Size = new System.Drawing.Size(231, 36);
             this.tbConfigFilePath.TabIndex = 78;
             // 
             // tbLogFilePath
@@ -845,7 +960,7 @@
             // 
             this.lLogLable.AutoSize = true;
             this.lLogLable.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lLogLable.Location = new System.Drawing.Point(554, 51);
+            this.lLogLable.Location = new System.Drawing.Point(536, 51);
             this.lLogLable.Name = "lLogLable";
             this.lLogLable.Size = new System.Drawing.Size(64, 24);
             this.lLogLable.TabIndex = 25;
@@ -857,9 +972,9 @@
             this.tbLotNumber.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.tbLotNumber.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbLotNumber.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbLotNumber.Location = new System.Drawing.Point(112, 48);
+            this.tbLotNumber.Location = new System.Drawing.Point(124, 48);
             this.tbLotNumber.Name = "tbLotNumber";
-            this.tbLotNumber.Size = new System.Drawing.Size(206, 36);
+            this.tbLotNumber.Size = new System.Drawing.Size(229, 36);
             this.tbLotNumber.TabIndex = 20;
             this.tbLotNumber.Enter += new System.EventHandler(this.tbLotNumber_Enter);
             this.tbLotNumber.Leave += new System.EventHandler(this.tbLotNumber_Leave);
@@ -870,7 +985,7 @@
             this.tbSubLotNumber.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tbSubLotNumber.Location = new System.Drawing.Point(430, 48);
             this.tbSubLotNumber.Name = "tbSubLotNumber";
-            this.tbSubLotNumber.Size = new System.Drawing.Size(100, 36);
+            this.tbSubLotNumber.Size = new System.Drawing.Size(98, 36);
             this.tbSubLotNumber.TabIndex = 81;
             this.tbSubLotNumber.Enter += new System.EventHandler(this.tbSubLotNumber_Enter);
             this.tbSubLotNumber.Leave += new System.EventHandler(this.tbSubLotNumber_Leave);
@@ -879,7 +994,7 @@
             // 
             this.tbOperator.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbOperator.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbOperator.Location = new System.Drawing.Point(112, 90);
+            this.tbOperator.Location = new System.Drawing.Point(124, 90);
             this.tbOperator.Name = "tbOperator";
             this.tbOperator.Size = new System.Drawing.Size(100, 36);
             this.tbOperator.TabIndex = 91;
@@ -888,9 +1003,9 @@
             // 
             this.tbLogLable.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbLogLable.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbLogLable.Location = new System.Drawing.Point(642, 48);
+            this.tbLogLable.Location = new System.Drawing.Point(652, 48);
             this.tbLogLable.Name = "tbLogLable";
-            this.tbLogLable.Size = new System.Drawing.Size(206, 36);
+            this.tbLogLable.Size = new System.Drawing.Size(196, 36);
             this.tbLogLable.TabIndex = 26;
             // 
             // cbLogMode
@@ -901,10 +1016,12 @@
             this.cbLogMode.Items.AddRange(new object[] {
             "BeforeBurnIn",
             "AfterBurnIn",
-            "Log"});
-            this.cbLogMode.Location = new System.Drawing.Point(642, 10);
+            "B-HDMI(QC)",
+            "Log",
+            "AcConfig"});
+            this.cbLogMode.Location = new System.Drawing.Point(652, 10);
             this.cbLogMode.Name = "cbLogMode";
-            this.cbLogMode.Size = new System.Drawing.Size(206, 32);
+            this.cbLogMode.Size = new System.Drawing.Size(196, 32);
             this.cbLogMode.TabIndex = 21;
             this.cbLogMode.Text = "Log";
             this.cbLogMode.SelectedIndexChanged += new System.EventHandler(this.cbLogMode_SelectedIndexChanged);
@@ -923,7 +1040,7 @@
             // 
             this.lLogMode.AutoSize = true;
             this.lLogMode.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lLogMode.Location = new System.Drawing.Point(554, 12);
+            this.lLogMode.Location = new System.Drawing.Point(536, 12);
             this.lLogMode.Name = "lLogMode";
             this.lLogMode.Size = new System.Drawing.Size(64, 24);
             this.lLogMode.TabIndex = 22;
@@ -931,7 +1048,7 @@
             // 
             // tpConfig
             // 
-            this.tpConfig.Controls.Add(this.gbAfterBurnInConfig);
+            this.tpConfig.Controls.Add(this.gbAfterBurnInAcConfig);
             this.tpConfig.Controls.Add(this.tbBeforeAndAfterBurnInDcTestBiasCurrent);
             this.tpConfig.Controls.Add(this.lBeforeAndAfterBurnInDcTestBiasCurrent);
             this.tpConfig.Controls.Add(this.bSaveConfig);
@@ -953,33 +1070,26 @@
             this.tpConfig.Text = "設定";
             this.tpConfig.UseVisualStyleBackColor = true;
             // 
-            // gbAfterBurnInConfig
+            // gbAfterBurnInAcConfig
             // 
-            this.gbAfterBurnInConfig.Controls.Add(this.bReadRecordValue);
-            this.gbAfterBurnInConfig.Controls.Add(this.dgvAfterBurnInConfig);
-            this.gbAfterBurnInConfig.Location = new System.Drawing.Point(6, 488);
-            this.gbAfterBurnInConfig.Name = "gbAfterBurnInConfig";
-            this.gbAfterBurnInConfig.Size = new System.Drawing.Size(733, 163);
-            this.gbAfterBurnInConfig.TabIndex = 87;
-            this.gbAfterBurnInConfig.TabStop = false;
-            this.gbAfterBurnInConfig.Text = "AfterBurnIn設定";
-            // 
-            // bReadRecordValue
-            // 
-            this.bReadRecordValue.Location = new System.Drawing.Point(559, 29);
-            this.bReadRecordValue.Name = "bReadRecordValue";
-            this.bReadRecordValue.Size = new System.Drawing.Size(160, 40);
-            this.bReadRecordValue.TabIndex = 1;
-            this.bReadRecordValue.Text = "讀取數值";
-            this.bReadRecordValue.UseVisualStyleBackColor = true;
+            this.gbAfterBurnInAcConfig.Controls.Add(this.dgvAfterBurnInConfig);
+            this.gbAfterBurnInAcConfig.Location = new System.Drawing.Point(6, 488);
+            this.gbAfterBurnInAcConfig.Name = "gbAfterBurnInAcConfig";
+            this.gbAfterBurnInAcConfig.Size = new System.Drawing.Size(733, 163);
+            this.gbAfterBurnInAcConfig.TabIndex = 87;
+            this.gbAfterBurnInAcConfig.TabStop = false;
+            this.gbAfterBurnInAcConfig.Text = "AfterBurnIn AC 設定";
             // 
             // dgvAfterBurnInConfig
             // 
+            this.dgvAfterBurnInConfig.AllowUserToResizeColumns = false;
+            this.dgvAfterBurnInConfig.AllowUserToResizeRows = false;
+            this.dgvAfterBurnInConfig.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvAfterBurnInConfig.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAfterBurnInConfig.Location = new System.Drawing.Point(6, 29);
             this.dgvAfterBurnInConfig.Name = "dgvAfterBurnInConfig";
             this.dgvAfterBurnInConfig.RowTemplate.Height = 24;
-            this.dgvAfterBurnInConfig.Size = new System.Drawing.Size(455, 128);
+            this.dgvAfterBurnInConfig.Size = new System.Drawing.Size(713, 128);
             this.dgvAfterBurnInConfig.TabIndex = 0;
             // 
             // tbBeforeAndAfterBurnInDcTestBiasCurrent
@@ -1836,7 +1946,7 @@
             this.gbStatus.PerformLayout();
             this.tpConfig.ResumeLayout(false);
             this.tpConfig.PerformLayout();
-            this.gbAfterBurnInConfig.ResumeLayout(false);
+            this.gbAfterBurnInAcConfig.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAfterBurnInConfig)).EndInit();
             this.gbMonitorThreshold.ResumeLayout(false);
             this.gbMonitorThreshold.PerformLayout();
@@ -1983,9 +2093,8 @@
         private System.Windows.Forms.TextBox tbTemperature;
         private System.Windows.Forms.Label lTemperature;
         private System.Windows.Forms.TextBox tbModuleSerialNumber;
-        private System.Windows.Forms.GroupBox gbAfterBurnInConfig;
+        private System.Windows.Forms.GroupBox gbAfterBurnInAcConfig;
         private System.Windows.Forms.DataGridView dgvAfterBurnInConfig;
-        private System.Windows.Forms.Button bReadRecordValue;
         private System.Windows.Forms.CheckBox cbAutoLogWithLableTemperature;
         private System.Windows.Forms.Label lHtMinThreshold;
         private System.Windows.Forms.TextBox tbHtMinThreshold;
@@ -1996,5 +2105,14 @@
         private System.Windows.Forms.TextBox tbHtMaxThreshold;
         private System.Windows.Forms.Label lLtMaxThreshold;
         private System.Windows.Forms.TextBox tbLtMaxThreshold;
+        private System.Windows.Forms.CheckBox cbTx4Los;
+        private System.Windows.Forms.CheckBox cbTx3Los;
+        private System.Windows.Forms.CheckBox cbTx2Los;
+        private System.Windows.Forms.CheckBox cbTx1Los;
+        private System.Windows.Forms.CheckBox cbRx4Los;
+        private System.Windows.Forms.CheckBox cbRx3Los;
+        private System.Windows.Forms.CheckBox cbRx2Los;
+        private System.Windows.Forms.CheckBox cbRx1Los;
+        private System.Windows.Forms.Label lCobSerialNumber;
     }
 }

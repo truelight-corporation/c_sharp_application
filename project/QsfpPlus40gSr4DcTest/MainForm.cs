@@ -14,44 +14,45 @@ namespace QsfpPlus40gSr4DcTest
 {
     public partial class MainForm : Form
     {
-        private I2cMaster i2cAdapter = new I2cMaster();
-        private ExfoIqs1600Scpi powerMeter = new ExfoIqs1600Scpi();
+        private I2cMaster measuredObjectI2cAdapter = new I2cMaster();
+        private I2cMaster powerMeterQsfpI2cAdapter = new I2cMaster();
 
-        private int _I2cConnect()
+        private ExfoIqs1600Scpi powerMeter = new ExfoIqs1600Scpi();
+        private String powerMeterSelect = "Power Meter";
+
+        private int _MeasuredObjectI2cConnect()
         {
-            if (i2cAdapter.ConnectApi(100) < 0)    
+            if (measuredObjectI2cAdapter.ConnectApi(100) < 0)    
                 return -1;
 
-            if (i2cAdapter.connected == true) {
-                i2cAdapter.SetTimeoutApi(50);
-                cbI2cAdapterConnected.Checked = true;
+            if (measuredObjectI2cAdapter.connected == true) {
+                measuredObjectI2cAdapter.SetTimeoutApi(50);
+                cbMeasuredObjectI2cAdapterConnected.Checked = true;
             }
             else
-                cbI2cAdapterConnected.Checked = false;
+                cbMeasuredObjectI2cAdapterConnected.Checked = false;
 
             return 0;
         }
 
-        private int _I2cDisconnect()
+        private int _MeasuredObjectI2cDisconnect()
         {
-            if (i2cAdapter.DisconnectApi() < 0)
+            if (measuredObjectI2cAdapter.DisconnectApi() < 0)
                 return -1;
 
-            cbI2cAdapterConnected.Checked = false;
+            cbMeasuredObjectI2cAdapterConnected.Checked = false;
 
             return 0;
         }
 
-        private int _I2cRead(byte devAddr, byte regAddr, byte length, byte[] data)
+        private int _MeasuredObjectI2cRead(byte devAddr, byte regAddr, byte length, byte[] data)
         {
             int rv;
 
-            if (i2cAdapter.connected == false) {
-                if (_I2cConnect() < 0)
-                    return -1;
-            }
+            if (measuredObjectI2cAdapter.connected == false)
+                return 0;
 
-            rv = i2cAdapter.ReadApi(devAddr, regAddr, length, data);
+            rv = measuredObjectI2cAdapter.ReadApi(devAddr, regAddr, length, data);
             if (rv < 0) {
                 MessageBox.Show("QSFP+ module no response!!");
                 return -1;
@@ -60,21 +61,79 @@ namespace QsfpPlus40gSr4DcTest
             return rv;
         }
 
-        private int _I2cWrite(byte devAddr, byte regAddr, byte length, byte[] data)
+        private int _MeasuredObjectI2cWrite(byte devAddr, byte regAddr, byte length, byte[] data)
         {
             int rv;
 
-            if (i2cAdapter.connected == false) {
-                if (_I2cConnect() < 0)
-                    return -1;
-            }
+            if (measuredObjectI2cAdapter.connected == false)
+                    return 0;
 
-            rv = i2cAdapter.WriteApi(devAddr, regAddr, length, data);
+            rv = measuredObjectI2cAdapter.WriteApi(devAddr, regAddr, length, data);
             if (rv < 0) {
                 MessageBox.Show("QSFP+ module no response!!");
                 return -1;
             }
             
+            return rv;
+        }
+
+        private int _PowerMeterQsfpI2cConnect()
+        {
+            if (powerMeterQsfpI2cAdapter.ConnectApi(100) < 0)
+                return -1;
+
+            if (powerMeterQsfpI2cAdapter.connected == true)
+            {
+                powerMeterQsfpI2cAdapter.SetTimeoutApi(50);
+                cbPowerMeterQsfpConnected.Checked = true;
+            }
+            else
+                cbMeasuredObjectI2cAdapterConnected.Checked = false;
+
+            return 0;
+        }
+
+        private int _PowerMeterQsfpI2cDisconnect()
+        {
+            if (powerMeterQsfpI2cAdapter.DisconnectApi() < 0)
+                return -1;
+
+            cbPowerMeterQsfpConnected.Checked = false;
+
+            return 0;
+        }
+
+        private int _PowerMeterQsfpI2cRead(byte devAddr, byte regAddr, byte length, byte[] data)
+        {
+            int rv;
+
+            if (powerMeterQsfpI2cAdapter.connected == false)
+                return 0;
+
+            rv = powerMeterQsfpI2cAdapter.ReadApi(devAddr, regAddr, length, data);
+            if (rv < 0)
+            {
+                MessageBox.Show("Power Meter QSFP module no response!!");
+                return -1;
+            }
+
+            return rv;
+        }
+
+        private int _PowerMeterQsfpI2cWrite(byte devAddr, byte regAddr, byte length, byte[] data)
+        {
+            int rv;
+
+            if (powerMeterQsfpI2cAdapter.connected == false)
+                return 0;
+
+            rv = powerMeterQsfpI2cAdapter.WriteApi(devAddr, regAddr, length, data);
+            if (rv < 0)
+            {
+                MessageBox.Show("Power Meter QSFP module no response!!");
+                return -1;
+            }
+
             return rv;
         }
 
@@ -98,7 +157,8 @@ namespace QsfpPlus40gSr4DcTest
 
         private int _PowerMeterRead(string[] buffer)
         {
-            if (cbPowerMeterConnected.Checked == false) {
+            if (cbPowerMeterConnected.Checked == false)
+            {
                 buffer[0] = buffer[1] = buffer[2] = buffer[3] = "NA";
                 return -1;
             }
@@ -109,19 +169,88 @@ namespace QsfpPlus40gSr4DcTest
             return 0;
         }
 
+        private int _PowerMeterQsfpRead(string[] buffer)
+        {
+            byte[] data = new byte[2];
+            byte[] reverseData;
+            int tmp;
+            float power;
+
+            if (cbPowerMeterQsfpConnected.Checked == false)
+                goto error;
+
+            if (_PowerMeterQsfpI2cRead(80, 34, 2, data) != 2)
+                goto error;
+
+            reverseData = data.Reverse().ToArray();
+            tmp = BitConverter.ToInt16(reverseData, 0);
+            power = tmp / 10;
+            buffer[0] = power.ToString();
+
+            if (_PowerMeterQsfpI2cRead(80, 36, 2, data) != 2)
+                goto error;
+
+            reverseData = data.Reverse().ToArray();
+            tmp = BitConverter.ToInt16(reverseData, 0);
+            power = tmp / 10;
+            buffer[1] = power.ToString();
+
+            if (_PowerMeterQsfpI2cRead(80, 38, 2, data) != 2)
+                goto error;
+
+            reverseData = data.Reverse().ToArray();
+            tmp = BitConverter.ToInt16(reverseData, 0);
+            power = tmp / 10;
+            buffer[2] = power.ToString();
+
+            if (_PowerMeterQsfpI2cRead(80, 40, 2, data) != 2)
+                goto error;
+
+            reverseData = data.Reverse().ToArray();
+            tmp = BitConverter.ToInt16(reverseData, 0);
+            power = tmp / 10;
+            buffer[3] = power.ToString();
+
+            return 0;
+
+        error:
+            buffer[0] = buffer[1] = buffer[2] = buffer[3] = "NA";
+            return -1;
+        }
+
+        private int _PowerMeterReadCb(string[] buffer)
+        {
+            switch (powerMeterSelect)
+            {
+                case "Power Meter":
+                    _PowerMeterRead(buffer);
+                    break;
+
+                case "QSFP":
+                    _PowerMeterQsfpRead(buffer);
+                    break;
+
+                default:
+                    buffer[0] = buffer[1] = buffer[2] = buffer[3] = "NA";
+                    return -1;
+            }
+
+            return 0;
+        }
+
         public MainForm()
         {
             InitializeComponent();
 
-            if (ucQsfpPlus40gSr4DcTest.SetI2cReadCBApi(_I2cRead) < 0) {
+            if (ucQsfpPlus40gSr4DcTest.SetI2cReadCBApi(_MeasuredObjectI2cRead) < 0) {
                 MessageBox.Show("ucQsfpPlus40gSr4DcTest.SetI2cReadCBApi() faile Error!!");
                 return;
             }
-            if (ucQsfpPlus40gSr4DcTest.SetI2cWriteCBApi(_I2cWrite) < 0) {
+            if (ucQsfpPlus40gSr4DcTest.SetI2cWriteCBApi(_MeasuredObjectI2cWrite) < 0) {
                 MessageBox.Show("ucQsfpPlus40gSr4DcTest.SetI2cWriteCBApi() faile Error!!");
                 return;
             }
-            if (ucQsfpPlus40gSr4DcTest.SetPowerMeterReadCBApi(_PowerMeterRead) < 0) {
+            if (ucQsfpPlus40gSr4DcTest.SetPowerMeterReadCBApi(_PowerMeterReadCb) < 0) {
                 MessageBox.Show("ucQsfpPlus40gSr4DcTest.SetPowerMeterReadCBApi() faile Error!!");
                 return;
             }
@@ -129,8 +258,8 @@ namespace QsfpPlus40gSr4DcTest
 
         private void cbI2cAdapterConnected_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbI2cAdapterConnected.Checked == true) {
-                _I2cConnect();
+            if (cbMeasuredObjectI2cAdapterConnected.Checked == true) {
+                _MeasuredObjectI2cConnect();
                 cbAutoMonitor.Enabled = true;
                 if (cbPowerMeterConnected.Checked == true)
                     cbAutoMonitor.Checked = true;
@@ -141,7 +270,7 @@ namespace QsfpPlus40gSr4DcTest
                     cbAutoMonitor.Checked = false;
                     cbAutoMonitor.Enabled = false;
                 }
-                _I2cDisconnect();
+                _MeasuredObjectI2cDisconnect();
             }
         }
 
@@ -154,6 +283,7 @@ namespace QsfpPlus40gSr4DcTest
                 }
                 cbPowerMeterConnected.Enabled = false;
                 cbAutoMonitor.Enabled = true;
+                cbPowerMeterSelect.Enabled = false;
             }
             else {
 
@@ -162,9 +292,10 @@ namespace QsfpPlus40gSr4DcTest
                     
                     ucQsfpPlus40gSr4DcTest.StopMonitorApi();
                 }
-                if (cbI2cAdapterConnected.Checked == false)
+                if (cbMeasuredObjectI2cAdapterConnected.Checked == false)
                     cbAutoMonitor.Enabled = false;
                 tbPowerMeterIpAddr.Enabled = true;
+                cbPowerMeterSelect.Enabled = true;
             }
         }
 
@@ -184,17 +315,18 @@ namespace QsfpPlus40gSr4DcTest
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
-            switch (e.KeyCode.ToString()) {
-                case "Space":
+            switch (e.KeyCode) {
+                case Keys.Space:
+                case Keys.Enter:
                     ucQsfpPlus40gSr4DcTest.SetFocusOnLogFilePathApi();
                     ucQsfpPlus40gSr4DcTest.SpaceKeyDownApi(sender, e);
                     break;
                 
-                case "Right":
+                case Keys.Right:
                     ucQsfpPlus40gSr4DcTest.RightKeyDownApi(sender, e);
                     break;
 
-                case "Left":
+                case Keys.Left:
                     ucQsfpPlus40gSr4DcTest.LeftKeyDownApi(sender, e);
                     break;
 
@@ -204,6 +336,47 @@ namespace QsfpPlus40gSr4DcTest
             
         }
 
+        private void cbPowerMeterSelect_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (cbPowerMeterSelect.SelectedItem.ToString())
+            {
+                case "Power Meter":
+                    cbPowerMeterConnected.Visible = true;
+                    lPowerMeterIpAddr.Visible = true;
+                    tbPowerMeterIpAddr.Visible = true;
+                    cbPowerMeterQsfpConnected.Visible = false;
+                    powerMeterSelect = "Power Meter";
+                    break;
 
+                case "QSFP":
+                    cbPowerMeterConnected.Visible = false;
+                    lPowerMeterIpAddr.Visible = false;
+                    tbPowerMeterIpAddr.Visible = false;
+                    cbPowerMeterQsfpConnected.Visible = true;
+                    powerMeterSelect = "QSFP";
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        private void cbPowerMeterQsfpConnected_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbPowerMeterQsfpConnected.Checked == true) {
+                _PowerMeterQsfpI2cConnect();
+                cbAutoMonitor.Enabled = true;
+                cbPowerMeterSelect.Enabled = false;
+            }
+            else {
+                if (cbAutoMonitor.Checked == true)
+                    ucQsfpPlus40gSr4DcTest.StopMonitorApi();
+               
+                if (cbMeasuredObjectI2cAdapterConnected.Checked == false)
+                    cbAutoMonitor.Enabled = false;
+                cbPowerMeterSelect.Enabled = true;
+                _PowerMeterQsfpI2cDisconnect();
+            }
+        }
     }
 }
