@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QsfpPlus40gSr4ConfigBackup", "QsfpPlus40gSr4ConfigBackup\QsfpPlus40gSr4ConfigBackup.csproj", "{8A2890EC-28C1-403E-A531-89DB9AAB60A1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{51CCB54A-8E99-452C-8857-CFCA6CC35367}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8A2890EC-28C1-403E-A531-89DB9AAB60A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A2890EC-28C1-403E-A531-89DB9AAB60A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A2890EC-28C1-403E-A531-89DB9AAB60A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A2890EC-28C1-403E-A531-89DB9AAB60A1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8A57C24F-2E19-4F0B-8662-33524CD6FBBF}
+	EndGlobalSection
+EndGlobal
