@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AardvarkAdapter, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dll\device\AardvarkAdapter.dll</HintPath>
+    </Reference>
     <Reference Include="I2cMasterInterface">
       <HintPath>..\..\interface\I2cMaster\bin\Release\I2cMasterInterface.dll</HintPath>
     </Reference>

@@ -72,7 +72,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "FQsfpCorrector";
-            this.Text = "QSFP+ Corrector";
+            this.Text = "QSFP+ Corrector 20190408_1404";
             this.ResumeLayout(false);
             this.PerformLayout();
 

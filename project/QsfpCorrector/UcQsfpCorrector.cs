@@ -508,13 +508,11 @@ namespace QsfpCorrector
             int.TryParse(tbRssiRegisterPage.Text, out page);
             int.TryParse(tbRssiRegisterAddr.Text, out addr);
 
-            if (page != 0) {
-                data[0] = (byte)page;
-                if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
-                    goto clearData;
+            data[0] = (byte)page;
+            if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
+                goto clearData;
 
-                Thread.Sleep(10); //Wait change page
-            }
+            Thread.Sleep(10); //Wait change page
 
             if (qsfpI2cReadCB(80, (byte)addr, 8, data) != 8)
                 goto clearData;
@@ -1240,7 +1238,7 @@ namespace QsfpCorrector
                 else
                     tbRxPowerRate4.ForeColor = SystemColors.ControlText;
             }
-            tbRxPowerRate4.Text = rxRate[0].ToString();
+            tbRxPowerRate4.Text = rxRate[3].ToString();
             tbRxPowerRate4.Update();
 
             if (pass == true)
@@ -1256,6 +1254,10 @@ namespace QsfpCorrector
             tbXaSerialNumber.Text = xaSerialNumber;
             tbXaSerialNumber.Update();
             tbDateCode.Text = firmwareDataCode;
+            if (!firmwareDataCode.Equals(tbFirmwareDateCode.Text))
+                tbDateCode.ForeColor = System.Drawing.Color.Red;
+            else
+                tbDateCode.ForeColor = SystemColors.ControlText;
             tbDateCode.Update();
 
             return 0;
@@ -1264,12 +1266,9 @@ namespace QsfpCorrector
         private int _CheckFirmwareDataCode()
         {
             if (!firmwareDataCode.Equals(tbFirmwareDateCode.Text)) {
-                tbDateCode.ForeColor = System.Drawing.Color.Red;
                 result += "Firmware data code different!!, ";
                 return -1;
             }
-            else
-                tbDateCode.ForeColor = SystemColors.ControlText;
 
             return 0;
         }
