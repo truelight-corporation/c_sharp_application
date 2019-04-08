@@ -671,9 +671,12 @@ namespace QsfpPlus40gSr4DcTest
         private int _SetBias(int uA)
         {
             byte[] data = new byte[1];
-            byte[] baWritedata = new byte[2];
-            byte[] baReadData = new byte[2];
-            Int16 i16Tmp;
+            byte[] baWritedata = new byte[22];
+            byte[] baReadData = new byte[22];
+            byte[] bATmp;
+
+            if (_WritePassword() < 0)
+                return -1;
 
             if (_SetQsfpMode(0x4D) < 0)
                 return -1;
@@ -684,54 +687,125 @@ namespace QsfpPlus40gSr4DcTest
             if (i2cReadCB == null)
                 return -1;
 
-            i16Tmp = (Int16)(uA / 8);
-            i16Tmp <<= 5;
-            baWritedata = BitConverter.GetBytes(i16Tmp);
-            Array.Reverse(baWritedata);
-
-            if (i2cWriteCB(84, 66, 2, baWritedata) < 0)
+            data[0] = 5;
+            if (i2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
 
-            if (i2cWriteCB(84, 82, 2, baWritedata) < 0)
+            baWritedata[0] = Convert.ToByte(10.2 / 0.04); //Max
+            baWritedata[1] = Convert.ToByte(4 / 0.04); //Min
+
+            baWritedata[2] = (byte)Convert.ToSByte(0 * 100); //Ch1 EqA
+            bATmp = BitConverter.GetBytes(Convert.ToInt16(0 * 10)); //Ch1 EqA
+            baWritedata[3] = bATmp[1];
+            baWritedata[4] = bATmp[0];
+            bATmp = BitConverter.GetBytes(Convert.ToUInt16(uA)); //Ch1 EqC
+            baWritedata[5] = bATmp[1];
+            baWritedata[6] = bATmp[0];
+
+            baWritedata[7] = (byte)Convert.ToSByte(0 * 100); //Ch2 EqA
+            bATmp = BitConverter.GetBytes(Convert.ToInt16(0 * 10)); //Ch2 EqA
+            baWritedata[8] = bATmp[1];
+            baWritedata[9] = bATmp[0];
+            bATmp = BitConverter.GetBytes(Convert.ToUInt16(uA)); //Ch2 EqC
+            baWritedata[10] = bATmp[1];
+            baWritedata[11] = bATmp[0];
+
+            baWritedata[12] = (byte)Convert.ToSByte(0 * 100); //Ch3 EqA
+            bATmp = BitConverter.GetBytes(Convert.ToInt16(0 * 10)); //Ch3 EqA
+            baWritedata[13] = bATmp[1];
+            baWritedata[14] = bATmp[0];
+            bATmp = BitConverter.GetBytes(Convert.ToUInt16(uA)); //Ch3 EqC
+            baWritedata[15] = bATmp[1];
+            baWritedata[16] = bATmp[0];
+
+            baWritedata[17] = (byte)Convert.ToSByte(0 * 100); //Ch4 EqA
+            bATmp = BitConverter.GetBytes(Convert.ToInt16(0 * 10)); //Ch4 EqA
+            baWritedata[18] = bATmp[1];
+            baWritedata[19] = bATmp[0];
+            bATmp = BitConverter.GetBytes(Convert.ToUInt16(uA)); //Ch4 EqC
+            baWritedata[20] = bATmp[1];
+            baWritedata[21] = bATmp[0];
+
+            if (i2cWriteCB(80, 128, 22, baWritedata) < 0)
                 return -1;
 
-            if (i2cWriteCB(84, 98, 2, baWritedata) < 0)
+            //Write 223 to enable temperature compensate
+            data[0] = 0;
+            if (i2cWriteCB(80, 223, 1, data) < 0)
                 return -1;
 
-            if (i2cWriteCB(84, 114, 2, baWritedata) < 0)
+            data[0] = 5;
+            if (i2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
 
-            if (i2cReadCB(84, 66, 2, baReadData) != 2)
+            Thread.Sleep(100); //Wait change page
+
+            if (i2cReadCB(80, 128, 22, baReadData) != 22)
                 return -1;
 
-            if ((baReadData[0] != baWritedata[0]) || (baReadData[1] != baWritedata[1]))
-                MessageBox.Show("設定 Tx1 bias 失敗!! 讀(" + baReadData[0].ToString("X2") +
-                    baReadData[1].ToString("X2") + ") != 寫(" + baWritedata[0].ToString("X2") +
-                    baWritedata[1].ToString("X2") + ")\n!!請重新記錄!!");
+            if (baReadData[0] != baWritedata[0])
+                MessageBox.Show("設定 Max bias 失敗!! 讀(" + baReadData[0].ToString("X2") +
+                    ") != 寫(" + baWritedata[0].ToString("X2") + ")\n!!請重新記錄!!");
 
-            if (i2cReadCB(84, 82, 2, baReadData) != 2)
-                return -1;
+            if (baReadData[1] != baWritedata[1])
+                MessageBox.Show("設定 Min bias 失敗!! 讀(" + baReadData[1].ToString("X2") +
+                    ") != 寫(" + baWritedata[1].ToString("X2") + ")\n!!請重新記錄!!");
 
-            if ((baReadData[0] != baWritedata[0]) || (baReadData[1] != baWritedata[1]))
-                MessageBox.Show("設定 Tx2 bias 失敗!! 讀(" + baReadData[0].ToString("X2") +
-                    baReadData[1].ToString("X2") + ") != 寫(" + baWritedata[0].ToString("X2") +
-                    baWritedata[1].ToString("X2") + ")\n!!請重新記錄!!");
+            if (baReadData[2] != baWritedata[2])
+                MessageBox.Show("設定 Ch1 EqA 失敗!! 讀(" + baReadData[2].ToString("X2") +
+                    ") != 寫(" + baWritedata[2].ToString("X2") + ")\n!!請重新記錄!!");
 
-            if (i2cReadCB(84, 98, 2, baReadData) != 2)
-                return -1;
+            if ((baReadData[3] != baWritedata[3]) || (baReadData[4] != baWritedata[4]))
+                MessageBox.Show("設定 Ch1 EqB 失敗!! 讀(" + baReadData[3].ToString("X2") +
+                    baReadData[4].ToString("X2") + ") != 寫(" + baWritedata[3].ToString("X2") +
+                    baWritedata[4].ToString("X2") + ")\n!!請重新記錄!!");
 
-            if ((baReadData[0] != baWritedata[0]) || (baReadData[1] != baWritedata[1]))
-                MessageBox.Show("設定 Tx3 bias 失敗!! 讀(" + baReadData[0].ToString("X2") +
-                    baReadData[1].ToString("X2") + ") != 寫(" + baWritedata[0].ToString("X2") +
-                    baWritedata[1].ToString("X2") + ")\n!!請重新記錄!!");
+            if ((baReadData[5] != baWritedata[5]) || (baReadData[6] != baWritedata[6]))
+                MessageBox.Show("設定 Ch1 EqC 失敗!! 讀(" + baReadData[5].ToString("X2") +
+                    baReadData[6].ToString("X2") + ") != 寫(" + baWritedata[5].ToString("X2") +
+                    baWritedata[6].ToString("X2") + ")\n!!請重新記錄!!");
 
-            if (i2cReadCB(84, 114, 2, baReadData) != 2)
-                return -1;
+            if (baReadData[7] != baWritedata[7])
+                MessageBox.Show("設定 Ch2 EqA 失敗!! 讀(" + baReadData[7].ToString("X2") +
+                    ") != 寫(" + baWritedata[7].ToString("X2") + ")\n!!請重新記錄!!");
 
-            if ((baReadData[0] != baWritedata[0]) || (baReadData[1] != baWritedata[1]))
-                MessageBox.Show("設定 Tx4 bias 失敗!! 讀(" + baReadData[0].ToString("X2") +
-                    baReadData[1].ToString("X2") + ") != 寫(" + baWritedata[0].ToString("X2") +
-                    baWritedata[1].ToString("X2") + ")\n!!請重新記錄!!");
+            if ((baReadData[8] != baWritedata[8]) || (baReadData[9] != baWritedata[9]))
+                MessageBox.Show("設定 Ch2 EqB 失敗!! 讀(" + baReadData[8].ToString("X2") +
+                    baReadData[9].ToString("X2") + ") != 寫(" + baWritedata[8].ToString("X2") +
+                    baWritedata[9].ToString("X2") + ")\n!!請重新記錄!!");
+
+            if ((baReadData[10] != baWritedata[10]) || (baReadData[11] != baWritedata[11]))
+                MessageBox.Show("設定 Ch2 EqC 失敗!! 讀(" + baReadData[10].ToString("X2") +
+                    baReadData[11].ToString("X2") + ") != 寫(" + baWritedata[10].ToString("X2") +
+                    baWritedata[11].ToString("X2") + ")\n!!請重新記錄!!");
+
+            if (baReadData[12] != baWritedata[12])
+                MessageBox.Show("設定 Ch3 EqA 失敗!! 讀(" + baReadData[12].ToString("X2") +
+                    ") != 寫(" + baWritedata[12].ToString("X2") + ")\n!!請重新記錄!!");
+
+            if ((baReadData[13] != baWritedata[13]) || (baReadData[14] != baWritedata[14]))
+                MessageBox.Show("設定 Ch3 EqB 失敗!! 讀(" + baReadData[13].ToString("X2") +
+                    baReadData[14].ToString("X2") + ") != 寫(" + baWritedata[13].ToString("X2") +
+                    baWritedata[14].ToString("X2") + ")\n!!請重新記錄!!");
+
+            if ((baReadData[15] != baWritedata[15]) || (baReadData[16] != baWritedata[16]))
+                MessageBox.Show("設定 Ch3 EqC 失敗!! 讀(" + baReadData[15].ToString("X2") +
+                    baReadData[16].ToString("X2") + ") != 寫(" + baWritedata[15].ToString("X2") +
+                    baWritedata[16].ToString("X2") + ")\n!!請重新記錄!!");
+
+            if (baReadData[17] != baWritedata[17])
+                MessageBox.Show("設定 Ch4 EqA 失敗!! 讀(" + baReadData[7].ToString("X2") +
+                    ") != 寫(" + baWritedata[7].ToString("X2") + ")\n!!請重新記錄!!");
+
+            if ((baReadData[18] != baWritedata[18]) || (baReadData[19] != baWritedata[19]))
+                MessageBox.Show("設定 Ch4 EqB 失敗!! 讀(" + baReadData[18].ToString("X2") +
+                    baReadData[19].ToString("X2") + ") != 寫(" + baWritedata[18].ToString("X2") +
+                    baWritedata[19].ToString("X2") + ")\n!!請重新記錄!!");
+
+            if ((baReadData[20] != baWritedata[20]) || (baReadData[21] != baWritedata[21]))
+                MessageBox.Show("設定 Ch4 EqC 失敗!! 讀(" + baReadData[20].ToString("X2") +
+                    baReadData[21].ToString("X2") + ") != 寫(" + baWritedata[20].ToString("X2") +
+                    baWritedata[21].ToString("X2") + ")\n!!請重新記錄!!");
 
             return 0;
         }
@@ -775,24 +849,8 @@ namespace QsfpPlus40gSr4DcTest
 
             if (i2cWriteCB((byte)devAddr, 220, 16, data) < 0)
                 return -1;
-
-            /* After write up page 5 addr 223 will set functionFlag(addr 252) so need clear */
-            data[0] = 0;
-            if (i2cWriteCB((byte)devAddr, 252, 1, data) < 0)
-                return -1;
-
-            data[0] = 32;
-            if (i2cWriteCB((byte)devAddr, 127, 1, data) < 0)
-                return -1;
-            data[0] = 0xAA;
-            if (i2cWriteCB((byte)devAddr, 162, 1, data) < 0)
-                return -1;
             
-            data[0] = 5;
-            if (i2cWriteCB((byte)devAddr, 127, 1, data) < 0)
-                return -1;
-
-            Thread.Sleep(100); // Wait change page
+            Thread.Sleep(100); // Wait command proecss
 
             if (i2cReadCB((byte)devAddr, 220, 16, baReadTmp) != 16)
                 return -1;
@@ -811,11 +869,16 @@ namespace QsfpPlus40gSr4DcTest
             return 0;
         }
 
-        private int _StoreBiasConfig()
+        private int _StoreConfigIntoFlash()
         {
-            byte[] data = { 0x55 };
+            byte[] data = new byte[1];
 
-            if (i2cWriteCB(84, 170, 1, data) < 0)
+            data[0] = 32;
+            if (i2cWriteCB(80, 127, 1, data) < 0)
+                return -1;
+
+            data[0] = 0xAA;
+            if (i2cWriteCB(80, 162, 1, data) < 0)
                 return -1;
 
             return 0;
@@ -1432,7 +1495,7 @@ namespace QsfpPlus40gSr4DcTest
                             
                             bwMonitor.ReportProgress(4, null);
                             if ((_SetModuleSerialNumber() < 0) || (_SetBias(10000) < 0) ||
-                                (_StoreBiasConfig() < 0)) {
+                                (_StoreConfigIntoFlash() < 0)) {
                                 bGetModuleMonitorValueError = true;
                                 break;
                             }
@@ -1444,7 +1507,7 @@ namespace QsfpPlus40gSr4DcTest
 
                         case "AfterBurnIn":
                             bwMonitor.ReportProgress(5, null);
-                            if ((_SetBias(iTmp) < 0) || (_StoreBiasConfig() < 0)) {
+                            if ((_SetBias(iTmp) < 0) || (_StoreConfigIntoFlash() < 0)) {
                                 bGetModuleMonitorValueError = true;
                                 break;
                             }
