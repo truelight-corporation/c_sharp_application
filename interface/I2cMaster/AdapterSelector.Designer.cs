@@ -29,17 +29,20 @@
         {
             this.tcAdapterType = new System.Windows.Forms.TabControl();
             this.tpAardvark = new System.Windows.Forms.TabPage();
-            this.bLBAUpdate = new System.Windows.Forms.Button();
+            this.bAardvarkUpdate = new System.Windows.Forms.Button();
             this.lbAardvark = new System.Windows.Forms.ListBox();
-            this.tpUi051 = new System.Windows.Forms.TabPage();
+            this.tpMcp2221 = new System.Windows.Forms.TabPage();
+            this.bMcp2221Update = new System.Windows.Forms.Button();
+            this.lbMcp2221 = new System.Windows.Forms.ListBox();
             this.tcAdapterType.SuspendLayout();
             this.tpAardvark.SuspendLayout();
+            this.tpMcp2221.SuspendLayout();
             this.SuspendLayout();
             // 
             // tcAdapterType
             // 
             this.tcAdapterType.Controls.Add(this.tpAardvark);
-            this.tcAdapterType.Controls.Add(this.tpUi051);
+            this.tcAdapterType.Controls.Add(this.tpMcp2221);
             this.tcAdapterType.Location = new System.Drawing.Point(3, 3);
             this.tcAdapterType.Name = "tcAdapterType";
             this.tcAdapterType.SelectedIndex = 0;
@@ -48,7 +51,7 @@
             // 
             // tpAardvark
             // 
-            this.tpAardvark.Controls.Add(this.bLBAUpdate);
+            this.tpAardvark.Controls.Add(this.bAardvarkUpdate);
             this.tpAardvark.Controls.Add(this.lbAardvark);
             this.tpAardvark.Location = new System.Drawing.Point(4, 22);
             this.tpAardvark.Name = "tpAardvark";
@@ -58,15 +61,15 @@
             this.tpAardvark.Text = "Aardvark";
             this.tpAardvark.UseVisualStyleBackColor = true;
             // 
-            // bLBAUpdate
+            // bAardvarkUpdate
             // 
-            this.bLBAUpdate.Location = new System.Drawing.Point(225, 6);
-            this.bLBAUpdate.Name = "bLBAUpdate";
-            this.bLBAUpdate.Size = new System.Drawing.Size(75, 23);
-            this.bLBAUpdate.TabIndex = 1;
-            this.bLBAUpdate.Text = "Update";
-            this.bLBAUpdate.UseVisualStyleBackColor = true;
-            this.bLBAUpdate.Click += new System.EventHandler(this.bLBAUpdate_Click);
+            this.bAardvarkUpdate.Location = new System.Drawing.Point(225, 6);
+            this.bAardvarkUpdate.Name = "bAardvarkUpdate";
+            this.bAardvarkUpdate.Size = new System.Drawing.Size(75, 23);
+            this.bAardvarkUpdate.TabIndex = 1;
+            this.bAardvarkUpdate.Text = "Update";
+            this.bAardvarkUpdate.UseVisualStyleBackColor = true;
+            this.bAardvarkUpdate.Click += new System.EventHandler(this.bAardvarkUpdate_Click);
             // 
             // lbAardvark
             // 
@@ -79,15 +82,38 @@
             this.lbAardvark.TabIndex = 0;
             this.lbAardvark.DoubleClick += new System.EventHandler(this._lbAardvarkDoubleClick);
             // 
-            // tpUi051
+            // tpMcp2221
             // 
-            this.tpUi051.Location = new System.Drawing.Point(4, 22);
-            this.tpUi051.Name = "tpUi051";
-            this.tpUi051.Padding = new System.Windows.Forms.Padding(3);
-            this.tpUi051.Size = new System.Drawing.Size(306, 208);
-            this.tpUi051.TabIndex = 1;
-            this.tpUi051.Text = "UI051";
-            this.tpUi051.UseVisualStyleBackColor = true;
+            this.tpMcp2221.Controls.Add(this.bMcp2221Update);
+            this.tpMcp2221.Controls.Add(this.lbMcp2221);
+            this.tpMcp2221.Location = new System.Drawing.Point(4, 22);
+            this.tpMcp2221.Name = "tpMcp2221";
+            this.tpMcp2221.Padding = new System.Windows.Forms.Padding(3);
+            this.tpMcp2221.Size = new System.Drawing.Size(306, 208);
+            this.tpMcp2221.TabIndex = 1;
+            this.tpMcp2221.Text = "MCP2221";
+            this.tpMcp2221.UseVisualStyleBackColor = true;
+            // 
+            // bMcp2221Update
+            // 
+            this.bMcp2221Update.Location = new System.Drawing.Point(225, 6);
+            this.bMcp2221Update.Name = "bMcp2221Update";
+            this.bMcp2221Update.Size = new System.Drawing.Size(75, 23);
+            this.bMcp2221Update.TabIndex = 3;
+            this.bMcp2221Update.Text = "Update";
+            this.bMcp2221Update.UseVisualStyleBackColor = true;
+            this.bMcp2221Update.Click += new System.EventHandler(this.bMcp2221Update_Click);
+            // 
+            // lbMcp2221
+            // 
+            this.lbMcp2221.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lbMcp2221.FormattingEnabled = true;
+            this.lbMcp2221.ItemHeight = 16;
+            this.lbMcp2221.Location = new System.Drawing.Point(6, 6);
+            this.lbMcp2221.Name = "lbMcp2221";
+            this.lbMcp2221.Size = new System.Drawing.Size(213, 196);
+            this.lbMcp2221.TabIndex = 2;
+            this.lbMcp2221.DoubleClick += new System.EventHandler(this.lbMcp2221_DoubleClick);
             // 
             // AdapterSelector
             // 
@@ -98,6 +124,7 @@
             this.Size = new System.Drawing.Size(320, 240);
             this.tcAdapterType.ResumeLayout(false);
             this.tpAardvark.ResumeLayout(false);
+            this.tpMcp2221.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -106,9 +133,10 @@
 
         private System.Windows.Forms.TabControl tcAdapterType;
         private System.Windows.Forms.TabPage tpAardvark;
-        private System.Windows.Forms.TabPage tpUi051;
-        private System.Windows.Forms.Button bLBAUpdate;
+        private System.Windows.Forms.TabPage tpMcp2221;
+        private System.Windows.Forms.Button bAardvarkUpdate;
         private System.Windows.Forms.ListBox lbAardvark;
-
+        private System.Windows.Forms.Button bMcp2221Update;
+        private System.Windows.Forms.ListBox lbMcp2221;
     }
 }
