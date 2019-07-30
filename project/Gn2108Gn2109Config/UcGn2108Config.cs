@@ -130,6 +130,58 @@ namespace Gn2108Gn2109Config
                 cbL3EqBoost.Items.Add(i);
                 cbL3CkgenMclkPhase.Items.Add(i);
                 cbAllEqBoost.Items.Add(i);
+                cbL0InputEqualization0db.Items.Add(i);
+                cbL0InputEqualization1db.Items.Add(i);
+                cbL0InputEqualization2db.Items.Add(i);
+                cbL0InputEqualization3db.Items.Add(i);
+                cbL0InputEqualization4db.Items.Add(i);
+                cbL0InputEqualization5db.Items.Add(i);
+                cbL0InputEqualization6db.Items.Add(i);
+                cbL0InputEqualization7db.Items.Add(i);
+                cbL0InputEqualization8db.Items.Add(i);
+                cbL0InputEqualization9db.Items.Add(i);
+                cbL0InputEqualization10db.Items.Add(i);
+                cbL0InputEqualizationReserved0.Items.Add(i);
+                cbL0InputEqualizationReserved1.Items.Add(i);
+                cbL1InputEqualization0db.Items.Add(i);
+                cbL1InputEqualization1db.Items.Add(i);
+                cbL1InputEqualization2db.Items.Add(i);
+                cbL1InputEqualization3db.Items.Add(i);
+                cbL1InputEqualization4db.Items.Add(i);
+                cbL1InputEqualization5db.Items.Add(i);
+                cbL1InputEqualization6db.Items.Add(i);
+                cbL1InputEqualization7db.Items.Add(i);
+                cbL1InputEqualization8db.Items.Add(i);
+                cbL1InputEqualization9db.Items.Add(i);
+                cbL1InputEqualization10db.Items.Add(i);
+                cbL1InputEqualizationReserved0.Items.Add(i);
+                cbL1InputEqualizationReserved1.Items.Add(i);
+                cbL2InputEqualization0db.Items.Add(i);
+                cbL2InputEqualization1db.Items.Add(i);
+                cbL2InputEqualization2db.Items.Add(i);
+                cbL2InputEqualization3db.Items.Add(i);
+                cbL2InputEqualization4db.Items.Add(i);
+                cbL2InputEqualization5db.Items.Add(i);
+                cbL2InputEqualization6db.Items.Add(i);
+                cbL2InputEqualization7db.Items.Add(i);
+                cbL2InputEqualization8db.Items.Add(i);
+                cbL2InputEqualization9db.Items.Add(i);
+                cbL2InputEqualization10db.Items.Add(i);
+                cbL2InputEqualizationReserved0.Items.Add(i);
+                cbL2InputEqualizationReserved1.Items.Add(i);
+                cbL3InputEqualization0db.Items.Add(i);
+                cbL3InputEqualization1db.Items.Add(i);
+                cbL3InputEqualization2db.Items.Add(i);
+                cbL3InputEqualization3db.Items.Add(i);
+                cbL3InputEqualization4db.Items.Add(i);
+                cbL3InputEqualization5db.Items.Add(i);
+                cbL3InputEqualization6db.Items.Add(i);
+                cbL3InputEqualization7db.Items.Add(i);
+                cbL3InputEqualization8db.Items.Add(i);
+                cbL3InputEqualization9db.Items.Add(i);
+                cbL3InputEqualization10db.Items.Add(i);
+                cbL3InputEqualizationReserved0.Items.Add(i);
+                cbL3InputEqualizationReserved1.Items.Add(i);
             }
 
             for (i = 0; i < 256; i++) {
@@ -9387,16 +9439,17 @@ namespace Gn2108Gn2109Config
             bL3Read_Click(sender, e);
             bControl1Read_Click(sender, e);
             bControl2Read_Click(sender, e);
+            bCustomerRead_Click(sender, e);
             bReadAll.Enabled = true;
         }
 
         private void bStoreIntoFlash_Click(object sender, EventArgs e)
         {
-            byte[] data = new byte[1];
+            byte[] data = new byte[1] { 0xA0 };
             int rv;
 
             bStoreIntoFlash.Enabled = false;
-            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x05AA).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0AAA).Reverse().ToArray(), 1, data);
             Thread.Sleep(1000);
             bStoreIntoFlash.Enabled = true;
         }
@@ -9471,5 +9524,1690 @@ namespace Gn2108Gn2109Config
                 cbAllLdCompGain1.SelectedIndex;
         }
 
+        private void _ParseAddr500(byte data)
+        {
+            cbL0InputEqualization0db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr501(byte data)
+        {
+            cbL0InputEqualization1db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr502(byte data)
+        {
+            cbL0InputEqualization2db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr503(byte data)
+        {
+            cbL0InputEqualization3db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr504(byte data)
+        {
+            cbL0InputEqualization4db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr505(byte data)
+        {
+            cbL0InputEqualization5db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr506(byte data)
+        {
+            cbL0InputEqualization6db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr507(byte data)
+        {
+            cbL0InputEqualization7db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr508(byte data)
+        {
+            cbL0InputEqualization8db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr509(byte data)
+        {
+            cbL0InputEqualization9db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr510(byte data)
+        {
+            cbL0InputEqualization10db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr511(byte data)
+        {
+            cbL0InputEqualizationReserved0.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr512(byte data)
+        {
+            cbL0InputEqualizationReserved1.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr513(byte data)
+        {
+            cbL1InputEqualization0db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr514(byte data)
+        {
+            cbL1InputEqualization1db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr515(byte data)
+        {
+            cbL1InputEqualization2db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr516(byte data)
+        {
+            cbL1InputEqualization3db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr517(byte data)
+        {
+            cbL1InputEqualization4db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr518(byte data)
+        {
+            cbL1InputEqualization5db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr519(byte data)
+        {
+            cbL1InputEqualization6db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr520(byte data)
+        {
+            cbL1InputEqualization7db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr521(byte data)
+        {
+            cbL1InputEqualization8db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr522(byte data)
+        {
+            cbL1InputEqualization9db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr523(byte data)
+        {
+            cbL1InputEqualization10db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr524(byte data)
+        {
+            cbL1InputEqualizationReserved0.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr525(byte data)
+        {
+            cbL1InputEqualizationReserved1.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr526(byte data)
+        {
+            cbL2InputEqualization0db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr527(byte data)
+        {
+            cbL2InputEqualization1db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr528(byte data)
+        {
+            cbL2InputEqualization2db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr529(byte data)
+        {
+            cbL2InputEqualization3db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr530(byte data)
+        {
+            cbL2InputEqualization4db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr531(byte data)
+        {
+            cbL2InputEqualization5db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr532(byte data)
+        {
+            cbL2InputEqualization6db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr533(byte data)
+        {
+            cbL2InputEqualization7db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr534(byte data)
+        {
+            cbL2InputEqualization8db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr535(byte data)
+        {
+            cbL2InputEqualization9db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr536(byte data)
+        {
+            cbL2InputEqualization10db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr537(byte data)
+        {
+            cbL2InputEqualizationReserved0.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr538(byte data)
+        {
+            cbL2InputEqualizationReserved1.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr539(byte data)
+        {
+            cbL3InputEqualization0db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr540(byte data)
+        {
+            cbL3InputEqualization1db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr541(byte data)
+        {
+            cbL3InputEqualization2db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr542(byte data)
+        {
+            cbL3InputEqualization3db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr543(byte data)
+        {
+            cbL3InputEqualization4db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr544(byte data)
+        {
+            cbL3InputEqualization5db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr545(byte data)
+        {
+            cbL3InputEqualization6db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr546(byte data)
+        {
+            cbL3InputEqualization7db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr547(byte data)
+        {
+            cbL3InputEqualization8db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr548(byte data)
+        {
+            cbL3InputEqualization9db.SelectedIndex = data & 0x7F;
+        }
+   
+        private void _ParseAddr549(byte data)
+        {
+            cbL3InputEqualization10db.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr550(byte data)
+        {
+            cbL3InputEqualizationReserved0.SelectedIndex = data & 0x7F;
+        }
+
+        private void _ParseAddr551(byte data)
+        {
+            cbL3InputEqualizationReserved1.SelectedIndex = data & 0x7F;
+        }
+
+        private void bCustomerRead_Click(object sender, EventArgs e)
+        {
+            byte[] data = new byte[52];
+            int rv;
+
+            if (reading == true)
+                return;
+
+            reading = true;
+
+            if (i2cRead16CB == null)
+                goto exit;
+
+            rv = i2cRead16CB(84, BitConverter.GetBytes((ushort)0x0500).Reverse().ToArray(), 52, data);
+            if (rv != 52)
+                goto exit;
+
+            _ParseAddr500(data[0]);
+            _ParseAddr501(data[1]);
+            _ParseAddr502(data[2]);
+            _ParseAddr503(data[3]);
+            _ParseAddr504(data[4]);
+            _ParseAddr505(data[5]);
+            _ParseAddr506(data[6]);
+            _ParseAddr507(data[7]);
+            _ParseAddr508(data[8]);
+            _ParseAddr509(data[9]);
+            _ParseAddr510(data[10]);
+            _ParseAddr511(data[11]);
+            _ParseAddr512(data[12]);
+            _ParseAddr513(data[13]);
+            _ParseAddr514(data[14]);
+            _ParseAddr515(data[15]);
+            _ParseAddr516(data[16]);
+            _ParseAddr517(data[17]);
+            _ParseAddr518(data[18]);
+            _ParseAddr519(data[19]);
+            _ParseAddr520(data[20]);
+            _ParseAddr521(data[21]);
+            _ParseAddr522(data[22]);
+            _ParseAddr523(data[23]);
+            _ParseAddr524(data[24]);
+            _ParseAddr525(data[25]);
+            _ParseAddr526(data[26]);
+            _ParseAddr527(data[27]);
+            _ParseAddr528(data[28]);
+            _ParseAddr529(data[29]);
+            _ParseAddr530(data[30]);
+            _ParseAddr531(data[31]);
+            _ParseAddr532(data[32]);
+            _ParseAddr533(data[33]);
+            _ParseAddr534(data[34]);
+            _ParseAddr535(data[35]);
+            _ParseAddr536(data[36]);
+            _ParseAddr537(data[37]);
+            _ParseAddr538(data[38]);
+            _ParseAddr539(data[39]);
+            _ParseAddr540(data[40]);
+            _ParseAddr541(data[41]);
+            _ParseAddr542(data[42]);
+            _ParseAddr543(data[43]);
+            _ParseAddr544(data[44]);
+            _ParseAddr545(data[45]);
+            _ParseAddr546(data[46]);
+            _ParseAddr547(data[47]);
+            _ParseAddr548(data[48]);
+            _ParseAddr549(data[49]);
+            _ParseAddr550(data[50]);
+            _ParseAddr551(data[51]);
+
+            exit:
+            reading = false;
+        }
+
+        private int _WriteAddr500()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL0InputEqualization0db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0500).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr501()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL0InputEqualization1db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0501).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr502()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL0InputEqualization2db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0502).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr503()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL0InputEqualization3db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0503).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr504()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL0InputEqualization4db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0504).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr505()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL0InputEqualization5db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0505).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr506()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL0InputEqualization6db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0506).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr507()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL0InputEqualization7db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0507).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr508()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL0InputEqualization8db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0508).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr509()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL0InputEqualization9db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0509).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr510()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL0InputEqualization10db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0510).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr511()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL0InputEqualizationReserved0.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0511).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr512()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL0InputEqualizationReserved1.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0512).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private void cbL0InputEqualization0db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr500() < 0)
+                return;
+        }
+
+        private void cbL0InputEqualization1db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr501() < 0)
+                return;
+        }
+
+        private void cbL0InputEqualization2db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr502() < 0)
+                return;
+        }
+
+        private void cbL0InputEqualization3db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr503() < 0)
+                return;
+        }
+
+        private void cbL0InputEqualization4db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr504() < 0)
+                return;
+        }
+
+        private void cbL0InputEqualization5db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr505() < 0)
+                return;
+        }
+
+        private void cbL0InputEqualization6db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr506() < 0)
+                return;
+        }
+
+        private void cbL0InputEqualization7db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr507() < 0)
+                return;
+        }
+
+        private void cbL0InputEqualization8db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr508() < 0)
+                return;
+        }
+
+        private void cbL0InputEqualization9db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr509() < 0)
+                return;
+        }
+
+        private void cbL0InputEqualization10db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr510() < 0)
+                return;
+        }
+
+        private void cbL0InputEqualizationReserved0_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr511() < 0)
+                return;
+        }
+
+        private void cbL0InputEqualizationReserved1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr512() < 0)
+                return;
+        }
+
+        private int _WriteAddr513()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL1InputEqualization0db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0513).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr514()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL1InputEqualization1db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0514).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr515()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL1InputEqualization2db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0515).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr516()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL1InputEqualization3db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0516).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr517()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL1InputEqualization4db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0517).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr518()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL1InputEqualization5db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0518).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr519()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL1InputEqualization6db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0519).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr520()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL1InputEqualization7db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0520).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr521()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL1InputEqualization8db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0521).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr522()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL1InputEqualization9db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0522).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr523()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL1InputEqualization10db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0523).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr524()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL1InputEqualizationReserved0.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0524).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr525()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL1InputEqualizationReserved1.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0525).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private void cbL1InputEqualization0db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr513() < 0)
+                return;
+        }
+
+        private void cbL1InputEqualization1db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr514() < 0)
+                return;
+        }
+
+        private void cbL1InputEqualization2db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr515() < 0)
+                return;
+        }
+
+        private void cbL1InputEqualization3db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr516() < 0)
+                return;
+        }
+
+        private void cbL1InputEqualization4db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr517() < 0)
+                return;
+        }
+
+        private void cbL1InputEqualization5db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr518() < 0)
+                return;
+        }
+
+        private void cbL1InputEqualization6db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr519() < 0)
+                return;
+        }
+
+        private void cbL1InputEqualization7db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr520() < 0)
+                return;
+        }
+
+        private void cbL1InputEqualization8db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr521() < 0)
+                return;
+        }
+
+        private void cbL1InputEqualization9db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr522() < 0)
+                return;
+        }
+
+        private void cbL1InputEqualization10db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr523() < 0)
+                return;
+        }
+
+        private void cbL1InputEqualizationReserved0_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr524() < 0)
+                return;
+        }
+
+        private void cbL1InputEqualizationReserved1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr525() < 0)
+                return;
+        }
+
+        private int _WriteAddr526()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL2InputEqualization0db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0526).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr527()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL2InputEqualization1db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0527).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr528()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL2InputEqualization2db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0528).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr529()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL2InputEqualization3db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0529).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr530()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL2InputEqualization4db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0530).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr531()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL2InputEqualization5db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0531).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr532()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL2InputEqualization6db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0532).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr533()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL2InputEqualization7db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0533).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr534()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL2InputEqualization8db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0534).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr535()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL2InputEqualization9db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0535).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr536()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL2InputEqualization10db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0536).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr537()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL2InputEqualizationReserved0.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0537).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr538()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL2InputEqualizationReserved1.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0538).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private void cbL2InputEqualization0db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr526() < 0)
+                return;
+        }
+
+        private void cbL2InputEqualization1db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr527() < 0)
+                return;
+        }
+
+        private void cbL2InputEqualization2db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr528() < 0)
+                return;
+        }
+
+        private void cbL2InputEqualization3db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr529() < 0)
+                return;
+        }
+
+        private void cbL2InputEqualization4db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr530() < 0)
+                return;
+        }
+
+        private void cbL2InputEqualization5db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr531() < 0)
+                return;
+        }
+
+        private void cbL2InputEqualization6db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr532() < 0)
+                return;
+        }
+
+        private void cbL2InputEqualization7db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr533() < 0)
+                return;
+        }
+
+        private void cbL2InputEqualization8db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr534() < 0)
+                return;
+        }
+
+        private void cbL2InputEqualization9db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr535() < 0)
+                return;
+        }
+
+        private void cbL2InputEqualization10db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr536() < 0)
+                return;
+        }
+
+        private void cbL2InputEqualizationReserved0_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr537() < 0)
+                return;
+        }
+
+        private void cbL2InputEqualizationReserved1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr538() < 0)
+                return;
+        }
+
+        private int _WriteAddr539()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL3InputEqualization0db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0539).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr540()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL3InputEqualization1db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0540).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr541()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL3InputEqualization2db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0541).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr542()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL3InputEqualization3db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0542).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr543()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL3InputEqualization4db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0543).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr544()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL3InputEqualization5db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0544).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr545()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL3InputEqualization6db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0545).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr546()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL3InputEqualization7db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0546).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr547()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL3InputEqualization8db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0547).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr548()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL3InputEqualization9db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0548).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr549()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL3InputEqualization10db.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0549).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr550()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL3InputEqualizationReserved0.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0550).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr551()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL3InputEqualizationReserved1.SelectedItem);
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(84, BitConverter.GetBytes((ushort)0x0551).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private void cbL3InputEqualization0db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr539() < 0)
+                return;
+        }
+
+        private void cbL3InputEqualization1db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr540() < 0)
+                return;
+        }
+
+        private void cbL3InputEqualization2db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr541() < 0)
+                return;
+        }
+
+        private void cbL3InputEqualization3db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr542() < 0)
+                return;
+        }
+
+        private void cbL3InputEqualization4db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr543() < 0)
+                return;
+        }
+
+        private void cbL3InputEqualization5db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr544() < 0)
+                return;
+        }
+
+        private void cbL3InputEqualization6db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr545() < 0)
+                return;
+        }
+
+        private void cbL3InputEqualization7db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr546() < 0)
+                return;
+        }
+
+        private void cbL3InputEqualization8db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr547() < 0)
+                return;
+        }
+
+        private void cbL3InputEqualization9db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr548() < 0)
+                return;
+        }
+
+        private void cbL3InputEqualization10db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr549() < 0)
+                return;
+        }
+
+        private void cbL3InputEqualizationReserved0_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr550() < 0)
+                return;
+        }
+
+        private void cbL3InputEqualizationReserved1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr551() < 0)
+                return;
+        }
     }
 }

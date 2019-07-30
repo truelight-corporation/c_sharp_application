@@ -17,14 +17,14 @@ namespace Gn2108Gn2109Config
 
         private int _SetQsfpMode(byte mode)
         {
-            byte[] data = new byte[] { 32 };
+            byte[] data = new byte[] { 0xaa };
 
-            if (_I2cWrite(80, 127, 1, data) < 0)
+            if (i2cMaster.WriteApi(80, 127, 1, data) < 0)
                 return -1;
 
             data[0] = mode;
 
-            if (_I2cWrite(80, 164, 1, data) < 0)
+            if (i2cMaster.WriteApi(80, 164, 1, data) < 0)
                 return -1;
 
             return 0;
@@ -61,6 +61,9 @@ namespace Gn2108Gn2109Config
                     return -1;
             }
 
+            if (_SetQsfpMode(0x4D) < 0)
+                return -1;
+
             rv = i2cMaster.ReadApi(devAddr, regAddr, length, data);
             if (rv < 0) {
                 MessageBox.Show("QSFP+ module no response!!");
@@ -79,6 +82,9 @@ namespace Gn2108Gn2109Config
                 if (_I2cMasterConnect() < 0)
                     return -1;
             }
+
+            if (_SetQsfpMode(0x4D) < 0)
+                return -1;
 
             rv = i2cMaster.Read16Api(devAddr, regAddr, length, data);
             if (rv < 0) {
@@ -100,6 +106,9 @@ namespace Gn2108Gn2109Config
                     return -1;
             }
 
+            if (_SetQsfpMode(0x4D) < 0)
+                return -1;
+
             rv = i2cMaster.WriteApi(devAddr, regAddr, length, data);
             if (rv < 0) {
                 MessageBox.Show("QSFP+ module no response!!");
@@ -117,6 +126,9 @@ namespace Gn2108Gn2109Config
                 if (_I2cMasterConnect() < 0)
                     return -1;
             }
+
+            if (_SetQsfpMode(0x4D) < 0)
+                return -1;
 
             rv = i2cMaster.Write16Api(devAddr, regAddr, length, data);
             if (rv < 0) {
@@ -172,5 +184,6 @@ namespace Gn2108Gn2109Config
             else
                 _I2cMasterDisconnect();
         }
+
     }
 }

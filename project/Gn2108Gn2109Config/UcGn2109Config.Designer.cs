@@ -335,6 +335,102 @@
             this.cbL0TiaToRssi1 = new System.Windows.Forms.CheckBox();
             this.bReadControl = new System.Windows.Forms.Button();
             this.cbTiaRssiDiv = new System.Windows.Forms.CheckBox();
+            this.tpGn2109Customer = new System.Windows.Forms.TabPage();
+            this.cbL3OutputAmplitudeReserved4 = new System.Windows.Forms.ComboBox();
+            this.cbL2OutputAmplitudeReserved4 = new System.Windows.Forms.ComboBox();
+            this.cbL1OutputAmplitudeReserved4 = new System.Windows.Forms.ComboBox();
+            this.lOutputAmplitudeReserved4 = new System.Windows.Forms.Label();
+            this.cbL0OutputAmplitudeReserved4 = new System.Windows.Forms.ComboBox();
+            this.cbL3OutputAmplitudeReserved3 = new System.Windows.Forms.ComboBox();
+            this.cbL2OutputAmplitudeReserved3 = new System.Windows.Forms.ComboBox();
+            this.cbL1OutputAmplitudeReserved3 = new System.Windows.Forms.ComboBox();
+            this.lOutputAmplitudeReserved3 = new System.Windows.Forms.Label();
+            this.cbL0OutputAmplitudeReserved3 = new System.Windows.Forms.ComboBox();
+            this.cbL3OutputAmplitudeReserved2 = new System.Windows.Forms.ComboBox();
+            this.cbL2OutputAmplitudeReserved2 = new System.Windows.Forms.ComboBox();
+            this.cbL1OutputAmplitudeReserved2 = new System.Windows.Forms.ComboBox();
+            this.lOutputAmplitudeReserved2 = new System.Windows.Forms.Label();
+            this.cbL0OutputAmplitudeReserved2 = new System.Windows.Forms.ComboBox();
+            this.cbL3OutputAmplitudeReserved1 = new System.Windows.Forms.ComboBox();
+            this.cbL2OutputAmplitudeReserved1 = new System.Windows.Forms.ComboBox();
+            this.cbL1OutputAmplitudeReserved1 = new System.Windows.Forms.ComboBox();
+            this.lOutputAmplitudeReserved1 = new System.Windows.Forms.Label();
+            this.cbL0OutputAmplitudeReserved1 = new System.Windows.Forms.ComboBox();
+            this.cbL3OutputAmplitudeReserved0 = new System.Windows.Forms.ComboBox();
+            this.cbL2OutputAmplitudeReserved0 = new System.Windows.Forms.ComboBox();
+            this.cbL1OutputAmplitudeReserved0 = new System.Windows.Forms.ComboBox();
+            this.lOutputAmplitudeReserved0 = new System.Windows.Forms.Label();
+            this.cbL0OutputAmplitudeReserved0 = new System.Windows.Forms.ComboBox();
+            this.cbL3OutputAmplitude6001200 = new System.Windows.Forms.ComboBox();
+            this.cbL2OutputAmplitude6001200 = new System.Windows.Forms.ComboBox();
+            this.cbL1OutputAmplitude6001200 = new System.Windows.Forms.ComboBox();
+            this.lOutputAmplitude6001200 = new System.Windows.Forms.Label();
+            this.cbL0OutputAmplitude6001200 = new System.Windows.Forms.ComboBox();
+            this.cbL3OutputAmplitude400800 = new System.Windows.Forms.ComboBox();
+            this.cbL2OutputAmplitude400800 = new System.Windows.Forms.ComboBox();
+            this.cbL1OutputAmplitude400800 = new System.Windows.Forms.ComboBox();
+            this.lOutputAmplitude400800 = new System.Windows.Forms.Label();
+            this.cbL0OutputAmplitude400800 = new System.Windows.Forms.ComboBox();
+            this.cbL3OutputAmplitude300600 = new System.Windows.Forms.ComboBox();
+            this.cbL2OutputAmplitude300600 = new System.Windows.Forms.ComboBox();
+            this.cbL1OutputAmplitude300600 = new System.Windows.Forms.ComboBox();
+            this.lOutputAmplitude300600 = new System.Windows.Forms.Label();
+            this.cbL0OutputAmplitude300600 = new System.Windows.Forms.ComboBox();
+            this.cbL3OutputAmplitude100400 = new System.Windows.Forms.ComboBox();
+            this.cbL2OutputAmplitude100400 = new System.Windows.Forms.ComboBox();
+            this.cbL1OutputAmplitude100400 = new System.Windows.Forms.ComboBox();
+            this.lOutputAmplitude100400 = new System.Windows.Forms.Label();
+            this.cbL0OutputAmplitude100400 = new System.Windows.Forms.ComboBox();
+            this.bReadCustomer = new System.Windows.Forms.Button();
+            this.lL3Customer = new System.Windows.Forms.Label();
+            this.cbL3OutputEmphasisReserved0 = new System.Windows.Forms.ComboBox();
+            this.cbL3OutputEmphasis7Db = new System.Windows.Forms.ComboBox();
+            this.cbL3OutputEmphasis6Db = new System.Windows.Forms.ComboBox();
+            this.cbL3OutputEmphasis5Db = new System.Windows.Forms.ComboBox();
+            this.cbL3OutputEmphasis4Db = new System.Windows.Forms.ComboBox();
+            this.cbL3OutputEmphasis3Db = new System.Windows.Forms.ComboBox();
+            this.cbL3OutputEmphasis2Db = new System.Windows.Forms.ComboBox();
+            this.cbL3OutputEmphasis1Db = new System.Windows.Forms.ComboBox();
+            this.cbL3OutputEmphasis0Db = new System.Windows.Forms.ComboBox();
+            this.lL2Customer = new System.Windows.Forms.Label();
+            this.cbL2OutputEmphasisReserved0 = new System.Windows.Forms.ComboBox();
+            this.cbL2OutputEmphasis7Db = new System.Windows.Forms.ComboBox();
+            this.cbL2OutputEmphasis6Db = new System.Windows.Forms.ComboBox();
+            this.cbL2OutputEmphasis5Db = new System.Windows.Forms.ComboBox();
+            this.cbL2OutputEmphasis4Db = new System.Windows.Forms.ComboBox();
+            this.cbL2OutputEmphasis3Db = new System.Windows.Forms.ComboBox();
+            this.cbL2OutputEmphasis2Db = new System.Windows.Forms.ComboBox();
+            this.cbL2OutputEmphasis1Db = new System.Windows.Forms.ComboBox();
+            this.cbL2OutputEmphasis0Db = new System.Windows.Forms.ComboBox();
+            this.lL1Customer = new System.Windows.Forms.Label();
+            this.cbL1OutputEmphasisReserved0 = new System.Windows.Forms.ComboBox();
+            this.cbL1OutputEmphasis7Db = new System.Windows.Forms.ComboBox();
+            this.cbL1OutputEmphasis6Db = new System.Windows.Forms.ComboBox();
+            this.cbL1OutputEmphasis5Db = new System.Windows.Forms.ComboBox();
+            this.cbL1OutputEmphasis4Db = new System.Windows.Forms.ComboBox();
+            this.cbL1OutputEmphasis3Db = new System.Windows.Forms.ComboBox();
+            this.cbL1OutputEmphasis2Db = new System.Windows.Forms.ComboBox();
+            this.cbL1OutputEmphasis1Db = new System.Windows.Forms.ComboBox();
+            this.cbL1OutputEmphasis0Db = new System.Windows.Forms.ComboBox();
+            this.lL0Customer = new System.Windows.Forms.Label();
+            this.lOutputEmphasisReserved = new System.Windows.Forms.Label();
+            this.cbL0OutputEmphasisReserved0 = new System.Windows.Forms.ComboBox();
+            this.lOutputEmphasis7Db = new System.Windows.Forms.Label();
+            this.cbL0OutputEmphasis7Db = new System.Windows.Forms.ComboBox();
+            this.lOutputEmphasis6Db = new System.Windows.Forms.Label();
+            this.cbL0OutputEmphasis6Db = new System.Windows.Forms.ComboBox();
+            this.lOutputEmphasis5Db = new System.Windows.Forms.Label();
+            this.cbL0OutputEmphasis5Db = new System.Windows.Forms.ComboBox();
+            this.lOutputEmphasis4Db = new System.Windows.Forms.Label();
+            this.cbL0OutputEmphasis4Db = new System.Windows.Forms.ComboBox();
+            this.lOutputEmphasis3Db = new System.Windows.Forms.Label();
+            this.cbL0OutputEmphasis3Db = new System.Windows.Forms.ComboBox();
+            this.lOutputEmphasis2Db = new System.Windows.Forms.Label();
+            this.cbL0OutputEmphasis2Db = new System.Windows.Forms.ComboBox();
+            this.lOutputEmphasis1Db = new System.Windows.Forms.Label();
+            this.cbL0OutputEmphasis1Db = new System.Windows.Forms.ComboBox();
+            this.lOutputEmphasis0Db = new System.Windows.Forms.Label();
+            this.cbL0OutputEmphasis0Db = new System.Windows.Forms.ComboBox();
             this.bReadAll = new System.Windows.Forms.Button();
             this.bStoreIntoFlash = new System.Windows.Forms.Button();
             this.tcGn2109Config.SuspendLayout();
@@ -344,6 +440,7 @@
             this.tpGn2109L3.SuspendLayout();
             this.tpAll.SuspendLayout();
             this.tpGn2109Control.SuspendLayout();
+            this.tpGn2109Customer.SuspendLayout();
             this.SuspendLayout();
             // 
             // tcGn2109Config
@@ -354,6 +451,7 @@
             this.tcGn2109Config.Controls.Add(this.tpGn2109L3);
             this.tcGn2109Config.Controls.Add(this.tpAll);
             this.tcGn2109Config.Controls.Add(this.tpGn2109Control);
+            this.tcGn2109Config.Controls.Add(this.tpGn2109Customer);
             this.tcGn2109Config.Location = new System.Drawing.Point(3, 27);
             this.tcGn2109Config.Name = "tcGn2109Config";
             this.tcGn2109Config.SelectedIndex = 0;
@@ -3805,6 +3903,967 @@
             this.cbTiaRssiDiv.UseVisualStyleBackColor = true;
             this.cbTiaRssiDiv.CheckedChanged += new System.EventHandler(this.cbTiaRssiDiv_CheckedChanged);
             // 
+            // tpGn2109Customer
+            // 
+            this.tpGn2109Customer.Controls.Add(this.cbL3OutputAmplitudeReserved4);
+            this.tpGn2109Customer.Controls.Add(this.cbL2OutputAmplitudeReserved4);
+            this.tpGn2109Customer.Controls.Add(this.cbL1OutputAmplitudeReserved4);
+            this.tpGn2109Customer.Controls.Add(this.lOutputAmplitudeReserved4);
+            this.tpGn2109Customer.Controls.Add(this.cbL0OutputAmplitudeReserved4);
+            this.tpGn2109Customer.Controls.Add(this.cbL3OutputAmplitudeReserved3);
+            this.tpGn2109Customer.Controls.Add(this.cbL2OutputAmplitudeReserved3);
+            this.tpGn2109Customer.Controls.Add(this.cbL1OutputAmplitudeReserved3);
+            this.tpGn2109Customer.Controls.Add(this.lOutputAmplitudeReserved3);
+            this.tpGn2109Customer.Controls.Add(this.cbL0OutputAmplitudeReserved3);
+            this.tpGn2109Customer.Controls.Add(this.cbL3OutputAmplitudeReserved2);
+            this.tpGn2109Customer.Controls.Add(this.cbL2OutputAmplitudeReserved2);
+            this.tpGn2109Customer.Controls.Add(this.cbL1OutputAmplitudeReserved2);
+            this.tpGn2109Customer.Controls.Add(this.lOutputAmplitudeReserved2);
+            this.tpGn2109Customer.Controls.Add(this.cbL0OutputAmplitudeReserved2);
+            this.tpGn2109Customer.Controls.Add(this.cbL3OutputAmplitudeReserved1);
+            this.tpGn2109Customer.Controls.Add(this.cbL2OutputAmplitudeReserved1);
+            this.tpGn2109Customer.Controls.Add(this.cbL1OutputAmplitudeReserved1);
+            this.tpGn2109Customer.Controls.Add(this.lOutputAmplitudeReserved1);
+            this.tpGn2109Customer.Controls.Add(this.cbL0OutputAmplitudeReserved1);
+            this.tpGn2109Customer.Controls.Add(this.cbL3OutputAmplitudeReserved0);
+            this.tpGn2109Customer.Controls.Add(this.cbL2OutputAmplitudeReserved0);
+            this.tpGn2109Customer.Controls.Add(this.cbL1OutputAmplitudeReserved0);
+            this.tpGn2109Customer.Controls.Add(this.lOutputAmplitudeReserved0);
+            this.tpGn2109Customer.Controls.Add(this.cbL0OutputAmplitudeReserved0);
+            this.tpGn2109Customer.Controls.Add(this.cbL3OutputAmplitude6001200);
+            this.tpGn2109Customer.Controls.Add(this.cbL2OutputAmplitude6001200);
+            this.tpGn2109Customer.Controls.Add(this.cbL1OutputAmplitude6001200);
+            this.tpGn2109Customer.Controls.Add(this.lOutputAmplitude6001200);
+            this.tpGn2109Customer.Controls.Add(this.cbL0OutputAmplitude6001200);
+            this.tpGn2109Customer.Controls.Add(this.cbL3OutputAmplitude400800);
+            this.tpGn2109Customer.Controls.Add(this.cbL2OutputAmplitude400800);
+            this.tpGn2109Customer.Controls.Add(this.cbL1OutputAmplitude400800);
+            this.tpGn2109Customer.Controls.Add(this.lOutputAmplitude400800);
+            this.tpGn2109Customer.Controls.Add(this.cbL0OutputAmplitude400800);
+            this.tpGn2109Customer.Controls.Add(this.cbL3OutputAmplitude300600);
+            this.tpGn2109Customer.Controls.Add(this.cbL2OutputAmplitude300600);
+            this.tpGn2109Customer.Controls.Add(this.cbL1OutputAmplitude300600);
+            this.tpGn2109Customer.Controls.Add(this.lOutputAmplitude300600);
+            this.tpGn2109Customer.Controls.Add(this.cbL0OutputAmplitude300600);
+            this.tpGn2109Customer.Controls.Add(this.cbL3OutputAmplitude100400);
+            this.tpGn2109Customer.Controls.Add(this.cbL2OutputAmplitude100400);
+            this.tpGn2109Customer.Controls.Add(this.cbL1OutputAmplitude100400);
+            this.tpGn2109Customer.Controls.Add(this.lOutputAmplitude100400);
+            this.tpGn2109Customer.Controls.Add(this.cbL0OutputAmplitude100400);
+            this.tpGn2109Customer.Controls.Add(this.bReadCustomer);
+            this.tpGn2109Customer.Controls.Add(this.lL3Customer);
+            this.tpGn2109Customer.Controls.Add(this.cbL3OutputEmphasisReserved0);
+            this.tpGn2109Customer.Controls.Add(this.cbL3OutputEmphasis7Db);
+            this.tpGn2109Customer.Controls.Add(this.cbL3OutputEmphasis6Db);
+            this.tpGn2109Customer.Controls.Add(this.cbL3OutputEmphasis5Db);
+            this.tpGn2109Customer.Controls.Add(this.cbL3OutputEmphasis4Db);
+            this.tpGn2109Customer.Controls.Add(this.cbL3OutputEmphasis3Db);
+            this.tpGn2109Customer.Controls.Add(this.cbL3OutputEmphasis2Db);
+            this.tpGn2109Customer.Controls.Add(this.cbL3OutputEmphasis1Db);
+            this.tpGn2109Customer.Controls.Add(this.cbL3OutputEmphasis0Db);
+            this.tpGn2109Customer.Controls.Add(this.lL2Customer);
+            this.tpGn2109Customer.Controls.Add(this.cbL2OutputEmphasisReserved0);
+            this.tpGn2109Customer.Controls.Add(this.cbL2OutputEmphasis7Db);
+            this.tpGn2109Customer.Controls.Add(this.cbL2OutputEmphasis6Db);
+            this.tpGn2109Customer.Controls.Add(this.cbL2OutputEmphasis5Db);
+            this.tpGn2109Customer.Controls.Add(this.cbL2OutputEmphasis4Db);
+            this.tpGn2109Customer.Controls.Add(this.cbL2OutputEmphasis3Db);
+            this.tpGn2109Customer.Controls.Add(this.cbL2OutputEmphasis2Db);
+            this.tpGn2109Customer.Controls.Add(this.cbL2OutputEmphasis1Db);
+            this.tpGn2109Customer.Controls.Add(this.cbL2OutputEmphasis0Db);
+            this.tpGn2109Customer.Controls.Add(this.lL1Customer);
+            this.tpGn2109Customer.Controls.Add(this.cbL1OutputEmphasisReserved0);
+            this.tpGn2109Customer.Controls.Add(this.cbL1OutputEmphasis7Db);
+            this.tpGn2109Customer.Controls.Add(this.cbL1OutputEmphasis6Db);
+            this.tpGn2109Customer.Controls.Add(this.cbL1OutputEmphasis5Db);
+            this.tpGn2109Customer.Controls.Add(this.cbL1OutputEmphasis4Db);
+            this.tpGn2109Customer.Controls.Add(this.cbL1OutputEmphasis3Db);
+            this.tpGn2109Customer.Controls.Add(this.cbL1OutputEmphasis2Db);
+            this.tpGn2109Customer.Controls.Add(this.cbL1OutputEmphasis1Db);
+            this.tpGn2109Customer.Controls.Add(this.cbL1OutputEmphasis0Db);
+            this.tpGn2109Customer.Controls.Add(this.lL0Customer);
+            this.tpGn2109Customer.Controls.Add(this.lOutputEmphasisReserved);
+            this.tpGn2109Customer.Controls.Add(this.cbL0OutputEmphasisReserved0);
+            this.tpGn2109Customer.Controls.Add(this.lOutputEmphasis7Db);
+            this.tpGn2109Customer.Controls.Add(this.cbL0OutputEmphasis7Db);
+            this.tpGn2109Customer.Controls.Add(this.lOutputEmphasis6Db);
+            this.tpGn2109Customer.Controls.Add(this.cbL0OutputEmphasis6Db);
+            this.tpGn2109Customer.Controls.Add(this.lOutputEmphasis5Db);
+            this.tpGn2109Customer.Controls.Add(this.cbL0OutputEmphasis5Db);
+            this.tpGn2109Customer.Controls.Add(this.lOutputEmphasis4Db);
+            this.tpGn2109Customer.Controls.Add(this.cbL0OutputEmphasis4Db);
+            this.tpGn2109Customer.Controls.Add(this.lOutputEmphasis3Db);
+            this.tpGn2109Customer.Controls.Add(this.cbL0OutputEmphasis3Db);
+            this.tpGn2109Customer.Controls.Add(this.lOutputEmphasis2Db);
+            this.tpGn2109Customer.Controls.Add(this.cbL0OutputEmphasis2Db);
+            this.tpGn2109Customer.Controls.Add(this.lOutputEmphasis1Db);
+            this.tpGn2109Customer.Controls.Add(this.cbL0OutputEmphasis1Db);
+            this.tpGn2109Customer.Controls.Add(this.lOutputEmphasis0Db);
+            this.tpGn2109Customer.Controls.Add(this.cbL0OutputEmphasis0Db);
+            this.tpGn2109Customer.Location = new System.Drawing.Point(4, 22);
+            this.tpGn2109Customer.Name = "tpGn2109Customer";
+            this.tpGn2109Customer.Padding = new System.Windows.Forms.Padding(3);
+            this.tpGn2109Customer.Size = new System.Drawing.Size(766, 518);
+            this.tpGn2109Customer.TabIndex = 6;
+            this.tpGn2109Customer.Text = "Customer";
+            this.tpGn2109Customer.UseVisualStyleBackColor = true;
+            // 
+            // cbL3OutputAmplitudeReserved4
+            // 
+            this.cbL3OutputAmplitudeReserved4.FormattingEnabled = true;
+            this.cbL3OutputAmplitudeReserved4.Location = new System.Drawing.Point(312, 226);
+            this.cbL3OutputAmplitudeReserved4.Name = "cbL3OutputAmplitudeReserved4";
+            this.cbL3OutputAmplitudeReserved4.Size = new System.Drawing.Size(58, 20);
+            this.cbL3OutputAmplitudeReserved4.TabIndex = 200;
+            this.cbL3OutputAmplitudeReserved4.SelectedIndexChanged += new System.EventHandler(this.cbL3OutputAmplitudeReserved4_SelectedIndexChanged);
+            // 
+            // cbL2OutputAmplitudeReserved4
+            // 
+            this.cbL2OutputAmplitudeReserved4.FormattingEnabled = true;
+            this.cbL2OutputAmplitudeReserved4.Location = new System.Drawing.Point(248, 226);
+            this.cbL2OutputAmplitudeReserved4.Name = "cbL2OutputAmplitudeReserved4";
+            this.cbL2OutputAmplitudeReserved4.Size = new System.Drawing.Size(58, 20);
+            this.cbL2OutputAmplitudeReserved4.TabIndex = 199;
+            this.cbL2OutputAmplitudeReserved4.SelectedIndexChanged += new System.EventHandler(this.cbL2OutputAmplitudeReserved4_SelectedIndexChanged);
+            // 
+            // cbL1OutputAmplitudeReserved4
+            // 
+            this.cbL1OutputAmplitudeReserved4.FormattingEnabled = true;
+            this.cbL1OutputAmplitudeReserved4.Location = new System.Drawing.Point(184, 226);
+            this.cbL1OutputAmplitudeReserved4.Name = "cbL1OutputAmplitudeReserved4";
+            this.cbL1OutputAmplitudeReserved4.Size = new System.Drawing.Size(58, 20);
+            this.cbL1OutputAmplitudeReserved4.TabIndex = 198;
+            this.cbL1OutputAmplitudeReserved4.SelectedIndexChanged += new System.EventHandler(this.cbL1OutputAmplitudeReserved4_SelectedIndexChanged);
+            // 
+            // lOutputAmplitudeReserved4
+            // 
+            this.lOutputAmplitudeReserved4.AutoSize = true;
+            this.lOutputAmplitudeReserved4.Location = new System.Drawing.Point(6, 229);
+            this.lOutputAmplitudeReserved4.Name = "lOutputAmplitudeReserved4";
+            this.lOutputAmplitudeReserved4.Size = new System.Drawing.Size(109, 12);
+            this.lOutputAmplitudeReserved4.TabIndex = 197;
+            this.lOutputAmplitudeReserved4.Text = "Amplitude Reserved4:";
+            // 
+            // cbL0OutputAmplitudeReserved4
+            // 
+            this.cbL0OutputAmplitudeReserved4.FormattingEnabled = true;
+            this.cbL0OutputAmplitudeReserved4.Location = new System.Drawing.Point(120, 226);
+            this.cbL0OutputAmplitudeReserved4.Name = "cbL0OutputAmplitudeReserved4";
+            this.cbL0OutputAmplitudeReserved4.Size = new System.Drawing.Size(58, 20);
+            this.cbL0OutputAmplitudeReserved4.TabIndex = 196;
+            this.cbL0OutputAmplitudeReserved4.SelectedIndexChanged += new System.EventHandler(this.cbL0OutputAmplitudeReserved4_SelectedIndexChanged);
+            // 
+            // cbL3OutputAmplitudeReserved3
+            // 
+            this.cbL3OutputAmplitudeReserved3.FormattingEnabled = true;
+            this.cbL3OutputAmplitudeReserved3.Location = new System.Drawing.Point(312, 200);
+            this.cbL3OutputAmplitudeReserved3.Name = "cbL3OutputAmplitudeReserved3";
+            this.cbL3OutputAmplitudeReserved3.Size = new System.Drawing.Size(58, 20);
+            this.cbL3OutputAmplitudeReserved3.TabIndex = 195;
+            this.cbL3OutputAmplitudeReserved3.SelectedIndexChanged += new System.EventHandler(this.cbL3OutputAmplitudeReserved3_SelectedIndexChanged);
+            // 
+            // cbL2OutputAmplitudeReserved3
+            // 
+            this.cbL2OutputAmplitudeReserved3.FormattingEnabled = true;
+            this.cbL2OutputAmplitudeReserved3.Location = new System.Drawing.Point(248, 200);
+            this.cbL2OutputAmplitudeReserved3.Name = "cbL2OutputAmplitudeReserved3";
+            this.cbL2OutputAmplitudeReserved3.Size = new System.Drawing.Size(58, 20);
+            this.cbL2OutputAmplitudeReserved3.TabIndex = 194;
+            this.cbL2OutputAmplitudeReserved3.SelectedIndexChanged += new System.EventHandler(this.cbL2OutputAmplitudeReserved3_SelectedIndexChanged);
+            // 
+            // cbL1OutputAmplitudeReserved3
+            // 
+            this.cbL1OutputAmplitudeReserved3.FormattingEnabled = true;
+            this.cbL1OutputAmplitudeReserved3.Location = new System.Drawing.Point(184, 200);
+            this.cbL1OutputAmplitudeReserved3.Name = "cbL1OutputAmplitudeReserved3";
+            this.cbL1OutputAmplitudeReserved3.Size = new System.Drawing.Size(58, 20);
+            this.cbL1OutputAmplitudeReserved3.TabIndex = 193;
+            this.cbL1OutputAmplitudeReserved3.SelectedIndexChanged += new System.EventHandler(this.cbL1OutputAmplitudeReserved3_SelectedIndexChanged);
+            // 
+            // lOutputAmplitudeReserved3
+            // 
+            this.lOutputAmplitudeReserved3.AutoSize = true;
+            this.lOutputAmplitudeReserved3.Location = new System.Drawing.Point(6, 203);
+            this.lOutputAmplitudeReserved3.Name = "lOutputAmplitudeReserved3";
+            this.lOutputAmplitudeReserved3.Size = new System.Drawing.Size(109, 12);
+            this.lOutputAmplitudeReserved3.TabIndex = 192;
+            this.lOutputAmplitudeReserved3.Text = "Amplitude Reserved3:";
+            // 
+            // cbL0OutputAmplitudeReserved3
+            // 
+            this.cbL0OutputAmplitudeReserved3.FormattingEnabled = true;
+            this.cbL0OutputAmplitudeReserved3.Location = new System.Drawing.Point(120, 200);
+            this.cbL0OutputAmplitudeReserved3.Name = "cbL0OutputAmplitudeReserved3";
+            this.cbL0OutputAmplitudeReserved3.Size = new System.Drawing.Size(58, 20);
+            this.cbL0OutputAmplitudeReserved3.TabIndex = 191;
+            this.cbL0OutputAmplitudeReserved3.SelectedIndexChanged += new System.EventHandler(this.cbL0OutputAmplitudeReserved3_SelectedIndexChanged);
+            // 
+            // cbL3OutputAmplitudeReserved2
+            // 
+            this.cbL3OutputAmplitudeReserved2.FormattingEnabled = true;
+            this.cbL3OutputAmplitudeReserved2.Location = new System.Drawing.Point(312, 174);
+            this.cbL3OutputAmplitudeReserved2.Name = "cbL3OutputAmplitudeReserved2";
+            this.cbL3OutputAmplitudeReserved2.Size = new System.Drawing.Size(58, 20);
+            this.cbL3OutputAmplitudeReserved2.TabIndex = 190;
+            this.cbL3OutputAmplitudeReserved2.SelectedIndexChanged += new System.EventHandler(this.cbL3OutputAmplitudeReserved2_SelectedIndexChanged);
+            // 
+            // cbL2OutputAmplitudeReserved2
+            // 
+            this.cbL2OutputAmplitudeReserved2.FormattingEnabled = true;
+            this.cbL2OutputAmplitudeReserved2.Location = new System.Drawing.Point(248, 174);
+            this.cbL2OutputAmplitudeReserved2.Name = "cbL2OutputAmplitudeReserved2";
+            this.cbL2OutputAmplitudeReserved2.Size = new System.Drawing.Size(58, 20);
+            this.cbL2OutputAmplitudeReserved2.TabIndex = 189;
+            this.cbL2OutputAmplitudeReserved2.SelectedIndexChanged += new System.EventHandler(this.cbL2OutputAmplitudeReserved2_SelectedIndexChanged);
+            // 
+            // cbL1OutputAmplitudeReserved2
+            // 
+            this.cbL1OutputAmplitudeReserved2.FormattingEnabled = true;
+            this.cbL1OutputAmplitudeReserved2.Location = new System.Drawing.Point(184, 174);
+            this.cbL1OutputAmplitudeReserved2.Name = "cbL1OutputAmplitudeReserved2";
+            this.cbL1OutputAmplitudeReserved2.Size = new System.Drawing.Size(58, 20);
+            this.cbL1OutputAmplitudeReserved2.TabIndex = 188;
+            this.cbL1OutputAmplitudeReserved2.SelectedIndexChanged += new System.EventHandler(this.cbL1OutputAmplitudeReserved2_SelectedIndexChanged);
+            // 
+            // lOutputAmplitudeReserved2
+            // 
+            this.lOutputAmplitudeReserved2.AutoSize = true;
+            this.lOutputAmplitudeReserved2.Location = new System.Drawing.Point(6, 177);
+            this.lOutputAmplitudeReserved2.Name = "lOutputAmplitudeReserved2";
+            this.lOutputAmplitudeReserved2.Size = new System.Drawing.Size(109, 12);
+            this.lOutputAmplitudeReserved2.TabIndex = 187;
+            this.lOutputAmplitudeReserved2.Text = "Amplitude Reserved2:";
+            // 
+            // cbL0OutputAmplitudeReserved2
+            // 
+            this.cbL0OutputAmplitudeReserved2.FormattingEnabled = true;
+            this.cbL0OutputAmplitudeReserved2.Location = new System.Drawing.Point(120, 174);
+            this.cbL0OutputAmplitudeReserved2.Name = "cbL0OutputAmplitudeReserved2";
+            this.cbL0OutputAmplitudeReserved2.Size = new System.Drawing.Size(58, 20);
+            this.cbL0OutputAmplitudeReserved2.TabIndex = 186;
+            this.cbL0OutputAmplitudeReserved2.SelectedIndexChanged += new System.EventHandler(this.cbL0OutputAmplitudeReserved2_SelectedIndexChanged);
+            // 
+            // cbL3OutputAmplitudeReserved1
+            // 
+            this.cbL3OutputAmplitudeReserved1.FormattingEnabled = true;
+            this.cbL3OutputAmplitudeReserved1.Location = new System.Drawing.Point(312, 148);
+            this.cbL3OutputAmplitudeReserved1.Name = "cbL3OutputAmplitudeReserved1";
+            this.cbL3OutputAmplitudeReserved1.Size = new System.Drawing.Size(58, 20);
+            this.cbL3OutputAmplitudeReserved1.TabIndex = 185;
+            this.cbL3OutputAmplitudeReserved1.SelectedIndexChanged += new System.EventHandler(this.cbL3OutputAmplitudeReserved1_SelectedIndexChanged);
+            // 
+            // cbL2OutputAmplitudeReserved1
+            // 
+            this.cbL2OutputAmplitudeReserved1.FormattingEnabled = true;
+            this.cbL2OutputAmplitudeReserved1.Location = new System.Drawing.Point(248, 148);
+            this.cbL2OutputAmplitudeReserved1.Name = "cbL2OutputAmplitudeReserved1";
+            this.cbL2OutputAmplitudeReserved1.Size = new System.Drawing.Size(58, 20);
+            this.cbL2OutputAmplitudeReserved1.TabIndex = 184;
+            this.cbL2OutputAmplitudeReserved1.SelectedIndexChanged += new System.EventHandler(this.cbL2OutputAmplitudeReserved1_SelectedIndexChanged);
+            // 
+            // cbL1OutputAmplitudeReserved1
+            // 
+            this.cbL1OutputAmplitudeReserved1.FormattingEnabled = true;
+            this.cbL1OutputAmplitudeReserved1.Location = new System.Drawing.Point(184, 148);
+            this.cbL1OutputAmplitudeReserved1.Name = "cbL1OutputAmplitudeReserved1";
+            this.cbL1OutputAmplitudeReserved1.Size = new System.Drawing.Size(58, 20);
+            this.cbL1OutputAmplitudeReserved1.TabIndex = 183;
+            this.cbL1OutputAmplitudeReserved1.SelectedIndexChanged += new System.EventHandler(this.cbL1OutputAmplitudeReserved1_SelectedIndexChanged);
+            // 
+            // lOutputAmplitudeReserved1
+            // 
+            this.lOutputAmplitudeReserved1.AutoSize = true;
+            this.lOutputAmplitudeReserved1.Location = new System.Drawing.Point(6, 151);
+            this.lOutputAmplitudeReserved1.Name = "lOutputAmplitudeReserved1";
+            this.lOutputAmplitudeReserved1.Size = new System.Drawing.Size(109, 12);
+            this.lOutputAmplitudeReserved1.TabIndex = 182;
+            this.lOutputAmplitudeReserved1.Text = "Amplitude Reserved1:";
+            // 
+            // cbL0OutputAmplitudeReserved1
+            // 
+            this.cbL0OutputAmplitudeReserved1.FormattingEnabled = true;
+            this.cbL0OutputAmplitudeReserved1.Location = new System.Drawing.Point(120, 148);
+            this.cbL0OutputAmplitudeReserved1.Name = "cbL0OutputAmplitudeReserved1";
+            this.cbL0OutputAmplitudeReserved1.Size = new System.Drawing.Size(58, 20);
+            this.cbL0OutputAmplitudeReserved1.TabIndex = 181;
+            this.cbL0OutputAmplitudeReserved1.SelectedIndexChanged += new System.EventHandler(this.cbL0OutputAmplitudeReserved1_SelectedIndexChanged);
+            // 
+            // cbL3OutputAmplitudeReserved0
+            // 
+            this.cbL3OutputAmplitudeReserved0.FormattingEnabled = true;
+            this.cbL3OutputAmplitudeReserved0.Location = new System.Drawing.Point(312, 122);
+            this.cbL3OutputAmplitudeReserved0.Name = "cbL3OutputAmplitudeReserved0";
+            this.cbL3OutputAmplitudeReserved0.Size = new System.Drawing.Size(58, 20);
+            this.cbL3OutputAmplitudeReserved0.TabIndex = 180;
+            this.cbL3OutputAmplitudeReserved0.SelectedIndexChanged += new System.EventHandler(this.cbL3OutputAmplitudeReserved0_SelectedIndexChanged);
+            // 
+            // cbL2OutputAmplitudeReserved0
+            // 
+            this.cbL2OutputAmplitudeReserved0.FormattingEnabled = true;
+            this.cbL2OutputAmplitudeReserved0.Location = new System.Drawing.Point(248, 122);
+            this.cbL2OutputAmplitudeReserved0.Name = "cbL2OutputAmplitudeReserved0";
+            this.cbL2OutputAmplitudeReserved0.Size = new System.Drawing.Size(58, 20);
+            this.cbL2OutputAmplitudeReserved0.TabIndex = 179;
+            this.cbL2OutputAmplitudeReserved0.SelectedIndexChanged += new System.EventHandler(this.cbL2OutputAmplitudeReserved0_SelectedIndexChanged);
+            // 
+            // cbL1OutputAmplitudeReserved0
+            // 
+            this.cbL1OutputAmplitudeReserved0.FormattingEnabled = true;
+            this.cbL1OutputAmplitudeReserved0.Location = new System.Drawing.Point(184, 122);
+            this.cbL1OutputAmplitudeReserved0.Name = "cbL1OutputAmplitudeReserved0";
+            this.cbL1OutputAmplitudeReserved0.Size = new System.Drawing.Size(58, 20);
+            this.cbL1OutputAmplitudeReserved0.TabIndex = 178;
+            this.cbL1OutputAmplitudeReserved0.SelectedIndexChanged += new System.EventHandler(this.cbL1OutputAmplitudeReserved0_SelectedIndexChanged);
+            // 
+            // lOutputAmplitudeReserved0
+            // 
+            this.lOutputAmplitudeReserved0.AutoSize = true;
+            this.lOutputAmplitudeReserved0.Location = new System.Drawing.Point(6, 125);
+            this.lOutputAmplitudeReserved0.Name = "lOutputAmplitudeReserved0";
+            this.lOutputAmplitudeReserved0.Size = new System.Drawing.Size(109, 12);
+            this.lOutputAmplitudeReserved0.TabIndex = 177;
+            this.lOutputAmplitudeReserved0.Text = "Amplitude Reserved0:";
+            // 
+            // cbL0OutputAmplitudeReserved0
+            // 
+            this.cbL0OutputAmplitudeReserved0.FormattingEnabled = true;
+            this.cbL0OutputAmplitudeReserved0.Location = new System.Drawing.Point(120, 122);
+            this.cbL0OutputAmplitudeReserved0.Name = "cbL0OutputAmplitudeReserved0";
+            this.cbL0OutputAmplitudeReserved0.Size = new System.Drawing.Size(58, 20);
+            this.cbL0OutputAmplitudeReserved0.TabIndex = 176;
+            this.cbL0OutputAmplitudeReserved0.SelectedIndexChanged += new System.EventHandler(this.cbL0OutputAmplitudeReserved0_SelectedIndexChanged);
+            // 
+            // cbL3OutputAmplitude6001200
+            // 
+            this.cbL3OutputAmplitude6001200.FormattingEnabled = true;
+            this.cbL3OutputAmplitude6001200.Location = new System.Drawing.Point(312, 96);
+            this.cbL3OutputAmplitude6001200.Name = "cbL3OutputAmplitude6001200";
+            this.cbL3OutputAmplitude6001200.Size = new System.Drawing.Size(58, 20);
+            this.cbL3OutputAmplitude6001200.TabIndex = 175;
+            this.cbL3OutputAmplitude6001200.SelectedIndexChanged += new System.EventHandler(this.cbL3OutputAmplitude6001200_SelectedIndexChanged);
+            // 
+            // cbL2OutputAmplitude6001200
+            // 
+            this.cbL2OutputAmplitude6001200.FormattingEnabled = true;
+            this.cbL2OutputAmplitude6001200.Location = new System.Drawing.Point(248, 96);
+            this.cbL2OutputAmplitude6001200.Name = "cbL2OutputAmplitude6001200";
+            this.cbL2OutputAmplitude6001200.Size = new System.Drawing.Size(58, 20);
+            this.cbL2OutputAmplitude6001200.TabIndex = 174;
+            this.cbL2OutputAmplitude6001200.SelectedIndexChanged += new System.EventHandler(this.cbL2OutputAmplitude6001200_SelectedIndexChanged);
+            // 
+            // cbL1OutputAmplitude6001200
+            // 
+            this.cbL1OutputAmplitude6001200.FormattingEnabled = true;
+            this.cbL1OutputAmplitude6001200.Location = new System.Drawing.Point(184, 96);
+            this.cbL1OutputAmplitude6001200.Name = "cbL1OutputAmplitude6001200";
+            this.cbL1OutputAmplitude6001200.Size = new System.Drawing.Size(58, 20);
+            this.cbL1OutputAmplitude6001200.TabIndex = 173;
+            this.cbL1OutputAmplitude6001200.SelectedIndexChanged += new System.EventHandler(this.cbL1OutputAmplitude6001200_SelectedIndexChanged);
+            // 
+            // lOutputAmplitude6001200
+            // 
+            this.lOutputAmplitude6001200.AutoSize = true;
+            this.lOutputAmplitude6001200.Location = new System.Drawing.Point(6, 99);
+            this.lOutputAmplitude6001200.Name = "lOutputAmplitude6001200";
+            this.lOutputAmplitude6001200.Size = new System.Drawing.Size(108, 12);
+            this.lOutputAmplitude6001200.TabIndex = 172;
+            this.lOutputAmplitude6001200.Text = "Amplitude 600~1200:";
+            // 
+            // cbL0OutputAmplitude6001200
+            // 
+            this.cbL0OutputAmplitude6001200.FormattingEnabled = true;
+            this.cbL0OutputAmplitude6001200.Location = new System.Drawing.Point(120, 96);
+            this.cbL0OutputAmplitude6001200.Name = "cbL0OutputAmplitude6001200";
+            this.cbL0OutputAmplitude6001200.Size = new System.Drawing.Size(58, 20);
+            this.cbL0OutputAmplitude6001200.TabIndex = 171;
+            this.cbL0OutputAmplitude6001200.SelectedIndexChanged += new System.EventHandler(this.cbL0OutputAmplitude6001200_SelectedIndexChanged);
+            // 
+            // cbL3OutputAmplitude400800
+            // 
+            this.cbL3OutputAmplitude400800.FormattingEnabled = true;
+            this.cbL3OutputAmplitude400800.Location = new System.Drawing.Point(312, 70);
+            this.cbL3OutputAmplitude400800.Name = "cbL3OutputAmplitude400800";
+            this.cbL3OutputAmplitude400800.Size = new System.Drawing.Size(58, 20);
+            this.cbL3OutputAmplitude400800.TabIndex = 170;
+            this.cbL3OutputAmplitude400800.SelectedIndexChanged += new System.EventHandler(this.cbL3OutputAmplitude400800_SelectedIndexChanged);
+            // 
+            // cbL2OutputAmplitude400800
+            // 
+            this.cbL2OutputAmplitude400800.FormattingEnabled = true;
+            this.cbL2OutputAmplitude400800.Location = new System.Drawing.Point(248, 70);
+            this.cbL2OutputAmplitude400800.Name = "cbL2OutputAmplitude400800";
+            this.cbL2OutputAmplitude400800.Size = new System.Drawing.Size(58, 20);
+            this.cbL2OutputAmplitude400800.TabIndex = 169;
+            this.cbL2OutputAmplitude400800.SelectedIndexChanged += new System.EventHandler(this.cbL2OutputAmplitude400800_SelectedIndexChanged);
+            // 
+            // cbL1OutputAmplitude400800
+            // 
+            this.cbL1OutputAmplitude400800.FormattingEnabled = true;
+            this.cbL1OutputAmplitude400800.Location = new System.Drawing.Point(184, 70);
+            this.cbL1OutputAmplitude400800.Name = "cbL1OutputAmplitude400800";
+            this.cbL1OutputAmplitude400800.Size = new System.Drawing.Size(58, 20);
+            this.cbL1OutputAmplitude400800.TabIndex = 168;
+            this.cbL1OutputAmplitude400800.SelectedIndexChanged += new System.EventHandler(this.cbL1OutputAmplitude400800_SelectedIndexChanged);
+            // 
+            // lOutputAmplitude400800
+            // 
+            this.lOutputAmplitude400800.AutoSize = true;
+            this.lOutputAmplitude400800.Location = new System.Drawing.Point(6, 73);
+            this.lOutputAmplitude400800.Name = "lOutputAmplitude400800";
+            this.lOutputAmplitude400800.Size = new System.Drawing.Size(102, 12);
+            this.lOutputAmplitude400800.TabIndex = 167;
+            this.lOutputAmplitude400800.Text = "Amplitude 400~800:";
+            // 
+            // cbL0OutputAmplitude400800
+            // 
+            this.cbL0OutputAmplitude400800.FormattingEnabled = true;
+            this.cbL0OutputAmplitude400800.Location = new System.Drawing.Point(120, 70);
+            this.cbL0OutputAmplitude400800.Name = "cbL0OutputAmplitude400800";
+            this.cbL0OutputAmplitude400800.Size = new System.Drawing.Size(58, 20);
+            this.cbL0OutputAmplitude400800.TabIndex = 166;
+            this.cbL0OutputAmplitude400800.SelectedIndexChanged += new System.EventHandler(this.cbL0OutputAmplitude400800_SelectedIndexChanged);
+            // 
+            // cbL3OutputAmplitude300600
+            // 
+            this.cbL3OutputAmplitude300600.FormattingEnabled = true;
+            this.cbL3OutputAmplitude300600.Location = new System.Drawing.Point(312, 44);
+            this.cbL3OutputAmplitude300600.Name = "cbL3OutputAmplitude300600";
+            this.cbL3OutputAmplitude300600.Size = new System.Drawing.Size(58, 20);
+            this.cbL3OutputAmplitude300600.TabIndex = 165;
+            this.cbL3OutputAmplitude300600.SelectedIndexChanged += new System.EventHandler(this.cbL3OutputAmplitude300600_SelectedIndexChanged);
+            // 
+            // cbL2OutputAmplitude300600
+            // 
+            this.cbL2OutputAmplitude300600.FormattingEnabled = true;
+            this.cbL2OutputAmplitude300600.Location = new System.Drawing.Point(248, 44);
+            this.cbL2OutputAmplitude300600.Name = "cbL2OutputAmplitude300600";
+            this.cbL2OutputAmplitude300600.Size = new System.Drawing.Size(58, 20);
+            this.cbL2OutputAmplitude300600.TabIndex = 164;
+            this.cbL2OutputAmplitude300600.SelectedIndexChanged += new System.EventHandler(this.cbL2OutputAmplitude300600_SelectedIndexChanged);
+            // 
+            // cbL1OutputAmplitude300600
+            // 
+            this.cbL1OutputAmplitude300600.FormattingEnabled = true;
+            this.cbL1OutputAmplitude300600.Location = new System.Drawing.Point(184, 44);
+            this.cbL1OutputAmplitude300600.Name = "cbL1OutputAmplitude300600";
+            this.cbL1OutputAmplitude300600.Size = new System.Drawing.Size(58, 20);
+            this.cbL1OutputAmplitude300600.TabIndex = 163;
+            this.cbL1OutputAmplitude300600.SelectedIndexChanged += new System.EventHandler(this.cbL1OutputAmplitude300600_SelectedIndexChanged);
+            // 
+            // lOutputAmplitude300600
+            // 
+            this.lOutputAmplitude300600.AutoSize = true;
+            this.lOutputAmplitude300600.Location = new System.Drawing.Point(6, 47);
+            this.lOutputAmplitude300600.Name = "lOutputAmplitude300600";
+            this.lOutputAmplitude300600.Size = new System.Drawing.Size(102, 12);
+            this.lOutputAmplitude300600.TabIndex = 162;
+            this.lOutputAmplitude300600.Text = "Amplitude 300~600:";
+            // 
+            // cbL0OutputAmplitude300600
+            // 
+            this.cbL0OutputAmplitude300600.FormattingEnabled = true;
+            this.cbL0OutputAmplitude300600.Location = new System.Drawing.Point(120, 44);
+            this.cbL0OutputAmplitude300600.Name = "cbL0OutputAmplitude300600";
+            this.cbL0OutputAmplitude300600.Size = new System.Drawing.Size(58, 20);
+            this.cbL0OutputAmplitude300600.TabIndex = 161;
+            this.cbL0OutputAmplitude300600.SelectedIndexChanged += new System.EventHandler(this.cbL0OutputAmplitude300600_SelectedIndexChanged);
+            // 
+            // cbL3OutputAmplitude100400
+            // 
+            this.cbL3OutputAmplitude100400.FormattingEnabled = true;
+            this.cbL3OutputAmplitude100400.Location = new System.Drawing.Point(312, 18);
+            this.cbL3OutputAmplitude100400.Name = "cbL3OutputAmplitude100400";
+            this.cbL3OutputAmplitude100400.Size = new System.Drawing.Size(58, 20);
+            this.cbL3OutputAmplitude100400.TabIndex = 160;
+            this.cbL3OutputAmplitude100400.SelectedIndexChanged += new System.EventHandler(this.cbL3OutputAmplitude100400_SelectedIndexChanged);
+            // 
+            // cbL2OutputAmplitude100400
+            // 
+            this.cbL2OutputAmplitude100400.FormattingEnabled = true;
+            this.cbL2OutputAmplitude100400.Location = new System.Drawing.Point(248, 18);
+            this.cbL2OutputAmplitude100400.Name = "cbL2OutputAmplitude100400";
+            this.cbL2OutputAmplitude100400.Size = new System.Drawing.Size(58, 20);
+            this.cbL2OutputAmplitude100400.TabIndex = 159;
+            this.cbL2OutputAmplitude100400.SelectedIndexChanged += new System.EventHandler(this.cbL2OutputAmplitude100400_SelectedIndexChanged);
+            // 
+            // cbL1OutputAmplitude100400
+            // 
+            this.cbL1OutputAmplitude100400.FormattingEnabled = true;
+            this.cbL1OutputAmplitude100400.Location = new System.Drawing.Point(184, 18);
+            this.cbL1OutputAmplitude100400.Name = "cbL1OutputAmplitude100400";
+            this.cbL1OutputAmplitude100400.Size = new System.Drawing.Size(58, 20);
+            this.cbL1OutputAmplitude100400.TabIndex = 158;
+            this.cbL1OutputAmplitude100400.SelectedIndexChanged += new System.EventHandler(this.cbL1OutputAmplitude100400_SelectedIndexChanged);
+            // 
+            // lOutputAmplitude100400
+            // 
+            this.lOutputAmplitude100400.AutoSize = true;
+            this.lOutputAmplitude100400.Location = new System.Drawing.Point(6, 21);
+            this.lOutputAmplitude100400.Name = "lOutputAmplitude100400";
+            this.lOutputAmplitude100400.Size = new System.Drawing.Size(102, 12);
+            this.lOutputAmplitude100400.TabIndex = 157;
+            this.lOutputAmplitude100400.Text = "Amplitude 100~400:";
+            // 
+            // cbL0OutputAmplitude100400
+            // 
+            this.cbL0OutputAmplitude100400.FormattingEnabled = true;
+            this.cbL0OutputAmplitude100400.Location = new System.Drawing.Point(120, 18);
+            this.cbL0OutputAmplitude100400.Name = "cbL0OutputAmplitude100400";
+            this.cbL0OutputAmplitude100400.Size = new System.Drawing.Size(58, 20);
+            this.cbL0OutputAmplitude100400.TabIndex = 156;
+            this.cbL0OutputAmplitude100400.SelectedIndexChanged += new System.EventHandler(this.cbL0OutputAmplitude100400_SelectedIndexChanged);
+            // 
+            // bReadCustomer
+            // 
+            this.bReadCustomer.Location = new System.Drawing.Point(685, 6);
+            this.bReadCustomer.Name = "bReadCustomer";
+            this.bReadCustomer.Size = new System.Drawing.Size(75, 23);
+            this.bReadCustomer.TabIndex = 155;
+            this.bReadCustomer.Text = "Read";
+            this.bReadCustomer.UseVisualStyleBackColor = true;
+            this.bReadCustomer.Click += new System.EventHandler(this.bReadCustomer_Click);
+            // 
+            // lL3Customer
+            // 
+            this.lL3Customer.AutoSize = true;
+            this.lL3Customer.Location = new System.Drawing.Point(332, 3);
+            this.lL3Customer.Name = "lL3Customer";
+            this.lL3Customer.Size = new System.Drawing.Size(18, 12);
+            this.lL3Customer.TabIndex = 154;
+            this.lL3Customer.Text = "L3";
+            // 
+            // cbL3OutputEmphasisReserved0
+            // 
+            this.cbL3OutputEmphasisReserved0.FormattingEnabled = true;
+            this.cbL3OutputEmphasisReserved0.Location = new System.Drawing.Point(312, 460);
+            this.cbL3OutputEmphasisReserved0.Name = "cbL3OutputEmphasisReserved0";
+            this.cbL3OutputEmphasisReserved0.Size = new System.Drawing.Size(58, 20);
+            this.cbL3OutputEmphasisReserved0.TabIndex = 153;
+            this.cbL3OutputEmphasisReserved0.SelectedIndexChanged += new System.EventHandler(this.cbL3OutputEmphasisReserved0_SelectedIndexChanged);
+            // 
+            // cbL3OutputEmphasis7Db
+            // 
+            this.cbL3OutputEmphasis7Db.FormattingEnabled = true;
+            this.cbL3OutputEmphasis7Db.Location = new System.Drawing.Point(312, 434);
+            this.cbL3OutputEmphasis7Db.Name = "cbL3OutputEmphasis7Db";
+            this.cbL3OutputEmphasis7Db.Size = new System.Drawing.Size(58, 20);
+            this.cbL3OutputEmphasis7Db.TabIndex = 152;
+            this.cbL3OutputEmphasis7Db.SelectedIndexChanged += new System.EventHandler(this.cbL3OutputEmphasis7Db_SelectedIndexChanged);
+            // 
+            // cbL3OutputEmphasis6Db
+            // 
+            this.cbL3OutputEmphasis6Db.FormattingEnabled = true;
+            this.cbL3OutputEmphasis6Db.Location = new System.Drawing.Point(312, 408);
+            this.cbL3OutputEmphasis6Db.Name = "cbL3OutputEmphasis6Db";
+            this.cbL3OutputEmphasis6Db.Size = new System.Drawing.Size(58, 20);
+            this.cbL3OutputEmphasis6Db.TabIndex = 151;
+            this.cbL3OutputEmphasis6Db.SelectedIndexChanged += new System.EventHandler(this.cbL3OutputEmphasis6Db_SelectedIndexChanged);
+            // 
+            // cbL3OutputEmphasis5Db
+            // 
+            this.cbL3OutputEmphasis5Db.FormattingEnabled = true;
+            this.cbL3OutputEmphasis5Db.Location = new System.Drawing.Point(312, 382);
+            this.cbL3OutputEmphasis5Db.Name = "cbL3OutputEmphasis5Db";
+            this.cbL3OutputEmphasis5Db.Size = new System.Drawing.Size(58, 20);
+            this.cbL3OutputEmphasis5Db.TabIndex = 150;
+            this.cbL3OutputEmphasis5Db.SelectedIndexChanged += new System.EventHandler(this.cbL3OutputEmphasis5Db_SelectedIndexChanged);
+            // 
+            // cbL3OutputEmphasis4Db
+            // 
+            this.cbL3OutputEmphasis4Db.FormattingEnabled = true;
+            this.cbL3OutputEmphasis4Db.Location = new System.Drawing.Point(312, 356);
+            this.cbL3OutputEmphasis4Db.Name = "cbL3OutputEmphasis4Db";
+            this.cbL3OutputEmphasis4Db.Size = new System.Drawing.Size(58, 20);
+            this.cbL3OutputEmphasis4Db.TabIndex = 149;
+            this.cbL3OutputEmphasis4Db.SelectedIndexChanged += new System.EventHandler(this.cbL3OutputEmphasis4Db_SelectedIndexChanged);
+            // 
+            // cbL3OutputEmphasis3Db
+            // 
+            this.cbL3OutputEmphasis3Db.FormattingEnabled = true;
+            this.cbL3OutputEmphasis3Db.Location = new System.Drawing.Point(312, 330);
+            this.cbL3OutputEmphasis3Db.Name = "cbL3OutputEmphasis3Db";
+            this.cbL3OutputEmphasis3Db.Size = new System.Drawing.Size(58, 20);
+            this.cbL3OutputEmphasis3Db.TabIndex = 148;
+            this.cbL3OutputEmphasis3Db.SelectedIndexChanged += new System.EventHandler(this.cbL3OutputEmphasis3Db_SelectedIndexChanged);
+            // 
+            // cbL3OutputEmphasis2Db
+            // 
+            this.cbL3OutputEmphasis2Db.FormattingEnabled = true;
+            this.cbL3OutputEmphasis2Db.Location = new System.Drawing.Point(312, 304);
+            this.cbL3OutputEmphasis2Db.Name = "cbL3OutputEmphasis2Db";
+            this.cbL3OutputEmphasis2Db.Size = new System.Drawing.Size(58, 20);
+            this.cbL3OutputEmphasis2Db.TabIndex = 147;
+            this.cbL3OutputEmphasis2Db.SelectedIndexChanged += new System.EventHandler(this.cbL3OutputEmphasis2Db_SelectedIndexChanged);
+            // 
+            // cbL3OutputEmphasis1Db
+            // 
+            this.cbL3OutputEmphasis1Db.FormattingEnabled = true;
+            this.cbL3OutputEmphasis1Db.Location = new System.Drawing.Point(312, 278);
+            this.cbL3OutputEmphasis1Db.Name = "cbL3OutputEmphasis1Db";
+            this.cbL3OutputEmphasis1Db.Size = new System.Drawing.Size(58, 20);
+            this.cbL3OutputEmphasis1Db.TabIndex = 146;
+            this.cbL3OutputEmphasis1Db.SelectedIndexChanged += new System.EventHandler(this.cbL3OutputEmphasis1Db_SelectedIndexChanged);
+            // 
+            // cbL3OutputEmphasis0Db
+            // 
+            this.cbL3OutputEmphasis0Db.FormattingEnabled = true;
+            this.cbL3OutputEmphasis0Db.Location = new System.Drawing.Point(312, 252);
+            this.cbL3OutputEmphasis0Db.Name = "cbL3OutputEmphasis0Db";
+            this.cbL3OutputEmphasis0Db.Size = new System.Drawing.Size(58, 20);
+            this.cbL3OutputEmphasis0Db.TabIndex = 145;
+            this.cbL3OutputEmphasis0Db.SelectedIndexChanged += new System.EventHandler(this.cbL3OutputEmphasis0Db_SelectedIndexChanged);
+            // 
+            // lL2Customer
+            // 
+            this.lL2Customer.AutoSize = true;
+            this.lL2Customer.Location = new System.Drawing.Point(268, 3);
+            this.lL2Customer.Name = "lL2Customer";
+            this.lL2Customer.Size = new System.Drawing.Size(18, 12);
+            this.lL2Customer.TabIndex = 144;
+            this.lL2Customer.Text = "L2";
+            // 
+            // cbL2OutputEmphasisReserved0
+            // 
+            this.cbL2OutputEmphasisReserved0.FormattingEnabled = true;
+            this.cbL2OutputEmphasisReserved0.Location = new System.Drawing.Point(248, 460);
+            this.cbL2OutputEmphasisReserved0.Name = "cbL2OutputEmphasisReserved0";
+            this.cbL2OutputEmphasisReserved0.Size = new System.Drawing.Size(58, 20);
+            this.cbL2OutputEmphasisReserved0.TabIndex = 143;
+            this.cbL2OutputEmphasisReserved0.SelectedIndexChanged += new System.EventHandler(this.cbL2OutputEmphasisReserved0_SelectedIndexChanged);
+            // 
+            // cbL2OutputEmphasis7Db
+            // 
+            this.cbL2OutputEmphasis7Db.FormattingEnabled = true;
+            this.cbL2OutputEmphasis7Db.Location = new System.Drawing.Point(248, 434);
+            this.cbL2OutputEmphasis7Db.Name = "cbL2OutputEmphasis7Db";
+            this.cbL2OutputEmphasis7Db.Size = new System.Drawing.Size(58, 20);
+            this.cbL2OutputEmphasis7Db.TabIndex = 142;
+            this.cbL2OutputEmphasis7Db.SelectedIndexChanged += new System.EventHandler(this.cbL2OutputEmphasis7Db_SelectedIndexChanged);
+            // 
+            // cbL2OutputEmphasis6Db
+            // 
+            this.cbL2OutputEmphasis6Db.FormattingEnabled = true;
+            this.cbL2OutputEmphasis6Db.Location = new System.Drawing.Point(248, 408);
+            this.cbL2OutputEmphasis6Db.Name = "cbL2OutputEmphasis6Db";
+            this.cbL2OutputEmphasis6Db.Size = new System.Drawing.Size(58, 20);
+            this.cbL2OutputEmphasis6Db.TabIndex = 141;
+            this.cbL2OutputEmphasis6Db.SelectedIndexChanged += new System.EventHandler(this.cbL2OutputEmphasis6Db_SelectedIndexChanged);
+            // 
+            // cbL2OutputEmphasis5Db
+            // 
+            this.cbL2OutputEmphasis5Db.FormattingEnabled = true;
+            this.cbL2OutputEmphasis5Db.Location = new System.Drawing.Point(248, 382);
+            this.cbL2OutputEmphasis5Db.Name = "cbL2OutputEmphasis5Db";
+            this.cbL2OutputEmphasis5Db.Size = new System.Drawing.Size(58, 20);
+            this.cbL2OutputEmphasis5Db.TabIndex = 140;
+            this.cbL2OutputEmphasis5Db.SelectedIndexChanged += new System.EventHandler(this.cbL2OutputEmphasis5Db_SelectedIndexChanged);
+            // 
+            // cbL2OutputEmphasis4Db
+            // 
+            this.cbL2OutputEmphasis4Db.FormattingEnabled = true;
+            this.cbL2OutputEmphasis4Db.Location = new System.Drawing.Point(248, 356);
+            this.cbL2OutputEmphasis4Db.Name = "cbL2OutputEmphasis4Db";
+            this.cbL2OutputEmphasis4Db.Size = new System.Drawing.Size(58, 20);
+            this.cbL2OutputEmphasis4Db.TabIndex = 139;
+            this.cbL2OutputEmphasis4Db.SelectedIndexChanged += new System.EventHandler(this.cbL2OutputEmphasis4Db_SelectedIndexChanged);
+            // 
+            // cbL2OutputEmphasis3Db
+            // 
+            this.cbL2OutputEmphasis3Db.FormattingEnabled = true;
+            this.cbL2OutputEmphasis3Db.Location = new System.Drawing.Point(248, 330);
+            this.cbL2OutputEmphasis3Db.Name = "cbL2OutputEmphasis3Db";
+            this.cbL2OutputEmphasis3Db.Size = new System.Drawing.Size(58, 20);
+            this.cbL2OutputEmphasis3Db.TabIndex = 138;
+            this.cbL2OutputEmphasis3Db.SelectedIndexChanged += new System.EventHandler(this.cbL2OutputEmphasis3Db_SelectedIndexChanged);
+            // 
+            // cbL2OutputEmphasis2Db
+            // 
+            this.cbL2OutputEmphasis2Db.FormattingEnabled = true;
+            this.cbL2OutputEmphasis2Db.Location = new System.Drawing.Point(248, 304);
+            this.cbL2OutputEmphasis2Db.Name = "cbL2OutputEmphasis2Db";
+            this.cbL2OutputEmphasis2Db.Size = new System.Drawing.Size(58, 20);
+            this.cbL2OutputEmphasis2Db.TabIndex = 137;
+            this.cbL2OutputEmphasis2Db.SelectedIndexChanged += new System.EventHandler(this.cbL2OutputEmphasis2Db_SelectedIndexChanged);
+            // 
+            // cbL2OutputEmphasis1Db
+            // 
+            this.cbL2OutputEmphasis1Db.FormattingEnabled = true;
+            this.cbL2OutputEmphasis1Db.Location = new System.Drawing.Point(248, 278);
+            this.cbL2OutputEmphasis1Db.Name = "cbL2OutputEmphasis1Db";
+            this.cbL2OutputEmphasis1Db.Size = new System.Drawing.Size(58, 20);
+            this.cbL2OutputEmphasis1Db.TabIndex = 136;
+            this.cbL2OutputEmphasis1Db.SelectedIndexChanged += new System.EventHandler(this.cbL2OutputEmphasis1Db_SelectedIndexChanged);
+            // 
+            // cbL2OutputEmphasis0Db
+            // 
+            this.cbL2OutputEmphasis0Db.FormattingEnabled = true;
+            this.cbL2OutputEmphasis0Db.Location = new System.Drawing.Point(248, 252);
+            this.cbL2OutputEmphasis0Db.Name = "cbL2OutputEmphasis0Db";
+            this.cbL2OutputEmphasis0Db.Size = new System.Drawing.Size(58, 20);
+            this.cbL2OutputEmphasis0Db.TabIndex = 135;
+            this.cbL2OutputEmphasis0Db.SelectedIndexChanged += new System.EventHandler(this.cbL2OutputEmphasis0Db_SelectedIndexChanged);
+            // 
+            // lL1Customer
+            // 
+            this.lL1Customer.AutoSize = true;
+            this.lL1Customer.Location = new System.Drawing.Point(204, 3);
+            this.lL1Customer.Name = "lL1Customer";
+            this.lL1Customer.Size = new System.Drawing.Size(18, 12);
+            this.lL1Customer.TabIndex = 134;
+            this.lL1Customer.Text = "L1";
+            // 
+            // cbL1OutputEmphasisReserved0
+            // 
+            this.cbL1OutputEmphasisReserved0.FormattingEnabled = true;
+            this.cbL1OutputEmphasisReserved0.Location = new System.Drawing.Point(184, 460);
+            this.cbL1OutputEmphasisReserved0.Name = "cbL1OutputEmphasisReserved0";
+            this.cbL1OutputEmphasisReserved0.Size = new System.Drawing.Size(58, 20);
+            this.cbL1OutputEmphasisReserved0.TabIndex = 133;
+            this.cbL1OutputEmphasisReserved0.SelectedIndexChanged += new System.EventHandler(this.cbL1OutputEmphasisReserved0_SelectedIndexChanged);
+            // 
+            // cbL1OutputEmphasis7Db
+            // 
+            this.cbL1OutputEmphasis7Db.FormattingEnabled = true;
+            this.cbL1OutputEmphasis7Db.Location = new System.Drawing.Point(184, 434);
+            this.cbL1OutputEmphasis7Db.Name = "cbL1OutputEmphasis7Db";
+            this.cbL1OutputEmphasis7Db.Size = new System.Drawing.Size(58, 20);
+            this.cbL1OutputEmphasis7Db.TabIndex = 132;
+            this.cbL1OutputEmphasis7Db.SelectedIndexChanged += new System.EventHandler(this.cbL1OutputEmphasis7Db_SelectedIndexChanged);
+            // 
+            // cbL1OutputEmphasis6Db
+            // 
+            this.cbL1OutputEmphasis6Db.FormattingEnabled = true;
+            this.cbL1OutputEmphasis6Db.Location = new System.Drawing.Point(184, 408);
+            this.cbL1OutputEmphasis6Db.Name = "cbL1OutputEmphasis6Db";
+            this.cbL1OutputEmphasis6Db.Size = new System.Drawing.Size(58, 20);
+            this.cbL1OutputEmphasis6Db.TabIndex = 131;
+            this.cbL1OutputEmphasis6Db.SelectedIndexChanged += new System.EventHandler(this.cbL1OutputEmphasis6Db_SelectedIndexChanged);
+            // 
+            // cbL1OutputEmphasis5Db
+            // 
+            this.cbL1OutputEmphasis5Db.FormattingEnabled = true;
+            this.cbL1OutputEmphasis5Db.Location = new System.Drawing.Point(184, 382);
+            this.cbL1OutputEmphasis5Db.Name = "cbL1OutputEmphasis5Db";
+            this.cbL1OutputEmphasis5Db.Size = new System.Drawing.Size(58, 20);
+            this.cbL1OutputEmphasis5Db.TabIndex = 130;
+            this.cbL1OutputEmphasis5Db.SelectedIndexChanged += new System.EventHandler(this.cbL1OutputEmphasis5Db_SelectedIndexChanged);
+            // 
+            // cbL1OutputEmphasis4Db
+            // 
+            this.cbL1OutputEmphasis4Db.FormattingEnabled = true;
+            this.cbL1OutputEmphasis4Db.Location = new System.Drawing.Point(184, 356);
+            this.cbL1OutputEmphasis4Db.Name = "cbL1OutputEmphasis4Db";
+            this.cbL1OutputEmphasis4Db.Size = new System.Drawing.Size(58, 20);
+            this.cbL1OutputEmphasis4Db.TabIndex = 129;
+            this.cbL1OutputEmphasis4Db.SelectedIndexChanged += new System.EventHandler(this.cbL1OutputEmphasis4Db_SelectedIndexChanged);
+            // 
+            // cbL1OutputEmphasis3Db
+            // 
+            this.cbL1OutputEmphasis3Db.FormattingEnabled = true;
+            this.cbL1OutputEmphasis3Db.Location = new System.Drawing.Point(184, 330);
+            this.cbL1OutputEmphasis3Db.Name = "cbL1OutputEmphasis3Db";
+            this.cbL1OutputEmphasis3Db.Size = new System.Drawing.Size(58, 20);
+            this.cbL1OutputEmphasis3Db.TabIndex = 128;
+            this.cbL1OutputEmphasis3Db.SelectedIndexChanged += new System.EventHandler(this.cbL1OutputEmphasis3Db_SelectedIndexChanged);
+            // 
+            // cbL1OutputEmphasis2Db
+            // 
+            this.cbL1OutputEmphasis2Db.FormattingEnabled = true;
+            this.cbL1OutputEmphasis2Db.Location = new System.Drawing.Point(184, 304);
+            this.cbL1OutputEmphasis2Db.Name = "cbL1OutputEmphasis2Db";
+            this.cbL1OutputEmphasis2Db.Size = new System.Drawing.Size(58, 20);
+            this.cbL1OutputEmphasis2Db.TabIndex = 127;
+            this.cbL1OutputEmphasis2Db.SelectedIndexChanged += new System.EventHandler(this.cbL1OutputEmphasis2Db_SelectedIndexChanged);
+            // 
+            // cbL1OutputEmphasis1Db
+            // 
+            this.cbL1OutputEmphasis1Db.FormattingEnabled = true;
+            this.cbL1OutputEmphasis1Db.Location = new System.Drawing.Point(184, 278);
+            this.cbL1OutputEmphasis1Db.Name = "cbL1OutputEmphasis1Db";
+            this.cbL1OutputEmphasis1Db.Size = new System.Drawing.Size(58, 20);
+            this.cbL1OutputEmphasis1Db.TabIndex = 126;
+            this.cbL1OutputEmphasis1Db.SelectedIndexChanged += new System.EventHandler(this.cbL1OutputEmphasis1Db_SelectedIndexChanged);
+            // 
+            // cbL1OutputEmphasis0Db
+            // 
+            this.cbL1OutputEmphasis0Db.FormattingEnabled = true;
+            this.cbL1OutputEmphasis0Db.Location = new System.Drawing.Point(184, 252);
+            this.cbL1OutputEmphasis0Db.Name = "cbL1OutputEmphasis0Db";
+            this.cbL1OutputEmphasis0Db.Size = new System.Drawing.Size(58, 20);
+            this.cbL1OutputEmphasis0Db.TabIndex = 125;
+            this.cbL1OutputEmphasis0Db.SelectedIndexChanged += new System.EventHandler(this.cbL1OutputEmphasis0Db_SelectedIndexChanged);
+            // 
+            // lL0Customer
+            // 
+            this.lL0Customer.AutoSize = true;
+            this.lL0Customer.Location = new System.Drawing.Point(140, 3);
+            this.lL0Customer.Name = "lL0Customer";
+            this.lL0Customer.Size = new System.Drawing.Size(18, 12);
+            this.lL0Customer.TabIndex = 124;
+            this.lL0Customer.Text = "L0";
+            // 
+            // lOutputEmphasisReserved
+            // 
+            this.lOutputEmphasisReserved.AutoSize = true;
+            this.lOutputEmphasisReserved.Location = new System.Drawing.Point(6, 463);
+            this.lOutputEmphasisReserved.Name = "lOutputEmphasisReserved";
+            this.lOutputEmphasisReserved.Size = new System.Drawing.Size(104, 12);
+            this.lOutputEmphasisReserved.TabIndex = 123;
+            this.lOutputEmphasisReserved.Text = "Output Emphasis R0:";
+            // 
+            // cbL0OutputEmphasisReserved0
+            // 
+            this.cbL0OutputEmphasisReserved0.FormattingEnabled = true;
+            this.cbL0OutputEmphasisReserved0.Location = new System.Drawing.Point(120, 460);
+            this.cbL0OutputEmphasisReserved0.Name = "cbL0OutputEmphasisReserved0";
+            this.cbL0OutputEmphasisReserved0.Size = new System.Drawing.Size(58, 20);
+            this.cbL0OutputEmphasisReserved0.TabIndex = 122;
+            this.cbL0OutputEmphasisReserved0.SelectedIndexChanged += new System.EventHandler(this.cbL0OutputEmphasisReserved0_SelectedIndexChanged);
+            // 
+            // lOutputEmphasis7Db
+            // 
+            this.lOutputEmphasis7Db.AutoSize = true;
+            this.lOutputEmphasis7Db.Location = new System.Drawing.Point(6, 437);
+            this.lOutputEmphasis7Db.Name = "lOutputEmphasis7Db";
+            this.lOutputEmphasis7Db.Size = new System.Drawing.Size(108, 12);
+            this.lOutputEmphasis7Db.TabIndex = 121;
+            this.lOutputEmphasis7Db.Text = "Output Emphasis 7db:";
+            // 
+            // cbL0OutputEmphasis7Db
+            // 
+            this.cbL0OutputEmphasis7Db.FormattingEnabled = true;
+            this.cbL0OutputEmphasis7Db.Location = new System.Drawing.Point(120, 434);
+            this.cbL0OutputEmphasis7Db.Name = "cbL0OutputEmphasis7Db";
+            this.cbL0OutputEmphasis7Db.Size = new System.Drawing.Size(58, 20);
+            this.cbL0OutputEmphasis7Db.TabIndex = 120;
+            this.cbL0OutputEmphasis7Db.SelectedIndexChanged += new System.EventHandler(this.cbL0OutputEmphasis7Db_SelectedIndexChanged);
+            // 
+            // lOutputEmphasis6Db
+            // 
+            this.lOutputEmphasis6Db.AutoSize = true;
+            this.lOutputEmphasis6Db.Location = new System.Drawing.Point(6, 411);
+            this.lOutputEmphasis6Db.Name = "lOutputEmphasis6Db";
+            this.lOutputEmphasis6Db.Size = new System.Drawing.Size(108, 12);
+            this.lOutputEmphasis6Db.TabIndex = 119;
+            this.lOutputEmphasis6Db.Text = "Output Emphasis 6db:";
+            // 
+            // cbL0OutputEmphasis6Db
+            // 
+            this.cbL0OutputEmphasis6Db.FormattingEnabled = true;
+            this.cbL0OutputEmphasis6Db.Location = new System.Drawing.Point(120, 408);
+            this.cbL0OutputEmphasis6Db.Name = "cbL0OutputEmphasis6Db";
+            this.cbL0OutputEmphasis6Db.Size = new System.Drawing.Size(58, 20);
+            this.cbL0OutputEmphasis6Db.TabIndex = 118;
+            this.cbL0OutputEmphasis6Db.SelectedIndexChanged += new System.EventHandler(this.cbL0OutputEmphasis6Db_SelectedIndexChanged);
+            // 
+            // lOutputEmphasis5Db
+            // 
+            this.lOutputEmphasis5Db.AutoSize = true;
+            this.lOutputEmphasis5Db.Location = new System.Drawing.Point(6, 385);
+            this.lOutputEmphasis5Db.Name = "lOutputEmphasis5Db";
+            this.lOutputEmphasis5Db.Size = new System.Drawing.Size(108, 12);
+            this.lOutputEmphasis5Db.TabIndex = 117;
+            this.lOutputEmphasis5Db.Text = "Output Emphasis 5db:";
+            // 
+            // cbL0OutputEmphasis5Db
+            // 
+            this.cbL0OutputEmphasis5Db.FormattingEnabled = true;
+            this.cbL0OutputEmphasis5Db.Location = new System.Drawing.Point(120, 382);
+            this.cbL0OutputEmphasis5Db.Name = "cbL0OutputEmphasis5Db";
+            this.cbL0OutputEmphasis5Db.Size = new System.Drawing.Size(58, 20);
+            this.cbL0OutputEmphasis5Db.TabIndex = 116;
+            this.cbL0OutputEmphasis5Db.SelectedIndexChanged += new System.EventHandler(this.cbL0OutputEmphasis5Db_SelectedIndexChanged);
+            // 
+            // lOutputEmphasis4Db
+            // 
+            this.lOutputEmphasis4Db.AutoSize = true;
+            this.lOutputEmphasis4Db.Location = new System.Drawing.Point(6, 359);
+            this.lOutputEmphasis4Db.Name = "lOutputEmphasis4Db";
+            this.lOutputEmphasis4Db.Size = new System.Drawing.Size(108, 12);
+            this.lOutputEmphasis4Db.TabIndex = 115;
+            this.lOutputEmphasis4Db.Text = "Output Emphasis 4db:";
+            // 
+            // cbL0OutputEmphasis4Db
+            // 
+            this.cbL0OutputEmphasis4Db.FormattingEnabled = true;
+            this.cbL0OutputEmphasis4Db.Location = new System.Drawing.Point(120, 356);
+            this.cbL0OutputEmphasis4Db.Name = "cbL0OutputEmphasis4Db";
+            this.cbL0OutputEmphasis4Db.Size = new System.Drawing.Size(58, 20);
+            this.cbL0OutputEmphasis4Db.TabIndex = 114;
+            this.cbL0OutputEmphasis4Db.SelectedIndexChanged += new System.EventHandler(this.cbL0OutputEmphasis4Db_SelectedIndexChanged);
+            // 
+            // lOutputEmphasis3Db
+            // 
+            this.lOutputEmphasis3Db.AutoSize = true;
+            this.lOutputEmphasis3Db.Location = new System.Drawing.Point(6, 333);
+            this.lOutputEmphasis3Db.Name = "lOutputEmphasis3Db";
+            this.lOutputEmphasis3Db.Size = new System.Drawing.Size(108, 12);
+            this.lOutputEmphasis3Db.TabIndex = 113;
+            this.lOutputEmphasis3Db.Text = "Output Emphasis 3db:";
+            // 
+            // cbL0OutputEmphasis3Db
+            // 
+            this.cbL0OutputEmphasis3Db.FormattingEnabled = true;
+            this.cbL0OutputEmphasis3Db.Location = new System.Drawing.Point(120, 330);
+            this.cbL0OutputEmphasis3Db.Name = "cbL0OutputEmphasis3Db";
+            this.cbL0OutputEmphasis3Db.Size = new System.Drawing.Size(58, 20);
+            this.cbL0OutputEmphasis3Db.TabIndex = 112;
+            this.cbL0OutputEmphasis3Db.SelectedIndexChanged += new System.EventHandler(this.cbL0OutputEmphasis3Db_SelectedIndexChanged);
+            // 
+            // lOutputEmphasis2Db
+            // 
+            this.lOutputEmphasis2Db.AutoSize = true;
+            this.lOutputEmphasis2Db.Location = new System.Drawing.Point(6, 307);
+            this.lOutputEmphasis2Db.Name = "lOutputEmphasis2Db";
+            this.lOutputEmphasis2Db.Size = new System.Drawing.Size(108, 12);
+            this.lOutputEmphasis2Db.TabIndex = 111;
+            this.lOutputEmphasis2Db.Text = "Output Emphasis 2db:";
+            // 
+            // cbL0OutputEmphasis2Db
+            // 
+            this.cbL0OutputEmphasis2Db.FormattingEnabled = true;
+            this.cbL0OutputEmphasis2Db.Location = new System.Drawing.Point(120, 304);
+            this.cbL0OutputEmphasis2Db.Name = "cbL0OutputEmphasis2Db";
+            this.cbL0OutputEmphasis2Db.Size = new System.Drawing.Size(58, 20);
+            this.cbL0OutputEmphasis2Db.TabIndex = 110;
+            this.cbL0OutputEmphasis2Db.SelectedIndexChanged += new System.EventHandler(this.cbL0OutputEmphasis2Db_SelectedIndexChanged);
+            // 
+            // lOutputEmphasis1Db
+            // 
+            this.lOutputEmphasis1Db.AutoSize = true;
+            this.lOutputEmphasis1Db.Location = new System.Drawing.Point(6, 281);
+            this.lOutputEmphasis1Db.Name = "lOutputEmphasis1Db";
+            this.lOutputEmphasis1Db.Size = new System.Drawing.Size(108, 12);
+            this.lOutputEmphasis1Db.TabIndex = 109;
+            this.lOutputEmphasis1Db.Text = "Output Emphasis 1db:";
+            // 
+            // cbL0OutputEmphasis1Db
+            // 
+            this.cbL0OutputEmphasis1Db.FormattingEnabled = true;
+            this.cbL0OutputEmphasis1Db.Location = new System.Drawing.Point(120, 278);
+            this.cbL0OutputEmphasis1Db.Name = "cbL0OutputEmphasis1Db";
+            this.cbL0OutputEmphasis1Db.Size = new System.Drawing.Size(58, 20);
+            this.cbL0OutputEmphasis1Db.TabIndex = 108;
+            this.cbL0OutputEmphasis1Db.SelectedIndexChanged += new System.EventHandler(this.cbL0OutputEmphasis1Db_SelectedIndexChanged);
+            // 
+            // lOutputEmphasis0Db
+            // 
+            this.lOutputEmphasis0Db.AutoSize = true;
+            this.lOutputEmphasis0Db.Location = new System.Drawing.Point(6, 255);
+            this.lOutputEmphasis0Db.Name = "lOutputEmphasis0Db";
+            this.lOutputEmphasis0Db.Size = new System.Drawing.Size(108, 12);
+            this.lOutputEmphasis0Db.TabIndex = 107;
+            this.lOutputEmphasis0Db.Text = "Output Emphasis 0db:";
+            // 
+            // cbL0OutputEmphasis0Db
+            // 
+            this.cbL0OutputEmphasis0Db.FormattingEnabled = true;
+            this.cbL0OutputEmphasis0Db.Location = new System.Drawing.Point(120, 252);
+            this.cbL0OutputEmphasis0Db.Name = "cbL0OutputEmphasis0Db";
+            this.cbL0OutputEmphasis0Db.Size = new System.Drawing.Size(58, 20);
+            this.cbL0OutputEmphasis0Db.TabIndex = 106;
+            this.cbL0OutputEmphasis0Db.SelectedIndexChanged += new System.EventHandler(this.cbL0OutputEmphasis0Db_SelectedIndexChanged);
+            // 
             // bReadAll
             // 
             this.bReadAll.Location = new System.Drawing.Point(692, 3);
@@ -3847,6 +4906,8 @@
             this.tpAll.PerformLayout();
             this.tpGn2109Control.ResumeLayout(false);
             this.tpGn2109Control.PerformLayout();
+            this.tpGn2109Customer.ResumeLayout(false);
+            this.tpGn2109Customer.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -4163,5 +5224,101 @@
         private System.Windows.Forms.ComboBox cbAllLosThres;
         private System.Windows.Forms.ComboBox cbAllDrvMainSwing;
         private System.Windows.Forms.Label lAllDrvMainSwing;
+        private System.Windows.Forms.TabPage tpGn2109Customer;
+        private System.Windows.Forms.Button bReadCustomer;
+        private System.Windows.Forms.Label lL3Customer;
+        private System.Windows.Forms.ComboBox cbL3OutputEmphasisReserved0;
+        private System.Windows.Forms.ComboBox cbL3OutputEmphasis7Db;
+        private System.Windows.Forms.ComboBox cbL3OutputEmphasis6Db;
+        private System.Windows.Forms.ComboBox cbL3OutputEmphasis5Db;
+        private System.Windows.Forms.ComboBox cbL3OutputEmphasis4Db;
+        private System.Windows.Forms.ComboBox cbL3OutputEmphasis3Db;
+        private System.Windows.Forms.ComboBox cbL3OutputEmphasis2Db;
+        private System.Windows.Forms.ComboBox cbL3OutputEmphasis1Db;
+        private System.Windows.Forms.ComboBox cbL3OutputEmphasis0Db;
+        private System.Windows.Forms.Label lL2Customer;
+        private System.Windows.Forms.ComboBox cbL2OutputEmphasisReserved0;
+        private System.Windows.Forms.ComboBox cbL2OutputEmphasis7Db;
+        private System.Windows.Forms.ComboBox cbL2OutputEmphasis6Db;
+        private System.Windows.Forms.ComboBox cbL2OutputEmphasis5Db;
+        private System.Windows.Forms.ComboBox cbL2OutputEmphasis4Db;
+        private System.Windows.Forms.ComboBox cbL2OutputEmphasis3Db;
+        private System.Windows.Forms.ComboBox cbL2OutputEmphasis2Db;
+        private System.Windows.Forms.ComboBox cbL2OutputEmphasis1Db;
+        private System.Windows.Forms.ComboBox cbL2OutputEmphasis0Db;
+        private System.Windows.Forms.Label lL1Customer;
+        private System.Windows.Forms.ComboBox cbL1OutputEmphasisReserved0;
+        private System.Windows.Forms.ComboBox cbL1OutputEmphasis7Db;
+        private System.Windows.Forms.ComboBox cbL1OutputEmphasis6Db;
+        private System.Windows.Forms.ComboBox cbL1OutputEmphasis5Db;
+        private System.Windows.Forms.ComboBox cbL1OutputEmphasis4Db;
+        private System.Windows.Forms.ComboBox cbL1OutputEmphasis3Db;
+        private System.Windows.Forms.ComboBox cbL1OutputEmphasis2Db;
+        private System.Windows.Forms.ComboBox cbL1OutputEmphasis1Db;
+        private System.Windows.Forms.ComboBox cbL1OutputEmphasis0Db;
+        private System.Windows.Forms.Label lL0Customer;
+        private System.Windows.Forms.Label lOutputEmphasisReserved;
+        private System.Windows.Forms.ComboBox cbL0OutputEmphasisReserved0;
+        private System.Windows.Forms.Label lOutputEmphasis7Db;
+        private System.Windows.Forms.ComboBox cbL0OutputEmphasis7Db;
+        private System.Windows.Forms.Label lOutputEmphasis6Db;
+        private System.Windows.Forms.ComboBox cbL0OutputEmphasis6Db;
+        private System.Windows.Forms.Label lOutputEmphasis5Db;
+        private System.Windows.Forms.ComboBox cbL0OutputEmphasis5Db;
+        private System.Windows.Forms.Label lOutputEmphasis4Db;
+        private System.Windows.Forms.ComboBox cbL0OutputEmphasis4Db;
+        private System.Windows.Forms.Label lOutputEmphasis3Db;
+        private System.Windows.Forms.ComboBox cbL0OutputEmphasis3Db;
+        private System.Windows.Forms.Label lOutputEmphasis2Db;
+        private System.Windows.Forms.ComboBox cbL0OutputEmphasis2Db;
+        private System.Windows.Forms.Label lOutputEmphasis1Db;
+        private System.Windows.Forms.ComboBox cbL0OutputEmphasis1Db;
+        private System.Windows.Forms.Label lOutputEmphasis0Db;
+        private System.Windows.Forms.ComboBox cbL0OutputEmphasis0Db;
+        private System.Windows.Forms.ComboBox cbL3OutputAmplitudeReserved4;
+        private System.Windows.Forms.ComboBox cbL2OutputAmplitudeReserved4;
+        private System.Windows.Forms.ComboBox cbL1OutputAmplitudeReserved4;
+        private System.Windows.Forms.Label lOutputAmplitudeReserved4;
+        private System.Windows.Forms.ComboBox cbL0OutputAmplitudeReserved4;
+        private System.Windows.Forms.ComboBox cbL3OutputAmplitudeReserved3;
+        private System.Windows.Forms.ComboBox cbL2OutputAmplitudeReserved3;
+        private System.Windows.Forms.ComboBox cbL1OutputAmplitudeReserved3;
+        private System.Windows.Forms.Label lOutputAmplitudeReserved3;
+        private System.Windows.Forms.ComboBox cbL0OutputAmplitudeReserved3;
+        private System.Windows.Forms.ComboBox cbL3OutputAmplitudeReserved2;
+        private System.Windows.Forms.ComboBox cbL2OutputAmplitudeReserved2;
+        private System.Windows.Forms.ComboBox cbL1OutputAmplitudeReserved2;
+        private System.Windows.Forms.Label lOutputAmplitudeReserved2;
+        private System.Windows.Forms.ComboBox cbL0OutputAmplitudeReserved2;
+        private System.Windows.Forms.ComboBox cbL3OutputAmplitudeReserved1;
+        private System.Windows.Forms.ComboBox cbL2OutputAmplitudeReserved1;
+        private System.Windows.Forms.ComboBox cbL1OutputAmplitudeReserved1;
+        private System.Windows.Forms.Label lOutputAmplitudeReserved1;
+        private System.Windows.Forms.ComboBox cbL0OutputAmplitudeReserved1;
+        private System.Windows.Forms.ComboBox cbL3OutputAmplitudeReserved0;
+        private System.Windows.Forms.ComboBox cbL2OutputAmplitudeReserved0;
+        private System.Windows.Forms.ComboBox cbL1OutputAmplitudeReserved0;
+        private System.Windows.Forms.Label lOutputAmplitudeReserved0;
+        private System.Windows.Forms.ComboBox cbL0OutputAmplitudeReserved0;
+        private System.Windows.Forms.ComboBox cbL3OutputAmplitude6001200;
+        private System.Windows.Forms.ComboBox cbL2OutputAmplitude6001200;
+        private System.Windows.Forms.ComboBox cbL1OutputAmplitude6001200;
+        private System.Windows.Forms.Label lOutputAmplitude6001200;
+        private System.Windows.Forms.ComboBox cbL0OutputAmplitude6001200;
+        private System.Windows.Forms.ComboBox cbL3OutputAmplitude400800;
+        private System.Windows.Forms.ComboBox cbL2OutputAmplitude400800;
+        private System.Windows.Forms.ComboBox cbL1OutputAmplitude400800;
+        private System.Windows.Forms.Label lOutputAmplitude400800;
+        private System.Windows.Forms.ComboBox cbL0OutputAmplitude400800;
+        private System.Windows.Forms.ComboBox cbL3OutputAmplitude300600;
+        private System.Windows.Forms.ComboBox cbL2OutputAmplitude300600;
+        private System.Windows.Forms.ComboBox cbL1OutputAmplitude300600;
+        private System.Windows.Forms.Label lOutputAmplitude300600;
+        private System.Windows.Forms.ComboBox cbL0OutputAmplitude300600;
+        private System.Windows.Forms.ComboBox cbL3OutputAmplitude100400;
+        private System.Windows.Forms.ComboBox cbL2OutputAmplitude100400;
+        private System.Windows.Forms.ComboBox cbL1OutputAmplitude100400;
+        private System.Windows.Forms.Label lOutputAmplitude100400;
+        private System.Windows.Forms.ComboBox cbL0OutputAmplitude100400;
     }
 }

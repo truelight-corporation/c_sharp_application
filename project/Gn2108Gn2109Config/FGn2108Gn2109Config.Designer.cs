@@ -83,7 +83,7 @@
             this.tpGn2109Config.Location = new System.Drawing.Point(4, 22);
             this.tpGn2109Config.Name = "tpGn2109Config";
             this.tpGn2109Config.Padding = new System.Windows.Forms.Padding(3);
-            this.tpGn2109Config.Size = new System.Drawing.Size(777, 574);
+            this.tpGn2109Config.Size = new System.Drawing.Size(777, 597);
             this.tpGn2109Config.TabIndex = 1;
             this.tpGn2109Config.Text = "GN2109";
             this.tpGn2109Config.UseVisualStyleBackColor = true;
@@ -103,7 +103,7 @@
             this.Controls.Add(this.tcGn2108Gn2109Config);
             this.Controls.Add(this.cbConnected);
             this.Name = "FGn2108Gn2109Config";
-            this.Text = "GN2108&GN2109 Config";
+            this.Text = "GN2108&GN2109 Config_20190730";
             this.tcGn2108Gn2109Config.ResumeLayout(false);
             this.tpGn2108Config.ResumeLayout(false);
             this.tpGn2109Config.ResumeLayout(false);

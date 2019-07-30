@@ -52,6 +52,42 @@ namespace Gn2108Gn2109Config
                 cbL3DrvDeemphLevel.Items.Add(i);
                 cbPrbsgenCkdivRate.Items.Add(i);
                 cbPrbschkTimerClkSel.Items.Add(i);
+                cbL0OutputEmphasis0Db.Items.Add(i);
+                cbL0OutputEmphasis1Db.Items.Add(i);
+                cbL0OutputEmphasis2Db.Items.Add(i);
+                cbL0OutputEmphasis3Db.Items.Add(i);
+                cbL0OutputEmphasis4Db.Items.Add(i);
+                cbL0OutputEmphasis5Db.Items.Add(i);
+                cbL0OutputEmphasis6Db.Items.Add(i);
+                cbL0OutputEmphasis7Db.Items.Add(i);
+                cbL0OutputEmphasisReserved0.Items.Add(i);
+                cbL1OutputEmphasis0Db.Items.Add(i);
+                cbL1OutputEmphasis1Db.Items.Add(i);
+                cbL1OutputEmphasis2Db.Items.Add(i);
+                cbL1OutputEmphasis3Db.Items.Add(i);
+                cbL1OutputEmphasis4Db.Items.Add(i);
+                cbL1OutputEmphasis5Db.Items.Add(i);
+                cbL1OutputEmphasis6Db.Items.Add(i);
+                cbL1OutputEmphasis7Db.Items.Add(i);
+                cbL1OutputEmphasisReserved0.Items.Add(i);
+                cbL2OutputEmphasis0Db.Items.Add(i);
+                cbL2OutputEmphasis1Db.Items.Add(i);
+                cbL2OutputEmphasis2Db.Items.Add(i);
+                cbL2OutputEmphasis3Db.Items.Add(i);
+                cbL2OutputEmphasis4Db.Items.Add(i);
+                cbL2OutputEmphasis5Db.Items.Add(i);
+                cbL2OutputEmphasis6Db.Items.Add(i);
+                cbL2OutputEmphasis7Db.Items.Add(i);
+                cbL2OutputEmphasisReserved0.Items.Add(i);
+                cbL3OutputEmphasis0Db.Items.Add(i);
+                cbL3OutputEmphasis1Db.Items.Add(i);
+                cbL3OutputEmphasis2Db.Items.Add(i);
+                cbL3OutputEmphasis3Db.Items.Add(i);
+                cbL3OutputEmphasis4Db.Items.Add(i);
+                cbL3OutputEmphasis5Db.Items.Add(i);
+                cbL3OutputEmphasis6Db.Items.Add(i);
+                cbL3OutputEmphasis7Db.Items.Add(i);
+                cbL3OutputEmphasisReserved0.Items.Add(i);
             }
 
             for (i = 0; i < 64; i++) {
@@ -84,6 +120,42 @@ namespace Gn2108Gn2109Config
 
             for (i = 0; i < 256; i++) {
                 cbBbStep.Items.Add(i);
+                cbL0OutputAmplitude100400.Items.Add(i);
+                cbL0OutputAmplitude300600.Items.Add(i);
+                cbL0OutputAmplitude400800.Items.Add(i);
+                cbL0OutputAmplitude6001200.Items.Add(i);
+                cbL0OutputAmplitudeReserved0.Items.Add(i);
+                cbL0OutputAmplitudeReserved1.Items.Add(i);
+                cbL0OutputAmplitudeReserved2.Items.Add(i);
+                cbL0OutputAmplitudeReserved3.Items.Add(i);
+                cbL0OutputAmplitudeReserved4.Items.Add(i);
+                cbL1OutputAmplitude100400.Items.Add(i);
+                cbL1OutputAmplitude300600.Items.Add(i);
+                cbL1OutputAmplitude400800.Items.Add(i);
+                cbL1OutputAmplitude6001200.Items.Add(i);
+                cbL1OutputAmplitudeReserved0.Items.Add(i);
+                cbL1OutputAmplitudeReserved1.Items.Add(i);
+                cbL1OutputAmplitudeReserved2.Items.Add(i);
+                cbL1OutputAmplitudeReserved3.Items.Add(i);
+                cbL1OutputAmplitudeReserved4.Items.Add(i);
+                cbL2OutputAmplitude100400.Items.Add(i);
+                cbL2OutputAmplitude300600.Items.Add(i);
+                cbL2OutputAmplitude400800.Items.Add(i);
+                cbL2OutputAmplitude6001200.Items.Add(i);
+                cbL2OutputAmplitudeReserved0.Items.Add(i);
+                cbL2OutputAmplitudeReserved1.Items.Add(i);
+                cbL2OutputAmplitudeReserved2.Items.Add(i);
+                cbL2OutputAmplitudeReserved3.Items.Add(i);
+                cbL2OutputAmplitudeReserved4.Items.Add(i);
+                cbL3OutputAmplitude100400.Items.Add(i);
+                cbL3OutputAmplitude300600.Items.Add(i);
+                cbL3OutputAmplitude400800.Items.Add(i);
+                cbL3OutputAmplitude6001200.Items.Add(i);
+                cbL3OutputAmplitudeReserved0.Items.Add(i);
+                cbL3OutputAmplitudeReserved1.Items.Add(i);
+                cbL3OutputAmplitudeReserved2.Items.Add(i);
+                cbL3OutputAmplitudeReserved3.Items.Add(i);
+                cbL3OutputAmplitudeReserved4.Items.Add(i);
             }
         }
 
@@ -6283,16 +6355,17 @@ namespace Gn2108Gn2109Config
             bL2Read_Click(sender, e);
             bL3Read_Click(sender, e);
             bReadControl_Click(sender, e);
+            bReadCustomer_Click(sender, e);
             bReadAll.Enabled = true;
         }
 
         private void bStoreIntoFlash_Click(object sender, EventArgs e)
         {
-            byte[] data = new byte[1];
+            byte[] data = new byte[1] { 0xA0 };
             int rv;
 
             bStoreIntoFlash.Enabled = false;
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x05AA).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0AAA).Reverse().ToArray(), 1, data);
             Thread.Sleep(1000);
             bStoreIntoFlash.Enabled = true;
         }
@@ -6315,6 +6388,2393 @@ namespace Gn2108Gn2109Config
             cbL0DrvMainSwing.SelectedIndex = cbL1DrvMainSwing.SelectedIndex = 
                 cbL2DrvMainSwing.SelectedIndex = cbL3DrvMainSwing.SelectedIndex = 
                 cbAllDrvMainSwing.SelectedIndex;
+        }
+
+        private void _ParseAddr500(byte data)
+        {
+            cbL0OutputAmplitude100400.SelectedIndex = data;
+        }
+
+        private void _ParseAddr501(byte data)
+        {
+            cbL0OutputAmplitude300600.SelectedIndex = data;
+        }
+
+        private void _ParseAddr502(byte data)
+        {
+            cbL0OutputAmplitude400800.SelectedIndex = data;
+        }
+
+        private void _ParseAddr503(byte data)
+        {
+            cbL0OutputAmplitude6001200.SelectedIndex = data;
+        }
+
+        private void _ParseAddr504(byte data)
+        {
+            cbL0OutputAmplitudeReserved0.SelectedIndex = data;
+        }
+
+        private void _ParseAddr505(byte data)
+        {
+            cbL0OutputAmplitudeReserved1.SelectedIndex = data;
+        }
+
+        private void _ParseAddr506(byte data)
+        {
+            cbL0OutputAmplitudeReserved2.SelectedIndex = data;
+        }
+
+        private void _ParseAddr507(byte data)
+        {
+            cbL0OutputAmplitudeReserved3.SelectedIndex = data;
+        }
+
+        private void _ParseAddr508(byte data)
+        {
+            cbL0OutputAmplitudeReserved4.SelectedIndex = data;
+        }
+
+        private void _ParseAddr509(byte data)
+        {
+            cbL0OutputEmphasis0Db.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr510(byte data)
+        {
+            cbL0OutputEmphasis1Db.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr511(byte data)
+        {
+            cbL0OutputEmphasis2Db.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr512(byte data)
+        {
+            cbL0OutputEmphasis3Db.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr513(byte data)
+        {
+            cbL0OutputEmphasis4Db.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr514(byte data)
+        {
+            cbL0OutputEmphasis5Db.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr515(byte data)
+        {
+            cbL0OutputEmphasis6Db.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr516(byte data)
+        {
+            cbL0OutputEmphasis7Db.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr517(byte data)
+        {
+            cbL0OutputEmphasisReserved0.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr518(byte data)
+        {
+            cbL1OutputAmplitude100400.SelectedIndex = data;
+        }
+
+        private void _ParseAddr519(byte data)
+        {
+            cbL1OutputAmplitude300600.SelectedIndex = data;
+        }
+
+        private void _ParseAddr520(byte data)
+        {
+            cbL1OutputAmplitude400800.SelectedIndex = data;
+        }
+
+        private void _ParseAddr521(byte data)
+        {
+            cbL1OutputAmplitude6001200.SelectedIndex = data;
+        }
+
+        private void _ParseAddr522(byte data)
+        {
+            cbL1OutputAmplitudeReserved0.SelectedIndex = data;
+        }
+
+        private void _ParseAddr523(byte data)
+        {
+            cbL1OutputAmplitudeReserved1.SelectedIndex = data;
+        }
+
+        private void _ParseAddr524(byte data)
+        {
+            cbL1OutputAmplitudeReserved2.SelectedIndex = data;
+        }
+
+        private void _ParseAddr525(byte data)
+        {
+            cbL1OutputAmplitudeReserved3.SelectedIndex = data;
+        }
+
+        private void _ParseAddr526(byte data)
+        {
+            cbL1OutputAmplitudeReserved4.SelectedIndex = data;
+        }
+
+        private void _ParseAddr527(byte data)
+        {
+            cbL1OutputEmphasis0Db.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr528(byte data)
+        {
+            cbL1OutputEmphasis1Db.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr529(byte data)
+        {
+            cbL1OutputEmphasis2Db.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr530(byte data)
+        {
+            cbL1OutputEmphasis3Db.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr531(byte data)
+        {
+            cbL1OutputEmphasis4Db.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr532(byte data)
+        {
+            cbL1OutputEmphasis5Db.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr533(byte data)
+        {
+            cbL1OutputEmphasis6Db.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr534(byte data)
+        {
+            cbL1OutputEmphasis7Db.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr535(byte data)
+        {
+            cbL1OutputEmphasisReserved0.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr536(byte data)
+        {
+            cbL2OutputAmplitude100400.SelectedIndex = data;
+        }
+
+        private void _ParseAddr537(byte data)
+        {
+            cbL2OutputAmplitude300600.SelectedIndex = data;
+        }
+
+        private void _ParseAddr538(byte data)
+        {
+            cbL2OutputAmplitude400800.SelectedIndex = data;
+        }
+
+        private void _ParseAddr539(byte data)
+        {
+            cbL2OutputAmplitude6001200.SelectedIndex = data;
+        }
+
+        private void _ParseAddr540(byte data)
+        {
+            cbL2OutputAmplitudeReserved0.SelectedIndex = data;
+        }
+
+        private void _ParseAddr541(byte data)
+        {
+            cbL2OutputAmplitudeReserved1.SelectedIndex = data;
+        }
+
+        private void _ParseAddr542(byte data)
+        {
+            cbL2OutputAmplitudeReserved2.SelectedIndex = data;
+        }
+
+        private void _ParseAddr543(byte data)
+        {
+            cbL2OutputAmplitudeReserved3.SelectedIndex = data;
+        }
+
+        private void _ParseAddr544(byte data)
+        {
+            cbL2OutputAmplitudeReserved4.SelectedIndex = data;
+        }
+
+        private void _ParseAddr545(byte data)
+        {
+            cbL2OutputEmphasis0Db.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr546(byte data)
+        {
+            cbL2OutputEmphasis1Db.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr547(byte data)
+        {
+            cbL2OutputEmphasis2Db.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr548(byte data)
+        {
+            cbL2OutputEmphasis3Db.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr549(byte data)
+        {
+            cbL2OutputEmphasis4Db.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr550(byte data)
+        {
+            cbL2OutputEmphasis5Db.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr551(byte data)
+        {
+            cbL2OutputEmphasis6Db.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr552(byte data)
+        {
+            cbL2OutputEmphasis7Db.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr553(byte data)
+        {
+            cbL2OutputEmphasisReserved0.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr554(byte data)
+        {
+            cbL3OutputAmplitude100400.SelectedIndex = data;
+        }
+
+        private void _ParseAddr555(byte data)
+        {
+            cbL3OutputAmplitude300600.SelectedIndex = data;
+        }
+
+        private void _ParseAddr556(byte data)
+        {
+            cbL3OutputAmplitude400800.SelectedIndex = data;
+        }
+
+        private void _ParseAddr557(byte data)
+        {
+            cbL3OutputAmplitude6001200.SelectedIndex = data;
+        }
+
+        private void _ParseAddr558(byte data)
+        {
+            cbL3OutputAmplitudeReserved0.SelectedIndex = data;
+        }
+
+        private void _ParseAddr559(byte data)
+        {
+            cbL3OutputAmplitudeReserved1.SelectedIndex = data;
+        }
+
+        private void _ParseAddr560(byte data)
+        {
+            cbL3OutputAmplitudeReserved2.SelectedIndex = data;
+        }
+
+        private void _ParseAddr561(byte data)
+        {
+            cbL3OutputAmplitudeReserved3.SelectedIndex = data;
+        }
+
+        private void _ParseAddr562(byte data)
+        {
+            cbL3OutputAmplitudeReserved4.SelectedIndex = data;
+        }
+
+        private void _ParseAddr563(byte data)
+        {
+            cbL3OutputEmphasis0Db.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr564(byte data)
+        {
+            cbL3OutputEmphasis1Db.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr565(byte data)
+        {
+            cbL3OutputEmphasis2Db.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr566(byte data)
+        {
+            cbL3OutputEmphasis3Db.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr567(byte data)
+        {
+            cbL3OutputEmphasis4Db.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr568(byte data)
+        {
+            cbL3OutputEmphasis5Db.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr569(byte data)
+        {
+            cbL3OutputEmphasis6Db.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr570(byte data)
+        {
+            cbL3OutputEmphasis7Db.SelectedIndex = data & 0x0F;
+        }
+
+        private void _ParseAddr571(byte data)
+        {
+            cbL3OutputEmphasisReserved0.SelectedIndex = data & 0x0F;
+        }
+
+        private void bReadCustomer_Click(object sender, EventArgs e)
+        {
+            byte[] data = new byte[72];
+            int rv;
+
+            if (reading == true)
+                return;
+
+            reading = true;
+
+            if (i2cRead16CB == null)
+                goto exit;
+
+            rv = i2cRead16CB(92, BitConverter.GetBytes((ushort)0x0500).Reverse().ToArray(), 72, data);
+            if (rv != 72)
+                goto exit;
+
+            _ParseAddr500(data[0]);
+            _ParseAddr501(data[1]);
+            _ParseAddr502(data[2]);
+            _ParseAddr503(data[3]);
+            _ParseAddr504(data[4]);
+            _ParseAddr505(data[5]);
+            _ParseAddr506(data[6]);
+            _ParseAddr507(data[7]);
+            _ParseAddr508(data[8]);
+            _ParseAddr509(data[9]);
+            _ParseAddr510(data[10]);
+            _ParseAddr511(data[11]);
+            _ParseAddr512(data[12]);
+            _ParseAddr513(data[13]);
+            _ParseAddr514(data[14]);
+            _ParseAddr515(data[15]);
+            _ParseAddr516(data[16]);
+            _ParseAddr517(data[17]);
+            _ParseAddr518(data[18]);
+            _ParseAddr519(data[19]);
+            _ParseAddr520(data[20]);
+            _ParseAddr521(data[21]);
+            _ParseAddr522(data[22]);
+            _ParseAddr523(data[23]);
+            _ParseAddr524(data[24]);
+            _ParseAddr525(data[25]);
+            _ParseAddr526(data[26]);
+            _ParseAddr527(data[27]);
+            _ParseAddr528(data[28]);
+            _ParseAddr529(data[29]);
+            _ParseAddr530(data[30]);
+            _ParseAddr531(data[31]);
+            _ParseAddr532(data[32]);
+            _ParseAddr533(data[33]);
+            _ParseAddr534(data[34]);
+            _ParseAddr535(data[35]);
+            _ParseAddr536(data[36]);
+            _ParseAddr537(data[37]);
+            _ParseAddr538(data[38]);
+            _ParseAddr539(data[39]);
+            _ParseAddr540(data[40]);
+            _ParseAddr541(data[41]);
+            _ParseAddr542(data[42]);
+            _ParseAddr543(data[43]);
+            _ParseAddr544(data[44]);
+            _ParseAddr545(data[45]);
+            _ParseAddr546(data[46]);
+            _ParseAddr547(data[47]);
+            _ParseAddr548(data[48]);
+            _ParseAddr549(data[49]);
+            _ParseAddr550(data[50]);
+            _ParseAddr551(data[51]);
+            _ParseAddr552(data[52]);
+            _ParseAddr553(data[53]);
+            _ParseAddr554(data[54]);
+            _ParseAddr555(data[55]);
+            _ParseAddr556(data[56]);
+            _ParseAddr557(data[57]);
+            _ParseAddr558(data[58]);
+            _ParseAddr559(data[59]);
+            _ParseAddr560(data[60]);
+            _ParseAddr561(data[61]);
+            _ParseAddr562(data[62]);
+            _ParseAddr563(data[63]);
+            _ParseAddr564(data[64]);
+            _ParseAddr565(data[65]);
+            _ParseAddr566(data[66]);
+            _ParseAddr567(data[67]);
+            _ParseAddr568(data[68]);
+            _ParseAddr569(data[69]);
+            _ParseAddr570(data[70]);
+            _ParseAddr571(data[71]);
+            
+        exit:
+            reading = false;
+        }
+
+        private int _WriteAddr500()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL0OutputAmplitude100400.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0500).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr501()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL0OutputAmplitude300600.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0501).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr502()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL0OutputAmplitude400800.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0502).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr503()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL0OutputAmplitude6001200.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0503).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr504()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL0OutputAmplitudeReserved0.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0504).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr505()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL0OutputAmplitudeReserved1.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0505).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr506()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL0OutputAmplitudeReserved2.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0506).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr507()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL0OutputAmplitudeReserved3.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0507).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr508()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL0OutputAmplitudeReserved4.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0508).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr509()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL0OutputEmphasis0Db.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0509).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr510()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL0OutputEmphasis1Db.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0510).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr511()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL0OutputEmphasis2Db.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0511).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr512()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL0OutputEmphasis3Db.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0512).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr513()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL0OutputEmphasis4Db.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0513).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr514()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL0OutputEmphasis5Db.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0514).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr515()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL0OutputEmphasis6Db.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0515).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr516()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL0OutputEmphasis7Db.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0516).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr517()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL0OutputEmphasisReserved0.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0517).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private void cbL0OutputAmplitude100400_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr500() < 0)
+                return;
+        }
+
+        private void cbL0OutputAmplitude300600_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr501() < 0)
+                return;
+        }
+
+        private void cbL0OutputAmplitude400800_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr502() < 0)
+                return;
+        }
+
+        private void cbL0OutputAmplitude6001200_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr503() < 0)
+                return;
+        }
+
+        private void cbL0OutputAmplitudeReserved0_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr504() < 0)
+                return;
+        }
+
+        private void cbL0OutputAmplitudeReserved1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr505() < 0)
+                return;
+        }
+
+        private void cbL0OutputAmplitudeReserved2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr506() < 0)
+                return;
+        }
+
+        private void cbL0OutputAmplitudeReserved3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr507() < 0)
+                return;
+        }
+
+        private void cbL0OutputAmplitudeReserved4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr508() < 0)
+                return;
+        }
+
+        private void cbL0OutputEmphasis0Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr509() < 0)
+                return;
+        }
+
+        private void cbL0OutputEmphasis1Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr510() < 0)
+                return;
+        }
+
+        private void cbL0OutputEmphasis2Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr511() < 0)
+                return;
+        }
+
+        private void cbL0OutputEmphasis3Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr512() < 0)
+                return;
+        }
+
+        private void cbL0OutputEmphasis4Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr513() < 0)
+                return;
+        }
+
+        private void cbL0OutputEmphasis5Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr514() < 0)
+                return;
+        }
+
+        private void cbL0OutputEmphasis6Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr515() < 0)
+                return;
+        }
+
+        private void cbL0OutputEmphasis7Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr516() < 0)
+                return;
+        }
+
+        private void cbL0OutputEmphasisReserved0_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr517() < 0)
+                return;
+        }
+
+        private int _WriteAddr518()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL1OutputAmplitude100400.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0518).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr519()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL1OutputAmplitude300600.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0519).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr520()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL1OutputAmplitude400800.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0520).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr521()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL1OutputAmplitude6001200.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0521).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr522()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL1OutputAmplitudeReserved0.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0522).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr523()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL1OutputAmplitudeReserved1.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0523).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr524()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL1OutputAmplitudeReserved2.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0524).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr525()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL1OutputAmplitudeReserved3.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0525).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr526()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL1OutputAmplitudeReserved4.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0526).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr527()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL1OutputEmphasis0Db.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0527).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr528()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL1OutputEmphasis1Db.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0528).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr529()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL1OutputEmphasis2Db.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0529).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr530()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL1OutputEmphasis3Db.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0530).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr531()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL1OutputEmphasis4Db.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0531).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr532()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL1OutputEmphasis5Db.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0532).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr533()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL1OutputEmphasis6Db.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0533).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr534()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL1OutputEmphasis7Db.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0534).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr535()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL1OutputEmphasisReserved0.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0535).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private void cbL1OutputAmplitude100400_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr518() < 0)
+                return;
+        }
+
+        private void cbL1OutputAmplitude300600_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr519() < 0)
+                return;
+        }
+
+        private void cbL1OutputAmplitude400800_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr520() < 0)
+                return;
+        }
+
+        private void cbL1OutputAmplitude6001200_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr521() < 0)
+                return;
+        }
+
+        private void cbL1OutputAmplitudeReserved0_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr522() < 0)
+                return;
+        }
+
+        private void cbL1OutputAmplitudeReserved1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr523() < 0)
+                return;
+        }
+
+        private void cbL1OutputAmplitudeReserved2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr524() < 0)
+                return;
+        }
+
+        private void cbL1OutputAmplitudeReserved3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr525() < 0)
+                return;
+        }
+
+        private void cbL1OutputAmplitudeReserved4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr526() < 0)
+                return;
+        }
+
+        private void cbL1OutputEmphasis0Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr527() < 0)
+                return;
+        }
+
+        private void cbL1OutputEmphasis1Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr528() < 0)
+                return;
+        }
+
+        private void cbL1OutputEmphasis2Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr529() < 0)
+                return;
+        }
+
+        private void cbL1OutputEmphasis3Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr530() < 0)
+                return;
+        }
+
+        private void cbL1OutputEmphasis4Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr531() < 0)
+                return;
+        }
+
+        private void cbL1OutputEmphasis5Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr532() < 0)
+                return;
+        }
+
+        private void cbL1OutputEmphasis6Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr533() < 0)
+                return;
+        }
+
+        private void cbL1OutputEmphasis7Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr534() < 0)
+                return;
+        }
+
+        private void cbL1OutputEmphasisReserved0_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr535() < 0)
+                return;
+        }
+
+        private int _WriteAddr536()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL2OutputAmplitude100400.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0536).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr537()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL2OutputAmplitude300600.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0537).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr538()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL2OutputAmplitude400800.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0538).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr539()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL2OutputAmplitude6001200.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0539).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr540()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL2OutputAmplitudeReserved0.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0540).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr541()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL2OutputAmplitudeReserved1.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0541).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr542()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL2OutputAmplitudeReserved2.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0542).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr543()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL2OutputAmplitudeReserved3.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0543).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr544()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL2OutputAmplitudeReserved4.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0544).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr545()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL2OutputEmphasis0Db.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0545).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr546()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL2OutputEmphasis1Db.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0546).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr547()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL2OutputEmphasis2Db.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0547).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr548()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL2OutputEmphasis3Db.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0548).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr549()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL2OutputEmphasis4Db.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0549).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr550()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL2OutputEmphasis5Db.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0550).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr551()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL2OutputEmphasis6Db.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0551).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr552()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL2OutputEmphasis7Db.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0552).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr553()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL2OutputEmphasisReserved0.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0553).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private void cbL2OutputAmplitude100400_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr536() < 0)
+                return;
+        }
+
+        private void cbL2OutputAmplitude300600_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr537() < 0)
+                return;
+        }
+
+        private void cbL2OutputAmplitude400800_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr538() < 0)
+                return;
+        }
+
+        private void cbL2OutputAmplitude6001200_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr539() < 0)
+                return;
+        }
+
+        private void cbL2OutputAmplitudeReserved0_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr540() < 0)
+                return;
+        }
+
+        private void cbL2OutputAmplitudeReserved1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr541() < 0)
+                return;
+        }
+
+        private void cbL2OutputAmplitudeReserved2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr542() < 0)
+                return;
+        }
+
+        private void cbL2OutputAmplitudeReserved3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr543() < 0)
+                return;
+        }
+
+        private void cbL2OutputAmplitudeReserved4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr544() < 0)
+                return;
+        }
+
+        private void cbL2OutputEmphasis0Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr545() < 0)
+                return;
+        }
+
+        private void cbL2OutputEmphasis1Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr546() < 0)
+                return;
+        }
+
+        private void cbL2OutputEmphasis2Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr547() < 0)
+                return;
+        }
+
+        private void cbL2OutputEmphasis3Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr548() < 0)
+                return;
+        }
+
+        private void cbL2OutputEmphasis4Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr549() < 0)
+                return;
+        }
+
+        private void cbL2OutputEmphasis5Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr550() < 0)
+                return;
+        }
+
+        private void cbL2OutputEmphasis6Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr551() < 0)
+                return;
+        }
+
+        private void cbL2OutputEmphasis7Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr552() < 0)
+                return;
+        }
+
+        private void cbL2OutputEmphasisReserved0_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr553() < 0)
+                return;
+        }
+
+        private int _WriteAddr554()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL3OutputAmplitude100400.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0554).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr555()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL3OutputAmplitude300600.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0555).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr556()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL3OutputAmplitude400800.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0556).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr557()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL3OutputAmplitude6001200.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0557).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr558()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL3OutputAmplitudeReserved0.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0558).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr559()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL3OutputAmplitudeReserved1.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0559).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr560()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL3OutputAmplitudeReserved2.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0560).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr561()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL3OutputAmplitudeReserved3.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0561).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr562()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL3OutputAmplitudeReserved4.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0562).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr563()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL3OutputEmphasis0Db.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0563).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr564()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL3OutputEmphasis1Db.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0564).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr565()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL3OutputEmphasis2Db.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0565).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr566()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL3OutputEmphasis3Db.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0566).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr567()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL3OutputEmphasis4Db.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0567).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr568()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL3OutputEmphasis5Db.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0568).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr569()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL3OutputEmphasis6Db.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0569).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr570()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL3OutputEmphasis7Db.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0570).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr571()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+            bTmp = Convert.ToByte(cbL3OutputEmphasisReserved0.SelectedItem);
+
+            data[0] |= bTmp;
+
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0571).Reverse().ToArray(), 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private void cbL3OutputAmplitude100400_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr554() < 0)
+                return;
+        }
+
+        private void cbL3OutputAmplitude300600_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr555() < 0)
+                return;
+        }
+
+        private void cbL3OutputAmplitude400800_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr556() < 0)
+                return;
+        }
+
+        private void cbL3OutputAmplitude6001200_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr557() < 0)
+                return;
+        }
+
+        private void cbL3OutputAmplitudeReserved0_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr558() < 0)
+                return;
+        }
+
+        private void cbL3OutputAmplitudeReserved1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr559() < 0)
+                return;
+        }
+
+        private void cbL3OutputAmplitudeReserved2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr560() < 0)
+                return;
+        }
+
+        private void cbL3OutputAmplitudeReserved3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            return;
+
+            if (_WriteAddr561() < 0)
+                return;
+        }
+
+        private void cbL3OutputAmplitudeReserved4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            return;
+
+            if (_WriteAddr562() < 0)
+                return;
+        }
+
+        private void cbL3OutputEmphasis0Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            return;
+
+            if (_WriteAddr563() < 0)
+                return;
+        }
+
+        private void cbL3OutputEmphasis1Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            return;
+
+            if (_WriteAddr564() < 0)
+                return;
+        }
+
+        private void cbL3OutputEmphasis2Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            return;
+
+            if (_WriteAddr565() < 0)
+                return;
+        }
+
+        private void cbL3OutputEmphasis3Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            return;
+
+            if (_WriteAddr566() < 0)
+                return;
+        }
+
+        private void cbL3OutputEmphasis4Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            return;
+
+            if (_WriteAddr567() < 0)
+                return;
+        }
+
+        private void cbL3OutputEmphasis5Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            return;
+
+            if (_WriteAddr568() < 0)
+                return;
+        }
+
+        private void cbL3OutputEmphasis6Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            return;
+
+            if (_WriteAddr569() < 0)
+                return;
+        }
+
+        private void cbL3OutputEmphasis7Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            return;
+
+            if (_WriteAddr570() < 0)
+                return;
+        }
+
+        private void cbL3OutputEmphasisReserved0_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            return;
+
+            if (_WriteAddr571() < 0)
+                return;
         }
     }
 }
