@@ -103,7 +103,7 @@ namespace I2cMasterInterface
             count = Mcp2221Api.Mcp2221FindDevicesExtApi(16, deviceIndex, 16, deviceSerialNumber);
 
             if (count == 0) {
-                lAardvarkAdapter.Add("Cannot find any adapter!!");
+                lMcp2221Adapter.Add("Cannot find any adapter!!");
                 return 0;
             }
 
