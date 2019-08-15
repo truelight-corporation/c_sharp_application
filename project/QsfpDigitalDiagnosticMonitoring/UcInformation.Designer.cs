@@ -280,6 +280,7 @@
             this.cbTx4Disable.TabIndex = 7;
             this.cbTx4Disable.Text = "Disable";
             this.cbTx4Disable.UseVisualStyleBackColor = true;
+            this.cbTx4Disable.CheckedChanged += new System.EventHandler(this.cbTx4Disable_CheckedChanged);
             // 
             // cbTx3Disable
             // 
@@ -290,6 +291,7 @@
             this.cbTx3Disable.TabIndex = 8;
             this.cbTx3Disable.Text = "Disable";
             this.cbTx3Disable.UseVisualStyleBackColor = true;
+            this.cbTx3Disable.CheckedChanged += new System.EventHandler(this.cbTx3Disable_CheckedChanged);
             // 
             // cbTx2Disable
             // 
@@ -300,6 +302,7 @@
             this.cbTx2Disable.TabIndex = 9;
             this.cbTx2Disable.Text = "Disable";
             this.cbTx2Disable.UseVisualStyleBackColor = true;
+            this.cbTx2Disable.CheckedChanged += new System.EventHandler(this.cbTx2Disable_CheckedChanged);
             // 
             // cbTx1Disable
             // 
@@ -310,6 +313,7 @@
             this.cbTx1Disable.TabIndex = 10;
             this.cbTx1Disable.Text = "Disable";
             this.cbTx1Disable.UseVisualStyleBackColor = true;
+            this.cbTx1Disable.CheckedChanged += new System.EventHandler(this.cbTx1Disable_CheckedChanged);
             // 
             // cbPowerSet
             // 
@@ -320,6 +324,7 @@
             this.cbPowerSet.TabIndex = 11;
             this.cbPowerSet.Text = "Power set";
             this.cbPowerSet.UseVisualStyleBackColor = true;
+            this.cbPowerSet.CheckedChanged += new System.EventHandler(this.cbPowerSet_CheckedChanged);
             // 
             // cbPowerOverride
             // 
@@ -330,6 +335,7 @@
             this.cbPowerOverride.TabIndex = 12;
             this.cbPowerOverride.Text = "Power override";
             this.cbPowerOverride.UseVisualStyleBackColor = true;
+            this.cbPowerOverride.CheckedChanged += new System.EventHandler(this.cbPowerOverride_CheckedChanged);
             // 
             // gbControlBytes
             // 
@@ -428,6 +434,7 @@
             this.cbCdrOnRx4.TabIndex = 53;
             this.cbCdrOnRx4.Text = "CDR";
             this.cbCdrOnRx4.UseVisualStyleBackColor = true;
+            this.cbCdrOnRx4.CheckedChanged += new System.EventHandler(this.cbCdrOnRx4_CheckedChanged);
             // 
             // cbCdrOnRx3
             // 
@@ -438,6 +445,7 @@
             this.cbCdrOnRx3.TabIndex = 54;
             this.cbCdrOnRx3.Text = "CDR";
             this.cbCdrOnRx3.UseVisualStyleBackColor = true;
+            this.cbCdrOnRx3.CheckedChanged += new System.EventHandler(this.cbCdrOnRx3_CheckedChanged);
             // 
             // cbCdrOnRx2
             // 
@@ -448,6 +456,7 @@
             this.cbCdrOnRx2.TabIndex = 55;
             this.cbCdrOnRx2.Text = "CDR";
             this.cbCdrOnRx2.UseVisualStyleBackColor = true;
+            this.cbCdrOnRx2.CheckedChanged += new System.EventHandler(this.cbCdrOnRx2_CheckedChanged);
             // 
             // cbCdrOnRx1
             // 
@@ -458,6 +467,7 @@
             this.cbCdrOnRx1.TabIndex = 56;
             this.cbCdrOnRx1.Text = "CDR";
             this.cbCdrOnRx1.UseVisualStyleBackColor = true;
+            this.cbCdrOnRx1.CheckedChanged += new System.EventHandler(this.cbCdrOnRx1_CheckedChanged);
             // 
             // cbCdrOnTx4
             // 
@@ -468,6 +478,7 @@
             this.cbCdrOnTx4.TabIndex = 49;
             this.cbCdrOnTx4.Text = "CDR";
             this.cbCdrOnTx4.UseVisualStyleBackColor = true;
+            this.cbCdrOnTx4.CheckedChanged += new System.EventHandler(this.cbCdrOnTx4_CheckedChanged);
             // 
             // cbCdrOnTx3
             // 
@@ -478,6 +489,7 @@
             this.cbCdrOnTx3.TabIndex = 50;
             this.cbCdrOnTx3.Text = "CDR";
             this.cbCdrOnTx3.UseVisualStyleBackColor = true;
+            this.cbCdrOnTx3.CheckedChanged += new System.EventHandler(this.cbCdrOnTx3_CheckedChanged);
             // 
             // cbCdrOnTx2
             // 
@@ -488,6 +500,7 @@
             this.cbCdrOnTx2.TabIndex = 51;
             this.cbCdrOnTx2.Text = "CDR";
             this.cbCdrOnTx2.UseVisualStyleBackColor = true;
+            this.cbCdrOnTx2.CheckedChanged += new System.EventHandler(this.cbCdrOnTx2_CheckedChanged);
             // 
             // cbCdrOnTx1
             // 
@@ -498,6 +511,7 @@
             this.cbCdrOnTx1.TabIndex = 52;
             this.cbCdrOnTx1.Text = "CDR";
             this.cbCdrOnTx1.UseVisualStyleBackColor = true;
+            this.cbCdrOnTx1.CheckedChanged += new System.EventHandler(this.cbCdrOnTx1_CheckedChanged);
             // 
             // lTxApplicationSelect
             // 
@@ -549,6 +563,7 @@
             this.cbHighPowerClassEnable.TabIndex = 43;
             this.cbHighPowerClassEnable.Text = "High Power Class";
             this.cbHighPowerClassEnable.UseVisualStyleBackColor = true;
+            this.cbHighPowerClassEnable.CheckedChanged += new System.EventHandler(this.cbHighPowerClassEnable_CheckedChanged);
             // 
             // lRxApplicationSelect
             // 

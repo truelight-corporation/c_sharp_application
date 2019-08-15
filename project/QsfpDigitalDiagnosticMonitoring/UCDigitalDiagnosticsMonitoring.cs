@@ -2044,7 +2044,18 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (i2cWriteCB == null)
                 goto exit;
 
-            data[0] = 32;
+
+            /* old version */
+            data[0] = 0x32;
+            if (i2cWriteCB(80, 127, 1, data) < 0)
+                goto exit;
+
+            data[0] = 0xAA;
+            if (i2cWriteCB(80, 162, 1, data) < 0)
+                goto exit;
+
+            /* new firmware */
+            data[0] = 0xAA;
             if (i2cWriteCB(80, 127, 1, data) < 0)
                 goto exit;
 

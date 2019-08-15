@@ -1287,7 +1287,6 @@ namespace QsfpDigitalDiagnosticMonitoring
                 data[5] |= 0x02;
             if (cbAdaptiveEqualizationControlTx1.Checked == true)
                 data[5] |= 0x01;
-            
 
             if (i2cWriteCB(80, 234, 6, data) < 0)
                 return -1;
@@ -1400,7 +1399,17 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (i2cWriteCB == null)
                 goto exit;
 
-            data[0] = 32;
+            /* old version */
+            data[0] = 0x32;
+            if (i2cWriteCB(80, 127, 1, data) < 0)
+                goto exit;
+
+            data[0] = 0xAA;
+            if (i2cWriteCB(80, 162, 1, data) < 0)
+                goto exit;
+
+            /* new firmware */
+            data[0] = 0xAA;
             if (i2cWriteCB(80, 127, 1, data) < 0)
                 goto exit;
 
@@ -1415,5 +1424,79 @@ namespace QsfpDigitalDiagnosticMonitoring
             bStoreIntoFlash.Enabled = true;
         }
 
+        private void cbPowerOverride_CheckedChanged(object sender, EventArgs e)
+        {
+            _WriteAddr93();
+        }
+
+        private void cbPowerSet_CheckedChanged(object sender, EventArgs e)
+        {
+            _WriteAddr93();
+        }
+
+        private void cbHighPowerClassEnable_CheckedChanged(object sender, EventArgs e)
+        {
+            _WriteAddr93();
+        }
+
+        private void cbTx1Disable_CheckedChanged(object sender, EventArgs e)
+        {
+            _WriteAddr86();
+        }
+
+        private void cbTx2Disable_CheckedChanged(object sender, EventArgs e)
+        {
+            _WriteAddr86();
+        }
+
+        private void cbTx3Disable_CheckedChanged(object sender, EventArgs e)
+        {
+            _WriteAddr86();
+        }
+
+        private void cbTx4Disable_CheckedChanged(object sender, EventArgs e)
+        {
+            _WriteAddr86();
+        }
+
+        private void cbCdrOnTx1_CheckedChanged(object sender, EventArgs e)
+        {
+            _WriteAddr98();
+        }
+
+        private void cbCdrOnTx2_CheckedChanged(object sender, EventArgs e)
+        {
+            _WriteAddr98();
+        }
+
+        private void cbCdrOnTx3_CheckedChanged(object sender, EventArgs e)
+        {
+            _WriteAddr98();
+        }
+
+        private void cbCdrOnTx4_CheckedChanged(object sender, EventArgs e)
+        {
+            _WriteAddr98();
+        }
+
+        private void cbCdrOnRx1_CheckedChanged(object sender, EventArgs e)
+        {
+            _WriteAddr98();
+        }
+
+        private void cbCdrOnRx2_CheckedChanged(object sender, EventArgs e)
+        {
+            _WriteAddr98();
+        }
+
+        private void cbCdrOnRx3_CheckedChanged(object sender, EventArgs e)
+        {
+            _WriteAddr98();
+        }
+
+        private void cbCdrOnRx4_CheckedChanged(object sender, EventArgs e)
+        {
+            _WriteAddr98();
+        }
     }
 }
