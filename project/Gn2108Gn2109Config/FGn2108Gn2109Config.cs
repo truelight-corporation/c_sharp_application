@@ -177,13 +177,27 @@ namespace Gn2108Gn2109Config
             }
         }
 
+        private int _WriteModulePassword()
+        {
+            byte[] data;
+
+            data = Encoding.Default.GetBytes(tbPassword.Text);
+
+            if (i2cMaster.WriteApi(80, 123, 4, data) < 0)
+                return -1;
+
+            return 0;
+        }
+
         private void cbConnected_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbConnected.Checked == true)
-                _I2cMasterConnect();
+            if (cbConnected.Checked == true) {
+                if (_I2cMasterConnect() < 0)
+                    return;
+                _WriteModulePassword();
+            }
             else
                 _I2cMasterDisconnect();
         }
-
     }
 }

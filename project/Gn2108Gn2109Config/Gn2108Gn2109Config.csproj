@@ -38,7 +38,7 @@
       <HintPath>..\..\dll\device\AardvarkAdapter.dll</HintPath>
     </Reference>
     <Reference Include="I2cMasterInterface">
-      <HintPath>..\..\dll\I2cMasterInterface.dll</HintPath>
+      <HintPath>..\..\dll\interface\I2cMasterInterface.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

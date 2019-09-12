@@ -7035,7 +7035,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0510).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x050A).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7053,7 +7053,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0511).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x050B).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7071,7 +7071,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0512).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x050C).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7089,7 +7089,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0513).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x050D).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7107,7 +7107,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0514).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x050E).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7125,7 +7125,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0515).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x050F).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7143,7 +7143,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0516).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0510).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7161,7 +7161,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0517).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0511).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7341,7 +7341,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0518).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0512).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7359,7 +7359,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0519).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0513).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7377,7 +7377,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0520).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0514).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7395,7 +7395,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0521).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0515).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7413,7 +7413,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0522).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0516).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7431,7 +7431,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0523).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0517).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7449,7 +7449,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0524).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0518).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7467,7 +7467,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0525).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0519).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7485,7 +7485,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0526).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x051A).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7503,7 +7503,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0527).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x051B).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7521,7 +7521,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0528).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x051C).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7539,7 +7539,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0529).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x051D).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7557,7 +7557,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0530).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x051E).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7575,7 +7575,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0531).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x051F).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7593,7 +7593,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0532).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0520).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7611,7 +7611,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0533).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0521).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7629,7 +7629,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0534).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0522).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7647,7 +7647,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0535).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0523).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7827,7 +7827,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0536).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0524).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7845,7 +7845,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0537).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0525).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7863,7 +7863,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0538).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0526).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7881,7 +7881,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0539).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0527).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7899,7 +7899,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0540).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0528).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7917,7 +7917,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0541).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0529).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7935,7 +7935,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0542).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x052A).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7953,7 +7953,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0543).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x052B).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7971,7 +7971,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0544).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x052C).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -7989,7 +7989,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0545).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x052D).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -8007,7 +8007,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0546).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x052E).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -8025,7 +8025,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0547).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x052F).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -8043,7 +8043,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0548).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0530).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -8061,7 +8061,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0549).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0531).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -8079,7 +8079,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0550).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0532).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -8097,7 +8097,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0551).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0533).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -8115,7 +8115,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0552).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0534).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -8133,7 +8133,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0553).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0535).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -8313,7 +8313,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0554).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0536).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -8331,7 +8331,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0555).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0537).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -8349,7 +8349,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0556).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0538).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -8367,7 +8367,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0557).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0539).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -8385,7 +8385,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0558).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x053A).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -8403,7 +8403,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0559).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x053B).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -8421,7 +8421,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0560).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x053C).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -8439,7 +8439,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0561).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x053D).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -8457,7 +8457,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0562).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x053E).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -8475,7 +8475,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0563).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x053F).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -8493,7 +8493,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0564).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0540).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -8511,7 +8511,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0565).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0541).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -8529,7 +8529,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0566).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0542).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -8547,7 +8547,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0567).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0543).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -8565,7 +8565,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0568).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0544).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -8583,7 +8583,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0569).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0545).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -8601,7 +8601,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0570).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0546).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
@@ -8619,7 +8619,7 @@ namespace Gn2108Gn2109Config
 
             data[0] |= bTmp;
 
-            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0571).Reverse().ToArray(), 1, data);
+            rv = i2cWrite16CB(92, BitConverter.GetBytes((ushort)0x0547).Reverse().ToArray(), 1, data);
             if (rv < 0)
                 return -1;
 
