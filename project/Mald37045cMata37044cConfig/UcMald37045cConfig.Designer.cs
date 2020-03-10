@@ -247,6 +247,76 @@
             this.lRevId = new System.Windows.Forms.Label();
             this.tbChipId = new System.Windows.Forms.TextBox();
             this.lChipId = new System.Windows.Forms.Label();
+            this.tpMald37045cCustomer = new System.Windows.Forms.TabPage();
+            this.cbL3InputEqualizationReserved1 = new System.Windows.Forms.ComboBox();
+            this.cbL2InputEqualizationReserved1 = new System.Windows.Forms.ComboBox();
+            this.cbL1InputEqualizationReserved1 = new System.Windows.Forms.ComboBox();
+            this.lInputEqualizationResvered1 = new System.Windows.Forms.Label();
+            this.cbL0InputEqualizationReserved1 = new System.Windows.Forms.ComboBox();
+            this.cbL3InputEqualizationReserved0 = new System.Windows.Forms.ComboBox();
+            this.cbL2InputEqualizationReserved0 = new System.Windows.Forms.ComboBox();
+            this.cbL1InputEqualizationReserved0 = new System.Windows.Forms.ComboBox();
+            this.lInputEqualizationResvered0 = new System.Windows.Forms.Label();
+            this.cbL0InputEqualizationReserved0 = new System.Windows.Forms.ComboBox();
+            this.cbL3InputEqualization10db = new System.Windows.Forms.ComboBox();
+            this.cbL2InputEqualization10db = new System.Windows.Forms.ComboBox();
+            this.cbL1InputEqualization10db = new System.Windows.Forms.ComboBox();
+            this.lInputEqualization10db = new System.Windows.Forms.Label();
+            this.cbL0InputEqualization10db = new System.Windows.Forms.ComboBox();
+            this.cbL3InputEqualization9db = new System.Windows.Forms.ComboBox();
+            this.cbL2InputEqualization9db = new System.Windows.Forms.ComboBox();
+            this.cbL1InputEqualization9db = new System.Windows.Forms.ComboBox();
+            this.lInputEqualization9db = new System.Windows.Forms.Label();
+            this.cbL0InputEqualization9db = new System.Windows.Forms.ComboBox();
+            this.cbL3InputEqualization8db = new System.Windows.Forms.ComboBox();
+            this.cbL2InputEqualization8db = new System.Windows.Forms.ComboBox();
+            this.cbL1InputEqualization8db = new System.Windows.Forms.ComboBox();
+            this.lInputEqualization8db = new System.Windows.Forms.Label();
+            this.cbL0InputEqualization8db = new System.Windows.Forms.ComboBox();
+            this.cbL3InputEqualization7db = new System.Windows.Forms.ComboBox();
+            this.cbL2InputEqualization7db = new System.Windows.Forms.ComboBox();
+            this.cbL1InputEqualization7db = new System.Windows.Forms.ComboBox();
+            this.lInputEqualization7db = new System.Windows.Forms.Label();
+            this.cbL0InputEqualization7db = new System.Windows.Forms.ComboBox();
+            this.cbL3InputEqualization6db = new System.Windows.Forms.ComboBox();
+            this.cbL2InputEqualization6db = new System.Windows.Forms.ComboBox();
+            this.cbL1InputEqualization6db = new System.Windows.Forms.ComboBox();
+            this.lInputEqualization6db = new System.Windows.Forms.Label();
+            this.cbL0InputEqualization6db = new System.Windows.Forms.ComboBox();
+            this.cbL3InputEqualization5db = new System.Windows.Forms.ComboBox();
+            this.cbL2InputEqualization5db = new System.Windows.Forms.ComboBox();
+            this.cbL1InputEqualization5db = new System.Windows.Forms.ComboBox();
+            this.lInputEqualization5db = new System.Windows.Forms.Label();
+            this.cbL0InputEqualization5db = new System.Windows.Forms.ComboBox();
+            this.cbL3InputEqualization4db = new System.Windows.Forms.ComboBox();
+            this.cbL2InputEqualization4db = new System.Windows.Forms.ComboBox();
+            this.cbL1InputEqualization4db = new System.Windows.Forms.ComboBox();
+            this.lInputEqualization4db = new System.Windows.Forms.Label();
+            this.cbL0InputEqualization4db = new System.Windows.Forms.ComboBox();
+            this.cbL3InputEqualization3db = new System.Windows.Forms.ComboBox();
+            this.cbL2InputEqualization3db = new System.Windows.Forms.ComboBox();
+            this.cbL1InputEqualization3db = new System.Windows.Forms.ComboBox();
+            this.lInputEqualization3db = new System.Windows.Forms.Label();
+            this.cbL0InputEqualization3db = new System.Windows.Forms.ComboBox();
+            this.cbL3InputEqualization2db = new System.Windows.Forms.ComboBox();
+            this.cbL2InputEqualization2db = new System.Windows.Forms.ComboBox();
+            this.cbL1InputEqualization2db = new System.Windows.Forms.ComboBox();
+            this.lInputEqualization2db = new System.Windows.Forms.Label();
+            this.cbL0InputEqualization2db = new System.Windows.Forms.ComboBox();
+            this.cbL3InputEqualization1db = new System.Windows.Forms.ComboBox();
+            this.cbL2InputEqualization1db = new System.Windows.Forms.ComboBox();
+            this.cbL1InputEqualization1db = new System.Windows.Forms.ComboBox();
+            this.lInputEqualization1db = new System.Windows.Forms.Label();
+            this.cbL0InputEqualization1db = new System.Windows.Forms.ComboBox();
+            this.cbL3InputEqualization0db = new System.Windows.Forms.ComboBox();
+            this.cbL2InputEqualization0db = new System.Windows.Forms.ComboBox();
+            this.cbL1InputEqualization0db = new System.Windows.Forms.ComboBox();
+            this.lInputEqualization0db = new System.Windows.Forms.Label();
+            this.cbL0InputEqualization0db = new System.Windows.Forms.ComboBox();
+            this.lL3Customer = new System.Windows.Forms.Label();
+            this.lL2Customer = new System.Windows.Forms.Label();
+            this.lL1Customer = new System.Windows.Forms.Label();
+            this.lL0Customer = new System.Windows.Forms.Label();
             this.bDeviceReset = new System.Windows.Forms.Button();
             this.tpMald37045cConfig.SuspendLayout();
             this.tpMald37045cL0.SuspendLayout();
@@ -255,6 +325,7 @@
             this.tpMald37045cL3.SuspendLayout();
             this.tpMald37045cAll.SuspendLayout();
             this.tpMald37045cControl.SuspendLayout();
+            this.tpMald37045cCustomer.SuspendLayout();
             this.SuspendLayout();
             // 
             // bStoreIntoFlash
@@ -285,10 +356,11 @@
             this.tpMald37045cConfig.Controls.Add(this.tpMald37045cL3);
             this.tpMald37045cConfig.Controls.Add(this.tpMald37045cAll);
             this.tpMald37045cConfig.Controls.Add(this.tpMald37045cControl);
+            this.tpMald37045cConfig.Controls.Add(this.tpMald37045cCustomer);
             this.tpMald37045cConfig.Location = new System.Drawing.Point(3, 32);
             this.tpMald37045cConfig.Name = "tpMald37045cConfig";
             this.tpMald37045cConfig.SelectedIndex = 0;
-            this.tpMald37045cConfig.Size = new System.Drawing.Size(634, 445);
+            this.tpMald37045cConfig.Size = new System.Drawing.Size(634, 515);
             this.tpMald37045cConfig.TabIndex = 6;
             // 
             // tpMald37045cL0
@@ -336,7 +408,7 @@
             this.tpMald37045cL0.Location = new System.Drawing.Point(4, 22);
             this.tpMald37045cL0.Name = "tpMald37045cL0";
             this.tpMald37045cL0.Padding = new System.Windows.Forms.Padding(3);
-            this.tpMald37045cL0.Size = new System.Drawing.Size(626, 419);
+            this.tpMald37045cL0.Size = new System.Drawing.Size(626, 489);
             this.tpMald37045cL0.TabIndex = 0;
             this.tpMald37045cL0.Text = "L0";
             this.tpMald37045cL0.UseVisualStyleBackColor = true;
@@ -784,7 +856,7 @@
             this.tpMald37045cL1.Location = new System.Drawing.Point(4, 22);
             this.tpMald37045cL1.Name = "tpMald37045cL1";
             this.tpMald37045cL1.Padding = new System.Windows.Forms.Padding(3);
-            this.tpMald37045cL1.Size = new System.Drawing.Size(626, 419);
+            this.tpMald37045cL1.Size = new System.Drawing.Size(626, 489);
             this.tpMald37045cL1.TabIndex = 1;
             this.tpMald37045cL1.Text = "L1";
             this.tpMald37045cL1.UseVisualStyleBackColor = true;
@@ -1232,7 +1304,7 @@
             this.tpMald37045cL2.Location = new System.Drawing.Point(4, 22);
             this.tpMald37045cL2.Name = "tpMald37045cL2";
             this.tpMald37045cL2.Padding = new System.Windows.Forms.Padding(3);
-            this.tpMald37045cL2.Size = new System.Drawing.Size(626, 419);
+            this.tpMald37045cL2.Size = new System.Drawing.Size(626, 489);
             this.tpMald37045cL2.TabIndex = 2;
             this.tpMald37045cL2.Text = "L2";
             this.tpMald37045cL2.UseVisualStyleBackColor = true;
@@ -1680,7 +1752,7 @@
             this.tpMald37045cL3.Location = new System.Drawing.Point(4, 22);
             this.tpMald37045cL3.Name = "tpMald37045cL3";
             this.tpMald37045cL3.Padding = new System.Windows.Forms.Padding(3);
-            this.tpMald37045cL3.Size = new System.Drawing.Size(626, 419);
+            this.tpMald37045cL3.Size = new System.Drawing.Size(626, 489);
             this.tpMald37045cL3.TabIndex = 3;
             this.tpMald37045cL3.Text = "L3";
             this.tpMald37045cL3.UseVisualStyleBackColor = true;
@@ -2101,7 +2173,7 @@
             this.tpMald37045cAll.Location = new System.Drawing.Point(4, 22);
             this.tpMald37045cAll.Name = "tpMald37045cAll";
             this.tpMald37045cAll.Padding = new System.Windows.Forms.Padding(3);
-            this.tpMald37045cAll.Size = new System.Drawing.Size(626, 419);
+            this.tpMald37045cAll.Size = new System.Drawing.Size(626, 489);
             this.tpMald37045cAll.TabIndex = 4;
             this.tpMald37045cAll.Text = "All";
             this.tpMald37045cAll.UseVisualStyleBackColor = true;
@@ -2266,7 +2338,7 @@
             this.tpMald37045cControl.Location = new System.Drawing.Point(4, 22);
             this.tpMald37045cControl.Name = "tpMald37045cControl";
             this.tpMald37045cControl.Padding = new System.Windows.Forms.Padding(3);
-            this.tpMald37045cControl.Size = new System.Drawing.Size(626, 419);
+            this.tpMald37045cControl.Size = new System.Drawing.Size(626, 489);
             this.tpMald37045cControl.TabIndex = 5;
             this.tpMald37045cControl.Text = "Control";
             this.tpMald37045cControl.UseVisualStyleBackColor = true;
@@ -2276,7 +2348,7 @@
             this.cbProbeNodeSelect.FormattingEnabled = true;
             this.cbProbeNodeSelect.Location = new System.Drawing.Point(298, 195);
             this.cbProbeNodeSelect.Name = "cbProbeNodeSelect";
-            this.cbProbeNodeSelect.Size = new System.Drawing.Size(80, 20);
+            this.cbProbeNodeSelect.Size = new System.Drawing.Size(100, 20);
             this.cbProbeNodeSelect.TabIndex = 48;
             this.cbProbeNodeSelect.SelectedIndexChanged += new System.EventHandler(this.cbProbeNodeSelect_SelectedIndexChanged);
             // 
@@ -2623,6 +2695,706 @@
             this.lChipId.TabIndex = 0;
             this.lChipId.Text = "Chip Id:";
             // 
+            // tpMald37045cCustomer
+            // 
+            this.tpMald37045cCustomer.Controls.Add(this.cbL3InputEqualizationReserved1);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL2InputEqualizationReserved1);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL1InputEqualizationReserved1);
+            this.tpMald37045cCustomer.Controls.Add(this.lInputEqualizationResvered1);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL0InputEqualizationReserved1);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL3InputEqualizationReserved0);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL2InputEqualizationReserved0);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL1InputEqualizationReserved0);
+            this.tpMald37045cCustomer.Controls.Add(this.lInputEqualizationResvered0);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL0InputEqualizationReserved0);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL3InputEqualization10db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL2InputEqualization10db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL1InputEqualization10db);
+            this.tpMald37045cCustomer.Controls.Add(this.lInputEqualization10db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL0InputEqualization10db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL3InputEqualization9db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL2InputEqualization9db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL1InputEqualization9db);
+            this.tpMald37045cCustomer.Controls.Add(this.lInputEqualization9db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL0InputEqualization9db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL3InputEqualization8db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL2InputEqualization8db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL1InputEqualization8db);
+            this.tpMald37045cCustomer.Controls.Add(this.lInputEqualization8db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL0InputEqualization8db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL3InputEqualization7db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL2InputEqualization7db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL1InputEqualization7db);
+            this.tpMald37045cCustomer.Controls.Add(this.lInputEqualization7db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL0InputEqualization7db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL3InputEqualization6db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL2InputEqualization6db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL1InputEqualization6db);
+            this.tpMald37045cCustomer.Controls.Add(this.lInputEqualization6db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL0InputEqualization6db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL3InputEqualization5db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL2InputEqualization5db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL1InputEqualization5db);
+            this.tpMald37045cCustomer.Controls.Add(this.lInputEqualization5db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL0InputEqualization5db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL3InputEqualization4db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL2InputEqualization4db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL1InputEqualization4db);
+            this.tpMald37045cCustomer.Controls.Add(this.lInputEqualization4db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL0InputEqualization4db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL3InputEqualization3db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL2InputEqualization3db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL1InputEqualization3db);
+            this.tpMald37045cCustomer.Controls.Add(this.lInputEqualization3db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL0InputEqualization3db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL3InputEqualization2db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL2InputEqualization2db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL1InputEqualization2db);
+            this.tpMald37045cCustomer.Controls.Add(this.lInputEqualization2db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL0InputEqualization2db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL3InputEqualization1db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL2InputEqualization1db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL1InputEqualization1db);
+            this.tpMald37045cCustomer.Controls.Add(this.lInputEqualization1db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL0InputEqualization1db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL3InputEqualization0db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL2InputEqualization0db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL1InputEqualization0db);
+            this.tpMald37045cCustomer.Controls.Add(this.lInputEqualization0db);
+            this.tpMald37045cCustomer.Controls.Add(this.cbL0InputEqualization0db);
+            this.tpMald37045cCustomer.Controls.Add(this.lL3Customer);
+            this.tpMald37045cCustomer.Controls.Add(this.lL2Customer);
+            this.tpMald37045cCustomer.Controls.Add(this.lL1Customer);
+            this.tpMald37045cCustomer.Controls.Add(this.lL0Customer);
+            this.tpMald37045cCustomer.Location = new System.Drawing.Point(4, 22);
+            this.tpMald37045cCustomer.Name = "tpMald37045cCustomer";
+            this.tpMald37045cCustomer.Padding = new System.Windows.Forms.Padding(3);
+            this.tpMald37045cCustomer.Size = new System.Drawing.Size(626, 489);
+            this.tpMald37045cCustomer.TabIndex = 6;
+            this.tpMald37045cCustomer.Text = "Customer";
+            this.tpMald37045cCustomer.UseVisualStyleBackColor = true;
+            // 
+            // cbL3InputEqualizationReserved1
+            // 
+            this.cbL3InputEqualizationReserved1.FormattingEnabled = true;
+            this.cbL3InputEqualizationReserved1.Location = new System.Drawing.Point(297, 330);
+            this.cbL3InputEqualizationReserved1.Name = "cbL3InputEqualizationReserved1";
+            this.cbL3InputEqualizationReserved1.Size = new System.Drawing.Size(58, 20);
+            this.cbL3InputEqualizationReserved1.TabIndex = 298;
+            this.cbL3InputEqualizationReserved1.SelectedIndexChanged += new System.EventHandler(this.cbL3InputEqualizationReserved1_SelectedIndexChanged);
+            // 
+            // cbL2InputEqualizationReserved1
+            // 
+            this.cbL2InputEqualizationReserved1.FormattingEnabled = true;
+            this.cbL2InputEqualizationReserved1.Location = new System.Drawing.Point(233, 330);
+            this.cbL2InputEqualizationReserved1.Name = "cbL2InputEqualizationReserved1";
+            this.cbL2InputEqualizationReserved1.Size = new System.Drawing.Size(58, 20);
+            this.cbL2InputEqualizationReserved1.TabIndex = 297;
+            this.cbL2InputEqualizationReserved1.SelectedIndexChanged += new System.EventHandler(this.cbL2InputEqualizationReserved1_SelectedIndexChanged);
+            // 
+            // cbL1InputEqualizationReserved1
+            // 
+            this.cbL1InputEqualizationReserved1.FormattingEnabled = true;
+            this.cbL1InputEqualizationReserved1.Location = new System.Drawing.Point(169, 330);
+            this.cbL1InputEqualizationReserved1.Name = "cbL1InputEqualizationReserved1";
+            this.cbL1InputEqualizationReserved1.Size = new System.Drawing.Size(58, 20);
+            this.cbL1InputEqualizationReserved1.TabIndex = 296;
+            this.cbL1InputEqualizationReserved1.SelectedIndexChanged += new System.EventHandler(this.cbL1InputEqualizationReserved1_SelectedIndexChanged);
+            // 
+            // lInputEqualizationResvered1
+            // 
+            this.lInputEqualizationResvered1.AutoSize = true;
+            this.lInputEqualizationResvered1.Location = new System.Drawing.Point(6, 333);
+            this.lInputEqualizationResvered1.Name = "lInputEqualizationResvered1";
+            this.lInputEqualizationResvered1.Size = new System.Drawing.Size(83, 12);
+            this.lInputEqualizationResvered1.TabIndex = 295;
+            this.lInputEqualizationResvered1.Text = "Equalization R1:";
+            // 
+            // cbL0InputEqualizationReserved1
+            // 
+            this.cbL0InputEqualizationReserved1.FormattingEnabled = true;
+            this.cbL0InputEqualizationReserved1.Location = new System.Drawing.Point(105, 330);
+            this.cbL0InputEqualizationReserved1.Name = "cbL0InputEqualizationReserved1";
+            this.cbL0InputEqualizationReserved1.Size = new System.Drawing.Size(58, 20);
+            this.cbL0InputEqualizationReserved1.TabIndex = 294;
+            this.cbL0InputEqualizationReserved1.SelectedIndexChanged += new System.EventHandler(this.cbL0InputEqualizationReserved1_SelectedIndexChanged);
+            // 
+            // cbL3InputEqualizationReserved0
+            // 
+            this.cbL3InputEqualizationReserved0.FormattingEnabled = true;
+            this.cbL3InputEqualizationReserved0.Location = new System.Drawing.Point(297, 304);
+            this.cbL3InputEqualizationReserved0.Name = "cbL3InputEqualizationReserved0";
+            this.cbL3InputEqualizationReserved0.Size = new System.Drawing.Size(58, 20);
+            this.cbL3InputEqualizationReserved0.TabIndex = 293;
+            this.cbL3InputEqualizationReserved0.SelectedIndexChanged += new System.EventHandler(this.cbL3InputEqualizationReserved0_SelectedIndexChanged);
+            // 
+            // cbL2InputEqualizationReserved0
+            // 
+            this.cbL2InputEqualizationReserved0.FormattingEnabled = true;
+            this.cbL2InputEqualizationReserved0.Location = new System.Drawing.Point(233, 304);
+            this.cbL2InputEqualizationReserved0.Name = "cbL2InputEqualizationReserved0";
+            this.cbL2InputEqualizationReserved0.Size = new System.Drawing.Size(58, 20);
+            this.cbL2InputEqualizationReserved0.TabIndex = 292;
+            this.cbL2InputEqualizationReserved0.SelectedIndexChanged += new System.EventHandler(this.cbL2InputEqualizationReserved0_SelectedIndexChanged);
+            // 
+            // cbL1InputEqualizationReserved0
+            // 
+            this.cbL1InputEqualizationReserved0.FormattingEnabled = true;
+            this.cbL1InputEqualizationReserved0.Location = new System.Drawing.Point(169, 304);
+            this.cbL1InputEqualizationReserved0.Name = "cbL1InputEqualizationReserved0";
+            this.cbL1InputEqualizationReserved0.Size = new System.Drawing.Size(58, 20);
+            this.cbL1InputEqualizationReserved0.TabIndex = 291;
+            this.cbL1InputEqualizationReserved0.SelectedIndexChanged += new System.EventHandler(this.cbL1InputEqualizationReserved0_SelectedIndexChanged);
+            // 
+            // lInputEqualizationResvered0
+            // 
+            this.lInputEqualizationResvered0.AutoSize = true;
+            this.lInputEqualizationResvered0.Location = new System.Drawing.Point(6, 307);
+            this.lInputEqualizationResvered0.Name = "lInputEqualizationResvered0";
+            this.lInputEqualizationResvered0.Size = new System.Drawing.Size(83, 12);
+            this.lInputEqualizationResvered0.TabIndex = 290;
+            this.lInputEqualizationResvered0.Text = "Equalization R0:";
+            // 
+            // cbL0InputEqualizationReserved0
+            // 
+            this.cbL0InputEqualizationReserved0.FormattingEnabled = true;
+            this.cbL0InputEqualizationReserved0.Location = new System.Drawing.Point(105, 304);
+            this.cbL0InputEqualizationReserved0.Name = "cbL0InputEqualizationReserved0";
+            this.cbL0InputEqualizationReserved0.Size = new System.Drawing.Size(58, 20);
+            this.cbL0InputEqualizationReserved0.TabIndex = 289;
+            this.cbL0InputEqualizationReserved0.SelectedIndexChanged += new System.EventHandler(this.cbL0InputEqualizationReserved0_SelectedIndexChanged);
+            // 
+            // cbL3InputEqualization10db
+            // 
+            this.cbL3InputEqualization10db.FormattingEnabled = true;
+            this.cbL3InputEqualization10db.Location = new System.Drawing.Point(297, 278);
+            this.cbL3InputEqualization10db.Name = "cbL3InputEqualization10db";
+            this.cbL3InputEqualization10db.Size = new System.Drawing.Size(58, 20);
+            this.cbL3InputEqualization10db.TabIndex = 288;
+            this.cbL3InputEqualization10db.SelectedIndexChanged += new System.EventHandler(this.cbL3InputEqualization10db_SelectedIndexChanged);
+            // 
+            // cbL2InputEqualization10db
+            // 
+            this.cbL2InputEqualization10db.FormattingEnabled = true;
+            this.cbL2InputEqualization10db.Location = new System.Drawing.Point(233, 278);
+            this.cbL2InputEqualization10db.Name = "cbL2InputEqualization10db";
+            this.cbL2InputEqualization10db.Size = new System.Drawing.Size(58, 20);
+            this.cbL2InputEqualization10db.TabIndex = 287;
+            this.cbL2InputEqualization10db.SelectedIndexChanged += new System.EventHandler(this.cbL2InputEqualization10db_SelectedIndexChanged);
+            // 
+            // cbL1InputEqualization10db
+            // 
+            this.cbL1InputEqualization10db.FormattingEnabled = true;
+            this.cbL1InputEqualization10db.Location = new System.Drawing.Point(169, 278);
+            this.cbL1InputEqualization10db.Name = "cbL1InputEqualization10db";
+            this.cbL1InputEqualization10db.Size = new System.Drawing.Size(58, 20);
+            this.cbL1InputEqualization10db.TabIndex = 286;
+            this.cbL1InputEqualization10db.SelectedIndexChanged += new System.EventHandler(this.cbL1InputEqualization10db_SelectedIndexChanged);
+            // 
+            // lInputEqualization10db
+            // 
+            this.lInputEqualization10db.AutoSize = true;
+            this.lInputEqualization10db.Location = new System.Drawing.Point(6, 281);
+            this.lInputEqualization10db.Name = "lInputEqualization10db";
+            this.lInputEqualization10db.Size = new System.Drawing.Size(93, 12);
+            this.lInputEqualization10db.TabIndex = 285;
+            this.lInputEqualization10db.Text = "Equalization 10db:";
+            // 
+            // cbL0InputEqualization10db
+            // 
+            this.cbL0InputEqualization10db.FormattingEnabled = true;
+            this.cbL0InputEqualization10db.Location = new System.Drawing.Point(105, 278);
+            this.cbL0InputEqualization10db.Name = "cbL0InputEqualization10db";
+            this.cbL0InputEqualization10db.Size = new System.Drawing.Size(58, 20);
+            this.cbL0InputEqualization10db.TabIndex = 284;
+            this.cbL0InputEqualization10db.SelectedIndexChanged += new System.EventHandler(this.cbL0InputEqualization10db_SelectedIndexChanged);
+            // 
+            // cbL3InputEqualization9db
+            // 
+            this.cbL3InputEqualization9db.FormattingEnabled = true;
+            this.cbL3InputEqualization9db.Location = new System.Drawing.Point(297, 252);
+            this.cbL3InputEqualization9db.Name = "cbL3InputEqualization9db";
+            this.cbL3InputEqualization9db.Size = new System.Drawing.Size(58, 20);
+            this.cbL3InputEqualization9db.TabIndex = 283;
+            this.cbL3InputEqualization9db.SelectedIndexChanged += new System.EventHandler(this.cbL3InputEqualization9db_SelectedIndexChanged);
+            // 
+            // cbL2InputEqualization9db
+            // 
+            this.cbL2InputEqualization9db.FormattingEnabled = true;
+            this.cbL2InputEqualization9db.Location = new System.Drawing.Point(233, 252);
+            this.cbL2InputEqualization9db.Name = "cbL2InputEqualization9db";
+            this.cbL2InputEqualization9db.Size = new System.Drawing.Size(58, 20);
+            this.cbL2InputEqualization9db.TabIndex = 282;
+            this.cbL2InputEqualization9db.SelectedIndexChanged += new System.EventHandler(this.cbL2InputEqualization9db_SelectedIndexChanged);
+            // 
+            // cbL1InputEqualization9db
+            // 
+            this.cbL1InputEqualization9db.FormattingEnabled = true;
+            this.cbL1InputEqualization9db.Location = new System.Drawing.Point(169, 252);
+            this.cbL1InputEqualization9db.Name = "cbL1InputEqualization9db";
+            this.cbL1InputEqualization9db.Size = new System.Drawing.Size(58, 20);
+            this.cbL1InputEqualization9db.TabIndex = 281;
+            this.cbL1InputEqualization9db.SelectedIndexChanged += new System.EventHandler(this.cbL1InputEqualization9db_SelectedIndexChanged);
+            // 
+            // lInputEqualization9db
+            // 
+            this.lInputEqualization9db.AutoSize = true;
+            this.lInputEqualization9db.Location = new System.Drawing.Point(6, 255);
+            this.lInputEqualization9db.Name = "lInputEqualization9db";
+            this.lInputEqualization9db.Size = new System.Drawing.Size(87, 12);
+            this.lInputEqualization9db.TabIndex = 280;
+            this.lInputEqualization9db.Text = "Equalization 9db:";
+            // 
+            // cbL0InputEqualization9db
+            // 
+            this.cbL0InputEqualization9db.FormattingEnabled = true;
+            this.cbL0InputEqualization9db.Location = new System.Drawing.Point(105, 252);
+            this.cbL0InputEqualization9db.Name = "cbL0InputEqualization9db";
+            this.cbL0InputEqualization9db.Size = new System.Drawing.Size(58, 20);
+            this.cbL0InputEqualization9db.TabIndex = 279;
+            this.cbL0InputEqualization9db.SelectedIndexChanged += new System.EventHandler(this.cbL0InputEqualization9db_SelectedIndexChanged);
+            // 
+            // cbL3InputEqualization8db
+            // 
+            this.cbL3InputEqualization8db.FormattingEnabled = true;
+            this.cbL3InputEqualization8db.Location = new System.Drawing.Point(297, 226);
+            this.cbL3InputEqualization8db.Name = "cbL3InputEqualization8db";
+            this.cbL3InputEqualization8db.Size = new System.Drawing.Size(58, 20);
+            this.cbL3InputEqualization8db.TabIndex = 278;
+            this.cbL3InputEqualization8db.SelectedIndexChanged += new System.EventHandler(this.cbL3InputEqualization8db_SelectedIndexChanged);
+            // 
+            // cbL2InputEqualization8db
+            // 
+            this.cbL2InputEqualization8db.FormattingEnabled = true;
+            this.cbL2InputEqualization8db.Location = new System.Drawing.Point(233, 226);
+            this.cbL2InputEqualization8db.Name = "cbL2InputEqualization8db";
+            this.cbL2InputEqualization8db.Size = new System.Drawing.Size(58, 20);
+            this.cbL2InputEqualization8db.TabIndex = 277;
+            this.cbL2InputEqualization8db.SelectedIndexChanged += new System.EventHandler(this.cbL2InputEqualization8db_SelectedIndexChanged);
+            // 
+            // cbL1InputEqualization8db
+            // 
+            this.cbL1InputEqualization8db.FormattingEnabled = true;
+            this.cbL1InputEqualization8db.Location = new System.Drawing.Point(169, 226);
+            this.cbL1InputEqualization8db.Name = "cbL1InputEqualization8db";
+            this.cbL1InputEqualization8db.Size = new System.Drawing.Size(58, 20);
+            this.cbL1InputEqualization8db.TabIndex = 276;
+            this.cbL1InputEqualization8db.SelectedIndexChanged += new System.EventHandler(this.cbL1InputEqualization8db_SelectedIndexChanged);
+            // 
+            // lInputEqualization8db
+            // 
+            this.lInputEqualization8db.AutoSize = true;
+            this.lInputEqualization8db.Location = new System.Drawing.Point(6, 229);
+            this.lInputEqualization8db.Name = "lInputEqualization8db";
+            this.lInputEqualization8db.Size = new System.Drawing.Size(87, 12);
+            this.lInputEqualization8db.TabIndex = 275;
+            this.lInputEqualization8db.Text = "Equalization 8db:";
+            // 
+            // cbL0InputEqualization8db
+            // 
+            this.cbL0InputEqualization8db.FormattingEnabled = true;
+            this.cbL0InputEqualization8db.Location = new System.Drawing.Point(105, 226);
+            this.cbL0InputEqualization8db.Name = "cbL0InputEqualization8db";
+            this.cbL0InputEqualization8db.Size = new System.Drawing.Size(58, 20);
+            this.cbL0InputEqualization8db.TabIndex = 274;
+            this.cbL0InputEqualization8db.SelectedIndexChanged += new System.EventHandler(this.cbL0InputEqualization8db_SelectedIndexChanged);
+            // 
+            // cbL3InputEqualization7db
+            // 
+            this.cbL3InputEqualization7db.FormattingEnabled = true;
+            this.cbL3InputEqualization7db.Location = new System.Drawing.Point(297, 200);
+            this.cbL3InputEqualization7db.Name = "cbL3InputEqualization7db";
+            this.cbL3InputEqualization7db.Size = new System.Drawing.Size(58, 20);
+            this.cbL3InputEqualization7db.TabIndex = 273;
+            this.cbL3InputEqualization7db.SelectedIndexChanged += new System.EventHandler(this.cbL3InputEqualization7db_SelectedIndexChanged);
+            // 
+            // cbL2InputEqualization7db
+            // 
+            this.cbL2InputEqualization7db.FormattingEnabled = true;
+            this.cbL2InputEqualization7db.Location = new System.Drawing.Point(233, 200);
+            this.cbL2InputEqualization7db.Name = "cbL2InputEqualization7db";
+            this.cbL2InputEqualization7db.Size = new System.Drawing.Size(58, 20);
+            this.cbL2InputEqualization7db.TabIndex = 272;
+            this.cbL2InputEqualization7db.SelectedIndexChanged += new System.EventHandler(this.cbL2InputEqualization7db_SelectedIndexChanged);
+            // 
+            // cbL1InputEqualization7db
+            // 
+            this.cbL1InputEqualization7db.FormattingEnabled = true;
+            this.cbL1InputEqualization7db.Location = new System.Drawing.Point(169, 200);
+            this.cbL1InputEqualization7db.Name = "cbL1InputEqualization7db";
+            this.cbL1InputEqualization7db.Size = new System.Drawing.Size(58, 20);
+            this.cbL1InputEqualization7db.TabIndex = 271;
+            this.cbL1InputEqualization7db.SelectedIndexChanged += new System.EventHandler(this.cbL1InputEqualization7db_SelectedIndexChanged);
+            // 
+            // lInputEqualization7db
+            // 
+            this.lInputEqualization7db.AutoSize = true;
+            this.lInputEqualization7db.Location = new System.Drawing.Point(6, 203);
+            this.lInputEqualization7db.Name = "lInputEqualization7db";
+            this.lInputEqualization7db.Size = new System.Drawing.Size(87, 12);
+            this.lInputEqualization7db.TabIndex = 270;
+            this.lInputEqualization7db.Text = "Equalization 7db:";
+            // 
+            // cbL0InputEqualization7db
+            // 
+            this.cbL0InputEqualization7db.FormattingEnabled = true;
+            this.cbL0InputEqualization7db.Location = new System.Drawing.Point(105, 200);
+            this.cbL0InputEqualization7db.Name = "cbL0InputEqualization7db";
+            this.cbL0InputEqualization7db.Size = new System.Drawing.Size(58, 20);
+            this.cbL0InputEqualization7db.TabIndex = 269;
+            this.cbL0InputEqualization7db.SelectedIndexChanged += new System.EventHandler(this.cbL0InputEqualization7db_SelectedIndexChanged);
+            // 
+            // cbL3InputEqualization6db
+            // 
+            this.cbL3InputEqualization6db.FormattingEnabled = true;
+            this.cbL3InputEqualization6db.Location = new System.Drawing.Point(297, 174);
+            this.cbL3InputEqualization6db.Name = "cbL3InputEqualization6db";
+            this.cbL3InputEqualization6db.Size = new System.Drawing.Size(58, 20);
+            this.cbL3InputEqualization6db.TabIndex = 268;
+            this.cbL3InputEqualization6db.SelectedIndexChanged += new System.EventHandler(this.cbL3InputEqualization6db_SelectedIndexChanged);
+            // 
+            // cbL2InputEqualization6db
+            // 
+            this.cbL2InputEqualization6db.FormattingEnabled = true;
+            this.cbL2InputEqualization6db.Location = new System.Drawing.Point(233, 174);
+            this.cbL2InputEqualization6db.Name = "cbL2InputEqualization6db";
+            this.cbL2InputEqualization6db.Size = new System.Drawing.Size(58, 20);
+            this.cbL2InputEqualization6db.TabIndex = 267;
+            this.cbL2InputEqualization6db.SelectedIndexChanged += new System.EventHandler(this.cbL2InputEqualization6db_SelectedIndexChanged);
+            // 
+            // cbL1InputEqualization6db
+            // 
+            this.cbL1InputEqualization6db.FormattingEnabled = true;
+            this.cbL1InputEqualization6db.Location = new System.Drawing.Point(169, 174);
+            this.cbL1InputEqualization6db.Name = "cbL1InputEqualization6db";
+            this.cbL1InputEqualization6db.Size = new System.Drawing.Size(58, 20);
+            this.cbL1InputEqualization6db.TabIndex = 266;
+            this.cbL1InputEqualization6db.SelectedIndexChanged += new System.EventHandler(this.cbL1InputEqualization6db_SelectedIndexChanged);
+            // 
+            // lInputEqualization6db
+            // 
+            this.lInputEqualization6db.AutoSize = true;
+            this.lInputEqualization6db.Location = new System.Drawing.Point(6, 177);
+            this.lInputEqualization6db.Name = "lInputEqualization6db";
+            this.lInputEqualization6db.Size = new System.Drawing.Size(87, 12);
+            this.lInputEqualization6db.TabIndex = 265;
+            this.lInputEqualization6db.Text = "Equalization 6db:";
+            // 
+            // cbL0InputEqualization6db
+            // 
+            this.cbL0InputEqualization6db.FormattingEnabled = true;
+            this.cbL0InputEqualization6db.Location = new System.Drawing.Point(105, 174);
+            this.cbL0InputEqualization6db.Name = "cbL0InputEqualization6db";
+            this.cbL0InputEqualization6db.Size = new System.Drawing.Size(58, 20);
+            this.cbL0InputEqualization6db.TabIndex = 264;
+            this.cbL0InputEqualization6db.SelectedIndexChanged += new System.EventHandler(this.cbL0InputEqualization6db_SelectedIndexChanged);
+            // 
+            // cbL3InputEqualization5db
+            // 
+            this.cbL3InputEqualization5db.FormattingEnabled = true;
+            this.cbL3InputEqualization5db.Location = new System.Drawing.Point(297, 148);
+            this.cbL3InputEqualization5db.Name = "cbL3InputEqualization5db";
+            this.cbL3InputEqualization5db.Size = new System.Drawing.Size(58, 20);
+            this.cbL3InputEqualization5db.TabIndex = 263;
+            this.cbL3InputEqualization5db.SelectedIndexChanged += new System.EventHandler(this.cbL3InputEqualization5db_SelectedIndexChanged);
+            // 
+            // cbL2InputEqualization5db
+            // 
+            this.cbL2InputEqualization5db.FormattingEnabled = true;
+            this.cbL2InputEqualization5db.Location = new System.Drawing.Point(233, 148);
+            this.cbL2InputEqualization5db.Name = "cbL2InputEqualization5db";
+            this.cbL2InputEqualization5db.Size = new System.Drawing.Size(58, 20);
+            this.cbL2InputEqualization5db.TabIndex = 262;
+            this.cbL2InputEqualization5db.SelectedIndexChanged += new System.EventHandler(this.cbL2InputEqualization5db_SelectedIndexChanged);
+            // 
+            // cbL1InputEqualization5db
+            // 
+            this.cbL1InputEqualization5db.FormattingEnabled = true;
+            this.cbL1InputEqualization5db.Location = new System.Drawing.Point(169, 148);
+            this.cbL1InputEqualization5db.Name = "cbL1InputEqualization5db";
+            this.cbL1InputEqualization5db.Size = new System.Drawing.Size(58, 20);
+            this.cbL1InputEqualization5db.TabIndex = 261;
+            this.cbL1InputEqualization5db.SelectedIndexChanged += new System.EventHandler(this.cbL1InputEqualization5db_SelectedIndexChanged);
+            // 
+            // lInputEqualization5db
+            // 
+            this.lInputEqualization5db.AutoSize = true;
+            this.lInputEqualization5db.Location = new System.Drawing.Point(6, 151);
+            this.lInputEqualization5db.Name = "lInputEqualization5db";
+            this.lInputEqualization5db.Size = new System.Drawing.Size(87, 12);
+            this.lInputEqualization5db.TabIndex = 260;
+            this.lInputEqualization5db.Text = "Equalization 5db:";
+            // 
+            // cbL0InputEqualization5db
+            // 
+            this.cbL0InputEqualization5db.FormattingEnabled = true;
+            this.cbL0InputEqualization5db.Location = new System.Drawing.Point(105, 148);
+            this.cbL0InputEqualization5db.Name = "cbL0InputEqualization5db";
+            this.cbL0InputEqualization5db.Size = new System.Drawing.Size(58, 20);
+            this.cbL0InputEqualization5db.TabIndex = 259;
+            this.cbL0InputEqualization5db.SelectedIndexChanged += new System.EventHandler(this.cbL0InputEqualization5db_SelectedIndexChanged);
+            // 
+            // cbL3InputEqualization4db
+            // 
+            this.cbL3InputEqualization4db.FormattingEnabled = true;
+            this.cbL3InputEqualization4db.Location = new System.Drawing.Point(297, 122);
+            this.cbL3InputEqualization4db.Name = "cbL3InputEqualization4db";
+            this.cbL3InputEqualization4db.Size = new System.Drawing.Size(58, 20);
+            this.cbL3InputEqualization4db.TabIndex = 258;
+            this.cbL3InputEqualization4db.SelectedIndexChanged += new System.EventHandler(this.cbL3InputEqualization4db_SelectedIndexChanged);
+            // 
+            // cbL2InputEqualization4db
+            // 
+            this.cbL2InputEqualization4db.FormattingEnabled = true;
+            this.cbL2InputEqualization4db.Location = new System.Drawing.Point(233, 122);
+            this.cbL2InputEqualization4db.Name = "cbL2InputEqualization4db";
+            this.cbL2InputEqualization4db.Size = new System.Drawing.Size(58, 20);
+            this.cbL2InputEqualization4db.TabIndex = 257;
+            this.cbL2InputEqualization4db.SelectedIndexChanged += new System.EventHandler(this.cbL2InputEqualization4db_SelectedIndexChanged);
+            // 
+            // cbL1InputEqualization4db
+            // 
+            this.cbL1InputEqualization4db.FormattingEnabled = true;
+            this.cbL1InputEqualization4db.Location = new System.Drawing.Point(169, 122);
+            this.cbL1InputEqualization4db.Name = "cbL1InputEqualization4db";
+            this.cbL1InputEqualization4db.Size = new System.Drawing.Size(58, 20);
+            this.cbL1InputEqualization4db.TabIndex = 256;
+            this.cbL1InputEqualization4db.SelectedIndexChanged += new System.EventHandler(this.cbL1InputEqualization4db_SelectedIndexChanged);
+            // 
+            // lInputEqualization4db
+            // 
+            this.lInputEqualization4db.AutoSize = true;
+            this.lInputEqualization4db.Location = new System.Drawing.Point(6, 125);
+            this.lInputEqualization4db.Name = "lInputEqualization4db";
+            this.lInputEqualization4db.Size = new System.Drawing.Size(87, 12);
+            this.lInputEqualization4db.TabIndex = 255;
+            this.lInputEqualization4db.Text = "Equalization 4db:";
+            // 
+            // cbL0InputEqualization4db
+            // 
+            this.cbL0InputEqualization4db.FormattingEnabled = true;
+            this.cbL0InputEqualization4db.Location = new System.Drawing.Point(105, 122);
+            this.cbL0InputEqualization4db.Name = "cbL0InputEqualization4db";
+            this.cbL0InputEqualization4db.Size = new System.Drawing.Size(58, 20);
+            this.cbL0InputEqualization4db.TabIndex = 254;
+            this.cbL0InputEqualization4db.SelectedIndexChanged += new System.EventHandler(this.cbL0InputEqualization4db_SelectedIndexChanged);
+            // 
+            // cbL3InputEqualization3db
+            // 
+            this.cbL3InputEqualization3db.FormattingEnabled = true;
+            this.cbL3InputEqualization3db.Location = new System.Drawing.Point(297, 96);
+            this.cbL3InputEqualization3db.Name = "cbL3InputEqualization3db";
+            this.cbL3InputEqualization3db.Size = new System.Drawing.Size(58, 20);
+            this.cbL3InputEqualization3db.TabIndex = 253;
+            this.cbL3InputEqualization3db.SelectedIndexChanged += new System.EventHandler(this.cbL3InputEqualization3db_SelectedIndexChanged);
+            // 
+            // cbL2InputEqualization3db
+            // 
+            this.cbL2InputEqualization3db.FormattingEnabled = true;
+            this.cbL2InputEqualization3db.Location = new System.Drawing.Point(233, 96);
+            this.cbL2InputEqualization3db.Name = "cbL2InputEqualization3db";
+            this.cbL2InputEqualization3db.Size = new System.Drawing.Size(58, 20);
+            this.cbL2InputEqualization3db.TabIndex = 252;
+            this.cbL2InputEqualization3db.SelectedIndexChanged += new System.EventHandler(this.cbL2InputEqualization3db_SelectedIndexChanged);
+            // 
+            // cbL1InputEqualization3db
+            // 
+            this.cbL1InputEqualization3db.FormattingEnabled = true;
+            this.cbL1InputEqualization3db.Location = new System.Drawing.Point(169, 96);
+            this.cbL1InputEqualization3db.Name = "cbL1InputEqualization3db";
+            this.cbL1InputEqualization3db.Size = new System.Drawing.Size(58, 20);
+            this.cbL1InputEqualization3db.TabIndex = 251;
+            this.cbL1InputEqualization3db.SelectedIndexChanged += new System.EventHandler(this.cbL1InputEqualization3db_SelectedIndexChanged);
+            // 
+            // lInputEqualization3db
+            // 
+            this.lInputEqualization3db.AutoSize = true;
+            this.lInputEqualization3db.Location = new System.Drawing.Point(6, 99);
+            this.lInputEqualization3db.Name = "lInputEqualization3db";
+            this.lInputEqualization3db.Size = new System.Drawing.Size(87, 12);
+            this.lInputEqualization3db.TabIndex = 250;
+            this.lInputEqualization3db.Text = "Equalization 3db:";
+            // 
+            // cbL0InputEqualization3db
+            // 
+            this.cbL0InputEqualization3db.FormattingEnabled = true;
+            this.cbL0InputEqualization3db.Location = new System.Drawing.Point(105, 96);
+            this.cbL0InputEqualization3db.Name = "cbL0InputEqualization3db";
+            this.cbL0InputEqualization3db.Size = new System.Drawing.Size(58, 20);
+            this.cbL0InputEqualization3db.TabIndex = 249;
+            this.cbL0InputEqualization3db.SelectedIndexChanged += new System.EventHandler(this.cbL0InputEqualization3db_SelectedIndexChanged);
+            // 
+            // cbL3InputEqualization2db
+            // 
+            this.cbL3InputEqualization2db.FormattingEnabled = true;
+            this.cbL3InputEqualization2db.Location = new System.Drawing.Point(297, 70);
+            this.cbL3InputEqualization2db.Name = "cbL3InputEqualization2db";
+            this.cbL3InputEqualization2db.Size = new System.Drawing.Size(58, 20);
+            this.cbL3InputEqualization2db.TabIndex = 248;
+            this.cbL3InputEqualization2db.SelectedIndexChanged += new System.EventHandler(this.cbL3InputEqualization2db_SelectedIndexChanged);
+            // 
+            // cbL2InputEqualization2db
+            // 
+            this.cbL2InputEqualization2db.FormattingEnabled = true;
+            this.cbL2InputEqualization2db.Location = new System.Drawing.Point(233, 70);
+            this.cbL2InputEqualization2db.Name = "cbL2InputEqualization2db";
+            this.cbL2InputEqualization2db.Size = new System.Drawing.Size(58, 20);
+            this.cbL2InputEqualization2db.TabIndex = 247;
+            this.cbL2InputEqualization2db.SelectedIndexChanged += new System.EventHandler(this.cbL2InputEqualization2db_SelectedIndexChanged);
+            // 
+            // cbL1InputEqualization2db
+            // 
+            this.cbL1InputEqualization2db.FormattingEnabled = true;
+            this.cbL1InputEqualization2db.Location = new System.Drawing.Point(169, 70);
+            this.cbL1InputEqualization2db.Name = "cbL1InputEqualization2db";
+            this.cbL1InputEqualization2db.Size = new System.Drawing.Size(58, 20);
+            this.cbL1InputEqualization2db.TabIndex = 246;
+            this.cbL1InputEqualization2db.SelectedIndexChanged += new System.EventHandler(this.cbL1InputEqualization2db_SelectedIndexChanged);
+            // 
+            // lInputEqualization2db
+            // 
+            this.lInputEqualization2db.AutoSize = true;
+            this.lInputEqualization2db.Location = new System.Drawing.Point(6, 73);
+            this.lInputEqualization2db.Name = "lInputEqualization2db";
+            this.lInputEqualization2db.Size = new System.Drawing.Size(87, 12);
+            this.lInputEqualization2db.TabIndex = 245;
+            this.lInputEqualization2db.Text = "Equalization 2db:";
+            // 
+            // cbL0InputEqualization2db
+            // 
+            this.cbL0InputEqualization2db.FormattingEnabled = true;
+            this.cbL0InputEqualization2db.Location = new System.Drawing.Point(105, 70);
+            this.cbL0InputEqualization2db.Name = "cbL0InputEqualization2db";
+            this.cbL0InputEqualization2db.Size = new System.Drawing.Size(58, 20);
+            this.cbL0InputEqualization2db.TabIndex = 244;
+            this.cbL0InputEqualization2db.SelectedIndexChanged += new System.EventHandler(this.cbL0InputEqualization2db_SelectedIndexChanged);
+            // 
+            // cbL3InputEqualization1db
+            // 
+            this.cbL3InputEqualization1db.FormattingEnabled = true;
+            this.cbL3InputEqualization1db.Location = new System.Drawing.Point(297, 44);
+            this.cbL3InputEqualization1db.Name = "cbL3InputEqualization1db";
+            this.cbL3InputEqualization1db.Size = new System.Drawing.Size(58, 20);
+            this.cbL3InputEqualization1db.TabIndex = 243;
+            this.cbL3InputEqualization1db.SelectedIndexChanged += new System.EventHandler(this.cbL3InputEqualization1db_SelectedIndexChanged);
+            // 
+            // cbL2InputEqualization1db
+            // 
+            this.cbL2InputEqualization1db.FormattingEnabled = true;
+            this.cbL2InputEqualization1db.Location = new System.Drawing.Point(233, 44);
+            this.cbL2InputEqualization1db.Name = "cbL2InputEqualization1db";
+            this.cbL2InputEqualization1db.Size = new System.Drawing.Size(58, 20);
+            this.cbL2InputEqualization1db.TabIndex = 242;
+            this.cbL2InputEqualization1db.SelectedIndexChanged += new System.EventHandler(this.cbL2InputEqualization1db_SelectedIndexChanged);
+            // 
+            // cbL1InputEqualization1db
+            // 
+            this.cbL1InputEqualization1db.FormattingEnabled = true;
+            this.cbL1InputEqualization1db.Location = new System.Drawing.Point(169, 44);
+            this.cbL1InputEqualization1db.Name = "cbL1InputEqualization1db";
+            this.cbL1InputEqualization1db.Size = new System.Drawing.Size(58, 20);
+            this.cbL1InputEqualization1db.TabIndex = 241;
+            this.cbL1InputEqualization1db.SelectedIndexChanged += new System.EventHandler(this.cbL1InputEqualization1db_SelectedIndexChanged);
+            // 
+            // lInputEqualization1db
+            // 
+            this.lInputEqualization1db.AutoSize = true;
+            this.lInputEqualization1db.Location = new System.Drawing.Point(6, 47);
+            this.lInputEqualization1db.Name = "lInputEqualization1db";
+            this.lInputEqualization1db.Size = new System.Drawing.Size(87, 12);
+            this.lInputEqualization1db.TabIndex = 240;
+            this.lInputEqualization1db.Text = "Equalization 1db:";
+            // 
+            // cbL0InputEqualization1db
+            // 
+            this.cbL0InputEqualization1db.FormattingEnabled = true;
+            this.cbL0InputEqualization1db.Location = new System.Drawing.Point(105, 44);
+            this.cbL0InputEqualization1db.Name = "cbL0InputEqualization1db";
+            this.cbL0InputEqualization1db.Size = new System.Drawing.Size(58, 20);
+            this.cbL0InputEqualization1db.TabIndex = 239;
+            this.cbL0InputEqualization1db.SelectedIndexChanged += new System.EventHandler(this.cbL0InputEqualization1db_SelectedIndexChanged);
+            // 
+            // cbL3InputEqualization0db
+            // 
+            this.cbL3InputEqualization0db.FormattingEnabled = true;
+            this.cbL3InputEqualization0db.Location = new System.Drawing.Point(297, 18);
+            this.cbL3InputEqualization0db.Name = "cbL3InputEqualization0db";
+            this.cbL3InputEqualization0db.Size = new System.Drawing.Size(58, 20);
+            this.cbL3InputEqualization0db.TabIndex = 238;
+            this.cbL3InputEqualization0db.SelectedIndexChanged += new System.EventHandler(this.cbL3InputEqualization0db_SelectedIndexChanged);
+            // 
+            // cbL2InputEqualization0db
+            // 
+            this.cbL2InputEqualization0db.FormattingEnabled = true;
+            this.cbL2InputEqualization0db.Location = new System.Drawing.Point(233, 18);
+            this.cbL2InputEqualization0db.Name = "cbL2InputEqualization0db";
+            this.cbL2InputEqualization0db.Size = new System.Drawing.Size(58, 20);
+            this.cbL2InputEqualization0db.TabIndex = 237;
+            this.cbL2InputEqualization0db.SelectedIndexChanged += new System.EventHandler(this.cbL2InputEqualization0db_SelectedIndexChanged);
+            // 
+            // cbL1InputEqualization0db
+            // 
+            this.cbL1InputEqualization0db.FormattingEnabled = true;
+            this.cbL1InputEqualization0db.Location = new System.Drawing.Point(169, 18);
+            this.cbL1InputEqualization0db.Name = "cbL1InputEqualization0db";
+            this.cbL1InputEqualization0db.Size = new System.Drawing.Size(58, 20);
+            this.cbL1InputEqualization0db.TabIndex = 236;
+            this.cbL1InputEqualization0db.SelectedIndexChanged += new System.EventHandler(this.cbL1InputEqualization0db_SelectedIndexChanged);
+            // 
+            // lInputEqualization0db
+            // 
+            this.lInputEqualization0db.AutoSize = true;
+            this.lInputEqualization0db.Location = new System.Drawing.Point(6, 21);
+            this.lInputEqualization0db.Name = "lInputEqualization0db";
+            this.lInputEqualization0db.Size = new System.Drawing.Size(87, 12);
+            this.lInputEqualization0db.TabIndex = 235;
+            this.lInputEqualization0db.Text = "Equalization 0db:";
+            // 
+            // cbL0InputEqualization0db
+            // 
+            this.cbL0InputEqualization0db.FormattingEnabled = true;
+            this.cbL0InputEqualization0db.Location = new System.Drawing.Point(105, 18);
+            this.cbL0InputEqualization0db.Name = "cbL0InputEqualization0db";
+            this.cbL0InputEqualization0db.Size = new System.Drawing.Size(58, 20);
+            this.cbL0InputEqualization0db.TabIndex = 234;
+            this.cbL0InputEqualization0db.SelectedIndexChanged += new System.EventHandler(this.cbL0InputEqualization0db_SelectedIndexChanged);
+            // 
+            // lL3Customer
+            // 
+            this.lL3Customer.AutoSize = true;
+            this.lL3Customer.Location = new System.Drawing.Point(317, 3);
+            this.lL3Customer.Name = "lL3Customer";
+            this.lL3Customer.Size = new System.Drawing.Size(18, 12);
+            this.lL3Customer.TabIndex = 233;
+            this.lL3Customer.Text = "L3";
+            // 
+            // lL2Customer
+            // 
+            this.lL2Customer.AutoSize = true;
+            this.lL2Customer.Location = new System.Drawing.Point(253, 3);
+            this.lL2Customer.Name = "lL2Customer";
+            this.lL2Customer.Size = new System.Drawing.Size(18, 12);
+            this.lL2Customer.TabIndex = 232;
+            this.lL2Customer.Text = "L2";
+            // 
+            // lL1Customer
+            // 
+            this.lL1Customer.AutoSize = true;
+            this.lL1Customer.Location = new System.Drawing.Point(189, 3);
+            this.lL1Customer.Name = "lL1Customer";
+            this.lL1Customer.Size = new System.Drawing.Size(18, 12);
+            this.lL1Customer.TabIndex = 231;
+            this.lL1Customer.Text = "L1";
+            // 
+            // lL0Customer
+            // 
+            this.lL0Customer.AutoSize = true;
+            this.lL0Customer.Location = new System.Drawing.Point(125, 3);
+            this.lL0Customer.Name = "lL0Customer";
+            this.lL0Customer.Size = new System.Drawing.Size(18, 12);
+            this.lL0Customer.TabIndex = 230;
+            this.lL0Customer.Text = "L0";
+            // 
             // bDeviceReset
             // 
             this.bDeviceReset.Location = new System.Drawing.Point(3, 3);
@@ -2642,7 +3414,7 @@
             this.Controls.Add(this.bReadAll);
             this.Controls.Add(this.bDeviceReset);
             this.Name = "UcMald37045cConfig";
-            this.Size = new System.Drawing.Size(640, 480);
+            this.Size = new System.Drawing.Size(640, 550);
             this.tpMald37045cConfig.ResumeLayout(false);
             this.tpMald37045cL0.ResumeLayout(false);
             this.tpMald37045cL0.PerformLayout();
@@ -2656,6 +3428,8 @@
             this.tpMald37045cAll.PerformLayout();
             this.tpMald37045cControl.ResumeLayout(false);
             this.tpMald37045cControl.PerformLayout();
+            this.tpMald37045cCustomer.ResumeLayout(false);
+            this.tpMald37045cCustomer.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2882,5 +3656,75 @@
         private System.Windows.Forms.Label lIBiasAll;
         private System.Windows.Forms.ComboBox cbCtleAll;
         private System.Windows.Forms.Label lCtleAll;
+        private System.Windows.Forms.TabPage tpMald37045cCustomer;
+        private System.Windows.Forms.ComboBox cbL3InputEqualizationReserved1;
+        private System.Windows.Forms.ComboBox cbL2InputEqualizationReserved1;
+        private System.Windows.Forms.ComboBox cbL1InputEqualizationReserved1;
+        private System.Windows.Forms.Label lInputEqualizationResvered1;
+        private System.Windows.Forms.ComboBox cbL0InputEqualizationReserved1;
+        private System.Windows.Forms.ComboBox cbL3InputEqualizationReserved0;
+        private System.Windows.Forms.ComboBox cbL2InputEqualizationReserved0;
+        private System.Windows.Forms.ComboBox cbL1InputEqualizationReserved0;
+        private System.Windows.Forms.Label lInputEqualizationResvered0;
+        private System.Windows.Forms.ComboBox cbL0InputEqualizationReserved0;
+        private System.Windows.Forms.ComboBox cbL3InputEqualization10db;
+        private System.Windows.Forms.ComboBox cbL2InputEqualization10db;
+        private System.Windows.Forms.ComboBox cbL1InputEqualization10db;
+        private System.Windows.Forms.Label lInputEqualization10db;
+        private System.Windows.Forms.ComboBox cbL0InputEqualization10db;
+        private System.Windows.Forms.ComboBox cbL3InputEqualization9db;
+        private System.Windows.Forms.ComboBox cbL2InputEqualization9db;
+        private System.Windows.Forms.ComboBox cbL1InputEqualization9db;
+        private System.Windows.Forms.Label lInputEqualization9db;
+        private System.Windows.Forms.ComboBox cbL0InputEqualization9db;
+        private System.Windows.Forms.ComboBox cbL3InputEqualization8db;
+        private System.Windows.Forms.ComboBox cbL2InputEqualization8db;
+        private System.Windows.Forms.ComboBox cbL1InputEqualization8db;
+        private System.Windows.Forms.Label lInputEqualization8db;
+        private System.Windows.Forms.ComboBox cbL0InputEqualization8db;
+        private System.Windows.Forms.ComboBox cbL3InputEqualization7db;
+        private System.Windows.Forms.ComboBox cbL2InputEqualization7db;
+        private System.Windows.Forms.ComboBox cbL1InputEqualization7db;
+        private System.Windows.Forms.Label lInputEqualization7db;
+        private System.Windows.Forms.ComboBox cbL0InputEqualization7db;
+        private System.Windows.Forms.ComboBox cbL3InputEqualization6db;
+        private System.Windows.Forms.ComboBox cbL2InputEqualization6db;
+        private System.Windows.Forms.ComboBox cbL1InputEqualization6db;
+        private System.Windows.Forms.Label lInputEqualization6db;
+        private System.Windows.Forms.ComboBox cbL0InputEqualization6db;
+        private System.Windows.Forms.ComboBox cbL3InputEqualization5db;
+        private System.Windows.Forms.ComboBox cbL2InputEqualization5db;
+        private System.Windows.Forms.ComboBox cbL1InputEqualization5db;
+        private System.Windows.Forms.Label lInputEqualization5db;
+        private System.Windows.Forms.ComboBox cbL0InputEqualization5db;
+        private System.Windows.Forms.ComboBox cbL3InputEqualization4db;
+        private System.Windows.Forms.ComboBox cbL2InputEqualization4db;
+        private System.Windows.Forms.ComboBox cbL1InputEqualization4db;
+        private System.Windows.Forms.Label lInputEqualization4db;
+        private System.Windows.Forms.ComboBox cbL0InputEqualization4db;
+        private System.Windows.Forms.ComboBox cbL3InputEqualization3db;
+        private System.Windows.Forms.ComboBox cbL2InputEqualization3db;
+        private System.Windows.Forms.ComboBox cbL1InputEqualization3db;
+        private System.Windows.Forms.Label lInputEqualization3db;
+        private System.Windows.Forms.ComboBox cbL0InputEqualization3db;
+        private System.Windows.Forms.ComboBox cbL3InputEqualization2db;
+        private System.Windows.Forms.ComboBox cbL2InputEqualization2db;
+        private System.Windows.Forms.ComboBox cbL1InputEqualization2db;
+        private System.Windows.Forms.Label lInputEqualization2db;
+        private System.Windows.Forms.ComboBox cbL0InputEqualization2db;
+        private System.Windows.Forms.ComboBox cbL3InputEqualization1db;
+        private System.Windows.Forms.ComboBox cbL2InputEqualization1db;
+        private System.Windows.Forms.ComboBox cbL1InputEqualization1db;
+        private System.Windows.Forms.Label lInputEqualization1db;
+        private System.Windows.Forms.ComboBox cbL0InputEqualization1db;
+        private System.Windows.Forms.ComboBox cbL3InputEqualization0db;
+        private System.Windows.Forms.ComboBox cbL2InputEqualization0db;
+        private System.Windows.Forms.ComboBox cbL1InputEqualization0db;
+        private System.Windows.Forms.Label lInputEqualization0db;
+        private System.Windows.Forms.ComboBox cbL0InputEqualization0db;
+        private System.Windows.Forms.Label lL3Customer;
+        private System.Windows.Forms.Label lL2Customer;
+        private System.Windows.Forms.Label lL1Customer;
+        private System.Windows.Forms.Label lL0Customer;
     }
 }

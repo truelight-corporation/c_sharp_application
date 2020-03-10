@@ -77,7 +77,7 @@
             this.tcMald37045cMata37044cConfig.Location = new System.Drawing.Point(12, 40);
             this.tcMald37045cMata37044cConfig.Name = "tcMald37045cMata37044cConfig";
             this.tcMald37045cMata37044cConfig.SelectedIndex = 0;
-            this.tcMald37045cMata37044cConfig.Size = new System.Drawing.Size(657, 517);
+            this.tcMald37045cMata37044cConfig.Size = new System.Drawing.Size(657, 582);
             this.tcMald37045cMata37044cConfig.TabIndex = 73;
             // 
             // tpMald37045cConfig
@@ -86,7 +86,7 @@
             this.tpMald37045cConfig.Location = new System.Drawing.Point(4, 22);
             this.tpMald37045cConfig.Name = "tpMald37045cConfig";
             this.tpMald37045cConfig.Padding = new System.Windows.Forms.Padding(3);
-            this.tpMald37045cConfig.Size = new System.Drawing.Size(649, 491);
+            this.tpMald37045cConfig.Size = new System.Drawing.Size(649, 556);
             this.tpMald37045cConfig.TabIndex = 0;
             this.tpMald37045cConfig.Text = "MALD37045C";
             this.tpMald37045cConfig.UseVisualStyleBackColor = true;
@@ -95,7 +95,7 @@
             // 
             this.ucMald37045cConfig.Location = new System.Drawing.Point(6, 6);
             this.ucMald37045cConfig.Name = "ucMald37045cConfig";
-            this.ucMald37045cConfig.Size = new System.Drawing.Size(642, 481);
+            this.ucMald37045cConfig.Size = new System.Drawing.Size(642, 550);
             this.ucMald37045cConfig.TabIndex = 0;
             // 
             // tpMald37044cConfig
@@ -104,7 +104,7 @@
             this.tpMald37044cConfig.Location = new System.Drawing.Point(4, 22);
             this.tpMald37044cConfig.Name = "tpMald37044cConfig";
             this.tpMald37044cConfig.Padding = new System.Windows.Forms.Padding(3);
-            this.tpMald37044cConfig.Size = new System.Drawing.Size(649, 491);
+            this.tpMald37044cConfig.Size = new System.Drawing.Size(649, 556);
             this.tpMald37044cConfig.TabIndex = 1;
             this.tpMald37044cConfig.Text = "MATA37044C";
             this.tpMald37044cConfig.UseVisualStyleBackColor = true;
@@ -113,20 +113,20 @@
             // 
             this.ucMata37044cConfig.Location = new System.Drawing.Point(6, 6);
             this.ucMata37044cConfig.Name = "ucMata37044cConfig";
-            this.ucMata37044cConfig.Size = new System.Drawing.Size(640, 480);
+            this.ucMata37044cConfig.Size = new System.Drawing.Size(640, 550);
             this.ucMata37044cConfig.TabIndex = 0;
             // 
-            // FMald37045cMata37044c
+            // FMald37045cMata37044cConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(681, 567);
+            this.ClientSize = new System.Drawing.Size(681, 625);
             this.Controls.Add(this.tcMald37045cMata37044cConfig);
             this.Controls.Add(this.tbPassword);
             this.Controls.Add(this.lPassword);
             this.Controls.Add(this.cbConnected);
-            this.Name = "FMald37045cMata37044c";
-            this.Text = "MATA37045C & MATA37044C Config";
+            this.Name = "FMald37045cMata37044cConfig";
+            this.Text = "MATA37045C & MATA37044C Config_20200229";
             this.tcMald37045cMata37044cConfig.ResumeLayout(false);
             this.tpMald37045cConfig.ResumeLayout(false);
             this.tpMald37044cConfig.ResumeLayout(false);

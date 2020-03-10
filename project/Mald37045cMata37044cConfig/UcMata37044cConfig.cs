@@ -907,6 +907,13 @@ namespace Mald37045cMata37044c
                 cbOutputSwingL3.Items.Add(item);
             }
 
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbOutputSwingAll.Items.Add(item);
+            }
+
             item = new ComboboxItem();
             item.Text = "0:0.0dB";
             item.Value = 0;
@@ -1166,7 +1173,2665 @@ namespace Mald37045cMata37044c
             item.Text = "15:7.5dB";
             item.Value = 15;
             cbOutputDeEmphasisL3.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbOutputDeEmphasisAll.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbOutputDeEmphasisAll.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbOutputDeEmphasisAll.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbOutputDeEmphasisAll.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbOutputDeEmphasisAll.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbOutputDeEmphasisAll.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbOutputDeEmphasisAll.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbOutputDeEmphasisAll.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbOutputDeEmphasisAll.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbOutputDeEmphasisAll.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbOutputDeEmphasisAll.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbOutputDeEmphasisAll.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbOutputDeEmphasisAll.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbOutputDeEmphasisAll.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbOutputDeEmphasisAll.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbOutputDeEmphasisAll.Items.Add(item);
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL0OutputAmplitude100400.Items.Add(item);
+            }
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL0OutputAmplitude300600.Items.Add(item);
+            }
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL0OutputAmplitude400800.Items.Add(item);
+            }
+            
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL0OutputAmplitude6001200.Items.Add(item);
+            }
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL0OutputAmplitudeReserved0.Items.Add(item);
+            }
+            
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL0OutputAmplitudeReserved1.Items.Add(item);
+            }
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL0OutputAmplitudeReserved2.Items.Add(item);
+            }
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL0OutputAmplitudeReserved3.Items.Add(item);
+            }
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL0OutputAmplitudeReserved4.Items.Add(item);
+            }
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL1OutputAmplitude100400.Items.Add(item);
+            }
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL1OutputAmplitude300600.Items.Add(item);
+            }
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL1OutputAmplitude400800.Items.Add(item);
+            }
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL1OutputAmplitude6001200.Items.Add(item);
+            }
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL1OutputAmplitudeReserved0.Items.Add(item);
+            }
+            
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL1OutputAmplitudeReserved1.Items.Add(item);
+            }
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL1OutputAmplitudeReserved2.Items.Add(item);
+            }
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL1OutputAmplitudeReserved3.Items.Add(item);
+            }
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL1OutputAmplitudeReserved4.Items.Add(item);
+            }
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL2OutputAmplitude100400.Items.Add(item);
+            }
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL2OutputAmplitude300600.Items.Add(item);
+            }
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL2OutputAmplitude400800.Items.Add(item);
+            }
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL2OutputAmplitude6001200.Items.Add(item);
+            }
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL2OutputAmplitudeReserved0.Items.Add(item);
+            }
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL2OutputAmplitudeReserved1.Items.Add(item);
+            }
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL2OutputAmplitudeReserved2.Items.Add(item);
+            }
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL2OutputAmplitudeReserved3.Items.Add(item);
+            }
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL2OutputAmplitudeReserved4.Items.Add(item);
+            }
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL3OutputAmplitude100400.Items.Add(item);
+            }
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL3OutputAmplitude300600.Items.Add(item);
+            }
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL3OutputAmplitude400800.Items.Add(item);
+            }
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL3OutputAmplitude6001200.Items.Add(item);
+            }
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL3OutputAmplitudeReserved0.Items.Add(item);
+            }
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL3OutputAmplitudeReserved1.Items.Add(item);
+            }
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL3OutputAmplitudeReserved2.Items.Add(item);
+            }
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL3OutputAmplitudeReserved3.Items.Add(item);
+            }
+
+            for (i = 0, dTmp = 300; i < 64; i++, dTmp += 10) {
+                item = new ComboboxItem();
+                item.Text = i + ":" + dTmp.ToString() + "mVppd";
+                item.Value = i;
+                cbL3OutputAmplitudeReserved4.Items.Add(item);
+            }
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL0OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL0OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL0OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL0OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL0OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL0OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL0OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL0OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL0OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL0OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL0OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL0OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL0OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL0OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL0OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL0OutputEmphasis0Db.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL0OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL0OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL0OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL0OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL0OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL0OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL0OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL0OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL0OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL0OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL0OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL0OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL0OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL0OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL0OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL0OutputEmphasis1Db.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL0OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL0OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL0OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL0OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL0OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL0OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL0OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL0OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL0OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL0OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL0OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL0OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL0OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL0OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL0OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL0OutputEmphasis2Db.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL0OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL0OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL0OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL0OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL0OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL0OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL0OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL0OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL0OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL0OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL0OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL0OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL0OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL0OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL0OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL0OutputEmphasis3Db.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL0OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL0OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL0OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL0OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL0OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL0OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL0OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL0OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL0OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL0OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL0OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL0OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL0OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL0OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL0OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL0OutputEmphasis4Db.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL0OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL0OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL0OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL0OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL0OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL0OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL0OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL0OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL0OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL0OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL0OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL0OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL0OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL0OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL0OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL0OutputEmphasis5Db.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL0OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL0OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL0OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL0OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL0OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL0OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL0OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL0OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL0OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL0OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL0OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL0OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL0OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL0OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL0OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL0OutputEmphasis6Db.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL0OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL0OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL0OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL0OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL0OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL0OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL0OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL0OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL0OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL0OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL0OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL0OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL0OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL0OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL0OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL0OutputEmphasis7Db.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL0OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL0OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL0OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL0OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL0OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL0OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL0OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL0OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL0OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL0OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL0OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL0OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL0OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL0OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL0OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL0OutputEmphasisReserved0.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL1OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL1OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL1OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL1OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL1OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL1OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL1OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL1OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL1OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL1OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL1OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL1OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL1OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL1OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL1OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL1OutputEmphasis0Db.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL1OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL1OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL1OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL1OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL1OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL1OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL1OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL1OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL1OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL1OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL1OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL1OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL1OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL1OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL1OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL1OutputEmphasis1Db.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL1OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL1OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL1OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL1OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL1OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL1OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL1OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL1OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL1OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL1OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL1OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL1OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL1OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL1OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL1OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL1OutputEmphasis2Db.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL1OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL1OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL1OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL1OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL1OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL1OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL1OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL1OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL1OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL1OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL1OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL1OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL1OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL1OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL1OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL1OutputEmphasis3Db.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL1OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL1OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL1OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL1OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL1OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL1OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL1OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL1OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL1OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL1OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL1OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL1OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL1OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL1OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL1OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL1OutputEmphasis4Db.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL1OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL1OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL1OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL1OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL1OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL1OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL1OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL1OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL1OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL1OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL1OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL1OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL1OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL1OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL1OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL1OutputEmphasis5Db.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL1OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL1OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL1OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL1OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL1OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL1OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL1OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL1OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL1OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL1OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL1OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL1OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL1OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL1OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL1OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL1OutputEmphasis6Db.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL1OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL1OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL1OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL1OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL1OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL1OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL1OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL1OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL1OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL1OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL1OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL1OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL1OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL1OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL1OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL1OutputEmphasis7Db.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL1OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL1OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL1OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL1OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL1OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL1OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL1OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL1OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL1OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL1OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL1OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL1OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL1OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL1OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL1OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL1OutputEmphasisReserved0.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL2OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL2OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL2OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL2OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL2OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL2OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL2OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL2OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL2OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL2OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL2OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL2OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL2OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL2OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL2OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL2OutputEmphasis0Db.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL2OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL2OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL2OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL2OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL2OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL2OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL2OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL2OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL2OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL2OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL2OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL2OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL2OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL2OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL2OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL2OutputEmphasis1Db.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL2OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL2OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL2OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL2OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL2OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL2OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL2OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL2OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL2OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL2OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL2OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL2OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL2OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL2OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL2OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL2OutputEmphasis2Db.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL2OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL2OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL2OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL2OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL2OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL2OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL2OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL2OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL2OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL2OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL2OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL2OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL2OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL2OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL2OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL2OutputEmphasis3Db.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL2OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL2OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL2OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL2OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL2OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL2OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL2OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL2OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL2OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL2OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL2OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL2OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL2OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL2OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL2OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL2OutputEmphasis4Db.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL2OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL2OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL2OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL2OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL2OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL2OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL2OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL2OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL2OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL2OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL2OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL2OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL2OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL2OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL2OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL2OutputEmphasis5Db.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL2OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL2OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL2OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL2OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL2OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL2OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL2OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL2OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL2OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL2OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL2OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL2OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL2OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL2OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL2OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL2OutputEmphasis6Db.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL2OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL2OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL2OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL2OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL2OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL2OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL2OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL2OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL2OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL2OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL2OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL2OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL2OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL2OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL2OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL2OutputEmphasis7Db.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL2OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL2OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL2OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL2OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL2OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL2OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL2OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL2OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL2OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL2OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL2OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL2OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL2OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL2OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL2OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL2OutputEmphasisReserved0.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL3OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL3OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL3OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL3OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL3OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL3OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL3OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL3OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL3OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL3OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL3OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL3OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL3OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL3OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL3OutputEmphasis0Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL3OutputEmphasis0Db.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL3OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL3OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL3OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL3OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL3OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL3OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL3OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL3OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL3OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL3OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL3OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL3OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL3OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL3OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL3OutputEmphasis1Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL3OutputEmphasis1Db.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL3OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL3OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL3OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL3OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL3OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL3OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL3OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL3OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL3OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL3OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL3OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL3OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL3OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL3OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL3OutputEmphasis2Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL3OutputEmphasis2Db.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL3OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL3OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL3OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL3OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL3OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL3OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL3OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL3OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL3OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL3OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL3OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL3OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL3OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL3OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL3OutputEmphasis3Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL3OutputEmphasis3Db.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL3OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL3OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL3OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL3OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL3OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL3OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL3OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL3OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL3OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL3OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL3OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL3OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL3OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL3OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL3OutputEmphasis4Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL3OutputEmphasis4Db.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL3OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL3OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL3OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL3OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL3OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL3OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL3OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL3OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL3OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL3OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL3OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL3OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL3OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL3OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL3OutputEmphasis5Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL3OutputEmphasis5Db.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL3OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL3OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL3OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL3OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL3OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL3OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL3OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL3OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL3OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL3OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL3OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL3OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL3OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL3OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL3OutputEmphasis6Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL3OutputEmphasis6Db.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL3OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL3OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL3OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL3OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL3OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL3OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL3OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL3OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL3OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL3OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL3OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL3OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL3OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL3OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL3OutputEmphasis7Db.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL3OutputEmphasis7Db.Items.Add(item);
+
+            item = new ComboboxItem();
+            item.Text = "0:0.0dB";
+            item.Value = 0;
+            cbL3OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "1:0.4dB";
+            item.Value = 1;
+            cbL3OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "2:0.7dB";
+            item.Value = 2;
+            cbL3OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "3:1.0dB";
+            item.Value = 3;
+            cbL3OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "4:1.5dB";
+            item.Value = 4;
+            cbL3OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "5:2.0dB";
+            item.Value = 5;
+            cbL3OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "6:2.5dB";
+            item.Value = 6;
+            cbL3OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "7:3.0dB";
+            item.Value = 7;
+            cbL3OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "8:3.5dB";
+            item.Value = 8;
+            cbL3OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "9:4.0dB";
+            item.Value = 9;
+            cbL3OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "10:4.5dB";
+            item.Value = 10;
+            cbL3OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "11:5.0dB";
+            item.Value = 11;
+            cbL3OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "12:5.5dB";
+            item.Value = 12;
+            cbL3OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "13:6.0dB";
+            item.Value = 13;
+            cbL3OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "14:6.5dB";
+            item.Value = 14;
+            cbL3OutputEmphasisReserved0.Items.Add(item);
+            item = new ComboboxItem();
+            item.Text = "15:7.5dB";
+            item.Value = 15;
+            cbL3OutputEmphasisReserved0.Items.Add(item);
         }
+
         public int SetI2cReadCBApi(I2cReadCB cb)
         {
             if (cb == null)
@@ -1220,20 +3885,23 @@ namespace Mald37045cMata37044c
             else
                 cbEnableDividedClock.Checked = true;
 
-            if ((data & 0x04) == 0)
-                cbDividedClockOutput.SelectedItem = 0;
-            else
-                cbDividedClockOutput.SelectedItem = 1;
+            foreach (ComboboxItem item in cbDividedClockOutput.Items) {
+                if (item.Value == ((data & 0x04) >> 2)) {
+                    cbDividedClockOutput.SelectedItem = item;
+                }
+            }
 
-            if ((data & 0x02) == 0)
-                cbInterruptPol.SelectedItem = 0;
-            else
-                cbInterruptPol.SelectedItem = 1;
+            foreach (ComboboxItem item in cbInterruptPol.Items) {
+                if (item.Value == ((data & 0x02) >> 1)) {
+                    cbInterruptPol.SelectedItem = item;
+                }
+            }
 
-            if ((data & 0x01) == 0)
-                cbInterruptOutputType.SelectedItem = 0;
-            else
-                cbInterruptOutputType.SelectedItem = 1;
+            foreach (ComboboxItem item in cbInterruptOutputType.Items) {
+                if (item.Value == (data & 0x01)) {
+                    cbInterruptOutputType.SelectedItem = item;
+                }
+            }
         }
 
         private void _ParseAddr04(byte data)
@@ -1834,9 +4502,657 @@ namespace Mald37045cMata37044c
             }
         }
 
+        private void _ParseAddrA0(byte data)
+        {
+            foreach (ComboboxItem item in cbL0OutputAmplitude100400.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL0OutputAmplitude100400.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrA1(byte data)
+        {
+            foreach (ComboboxItem item in cbL0OutputAmplitude300600.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL0OutputAmplitude300600.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrA2(byte data)
+        {
+            foreach (ComboboxItem item in cbL0OutputAmplitude400800.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL0OutputAmplitude400800.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrA3(byte data)
+        {
+            foreach (ComboboxItem item in cbL0OutputAmplitude6001200.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL0OutputAmplitude6001200.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrA4(byte data)
+        {
+            foreach (ComboboxItem item in cbL0OutputAmplitudeReserved0.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL0OutputAmplitudeReserved0.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrA5(byte data)
+        {
+            foreach (ComboboxItem item in cbL0OutputAmplitudeReserved1.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL0OutputAmplitudeReserved1.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrA6(byte data)
+        {
+            foreach (ComboboxItem item in cbL0OutputAmplitudeReserved2.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL0OutputAmplitudeReserved2.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrA7(byte data)
+        {
+            foreach (ComboboxItem item in cbL0OutputAmplitudeReserved3.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL0OutputAmplitudeReserved3.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrA8(byte data)
+        {
+            foreach (ComboboxItem item in cbL0OutputAmplitudeReserved4.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL0OutputAmplitudeReserved4.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrA9(byte data)
+        {
+            foreach (ComboboxItem item in cbL0OutputEmphasis0Db.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL0OutputEmphasis0Db.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrAA(byte data)
+        {
+            foreach (ComboboxItem item in cbL0OutputEmphasis1Db.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL0OutputEmphasis1Db.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrAB(byte data)
+        {
+            foreach (ComboboxItem item in cbL0OutputEmphasis2Db.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL0OutputEmphasis2Db.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrAC(byte data)
+        {
+            foreach (ComboboxItem item in cbL0OutputEmphasis3Db.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL0OutputEmphasis3Db.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrAD(byte data)
+        {
+            foreach (ComboboxItem item in cbL0OutputEmphasis4Db.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL0OutputEmphasis4Db.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrAE(byte data)
+        {
+            foreach (ComboboxItem item in cbL0OutputEmphasis5Db.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL0OutputEmphasis5Db.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrAF(byte data)
+        {
+            foreach (ComboboxItem item in cbL0OutputEmphasis6Db.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL0OutputEmphasis6Db.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrB0(byte data)
+        {
+            foreach (ComboboxItem item in cbL0OutputEmphasis7Db.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL0OutputEmphasis7Db.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrB1(byte data)
+        {
+            foreach (ComboboxItem item in cbL0OutputEmphasisReserved0.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL0OutputEmphasisReserved0.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrB2(byte data)
+        {
+            foreach (ComboboxItem item in cbL1OutputAmplitude100400.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL1OutputAmplitude100400.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrB3(byte data)
+        {
+            foreach (ComboboxItem item in cbL1OutputAmplitude300600.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL1OutputAmplitude300600.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrB4(byte data)
+        {
+            foreach (ComboboxItem item in cbL1OutputAmplitude400800.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL1OutputAmplitude400800.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrB5(byte data)
+        {
+            foreach (ComboboxItem item in cbL1OutputAmplitude6001200.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL1OutputAmplitude6001200.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrB6(byte data)
+        {
+            foreach (ComboboxItem item in cbL1OutputAmplitudeReserved0.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL1OutputAmplitudeReserved0.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrB7(byte data)
+        {
+            foreach (ComboboxItem item in cbL1OutputAmplitudeReserved1.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL1OutputAmplitudeReserved1.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrB8(byte data)
+        {
+            foreach (ComboboxItem item in cbL1OutputAmplitudeReserved2.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL1OutputAmplitudeReserved2.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrB9(byte data)
+        {
+            foreach (ComboboxItem item in cbL1OutputAmplitudeReserved3.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL1OutputAmplitudeReserved3.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrBA(byte data)
+        {
+            foreach (ComboboxItem item in cbL1OutputAmplitudeReserved4.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL1OutputAmplitudeReserved4.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrBB(byte data)
+        {
+            foreach (ComboboxItem item in cbL1OutputEmphasis0Db.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL1OutputEmphasis0Db.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrBC(byte data)
+        {
+            foreach (ComboboxItem item in cbL1OutputEmphasis1Db.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL1OutputEmphasis1Db.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrBD(byte data)
+        {
+            foreach (ComboboxItem item in cbL1OutputEmphasis2Db.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL1OutputEmphasis2Db.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrBE(byte data)
+        {
+            foreach (ComboboxItem item in cbL1OutputEmphasis3Db.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL1OutputEmphasis3Db.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrBF(byte data)
+        {
+            foreach (ComboboxItem item in cbL1OutputEmphasis4Db.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL1OutputEmphasis4Db.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrC0(byte data)
+        {
+            foreach (ComboboxItem item in cbL1OutputEmphasis5Db.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL1OutputEmphasis5Db.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrC1(byte data)
+        {
+            foreach (ComboboxItem item in cbL1OutputEmphasis6Db.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL1OutputEmphasis6Db.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrC2(byte data)
+        {
+            foreach (ComboboxItem item in cbL1OutputEmphasis7Db.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL1OutputEmphasis7Db.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrC3(byte data)
+        {
+            foreach (ComboboxItem item in cbL1OutputEmphasisReserved0.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL1OutputEmphasisReserved0.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrC4(byte data)
+        {
+            foreach (ComboboxItem item in cbL2OutputAmplitude100400.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL2OutputAmplitude100400.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrC5(byte data)
+        {
+            foreach (ComboboxItem item in cbL2OutputAmplitude300600.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL2OutputAmplitude300600.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrC6(byte data)
+        {
+            foreach (ComboboxItem item in cbL2OutputAmplitude400800.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL2OutputAmplitude400800.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrC7(byte data)
+        {
+            foreach (ComboboxItem item in cbL2OutputAmplitude6001200.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL2OutputAmplitude6001200.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrC8(byte data)
+        {
+            foreach (ComboboxItem item in cbL2OutputAmplitudeReserved0.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL2OutputAmplitudeReserved0.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrC9(byte data)
+        {
+            foreach (ComboboxItem item in cbL2OutputAmplitudeReserved1.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL2OutputAmplitudeReserved1.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrCA(byte data)
+        {
+            foreach (ComboboxItem item in cbL2OutputAmplitudeReserved2.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL2OutputAmplitudeReserved2.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrCB(byte data)
+        {
+            foreach (ComboboxItem item in cbL2OutputAmplitudeReserved3.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL2OutputAmplitudeReserved3.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrCC(byte data)
+        {
+            foreach (ComboboxItem item in cbL2OutputAmplitudeReserved4.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL2OutputAmplitudeReserved4.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrCD(byte data)
+        {
+            foreach (ComboboxItem item in cbL2OutputEmphasis0Db.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL2OutputEmphasis0Db.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrCE(byte data)
+        {
+            foreach (ComboboxItem item in cbL2OutputEmphasis1Db.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL2OutputEmphasis1Db.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrCF(byte data)
+        {
+            foreach (ComboboxItem item in cbL2OutputEmphasis2Db.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL2OutputEmphasis2Db.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrD0(byte data)
+        {
+            foreach (ComboboxItem item in cbL2OutputEmphasis3Db.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL2OutputEmphasis3Db.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrD1(byte data)
+        {
+            foreach (ComboboxItem item in cbL2OutputEmphasis4Db.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL2OutputEmphasis4Db.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrD2(byte data)
+        {
+            foreach (ComboboxItem item in cbL2OutputEmphasis5Db.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL2OutputEmphasis5Db.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrD3(byte data)
+        {
+            foreach (ComboboxItem item in cbL2OutputEmphasis6Db.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL2OutputEmphasis6Db.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrD4(byte data)
+        {
+            foreach (ComboboxItem item in cbL2OutputEmphasis7Db.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL2OutputEmphasis7Db.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrD5(byte data)
+        {
+            foreach (ComboboxItem item in cbL2OutputEmphasisReserved0.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL2OutputEmphasisReserved0.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrD6(byte data)
+        {
+            foreach (ComboboxItem item in cbL3OutputAmplitude100400.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL3OutputAmplitude100400.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrD7(byte data)
+        {
+            foreach (ComboboxItem item in cbL3OutputAmplitude300600.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL3OutputAmplitude300600.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrD8(byte data)
+        {
+            foreach (ComboboxItem item in cbL3OutputAmplitude400800.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL3OutputAmplitude400800.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrD9(byte data)
+        {
+            foreach (ComboboxItem item in cbL3OutputAmplitude6001200.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL3OutputAmplitude6001200.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrDA(byte data)
+        {
+            foreach (ComboboxItem item in cbL3OutputAmplitudeReserved0.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL3OutputAmplitudeReserved0.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrDB(byte data)
+        {
+            foreach (ComboboxItem item in cbL3OutputAmplitudeReserved1.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL3OutputAmplitudeReserved1.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrDC(byte data)
+        {
+            foreach (ComboboxItem item in cbL3OutputAmplitudeReserved2.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL3OutputAmplitudeReserved2.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrDD(byte data)
+        {
+            foreach (ComboboxItem item in cbL3OutputAmplitudeReserved3.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL3OutputAmplitudeReserved3.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrDE(byte data)
+        {
+            foreach (ComboboxItem item in cbL3OutputAmplitudeReserved4.Items) {
+                if (item.Value == (data & 0x3F)) {
+                    cbL3OutputAmplitudeReserved4.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrDF(byte data)
+        {
+            foreach (ComboboxItem item in cbL3OutputEmphasis0Db.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL3OutputEmphasis0Db.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrE0(byte data)
+        {
+            foreach (ComboboxItem item in cbL3OutputEmphasis1Db.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL3OutputEmphasis1Db.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrE1(byte data)
+        {
+            foreach (ComboboxItem item in cbL3OutputEmphasis2Db.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL3OutputEmphasis2Db.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrE2(byte data)
+        {
+            foreach (ComboboxItem item in cbL3OutputEmphasis3Db.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL3OutputEmphasis3Db.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrE3(byte data)
+        {
+            foreach (ComboboxItem item in cbL3OutputEmphasis4Db.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL3OutputEmphasis4Db.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrE4(byte data)
+        {
+            foreach (ComboboxItem item in cbL3OutputEmphasis5Db.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL3OutputEmphasis5Db.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrE5(byte data)
+        {
+            foreach (ComboboxItem item in cbL3OutputEmphasis6Db.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL3OutputEmphasis6Db.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrE6(byte data)
+        {
+            foreach (ComboboxItem item in cbL3OutputEmphasis7Db.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL3OutputEmphasis7Db.SelectedItem = item;
+                }
+            }
+        }
+
+        private void _ParseAddrE7(byte data)
+        {
+            foreach (ComboboxItem item in cbL3OutputEmphasisReserved0.Items) {
+                if (item.Value == (data & 0x0F)) {
+                    cbL3OutputEmphasisReserved0.SelectedItem = item;
+                }
+            }
+        }
+
         private void bReadAll_Click(object sender, EventArgs e)
         {
-            byte[] data = new byte[11];
+            byte[] data = new byte[72];
             int rv;
 
             if (reading == true)
@@ -1901,8 +5217,8 @@ namespace Mald37045cMata37044c
 
             _ParseAddr2D(data[0]);
 
-            rv = i2cReadCB(devAddr, 0x40, 9, data);
-            if (rv != 9)
+            rv = i2cReadCB(devAddr, 0x40, 8, data);
+            if (rv != 8)
                 goto exit;
 
             _ParseAddr40(data[0]);
@@ -1919,6 +5235,83 @@ namespace Mald37045cMata37044c
                 goto exit;
 
             _ParseAddr82(data[0]);
+
+            rv = i2cReadCB(devAddr, 0xA0, 72, data);
+            if (rv != 72)
+                goto exit;
+
+            _ParseAddrA0(data[0]);
+            _ParseAddrA1(data[1]);
+            _ParseAddrA2(data[2]);
+            _ParseAddrA3(data[3]);
+            _ParseAddrA4(data[4]);
+            _ParseAddrA5(data[5]);
+            _ParseAddrA6(data[6]);
+            _ParseAddrA7(data[7]);
+            _ParseAddrA8(data[8]);
+            _ParseAddrA9(data[9]);
+            _ParseAddrAA(data[10]);
+            _ParseAddrAB(data[11]);
+            _ParseAddrAC(data[12]);
+            _ParseAddrAD(data[13]);
+            _ParseAddrAE(data[14]);
+            _ParseAddrAF(data[15]);
+            _ParseAddrB0(data[16]);
+            _ParseAddrB1(data[17]);
+            _ParseAddrB2(data[18]);
+            _ParseAddrB3(data[19]);
+            _ParseAddrB4(data[20]);
+            _ParseAddrB5(data[21]);
+            _ParseAddrB6(data[22]);
+            _ParseAddrB7(data[23]);
+            _ParseAddrB8(data[24]);
+            _ParseAddrB9(data[25]);
+            _ParseAddrBA(data[26]);
+            _ParseAddrBB(data[27]);
+            _ParseAddrBC(data[28]);
+            _ParseAddrBD(data[29]);
+            _ParseAddrBE(data[30]);
+            _ParseAddrBF(data[31]);
+            _ParseAddrC0(data[32]);
+            _ParseAddrC1(data[33]);
+            _ParseAddrC2(data[34]);
+            _ParseAddrC3(data[35]);
+            _ParseAddrC4(data[36]);
+            _ParseAddrC5(data[37]);
+            _ParseAddrC6(data[38]);
+            _ParseAddrC7(data[39]);
+            _ParseAddrC8(data[40]);
+            _ParseAddrC9(data[41]);
+            _ParseAddrCA(data[42]);
+            _ParseAddrCB(data[43]);
+            _ParseAddrCC(data[44]);
+            _ParseAddrCD(data[45]);
+            _ParseAddrCE(data[46]);
+            _ParseAddrCF(data[47]);
+            _ParseAddrD0(data[48]);
+            _ParseAddrD1(data[49]);
+            _ParseAddrD2(data[50]);
+            _ParseAddrD3(data[51]);
+            _ParseAddrD4(data[52]);
+            _ParseAddrD5(data[53]);
+            _ParseAddrD6(data[54]);
+            _ParseAddrD7(data[55]);
+            _ParseAddrD8(data[56]);
+            _ParseAddrD9(data[57]);
+            _ParseAddrDA(data[58]);
+            _ParseAddrDB(data[59]);
+            _ParseAddrDC(data[60]);
+            _ParseAddrDD(data[61]);
+            _ParseAddrDE(data[62]);
+            _ParseAddrDF(data[63]);
+            _ParseAddrE0(data[64]);
+            _ParseAddrE1(data[65]);
+            _ParseAddrE2(data[66]);
+            _ParseAddrE3(data[67]);
+            _ParseAddrE4(data[68]);
+            _ParseAddrE5(data[69]);
+            _ParseAddrE6(data[70]);
+            _ParseAddrE7(data[71]);
 
         exit:
             reading = false;
@@ -2615,6 +6008,1302 @@ namespace Mald37045cMata37044c
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0x82, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrA0()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputAmplitude100400.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xA0, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrA1()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputAmplitude300600.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xA1, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrA2()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputAmplitude400800.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xA2, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrA3()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputAmplitude6001200.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xA3, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrA4()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputAmplitudeReserved0.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xA4, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrA5()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputAmplitudeReserved1.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xA5, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrA6()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputAmplitudeReserved2.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xA6, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrA7()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputAmplitudeReserved3.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xA7, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrA8()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputAmplitudeReserved4.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xA8, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrA9()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputEmphasis0Db.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xA9, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrAA()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputEmphasis1Db.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xAA, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrAB()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputEmphasis2Db.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xAB, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrAC()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputEmphasis3Db.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xAC, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrAD()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputEmphasis4Db.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xAD, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrAE()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputEmphasis5Db.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xAE, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrAF()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputEmphasis6Db.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xAF, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrB0()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputEmphasis7Db.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xB0, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrB1()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputEmphasisReserved0.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xB1, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrB2()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL1OutputAmplitude100400.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xB2, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrB3()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL1OutputAmplitude300600.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xB3, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrB4()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL1OutputAmplitude400800.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xB4, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrB5()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL1OutputAmplitude6001200.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xB5, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrB6()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL1OutputAmplitudeReserved0.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xB6, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrB7()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL1OutputAmplitudeReserved1.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xB7, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrB8()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL1OutputAmplitudeReserved2.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xB8, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrB9()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL1OutputAmplitudeReserved3.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xB9, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrBA()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL1OutputAmplitudeReserved4.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xBA, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrBB()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL1OutputEmphasis0Db.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xBB, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrBC()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL1OutputEmphasis1Db.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xBC, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrBD()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL1OutputEmphasis2Db.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xBD, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrBE()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL1OutputEmphasis3Db.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xBE, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrBF()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL1OutputEmphasis4Db.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xBF, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrC0()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL1OutputEmphasis5Db.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xC0, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrC1()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL1OutputEmphasis6Db.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xC1, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrC2()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL1OutputEmphasis7Db.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xC2, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrC3()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL1OutputEmphasisReserved0.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xC3, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrC4()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL2OutputAmplitude100400.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xC4, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrC5()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL2OutputAmplitude300600.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xC5, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrC6()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL2OutputAmplitude400800.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xC6, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrC7()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL2OutputAmplitude6001200.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xC7, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrC8()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL2OutputAmplitudeReserved0.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xC8, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrC9()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL2OutputAmplitudeReserved1.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xC9, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrCA()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL2OutputAmplitudeReserved2.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xCA, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrCB()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL2OutputAmplitudeReserved3.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xCB, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrCC()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL2OutputAmplitudeReserved4.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xCC, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrCD()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL2OutputEmphasis0Db.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xCD, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrCE()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL2OutputEmphasis1Db.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xCE, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrCF()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL2OutputEmphasis2Db.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xCF, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrD0()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL2OutputEmphasis3Db.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xD0, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrD1()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL2OutputEmphasis4Db.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xD1, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrD2()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL2OutputEmphasis5Db.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xD2, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrD3()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL2OutputEmphasis6Db.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xD3, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrD4()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL2OutputEmphasis7Db.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xD4, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrD5()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL2OutputEmphasisReserved0.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xD5, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrD6()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputAmplitude100400.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xD6, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrD7()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputAmplitude300600.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xD7, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrD8()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputAmplitude400800.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xD8, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrD9()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputAmplitude6001200.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xD9, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrDA()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputAmplitudeReserved0.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xDA, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrDB()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputAmplitudeReserved1.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xDB, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrDC()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputAmplitudeReserved2.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xDC, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrDD()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputAmplitudeReserved3.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xDD, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrDE()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputAmplitudeReserved4.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xDE, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrDF()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputEmphasis0Db.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xDF, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrE0()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputEmphasis1Db.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xE0, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrE1()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputEmphasis2Db.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xE1, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrE2()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputEmphasis3Db.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xE2, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrE3()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputEmphasis4Db.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xE3, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrE4()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputEmphasis5Db.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xE4, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrE5()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputEmphasis6Db.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xE5, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrE6()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputEmphasis7Db.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xE6, 1, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddrE7()
+        {
+            byte[] data = new byte[1];
+            int rv;
+            byte bTmp;
+
+            bTmp = data[0] = 0;
+
+            bTmp = Convert.ToByte(cbL0OutputEmphasisReserved0.SelectedIndex);
+            data[0] |= bTmp;
+
+            rv = i2cWriteCB(devAddr, 0xE7, 1, data);
             if (rv < 0)
                 return -1;
 
@@ -3478,10 +8167,658 @@ namespace Mald37045cMata37044c
 
             bStoreIntoFlash.Enabled = false;
             reading = true;
-            rv = i2cWriteCB(devAddr, 0xAA, 1, data);
+            rv = i2cWriteCB(devAddr, 0xFA, 1, data);
             Thread.Sleep(1000);
             bStoreIntoFlash.Enabled = true;
             reading = false;
+        }
+
+        private void cbL0OutputAmplitude100400_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrA0() < 0)
+                return;
+        }
+
+        private void cbL0OutputAmplitude300600_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrA1() < 0)
+                return;
+        }
+
+        private void cbL0OutputAmplitude400800_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrA2() < 0)
+                return;
+        }
+
+        private void cbL0OutputAmplitude6001200_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrA3() < 0)
+                return;
+        }
+
+        private void cbL0OutputAmplitudeReserved0_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrA4() < 0)
+                return;
+        }
+
+        private void cbL0OutputAmplitudeReserved1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrA5() < 0)
+                return;
+        }
+
+        private void cbL0OutputAmplitudeReserved2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrA6() < 0)
+                return;
+        }
+
+        private void cbL0OutputAmplitudeReserved3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrA7() < 0)
+                return;
+        }
+
+        private void cbL0OutputAmplitudeReserved4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrA8() < 0)
+                return;
+        }
+
+        private void cbL0OutputEmphasis0Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrA9() < 0)
+                return;
+        }
+
+        private void cbL0OutputEmphasis1Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrAA() < 0)
+                return;
+        }
+
+        private void cbL0OutputEmphasis2Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrAB() < 0)
+                return;
+        }
+
+        private void cbL0OutputEmphasis3Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrAC() < 0)
+                return;
+        }
+
+        private void cbL0OutputEmphasis4Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrAD() < 0)
+                return;
+        }
+
+        private void cbL0OutputEmphasis5Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrAE() < 0)
+                return;
+        }
+
+        private void cbL0OutputEmphasis6Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrAF() < 0)
+                return;
+        }
+
+        private void cbL0OutputEmphasis7Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrB0() < 0)
+                return;
+        }
+
+        private void cbL0OutputEmphasisReserved0_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrB1() < 0)
+                return;
+        }
+
+        private void cbL1OutputAmplitude100400_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrB2() < 0)
+                return;
+        }
+
+        private void cbL1OutputAmplitude300600_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrB3() < 0)
+                return;
+        }
+
+        private void cbL1OutputAmplitude400800_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrB4() < 0)
+                return;
+        }
+
+        private void cbL1OutputAmplitude6001200_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrB5() < 0)
+                return;
+        }
+
+        private void cbL1OutputAmplitudeReserved0_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrB6() < 0)
+                return;
+        }
+
+        private void cbL1OutputAmplitudeReserved1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrB7() < 0)
+                return;
+        }
+
+        private void cbL1OutputAmplitudeReserved2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrB8() < 0)
+                return;
+        }
+
+        private void cbL1OutputAmplitudeReserved3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrB9() < 0)
+                return;
+        }
+
+        private void cbL1OutputAmplitudeReserved4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrBA() < 0)
+                return;
+        }
+
+        private void cbL1OutputEmphasis0Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrBB() < 0)
+                return;
+        }
+
+        private void cbL1OutputEmphasis1Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrBC() < 0)
+                return;
+        }
+
+        private void cbL1OutputEmphasis2Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrBD() < 0)
+                return;
+        }
+
+        private void cbL1OutputEmphasis3Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrBE() < 0)
+                return;
+        }
+
+        private void cbL1OutputEmphasis4Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrBF() < 0)
+                return;
+        }
+
+        private void cbL1OutputEmphasis5Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrC0() < 0)
+                return;
+        }
+
+        private void cbL1OutputEmphasis6Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrC1() < 0)
+                return;
+        }
+
+        private void cbL1OutputEmphasis7Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrC2() < 0)
+                return;
+        }
+
+        private void cbL1OutputEmphasisReserved0_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrC3() < 0)
+                return;
+        }
+
+        private void cbL2OutputAmplitude100400_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrC4() < 0)
+                return;
+        }
+
+        private void cbL2OutputAmplitude300600_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrC5() < 0)
+                return;
+        }
+
+        private void cbL2OutputAmplitude400800_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrC6() < 0)
+                return;
+        }
+
+        private void cbL2OutputAmplitude6001200_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrC7() < 0)
+                return;
+        }
+
+        private void cbL2OutputAmplitudeReserved0_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrC8() < 0)
+                return;
+        }
+
+        private void cbL2OutputAmplitudeReserved1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrC9() < 0)
+                return;
+        }
+
+        private void cbL2OutputAmplitudeReserved2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrCA() < 0)
+                return;
+        }
+
+        private void cbL2OutputAmplitudeReserved3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrCB() < 0)
+                return;
+        }
+
+        private void cbL2OutputAmplitudeReserved4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrCC() < 0)
+                return;
+        }
+
+        private void cbL2OutputEmphasis0Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrCD() < 0)
+                return;
+        }
+
+        private void cbL2OutputEmphasis1Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrCE() < 0)
+                return;
+        }
+
+        private void cbL2OutputEmphasis2Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrCF() < 0)
+                return;
+        }
+
+        private void cbL2OutputEmphasis3Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrD0() < 0)
+                return;
+        }
+
+        private void cbL2OutputEmphasis4Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrD1() < 0)
+                return;
+        }
+
+        private void cbL2OutputEmphasis5Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrD2() < 0)
+                return;
+        }
+
+        private void cbL2OutputEmphasis6Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrD3() < 0)
+                return;
+        }
+
+        private void cbL2OutputEmphasis7Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrD4() < 0)
+                return;
+        }
+
+        private void cbL2OutputEmphasisReserved0_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrD5() < 0)
+                return;
+        }
+
+        private void cbL3OutputAmplitude100400_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrD6() < 0)
+                return;
+        }
+
+        private void cbL3OutputAmplitude300600_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrD7() < 0)
+                return;
+        }
+
+        private void cbL3OutputAmplitude400800_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrD8() < 0)
+                return;
+        }
+
+        private void cbL3OutputAmplitude6001200_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrD9() < 0)
+                return;
+        }
+
+        private void cbL3OutputAmplitudeReserved0_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrDA() < 0)
+                return;
+        }
+
+        private void cbL3OutputAmplitudeReserved1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrDB() < 0)
+                return;
+        }
+
+        private void cbL3OutputAmplitudeReserved2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrDC() < 0)
+                return;
+        }
+
+        private void cbL3OutputAmplitudeReserved3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrDD() < 0)
+                return;
+        }
+
+        private void cbL3OutputAmplitudeReserved4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrDE() < 0)
+                return;
+        }
+
+        private void cbL3OutputEmphasis0Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrDF() < 0)
+                return;
+        }
+
+        private void cbL3OutputEmphasis1Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrE0() < 0)
+                return;
+        }
+
+        private void cbL3OutputEmphasis2Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrE1() < 0)
+                return;
+        }
+
+        private void cbL3OutputEmphasis3Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrE2() < 0)
+                return;
+        }
+
+        private void cbL3OutputEmphasis4Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrE3() < 0)
+                return;
+        }
+
+        private void cbL3OutputEmphasis5Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrE4() < 0)
+                return;
+        }
+
+        private void cbL3OutputEmphasis6Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrE5() < 0)
+                return;
+        }
+
+        private void cbL3OutputEmphasis7Db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrE6() < 0)
+                return;
+        }
+
+        private void cbL3OutputEmphasisReserved0_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddrE7() < 0)
+                return;
         }
     }
 }
