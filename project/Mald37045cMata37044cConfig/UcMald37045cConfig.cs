@@ -4484,6 +4484,26 @@ namespace Mald37045cMata37044c
                 cbRateSelectL0.SelectedIndex = 0;
             else
                 cbRateSelectL0.SelectedIndex = 1;
+
+            if ((data & 0x08) == 0)
+                cbCdrAutoBypassL3.Checked = false;
+            else
+                cbCdrAutoBypassL3.Checked = true;
+
+            if ((data & 0x04) == 0)
+                cbCdrAutoBypassL2.Checked = false;
+            else
+                cbCdrAutoBypassL2.Checked = true;
+
+            if ((data & 0x02) == 0)
+                cbCdrAutoBypassL1.Checked = false;
+            else
+                cbCdrAutoBypassL1.Checked = true;
+
+            if ((data & 0x01) == 0)
+                cbCdrAutoBypassL0.Checked = false;
+            else
+                cbCdrAutoBypassL0.Checked = true;
         }
 
         private void _ParseAddr16(byte data)
@@ -6017,7 +6037,7 @@ namespace Mald37045cMata37044c
             byte[] data = new byte[1];
             int rv;
 
-            data[0] = 0;
+            data[0] = 0x00;
 
             if (cbRateSelectL3.SelectedIndex == 1)
                 data[0] |= 0x80;
@@ -6030,6 +6050,18 @@ namespace Mald37045cMata37044c
 
             if (cbRateSelectL0.SelectedIndex == 1)
                 data[0] |= 0x10;
+
+            if (cbCdrAutoBypassL3.Checked == true)
+                data[0] |= 0x08;
+
+            if (cbCdrAutoBypassL2.Checked == true)
+                data[0] |= 0x04;
+
+            if (cbCdrAutoBypassL1.Checked == true)
+                data[0] |= 0x02;
+
+            if (cbCdrAutoBypassL0.Checked == true)
+                data[0] |= 0x01;
 
             rv = i2cWriteCB(devAddr, 0x11, 1, data);
             if (rv < 0)
@@ -7046,7 +7078,25 @@ namespace Mald37045cMata37044c
                 return;
         }
 
+        private void cbCdrAutoBypassL0_CheckedChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr11() < 0)
+                return;
+        }
+
         private void cbRateSelectL1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr11() < 0)
+                return;
+        }
+
+        private void cbCdrAutoBypassL1_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -7064,7 +7114,25 @@ namespace Mald37045cMata37044c
                 return;
         }
 
+        private void cbCdrAutoBypassL2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr11() < 0)
+                return;
+        }
+
         private void cbRateSelectL3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WriteAddr11() < 0)
+                return;
+        }
+
+        private void cbCdrAutoBypassL3_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;

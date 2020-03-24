@@ -287,6 +287,10 @@
             this.cbL0OutputEmphasis1Db = new System.Windows.Forms.ComboBox();
             this.lOutputEmphasis0Db = new System.Windows.Forms.Label();
             this.cbL0OutputEmphasis0Db = new System.Windows.Forms.ComboBox();
+            this.cbCdrAutoBypassL3 = new System.Windows.Forms.CheckBox();
+            this.cbCdrAutoBypassL2 = new System.Windows.Forms.CheckBox();
+            this.cbCdrAutoBypassL1 = new System.Windows.Forms.CheckBox();
+            this.cbCdrAutoBypassL0 = new System.Windows.Forms.CheckBox();
             this.tpMald37045cConfig.SuspendLayout();
             this.tpMald37045cL0.SuspendLayout();
             this.tpMald37045cL1.SuspendLayout();
@@ -344,6 +348,7 @@
             // 
             // tpMald37045cL0
             // 
+            this.tpMald37045cL0.Controls.Add(this.cbCdrAutoBypassL0);
             this.tpMald37045cL0.Controls.Add(this.cbOutputDeEmphasisL0);
             this.tpMald37045cL0.Controls.Add(this.lOutputDeEmphasisL0);
             this.tpMald37045cL0.Controls.Add(this.cbOutputSwingL0);
@@ -549,7 +554,7 @@
             // cbTiaRateL0
             // 
             this.cbTiaRateL0.FormattingEnabled = true;
-            this.cbTiaRateL0.Location = new System.Drawing.Point(463, 32);
+            this.cbTiaRateL0.Location = new System.Drawing.Point(515, 30);
             this.cbTiaRateL0.Name = "cbTiaRateL0";
             this.cbTiaRateL0.Size = new System.Drawing.Size(75, 20);
             this.cbTiaRateL0.TabIndex = 26;
@@ -558,7 +563,7 @@
             // lTiaRateL0
             // 
             this.lTiaRateL0.AutoSize = true;
-            this.lTiaRateL0.Location = new System.Drawing.Point(406, 35);
+            this.lTiaRateL0.Location = new System.Drawing.Point(458, 33);
             this.lTiaRateL0.Name = "lTiaRateL0";
             this.lTiaRateL0.Size = new System.Drawing.Size(51, 12);
             this.lTiaRateL0.TabIndex = 25;
@@ -567,7 +572,7 @@
             // cbLosAlarmL0
             // 
             this.cbLosAlarmL0.AutoSize = true;
-            this.cbLosAlarmL0.Location = new System.Drawing.Point(323, 34);
+            this.cbLosAlarmL0.Location = new System.Drawing.Point(375, 32);
             this.cbLosAlarmL0.Name = "cbLosAlarmL0";
             this.cbLosAlarmL0.Size = new System.Drawing.Size(77, 16);
             this.cbLosAlarmL0.TabIndex = 17;
@@ -578,7 +583,7 @@
             // cbLolAlarmL0
             // 
             this.cbLolAlarmL0.AutoSize = true;
-            this.cbLolAlarmL0.Location = new System.Drawing.Point(239, 34);
+            this.cbLolAlarmL0.Location = new System.Drawing.Point(291, 32);
             this.cbLolAlarmL0.Name = "cbLolAlarmL0";
             this.cbLolAlarmL0.Size = new System.Drawing.Size(78, 16);
             this.cbLolAlarmL0.TabIndex = 16;
@@ -590,7 +595,7 @@
             // 
             this.cbLosAssertedL0.AutoSize = true;
             this.cbLosAssertedL0.Enabled = false;
-            this.cbLosAssertedL0.Location = new System.Drawing.Point(146, 34);
+            this.cbLosAssertedL0.Location = new System.Drawing.Point(198, 32);
             this.cbLosAssertedL0.Name = "cbLosAssertedL0";
             this.cbLosAssertedL0.Size = new System.Drawing.Size(87, 16);
             this.cbLosAssertedL0.TabIndex = 15;
@@ -601,7 +606,7 @@
             // 
             this.cbLolOrLosL0.AutoSize = true;
             this.cbLolOrLosL0.Enabled = false;
-            this.cbLolOrLosL0.Location = new System.Drawing.Point(57, 34);
+            this.cbLolOrLosL0.Location = new System.Drawing.Point(109, 32);
             this.cbLolOrLosL0.Name = "cbLolOrLosL0";
             this.cbLolOrLosL0.Size = new System.Drawing.Size(83, 16);
             this.cbLolOrLosL0.TabIndex = 14;
@@ -612,7 +617,7 @@
             // 
             this.cbLosL0.AutoSize = true;
             this.cbLosL0.Enabled = false;
-            this.cbLosL0.Location = new System.Drawing.Point(6, 34);
+            this.cbLosL0.Location = new System.Drawing.Point(58, 32);
             this.cbLosL0.Name = "cbLosL0";
             this.cbLosL0.Size = new System.Drawing.Size(45, 16);
             this.cbLosL0.TabIndex = 13;
@@ -623,7 +628,7 @@
             // 
             this.cbLolL0.AutoSize = true;
             this.cbLolL0.Enabled = false;
-            this.cbLolL0.Location = new System.Drawing.Point(471, 8);
+            this.cbLolL0.Location = new System.Drawing.Point(6, 32);
             this.cbLolL0.Name = "cbLolL0";
             this.cbLolL0.Size = new System.Drawing.Size(46, 16);
             this.cbLolL0.TabIndex = 12;
@@ -633,7 +638,7 @@
             // cbLosMaskL0
             // 
             this.cbLosMaskL0.AutoSize = true;
-            this.cbLosMaskL0.Location = new System.Drawing.Point(392, 8);
+            this.cbLosMaskL0.Location = new System.Drawing.Point(508, 8);
             this.cbLosMaskL0.Name = "cbLosMaskL0";
             this.cbLosMaskL0.Size = new System.Drawing.Size(73, 16);
             this.cbLosMaskL0.TabIndex = 11;
@@ -644,7 +649,7 @@
             // cbLolMaskL0
             // 
             this.cbLolMaskL0.AutoSize = true;
-            this.cbLolMaskL0.Location = new System.Drawing.Point(312, 8);
+            this.cbLolMaskL0.Location = new System.Drawing.Point(428, 8);
             this.cbLolMaskL0.Name = "cbLolMaskL0";
             this.cbLolMaskL0.Size = new System.Drawing.Size(74, 16);
             this.cbLolMaskL0.TabIndex = 10;
@@ -694,6 +699,7 @@
             // 
             // tpMald37045cL1
             // 
+            this.tpMald37045cL1.Controls.Add(this.cbCdrAutoBypassL1);
             this.tpMald37045cL1.Controls.Add(this.cbOutputDeEmphasisL1);
             this.tpMald37045cL1.Controls.Add(this.lOutputDeEmphasisL1);
             this.tpMald37045cL1.Controls.Add(this.cbOutputSwingL1);
@@ -899,7 +905,7 @@
             // cbTiaRateL1
             // 
             this.cbTiaRateL1.FormattingEnabled = true;
-            this.cbTiaRateL1.Location = new System.Drawing.Point(463, 32);
+            this.cbTiaRateL1.Location = new System.Drawing.Point(515, 30);
             this.cbTiaRateL1.Name = "cbTiaRateL1";
             this.cbTiaRateL1.Size = new System.Drawing.Size(75, 20);
             this.cbTiaRateL1.TabIndex = 59;
@@ -908,7 +914,7 @@
             // lTiaRateL1
             // 
             this.lTiaRateL1.AutoSize = true;
-            this.lTiaRateL1.Location = new System.Drawing.Point(406, 35);
+            this.lTiaRateL1.Location = new System.Drawing.Point(458, 33);
             this.lTiaRateL1.Name = "lTiaRateL1";
             this.lTiaRateL1.Size = new System.Drawing.Size(51, 12);
             this.lTiaRateL1.TabIndex = 58;
@@ -917,7 +923,7 @@
             // cbLosAlarmL1
             // 
             this.cbLosAlarmL1.AutoSize = true;
-            this.cbLosAlarmL1.Location = new System.Drawing.Point(323, 34);
+            this.cbLosAlarmL1.Location = new System.Drawing.Point(375, 32);
             this.cbLosAlarmL1.Name = "cbLosAlarmL1";
             this.cbLosAlarmL1.Size = new System.Drawing.Size(77, 16);
             this.cbLosAlarmL1.TabIndex = 57;
@@ -928,7 +934,7 @@
             // cbLolAlarmL1
             // 
             this.cbLolAlarmL1.AutoSize = true;
-            this.cbLolAlarmL1.Location = new System.Drawing.Point(239, 34);
+            this.cbLolAlarmL1.Location = new System.Drawing.Point(291, 32);
             this.cbLolAlarmL1.Name = "cbLolAlarmL1";
             this.cbLolAlarmL1.Size = new System.Drawing.Size(78, 16);
             this.cbLolAlarmL1.TabIndex = 56;
@@ -940,7 +946,7 @@
             // 
             this.cbLosAssertedL1.AutoSize = true;
             this.cbLosAssertedL1.Enabled = false;
-            this.cbLosAssertedL1.Location = new System.Drawing.Point(146, 34);
+            this.cbLosAssertedL1.Location = new System.Drawing.Point(198, 32);
             this.cbLosAssertedL1.Name = "cbLosAssertedL1";
             this.cbLosAssertedL1.Size = new System.Drawing.Size(87, 16);
             this.cbLosAssertedL1.TabIndex = 55;
@@ -951,7 +957,7 @@
             // 
             this.cbLolOrLosL1.AutoSize = true;
             this.cbLolOrLosL1.Enabled = false;
-            this.cbLolOrLosL1.Location = new System.Drawing.Point(57, 34);
+            this.cbLolOrLosL1.Location = new System.Drawing.Point(109, 32);
             this.cbLolOrLosL1.Name = "cbLolOrLosL1";
             this.cbLolOrLosL1.Size = new System.Drawing.Size(83, 16);
             this.cbLolOrLosL1.TabIndex = 54;
@@ -962,7 +968,7 @@
             // 
             this.cbLosL1.AutoSize = true;
             this.cbLosL1.Enabled = false;
-            this.cbLosL1.Location = new System.Drawing.Point(6, 34);
+            this.cbLosL1.Location = new System.Drawing.Point(58, 32);
             this.cbLosL1.Name = "cbLosL1";
             this.cbLosL1.Size = new System.Drawing.Size(45, 16);
             this.cbLosL1.TabIndex = 53;
@@ -973,7 +979,7 @@
             // 
             this.cbLolL1.AutoSize = true;
             this.cbLolL1.Enabled = false;
-            this.cbLolL1.Location = new System.Drawing.Point(471, 8);
+            this.cbLolL1.Location = new System.Drawing.Point(6, 32);
             this.cbLolL1.Name = "cbLolL1";
             this.cbLolL1.Size = new System.Drawing.Size(46, 16);
             this.cbLolL1.TabIndex = 52;
@@ -983,7 +989,7 @@
             // cbLosMaskL1
             // 
             this.cbLosMaskL1.AutoSize = true;
-            this.cbLosMaskL1.Location = new System.Drawing.Point(392, 8);
+            this.cbLosMaskL1.Location = new System.Drawing.Point(508, 8);
             this.cbLosMaskL1.Name = "cbLosMaskL1";
             this.cbLosMaskL1.Size = new System.Drawing.Size(73, 16);
             this.cbLosMaskL1.TabIndex = 51;
@@ -994,7 +1000,7 @@
             // cbLolMaskL1
             // 
             this.cbLolMaskL1.AutoSize = true;
-            this.cbLolMaskL1.Location = new System.Drawing.Point(312, 8);
+            this.cbLolMaskL1.Location = new System.Drawing.Point(428, 8);
             this.cbLolMaskL1.Name = "cbLolMaskL1";
             this.cbLolMaskL1.Size = new System.Drawing.Size(74, 16);
             this.cbLolMaskL1.TabIndex = 50;
@@ -1044,6 +1050,7 @@
             // 
             // tpMald37045cL2
             // 
+            this.tpMald37045cL2.Controls.Add(this.cbCdrAutoBypassL2);
             this.tpMald37045cL2.Controls.Add(this.cbOutputDeEmphasisL2);
             this.tpMald37045cL2.Controls.Add(this.lOutputDeEmphasisL2);
             this.tpMald37045cL2.Controls.Add(this.cbOutputSwingL2);
@@ -1249,7 +1256,7 @@
             // cbTiaRateL2
             // 
             this.cbTiaRateL2.FormattingEnabled = true;
-            this.cbTiaRateL2.Location = new System.Drawing.Point(463, 32);
+            this.cbTiaRateL2.Location = new System.Drawing.Point(515, 30);
             this.cbTiaRateL2.Name = "cbTiaRateL2";
             this.cbTiaRateL2.Size = new System.Drawing.Size(75, 20);
             this.cbTiaRateL2.TabIndex = 61;
@@ -1258,7 +1265,7 @@
             // lTiaRateL2
             // 
             this.lTiaRateL2.AutoSize = true;
-            this.lTiaRateL2.Location = new System.Drawing.Point(406, 35);
+            this.lTiaRateL2.Location = new System.Drawing.Point(458, 33);
             this.lTiaRateL2.Name = "lTiaRateL2";
             this.lTiaRateL2.Size = new System.Drawing.Size(51, 12);
             this.lTiaRateL2.TabIndex = 60;
@@ -1267,7 +1274,7 @@
             // cbLosAlarmL2
             // 
             this.cbLosAlarmL2.AutoSize = true;
-            this.cbLosAlarmL2.Location = new System.Drawing.Point(323, 34);
+            this.cbLosAlarmL2.Location = new System.Drawing.Point(375, 32);
             this.cbLosAlarmL2.Name = "cbLosAlarmL2";
             this.cbLosAlarmL2.Size = new System.Drawing.Size(77, 16);
             this.cbLosAlarmL2.TabIndex = 57;
@@ -1278,7 +1285,7 @@
             // cbLolAlarmL2
             // 
             this.cbLolAlarmL2.AutoSize = true;
-            this.cbLolAlarmL2.Location = new System.Drawing.Point(239, 34);
+            this.cbLolAlarmL2.Location = new System.Drawing.Point(291, 32);
             this.cbLolAlarmL2.Name = "cbLolAlarmL2";
             this.cbLolAlarmL2.Size = new System.Drawing.Size(78, 16);
             this.cbLolAlarmL2.TabIndex = 56;
@@ -1290,7 +1297,7 @@
             // 
             this.cbLosAssertedL2.AutoSize = true;
             this.cbLosAssertedL2.Enabled = false;
-            this.cbLosAssertedL2.Location = new System.Drawing.Point(146, 34);
+            this.cbLosAssertedL2.Location = new System.Drawing.Point(198, 32);
             this.cbLosAssertedL2.Name = "cbLosAssertedL2";
             this.cbLosAssertedL2.Size = new System.Drawing.Size(87, 16);
             this.cbLosAssertedL2.TabIndex = 55;
@@ -1301,7 +1308,7 @@
             // 
             this.cbLolOrLosL2.AutoSize = true;
             this.cbLolOrLosL2.Enabled = false;
-            this.cbLolOrLosL2.Location = new System.Drawing.Point(57, 34);
+            this.cbLolOrLosL2.Location = new System.Drawing.Point(109, 32);
             this.cbLolOrLosL2.Name = "cbLolOrLosL2";
             this.cbLolOrLosL2.Size = new System.Drawing.Size(83, 16);
             this.cbLolOrLosL2.TabIndex = 54;
@@ -1312,7 +1319,7 @@
             // 
             this.cbLosL2.AutoSize = true;
             this.cbLosL2.Enabled = false;
-            this.cbLosL2.Location = new System.Drawing.Point(6, 34);
+            this.cbLosL2.Location = new System.Drawing.Point(58, 32);
             this.cbLosL2.Name = "cbLosL2";
             this.cbLosL2.Size = new System.Drawing.Size(45, 16);
             this.cbLosL2.TabIndex = 53;
@@ -1323,7 +1330,7 @@
             // 
             this.cbLolL2.AutoSize = true;
             this.cbLolL2.Enabled = false;
-            this.cbLolL2.Location = new System.Drawing.Point(471, 8);
+            this.cbLolL2.Location = new System.Drawing.Point(6, 32);
             this.cbLolL2.Name = "cbLolL2";
             this.cbLolL2.Size = new System.Drawing.Size(46, 16);
             this.cbLolL2.TabIndex = 52;
@@ -1333,7 +1340,7 @@
             // cbLosMaskL2
             // 
             this.cbLosMaskL2.AutoSize = true;
-            this.cbLosMaskL2.Location = new System.Drawing.Point(392, 8);
+            this.cbLosMaskL2.Location = new System.Drawing.Point(508, 8);
             this.cbLosMaskL2.Name = "cbLosMaskL2";
             this.cbLosMaskL2.Size = new System.Drawing.Size(73, 16);
             this.cbLosMaskL2.TabIndex = 51;
@@ -1344,7 +1351,7 @@
             // cbLolMaskL2
             // 
             this.cbLolMaskL2.AutoSize = true;
-            this.cbLolMaskL2.Location = new System.Drawing.Point(312, 8);
+            this.cbLolMaskL2.Location = new System.Drawing.Point(428, 8);
             this.cbLolMaskL2.Name = "cbLolMaskL2";
             this.cbLolMaskL2.Size = new System.Drawing.Size(74, 16);
             this.cbLolMaskL2.TabIndex = 50;
@@ -1394,6 +1401,7 @@
             // 
             // tpMald37045cL3
             // 
+            this.tpMald37045cL3.Controls.Add(this.cbCdrAutoBypassL3);
             this.tpMald37045cL3.Controls.Add(this.cbOutputDeEmphasisL3);
             this.tpMald37045cL3.Controls.Add(this.lOutputDeEmphasisL3);
             this.tpMald37045cL3.Controls.Add(this.cbOutputSwingL3);
@@ -1599,7 +1607,7 @@
             // cbTiaRateL3
             // 
             this.cbTiaRateL3.FormattingEnabled = true;
-            this.cbTiaRateL3.Location = new System.Drawing.Point(463, 32);
+            this.cbTiaRateL3.Location = new System.Drawing.Point(515, 30);
             this.cbTiaRateL3.Name = "cbTiaRateL3";
             this.cbTiaRateL3.Size = new System.Drawing.Size(75, 20);
             this.cbTiaRateL3.TabIndex = 63;
@@ -1608,7 +1616,7 @@
             // lTiaRateL3
             // 
             this.lTiaRateL3.AutoSize = true;
-            this.lTiaRateL3.Location = new System.Drawing.Point(406, 35);
+            this.lTiaRateL3.Location = new System.Drawing.Point(458, 33);
             this.lTiaRateL3.Name = "lTiaRateL3";
             this.lTiaRateL3.Size = new System.Drawing.Size(51, 12);
             this.lTiaRateL3.TabIndex = 62;
@@ -1617,7 +1625,7 @@
             // cbLosAlarmL3
             // 
             this.cbLosAlarmL3.AutoSize = true;
-            this.cbLosAlarmL3.Location = new System.Drawing.Point(323, 34);
+            this.cbLosAlarmL3.Location = new System.Drawing.Point(375, 32);
             this.cbLosAlarmL3.Name = "cbLosAlarmL3";
             this.cbLosAlarmL3.Size = new System.Drawing.Size(77, 16);
             this.cbLosAlarmL3.TabIndex = 59;
@@ -1628,7 +1636,7 @@
             // cbLolAlarmL3
             // 
             this.cbLolAlarmL3.AutoSize = true;
-            this.cbLolAlarmL3.Location = new System.Drawing.Point(239, 34);
+            this.cbLolAlarmL3.Location = new System.Drawing.Point(291, 32);
             this.cbLolAlarmL3.Name = "cbLolAlarmL3";
             this.cbLolAlarmL3.Size = new System.Drawing.Size(78, 16);
             this.cbLolAlarmL3.TabIndex = 58;
@@ -1640,7 +1648,7 @@
             // 
             this.cbLosAssertedL3.AutoSize = true;
             this.cbLosAssertedL3.Enabled = false;
-            this.cbLosAssertedL3.Location = new System.Drawing.Point(146, 34);
+            this.cbLosAssertedL3.Location = new System.Drawing.Point(198, 32);
             this.cbLosAssertedL3.Name = "cbLosAssertedL3";
             this.cbLosAssertedL3.Size = new System.Drawing.Size(87, 16);
             this.cbLosAssertedL3.TabIndex = 57;
@@ -1651,7 +1659,7 @@
             // 
             this.cbLolOrLosL3.AutoSize = true;
             this.cbLolOrLosL3.Enabled = false;
-            this.cbLolOrLosL3.Location = new System.Drawing.Point(57, 34);
+            this.cbLolOrLosL3.Location = new System.Drawing.Point(109, 32);
             this.cbLolOrLosL3.Name = "cbLolOrLosL3";
             this.cbLolOrLosL3.Size = new System.Drawing.Size(83, 16);
             this.cbLolOrLosL3.TabIndex = 56;
@@ -1662,7 +1670,7 @@
             // 
             this.cbLosL3.AutoSize = true;
             this.cbLosL3.Enabled = false;
-            this.cbLosL3.Location = new System.Drawing.Point(6, 34);
+            this.cbLosL3.Location = new System.Drawing.Point(58, 32);
             this.cbLosL3.Name = "cbLosL3";
             this.cbLosL3.Size = new System.Drawing.Size(45, 16);
             this.cbLosL3.TabIndex = 55;
@@ -1673,7 +1681,7 @@
             // 
             this.cbLolL3.AutoSize = true;
             this.cbLolL3.Enabled = false;
-            this.cbLolL3.Location = new System.Drawing.Point(471, 8);
+            this.cbLolL3.Location = new System.Drawing.Point(6, 32);
             this.cbLolL3.Name = "cbLolL3";
             this.cbLolL3.Size = new System.Drawing.Size(46, 16);
             this.cbLolL3.TabIndex = 54;
@@ -1683,7 +1691,7 @@
             // cbLosMaskL3
             // 
             this.cbLosMaskL3.AutoSize = true;
-            this.cbLosMaskL3.Location = new System.Drawing.Point(392, 8);
+            this.cbLosMaskL3.Location = new System.Drawing.Point(508, 8);
             this.cbLosMaskL3.Name = "cbLosMaskL3";
             this.cbLosMaskL3.Size = new System.Drawing.Size(73, 16);
             this.cbLosMaskL3.TabIndex = 53;
@@ -1694,7 +1702,7 @@
             // cbLolMaskL3
             // 
             this.cbLolMaskL3.AutoSize = true;
-            this.cbLolMaskL3.Location = new System.Drawing.Point(312, 8);
+            this.cbLolMaskL3.Location = new System.Drawing.Point(428, 8);
             this.cbLolMaskL3.Name = "cbLolMaskL3";
             this.cbLolMaskL3.Size = new System.Drawing.Size(74, 16);
             this.cbLolMaskL3.TabIndex = 52;
@@ -3027,6 +3035,50 @@
             this.cbL0OutputEmphasis0Db.TabIndex = 201;
             this.cbL0OutputEmphasis0Db.SelectedIndexChanged += new System.EventHandler(this.cbL0OutputEmphasis0Db_SelectedIndexChanged);
             // 
+            // cbCdrAutoBypassL3
+            // 
+            this.cbCdrAutoBypassL3.AutoSize = true;
+            this.cbCdrAutoBypassL3.Location = new System.Drawing.Point(312, 8);
+            this.cbCdrAutoBypassL3.Name = "cbCdrAutoBypassL3";
+            this.cbCdrAutoBypassL3.Size = new System.Drawing.Size(110, 16);
+            this.cbCdrAutoBypassL3.TabIndex = 85;
+            this.cbCdrAutoBypassL3.Text = "CDR Auto Bypass";
+            this.cbCdrAutoBypassL3.UseVisualStyleBackColor = true;
+            this.cbCdrAutoBypassL3.CheckedChanged += new System.EventHandler(this.cbCdrAutoBypassL3_CheckedChanged);
+            // 
+            // cbCdrAutoBypassL2
+            // 
+            this.cbCdrAutoBypassL2.AutoSize = true;
+            this.cbCdrAutoBypassL2.Location = new System.Drawing.Point(312, 8);
+            this.cbCdrAutoBypassL2.Name = "cbCdrAutoBypassL2";
+            this.cbCdrAutoBypassL2.Size = new System.Drawing.Size(110, 16);
+            this.cbCdrAutoBypassL2.TabIndex = 87;
+            this.cbCdrAutoBypassL2.Text = "CDR Auto Bypass";
+            this.cbCdrAutoBypassL2.UseVisualStyleBackColor = true;
+            this.cbCdrAutoBypassL2.CheckedChanged += new System.EventHandler(this.cbCdrAutoBypassL2_CheckedChanged);
+            // 
+            // cbCdrAutoBypassL1
+            // 
+            this.cbCdrAutoBypassL1.AutoSize = true;
+            this.cbCdrAutoBypassL1.Location = new System.Drawing.Point(312, 8);
+            this.cbCdrAutoBypassL1.Name = "cbCdrAutoBypassL1";
+            this.cbCdrAutoBypassL1.Size = new System.Drawing.Size(110, 16);
+            this.cbCdrAutoBypassL1.TabIndex = 85;
+            this.cbCdrAutoBypassL1.Text = "CDR Auto Bypass";
+            this.cbCdrAutoBypassL1.UseVisualStyleBackColor = true;
+            this.cbCdrAutoBypassL1.CheckedChanged += new System.EventHandler(this.cbCdrAutoBypassL1_CheckedChanged);
+            // 
+            // cbCdrAutoBypassL0
+            // 
+            this.cbCdrAutoBypassL0.AutoSize = true;
+            this.cbCdrAutoBypassL0.Location = new System.Drawing.Point(312, 8);
+            this.cbCdrAutoBypassL0.Name = "cbCdrAutoBypassL0";
+            this.cbCdrAutoBypassL0.Size = new System.Drawing.Size(110, 16);
+            this.cbCdrAutoBypassL0.TabIndex = 83;
+            this.cbCdrAutoBypassL0.Text = "CDR Auto Bypass";
+            this.cbCdrAutoBypassL0.UseVisualStyleBackColor = true;
+            this.cbCdrAutoBypassL0.CheckedChanged += new System.EventHandler(this.cbCdrAutoBypassL0_CheckedChanged);
+            // 
             // UcMata37044cConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -3318,5 +3370,9 @@
         private System.Windows.Forms.ComboBox cbL0OutputEmphasis1Db;
         private System.Windows.Forms.Label lOutputEmphasis0Db;
         private System.Windows.Forms.ComboBox cbL0OutputEmphasis0Db;
+        private System.Windows.Forms.CheckBox cbCdrAutoBypassL3;
+        private System.Windows.Forms.CheckBox cbCdrAutoBypassL2;
+        private System.Windows.Forms.CheckBox cbCdrAutoBypassL1;
+        private System.Windows.Forms.CheckBox cbCdrAutoBypassL0;
     }
 }

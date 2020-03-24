@@ -33,8 +33,8 @@
             this.cbConnected = new System.Windows.Forms.CheckBox();
             this.tcMald37045cMata37044cConfig = new System.Windows.Forms.TabControl();
             this.tpMald37045cConfig = new System.Windows.Forms.TabPage();
-            this.ucMald37045cConfig = new Mald37045cMata37044c.UcMald37045cConfig();
             this.tpMald37044cConfig = new System.Windows.Forms.TabPage();
+            this.ucMald37045cConfig = new Mald37045cMata37044c.UcMald37045cConfig();
             this.ucMata37044cConfig = new Mald37045cMata37044c.UcMata37044cConfig();
             this.tcMald37045cMata37044cConfig.SuspendLayout();
             this.tpMald37045cConfig.SuspendLayout();
@@ -91,13 +91,6 @@
             this.tpMald37045cConfig.Text = "MALD37045C";
             this.tpMald37045cConfig.UseVisualStyleBackColor = true;
             // 
-            // ucMald37045cConfig
-            // 
-            this.ucMald37045cConfig.Location = new System.Drawing.Point(6, 6);
-            this.ucMald37045cConfig.Name = "ucMald37045cConfig";
-            this.ucMald37045cConfig.Size = new System.Drawing.Size(642, 550);
-            this.ucMald37045cConfig.TabIndex = 0;
-            // 
             // tpMald37044cConfig
             // 
             this.tpMald37044cConfig.Controls.Add(this.ucMata37044cConfig);
@@ -108,6 +101,13 @@
             this.tpMald37044cConfig.TabIndex = 1;
             this.tpMald37044cConfig.Text = "MATA37044C";
             this.tpMald37044cConfig.UseVisualStyleBackColor = true;
+            // 
+            // ucMald37045cConfig
+            // 
+            this.ucMald37045cConfig.Location = new System.Drawing.Point(6, 6);
+            this.ucMald37045cConfig.Name = "ucMald37045cConfig";
+            this.ucMald37045cConfig.Size = new System.Drawing.Size(642, 550);
+            this.ucMald37045cConfig.TabIndex = 0;
             // 
             // ucMata37044cConfig
             // 
@@ -126,7 +126,7 @@
             this.Controls.Add(this.lPassword);
             this.Controls.Add(this.cbConnected);
             this.Name = "FMald37045cMata37044cConfig";
-            this.Text = "MATA37045C & MATA37044C Config_20200229";
+            this.Text = "MATA37045C & MATA37044C Config_20200324";
             this.tcMald37045cMata37044cConfig.ResumeLayout(false);
             this.tpMald37045cConfig.ResumeLayout(false);
             this.tpMald37044cConfig.ResumeLayout(false);
