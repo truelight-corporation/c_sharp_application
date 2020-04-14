@@ -173,10 +173,8 @@
             this.bPasswordReset = new System.Windows.Forms.Button();
             this.bStoreIntoFlash = new System.Windows.Forms.Button();
             this.gbFreeSideDeviceProperties = new System.Windows.Forms.GroupBox();
-            this.tbFarEndImplementation = new System.Windows.Forms.TextBox();
-            this.lFarEndImplementation = new System.Windows.Forms.Label();
-            this.tbNearEndImplementation = new System.Windows.Forms.TextBox();
-            this.lNearEndImplementation = new System.Windows.Forms.Label();
+            this.tbNearFarEndImplementation = new System.Windows.Forms.TextBox();
+            this.lNearFarEndImplementation = new System.Windows.Forms.Label();
             this.tbPciExpress = new System.Windows.Forms.TextBox();
             this.lPciExpress = new System.Windows.Forms.Label();
             this.tbAdvaancedLowPowerMode = new System.Windows.Forms.TextBox();
@@ -1665,10 +1663,8 @@
             // 
             // gbFreeSideDeviceProperties
             // 
-            this.gbFreeSideDeviceProperties.Controls.Add(this.tbFarEndImplementation);
-            this.gbFreeSideDeviceProperties.Controls.Add(this.lFarEndImplementation);
-            this.gbFreeSideDeviceProperties.Controls.Add(this.tbNearEndImplementation);
-            this.gbFreeSideDeviceProperties.Controls.Add(this.lNearEndImplementation);
+            this.gbFreeSideDeviceProperties.Controls.Add(this.tbNearFarEndImplementation);
+            this.gbFreeSideDeviceProperties.Controls.Add(this.lNearFarEndImplementation);
             this.gbFreeSideDeviceProperties.Controls.Add(this.tbPciExpress);
             this.gbFreeSideDeviceProperties.Controls.Add(this.lPciExpress);
             this.gbFreeSideDeviceProperties.Controls.Add(this.tbAdvaancedLowPowerMode);
@@ -1685,45 +1681,26 @@
             this.gbFreeSideDeviceProperties.TabStop = false;
             this.gbFreeSideDeviceProperties.Text = "Free side device properities";
             // 
-            // tbFarEndImplementation
+            // tbNearFarEndImplementation
             // 
-            this.tbFarEndImplementation.Location = new System.Drawing.Point(130, 103);
-            this.tbFarEndImplementation.Name = "tbFarEndImplementation";
-            this.tbFarEndImplementation.ReadOnly = true;
-            this.tbFarEndImplementation.Size = new System.Drawing.Size(40, 22);
-            this.tbFarEndImplementation.TabIndex = 69;
+            this.tbNearFarEndImplementation.Location = new System.Drawing.Point(167, 103);
+            this.tbNearFarEndImplementation.Name = "tbNearFarEndImplementation";
+            this.tbNearFarEndImplementation.Size = new System.Drawing.Size(40, 22);
+            this.tbNearFarEndImplementation.TabIndex = 67;
             // 
-            // lFarEndImplementation
+            // lNearFarEndImplementation
             // 
-            this.lFarEndImplementation.AutoSize = true;
-            this.lFarEndImplementation.Location = new System.Drawing.Point(6, 106);
-            this.lFarEndImplementation.Name = "lFarEndImplementation";
-            this.lFarEndImplementation.Size = new System.Drawing.Size(118, 12);
-            this.lFarEndImplementation.TabIndex = 68;
-            this.lFarEndImplementation.Text = "Far end implementation:";
-            // 
-            // tbNearEndImplementation
-            // 
-            this.tbNearEndImplementation.Location = new System.Drawing.Point(259, 75);
-            this.tbNearEndImplementation.Name = "tbNearEndImplementation";
-            this.tbNearEndImplementation.ReadOnly = true;
-            this.tbNearEndImplementation.Size = new System.Drawing.Size(40, 22);
-            this.tbNearEndImplementation.TabIndex = 67;
-            // 
-            // lNearEndImplementation
-            // 
-            this.lNearEndImplementation.AutoSize = true;
-            this.lNearEndImplementation.Location = new System.Drawing.Point(128, 78);
-            this.lNearEndImplementation.Name = "lNearEndImplementation";
-            this.lNearEndImplementation.Size = new System.Drawing.Size(125, 12);
-            this.lNearEndImplementation.TabIndex = 66;
-            this.lNearEndImplementation.Text = "Near end implementation:";
+            this.lNearFarEndImplementation.AutoSize = true;
+            this.lNearFarEndImplementation.Location = new System.Drawing.Point(6, 106);
+            this.lNearFarEndImplementation.Name = "lNearFarEndImplementation";
+            this.lNearFarEndImplementation.Size = new System.Drawing.Size(155, 12);
+            this.lNearFarEndImplementation.TabIndex = 66;
+            this.lNearFarEndImplementation.Text = "Near && Far end implementation:";
             // 
             // tbPciExpress
             // 
             this.tbPciExpress.Location = new System.Drawing.Point(75, 75);
             this.tbPciExpress.Name = "tbPciExpress";
-            this.tbPciExpress.ReadOnly = true;
             this.tbPciExpress.Size = new System.Drawing.Size(45, 22);
             this.tbPciExpress.TabIndex = 65;
             // 
@@ -1785,7 +1762,6 @@
             // 
             this.tbPropagationDelay.Location = new System.Drawing.Point(106, 19);
             this.tbPropagationDelay.Name = "tbPropagationDelay";
-            this.tbPropagationDelay.ReadOnly = true;
             this.tbPropagationDelay.Size = new System.Drawing.Size(45, 22);
             this.tbPropagationDelay.TabIndex = 31;
             // 
@@ -1877,6 +1853,7 @@
             this.cbAdaptiveEqualizationControlTx4.TabIndex = 75;
             this.cbAdaptiveEqualizationControlTx4.Text = "Adaptive EQ";
             this.cbAdaptiveEqualizationControlTx4.UseVisualStyleBackColor = true;
+            this.cbAdaptiveEqualizationControlTx4.CheckedChanged += new System.EventHandler(this.cbAdaptiveEqualizationControlTx4_CheckedChanged);
             // 
             // cbAdaptiveEqualizationControlTx3
             // 
@@ -1887,6 +1864,7 @@
             this.cbAdaptiveEqualizationControlTx3.TabIndex = 76;
             this.cbAdaptiveEqualizationControlTx3.Text = "Adaptive EQ";
             this.cbAdaptiveEqualizationControlTx3.UseVisualStyleBackColor = true;
+            this.cbAdaptiveEqualizationControlTx3.CheckedChanged += new System.EventHandler(this.cbAdaptiveEqualizationControlTx3_CheckedChanged);
             // 
             // cbAdaptiveEqualizationControlTx2
             // 
@@ -1897,6 +1875,7 @@
             this.cbAdaptiveEqualizationControlTx2.TabIndex = 77;
             this.cbAdaptiveEqualizationControlTx2.Text = "Adaptive EQ";
             this.cbAdaptiveEqualizationControlTx2.UseVisualStyleBackColor = true;
+            this.cbAdaptiveEqualizationControlTx2.CheckedChanged += new System.EventHandler(this.cbAdaptiveEqualizationControlTx2_CheckedChanged);
             // 
             // cbAdaptiveEqualizationControlTx1
             // 
@@ -1907,6 +1886,7 @@
             this.cbAdaptiveEqualizationControlTx1.TabIndex = 78;
             this.cbAdaptiveEqualizationControlTx1.Text = "Adaptive EQ";
             this.cbAdaptiveEqualizationControlTx1.UseVisualStyleBackColor = true;
+            this.cbAdaptiveEqualizationControlTx1.CheckedChanged += new System.EventHandler(this.cbAdaptiveEqualizationControlTx1_CheckedChanged);
             // 
             // lRxOutputEmphasisType
             // 
@@ -1926,6 +1906,7 @@
             this.cbOutputDisableRx4.TabIndex = 69;
             this.cbOutputDisableRx4.Text = "Disable";
             this.cbOutputDisableRx4.UseVisualStyleBackColor = true;
+            this.cbOutputDisableRx4.CheckedChanged += new System.EventHandler(this.cbOutputDisableRx4_CheckedChanged);
             // 
             // cbOutputDisableRx3
             // 
@@ -1936,6 +1917,7 @@
             this.cbOutputDisableRx3.TabIndex = 70;
             this.cbOutputDisableRx3.Text = "Disable";
             this.cbOutputDisableRx3.UseVisualStyleBackColor = true;
+            this.cbOutputDisableRx3.CheckedChanged += new System.EventHandler(this.cbOutputDisableRx3_CheckedChanged);
             // 
             // cbOutputDisableRx2
             // 
@@ -1946,6 +1928,7 @@
             this.cbOutputDisableRx2.TabIndex = 71;
             this.cbOutputDisableRx2.Text = "Disable";
             this.cbOutputDisableRx2.UseVisualStyleBackColor = true;
+            this.cbOutputDisableRx2.CheckedChanged += new System.EventHandler(this.cbOutputDisableRx2_CheckedChanged);
             // 
             // cbOutputDisableRx1
             // 
@@ -1956,6 +1939,7 @@
             this.cbOutputDisableRx1.TabIndex = 72;
             this.cbOutputDisableRx1.Text = "Disable";
             this.cbOutputDisableRx1.UseVisualStyleBackColor = true;
+            this.cbOutputDisableRx1.CheckedChanged += new System.EventHandler(this.cbOutputDisableRx1_CheckedChanged);
             // 
             // cbSqDisableRx4
             // 
@@ -1966,6 +1950,7 @@
             this.cbSqDisableRx4.TabIndex = 65;
             this.cbSqDisableRx4.Text = "SQ Disable";
             this.cbSqDisableRx4.UseVisualStyleBackColor = true;
+            this.cbSqDisableRx4.CheckedChanged += new System.EventHandler(this.cbSqDisableRx4_CheckedChanged);
             // 
             // cbSqDisableRx3
             // 
@@ -1976,6 +1961,7 @@
             this.cbSqDisableRx3.TabIndex = 66;
             this.cbSqDisableRx3.Text = "SQ Disable";
             this.cbSqDisableRx3.UseVisualStyleBackColor = true;
+            this.cbSqDisableRx3.CheckedChanged += new System.EventHandler(this.cbSqDisableRx3_CheckedChanged);
             // 
             // cbSqDisableRx2
             // 
@@ -1986,6 +1972,7 @@
             this.cbSqDisableRx2.TabIndex = 67;
             this.cbSqDisableRx2.Text = "SQ Disable";
             this.cbSqDisableRx2.UseVisualStyleBackColor = true;
+            this.cbSqDisableRx2.CheckedChanged += new System.EventHandler(this.cbSqDisableRx2_CheckedChanged);
             // 
             // cbSqDisableRx1
             // 
@@ -1996,6 +1983,7 @@
             this.cbSqDisableRx1.TabIndex = 68;
             this.cbSqDisableRx1.Text = "SQ Disable";
             this.cbSqDisableRx1.UseVisualStyleBackColor = true;
+            this.cbSqDisableRx1.CheckedChanged += new System.EventHandler(this.cbSqDisableRx1_CheckedChanged);
             // 
             // cbSqDisableTx4
             // 
@@ -2006,6 +1994,7 @@
             this.cbSqDisableTx4.TabIndex = 61;
             this.cbSqDisableTx4.Text = "SQ Disable";
             this.cbSqDisableTx4.UseVisualStyleBackColor = true;
+            this.cbSqDisableTx4.CheckedChanged += new System.EventHandler(this.cbSqDisableTx4_CheckedChanged);
             // 
             // cbSqDisableTx3
             // 
@@ -2016,6 +2005,7 @@
             this.cbSqDisableTx3.TabIndex = 62;
             this.cbSqDisableTx3.Text = "SQ Disable";
             this.cbSqDisableTx3.UseVisualStyleBackColor = true;
+            this.cbSqDisableTx3.CheckedChanged += new System.EventHandler(this.cbSqDisableTx3_CheckedChanged);
             // 
             // cbSqDisableTx2
             // 
@@ -2026,6 +2016,7 @@
             this.cbSqDisableTx2.TabIndex = 63;
             this.cbSqDisableTx2.Text = "SQ Disable";
             this.cbSqDisableTx2.UseVisualStyleBackColor = true;
+            this.cbSqDisableTx2.CheckedChanged += new System.EventHandler(this.cbSqDisableTx2_CheckedChanged);
             // 
             // cbSqDisableTx1
             // 
@@ -2036,6 +2027,7 @@
             this.cbSqDisableTx1.TabIndex = 64;
             this.cbSqDisableTx1.Text = "SQ Disable";
             this.cbSqDisableTx1.UseVisualStyleBackColor = true;
+            this.cbSqDisableTx1.CheckedChanged += new System.EventHandler(this.cbSqDisableTx1_CheckedChanged);
             // 
             // lOptionalChannelControlTx4
             // 
@@ -2082,6 +2074,7 @@
             this.cbRxOutputEmphasisMagnitudeRx4.TabIndex = 53;
             this.cbRxOutputEmphasisMagnitudeRx4.Text = "Emphasis";
             this.cbRxOutputEmphasisMagnitudeRx4.UseVisualStyleBackColor = true;
+            this.cbRxOutputEmphasisMagnitudeRx4.CheckedChanged += new System.EventHandler(this.cbRxOutputEmphasisMagnitudeRx4_CheckedChanged);
             // 
             // cbRxOutputEmphasisMagnitudeRx3
             // 
@@ -2092,6 +2085,7 @@
             this.cbRxOutputEmphasisMagnitudeRx3.TabIndex = 54;
             this.cbRxOutputEmphasisMagnitudeRx3.Text = "Emphasis";
             this.cbRxOutputEmphasisMagnitudeRx3.UseVisualStyleBackColor = true;
+            this.cbRxOutputEmphasisMagnitudeRx3.CheckedChanged += new System.EventHandler(this.cbRxOutputEmphasisMagnitudeRx3_CheckedChanged);
             // 
             // cbRxOutputEmphasisMagnitudeRx2
             // 
@@ -2102,6 +2096,7 @@
             this.cbRxOutputEmphasisMagnitudeRx2.TabIndex = 55;
             this.cbRxOutputEmphasisMagnitudeRx2.Text = "Emphasis";
             this.cbRxOutputEmphasisMagnitudeRx2.UseVisualStyleBackColor = true;
+            this.cbRxOutputEmphasisMagnitudeRx2.CheckedChanged += new System.EventHandler(this.cbRxOutputEmphasisMagnitudeRx2_CheckedChanged);
             // 
             // cbRxOutputEmphasisMagnitudeRx1
             // 
@@ -2112,6 +2107,7 @@
             this.cbRxOutputEmphasisMagnitudeRx1.TabIndex = 56;
             this.cbRxOutputEmphasisMagnitudeRx1.Text = "Emphasis";
             this.cbRxOutputEmphasisMagnitudeRx1.UseVisualStyleBackColor = true;
+            this.cbRxOutputEmphasisMagnitudeRx1.CheckedChanged += new System.EventHandler(this.cbRxOutputEmphasisMagnitudeRx1_CheckedChanged);
             // 
             // cbOutputAmplitudeSupportRx4
             // 
@@ -2169,6 +2165,7 @@
             this.cbOutputAmplitudeRx1.Name = "cbOutputAmplitudeRx1";
             this.cbOutputAmplitudeRx1.Size = new System.Drawing.Size(40, 20);
             this.cbOutputAmplitudeRx1.TabIndex = 41;
+            this.cbOutputAmplitudeRx1.SelectedIndexChanged += new System.EventHandler(this.cbOutputAmplitudeRx1_SelectedIndexChanged);
             // 
             // cbOutputAmplitudeRx2
             // 
@@ -2177,6 +2174,7 @@
             this.cbOutputAmplitudeRx2.Name = "cbOutputAmplitudeRx2";
             this.cbOutputAmplitudeRx2.Size = new System.Drawing.Size(40, 20);
             this.cbOutputAmplitudeRx2.TabIndex = 40;
+            this.cbOutputAmplitudeRx2.SelectedIndexChanged += new System.EventHandler(this.cbOutputAmplitudeRx2_SelectedIndexChanged);
             // 
             // cbOutputAmplitudeRx3
             // 
@@ -2185,6 +2183,7 @@
             this.cbOutputAmplitudeRx3.Name = "cbOutputAmplitudeRx3";
             this.cbOutputAmplitudeRx3.Size = new System.Drawing.Size(40, 20);
             this.cbOutputAmplitudeRx3.TabIndex = 39;
+            this.cbOutputAmplitudeRx3.SelectedIndexChanged += new System.EventHandler(this.cbOutputAmplitudeRx3_SelectedIndexChanged);
             // 
             // cbOutputAmplitudeRx4
             // 
@@ -2193,6 +2192,7 @@
             this.cbOutputAmplitudeRx4.Name = "cbOutputAmplitudeRx4";
             this.cbOutputAmplitudeRx4.Size = new System.Drawing.Size(40, 20);
             this.cbOutputAmplitudeRx4.TabIndex = 38;
+            this.cbOutputAmplitudeRx4.SelectedIndexChanged += new System.EventHandler(this.cbOutputAmplitudeRx4_SelectedIndexChanged);
             // 
             // lRxOutputEmphasis
             // 
@@ -2246,6 +2246,7 @@
             this.cbInputEqualizationTx1.Name = "cbInputEqualizationTx1";
             this.cbInputEqualizationTx1.Size = new System.Drawing.Size(40, 20);
             this.cbInputEqualizationTx1.TabIndex = 27;
+            this.cbInputEqualizationTx1.SelectedIndexChanged += new System.EventHandler(this.cbInputEqualizationTx1_SelectedIndexChanged);
             // 
             // cbInputEqualizationTx2
             // 
@@ -2254,6 +2255,7 @@
             this.cbInputEqualizationTx2.Name = "cbInputEqualizationTx2";
             this.cbInputEqualizationTx2.Size = new System.Drawing.Size(40, 20);
             this.cbInputEqualizationTx2.TabIndex = 25;
+            this.cbInputEqualizationTx2.SelectedIndexChanged += new System.EventHandler(this.cbInputEqualizationTx2_SelectedIndexChanged);
             // 
             // cbInputEqualizationTx3
             // 
@@ -2262,6 +2264,7 @@
             this.cbInputEqualizationTx3.Name = "cbInputEqualizationTx3";
             this.cbInputEqualizationTx3.Size = new System.Drawing.Size(40, 20);
             this.cbInputEqualizationTx3.TabIndex = 23;
+            this.cbInputEqualizationTx3.SelectedIndexChanged += new System.EventHandler(this.cbInputEqualizationTx3_SelectedIndexChanged);
             // 
             // lTxInputEqualizationMagnitude
             // 
@@ -2279,6 +2282,7 @@
             this.cbInputEqualizationTx4.Name = "cbInputEqualizationTx4";
             this.cbInputEqualizationTx4.Size = new System.Drawing.Size(40, 20);
             this.cbInputEqualizationTx4.TabIndex = 21;
+            this.cbInputEqualizationTx4.SelectedIndexChanged += new System.EventHandler(this.cbInputEqualizationTx4_SelectedIndexChanged);
             // 
             // cbRxOutputEmphasisRx1
             // 
@@ -2287,6 +2291,7 @@
             this.cbRxOutputEmphasisRx1.Name = "cbRxOutputEmphasisRx1";
             this.cbRxOutputEmphasisRx1.Size = new System.Drawing.Size(40, 20);
             this.cbRxOutputEmphasisRx1.TabIndex = 19;
+            this.cbRxOutputEmphasisRx1.SelectedIndexChanged += new System.EventHandler(this.cbRxOutputEmphasisRx1_SelectedIndexChanged);
             // 
             // cbRxOutputEmphasisRx2
             // 
@@ -2295,6 +2300,7 @@
             this.cbRxOutputEmphasisRx2.Name = "cbRxOutputEmphasisRx2";
             this.cbRxOutputEmphasisRx2.Size = new System.Drawing.Size(40, 20);
             this.cbRxOutputEmphasisRx2.TabIndex = 17;
+            this.cbRxOutputEmphasisRx2.SelectedIndexChanged += new System.EventHandler(this.cbRxOutputEmphasisRx2_SelectedIndexChanged);
             // 
             // cbRxOutputEmphasisRx3
             // 
@@ -2303,6 +2309,7 @@
             this.cbRxOutputEmphasisRx3.Name = "cbRxOutputEmphasisRx3";
             this.cbRxOutputEmphasisRx3.Size = new System.Drawing.Size(40, 20);
             this.cbRxOutputEmphasisRx3.TabIndex = 15;
+            this.cbRxOutputEmphasisRx3.SelectedIndexChanged += new System.EventHandler(this.cbRxOutputEmphasisRx3_SelectedIndexChanged);
             // 
             // cbRxOutputEmphasisRx4
             // 
@@ -2311,6 +2318,7 @@
             this.cbRxOutputEmphasisRx4.Name = "cbRxOutputEmphasisRx4";
             this.cbRxOutputEmphasisRx4.Size = new System.Drawing.Size(40, 20);
             this.cbRxOutputEmphasisRx4.TabIndex = 13;
+            this.cbRxOutputEmphasisRx4.SelectedIndexChanged += new System.EventHandler(this.cbRxOutputEmphasisRx4_SelectedIndexChanged);
             // 
             // cbInputEqualizationMagnitudeTx4
             // 
@@ -2321,6 +2329,7 @@
             this.cbInputEqualizationMagnitudeTx4.TabIndex = 7;
             this.cbInputEqualizationMagnitudeTx4.Text = "EQ";
             this.cbInputEqualizationMagnitudeTx4.UseVisualStyleBackColor = true;
+            this.cbInputEqualizationMagnitudeTx4.CheckedChanged += new System.EventHandler(this.cbInputEqualizationMagnitudeTx4_CheckedChanged);
             // 
             // cbInputEqualizationMagnitudeTx3
             // 
@@ -2331,6 +2340,7 @@
             this.cbInputEqualizationMagnitudeTx3.TabIndex = 8;
             this.cbInputEqualizationMagnitudeTx3.Text = "EQ";
             this.cbInputEqualizationMagnitudeTx3.UseVisualStyleBackColor = true;
+            this.cbInputEqualizationMagnitudeTx3.CheckedChanged += new System.EventHandler(this.cbInputEqualizationMagnitudeTx3_CheckedChanged);
             // 
             // cbInputEqualizationMagnitudeTx2
             // 
@@ -2341,6 +2351,7 @@
             this.cbInputEqualizationMagnitudeTx2.TabIndex = 9;
             this.cbInputEqualizationMagnitudeTx2.Text = "EQ";
             this.cbInputEqualizationMagnitudeTx2.UseVisualStyleBackColor = true;
+            this.cbInputEqualizationMagnitudeTx2.CheckedChanged += new System.EventHandler(this.cbInputEqualizationMagnitudeTx2_CheckedChanged);
             // 
             // cbInputEqualizationMagnitudeTx1
             // 
@@ -2351,6 +2362,7 @@
             this.cbInputEqualizationMagnitudeTx1.TabIndex = 10;
             this.cbInputEqualizationMagnitudeTx1.Text = "EQ";
             this.cbInputEqualizationMagnitudeTx1.UseVisualStyleBackColor = true;
+            this.cbInputEqualizationMagnitudeTx1.CheckedChanged += new System.EventHandler(this.cbInputEqualizationMagnitudeTx1_CheckedChanged);
             // 
             // gbUpPage3
             // 
@@ -2548,10 +2560,8 @@
         private System.Windows.Forms.Label lMinOperationVoltage;
         private System.Windows.Forms.TextBox tbPropagationDelay;
         private System.Windows.Forms.Label lPropagationDelay;
-        private System.Windows.Forms.TextBox tbFarEndImplementation;
-        private System.Windows.Forms.Label lFarEndImplementation;
-        private System.Windows.Forms.TextBox tbNearEndImplementation;
-        private System.Windows.Forms.Label lNearEndImplementation;
+        private System.Windows.Forms.TextBox tbNearFarEndImplementation;
+        private System.Windows.Forms.Label lNearFarEndImplementation;
         private System.Windows.Forms.CheckBox cbExtendedRateSelectV2;
         private System.Windows.Forms.CheckBox cbRxOutputEmphasisProgramming;
         private System.Windows.Forms.CheckBox cbTxInputEqualizationProgrammable;

@@ -102,12 +102,23 @@ namespace QsfpDigitalDiagnosticMonitoring
             byte[] data = new byte[10];
             byte[] bATmp = new byte[2];
 
-            data[0] = 32;
+            data[0] = 0xAA;
             if (_I2cWrite(80, 127, 1, data) < 0)
                 return -1;
 
             if (_I2cRead(80, 165, 10, data) < 0)
                 return -1;
+
+            if ((data[0] == 0) && (data[1] == 0) && (data[2] == 0) && (data[3] == 0) && 
+                (data[4] == 0) && (data[5] == 0) && (data[6] == 0) && (data[7] == 0) && 
+                (data[8] == 0) && (data[9] == 0)) {
+                data[0] = 32;
+                if (_I2cWrite(80, 127, 1, data) < 0)
+                    return -1;
+
+                if (_I2cRead(80, 165, 10, data) < 0)
+                    return -1;
+            }
 
             bATmp = new byte[2];
             System.Buffer.BlockCopy(data, 0, bATmp, 0, 2);

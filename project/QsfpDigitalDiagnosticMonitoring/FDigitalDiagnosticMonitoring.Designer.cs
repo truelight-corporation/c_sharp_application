@@ -30,9 +30,7 @@
             this.cbConnected = new System.Windows.Forms.CheckBox();
             this.tcDdmAndInformation = new System.Windows.Forms.TabControl();
             this.tpDigitalDiagnosticMonitoring = new System.Windows.Forms.TabPage();
-            this.ucDigitalDiagnosticsMonitoring = new QsfpDigitalDiagnosticMonitoring.UCDigitalDiagnosticsMonitoring();
             this.tpInformation = new System.Windows.Forms.TabPage();
-            this.ucInformation = new QsfpDigitalDiagnosticMonitoring.UcInformation();
             this.lFirmwareVersion = new System.Windows.Forms.Label();
             this.tbFirmwareVersion = new System.Windows.Forms.TextBox();
             this.lFirmwareDate = new System.Windows.Forms.Label();
@@ -40,6 +38,8 @@
             this.tbFirmwareVersionCheck = new System.Windows.Forms.TextBox();
             this.tbFirmwareDateCheck = new System.Windows.Forms.TextBox();
             this.cbFirmwareVersionCheck = new System.Windows.Forms.CheckBox();
+            this.ucDigitalDiagnosticsMonitoring = new QsfpDigitalDiagnosticMonitoring.UCDigitalDiagnosticsMonitoring();
+            this.ucInformation = new QsfpDigitalDiagnosticMonitoring.UcInformation();
             this.tcDdmAndInformation.SuspendLayout();
             this.tpDigitalDiagnosticMonitoring.SuspendLayout();
             this.tpInformation.SuspendLayout();
@@ -77,13 +77,6 @@
             this.tpDigitalDiagnosticMonitoring.Text = "DDM";
             this.tpDigitalDiagnosticMonitoring.UseVisualStyleBackColor = true;
             // 
-            // ucDigitalDiagnosticsMonitoring
-            // 
-            this.ucDigitalDiagnosticsMonitoring.Location = new System.Drawing.Point(6, 4);
-            this.ucDigitalDiagnosticsMonitoring.Name = "ucDigitalDiagnosticsMonitoring";
-            this.ucDigitalDiagnosticsMonitoring.Size = new System.Drawing.Size(823, 659);
-            this.ucDigitalDiagnosticsMonitoring.TabIndex = 0;
-            // 
             // tpInformation
             // 
             this.tpInformation.Controls.Add(this.ucInformation);
@@ -94,13 +87,6 @@
             this.tpInformation.TabIndex = 1;
             this.tpInformation.Text = "Information";
             this.tpInformation.UseVisualStyleBackColor = true;
-            // 
-            // ucInformation
-            // 
-            this.ucInformation.Location = new System.Drawing.Point(3, 3);
-            this.ucInformation.Name = "ucInformation";
-            this.ucInformation.Size = new System.Drawing.Size(907, 714);
-            this.ucInformation.TabIndex = 0;
             // 
             // lFirmwareVersion
             // 
@@ -160,6 +146,20 @@
             this.cbFirmwareVersionCheck.Text = "Firmware Version Check";
             this.cbFirmwareVersionCheck.UseVisualStyleBackColor = true;
             // 
+            // ucDigitalDiagnosticsMonitoring
+            // 
+            this.ucDigitalDiagnosticsMonitoring.Location = new System.Drawing.Point(6, 4);
+            this.ucDigitalDiagnosticsMonitoring.Name = "ucDigitalDiagnosticsMonitoring";
+            this.ucDigitalDiagnosticsMonitoring.Size = new System.Drawing.Size(823, 659);
+            this.ucDigitalDiagnosticsMonitoring.TabIndex = 0;
+            // 
+            // ucInformation
+            // 
+            this.ucInformation.Location = new System.Drawing.Point(3, 3);
+            this.ucInformation.Name = "ucInformation";
+            this.ucInformation.Size = new System.Drawing.Size(907, 714);
+            this.ucInformation.TabIndex = 0;
+            // 
             // FDigitalDiagnosticMonitoring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -178,7 +178,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "FDigitalDiagnosticMonitoring";
-            this.Text = "Digital Diagnostic Monitoring 20190813";
+            this.Text = "Digital Diagnostic Monitoring 20200414";
             this.tcDdmAndInformation.ResumeLayout(false);
             this.tpDigitalDiagnosticMonitoring.ResumeLayout(false);
             this.tpInformation.ResumeLayout(false);

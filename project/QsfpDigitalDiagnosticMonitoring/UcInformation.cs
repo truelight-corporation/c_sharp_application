@@ -256,8 +256,7 @@ namespace QsfpDigitalDiagnosticMonitoring
 
         private void _ParserAddr113(byte data)
         {
-            tbNearEndImplementation.Text = "0x" + (data & 0x0F).ToString("X2");
-            tbFarEndImplementation.Text = "0x" + ((data & 0x70) >> 4).ToString("X2");
+            tbNearFarEndImplementation.Text = "0x" + data.ToString("X2");
         }
 
         private void _ParserAddr141(byte data)
@@ -946,7 +945,74 @@ namespace QsfpDigitalDiagnosticMonitoring
             if ((cbCdrOnRx1.Checked == true))
                 data[0] |= 0x01;
 
-            if (i2cWriteCB(80, 93, 1, data) < 0)
+            if (i2cWriteCB(80, 98, 1, data) < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr108()
+        {
+            byte[] data = new byte[2];
+            string sTmp;
+            int i;
+
+            if (i2cWriteCB == null)
+                return -1;
+
+            if (tbPropagationDelay.Text.StartsWith("0x"))
+                sTmp = tbPropagationDelay.Text.Substring(2);
+            else
+                sTmp = tbPropagationDelay.Text;
+            for (i = 0; i < sTmp.Length / 2; i++)
+            {
+                data[i] = Convert.ToByte(sTmp.Substring(i * 2, 2), 16);
+            }
+
+            if (i2cWriteCB(80, 108, 2, data) < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr111()
+        {
+            byte[] data = new byte[2];
+            string sTmp;
+            int i;
+
+            if (i2cWriteCB == null)
+                return -1;
+
+            if (tbPciExpress.Text.StartsWith("0x"))
+                sTmp = tbPciExpress.Text.Substring(2);
+            else
+                sTmp = tbPciExpress.Text;
+            for (i = 0; i < sTmp.Length / 2; i++) {
+                data[i] = Convert.ToByte(sTmp.Substring(i * 2, 2), 16);
+            }
+
+            if (i2cWriteCB(80, 111, 2, data) < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteAddr113()
+        {
+            byte[] data = new byte[1];
+            int iTmp;
+
+            if (i2cWriteCB == null)
+                return -1;
+
+            if (tbNearFarEndImplementation.Text.Length != 4 || tbNearFarEndImplementation.Text.ElementAt(1) != 'x')
+                return -1;
+
+            iTmp = Int32.Parse(tbNearFarEndImplementation.Text.Substring(2), System.Globalization.NumberStyles.HexNumber);
+            data[0] = Convert.ToByte(iTmp);
+
+            if (i2cWriteCB(80, 113, 1, data) < 0)
                 return -1;
 
             return 0;
@@ -1082,6 +1148,8 @@ namespace QsfpDigitalDiagnosticMonitoring
 
             if (cbExtendedRateSelectV1.Checked == true)
                 data[13] = 0x01;
+            if (cbExtendedRateSelectV2.Checked == true)
+                data[13] |= 0x02;
 
             iTmp = Int32.Parse(tbStandardSmFiberLength.Text);
             data[14] = Convert.ToByte(iTmp);
@@ -1103,6 +1171,8 @@ namespace QsfpDigitalDiagnosticMonitoring
             iTmp = Int32.Parse(tbDeviceTech.Text.Substring(2), System.Globalization.NumberStyles.HexNumber);
             data[19] = Convert.ToByte(iTmp);
 
+            for (i = 0; i < 16; i++)
+                data[i + 20] = 0x20;
             bATmp = Encoding.ASCII.GetBytes(tbVendorName.Text);
             System.Buffer.BlockCopy(bATmp, 0, data, 20, bATmp.Length > 16 ? 16 : bATmp.Length);
 
@@ -1119,9 +1189,13 @@ namespace QsfpDigitalDiagnosticMonitoring
                 data[37 + i] = Convert.ToByte(sTmp.Substring(i * 2, 2), 16);
             }
 
+            for (i = 0; i < 16; i++)
+                data[i + 40] = 0x20;
             bATmp = Encoding.ASCII.GetBytes(tbVendorPn.Text);
             System.Buffer.BlockCopy(bATmp, 0, data, 40, bATmp.Length > 16 ? 16 : bATmp.Length);
 
+            for (i = 56; i < 2; i++)
+                data[i] = 0x20;
             bATmp = Encoding.ASCII.GetBytes(tbVendorRev.Text);
             System.Buffer.BlockCopy(bATmp, 0, data, 56, bATmp.Length > 2 ? 2 : bATmp.Length);
 
@@ -1181,9 +1255,23 @@ namespace QsfpDigitalDiagnosticMonitoring
             iTmp = Int32.Parse(tbLinkCodes.Text.Substring(2), System.Globalization.NumberStyles.HexNumber);
             data[0] = Convert.ToByte(iTmp);
 
+            if (cbTxInputEqualizationAutoAdaptive.Checked == true)
+                data[1] |= 0x08;
+            if (cbTxInputEqualizationProgrammable.Checked == true)
+                data[1] |= 0x04;
+            if (cbRxOutputEmphasisProgramming.Checked == true)
+                data[1] |= 0x02;
             if (cbRxOutputAmplitudeProgramming.Checked == true)
                 data[1] |= 0x01;
 
+            if (cbTxCdrOnOffControl.Checked == true)
+                data[2] |= 0x80;
+            if (cbRxCdrOnOffControl.Checked == true)
+                data[2] |= 0x40;
+            if (cbTxCdrLolFlag.Checked == true)
+                data[2] |= 0x20;
+            if (cbRxCdrLolFlag.Checked == true)
+                data[2] |= 0x10;
             if (cbRxSquelchDisableImplemented.Checked == true)
                 data[2] |= 0x08;
             if (cbRxOutputDisableCapable.Checked == true)
@@ -1208,9 +1296,13 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (cbTxLossOfSignal.Checked == true)
                 data[3] |= 0x02;
 
+            for (i = 0; i < 16; i++)
+                data[i + 4] = 0x20;
             bATmp = Encoding.ASCII.GetBytes(tbVendorSn.Text);
             System.Buffer.BlockCopy(bATmp, 0, data, 4, bATmp.Length > 16 ? 16 : bATmp.Length);
 
+            for (i = 0; i < 8; i++)
+                data[i + 20] = 0x20;
             bATmp = Encoding.ASCII.GetBytes(tbDateCode.Text);
             System.Buffer.BlockCopy(bATmp, 0, data, 20, bATmp.Length > 8 ? 8 : bATmp.Length);
 
@@ -1230,9 +1322,9 @@ namespace QsfpDigitalDiagnosticMonitoring
             return 0;
         }
 
-        private int _WriteUpPage3()
+        private int _WirteUpPage3Addr224()
         {
-            byte[] data = new byte[6];
+            byte[] data = new byte[1];
 
             if (i2cWriteCB == null)
                 return -1;
@@ -1241,55 +1333,237 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (i2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
 
-            Array.Clear(data, 0, 6);
+            data[0] = 0;
+            if (cbInputEqualizationMagnitudeTx4.Checked == true)
+                data[0] |= 0x80;
+            if (cbInputEqualizationMagnitudeTx3.Checked == true)
+                data[0] |= 0x40;
+            if (cbInputEqualizationMagnitudeTx2.Checked == true)
+                data[0] |= 0x20;
+            if (cbInputEqualizationMagnitudeTx1.Checked == true)
+                data[0] |= 0x10;
+            if (cbRxOutputEmphasisMagnitudeRx4.Checked == true)
+                data[0] |= 0x08;
+            if (cbRxOutputEmphasisMagnitudeRx3.Checked == true)
+                data[0] |= 0x04;
+            if (cbRxOutputEmphasisMagnitudeRx2.Checked == true)
+                data[0] |= 0x02;
+            if (cbRxOutputEmphasisMagnitudeRx1.Checked == true)
+                data[0] |= 0x01;
+
+            if (i2cWriteCB(80, 224, 1, data) < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WirteUpPage3Addr234()
+        {
+            byte[] data = new byte[1];
+
+            if (i2cWriteCB == null)
+                return -1;
+
+            data[0] = 3;
+            if (i2cWriteCB(80, 127, 1, data) < 0)
+                return -1;
+
+            data[0] = 0;
             data[0] |= (byte)cbInputEqualizationTx2.SelectedIndex;
             data[0] |= (byte)(cbInputEqualizationTx1.SelectedIndex << 4);
 
-            data[1] |= (byte)cbInputEqualizationTx4.SelectedIndex;
-            data[1] |= (byte)(cbInputEqualizationTx3.SelectedIndex << 4);
-
-            data[2] |= (byte)cbRxOutputEmphasisRx2.SelectedIndex;
-            data[2] |= (byte)(cbRxOutputEmphasisRx1.SelectedIndex << 4);
-
-            data[3] |= (byte)cbRxOutputEmphasisRx4.SelectedIndex;
-            data[3] |= (byte)(cbRxOutputEmphasisRx3.SelectedIndex << 4);
-
-            if (cbSqDisableRx4.Checked == true)
-                data[4] |= 0x80;
-            if (cbSqDisableRx3.Checked == true)
-                data[4] |= 0x40;
-            if (cbSqDisableRx2.Checked == true)
-                data[4] |= 0x20;
-            if (cbSqDisableRx1.Checked == true)
-                data[4] |= 0x10;
-            if (cbSqDisableTx4.Checked == true)
-                data[4] |= 0x08;
-            if (cbSqDisableTx3.Checked == true)
-                data[4] |= 0x04;
-            if (cbSqDisableTx2.Checked == true)
-                data[4] |= 0x02;
-            if (cbSqDisableTx1.Checked == true)
-                data[4] |= 0x01;
-
-            if (cbOutputDisableRx4.Checked == true)
-                data[5] |= 0x80;
-            if (cbOutputDisableRx3.Checked == true)
-                data[5] |= 0x40;
-            if (cbOutputDisableRx2.Checked == true)
-                data[5] |= 0x20;
-            if (cbOutputDisableRx1.Checked == true)
-                data[5] |= 0x10;
-            if (cbAdaptiveEqualizationControlTx4.Checked == true)
-                data[5] |= 0x08;
-            if (cbAdaptiveEqualizationControlTx3.Checked == true)
-                data[5] |= 0x04;
-            if (cbAdaptiveEqualizationControlTx2.Checked == true)
-                data[5] |= 0x02;
-            if (cbAdaptiveEqualizationControlTx1.Checked == true)
-                data[5] |= 0x01;
-
-            if (i2cWriteCB(80, 234, 6, data) < 0)
+            if (i2cWriteCB(80, 234, 1, data) < 0)
                 return -1;
+
+            return 0;
+        }
+
+        private int _WirteUpPage3Addr235()
+        {
+            byte[] data = new byte[1];
+
+            if (i2cWriteCB == null)
+                return -1;
+
+            data[0] = 3;
+            if (i2cWriteCB(80, 127, 1, data) < 0)
+                return -1;
+
+            data[0] = 0;
+            data[0] |= (byte)cbInputEqualizationTx4.SelectedIndex;
+            data[0] |= (byte)(cbInputEqualizationTx3.SelectedIndex << 4);
+
+            if (i2cWriteCB(80, 235, 1, data) < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WirteUpPage3Addr236()
+        {
+            byte[] data = new byte[1];
+
+            if (i2cWriteCB == null)
+                return -1;
+
+            data[0] = 3;
+            if (i2cWriteCB(80, 127, 1, data) < 0)
+                return -1;
+
+            data[0] = 0;
+            data[0] |= (byte)cbRxOutputEmphasisRx2.SelectedIndex;
+            data[0] |= (byte)(cbRxOutputEmphasisRx1.SelectedIndex << 4);
+
+            if (i2cWriteCB(80, 236, 1, data) < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WirteUpPage3Addr237()
+        {
+            byte[] data = new byte[1];
+
+            if (i2cWriteCB == null)
+                return -1;
+
+            data[0] = 3;
+            if (i2cWriteCB(80, 127, 1, data) < 0)
+                return -1;
+
+            data[0] = 0;
+            data[0] |= (byte)cbRxOutputEmphasisRx4.SelectedIndex;
+            data[0] |= (byte)(cbRxOutputEmphasisRx3.SelectedIndex << 4);
+
+            if (i2cWriteCB(80, 237, 1, data) < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WirteUpPage3Addr238()
+        {
+            byte[] data = new byte[1];
+
+            if (i2cWriteCB == null)
+                return -1;
+
+            data[0] = 3;
+            if (i2cWriteCB(80, 127, 1, data) < 0)
+                return -1;
+
+            data[0] = 0;
+            data[0] |= (byte)cbOutputAmplitudeRx2.SelectedIndex;
+            data[0] |= (byte)(cbOutputAmplitudeRx1.SelectedIndex << 4);
+
+            if (i2cWriteCB(80, 238, 1, data) < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WirteUpPage3Addr239()
+        {
+            byte[] data = new byte[1];
+
+            if (i2cWriteCB == null)
+                return -1;
+
+            data[0] = 3;
+            if (i2cWriteCB(80, 127, 1, data) < 0)
+                return -1;
+
+            data[0] = 0;
+            data[0] |= (byte)cbOutputAmplitudeRx4.SelectedIndex;
+            data[0] |= (byte)(cbOutputAmplitudeRx3.SelectedIndex << 4);
+
+            if (i2cWriteCB(80, 239, 1, data) < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WirteUpPage3Addr240()
+        {
+            byte[] data = new byte[1];
+
+            if (i2cWriteCB == null)
+                return -1;
+
+            data[0] = 3;
+            if (i2cWriteCB(80, 127, 1, data) < 0)
+                return -1;
+
+            data[0] = 0;
+            if (cbSqDisableRx4.Checked == true)
+                data[0] |= 0x80;
+            if (cbSqDisableRx3.Checked == true)
+                data[0] |= 0x40;
+            if (cbSqDisableRx2.Checked == true)
+                data[0] |= 0x20;
+            if (cbSqDisableRx1.Checked == true)
+                data[0] |= 0x10;
+            if (cbSqDisableTx4.Checked == true)
+                data[0] |= 0x08;
+            if (cbSqDisableTx3.Checked == true)
+                data[0] |= 0x04;
+            if (cbSqDisableTx2.Checked == true)
+                data[0] |= 0x02;
+            if (cbSqDisableTx1.Checked == true)
+                data[0] |= 0x01;
+
+            if (i2cWriteCB(80, 240, 1, data) < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WirteUpPage3Addr241()
+        {
+            byte[] data = new byte[1];
+
+            if (i2cWriteCB == null)
+                return -1;
+
+            data[0] = 3;
+            if (i2cWriteCB(80, 127, 1, data) < 0)
+                return -1;
+
+            data[0] = 0;
+            if (cbOutputDisableRx4.Checked == true)
+                data[0] |= 0x80;
+            if (cbOutputDisableRx3.Checked == true)
+                data[0] |= 0x40;
+            if (cbOutputDisableRx2.Checked == true)
+                data[0] |= 0x20;
+            if (cbOutputDisableRx1.Checked == true)
+                data[0] |= 0x10;
+            if (cbAdaptiveEqualizationControlTx4.Checked == true)
+                data[0] |= 0x08;
+            if (cbAdaptiveEqualizationControlTx3.Checked == true)
+                data[0] |= 0x04;
+            if (cbAdaptiveEqualizationControlTx2.Checked == true)
+                data[0] |= 0x02;
+            if (cbAdaptiveEqualizationControlTx1.Checked == true)
+                data[0] |= 0x01;
+
+            if (i2cWriteCB(80, 241, 1, data) < 0)
+                return -1;
+
+            return 0;
+        }
+
+
+        private int _WriteUpPage3()
+        {
+            _WirteUpPage3Addr234();
+            _WirteUpPage3Addr235();
+            _WirteUpPage3Addr236();
+            _WirteUpPage3Addr237();
+            _WirteUpPage3Addr238();
+            _WirteUpPage3Addr239();
+            _WirteUpPage3Addr240();
+            _WirteUpPage3Addr241();
 
             return 0;
         }
@@ -1352,6 +1626,15 @@ namespace QsfpDigitalDiagnosticMonitoring
                 goto exit;
 
             if (_WriteAddr98() < 0)
+                goto exit;
+
+            if (_WriteAddr108() < 0)
+                goto exit;
+
+            if (_WriteAddr111() < 0)
+                goto exit;
+
+            if (_WriteAddr113() < 0)
                 goto exit;
 
             if (_WriteUpPage0() < 0)
@@ -1426,77 +1709,410 @@ namespace QsfpDigitalDiagnosticMonitoring
 
         private void cbPowerOverride_CheckedChanged(object sender, EventArgs e)
         {
+            if (bRead.Enabled == false)
+                return;
+
             _WriteAddr93();
         }
 
         private void cbPowerSet_CheckedChanged(object sender, EventArgs e)
         {
+            if (bRead.Enabled == false)
+                return;
+
             _WriteAddr93();
         }
 
         private void cbHighPowerClassEnable_CheckedChanged(object sender, EventArgs e)
         {
+            if (bRead.Enabled == false)
+                return;
+
             _WriteAddr93();
         }
 
         private void cbTx1Disable_CheckedChanged(object sender, EventArgs e)
         {
+            if (bRead.Enabled == false)
+                return;
+
             _WriteAddr86();
         }
 
         private void cbTx2Disable_CheckedChanged(object sender, EventArgs e)
         {
+            if (bRead.Enabled == false)
+                return;
+
             _WriteAddr86();
         }
 
         private void cbTx3Disable_CheckedChanged(object sender, EventArgs e)
         {
+            if (bRead.Enabled == false)
+                return;
+
             _WriteAddr86();
         }
 
         private void cbTx4Disable_CheckedChanged(object sender, EventArgs e)
         {
+            if (bRead.Enabled == false)
+                return;
+
             _WriteAddr86();
         }
 
         private void cbCdrOnTx1_CheckedChanged(object sender, EventArgs e)
         {
+            if (bRead.Enabled == false)
+                return;
+
             _WriteAddr98();
         }
 
         private void cbCdrOnTx2_CheckedChanged(object sender, EventArgs e)
         {
+            if (bRead.Enabled == false)
+                return;
+
             _WriteAddr98();
         }
 
         private void cbCdrOnTx3_CheckedChanged(object sender, EventArgs e)
         {
+            if (bRead.Enabled == false)
+                return;
+
             _WriteAddr98();
         }
 
         private void cbCdrOnTx4_CheckedChanged(object sender, EventArgs e)
         {
+            if (bRead.Enabled == false)
+                return;
+
             _WriteAddr98();
         }
 
         private void cbCdrOnRx1_CheckedChanged(object sender, EventArgs e)
         {
+            if (bRead.Enabled == false)
+                return;
+
             _WriteAddr98();
         }
 
         private void cbCdrOnRx2_CheckedChanged(object sender, EventArgs e)
         {
+            if (bRead.Enabled == false)
+                return;
+
             _WriteAddr98();
         }
 
         private void cbCdrOnRx3_CheckedChanged(object sender, EventArgs e)
         {
+            if (bRead.Enabled == false)
+                return;
+
             _WriteAddr98();
         }
 
         private void cbCdrOnRx4_CheckedChanged(object sender, EventArgs e)
         {
+            if (bRead.Enabled == false)
+                return;
+
             _WriteAddr98();
+        }
+
+        private void cbInputEqualizationMagnitudeTx1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr224();
+        }
+
+        private void cbInputEqualizationMagnitudeTx2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr224();
+        }
+
+        private void cbInputEqualizationMagnitudeTx3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr224();
+        }
+
+        private void cbInputEqualizationMagnitudeTx4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr224();
+        }
+
+        private void cbRxOutputEmphasisMagnitudeRx1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr224();
+        }
+
+        private void cbRxOutputEmphasisMagnitudeRx2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr224();
+        }
+
+        private void cbRxOutputEmphasisMagnitudeRx3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr224();
+        }
+
+        private void cbRxOutputEmphasisMagnitudeRx4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr224();
+        }
+        
+        private void cbInputEqualizationTx1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr234();
+        }
+
+        private void cbInputEqualizationTx2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr234();
+        }
+
+        private void cbInputEqualizationTx3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr235();
+        }
+
+        private void cbInputEqualizationTx4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr235();
+        }
+
+        private void cbRxOutputEmphasisRx1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr236();
+        }
+
+        private void cbRxOutputEmphasisRx2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr236();
+        }
+
+        private void cbRxOutputEmphasisRx3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr237();
+        }
+
+        private void cbRxOutputEmphasisRx4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr237();
+        }
+
+        private void cbOutputAmplitudeRx1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr238();
+        }
+
+        private void cbOutputAmplitudeRx2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr238();
+        }
+
+        private void cbOutputAmplitudeRx3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr239();
+        }
+
+        private void cbOutputAmplitudeRx4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr239();
+        }
+
+        private void cbSqDisableTx1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr240();
+        }
+
+        private void cbSqDisableTx2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr240();
+        }
+
+        private void cbSqDisableTx3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr240();
+        }
+
+        private void cbSqDisableTx4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr240();
+        }
+
+        private void cbSqDisableRx1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr240();
+        }
+
+        private void cbSqDisableRx2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr240();
+        }
+
+        private void cbSqDisableRx3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr240();
+        }
+
+        private void cbSqDisableRx4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr240();
+        }
+
+        private void cbAdaptiveEqualizationControlTx1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr241();
+        }
+
+        private void cbAdaptiveEqualizationControlTx2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr241();
+        }
+
+        private void cbAdaptiveEqualizationControlTx3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr241();
+        }
+
+        private void cbAdaptiveEqualizationControlTx4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr241();
+        }
+
+        private void cbOutputDisableRx1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr241();
+        }
+
+        private void cbOutputDisableRx2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr241();
+        }
+
+        private void cbOutputDisableRx3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr241();
+        }
+
+        private void cbOutputDisableRx4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (bRead.Enabled == false)
+                return;
+
+            _WirteUpPage3Addr241();
         }
     }
 }
