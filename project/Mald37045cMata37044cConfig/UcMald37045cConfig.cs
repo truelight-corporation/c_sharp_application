@@ -8183,7 +8183,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL0InputEqualization0db.SelectedItem);
+            bTmp = Convert.ToByte(cbL0InputEqualization0db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xA0, 1, data);
@@ -8200,7 +8200,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL0InputEqualization1db.SelectedItem);
+            bTmp = Convert.ToByte(cbL0InputEqualization1db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xA1, 1, data);
@@ -8217,7 +8217,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL0InputEqualization2db.SelectedItem);
+            bTmp = Convert.ToByte(cbL0InputEqualization2db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xA2, 1, data);
@@ -8234,7 +8234,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL0InputEqualization3db.SelectedItem);
+            bTmp = Convert.ToByte(cbL0InputEqualization3db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xA3, 1, data);
@@ -8251,7 +8251,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL0InputEqualization4db.SelectedItem);
+            bTmp = Convert.ToByte(cbL0InputEqualization4db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xA4, 1, data);
@@ -8268,7 +8268,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL0InputEqualization5db.SelectedItem);
+            bTmp = Convert.ToByte(cbL0InputEqualization5db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xA5, 1, data);
@@ -8285,7 +8285,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL0InputEqualization6db.SelectedItem);
+            bTmp = Convert.ToByte(cbL0InputEqualization6db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xA6, 1, data);
@@ -8302,7 +8302,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL0InputEqualization7db.SelectedItem);
+            bTmp = Convert.ToByte(cbL0InputEqualization7db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xA7, 1, data);
@@ -8319,7 +8319,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL0InputEqualization8db.SelectedItem);
+            bTmp = Convert.ToByte(cbL0InputEqualization8db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xA8, 1, data);
@@ -8336,7 +8336,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL0InputEqualization9db.SelectedItem);
+            bTmp = Convert.ToByte(cbL0InputEqualization9db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xA9, 1, data);
@@ -8353,7 +8353,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL0InputEqualization10db.SelectedItem);
+            bTmp = Convert.ToByte(cbL0InputEqualization10db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xAA, 1, data);
@@ -8370,7 +8370,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
             
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL0InputEqualizationReserved0.SelectedItem);
+            bTmp = Convert.ToByte(cbL0InputEqualizationReserved0.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xAB, 1, data);
@@ -8387,7 +8387,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL0InputEqualizationReserved1.SelectedItem);
+            bTmp = Convert.ToByte(cbL0InputEqualizationReserved1.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xAC, 1, data);
@@ -8404,7 +8404,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL1InputEqualization0db.SelectedItem);
+            bTmp = Convert.ToByte(cbL1InputEqualization0db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xAD, 1, data);
@@ -8421,7 +8421,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL1InputEqualization1db.SelectedItem);
+            bTmp = Convert.ToByte(cbL1InputEqualization1db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xAE, 1, data);
@@ -8438,7 +8438,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL1InputEqualization2db.SelectedItem);
+            bTmp = Convert.ToByte(cbL1InputEqualization2db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xAF, 1, data);
@@ -8455,7 +8455,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL1InputEqualization3db.SelectedItem);
+            bTmp = Convert.ToByte(cbL1InputEqualization3db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xB0, 1, data);
@@ -8472,7 +8472,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL1InputEqualization4db.SelectedItem);
+            bTmp = Convert.ToByte(cbL1InputEqualization4db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xB1, 1, data);
@@ -8489,7 +8489,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL1InputEqualization5db.SelectedItem);
+            bTmp = Convert.ToByte(cbL1InputEqualization5db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xB2, 1, data);
@@ -8506,7 +8506,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL1InputEqualization6db.SelectedItem);
+            bTmp = Convert.ToByte(cbL1InputEqualization6db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xB3, 1, data);
@@ -8523,7 +8523,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL1InputEqualization7db.SelectedItem);
+            bTmp = Convert.ToByte(cbL1InputEqualization7db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xB4, 1, data);
@@ -8540,7 +8540,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL1InputEqualization8db.SelectedItem);
+            bTmp = Convert.ToByte(cbL1InputEqualization8db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xB5, 1, data);
@@ -8557,7 +8557,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL1InputEqualization9db.SelectedItem);
+            bTmp = Convert.ToByte(cbL1InputEqualization9db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xB6, 1, data);
@@ -8574,7 +8574,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL1InputEqualization10db.SelectedItem);
+            bTmp = Convert.ToByte(cbL1InputEqualization10db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xB7, 1, data);
@@ -8591,7 +8591,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL1InputEqualizationReserved0.SelectedItem);
+            bTmp = Convert.ToByte(cbL1InputEqualizationReserved0.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xB8, 1, data);
@@ -8608,7 +8608,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL1InputEqualizationReserved1.SelectedItem);
+            bTmp = Convert.ToByte(cbL1InputEqualizationReserved1.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xB9, 1, data);
@@ -8625,7 +8625,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL2InputEqualization0db.SelectedItem);
+            bTmp = Convert.ToByte(cbL2InputEqualization0db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xBA, 1, data);
@@ -8642,7 +8642,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL2InputEqualization1db.SelectedItem);
+            bTmp = Convert.ToByte(cbL2InputEqualization1db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xBB, 1, data);
@@ -8659,7 +8659,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL2InputEqualization2db.SelectedItem);
+            bTmp = Convert.ToByte(cbL2InputEqualization2db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xBC, 1, data);
@@ -8676,7 +8676,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL2InputEqualization3db.SelectedItem);
+            bTmp = Convert.ToByte(cbL2InputEqualization3db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xBD, 1, data);
@@ -8693,7 +8693,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL2InputEqualization4db.SelectedItem);
+            bTmp = Convert.ToByte(cbL2InputEqualization4db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xBE, 1, data);
@@ -8710,7 +8710,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL2InputEqualization5db.SelectedItem);
+            bTmp = Convert.ToByte(cbL2InputEqualization5db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xBF, 1, data);
@@ -8727,7 +8727,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL2InputEqualization6db.SelectedItem);
+            bTmp = Convert.ToByte(cbL2InputEqualization6db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xC0, 1, data);
@@ -8744,7 +8744,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL2InputEqualization7db.SelectedItem);
+            bTmp = Convert.ToByte(cbL2InputEqualization7db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xC1, 1, data);
@@ -8761,7 +8761,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL2InputEqualization8db.SelectedItem);
+            bTmp = Convert.ToByte(cbL2InputEqualization8db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xC2, 1, data);
@@ -8778,7 +8778,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL2InputEqualization9db.SelectedItem);
+            bTmp = Convert.ToByte(cbL2InputEqualization9db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xC3, 1, data);
@@ -8795,7 +8795,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL2InputEqualization10db.SelectedItem);
+            bTmp = Convert.ToByte(cbL2InputEqualization10db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xC4, 1, data);
@@ -8812,7 +8812,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL2InputEqualizationReserved0.SelectedItem);
+            bTmp = Convert.ToByte(cbL2InputEqualizationReserved0.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xC5, 1, data);
@@ -8829,7 +8829,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL2InputEqualizationReserved1.SelectedItem);
+            bTmp = Convert.ToByte(cbL2InputEqualizationReserved1.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xC6, 1, data);
@@ -8846,7 +8846,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL3InputEqualization0db.SelectedItem);
+            bTmp = Convert.ToByte(cbL3InputEqualization0db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xC7, 1, data);
@@ -8863,7 +8863,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL3InputEqualization1db.SelectedItem);
+            bTmp = Convert.ToByte(cbL3InputEqualization1db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xC8, 1, data);
@@ -8880,7 +8880,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL3InputEqualization2db.SelectedItem);
+            bTmp = Convert.ToByte(cbL3InputEqualization2db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xC9, 1, data);
@@ -8897,7 +8897,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL3InputEqualization3db.SelectedItem);
+            bTmp = Convert.ToByte(cbL3InputEqualization3db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xCA, 1, data);
@@ -8914,7 +8914,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL3InputEqualization4db.SelectedItem);
+            bTmp = Convert.ToByte(cbL3InputEqualization4db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xCB, 1, data);
@@ -8931,7 +8931,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL3InputEqualization5db.SelectedItem);
+            bTmp = Convert.ToByte(cbL3InputEqualization5db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xCC, 1, data);
@@ -8948,7 +8948,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL3InputEqualization6db.SelectedItem);
+            bTmp = Convert.ToByte(cbL3InputEqualization6db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xCD, 1, data);
@@ -8965,7 +8965,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL3InputEqualization7db.SelectedItem);
+            bTmp = Convert.ToByte(cbL3InputEqualization7db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xCE, 1, data);
@@ -8982,7 +8982,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL3InputEqualization8db.SelectedItem);
+            bTmp = Convert.ToByte(cbL3InputEqualization8db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xCF, 1, data);
@@ -8999,7 +8999,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL3InputEqualization9db.SelectedItem);
+            bTmp = Convert.ToByte(cbL3InputEqualization9db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xD0, 1, data);
@@ -9016,7 +9016,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL3InputEqualization10db.SelectedItem);
+            bTmp = Convert.ToByte(cbL3InputEqualization10db.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xD1, 1, data);
@@ -9033,7 +9033,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL3InputEqualizationReserved0.SelectedItem);
+            bTmp = Convert.ToByte(cbL3InputEqualizationReserved0.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xD2, 1, data);
@@ -9050,7 +9050,7 @@ namespace Mald37045cMata37044c
             byte bTmp;
 
             bTmp = data[0] = 0;
-            bTmp = Convert.ToByte(cbL3InputEqualizationReserved1.SelectedItem);
+            bTmp = Convert.ToByte(cbL3InputEqualizationReserved1.SelectedIndex);
             data[0] |= bTmp;
 
             rv = i2cWriteCB(devAddr, 0xD3, 1, data);
