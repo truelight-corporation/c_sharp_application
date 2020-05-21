@@ -180,6 +180,65 @@ namespace QsfpPlus40gSr4SerialNumberWiter
             _SetQsfpMode(0);
         }
 
+        private int _SetModuleYcSerialNumber()
+        {
+            String sRead;
+            byte[] tmp;
+            byte[] data = new byte[16];
+            byte[] baReadTmp = new byte[16];
+            int i;
+
+            if (_WritePassword() < 0)
+                return -1;
+
+            if (_SetQsfpMode(0x4D) < 0)
+                return -1;
+
+            if (i2cWriteCB == null)
+                return -1;
+
+            if (i2cReadCB == null)
+                return -1;
+
+            data[0] = 5;
+            if (i2cWriteCB(80, 127, 1, data) < 0)
+                return -1;
+
+            tmp = System.Text.Encoding.Default.GetBytes(tbYcSerialNumber.Text);
+
+            for (i = 0; i < 16; i++)
+            {
+                if (i < tmp.Length)
+                    data[i] = tmp[i];
+                else
+                    data[i] = 0;
+            }
+
+            if (i2cWriteCB(80, 220, 16, data) < 0)
+                return -1;
+
+            if (i2cReadCB(80, 220, 16, baReadTmp) != 16)
+                return -1;
+
+            for (i = 0; i < 16; i++)
+            {
+                if (baReadTmp[i] != '\0')
+                {
+                    if (data[i] != baReadTmp[i])
+                    {
+                        sRead = System.Text.Encoding.Default.GetString(baReadTmp);
+                        MessageBox.Show("設定 YC serial number 失敗!! 讀(" +
+                            sRead + ") != 寫(" + tbYcSerialNumber.Text + ")\n!!請重新記錄!!");
+                        return -1;
+                    }
+                }
+            }
+
+            _StoreIntoFlash();
+
+            return 0;
+        }
+
         private int _SetModuleXaSerialNumber()
         {
             String sRead;
@@ -244,6 +303,8 @@ namespace QsfpPlus40gSr4SerialNumberWiter
 
                 if (writeSerialNumber == true) {
                     bwMonitor.ReportProgress(1, null);
+                    if (tbYcSerialNumber.ReadOnly == false)
+                        _SetModuleYcSerialNumber();
                     _SetModuleXaSerialNumber();
                     Thread.Sleep(1000); // Wait value stable
                     bwMonitor.ReportProgress(10, null);
@@ -353,18 +414,30 @@ namespace QsfpPlus40gSr4SerialNumberWiter
             }
 
             if (writeSerialNumber == false) {
-                if (!sYcSerialNumber.Equals("")) {
-                    if (bWriteXaSerialNumber.Enabled == false)
-                        bWriteXaSerialNumber.Enabled = true;
+                if ((sYcSerialNumber.IndexOf("YC") == 0)) {
+                    tbYcSerialNumber.ReadOnly = true;
+                    tbYcSerialNumber.BackColor = System.Drawing.Color.DarkSeaGreen;
+                    tbYcSerialNumber.Text = sYcSerialNumber;
+                    tbYcSerialNumber.Update();
+                    bWriteXaSerialNumber.Enabled = true;
                 }
                 else {
-                    if (bWriteXaSerialNumber.Enabled == true)
+                    String tmp;
+                    tbYcSerialNumber.ReadOnly = false;
+                    tbYcSerialNumber.BackColor = System.Drawing.Color.YellowGreen;
+                    if (tbYcSerialNumber.Text.Length != 15)
                         bWriteXaSerialNumber.Enabled = false;
+                    else
+                        bWriteXaSerialNumber.Enabled = true;
+                    if (tbYcSerialNumber.Text.Length == 17) {
+                        tmp = tbYcSerialNumber.Text;
+                        tbYcSerialNumber.Text = tmp.Substring(0, 8) + tmp.Substring(9, 3) +
+                            tmp.Substring(13, 4);
+                        tbYcSerialNumber.Update();
+                    }
                 }
             }
-            
-            tbYcSerialNumber.Text = sYcSerialNumber;
-            tbYcSerialNumber.Update();
+
             tbXaSerialNumber.Text = sXaSerialNumber;
             tbXaSerialNumber.Update();
 

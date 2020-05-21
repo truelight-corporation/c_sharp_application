@@ -59,7 +59,7 @@
             // 
             // ucSerialNumberWriter
             // 
-            this.ucSerialNumberWriter.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.ucSerialNumberWriter.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.ucSerialNumberWriter.Location = new System.Drawing.Point(16, 33);
             this.ucSerialNumberWriter.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.ucSerialNumberWriter.Name = "ucSerialNumberWriter";
@@ -74,10 +74,10 @@
             this.Controls.Add(this.cbStartReadSerialNumber);
             this.Controls.Add(this.ucSerialNumberWriter);
             this.Controls.Add(this.cbI2cAdapterConnected);
-            this.Font = new System.Drawing.Font("PMingLiU", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.KeyPreview = true;
             this.Name = "Form1";
-            this.Text = "XaSerialNumberWrite 20190304";
+            this.Text = "XaSerialNumberWrite 20200205";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
