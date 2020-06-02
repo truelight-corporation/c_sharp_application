@@ -27,12 +27,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.bLoadFile = new System.Windows.Forms.Button();
             this.tbConfigFilePath = new System.Windows.Forms.TextBox();
             this.lConfigFilePath = new System.Windows.Forms.Label();
@@ -48,10 +43,10 @@
             this.tbRxPowerRate1 = new System.Windows.Forms.TextBox();
             this.tbTemperatureOffset = new System.Windows.Forms.TextBox();
             this.tbVoltageOffset = new System.Windows.Forms.TextBox();
-            this.lUpPage5 = new System.Windows.Forms.Label();
-            this.dgvRegisterValueUpPage5 = new System.Windows.Forms.DataGridView();
-            this.lUpPage4 = new System.Windows.Forms.Label();
-            this.dgvRegisterValueUpPage4 = new System.Windows.Forms.DataGridView();
+            this.lCustomerPage1 = new System.Windows.Forms.Label();
+            this.dgvRegisterValueCustomerPage1 = new System.Windows.Forms.DataGridView();
+            this.lCustomerPage0 = new System.Windows.Forms.Label();
+            this.dgvRegisterValueCustomerPage0 = new System.Windows.Forms.DataGridView();
             this.lUpPage3 = new System.Windows.Forms.Label();
             this.dgvRegisterValueUpPage3 = new System.Windows.Forms.DataGridView();
             this.lUpPage0 = new System.Windows.Forms.Label();
@@ -131,6 +126,13 @@
             this.tbYcSerialNumber = new System.Windows.Forms.TextBox();
             this.lYcSerialNumber = new System.Windows.Forms.Label();
             this.tpConfig = new System.Windows.Forms.TabPage();
+            this.lCustomerPageControlConfig = new System.Windows.Forms.Label();
+            this.tbCustomerPageControlConfig = new System.Windows.Forms.TextBox();
+            this.lCustomerPage1Config = new System.Windows.Forms.Label();
+            this.tbCustomerPage1Config = new System.Windows.Forms.TextBox();
+            this.lCustomerPage0Config = new System.Windows.Forms.Label();
+            this.tbCustomerPage0Config = new System.Windows.Forms.TextBox();
+            this.lCustomerPageConfig = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tbRxRateMax = new System.Windows.Forms.TextBox();
             this.tbRxRateMin = new System.Windows.Forms.TextBox();
@@ -193,8 +195,8 @@
             this.lVoltageThreshold = new System.Windows.Forms.Label();
             this.tcFunctionSelect.SuspendLayout();
             this.tpCorrector.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvRegisterValueUpPage5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvRegisterValueUpPage4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRegisterValueCustomerPage1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRegisterValueCustomerPage0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegisterValueUpPage3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegisterValueUpPage0)).BeginInit();
             this.gbStatus.SuspendLayout();
@@ -272,10 +274,10 @@
             this.tpCorrector.Controls.Add(this.tbRxPowerRate1);
             this.tpCorrector.Controls.Add(this.tbTemperatureOffset);
             this.tpCorrector.Controls.Add(this.tbVoltageOffset);
-            this.tpCorrector.Controls.Add(this.lUpPage5);
-            this.tpCorrector.Controls.Add(this.dgvRegisterValueUpPage5);
-            this.tpCorrector.Controls.Add(this.lUpPage4);
-            this.tpCorrector.Controls.Add(this.dgvRegisterValueUpPage4);
+            this.tpCorrector.Controls.Add(this.lCustomerPage1);
+            this.tpCorrector.Controls.Add(this.dgvRegisterValueCustomerPage1);
+            this.tpCorrector.Controls.Add(this.lCustomerPage0);
+            this.tpCorrector.Controls.Add(this.dgvRegisterValueCustomerPage0);
             this.tpCorrector.Controls.Add(this.lUpPage3);
             this.tpCorrector.Controls.Add(this.dgvRegisterValueUpPage3);
             this.tpCorrector.Controls.Add(this.lUpPage0);
@@ -437,73 +439,57 @@
             this.tbVoltageOffset.Size = new System.Drawing.Size(70, 30);
             this.tbVoltageOffset.TabIndex = 101;
             // 
-            // lUpPage5
+            // lCustomerPage1
             // 
-            this.lUpPage5.AutoSize = true;
-            this.lUpPage5.Font = new System.Drawing.Font("PMingLiU", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lUpPage5.Location = new System.Drawing.Point(843, 282);
-            this.lUpPage5.Name = "lUpPage5";
-            this.lUpPage5.Size = new System.Drawing.Size(85, 19);
-            this.lUpPage5.TabIndex = 100;
-            this.lUpPage5.Text = "Up Page 5";
+            this.lCustomerPage1.AutoSize = true;
+            this.lCustomerPage1.Font = new System.Drawing.Font("PMingLiU", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lCustomerPage1.Location = new System.Drawing.Point(819, 282);
+            this.lCustomerPage1.Name = "lCustomerPage1";
+            this.lCustomerPage1.Size = new System.Drawing.Size(133, 19);
+            this.lCustomerPage1.TabIndex = 100;
+            this.lCustomerPage1.Text = "Customer Page 1";
             // 
-            // dgvRegisterValueUpPage5
+            // dgvRegisterValueCustomerPage1
             // 
-            this.dgvRegisterValueUpPage5.AllowUserToAddRows = false;
-            this.dgvRegisterValueUpPage5.AllowUserToDeleteRows = false;
-            this.dgvRegisterValueUpPage5.AllowUserToResizeColumns = false;
-            this.dgvRegisterValueUpPage5.AllowUserToResizeRows = false;
-            this.dgvRegisterValueUpPage5.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("PMingLiU", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRegisterValueUpPage5.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.dgvRegisterValueUpPage5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRegisterValueUpPage5.Location = new System.Drawing.Point(790, 304);
-            this.dgvRegisterValueUpPage5.Name = "dgvRegisterValueUpPage5";
-            this.dgvRegisterValueUpPage5.ReadOnly = true;
-            this.dgvRegisterValueUpPage5.RowHeadersWidth = 15;
-            this.dgvRegisterValueUpPage5.RowTemplate.Height = 24;
-            this.dgvRegisterValueUpPage5.Size = new System.Drawing.Size(190, 300);
-            this.dgvRegisterValueUpPage5.TabIndex = 99;
+            this.dgvRegisterValueCustomerPage1.AllowUserToAddRows = false;
+            this.dgvRegisterValueCustomerPage1.AllowUserToDeleteRows = false;
+            this.dgvRegisterValueCustomerPage1.AllowUserToResizeColumns = false;
+            this.dgvRegisterValueCustomerPage1.AllowUserToResizeRows = false;
+            this.dgvRegisterValueCustomerPage1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dgvRegisterValueCustomerPage1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRegisterValueCustomerPage1.Location = new System.Drawing.Point(790, 304);
+            this.dgvRegisterValueCustomerPage1.Name = "dgvRegisterValueCustomerPage1";
+            this.dgvRegisterValueCustomerPage1.ReadOnly = true;
+            this.dgvRegisterValueCustomerPage1.RowHeadersWidth = 15;
+            this.dgvRegisterValueCustomerPage1.RowTemplate.Height = 24;
+            this.dgvRegisterValueCustomerPage1.Size = new System.Drawing.Size(190, 300);
+            this.dgvRegisterValueCustomerPage1.TabIndex = 99;
             // 
-            // lUpPage4
+            // lCustomerPage0
             // 
-            this.lUpPage4.AutoSize = true;
-            this.lUpPage4.Font = new System.Drawing.Font("PMingLiU", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lUpPage4.Location = new System.Drawing.Point(647, 282);
-            this.lUpPage4.Name = "lUpPage4";
-            this.lUpPage4.Size = new System.Drawing.Size(85, 19);
-            this.lUpPage4.TabIndex = 98;
-            this.lUpPage4.Text = "Up Page 4";
+            this.lCustomerPage0.AutoSize = true;
+            this.lCustomerPage0.Font = new System.Drawing.Font("PMingLiU", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lCustomerPage0.Location = new System.Drawing.Point(623, 282);
+            this.lCustomerPage0.Name = "lCustomerPage0";
+            this.lCustomerPage0.Size = new System.Drawing.Size(133, 19);
+            this.lCustomerPage0.TabIndex = 98;
+            this.lCustomerPage0.Text = "Customer Page 0";
             // 
-            // dgvRegisterValueUpPage4
+            // dgvRegisterValueCustomerPage0
             // 
-            this.dgvRegisterValueUpPage4.AllowUserToAddRows = false;
-            this.dgvRegisterValueUpPage4.AllowUserToDeleteRows = false;
-            this.dgvRegisterValueUpPage4.AllowUserToResizeColumns = false;
-            this.dgvRegisterValueUpPage4.AllowUserToResizeRows = false;
-            this.dgvRegisterValueUpPage4.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("PMingLiU", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRegisterValueUpPage4.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
-            this.dgvRegisterValueUpPage4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRegisterValueUpPage4.Location = new System.Drawing.Point(594, 304);
-            this.dgvRegisterValueUpPage4.Name = "dgvRegisterValueUpPage4";
-            this.dgvRegisterValueUpPage4.ReadOnly = true;
-            this.dgvRegisterValueUpPage4.RowHeadersWidth = 15;
-            this.dgvRegisterValueUpPage4.RowTemplate.Height = 24;
-            this.dgvRegisterValueUpPage4.Size = new System.Drawing.Size(190, 300);
-            this.dgvRegisterValueUpPage4.TabIndex = 97;
+            this.dgvRegisterValueCustomerPage0.AllowUserToAddRows = false;
+            this.dgvRegisterValueCustomerPage0.AllowUserToDeleteRows = false;
+            this.dgvRegisterValueCustomerPage0.AllowUserToResizeColumns = false;
+            this.dgvRegisterValueCustomerPage0.AllowUserToResizeRows = false;
+            this.dgvRegisterValueCustomerPage0.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dgvRegisterValueCustomerPage0.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRegisterValueCustomerPage0.Location = new System.Drawing.Point(594, 304);
+            this.dgvRegisterValueCustomerPage0.Name = "dgvRegisterValueCustomerPage0";
+            this.dgvRegisterValueCustomerPage0.ReadOnly = true;
+            this.dgvRegisterValueCustomerPage0.RowHeadersWidth = 15;
+            this.dgvRegisterValueCustomerPage0.RowTemplate.Height = 24;
+            this.dgvRegisterValueCustomerPage0.Size = new System.Drawing.Size(190, 300);
+            this.dgvRegisterValueCustomerPage0.TabIndex = 97;
             // 
             // lUpPage3
             // 
@@ -522,14 +508,6 @@
             this.dgvRegisterValueUpPage3.AllowUserToResizeColumns = false;
             this.dgvRegisterValueUpPage3.AllowUserToResizeRows = false;
             this.dgvRegisterValueUpPage3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("PMingLiU", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRegisterValueUpPage3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvRegisterValueUpPage3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRegisterValueUpPage3.Location = new System.Drawing.Point(398, 304);
             this.dgvRegisterValueUpPage3.Name = "dgvRegisterValueUpPage3";
@@ -566,14 +544,6 @@
             this.dgvRegisterValueUpPage0.AllowUserToResizeColumns = false;
             this.dgvRegisterValueUpPage0.AllowUserToResizeRows = false;
             this.dgvRegisterValueUpPage0.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("PMingLiU", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRegisterValueUpPage0.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvRegisterValueUpPage0.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRegisterValueUpPage0.Location = new System.Drawing.Point(202, 304);
             this.dgvRegisterValueUpPage0.Name = "dgvRegisterValueUpPage0";
@@ -1074,21 +1044,13 @@
             this.dgvRegisterValueLowPage.AllowUserToResizeColumns = false;
             this.dgvRegisterValueLowPage.AllowUserToResizeRows = false;
             this.dgvRegisterValueLowPage.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("PMingLiU", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRegisterValueLowPage.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dgvRegisterValueLowPage.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRegisterValueLowPage.Location = new System.Drawing.Point(6, 304);
             this.dgvRegisterValueLowPage.Name = "dgvRegisterValueLowPage";
             this.dgvRegisterValueLowPage.ReadOnly = true;
             this.dgvRegisterValueLowPage.RowHeadersWidth = 15;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("PMingLiU", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dgvRegisterValueLowPage.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("PMingLiU", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dgvRegisterValueLowPage.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvRegisterValueLowPage.RowTemplate.Height = 24;
             this.dgvRegisterValueLowPage.Size = new System.Drawing.Size(190, 300);
             this.dgvRegisterValueLowPage.TabIndex = 35;
@@ -1359,6 +1321,13 @@
             // 
             // tpConfig
             // 
+            this.tpConfig.Controls.Add(this.lCustomerPageControlConfig);
+            this.tpConfig.Controls.Add(this.tbCustomerPageControlConfig);
+            this.tpConfig.Controls.Add(this.lCustomerPage1Config);
+            this.tpConfig.Controls.Add(this.tbCustomerPage1Config);
+            this.tpConfig.Controls.Add(this.lCustomerPage0Config);
+            this.tpConfig.Controls.Add(this.tbCustomerPage0Config);
+            this.tpConfig.Controls.Add(this.lCustomerPageConfig);
             this.tpConfig.Controls.Add(this.label1);
             this.tpConfig.Controls.Add(this.tbRxRateMax);
             this.tpConfig.Controls.Add(this.tbRxRateMin);
@@ -1428,6 +1397,69 @@
             this.tpConfig.TabIndex = 1;
             this.tpConfig.Text = "設定";
             this.tpConfig.UseVisualStyleBackColor = true;
+            // 
+            // lCustomerPageControlConfig
+            // 
+            this.lCustomerPageControlConfig.AutoSize = true;
+            this.lCustomerPageControlConfig.Location = new System.Drawing.Point(329, 257);
+            this.lCustomerPageControlConfig.Name = "lCustomerPageControlConfig";
+            this.lCustomerPageControlConfig.Size = new System.Drawing.Size(66, 19);
+            this.lCustomerPageControlConfig.TabIndex = 90;
+            this.lCustomerPageControlConfig.Text = "控制頁";
+            // 
+            // tbCustomerPageControlConfig
+            // 
+            this.tbCustomerPageControlConfig.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbCustomerPageControlConfig.Location = new System.Drawing.Point(322, 279);
+            this.tbCustomerPageControlConfig.Name = "tbCustomerPageControlConfig";
+            this.tbCustomerPageControlConfig.Size = new System.Drawing.Size(80, 30);
+            this.tbCustomerPageControlConfig.TabIndex = 89;
+            this.tbCustomerPageControlConfig.Text = "32";
+            // 
+            // lCustomerPage1Config
+            // 
+            this.lCustomerPage1Config.AutoSize = true;
+            this.lCustomerPage1Config.Location = new System.Drawing.Point(258, 257);
+            this.lCustomerPage1Config.Name = "lCustomerPage1Config";
+            this.lCustomerPage1Config.Size = new System.Drawing.Size(37, 19);
+            this.lCustomerPage1Config.TabIndex = 88;
+            this.lCustomerPage1Config.Text = "1頁";
+            // 
+            // tbCustomerPage1Config
+            // 
+            this.tbCustomerPage1Config.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbCustomerPage1Config.Location = new System.Drawing.Point(236, 279);
+            this.tbCustomerPage1Config.Name = "tbCustomerPage1Config";
+            this.tbCustomerPage1Config.Size = new System.Drawing.Size(80, 30);
+            this.tbCustomerPage1Config.TabIndex = 87;
+            this.tbCustomerPage1Config.Text = "5";
+            // 
+            // lCustomerPage0Config
+            // 
+            this.lCustomerPage0Config.AutoSize = true;
+            this.lCustomerPage0Config.Location = new System.Drawing.Point(172, 257);
+            this.lCustomerPage0Config.Name = "lCustomerPage0Config";
+            this.lCustomerPage0Config.Size = new System.Drawing.Size(37, 19);
+            this.lCustomerPage0Config.TabIndex = 86;
+            this.lCustomerPage0Config.Text = "0頁";
+            // 
+            // tbCustomerPage0Config
+            // 
+            this.tbCustomerPage0Config.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbCustomerPage0Config.Location = new System.Drawing.Point(150, 279);
+            this.tbCustomerPage0Config.Name = "tbCustomerPage0Config";
+            this.tbCustomerPage0Config.Size = new System.Drawing.Size(80, 30);
+            this.tbCustomerPage0Config.TabIndex = 85;
+            this.tbCustomerPage0Config.Text = "4";
+            // 
+            // lCustomerPageConfig
+            // 
+            this.lCustomerPageConfig.AutoSize = true;
+            this.lCustomerPageConfig.Location = new System.Drawing.Point(6, 282);
+            this.lCustomerPageConfig.Name = "lCustomerPageConfig";
+            this.lCustomerPageConfig.Size = new System.Drawing.Size(124, 19);
+            this.lCustomerPageConfig.TabIndex = 84;
+            this.lCustomerPageConfig.Text = "Customer Page:";
             // 
             // label1
             // 
@@ -1967,8 +1999,8 @@
             this.tcFunctionSelect.ResumeLayout(false);
             this.tpCorrector.ResumeLayout(false);
             this.tpCorrector.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvRegisterValueUpPage5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvRegisterValueUpPage4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRegisterValueCustomerPage1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRegisterValueCustomerPage0)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegisterValueUpPage3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegisterValueUpPage0)).EndInit();
             this.gbStatus.ResumeLayout(false);
@@ -2106,10 +2138,10 @@
         private System.Windows.Forms.CheckBox cbVoltageLowAlarm;
         private System.Windows.Forms.CheckBox cbVoltageHighWarning;
         private System.Windows.Forms.CheckBox cbVoltageHighAlarm;
-        private System.Windows.Forms.Label lUpPage5;
-        private System.Windows.Forms.DataGridView dgvRegisterValueUpPage5;
-        private System.Windows.Forms.Label lUpPage4;
-        private System.Windows.Forms.DataGridView dgvRegisterValueUpPage4;
+        private System.Windows.Forms.Label lCustomerPage1;
+        private System.Windows.Forms.DataGridView dgvRegisterValueCustomerPage1;
+        private System.Windows.Forms.Label lCustomerPage0;
+        private System.Windows.Forms.DataGridView dgvRegisterValueCustomerPage0;
         private System.Windows.Forms.Label lUpPage3;
         private System.Windows.Forms.DataGridView dgvRegisterValueUpPage3;
         private System.Windows.Forms.Label lUpPage0;
@@ -2139,5 +2171,12 @@
         private System.Windows.Forms.TextBox tbRxRateMax;
         private System.Windows.Forms.TextBox tbRxRateMin;
         private System.Windows.Forms.Label lRxRateMin;
+        private System.Windows.Forms.Label lCustomerPageControlConfig;
+        private System.Windows.Forms.TextBox tbCustomerPageControlConfig;
+        private System.Windows.Forms.Label lCustomerPage1Config;
+        private System.Windows.Forms.TextBox tbCustomerPage1Config;
+        private System.Windows.Forms.Label lCustomerPage0Config;
+        private System.Windows.Forms.TextBox tbCustomerPage0Config;
+        private System.Windows.Forms.Label lCustomerPageConfig;
     }
 }

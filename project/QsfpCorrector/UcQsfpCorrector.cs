@@ -25,8 +25,8 @@ namespace QsfpCorrector
         private DataTable dtRegValueLowPage = new DataTable();
         private DataTable dtRegValueUpPage0 = new DataTable();
         private DataTable dtRegValueUpPage3 = new DataTable();
-        private DataTable dtRegValueUpPage4 = new DataTable();
-        private DataTable dtRegValueUpPage5 = new DataTable();
+        private DataTable dtRegValueCustomerPage0 = new DataTable();
+        private DataTable dtRegValueCustomerPage1 = new DataTable();
         private BackgroundWorker bwAutoRead;
         private String fileDirectory = "d:\\QsfpCorrectorLog";
         private volatile String voltageValue, temperatureValue, ycSerialNumber, xaSerialNumber, firmwareDataCode;
@@ -63,12 +63,12 @@ namespace QsfpCorrector
             dtRegValueUpPage3.Columns.Add("Addr", typeof(String));
             dtRegValueUpPage3.Columns.Add("Value", typeof(String));
             dtRegValueUpPage3.Columns.Add("Read", typeof(String));
-            dtRegValueUpPage4.Columns.Add("Addr", typeof(String));
-            dtRegValueUpPage4.Columns.Add("Value", typeof(String));
-            dtRegValueUpPage4.Columns.Add("Read", typeof(String));
-            dtRegValueUpPage5.Columns.Add("Addr", typeof(String));
-            dtRegValueUpPage5.Columns.Add("Value", typeof(String));
-            dtRegValueUpPage5.Columns.Add("Read", typeof(String));
+            dtRegValueCustomerPage0.Columns.Add("Addr", typeof(String));
+            dtRegValueCustomerPage0.Columns.Add("Value", typeof(String));
+            dtRegValueCustomerPage0.Columns.Add("Read", typeof(String));
+            dtRegValueCustomerPage1.Columns.Add("Addr", typeof(String));
+            dtRegValueCustomerPage1.Columns.Add("Value", typeof(String));
+            dtRegValueCustomerPage1.Columns.Add("Read", typeof(String));
 
             for (i = 0; i < 128; i++)
                 dtRegValueLowPage.Rows.Add(i.ToString("000"), "NA");
@@ -76,15 +76,15 @@ namespace QsfpCorrector
             for (i = 128; i < 256; i++) {
                 dtRegValueUpPage0.Rows.Add(i.ToString("000"), "NA");
                 dtRegValueUpPage3.Rows.Add(i.ToString("000"), "NA");
-                dtRegValueUpPage4.Rows.Add(i.ToString("000"), "NA");
-                dtRegValueUpPage5.Rows.Add(i.ToString("000"), "NA");
+                dtRegValueCustomerPage0.Rows.Add(i.ToString("000"), "NA");
+                dtRegValueCustomerPage1.Rows.Add(i.ToString("000"), "NA");
             }
 
             dgvRegisterValueLowPage.DataSource = dtRegValueLowPage;
             dgvRegisterValueUpPage0.DataSource = dtRegValueUpPage0;
             dgvRegisterValueUpPage3.DataSource = dtRegValueUpPage3;
-            dgvRegisterValueUpPage4.DataSource = dtRegValueUpPage4;
-            dgvRegisterValueUpPage5.DataSource = dtRegValueUpPage5;
+            dgvRegisterValueCustomerPage0.DataSource = dtRegValueCustomerPage0;
+            dgvRegisterValueCustomerPage1.DataSource = dtRegValueCustomerPage1;
         }
 
         public int SetQsfpI2cReadCBApi(I2cReadCB cb)
@@ -203,6 +203,9 @@ namespace QsfpCorrector
             sbyte[] sData = new sbyte[1];
             byte[] reverseData;
             float fTmp;
+            int page;
+
+            int.TryParse(tbCustomerPage0Config.Text, out page);
 
             if (qsfpI2cWriteCB == null)
                 return -1;
@@ -226,7 +229,7 @@ namespace QsfpCorrector
             fTmp = fTmp / 10000;
             voltageValue = fTmp.ToString();
 
-            data[0] = 4;
+            data[0] = (byte)page;
             if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
                 goto clearData;
 
@@ -258,7 +261,10 @@ namespace QsfpCorrector
             double dTmp, readVoltage, inputVoltage, offsetValue;
             byte[] data = new byte[1];
             sbyte[] sData = new sbyte[1];
+            int page;
             bool writeError;
+
+            int.TryParse(tbCustomerPage0Config.Text, out page);
 
             double.TryParse(voltageValue, out readVoltage);
             double.TryParse(tbInputVoltage.Text, out inputVoltage);
@@ -287,7 +293,7 @@ namespace QsfpCorrector
             do {
                 writeError = false;
 
-                data[0] = 4;
+                data[0] = (byte)page;
                 if (qsfpI2cWriteCB(80, 127, 1, data) < 0) {
                     writeError = true;
                     continue;
@@ -318,6 +324,9 @@ namespace QsfpCorrector
             sbyte[] sData = new sbyte[1];
             byte[] reverseData;
             float fTmp;
+            int page;
+
+            int.TryParse(tbCustomerPage0Config.Text, out page);
 
             if (qsfpI2cWriteCB == null)
                 return -1;
@@ -341,7 +350,7 @@ namespace QsfpCorrector
             fTmp = fTmp / 256;
             temperatureValue = fTmp.ToString();
 
-            data[0] = 4;
+            data[0] = (byte)page;
             if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
                 goto clearData;
 
@@ -374,7 +383,9 @@ namespace QsfpCorrector
             byte[] data = new byte[1];
             sbyte[] sData = new sbyte[1];
             bool writeError;
+            int page;
 
+            int.TryParse(tbCustomerPage0Config.Text, out page);
             float.TryParse(tbDefaultTemperatureOffset.Text, out fTmp);
 
             try {
@@ -395,7 +406,7 @@ namespace QsfpCorrector
             {
                 writeError = false;
 
-                data[0] = 4;
+                data[0] = (byte)page;
                 if (qsfpI2cWriteCB(80, 127, 1, data) < 0) {
                     writeError = true;
                     continue;
@@ -572,6 +583,9 @@ namespace QsfpCorrector
             byte[] reverseData;
             int iTmp;
             float fPower;
+            int page;
+
+            int.TryParse(tbCustomerPage0Config.Text, out page);
 
             if (qsfpI2cWriteCB == null)
                 return -1;
@@ -630,7 +644,7 @@ namespace QsfpCorrector
             fPower = iTmp / 10;
             rxPowerValue[3] = fPower.ToString("#0.0");
 
-            data[0] = 4;
+            data[0] = (byte)page;
             if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
                 goto clearData;
 
@@ -658,7 +672,9 @@ namespace QsfpCorrector
             byte[] data = new byte[1];
             float numerator, denominator, input, rssi;
             int rate;
+            int page;
 
+            int.TryParse(tbCustomerPage0Config.Text, out page);
             float.TryParse(tbRssiRateNumerator.Text, out numerator);
             float.TryParse(tbRssiRateDenominator.Text, out denominator);
 
@@ -714,7 +730,7 @@ namespace QsfpCorrector
             if (rate < 256)
                 rxRate[3] = (byte)rate;
 
-            data[0] = 4;
+            data[0] = (byte)page;
             if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
 
@@ -729,14 +745,17 @@ namespace QsfpCorrector
         private int _ReadSerialNumberValue()
         {
             byte[] data = new byte[16];
+            int page, controlPage;
 
+            int.TryParse(tbCustomerPage1Config.Text, out page);
+            int.TryParse(tbCustomerPageControlConfig.Text, out controlPage);
             if (qsfpI2cWriteCB == null)
                 return -1;
 
             if (qsfpI2cReadCB == null)
                 return -1;
 
-            data[0] = 5;
+            data[0] = (byte)page;
             if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
                 goto clearData;
 
@@ -752,7 +771,7 @@ namespace QsfpCorrector
 
             xaSerialNumber = System.Text.Encoding.Default.GetString(data);
 
-            data[0] = 32;
+            data[0] = (byte)controlPage;
             if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
                 goto clearData;
 
@@ -848,11 +867,14 @@ namespace QsfpCorrector
         private int _StoreIntoFlash()
         {
             byte[] data = new byte[1];
+            int controlPage;
+
+            int.TryParse(tbCustomerPageControlConfig.Text, out controlPage);
 
             if (qsfpI2cWriteCB == null)
                 return -1;
 
-            data[0] = 32;
+            data[0] = (byte)controlPage;
             if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
 
@@ -2042,12 +2064,15 @@ namespace QsfpCorrector
             return -1;
         }
 
-        private int _UpdataRegisterUpPage4Gui()
+        private int _UpdataRegisterCustomerPage0Gui()
         {
             byte[] data = new byte[128];
             byte bTmp;
             int addr;
             bool pass = true;
+            int page;
+
+            int.TryParse(tbCustomerPage0Config.Text, out page);
 
             lStatus.Text = "記憶體檢查4/5 ...";
             lStatus.Update();
@@ -2058,7 +2083,7 @@ namespace QsfpCorrector
             if (qsfpI2cReadCB == null)
                 return -1;
 
-            data[0] = 4;
+            data[0] = (byte)page;
             if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
                 goto clearData;
 
@@ -2067,7 +2092,7 @@ namespace QsfpCorrector
             if (qsfpI2cReadCB(80, 128, 128, data) != 128)
                 goto clearData;
 
-            foreach (DataGridViewRow row in dgvRegisterValueUpPage4.Rows) {
+            foreach (DataGridViewRow row in dgvRegisterValueCustomerPage0.Rows) {
                 StringBuilder sbTmp = new StringBuilder();
 
                 int.TryParse(row.Cells[0].Value.ToString(), out addr);
@@ -2087,13 +2112,13 @@ namespace QsfpCorrector
 
                 row.DefaultCellStyle.BackColor = Color.Red;
                 pass = false;
-                result += "Up page4 item:" + row.Index + " value different, ";
+                result += "Customer page0 item:" + row.Index + " value different, ";
             }
 
             if (pass == true)
                 return 0;
             else {
-                lUpPage4.BackColor = Color.Red;
+                lCustomerPage0.BackColor = Color.Red;
                 return -1;
             }
 
@@ -2101,12 +2126,15 @@ namespace QsfpCorrector
             return -1;
         }
 
-        private int _UpdataRegisterUpPage5Gui()
+        private int _UpdataRegisterCustomerPage1Gui()
         {
             byte[] data = new byte[128];
             byte bTmp;
             int addr;
             bool pass = true;
+            int page;
+
+            int.TryParse(tbCustomerPage1Config.Text, out page);
 
             lStatus.Text = "記憶體檢查5/5 ...";
             lStatus.Update();
@@ -2117,7 +2145,7 @@ namespace QsfpCorrector
             if (qsfpI2cReadCB == null)
                 return -1;
 
-            data[0] = 5;
+            data[0] = (byte)page;
             if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
                 goto clearData;
 
@@ -2126,7 +2154,7 @@ namespace QsfpCorrector
             if (qsfpI2cReadCB(80, 128, 128, data) != 128)
                 goto clearData;
 
-            foreach (DataGridViewRow row in dgvRegisterValueUpPage5.Rows) {
+            foreach (DataGridViewRow row in dgvRegisterValueCustomerPage1.Rows) {
                 StringBuilder sbTmp = new StringBuilder();
 
                 int.TryParse(row.Cells[0].Value.ToString(), out addr);
@@ -2146,13 +2174,13 @@ namespace QsfpCorrector
 
                 row.DefaultCellStyle.BackColor = Color.Red;
                 pass = false;
-                result += "Up page5 item:" + row.Index + " value different, ";
+                result += "Customer page1 item:" + row.Index + " value different, ";
             }
 
             if (pass == true)
                 return 0;
             else {
-                lUpPage5.BackColor = Color.Red;
+                lCustomerPage1.BackColor = Color.Red;
                 return -1;
             }
 
@@ -2195,15 +2223,15 @@ namespace QsfpCorrector
                 sTmp += row[0].ToString() + "," + row[1].ToString() + "," + row[2].ToString() + ";";
             swLog.WriteLine(sTmp);
             
-            swLog.WriteLine("Up page4 register:");
+            swLog.WriteLine("Customer page0 register:");
             sTmp = "";
-            foreach (DataRow row in dtRegValueUpPage4.Rows)
+            foreach (DataRow row in dtRegValueCustomerPage0.Rows)
                 sTmp += row[0].ToString() + "," + row[1].ToString() + "," + row[2].ToString() + ";";
             swLog.WriteLine(sTmp);
             
-            swLog.WriteLine("Up page5 register:");
+            swLog.WriteLine("Customer page1 register:");
             sTmp = "";
-            foreach (DataRow row in dtRegValueUpPage5.Rows)
+            foreach (DataRow row in dtRegValueCustomerPage1.Rows)
                 sTmp += row[0].ToString() + "," + row[1].ToString() + "," + row[2].ToString() + ";";
             swLog.WriteLine(sTmp);
             sTmp = "";
@@ -2280,8 +2308,8 @@ namespace QsfpCorrector
                 _UpdataRegisterLowPageGui();
                 _UpdataRegisterUpPage0Gui();
                 _UpdataRegisterUpPage3Gui();
-                _UpdataRegisterUpPage4Gui();
-                _UpdataRegisterUpPage5Gui();
+                _UpdataRegisterCustomerPage0Gui();
+                _UpdataRegisterCustomerPage1Gui();
 
                 if (result.Length == 0) {
                     lClassification.ForeColor = System.Drawing.Color.White;
@@ -2382,6 +2410,14 @@ namespace QsfpCorrector
                     }
                     xwConfig.WriteEndElement(); //DefaultOffsetConfig
 
+                    xwConfig.WriteStartElement("CustomerPageConfig");
+                    {
+                        xwConfig.WriteElementString("CustomerPage0Config", tbCustomerPage0Config.Text);
+                        xwConfig.WriteElementString("CustomerPage1Config", tbCustomerPage1Config.Text);
+                        xwConfig.WriteElementString("CustomerPageControlConfig", tbCustomerPageControlConfig.Text);
+                    }
+                    xwConfig.WriteEndElement(); //CustomerPageConfig
+
                     xwConfig.WriteStartElement("RegisterValueConfig");
                     {
                         sTmp = "";
@@ -2405,18 +2441,18 @@ namespace QsfpCorrector
                         xwConfig.WriteElementString("UpPage3", sTmp);
 
                         sTmp = "";
-                        foreach (DataRow row in dtRegValueUpPage4.Rows)
+                        foreach (DataRow row in dtRegValueCustomerPage0.Rows)
                         {
                             sTmp += (row[0].ToString() + "," + row[1].ToString() + "\n");
                         }
-                        xwConfig.WriteElementString("UpPage4", sTmp);
+                        xwConfig.WriteElementString("CustomerPage0", sTmp);
 
                         sTmp = "";
-                        foreach (DataRow row in dtRegValueUpPage5.Rows)
+                        foreach (DataRow row in dtRegValueCustomerPage1.Rows)
                         {
                             sTmp += (row[0].ToString() + "," + row[1].ToString() + "\n");
                         }
-                        xwConfig.WriteElementString("UpPage5", sTmp);
+                        xwConfig.WriteElementString("CustomerPage1", sTmp);
                     }
                     xwConfig.WriteEndElement(); //RegisterValueConfig
                 }
@@ -2630,6 +2666,41 @@ namespace QsfpCorrector
             }
         }
 
+        private void _PaserCustomerPageConfigXml(XmlReader reader)
+        {
+            reader.Read();
+            while (true)
+            {
+                if (reader.IsStartElement())
+                {
+                    switch (reader.Name)
+                    {
+                        case "CustomerPage0Config":
+                            tbCustomerPage0Config.Text = reader.ReadElementContentAsString();
+                            break;
+
+                        case "CustomerPage1Config":
+                            tbCustomerPage1Config.Text = reader.ReadElementContentAsString();
+                            break;
+
+                        case "CustomerPageControlConfig":
+                            tbCustomerPageControlConfig.Text = reader.ReadElementContentAsString();
+                            return;
+
+                        default:
+                            reader.ReadElementContentAsString();
+                            break;
+                    }
+                }
+                else
+                {
+                    reader.MoveToContent();
+                    reader.ReadEndElement();
+                    break;
+                }
+            }
+        }
+
         private void _PaserLowPageConfig(string cfg)
         {
             StringReader srReader;
@@ -2671,7 +2742,7 @@ namespace QsfpCorrector
             }
         }
 
-        private void _PaserUpPage4Config(string cfg)
+        private void _PaserCustomerPage0Config(string cfg)
         {
             StringReader srReader;
             String[] saItems;
@@ -2681,11 +2752,11 @@ namespace QsfpCorrector
             while ((line = srReader.ReadLine()) != null)
             {
                 saItems = line.Split(',');
-                dtRegValueUpPage4.Rows.Add(saItems[0], saItems[1]);
+                dtRegValueCustomerPage0.Rows.Add(saItems[0], saItems[1]);
             }
         }
 
-        private void _PaserUpPage5Config(string cfg)
+        private void _PaserCustomerPage1Config(string cfg)
         {
             StringReader srReader;
             String[] saItems;
@@ -2695,7 +2766,7 @@ namespace QsfpCorrector
             while ((line = srReader.ReadLine()) != null)
             {
                 saItems = line.Split(',');
-                dtRegValueUpPage5.Rows.Add(saItems[0], saItems[1]);
+                dtRegValueCustomerPage1.Rows.Add(saItems[0], saItems[1]);
             }
         }
 
@@ -2722,11 +2793,13 @@ namespace QsfpCorrector
                             break;
 
                         case "UpPage4":
-                            _PaserUpPage4Config(reader.ReadElementContentAsString());
+                        case "CustomerPage0":
+                            _PaserCustomerPage0Config(reader.ReadElementContentAsString());
                             break;
 
                         case "UpPage5":
-                            _PaserUpPage5Config(reader.ReadElementContentAsString());
+                        case "CustomerPage1":
+                            _PaserCustomerPage1Config(reader.ReadElementContentAsString());
                             break;
 
                         default:
@@ -2790,6 +2863,11 @@ namespace QsfpCorrector
                             reader.Read();
                             break;
 
+                        case "CustomerPageConfig":
+                            _PaserCustomerPageConfigXml(reader);
+                            reader.Read();
+                            break;
+
                         case "RegisterValueConfig":
                             _PaserRegisterValueConfigXml(reader);
                             break;
@@ -2832,16 +2910,16 @@ namespace QsfpCorrector
                 row.DefaultCellStyle.BackColor = SystemColors.Window;
             foreach (DataGridViewRow row in dgvRegisterValueUpPage3.Rows)
                 row.DefaultCellStyle.BackColor = SystemColors.Window;
-            foreach (DataGridViewRow row in dgvRegisterValueUpPage4.Rows)
+            foreach (DataGridViewRow row in dgvRegisterValueCustomerPage0.Rows)
                 row.DefaultCellStyle.BackColor = SystemColors.Window;
-            foreach (DataGridViewRow row in dgvRegisterValueUpPage5.Rows)
+            foreach (DataGridViewRow row in dgvRegisterValueCustomerPage1.Rows)
                 row.DefaultCellStyle.BackColor = SystemColors.Window;
 
             lLowPage.BackColor = SystemColors.Control;
             lUpPage0.BackColor = SystemColors.Control;
             lUpPage3.BackColor = SystemColors.Control;
-            lUpPage4.BackColor = SystemColors.Control;
-            lUpPage5.BackColor = SystemColors.Control;
+            lCustomerPage0.BackColor = SystemColors.Control;
+            lCustomerPage1.BackColor = SystemColors.Control;
 
             bCorrector.Enabled = false;
             lStatus.Text = "開始校正 ...";
@@ -2866,8 +2944,8 @@ namespace QsfpCorrector
             dtRegValueLowPage.Clear();
             dtRegValueUpPage0.Clear();
             dtRegValueUpPage3.Clear();
-            dtRegValueUpPage4.Clear();
-            dtRegValueUpPage5.Clear();
+            dtRegValueCustomerPage0.Clear();
+            dtRegValueCustomerPage1.Clear();
 
             using (XmlReader xrConfig = XmlReader.Create(ofdSelectFile.FileName))
             {
@@ -2899,15 +2977,15 @@ namespace QsfpCorrector
                 dgvRegisterValueLowPage.ReadOnly = false;
                 dgvRegisterValueUpPage0.ReadOnly = false;
                 dgvRegisterValueUpPage3.ReadOnly = false;
-                dgvRegisterValueUpPage4.ReadOnly = false;
-                dgvRegisterValueUpPage5.ReadOnly = false;
+                dgvRegisterValueCustomerPage0.ReadOnly = false;
+                dgvRegisterValueCustomerPage1.ReadOnly = false;
             }
             else {
                 dgvRegisterValueLowPage.ReadOnly = true;
                 dgvRegisterValueUpPage0.ReadOnly = true;
                 dgvRegisterValueUpPage3.ReadOnly = true;
-                dgvRegisterValueUpPage4.ReadOnly = true;
-                dgvRegisterValueUpPage5.ReadOnly = true;
+                dgvRegisterValueCustomerPage0.ReadOnly = true;
+                dgvRegisterValueCustomerPage1.ReadOnly = true;
             }
         }
     }

@@ -28,8 +28,8 @@
         private void InitializeComponent()
         {
             this.cbI2cAdapterConnected = new System.Windows.Forms.CheckBox();
-            this.ucQsfpCorrector = new QsfpCorrector.UcQsfpCorrector();
             this.cbAutoRead = new System.Windows.Forms.CheckBox();
+            this.ucQsfpCorrector = new QsfpCorrector.UcQsfpCorrector();
             this.SuspendLayout();
             // 
             // cbI2cAdapterConnected
@@ -43,13 +43,6 @@
             this.cbI2cAdapterConnected.UseVisualStyleBackColor = true;
             this.cbI2cAdapterConnected.CheckedChanged += new System.EventHandler(this._cbQsfpConnected_CheckedChanged);
             // 
-            // ucQsfpCorrector
-            // 
-            this.ucQsfpCorrector.Location = new System.Drawing.Point(3, 32);
-            this.ucQsfpCorrector.Name = "ucQsfpCorrector";
-            this.ucQsfpCorrector.Size = new System.Drawing.Size(1010, 653);
-            this.ucQsfpCorrector.TabIndex = 0;
-            // 
             // cbAutoRead
             // 
             this.cbAutoRead.AutoSize = true;
@@ -60,6 +53,13 @@
             this.cbAutoRead.Text = "自動讀取";
             this.cbAutoRead.UseVisualStyleBackColor = true;
             this.cbAutoRead.CheckedChanged += new System.EventHandler(this.cbAutoRead_CheckedChanged);
+            // 
+            // ucQsfpCorrector
+            // 
+            this.ucQsfpCorrector.Location = new System.Drawing.Point(3, 32);
+            this.ucQsfpCorrector.Name = "ucQsfpCorrector";
+            this.ucQsfpCorrector.Size = new System.Drawing.Size(1010, 653);
+            this.ucQsfpCorrector.TabIndex = 0;
             // 
             // FQsfpCorrector
             // 
@@ -72,7 +72,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "FQsfpCorrector";
-            this.Text = "QSFP+ Corrector 20190408_1404";
+            this.Text = "QSFP+ Corrector 20200602";
             this.ResumeLayout(false);
             this.PerformLayout();
 
