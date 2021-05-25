@@ -244,6 +244,41 @@ namespace I2cMasterInterface
             return fASelect;
         }
 
+        public int ReadRawApi(byte devAddr, byte length, byte[] data)
+        {
+            int result;
+
+            switch (as_atAdapterType) {
+                case AdapterSelector.AdapterType.AS_AT_DUMMY:
+                    break;
+
+                case AdapterSelector.AdapterType.AS_AT_AARDVARK:
+                    if (iHandler <= 0) {
+                        if (ConnectApi() < 0)
+                            MessageBox.Show("I2cMasterConnectApi() fail!!");
+                        return -1;
+                    }
+                    return AardvarkApi.aa_i2c_read(iHandler, devAddr, AardvarkI2cFlags.AA_I2C_NO_FLAGS, length, data);
+
+                case AdapterSelector.AdapterType.AS_AT_MCP2221:
+                    if (ipHandler == IntPtr.Zero) {
+                        if (ConnectApi() < 0)
+                            MessageBox.Show("I2cMasterConnectApi() fail!!");
+                        return -1;
+                    }
+                    result = Mcp2221Api.Mcp2221I2cReadApi(ipHandler, length, devAddr, 1, data);
+                    if (result < 0)
+                        return -3;
+
+                    return length;
+
+                default:
+                    break;
+            }
+
+            return 0;
+        }
+
         private int _AardvarkRead(byte devAddr, byte regAddr, byte length, byte[] data)
         {
             byte[] reg = { regAddr };
@@ -298,7 +333,7 @@ namespace I2cMasterInterface
             return 0;
         }
 
-        private int _AardvarkRead16(byte devAddr, byte[] regAddr, byte length, byte[] data)
+        private int _Mcp2221Read16(byte devAddr, byte[] regAddr, byte length, byte[] data)
         {
             byte[] reg = { regAddr[0], regAddr[1] };
             int result;
@@ -314,7 +349,7 @@ namespace I2cMasterInterface
             return length;
         }
 
-        private int _Mcp2221Read16(byte devAddr, byte[] regAddr, byte length, byte[] data)
+        private int _AardvarkRead16(byte devAddr, byte[] regAddr, byte length, byte[] data)
         {
             byte[] reg = { regAddr[0], regAddr[1] };
 
@@ -344,6 +379,38 @@ namespace I2cMasterInterface
                         return -1;
                     }
                     return _Mcp2221Read16(devAddr, regAddr, length, data);
+
+                default:
+                    break;
+            }
+
+            return 0;
+        }
+
+        public int WriteRawApi(byte devAddr, byte length, byte[] data)
+        {
+            switch (as_atAdapterType) {
+                case AdapterSelector.AdapterType.AS_AT_DUMMY:
+                    break;
+
+                case AdapterSelector.AdapterType.AS_AT_AARDVARK:
+                    if (iHandler <= 0) {
+                        if (ConnectApi() < 0)
+                            MessageBox.Show("I2cMasterConnectApi() fail!!");
+                        return -1;
+                    }
+                    AardvarkApi.aa_i2c_write(iHandler, devAddr, AardvarkI2cFlags.AA_I2C_NO_FLAGS, length, data);
+                    AardvarkApi.aa_sleep_ms(100);
+                    return 0;
+
+                case AdapterSelector.AdapterType.AS_AT_MCP2221:
+                    if (ipHandler == IntPtr.Zero) {
+                        if (ConnectApi() < 0)
+                            MessageBox.Show("I2cMasterConnectApi() fail!!");
+                        return -1;
+                    }
+                    Mcp2221Api.Mcp2221I2cWriteApi(ipHandler, Convert.ToUInt32(length), devAddr, 1, data);
+                    return 0;
 
                 default:
                     break;
