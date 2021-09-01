@@ -214,6 +214,19 @@ namespace HT32DualImageTool
             _CheckDeviceReady();
 
             Thread.Sleep(10);
+
+            if (i2cReadRawCB == null)
+                return -1;
+
+            buf = new byte[130];
+
+            sizeCmd = i2cReadRawCB(0x70, 130, buf);
+            if (sizeCmd < 0)
+                return -1;
+
+            tbLog.AppendText("\r\nRx buf[" + sizeCmd + "]");
+            _BufDumpLog(buf, sizeCmd);
+
             tbLog.AppendText("Done.\r\n");
 
             return 0;
