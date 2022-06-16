@@ -198,7 +198,7 @@ namespace I2cMasterInterface
 
         public int SetBitRateApi(int bitrate)
         {
-            if ((bitrate < 10) || (bitrate > 400))
+            if ((bitrate < 10) || (bitrate > 1000))
                 return -1;
 
             iBitrate = bitrate;
