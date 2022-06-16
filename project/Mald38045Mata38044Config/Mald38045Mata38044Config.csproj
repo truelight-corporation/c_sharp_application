@@ -66,6 +66,9 @@
     <Compile Include="ucMald38045Config.Designer.cs">
       <DependentUpon>ucMald38045Config.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FMald38045Mata38044Config.resx">
+      <DependentUpon>FMald38045Mata38044Config.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

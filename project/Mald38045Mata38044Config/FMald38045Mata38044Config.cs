@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using I2cMasterInterface;
 
@@ -15,7 +16,7 @@ namespace Mald38045Mata38044Config
         private I2cMaster i2cMaster = new I2cMaster();
         private const byte devAddr = 0x00;
 
-        private int _SetQsfpMode(byte mode)
+        private int _SetModuleMode(byte mode)
         {
             byte[] data = new byte[] { 0x00 };
 
@@ -28,7 +29,7 @@ namespace Mald38045Mata38044Config
                 return -1;
 
             data[0] = mode;
-            if (i2cMaster.WriteApi(devAddr, 164, 1, data) < 0)
+            if (i2cMaster.WriteApi(devAddr, 0xA4, 1, data) < 0)
                 return -1;
 
             return 0;
@@ -41,7 +42,7 @@ namespace Mald38045Mata38044Config
 
             cbConnected.Checked = true;
 
-            if (_SetQsfpMode(0x4D) < 0)
+            if (_SetModuleMode(0x4D) < 0)
                 return -1;
 
             return 0;
@@ -61,14 +62,14 @@ namespace Mald38045Mata38044Config
         {
             byte[] bTmp = new byte[128];
             byte[] bankAndPage = new byte[] { bank, page };
-            int readLength, regAddr, rv;
+            int bufLength, readLength, regAddr, rv;
 
             if (i2cMaster.connected == false) {
                 if (_I2cMasterConnect() < 0)
                     return -1;
             }
 
-            if (_SetQsfpMode(0x4D) < 0)
+            if (_SetModuleMode(0x4D) < 0)
                 goto error;
 
             if (startAddr < 128) {
@@ -93,28 +94,30 @@ namespace Mald38045Mata38044Config
                     goto error;
 
                 if (regAddr + length - readLength <= 256) {
-                    rv = i2cMaster.ReadApi(devAddr, (byte)regAddr, (byte)(length - readLength), bTmp);
+                    bufLength = length - readLength;
+                    rv = i2cMaster.ReadApi(devAddr, (byte)regAddr, (byte)bufLength, bTmp);
                     if (rv < 0)
                         goto error;
 
-                    Buffer.BlockCopy(bTmp, 0, data, readLength, (length - readLength));
-                    readLength += (length - readLength);
+                    Buffer.BlockCopy(bTmp, 0, data, readLength, bufLength);
+                    readLength += bufLength;
                 }
                 else {
-                    rv = i2cMaster.ReadApi(devAddr, (byte)regAddr, 128, bTmp);
+                    bufLength = 256 - regAddr;
+                    rv = i2cMaster.ReadApi(devAddr, (byte)regAddr, (byte)bufLength, bTmp);
                     if (rv < 0)
                         goto error;
 
-                    Buffer.BlockCopy(bTmp, 0, data, readLength, 128);
+                    Buffer.BlockCopy(bTmp, 0, data, readLength, bufLength);
 
-                    readLength += 128;
+                    readLength += bufLength;
                     regAddr = 128;
                     bankAndPage[1]++;
                 }
             }
          
         error:
-            MessageBox.Show("QSFP+ module no response!!");
+            MessageBox.Show("Module no response!!");
             _I2cMasterDisconnect();
             return -1;
         }
@@ -130,7 +133,7 @@ namespace Mald38045Mata38044Config
                     return -1;
             }
 
-            if (_SetQsfpMode(0x4D) < 0)
+            if (_SetModuleMode(0x4D) < 0)
                 goto error;
 
             if (startAddr < 128) {
@@ -196,10 +199,17 @@ namespace Mald38045Mata38044Config
         {
             InitializeComponent();
 
-            ucMald38045Ch1_4.SetRegBankApi(0);
-            ucMald38045Ch1_4.SetRegStartAddrApi(0x80);
-            ucMald38045Ch1_4.SetI2cReadCBApi(_I2cRead);
-            ucMald38045Ch1_4.SetI2cWriteCBApi(_I2cWrite);
+            ucMald38045ConfigCh1_4.SetRegBankApi(1);
+            ucMald38045ConfigCh1_4.SetRegPageApi(0xB0);
+            ucMald38045ConfigCh1_4.SetRegStartAddrApi(0x80); //Reg length:238 (Page:0xB0 Addr:0x80 ~ Page:0xB1 Addr:0xED)
+            ucMald38045ConfigCh1_4.SetI2cReadCBApi(_I2cRead);
+            ucMald38045ConfigCh1_4.SetI2cWriteCBApi(_I2cWrite);
+
+            ucMald38045ConfigCh5_8.SetRegBankApi(1);
+            ucMald38045ConfigCh5_8.SetRegPageApi(0xB1);
+            ucMald38045ConfigCh5_8.SetRegStartAddrApi(0xEE);
+            ucMald38045ConfigCh5_8.SetI2cReadCBApi(_I2cRead);
+            ucMald38045ConfigCh5_8.SetI2cWriteCBApi(_I2cWrite);
         }
 
         private void cbConnected_CheckedChanged(object sender, EventArgs e)
@@ -211,6 +221,42 @@ namespace Mald38045Mata38044Config
             }
             else
                 _I2cMasterDisconnect();
+        }
+
+        private void bStoreIntoFlash_Click(object sender, EventArgs e)
+        {
+            byte[] data = new byte[] { 0x00};
+
+            if (i2cMaster.connected == false) {
+                if (_I2cMasterConnect() < 0)
+                    return;
+            }
+
+            bStoreIntoFlash.Text = "Storing...";
+            bStoreIntoFlash.Enabled = false;
+
+            data[0] = 0x00; //bank
+            if (i2cMaster.WriteApi(devAddr, 0x7E, 1, data) < 0)
+                goto exit;
+
+            data[0] = 0xB0; //page
+            if (i2cMaster.WriteApi(devAddr, 0x7F, 1, data) < 0)
+                goto exit;
+
+            data[0] = 0xBB;
+            if (i2cMaster.WriteApi(devAddr, 0xAA, 1, data) < 0)
+                goto exit;
+
+            data[0] = 0xCC;
+            if (i2cMaster.WriteApi(devAddr, 0xAA, 1, data) < 0)
+                goto exit;
+
+            Thread.Sleep(1000);
+
+        exit:
+            bStoreIntoFlash.Text = "Store into flash";
+            bStoreIntoFlash.Enabled = true;
+            return;
         }
     }
 
