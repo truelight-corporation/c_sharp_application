@@ -189,7 +189,7 @@ namespace Mald38045Mata38044Config
 
             data = Encoding.Default.GetBytes(tbPassword.Text);
 
-            if (i2cMaster.WriteApi(80, 123, 4, data) < 0)
+            if (i2cMaster.WriteApi(80, 122, 4, data) < 0)
                 return -1;
 
             return 0;

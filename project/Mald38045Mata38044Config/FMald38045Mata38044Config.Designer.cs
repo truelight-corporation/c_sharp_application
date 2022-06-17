@@ -35,9 +35,9 @@
             this.ucMald38045ConfigCh1_4 = new Mald38045Mata38044Config.ucMald38045Config();
             this.tpMata38044Ch4_1 = new System.Windows.Forms.TabPage();
             this.tpMald38045Ch5_8 = new System.Windows.Forms.TabPage();
+            this.ucMald38045ConfigCh5_8 = new Mald38045Mata38044Config.ucMald38045Config();
             this.tpMata38044Ch8_5 = new System.Windows.Forms.TabPage();
             this.bStoreIntoFlash = new System.Windows.Forms.Button();
-            this.ucMald38045ConfigCh5_8 = new Mald38045Mata38044Config.ucMald38045Config();
             this.tcMald38045Mata38044Config.SuspendLayout();
             this.tpMald38045Ch1_4.SuspendLayout();
             this.tpMald38045Ch5_8.SuspendLayout();
@@ -130,6 +130,14 @@
             this.tpMald38045Ch5_8.Text = "Mald38045 Ch5~8";
             this.tpMald38045Ch5_8.UseVisualStyleBackColor = true;
             // 
+            // ucMald38045ConfigCh5_8
+            // 
+            this.ucMald38045ConfigCh5_8.Location = new System.Drawing.Point(5, 5);
+            this.ucMald38045ConfigCh5_8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ucMald38045ConfigCh5_8.Name = "ucMald38045ConfigCh5_8";
+            this.ucMald38045ConfigCh5_8.Size = new System.Drawing.Size(826, 456);
+            this.ucMald38045ConfigCh5_8.TabIndex = 0;
+            // 
             // tpMata38044Ch8_5
             // 
             this.tpMata38044Ch8_5.Location = new System.Drawing.Point(4, 22);
@@ -151,14 +159,6 @@
             this.bStoreIntoFlash.UseVisualStyleBackColor = true;
             this.bStoreIntoFlash.Click += new System.EventHandler(this.bStoreIntoFlash_Click);
             // 
-            // ucMald38045ConfigCh5_8
-            // 
-            this.ucMald38045ConfigCh5_8.Location = new System.Drawing.Point(5, 5);
-            this.ucMald38045ConfigCh5_8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ucMald38045ConfigCh5_8.Name = "ucMald38045ConfigCh5_8";
-            this.ucMald38045ConfigCh5_8.Size = new System.Drawing.Size(826, 456);
-            this.ucMald38045ConfigCh5_8.TabIndex = 0;
-            // 
             // FMald38045Mata38044Config
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -171,7 +171,7 @@
             this.Controls.Add(this.lPassword);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FMald38045Mata38044Config";
-            this.Text = "Mald38045 & Mata38044 Config GUI_20220615";
+            this.Text = "Mald38045 & Mata38044 Config GUI_20220616";
             this.tcMald38045Mata38044Config.ResumeLayout(false);
             this.tpMald38045Ch1_4.ResumeLayout(false);
             this.tpMald38045Ch5_8.ResumeLayout(false);
