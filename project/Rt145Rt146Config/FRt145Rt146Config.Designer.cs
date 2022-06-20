@@ -30,12 +30,12 @@
         {
             this.tpRt145Rt146Config = new System.Windows.Forms.TabControl();
             this.tpRt145Config = new System.Windows.Forms.TabPage();
+            this.ucRt145Config = new Rt145Rt146Config.UcRt145Config();
             this.tpRt146Config = new System.Windows.Forms.TabPage();
+            this.ucRt146Config = new Rt145Rt146Config.UcRt146Config();
             this.cbConnected = new System.Windows.Forms.CheckBox();
             this.lPassword = new System.Windows.Forms.Label();
             this.tbPassword = new System.Windows.Forms.TextBox();
-            this.ucRt145Config = new Rt145Rt146Config.UcRt145Config();
-            this.ucRt146Config = new Rt145Rt146Config.UcRt146Config();
             this.tpRt145Rt146Config.SuspendLayout();
             this.tpRt145Config.SuspendLayout();
             this.tpRt146Config.SuspendLayout();
@@ -49,7 +49,7 @@
             this.tpRt145Rt146Config.Location = new System.Drawing.Point(12, 36);
             this.tpRt145Rt146Config.Name = "tpRt145Rt146Config";
             this.tpRt145Rt146Config.SelectedIndex = 0;
-            this.tpRt145Rt146Config.Size = new System.Drawing.Size(1460, 771);
+            this.tpRt145Rt146Config.Size = new System.Drawing.Size(1460, 750);
             this.tpRt145Rt146Config.TabIndex = 0;
             // 
             // tpRt145Config
@@ -58,10 +58,18 @@
             this.tpRt145Config.Location = new System.Drawing.Point(4, 27);
             this.tpRt145Config.Name = "tpRt145Config";
             this.tpRt145Config.Padding = new System.Windows.Forms.Padding(3);
-            this.tpRt145Config.Size = new System.Drawing.Size(1452, 740);
+            this.tpRt145Config.Size = new System.Drawing.Size(1452, 719);
             this.tpRt145Config.TabIndex = 0;
             this.tpRt145Config.Text = "RT145 (RX)";
             this.tpRt145Config.UseVisualStyleBackColor = true;
+            // 
+            // ucRt145Config
+            // 
+            this.ucRt145Config.Location = new System.Drawing.Point(5, 5);
+            this.ucRt145Config.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
+            this.ucRt145Config.Name = "ucRt145Config";
+            this.ucRt145Config.Size = new System.Drawing.Size(1454, 744);
+            this.ucRt145Config.TabIndex = 1;
             // 
             // tpRt146Config
             // 
@@ -69,10 +77,18 @@
             this.tpRt146Config.Location = new System.Drawing.Point(4, 27);
             this.tpRt146Config.Name = "tpRt146Config";
             this.tpRt146Config.Padding = new System.Windows.Forms.Padding(3);
-            this.tpRt146Config.Size = new System.Drawing.Size(1452, 740);
+            this.tpRt146Config.Size = new System.Drawing.Size(1452, 719);
             this.tpRt146Config.TabIndex = 1;
             this.tpRt146Config.Text = "RT146 (TX)";
             this.tpRt146Config.UseVisualStyleBackColor = true;
+            // 
+            // ucRt146Config
+            // 
+            this.ucRt146Config.Location = new System.Drawing.Point(5, 5);
+            this.ucRt146Config.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
+            this.ucRt146Config.Name = "ucRt146Config";
+            this.ucRt146Config.Size = new System.Drawing.Size(1454, 744);
+            this.ucRt146Config.TabIndex = 1;
             // 
             // cbConnected
             // 
@@ -107,33 +123,17 @@
             this.tbPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbPassword.UseSystemPasswordChar = true;
             // 
-            // ucRt145Config
-            // 
-            this.ucRt145Config.Location = new System.Drawing.Point(-1, -2);
-            this.ucRt145Config.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
-            this.ucRt145Config.Name = "ucRt145Config";
-            this.ucRt145Config.Size = new System.Drawing.Size(1454, 744);
-            this.ucRt145Config.TabIndex = 1;
-            // 
-            // ucRt146Config
-            // 
-            this.ucRt146Config.Location = new System.Drawing.Point(-1, -2);
-            this.ucRt146Config.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
-            this.ucRt146Config.Name = "ucRt146Config";
-            this.ucRt146Config.Size = new System.Drawing.Size(1454, 744);
-            this.ucRt146Config.TabIndex = 1;
-            // 
             // FRt145Rt146Config
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1474, 801);
+            this.ClientSize = new System.Drawing.Size(1474, 781);
             this.Controls.Add(this.tbPassword);
             this.Controls.Add(this.lPassword);
             this.Controls.Add(this.cbConnected);
             this.Controls.Add(this.tpRt145Rt146Config);
             this.Name = "FRt145Rt146Config";
-            this.Text = "Form1";
+            this.Text = "Rt145Rt146ConfigUI";
             this.tpRt145Rt146Config.ResumeLayout(false);
             this.tpRt145Config.ResumeLayout(false);
             this.tpRt146Config.ResumeLayout(false);

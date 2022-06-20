@@ -31,7 +31,34 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AardvarkAdapter">
+      <HintPath>..\..\..\..\Users\domin\Downloads\c_sharp_application-master\c_sharp_application-master\dll\device\AardvarkAdapter.dll</HintPath>
+    </Reference>
+    <Reference Include="I2cMasterInterface">
+      <HintPath>..\..\..\..\Users\domin\Downloads\c_sharp_application-master\c_sharp_application-master\dll\interface\I2cMasterInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="Mcp2221Adapter">
+      <HintPath>..\..\..\..\Users\domin\Downloads\c_sharp_application-master\c_sharp_application-master\dll\device\Mcp2221Adapter.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
