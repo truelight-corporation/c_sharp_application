@@ -15,8 +15,8 @@ namespace Mald38045Mata38044Config
         public delegate int I2cWriteCB(byte bank ,byte page, byte regAddr, int length, byte[] data);
 
         private byte regBank = 0x00;
-        private byte regPage = 0x00;
-        private byte regStartAddr = 0xB0;
+        private byte regPage = 0xB0;
+        private byte regStartAddr = 0x00;
         private I2cReadCB i2cReadCB;
         private I2cWriteCB i2cWriteCB;
         private bool reading = false;
@@ -28,8 +28,17 @@ namespace Mald38045Mata38044Config
 
         private int I2cWrite(byte regAddr, int length, byte[] data)
         {
-            return i2cWriteCB(regBank, (byte)(regPage + (regAddr % 128)), (byte)(regAddr - ((regAddr % 128) * 128)),
-                length, data);
+            int addr;
+            byte page;
+
+            page = regPage;
+            addr = regStartAddr + regAddr;
+            while (addr > 255) {
+                page++;
+                addr -= 128;
+            }
+
+            return i2cWriteCB(regBank, page, (byte)addr, length, data);
         }
 
         public ucMald38045Config()
@@ -5294,6 +5303,8 @@ namespace Mald38045Mata38044Config
             if (i2cReadCB == null)
                 return;
 
+            bReadAll.Enabled = false;
+            bReadAll.Text = "Reading...";
             reading = true;
 
             rv = i2cReadCB(regBank, regPage, regStartAddr, 238, data);
@@ -5537,6 +5548,8 @@ namespace Mald38045Mata38044Config
 
         exit:
             reading = false;
+            bReadAll.Text = "Read All";
+            bReadAll.Enabled = true;
         }
 
         private int _WritePage00Addr02()

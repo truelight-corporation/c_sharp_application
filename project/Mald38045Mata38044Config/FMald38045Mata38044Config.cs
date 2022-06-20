@@ -14,7 +14,7 @@ namespace Mald38045Mata38044Config
     public partial class FMald38045Mata38044Config : Form
     {
         private I2cMaster i2cMaster = new I2cMaster();
-        private const byte devAddr = 0x00;
+        private const byte devAddr = 0x50;
 
         private int _SetModuleMode(byte mode)
         {
@@ -24,7 +24,7 @@ namespace Mald38045Mata38044Config
             if (i2cMaster.WriteApi(devAddr, 0x7E, 1, data) < 0)
                 return -1;
 
-            data[0] = 0xB0; //page
+            data[0] = 0xBB; //page
             if (i2cMaster.WriteApi(devAddr, 0x7F, 1, data) < 0)
                 return -1;
 
@@ -41,6 +41,9 @@ namespace Mald38045Mata38044Config
                 return -1;
 
             cbConnected.Checked = true;
+
+            if (_WriteModulePassword() < 0)
+                return -1;
 
             if (_SetModuleMode(0x4D) < 0)
                 return -1;
@@ -115,6 +118,8 @@ namespace Mald38045Mata38044Config
                     bankAndPage[1]++;
                 }
             }
+
+            return readLength;
          
         error:
             MessageBox.Show("Module no response!!");
@@ -132,6 +137,9 @@ namespace Mald38045Mata38044Config
                 if (_I2cMasterConnect() < 0)
                     return -1;
             }
+            
+            if (_WriteModulePassword() < 0)
+                goto error;
 
             if (_SetModuleMode(0x4D) < 0)
                 goto error;
@@ -217,7 +225,6 @@ namespace Mald38045Mata38044Config
             if (cbConnected.Checked == true) {
                 if (_I2cMasterConnect() < 0)
                     return;
-                _WriteModulePassword();
             }
             else
                 _I2cMasterDisconnect();
@@ -239,16 +246,16 @@ namespace Mald38045Mata38044Config
             if (i2cMaster.WriteApi(devAddr, 0x7E, 1, data) < 0)
                 goto exit;
 
-            data[0] = 0xB0; //page
+            data[0] = 0xBB; //page
             if (i2cMaster.WriteApi(devAddr, 0x7F, 1, data) < 0)
                 goto exit;
 
             data[0] = 0xBB;
-            if (i2cMaster.WriteApi(devAddr, 0xAA, 1, data) < 0)
+            if (i2cMaster.WriteApi(devAddr, 0xA2, 1, data) < 0)
                 goto exit;
 
             data[0] = 0xCC;
-            if (i2cMaster.WriteApi(devAddr, 0xAA, 1, data) < 0)
+            if (i2cMaster.WriteApi(devAddr, 0xA2, 1, data) < 0)
                 goto exit;
 
             Thread.Sleep(1000);
