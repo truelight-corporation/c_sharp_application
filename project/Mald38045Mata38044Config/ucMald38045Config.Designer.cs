@@ -1,6 +1,6 @@
 ﻿namespace Mald38045Mata38044Config
 {
-    partial class ucMald38045Config
+    partial class UcMald38045Config
     {
         /// <summary> 
         /// Required designer variable.
@@ -932,7 +932,7 @@
             // 
             // tbRegPage
             // 
-            this.tbRegPage.Location = new System.Drawing.Point(67, 114);
+            this.tbRegPage.Location = new System.Drawing.Point(68, 117);
             this.tbRegPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbRegPage.Name = "tbRegPage";
             this.tbRegPage.Size = new System.Drawing.Size(35, 22);
@@ -941,7 +941,7 @@
             // lRegPage
             // 
             this.lRegPage.AutoSize = true;
-            this.lRegPage.Location = new System.Drawing.Point(5, 117);
+            this.lRegPage.Location = new System.Drawing.Point(6, 120);
             this.lRegPage.Name = "lRegPage";
             this.lRegPage.Size = new System.Drawing.Size(52, 12);
             this.lRegPage.TabIndex = 22;
@@ -950,7 +950,7 @@
             // cbDeviceIdValue
             // 
             this.cbDeviceIdValue.FormattingEnabled = true;
-            this.cbDeviceIdValue.Location = new System.Drawing.Point(92, 91);
+            this.cbDeviceIdValue.Location = new System.Drawing.Point(93, 94);
             this.cbDeviceIdValue.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDeviceIdValue.Name = "cbDeviceIdValue";
             this.cbDeviceIdValue.Size = new System.Drawing.Size(50, 20);
@@ -960,7 +960,7 @@
             // lDeviceIdValue
             // 
             this.lDeviceIdValue.AutoSize = true;
-            this.lDeviceIdValue.Location = new System.Drawing.Point(5, 94);
+            this.lDeviceIdValue.Location = new System.Drawing.Point(6, 97);
             this.lDeviceIdValue.Name = "lDeviceIdValue";
             this.lDeviceIdValue.Size = new System.Drawing.Size(80, 12);
             this.lDeviceIdValue.TabIndex = 20;
@@ -969,7 +969,7 @@
             // cbDeviceIdProgMode
             // 
             this.cbDeviceIdProgMode.FormattingEnabled = true;
-            this.cbDeviceIdProgMode.Location = new System.Drawing.Point(342, 68);
+            this.cbDeviceIdProgMode.Location = new System.Drawing.Point(343, 71);
             this.cbDeviceIdProgMode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDeviceIdProgMode.Name = "cbDeviceIdProgMode";
             this.cbDeviceIdProgMode.Size = new System.Drawing.Size(181, 20);
@@ -979,7 +979,7 @@
             // lDeviceIdProgMode
             // 
             this.lDeviceIdProgMode.AutoSize = true;
-            this.lDeviceIdProgMode.Location = new System.Drawing.Point(225, 70);
+            this.lDeviceIdProgMode.Location = new System.Drawing.Point(226, 73);
             this.lDeviceIdProgMode.Name = "lDeviceIdProgMode";
             this.lDeviceIdProgMode.Size = new System.Drawing.Size(106, 12);
             this.lDeviceIdProgMode.TabIndex = 18;
@@ -988,7 +988,7 @@
             // cbDeviceIdProgCode
             // 
             this.cbDeviceIdProgCode.FormattingEnabled = true;
-            this.cbDeviceIdProgCode.Location = new System.Drawing.Point(117, 68);
+            this.cbDeviceIdProgCode.Location = new System.Drawing.Point(118, 71);
             this.cbDeviceIdProgCode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDeviceIdProgCode.Name = "cbDeviceIdProgCode";
             this.cbDeviceIdProgCode.Size = new System.Drawing.Size(103, 20);
@@ -998,7 +998,7 @@
             // lDeviceIdProgCode
             // 
             this.lDeviceIdProgCode.AutoSize = true;
-            this.lDeviceIdProgCode.Location = new System.Drawing.Point(5, 70);
+            this.lDeviceIdProgCode.Location = new System.Drawing.Point(6, 73);
             this.lDeviceIdProgCode.Name = "lDeviceIdProgCode";
             this.lDeviceIdProgCode.Size = new System.Drawing.Size(102, 12);
             this.lDeviceIdProgCode.TabIndex = 16;
@@ -1007,7 +1007,7 @@
             // cbSetLpmode
             // 
             this.cbSetLpmode.AutoSize = true;
-            this.cbSetLpmode.Location = new System.Drawing.Point(346, 48);
+            this.cbSetLpmode.Location = new System.Drawing.Point(347, 51);
             this.cbSetLpmode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbSetLpmode.Name = "cbSetLpmode";
             this.cbSetLpmode.Size = new System.Drawing.Size(76, 16);
@@ -1019,7 +1019,7 @@
             // cbForceLpmodePin
             // 
             this.cbForceLpmodePin.AutoSize = true;
-            this.cbForceLpmodePin.Location = new System.Drawing.Point(233, 48);
+            this.cbForceLpmodePin.Location = new System.Drawing.Point(234, 51);
             this.cbForceLpmodePin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbForceLpmodePin.Name = "cbForceLpmodePin";
             this.cbForceLpmodePin.Size = new System.Drawing.Size(106, 16);
@@ -1032,7 +1032,7 @@
             // 
             this.cbStatusLpmode.AutoSize = true;
             this.cbStatusLpmode.Enabled = false;
-            this.cbStatusLpmode.Location = new System.Drawing.Point(135, 48);
+            this.cbStatusLpmode.Location = new System.Drawing.Point(136, 51);
             this.cbStatusLpmode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbStatusLpmode.Name = "cbStatusLpmode";
             this.cbStatusLpmode.Size = new System.Drawing.Size(89, 16);
@@ -1043,7 +1043,7 @@
             // cbLpmodePadPolarity
             // 
             this.cbLpmodePadPolarity.AutoSize = true;
-            this.cbLpmodePadPolarity.Location = new System.Drawing.Point(5, 48);
+            this.cbLpmodePadPolarity.Location = new System.Drawing.Point(6, 51);
             this.cbLpmodePadPolarity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbLpmodePadPolarity.Name = "cbLpmodePadPolarity";
             this.cbLpmodePadPolarity.Size = new System.Drawing.Size(122, 16);
@@ -1055,7 +1055,7 @@
             // cbForceTxdis
             // 
             this.cbForceTxdis.AutoSize = true;
-            this.cbForceTxdis.Location = new System.Drawing.Point(468, 28);
+            this.cbForceTxdis.Location = new System.Drawing.Point(469, 31);
             this.cbForceTxdis.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbForceTxdis.Name = "cbForceTxdis";
             this.cbForceTxdis.Size = new System.Drawing.Size(75, 16);
@@ -1067,7 +1067,7 @@
             // cbForceTxfault
             // 
             this.cbForceTxfault.AutoSize = true;
-            this.cbForceTxfault.Location = new System.Drawing.Point(381, 28);
+            this.cbForceTxfault.Location = new System.Drawing.Point(382, 31);
             this.cbForceTxfault.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbForceTxfault.Name = "cbForceTxfault";
             this.cbForceTxfault.Size = new System.Drawing.Size(83, 16);
@@ -1079,7 +1079,7 @@
             // cbI2cAddressMode
             // 
             this.cbI2cAddressMode.AutoSize = true;
-            this.cbI2cAddressMode.Location = new System.Drawing.Point(267, 28);
+            this.cbI2cAddressMode.Location = new System.Drawing.Point(268, 31);
             this.cbI2cAddressMode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbI2cAddressMode.Name = "cbI2cAddressMode";
             this.cbI2cAddressMode.Size = new System.Drawing.Size(108, 16);
@@ -1092,7 +1092,7 @@
             // 
             this.cbIntrptOut.AutoSize = true;
             this.cbIntrptOut.Enabled = false;
-            this.cbIntrptOut.Location = new System.Drawing.Point(195, 28);
+            this.cbIntrptOut.Location = new System.Drawing.Point(196, 31);
             this.cbIntrptOut.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbIntrptOut.Name = "cbIntrptOut";
             this.cbIntrptOut.Size = new System.Drawing.Size(68, 16);
@@ -1103,7 +1103,7 @@
             // cbIntrptOen
             // 
             this.cbIntrptOen.AutoSize = true;
-            this.cbIntrptOen.Location = new System.Drawing.Point(120, 28);
+            this.cbIntrptOen.Location = new System.Drawing.Point(121, 31);
             this.cbIntrptOen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbIntrptOen.Name = "cbIntrptOen";
             this.cbIntrptOen.Size = new System.Drawing.Size(70, 16);
@@ -1115,7 +1115,7 @@
             // cbIntrptPadPolarity
             // 
             this.cbIntrptPadPolarity.AutoSize = true;
-            this.cbIntrptPadPolarity.Location = new System.Drawing.Point(5, 28);
+            this.cbIntrptPadPolarity.Location = new System.Drawing.Point(6, 31);
             this.cbIntrptPadPolarity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbIntrptPadPolarity.Name = "cbIntrptPadPolarity";
             this.cbIntrptPadPolarity.Size = new System.Drawing.Size(109, 16);
@@ -1223,16 +1223,16 @@
             // 
             // tbChkErrCnt2B
             // 
-            this.tbChkErrCnt2B.Location = new System.Drawing.Point(421, 88);
+            this.tbChkErrCnt2B.Location = new System.Drawing.Point(437, 88);
             this.tbChkErrCnt2B.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbChkErrCnt2B.Name = "tbChkErrCnt2B";
-            this.tbChkErrCnt2B.Size = new System.Drawing.Size(26, 22);
+            this.tbChkErrCnt2B.Size = new System.Drawing.Size(30, 22);
             this.tbChkErrCnt2B.TabIndex = 33;
             // 
             // lChkErrCnt2B
             // 
             this.lChkErrCnt2B.AutoSize = true;
-            this.lChkErrCnt2B.Location = new System.Drawing.Point(339, 90);
+            this.lChkErrCnt2B.Location = new System.Drawing.Point(355, 90);
             this.lChkErrCnt2B.Name = "lChkErrCnt2B";
             this.lChkErrCnt2B.Size = new System.Drawing.Size(76, 12);
             this.lChkErrCnt2B.TabIndex = 32;
@@ -1240,16 +1240,16 @@
             // 
             // tbChkErrCnt2A
             // 
-            this.tbChkErrCnt2A.Location = new System.Drawing.Point(309, 88);
+            this.tbChkErrCnt2A.Location = new System.Drawing.Point(319, 88);
             this.tbChkErrCnt2A.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbChkErrCnt2A.Name = "tbChkErrCnt2A";
-            this.tbChkErrCnt2A.Size = new System.Drawing.Size(26, 22);
+            this.tbChkErrCnt2A.Size = new System.Drawing.Size(30, 22);
             this.tbChkErrCnt2A.TabIndex = 31;
             // 
             // lChkErrCnt2A
             // 
             this.lChkErrCnt2A.AutoSize = true;
-            this.lChkErrCnt2A.Location = new System.Drawing.Point(227, 90);
+            this.lChkErrCnt2A.Location = new System.Drawing.Point(237, 90);
             this.lChkErrCnt2A.Name = "lChkErrCnt2A";
             this.lChkErrCnt2A.Size = new System.Drawing.Size(75, 12);
             this.lChkErrCnt2A.TabIndex = 30;
@@ -1257,16 +1257,16 @@
             // 
             // tbChkErrCnt1B
             // 
-            this.tbChkErrCnt1B.Location = new System.Drawing.Point(196, 88);
+            this.tbChkErrCnt1B.Location = new System.Drawing.Point(201, 88);
             this.tbChkErrCnt1B.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbChkErrCnt1B.Name = "tbChkErrCnt1B";
-            this.tbChkErrCnt1B.Size = new System.Drawing.Size(26, 22);
+            this.tbChkErrCnt1B.Size = new System.Drawing.Size(30, 22);
             this.tbChkErrCnt1B.TabIndex = 29;
             // 
             // lChkErrCnt1B
             // 
             this.lChkErrCnt1B.AutoSize = true;
-            this.lChkErrCnt1B.Location = new System.Drawing.Point(115, 90);
+            this.lChkErrCnt1B.Location = new System.Drawing.Point(120, 90);
             this.lChkErrCnt1B.Name = "lChkErrCnt1B";
             this.lChkErrCnt1B.Size = new System.Drawing.Size(76, 12);
             this.lChkErrCnt1B.TabIndex = 28;
@@ -1277,7 +1277,7 @@
             this.tbChkErrCnt1A.Location = new System.Drawing.Point(84, 88);
             this.tbChkErrCnt1A.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbChkErrCnt1A.Name = "tbChkErrCnt1A";
-            this.tbChkErrCnt1A.Size = new System.Drawing.Size(26, 22);
+            this.tbChkErrCnt1A.Size = new System.Drawing.Size(30, 22);
             this.tbChkErrCnt1A.TabIndex = 27;
             // 
             // lChkErrCnt1A
@@ -1460,7 +1460,7 @@
             // cbPrbsReset
             // 
             this.cbPrbsReset.AutoSize = true;
-            this.cbPrbsReset.Location = new System.Drawing.Point(599, 6);
+            this.cbPrbsReset.Location = new System.Drawing.Point(610, 6);
             this.cbPrbsReset.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbPrbsReset.Name = "cbPrbsReset";
             this.cbPrbsReset.Size = new System.Drawing.Size(68, 16);
@@ -1472,7 +1472,7 @@
             // cbPrbsEnable
             // 
             this.cbPrbsEnable.AutoSize = true;
-            this.cbPrbsEnable.Location = new System.Drawing.Point(673, 6);
+            this.cbPrbsEnable.Location = new System.Drawing.Point(684, 6);
             this.cbPrbsEnable.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbPrbsEnable.Name = "cbPrbsEnable";
             this.cbPrbsEnable.Size = new System.Drawing.Size(77, 16);
@@ -1484,17 +1484,17 @@
             // cbPllDivSel
             // 
             this.cbPllDivSel.FormattingEnabled = true;
-            this.cbPllDivSel.Location = new System.Drawing.Point(525, 5);
+            this.cbPllDivSel.Location = new System.Drawing.Point(529, 5);
             this.cbPllDivSel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbPllDivSel.Name = "cbPllDivSel";
-            this.cbPllDivSel.Size = new System.Drawing.Size(69, 20);
+            this.cbPllDivSel.Size = new System.Drawing.Size(75, 20);
             this.cbPllDivSel.TabIndex = 6;
             this.cbPllDivSel.SelectedIndexChanged += new System.EventHandler(this.cbPllDivSel_SelectedIndexChanged);
             // 
             // lPllDivSel
             // 
             this.lPllDivSel.AutoSize = true;
-            this.lPllDivSel.Location = new System.Drawing.Point(468, 7);
+            this.lPllDivSel.Location = new System.Drawing.Point(472, 7);
             this.lPllDivSel.Name = "lPllDivSel";
             this.lPllDivSel.Size = new System.Drawing.Size(53, 12);
             this.lPllDivSel.TabIndex = 5;
@@ -1503,7 +1503,7 @@
             // cbPllPdb
             // 
             this.cbPllPdb.AutoSize = true;
-            this.cbPllPdb.Location = new System.Drawing.Point(406, 6);
+            this.cbPllPdb.Location = new System.Drawing.Point(410, 6);
             this.cbPllPdb.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbPllPdb.Name = "cbPllPdb";
             this.cbPllPdb.Size = new System.Drawing.Size(57, 16);
@@ -1515,7 +1515,7 @@
             // cbPllPdbMonclk
             // 
             this.cbPllPdbMonclk.AutoSize = true;
-            this.cbPllPdbMonclk.Location = new System.Drawing.Point(307, 6);
+            this.cbPllPdbMonclk.Location = new System.Drawing.Point(311, 6);
             this.cbPllPdbMonclk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbPllPdbMonclk.Name = "cbPllPdbMonclk";
             this.cbPllPdbMonclk.Size = new System.Drawing.Size(95, 16);
@@ -1530,7 +1530,7 @@
             this.cbPllPdbClkbuf.Location = new System.Drawing.Point(160, 5);
             this.cbPllPdbClkbuf.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbPllPdbClkbuf.Name = "cbPllPdbClkbuf";
-            this.cbPllPdbClkbuf.Size = new System.Drawing.Size(142, 20);
+            this.cbPllPdbClkbuf.Size = new System.Drawing.Size(145, 20);
             this.cbPllPdbClkbuf.TabIndex = 2;
             this.cbPllPdbClkbuf.SelectedIndexChanged += new System.EventHandler(this.cbPllPdbClkbuf_SelectedIndexChanged);
             // 
@@ -1599,26 +1599,26 @@
             // 
             // tbDdmiOutOffsetTrimAdcIbiasValue
             // 
-            this.tbDdmiOutOffsetTrimAdcIbiasValue.Location = new System.Drawing.Point(292, 71);
+            this.tbDdmiOutOffsetTrimAdcIbiasValue.Location = new System.Drawing.Point(402, 70);
             this.tbDdmiOutOffsetTrimAdcIbiasValue.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbDdmiOutOffsetTrimAdcIbiasValue.Name = "tbDdmiOutOffsetTrimAdcIbiasValue";
             this.tbDdmiOutOffsetTrimAdcIbiasValue.ReadOnly = true;
-            this.tbDdmiOutOffsetTrimAdcIbiasValue.Size = new System.Drawing.Size(43, 22);
+            this.tbDdmiOutOffsetTrimAdcIbiasValue.Size = new System.Drawing.Size(45, 22);
             this.tbDdmiOutOffsetTrimAdcIbiasValue.TabIndex = 30;
             // 
             // tbDdmiOutOffsetTrimAdcIbiasReg
             // 
-            this.tbDdmiOutOffsetTrimAdcIbiasReg.Location = new System.Drawing.Point(249, 71);
+            this.tbDdmiOutOffsetTrimAdcIbiasReg.Location = new System.Drawing.Point(351, 70);
             this.tbDdmiOutOffsetTrimAdcIbiasReg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbDdmiOutOffsetTrimAdcIbiasReg.Name = "tbDdmiOutOffsetTrimAdcIbiasReg";
             this.tbDdmiOutOffsetTrimAdcIbiasReg.ReadOnly = true;
-            this.tbDdmiOutOffsetTrimAdcIbiasReg.Size = new System.Drawing.Size(39, 22);
+            this.tbDdmiOutOffsetTrimAdcIbiasReg.Size = new System.Drawing.Size(45, 22);
             this.tbDdmiOutOffsetTrimAdcIbiasReg.TabIndex = 29;
             // 
             // lDdmiOutOffsetTrimAdcIbias
             // 
             this.lDdmiOutOffsetTrimAdcIbias.AutoSize = true;
-            this.lDdmiOutOffsetTrimAdcIbias.Location = new System.Drawing.Point(139, 74);
+            this.lDdmiOutOffsetTrimAdcIbias.Location = new System.Drawing.Point(244, 73);
             this.lDdmiOutOffsetTrimAdcIbias.Name = "lDdmiOutOffsetTrimAdcIbias";
             this.lDdmiOutOffsetTrimAdcIbias.Size = new System.Drawing.Size(101, 12);
             this.lDdmiOutOffsetTrimAdcIbias.TabIndex = 28;
@@ -1626,26 +1626,26 @@
             // 
             // tbDdmiOutTempSenseValue
             // 
-            this.tbDdmiOutTempSenseValue.Location = new System.Drawing.Point(91, 71);
+            this.tbDdmiOutTempSenseValue.Location = new System.Drawing.Point(104, 70);
             this.tbDdmiOutTempSenseValue.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbDdmiOutTempSenseValue.Name = "tbDdmiOutTempSenseValue";
             this.tbDdmiOutTempSenseValue.ReadOnly = true;
-            this.tbDdmiOutTempSenseValue.Size = new System.Drawing.Size(43, 22);
+            this.tbDdmiOutTempSenseValue.Size = new System.Drawing.Size(45, 22);
             this.tbDdmiOutTempSenseValue.TabIndex = 27;
             // 
             // tbDdmiOutTempSenseReg
             // 
-            this.tbDdmiOutTempSenseReg.Location = new System.Drawing.Point(47, 71);
+            this.tbDdmiOutTempSenseReg.Location = new System.Drawing.Point(53, 70);
             this.tbDdmiOutTempSenseReg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbDdmiOutTempSenseReg.Name = "tbDdmiOutTempSenseReg";
             this.tbDdmiOutTempSenseReg.ReadOnly = true;
-            this.tbDdmiOutTempSenseReg.Size = new System.Drawing.Size(39, 22);
+            this.tbDdmiOutTempSenseReg.Size = new System.Drawing.Size(45, 22);
             this.tbDdmiOutTempSenseReg.TabIndex = 26;
             // 
             // lDdmiOutTempSense
             // 
             this.lDdmiOutTempSense.AutoSize = true;
-            this.lDdmiOutTempSense.Location = new System.Drawing.Point(5, 74);
+            this.lDdmiOutTempSense.Location = new System.Drawing.Point(12, 73);
             this.lDdmiOutTempSense.Name = "lDdmiOutTempSense";
             this.lDdmiOutTempSense.Size = new System.Drawing.Size(35, 12);
             this.lDdmiOutTempSense.TabIndex = 25;
@@ -1653,53 +1653,53 @@
             // 
             // tbDdmiOutImon3Value
             // 
-            this.tbDdmiOutImon3Value.Location = new System.Drawing.Point(502, 48);
+            this.tbDdmiOutImon3Value.Location = new System.Drawing.Point(549, 47);
             this.tbDdmiOutImon3Value.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbDdmiOutImon3Value.Name = "tbDdmiOutImon3Value";
             this.tbDdmiOutImon3Value.ReadOnly = true;
-            this.tbDdmiOutImon3Value.Size = new System.Drawing.Size(43, 22);
+            this.tbDdmiOutImon3Value.Size = new System.Drawing.Size(45, 22);
             this.tbDdmiOutImon3Value.TabIndex = 24;
             // 
             // tbDdmiOutImon3Reg
             // 
-            this.tbDdmiOutImon3Reg.Location = new System.Drawing.Point(459, 48);
+            this.tbDdmiOutImon3Reg.Location = new System.Drawing.Point(498, 47);
             this.tbDdmiOutImon3Reg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbDdmiOutImon3Reg.Name = "tbDdmiOutImon3Reg";
             this.tbDdmiOutImon3Reg.ReadOnly = true;
-            this.tbDdmiOutImon3Reg.Size = new System.Drawing.Size(39, 22);
+            this.tbDdmiOutImon3Reg.Size = new System.Drawing.Size(45, 22);
             this.tbDdmiOutImon3Reg.TabIndex = 23;
             // 
             // lDdmiOutImon3
             // 
             this.lDdmiOutImon3.AutoSize = true;
-            this.lDdmiOutImon3.Location = new System.Drawing.Point(414, 50);
+            this.lDdmiOutImon3.Location = new System.Drawing.Point(453, 50);
             this.lDdmiOutImon3.Name = "lDdmiOutImon3";
             this.lDdmiOutImon3.Size = new System.Drawing.Size(39, 12);
             this.lDdmiOutImon3.TabIndex = 22;
-            this.lDdmiOutImon3.Text = "Imon2:";
+            this.lDdmiOutImon3.Text = "Imon3:";
             // 
             // tbDdmiOutImon2Value
             // 
-            this.tbDdmiOutImon2Value.Location = new System.Drawing.Point(366, 48);
+            this.tbDdmiOutImon2Value.Location = new System.Drawing.Point(402, 47);
             this.tbDdmiOutImon2Value.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbDdmiOutImon2Value.Name = "tbDdmiOutImon2Value";
             this.tbDdmiOutImon2Value.ReadOnly = true;
-            this.tbDdmiOutImon2Value.Size = new System.Drawing.Size(43, 22);
+            this.tbDdmiOutImon2Value.Size = new System.Drawing.Size(45, 22);
             this.tbDdmiOutImon2Value.TabIndex = 21;
             // 
             // tbDdmiOutImon2Reg
             // 
-            this.tbDdmiOutImon2Reg.Location = new System.Drawing.Point(322, 48);
+            this.tbDdmiOutImon2Reg.Location = new System.Drawing.Point(351, 47);
             this.tbDdmiOutImon2Reg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbDdmiOutImon2Reg.Name = "tbDdmiOutImon2Reg";
             this.tbDdmiOutImon2Reg.ReadOnly = true;
-            this.tbDdmiOutImon2Reg.Size = new System.Drawing.Size(39, 22);
+            this.tbDdmiOutImon2Reg.Size = new System.Drawing.Size(45, 22);
             this.tbDdmiOutImon2Reg.TabIndex = 20;
             // 
             // lDdmiOutImon2
             // 
             this.lDdmiOutImon2.AutoSize = true;
-            this.lDdmiOutImon2.Location = new System.Drawing.Point(278, 50);
+            this.lDdmiOutImon2.Location = new System.Drawing.Point(306, 50);
             this.lDdmiOutImon2.Name = "lDdmiOutImon2";
             this.lDdmiOutImon2.Size = new System.Drawing.Size(39, 12);
             this.lDdmiOutImon2.TabIndex = 19;
@@ -1707,26 +1707,26 @@
             // 
             // tbDdmiOutImon1Value
             // 
-            this.tbDdmiOutImon1Value.Location = new System.Drawing.Point(230, 48);
+            this.tbDdmiOutImon1Value.Location = new System.Drawing.Point(255, 47);
             this.tbDdmiOutImon1Value.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbDdmiOutImon1Value.Name = "tbDdmiOutImon1Value";
             this.tbDdmiOutImon1Value.ReadOnly = true;
-            this.tbDdmiOutImon1Value.Size = new System.Drawing.Size(43, 22);
+            this.tbDdmiOutImon1Value.Size = new System.Drawing.Size(45, 22);
             this.tbDdmiOutImon1Value.TabIndex = 18;
             // 
             // tbDdmiOutImon1Reg
             // 
-            this.tbDdmiOutImon1Reg.Location = new System.Drawing.Point(186, 48);
+            this.tbDdmiOutImon1Reg.Location = new System.Drawing.Point(204, 47);
             this.tbDdmiOutImon1Reg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbDdmiOutImon1Reg.Name = "tbDdmiOutImon1Reg";
             this.tbDdmiOutImon1Reg.ReadOnly = true;
-            this.tbDdmiOutImon1Reg.Size = new System.Drawing.Size(39, 22);
+            this.tbDdmiOutImon1Reg.Size = new System.Drawing.Size(45, 22);
             this.tbDdmiOutImon1Reg.TabIndex = 17;
             // 
             // lDdmiOutImon1
             // 
             this.lDdmiOutImon1.AutoSize = true;
-            this.lDdmiOutImon1.Location = new System.Drawing.Point(141, 50);
+            this.lDdmiOutImon1.Location = new System.Drawing.Point(159, 50);
             this.lDdmiOutImon1.Name = "lDdmiOutImon1";
             this.lDdmiOutImon1.Size = new System.Drawing.Size(39, 12);
             this.lDdmiOutImon1.TabIndex = 16;
@@ -1734,26 +1734,26 @@
             // 
             // tbDdmiOutImon0Value
             // 
-            this.tbDdmiOutImon0Value.Location = new System.Drawing.Point(93, 48);
+            this.tbDdmiOutImon0Value.Location = new System.Drawing.Point(104, 47);
             this.tbDdmiOutImon0Value.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbDdmiOutImon0Value.Name = "tbDdmiOutImon0Value";
             this.tbDdmiOutImon0Value.ReadOnly = true;
-            this.tbDdmiOutImon0Value.Size = new System.Drawing.Size(43, 22);
+            this.tbDdmiOutImon0Value.Size = new System.Drawing.Size(45, 22);
             this.tbDdmiOutImon0Value.TabIndex = 15;
             // 
             // tbDdmiOutImon0Reg
             // 
-            this.tbDdmiOutImon0Reg.Location = new System.Drawing.Point(50, 48);
+            this.tbDdmiOutImon0Reg.Location = new System.Drawing.Point(53, 47);
             this.tbDdmiOutImon0Reg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbDdmiOutImon0Reg.Name = "tbDdmiOutImon0Reg";
             this.tbDdmiOutImon0Reg.ReadOnly = true;
-            this.tbDdmiOutImon0Reg.Size = new System.Drawing.Size(39, 22);
+            this.tbDdmiOutImon0Reg.Size = new System.Drawing.Size(45, 22);
             this.tbDdmiOutImon0Reg.TabIndex = 14;
             // 
             // lDdmiOutImon0
             // 
             this.lDdmiOutImon0.AutoSize = true;
-            this.lDdmiOutImon0.Location = new System.Drawing.Point(5, 50);
+            this.lDdmiOutImon0.Location = new System.Drawing.Point(8, 50);
             this.lDdmiOutImon0.Name = "lDdmiOutImon0";
             this.lDdmiOutImon0.Size = new System.Drawing.Size(39, 12);
             this.lDdmiOutImon0.TabIndex = 13;
@@ -1761,26 +1761,26 @@
             // 
             // tbDdmiOutV1p2Value
             // 
-            this.tbDdmiOutV1p2Value.Location = new System.Drawing.Point(478, 25);
+            this.tbDdmiOutV1p2Value.Location = new System.Drawing.Point(549, 23);
             this.tbDdmiOutV1p2Value.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbDdmiOutV1p2Value.Name = "tbDdmiOutV1p2Value";
             this.tbDdmiOutV1p2Value.ReadOnly = true;
-            this.tbDdmiOutV1p2Value.Size = new System.Drawing.Size(43, 22);
+            this.tbDdmiOutV1p2Value.Size = new System.Drawing.Size(45, 22);
             this.tbDdmiOutV1p2Value.TabIndex = 12;
             // 
             // tbDdmiOutV1p2Reg
             // 
-            this.tbDdmiOutV1p2Reg.Location = new System.Drawing.Point(435, 25);
+            this.tbDdmiOutV1p2Reg.Location = new System.Drawing.Point(498, 23);
             this.tbDdmiOutV1p2Reg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbDdmiOutV1p2Reg.Name = "tbDdmiOutV1p2Reg";
             this.tbDdmiOutV1p2Reg.ReadOnly = true;
-            this.tbDdmiOutV1p2Reg.Size = new System.Drawing.Size(39, 22);
+            this.tbDdmiOutV1p2Reg.Size = new System.Drawing.Size(45, 22);
             this.tbDdmiOutV1p2Reg.TabIndex = 11;
             // 
             // lDdmiOutV1p2
             // 
             this.lDdmiOutV1p2.AutoSize = true;
-            this.lDdmiOutV1p2.Location = new System.Drawing.Point(399, 27);
+            this.lDdmiOutV1p2.Location = new System.Drawing.Point(461, 27);
             this.lDdmiOutV1p2.Name = "lDdmiOutV1p2";
             this.lDdmiOutV1p2.Size = new System.Drawing.Size(31, 12);
             this.lDdmiOutV1p2.TabIndex = 10;
@@ -1788,26 +1788,26 @@
             // 
             // tbDdmiOutV1p8Value
             // 
-            this.tbDdmiOutV1p8Value.Location = new System.Drawing.Point(351, 25);
+            this.tbDdmiOutV1p8Value.Location = new System.Drawing.Point(402, 24);
             this.tbDdmiOutV1p8Value.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbDdmiOutV1p8Value.Name = "tbDdmiOutV1p8Value";
             this.tbDdmiOutV1p8Value.ReadOnly = true;
-            this.tbDdmiOutV1p8Value.Size = new System.Drawing.Size(43, 22);
+            this.tbDdmiOutV1p8Value.Size = new System.Drawing.Size(45, 22);
             this.tbDdmiOutV1p8Value.TabIndex = 9;
             // 
             // tbDdmiOutV1p8Reg
             // 
-            this.tbDdmiOutV1p8Reg.Location = new System.Drawing.Point(308, 25);
+            this.tbDdmiOutV1p8Reg.Location = new System.Drawing.Point(351, 24);
             this.tbDdmiOutV1p8Reg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbDdmiOutV1p8Reg.Name = "tbDdmiOutV1p8Reg";
             this.tbDdmiOutV1p8Reg.ReadOnly = true;
-            this.tbDdmiOutV1p8Reg.Size = new System.Drawing.Size(39, 22);
+            this.tbDdmiOutV1p8Reg.Size = new System.Drawing.Size(45, 22);
             this.tbDdmiOutV1p8Reg.TabIndex = 8;
             // 
             // lDdmiOutV1p8
             // 
             this.lDdmiOutV1p8.AutoSize = true;
-            this.lDdmiOutV1p8.Location = new System.Drawing.Point(273, 27);
+            this.lDdmiOutV1p8.Location = new System.Drawing.Point(314, 27);
             this.lDdmiOutV1p8.Name = "lDdmiOutV1p8";
             this.lDdmiOutV1p8.Size = new System.Drawing.Size(31, 12);
             this.lDdmiOutV1p8.TabIndex = 7;
@@ -1815,26 +1815,26 @@
             // 
             // tbDdmiOutV1monValue
             // 
-            this.tbDdmiOutV1monValue.Location = new System.Drawing.Point(225, 25);
+            this.tbDdmiOutV1monValue.Location = new System.Drawing.Point(255, 24);
             this.tbDdmiOutV1monValue.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbDdmiOutV1monValue.Name = "tbDdmiOutV1monValue";
             this.tbDdmiOutV1monValue.ReadOnly = true;
-            this.tbDdmiOutV1monValue.Size = new System.Drawing.Size(43, 22);
+            this.tbDdmiOutV1monValue.Size = new System.Drawing.Size(45, 22);
             this.tbDdmiOutV1monValue.TabIndex = 6;
             // 
             // tbDdmiOutV1monReg
             // 
-            this.tbDdmiOutV1monReg.Location = new System.Drawing.Point(181, 25);
+            this.tbDdmiOutV1monReg.Location = new System.Drawing.Point(204, 24);
             this.tbDdmiOutV1monReg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbDdmiOutV1monReg.Name = "tbDdmiOutV1monReg";
             this.tbDdmiOutV1monReg.ReadOnly = true;
-            this.tbDdmiOutV1monReg.Size = new System.Drawing.Size(39, 22);
+            this.tbDdmiOutV1monReg.Size = new System.Drawing.Size(45, 22);
             this.tbDdmiOutV1monReg.TabIndex = 5;
             // 
             // lDdmiOutV1mon
             // 
             this.lDdmiOutV1mon.AutoSize = true;
-            this.lDdmiOutV1mon.Location = new System.Drawing.Point(132, 27);
+            this.lDdmiOutV1mon.Location = new System.Drawing.Point(155, 27);
             this.lDdmiOutV1mon.Name = "lDdmiOutV1mon";
             this.lDdmiOutV1mon.Size = new System.Drawing.Size(43, 12);
             this.lDdmiOutV1mon.TabIndex = 4;
@@ -1842,26 +1842,26 @@
             // 
             // tbDdmiOutV3p3Value
             // 
-            this.tbDdmiOutV3p3Value.Location = new System.Drawing.Point(84, 25);
+            this.tbDdmiOutV3p3Value.Location = new System.Drawing.Point(104, 24);
             this.tbDdmiOutV3p3Value.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbDdmiOutV3p3Value.Name = "tbDdmiOutV3p3Value";
             this.tbDdmiOutV3p3Value.ReadOnly = true;
-            this.tbDdmiOutV3p3Value.Size = new System.Drawing.Size(43, 22);
+            this.tbDdmiOutV3p3Value.Size = new System.Drawing.Size(45, 22);
             this.tbDdmiOutV3p3Value.TabIndex = 3;
             // 
             // tbDdmiOutV3p3Reg
             // 
-            this.tbDdmiOutV3p3Reg.Location = new System.Drawing.Point(40, 25);
+            this.tbDdmiOutV3p3Reg.Location = new System.Drawing.Point(53, 24);
             this.tbDdmiOutV3p3Reg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbDdmiOutV3p3Reg.Name = "tbDdmiOutV3p3Reg";
             this.tbDdmiOutV3p3Reg.ReadOnly = true;
-            this.tbDdmiOutV3p3Reg.Size = new System.Drawing.Size(39, 22);
+            this.tbDdmiOutV3p3Reg.Size = new System.Drawing.Size(45, 22);
             this.tbDdmiOutV3p3Reg.TabIndex = 2;
             // 
             // lDdmiOutV3p3
             // 
             this.lDdmiOutV3p3.AutoSize = true;
-            this.lDdmiOutV3p3.Location = new System.Drawing.Point(5, 27);
+            this.lDdmiOutV3p3.Location = new System.Drawing.Point(16, 27);
             this.lDdmiOutV3p3.Name = "lDdmiOutV3p3";
             this.lDdmiOutV3p3.Size = new System.Drawing.Size(31, 12);
             this.lDdmiOutV3p3.TabIndex = 1;
@@ -1871,7 +1871,7 @@
             // 
             this.cbDdmiReadRequest.AutoSize = true;
             this.cbDdmiReadRequest.Enabled = false;
-            this.cbDdmiReadRequest.Location = new System.Drawing.Point(3, 5);
+            this.cbDdmiReadRequest.Location = new System.Drawing.Point(6, 4);
             this.cbDdmiReadRequest.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDdmiReadRequest.Name = "cbDdmiReadRequest";
             this.cbDdmiReadRequest.Size = new System.Drawing.Size(109, 16);
@@ -10254,14 +10254,14 @@
             this.cbTxDisableChAll.UseVisualStyleBackColor = true;
             this.cbTxDisableChAll.CheckedChanged += new System.EventHandler(this.cbTxDisableChAll_CheckedChanged);
             // 
-            // ucMald38045Config
+            // UcMald38045Config
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tcMald38045Config);
             this.Controls.Add(this.bReadAll);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "ucMald38045Config";
+            this.Name = "UcMald38045Config";
             this.Size = new System.Drawing.Size(826, 456);
             this.tcMald38045Config.ResumeLayout(false);
             this.tpGlobal.ResumeLayout(false);

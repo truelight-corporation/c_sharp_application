@@ -60,11 +60,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ucMald38045Config.cs">
+    <Compile Include="UcMald38045Config.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ucMald38045Config.Designer.cs">
-      <DependentUpon>ucMald38045Config.cs</DependentUpon>
+    <Compile Include="UcMald38045Config.Designer.cs">
+      <DependentUpon>UcMald38045Config.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcMata38044Config.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcMata38044Config.Designer.cs">
+      <DependentUpon>UcMata38044Config.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="FMald38045Mata38044Config.resx">
       <DependentUpon>FMald38045Mata38044Config.cs</DependentUpon>
@@ -78,8 +84,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ucMald38045Config.resx">
-      <DependentUpon>ucMald38045Config.cs</DependentUpon>
+    <EmbeddedResource Include="UcMald38045Config.resx">
+      <DependentUpon>UcMald38045Config.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcMata38044Config.resx">
+      <DependentUpon>UcMata38044Config.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Mald38045Mata38044Config
 {
-    public partial class ucMald38045Config : UserControl
+    public partial class UcMald38045Config : UserControl
     {
         public delegate int I2cReadCB(byte bank ,byte page, byte regAddr, int length, byte[] data);
         public delegate int I2cWriteCB(byte bank ,byte page, byte regAddr, int length, byte[] data);
@@ -41,7 +41,7 @@ namespace Mald38045Mata38044Config
             return i2cWriteCB(regBank, page, (byte)addr, length, data);
         }
 
-        public ucMald38045Config()
+        public UcMald38045Config()
         {
             ComboboxItem item;
             double dTmp;
@@ -2610,7 +2610,7 @@ namespace Mald38045Mata38044Config
             tbDdmiOutV1p8Reg.Text = "0x" + iTmp.ToString("X4");
 
             dTmp = iTmp & 0x1FFF;
-            dTmp = dTmp / 4095 * 3.73;
+            dTmp = dTmp / 4095 * 2;
             tbDdmiOutV1p8Value.Text = dTmp.ToString("F2");
         }
 
@@ -2624,7 +2624,7 @@ namespace Mald38045Mata38044Config
             tbDdmiOutV1p2Reg.Text = "0x" + iTmp.ToString("X4");
 
             dTmp = iTmp & 0x1FFF;
-            dTmp = dTmp / 4095 * 3.73;
+            dTmp = dTmp / 4095 * 2;
             tbDdmiOutV1p2Value.Text = dTmp.ToString("F2");
         }
 
@@ -6588,24 +6588,6 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbLosHystChAll_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (reading == true)
-                return;
-
-            if (_WritePage30Addr09() < 0)
-                return;
-
-            if (_WritePage31Addr09() < 0)
-                return;
-
-            if (_WritePage32Addr09() < 0)
-                return;
-
-            if (_WritePage33Addr09() < 0)
-                return;
-        }
-
         private int _WritePage2FAddr09()
         {
             byte[] data = new byte[1];
@@ -6614,10 +6596,14 @@ namespace Mald38045Mata38044Config
 
             bTmp = 0;
             data[0] = 0x00; //Default
+            if (cbLosHystChAll.SelectedIndex < 0)
+                return -1;
             bTmp = Convert.ToByte(cbLosHystChAll.SelectedIndex);
             bTmp <<= 4;
             data[0] |= bTmp;
 
+            if (cbLosVthChAll.SelectedIndex < 0)
+                return -1;
             bTmp = Convert.ToByte(cbLosVthChAll.SelectedIndex);
             data[0] |= bTmp;
 
@@ -6638,6 +6624,15 @@ namespace Mald38045Mata38044Config
                 return -1;
 
             return 0;
+        }
+
+        private void cbLosHystChAll_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reading == true)
+                return;
+
+            if (_WritePage2FAddr09() < 0)
+                return;
         }
 
         private void cbLosVthChAll_SelectedIndexChanged(object sender, EventArgs e)

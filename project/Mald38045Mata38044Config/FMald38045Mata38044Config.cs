@@ -218,6 +218,18 @@ namespace Mald38045Mata38044Config
             ucMald38045ConfigCh5_8.SetRegStartAddrApi(0xEE);
             ucMald38045ConfigCh5_8.SetI2cReadCBApi(_I2cRead);
             ucMald38045ConfigCh5_8.SetI2cWriteCBApi(_I2cWrite);
+
+            ucMata38044ConfigCh4_1.SetRegBankApi(2);
+            ucMata38044ConfigCh4_1.SetRegPageApi(0xB0);
+            ucMata38044ConfigCh4_1.SetRegStartAddrApi(0x80); //Reg length:256 (Page:0xB0 Addr:0x80 ~ Page:0xB1 Addr:0xFF)
+            ucMata38044ConfigCh4_1.SetI2cReadCBApi(_I2cRead);
+            ucMata38044ConfigCh4_1.SetI2cWriteCBApi(_I2cWrite);
+
+            ucMata38044ConfigCh8_5.SetRegBankApi(2);
+            ucMata38044ConfigCh8_5.SetRegPageApi(0xB2);
+            ucMata38044ConfigCh8_5.SetRegStartAddrApi(0x80);
+            ucMata38044ConfigCh8_5.SetI2cReadCBApi(_I2cRead);
+            ucMata38044ConfigCh8_5.SetI2cWriteCBApi(_I2cWrite);
         }
 
         private void cbConnected_CheckedChanged(object sender, EventArgs e)
