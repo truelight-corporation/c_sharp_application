@@ -5347,13 +5347,13 @@ namespace Rt145Rt146Config
             int rv;
             byte bTmp;
 
-            bTmp = data[0] = 0;
+            bTmp = data[0] = 0x0F;
 
             if (cbIbiasPowerDownCh0.Checked == true)
-                data[0] |= 0x40;
+                data[0] |= 0x4F;                
 
             if (cbModulationPowerDownCh0.Checked == true)
-                data[0] |= 0x80;
+                data[0] |= 0x8F;
 
             rv = i2cWriteCB(devAddr, 0x47, 1, data);
             if (rv < 0)
@@ -5406,13 +5406,13 @@ namespace Rt145Rt146Config
             int rv;
             byte bTmp;
 
-            bTmp = data[0] = 0;
+            bTmp = data[0] = 0x0F;
 
             if (cbIbiasPowerDownCh1.Checked == true)
-                data[0] |= 0x40;
+                data[0] |= 0x4F;                
 
             if (cbModulationPowerDownCh1.Checked == true)
-                data[0] |= 0x80;
+                data[0] |= 0x8F;
 
             rv = i2cWriteCB(devAddr, 0x67, 1, data);
             if (rv < 0)
@@ -5465,13 +5465,13 @@ namespace Rt145Rt146Config
             int rv;
             byte bTmp;
 
-            bTmp = data[0] = 0;
+            bTmp = data[0] = 0x0F;
 
             if (cbIbiasPowerDownCh2.Checked == true)
-                data[0] |= 0x40;
+                data[0] |= 0x4F;
 
             if (cbModulationPowerDownCh2.Checked == true)
-                data[0] |= 0x80;
+                data[0] |= 0x8F;
 
             rv = i2cWriteCB(devAddr, 0x87, 1, data);
             if (rv < 0)
@@ -5524,13 +5524,13 @@ namespace Rt145Rt146Config
             int rv;
             byte bTmp;
 
-            bTmp = data[0] = 0;
+            bTmp = data[0] = 0x0F;
 
             if (cbIbiasPowerDownCh3.Checked == true)
-                data[0] |= 0x40;
+                data[0] |= 0x4F;
 
             if (cbModulationPowerDownCh3.Checked == true)
-                data[0] |= 0x80;
+                data[0] |= 0x8F;
 
             rv = i2cWriteCB(devAddr, 0xA7, 1, data);
             if (rv < 0)
