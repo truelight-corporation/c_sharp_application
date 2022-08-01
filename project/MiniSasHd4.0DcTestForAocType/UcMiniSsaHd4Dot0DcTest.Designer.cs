@@ -27,8 +27,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.bLog = new System.Windows.Forms.Button();
             this.lAfterBurnInPowerDifferentLimit = new System.Windows.Forms.Label();
             this.tbAfterBurnInPowerDifferentLimit = new System.Windows.Forms.TextBox();
@@ -199,6 +199,10 @@
             this.tbPassword124 = new System.Windows.Forms.TextBox();
             this.l = new System.Windows.Forms.Label();
             this.tbPassword123 = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.tcFunctionSelect.SuspendLayout();
             this.tpLog.SuspendLayout();
             this.gbDataList.SuspendLayout();
@@ -296,6 +300,10 @@
             // gbDataList
             // 
             this.gbDataList.BackColor = System.Drawing.Color.Transparent;
+            this.gbDataList.Controls.Add(this.label12);
+            this.gbDataList.Controls.Add(this.label11);
+            this.gbDataList.Controls.Add(this.label10);
+            this.gbDataList.Controls.Add(this.label9);
             this.gbDataList.Controls.Add(this.lYield);
             this.gbDataList.Controls.Add(this.lDataNumber);
             this.gbDataList.Controls.Add(this.lGradeT);
@@ -347,27 +355,24 @@
             this.lYield.AutoSize = true;
             this.lYield.Location = new System.Drawing.Point(459, 15);
             this.lYield.Name = "lYield";
-            this.lYield.Size = new System.Drawing.Size(49, 21);
+            this.lYield.Size = new System.Drawing.Size(0, 21);
             this.lYield.TabIndex = 100;
-            this.lYield.Text = "XXX";
             // 
             // lDataNumber
             // 
             this.lDataNumber.AutoSize = true;
             this.lDataNumber.Location = new System.Drawing.Point(127, 15);
             this.lDataNumber.Name = "lDataNumber";
-            this.lDataNumber.Size = new System.Drawing.Size(49, 21);
+            this.lDataNumber.Size = new System.Drawing.Size(0, 21);
             this.lDataNumber.TabIndex = 99;
-            this.lDataNumber.Text = "XXX";
             // 
             // lGradeT
             // 
             this.lGradeT.AutoSize = true;
             this.lGradeT.Location = new System.Drawing.Point(304, 15);
             this.lGradeT.Name = "lGradeT";
-            this.lGradeT.Size = new System.Drawing.Size(49, 21);
+            this.lGradeT.Size = new System.Drawing.Size(0, 21);
             this.lGradeT.TabIndex = 98;
-            this.lGradeT.Text = "XXX";
             // 
             // bDelRecord
             // 
@@ -396,7 +401,7 @@
             this.tbLogFilePath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(206)))), ((int)(((byte)(147)))));
             this.tbLogFilePath.Enabled = false;
             this.tbLogFilePath.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbLogFilePath.Location = new System.Drawing.Point(246, 371);
+            this.tbLogFilePath.Location = new System.Drawing.Point(242, 375);
             this.tbLogFilePath.Name = "tbLogFilePath";
             this.tbLogFilePath.Size = new System.Drawing.Size(858, 35);
             this.tbLogFilePath.TabIndex = 95;
@@ -416,25 +421,25 @@
             // 
             this.dgvRecord.AllowUserToResizeColumns = false;
             this.dgvRecord.AllowUserToResizeRows = false;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(228)))), ((int)(((byte)(199)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(28)))), ((int)(((byte)(21)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.dgvRecord.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(228)))), ((int)(((byte)(199)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(28)))), ((int)(((byte)(21)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.dgvRecord.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvRecord.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvRecord.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgvRecord.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(213)))), ((int)(((byte)(178)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(28)))), ((int)(((byte)(21)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvRecord.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvRecord.Location = new System.Drawing.Point(6, 37);
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;            
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(213)))), ((int)(((byte)(178)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(28)))), ((int)(((byte)(21)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvRecord.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvRecord.Location = new System.Drawing.Point(6, 39);
             this.dgvRecord.Name = "dgvRecord";
             this.dgvRecord.ReadOnly = true;
             this.dgvRecord.RowTemplate.Height = 24;
@@ -1106,11 +1111,11 @@
             // 
             this.lClassification.AutoSize = true;
             this.lClassification.BackColor = System.Drawing.Color.Green;
-            this.lClassification.Font = new System.Drawing.Font("Times New Roman", 99.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lClassification.Font = new System.Drawing.Font("Times New Roman", 120F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lClassification.ForeColor = System.Drawing.Color.White;
-            this.lClassification.Location = new System.Drawing.Point(1099, 109);
+            this.lClassification.Location = new System.Drawing.Point(1096, 105);
             this.lClassification.Name = "lClassification";
-            this.lClassification.Size = new System.Drawing.Size(0, 151);
+            this.lClassification.Size = new System.Drawing.Size(0, 179);
             this.lClassification.TabIndex = 106;
             // 
             // gbStatus
@@ -2146,6 +2151,47 @@
             this.tbPassword123.TabIndex = 40;
             this.tbPassword123.Text = "0";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(218)))), ((int)(((byte)(177)))));
+            this.label9.Location = new System.Drawing.Point(1107, 13);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(45, 21);
+            this.label9.TabIndex = 104;
+            this.label9.Text = "Pass";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(255)))), ((int)(((byte)(112)))));
+            this.label10.Location = new System.Drawing.Point(1151, 13);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(63, 21);
+            this.label10.TabIndex = 105;
+            this.label10.Text = "Critical";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Pink;
+            this.label11.Location = new System.Drawing.Point(1213, 13);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(37, 21);
+            this.label11.TabIndex = 106;
+            this.label11.Text = "Fail";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(996, 13);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(130, 21);
+            this.label12.TabIndex = 107;
+            this.label12.Text = "Figure legend：";
+            // 
             // UcMiniSsaHd4Dot0DcTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2352,6 +2398,10 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lYield;
         private System.Windows.Forms.Label lDataNumber;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label12;
     }
 }
 

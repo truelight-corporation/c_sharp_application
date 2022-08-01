@@ -66,7 +66,7 @@ namespace MiniSasHd4Dot0DcTest
             bwMonitor.WorkerReportsProgress = true;
             bwMonitor.WorkerSupportsCancellation = false;
             bwMonitor.DoWork += new DoWorkEventHandler(MonitorValueUpdateApi);
-            bwMonitor.ProgressChanged += new ProgressChangedEventHandler(MonitorProgressChangedApi);
+            bwMonitor.ProgressChanged += new ProgressChangedEventHandler(MonitorProgressChangedApi);            
 
             Directory.CreateDirectory(fileDirectory);
             tbLogFilePath.Text = fileDirectory + "\\";
@@ -391,7 +391,7 @@ namespace MiniSasHd4Dot0DcTest
             String GradeT = "T";
 
             numberOfData = countGradeT = 0;
-
+            
             nRows = dgvRecord.Rows.Count - 1;
             for (int i = 0; i < nRows; i++)
             {
@@ -2104,7 +2104,12 @@ namespace MiniSasHd4Dot0DcTest
                 
         private int _UpdateRxRssiValueGuiA()
         {
-            float fTmp, fThreshold;
+            float fTmp, fThreshold, f3Average;
+            float[] fARssi = Array.ConvertAll(rxARssiValue, S => float.Parse(S));            
+            double dCriticalValue;
+
+            f3Average = (fARssi.Sum() - fARssi.Min()) / 3;
+            dCriticalValue = f3Average * 0.8;
 
             fThreshold = float.Parse(tbRx1Threshold.Text);
             fTmp = float.Parse(rxARssiValue[0]);
@@ -2113,6 +2118,11 @@ namespace MiniSasHd4Dot0DcTest
                 tbARx1.ForeColor = System.Drawing.Color.Red;
                 tbARx1.BackColor = System.Drawing.Color.Pink;
              }
+            else if (fTmp < dCriticalValue) 
+            {
+                tbARx1.ForeColor = SystemColors.ControlText;
+                tbARx1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(255)))), ((int)(((byte)(112)))));
+            }
             else
             {
                 tbARx1.ForeColor = SystemColors.ControlText;
@@ -2129,6 +2139,11 @@ namespace MiniSasHd4Dot0DcTest
                 tbARx2.ForeColor = System.Drawing.Color.Red;
                 tbARx2.BackColor = System.Drawing.Color.Pink;
             }
+            else if (fTmp < dCriticalValue)
+            {
+                tbARx2.ForeColor = SystemColors.ControlText;
+                tbARx2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(255)))), ((int)(((byte)(112)))));
+            }
             else
             {
                 tbARx2.ForeColor = SystemColors.ControlText;
@@ -2143,6 +2158,11 @@ namespace MiniSasHd4Dot0DcTest
             {
                 tbARx3.ForeColor = System.Drawing.Color.Red;
                 tbARx3.BackColor = System.Drawing.Color.Pink;
+            }
+            else if (fTmp < dCriticalValue)
+            {
+                tbARx3.ForeColor = SystemColors.ControlText;
+                tbARx3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(255)))), ((int)(((byte)(112)))));
             }
             else
             {
@@ -2159,6 +2179,11 @@ namespace MiniSasHd4Dot0DcTest
                 tbARx4.ForeColor = System.Drawing.Color.Red;
                 tbARx4.BackColor = System.Drawing.Color.Pink;
             }
+            else if (fTmp < dCriticalValue)
+            {
+                tbARx4.ForeColor = SystemColors.ControlText;
+                tbARx4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(255)))), ((int)(((byte)(112)))));
+            }
             else
             {
                 tbARx4.ForeColor = SystemColors.ControlText;
@@ -2172,7 +2197,12 @@ namespace MiniSasHd4Dot0DcTest
 
         private int _UpdateRxRssiValueGuiB()
         {
-            float fTmp, fThreshold;
+            float fTmp, fThreshold, f3Average; ;
+            float[] fBRssi = Array.ConvertAll(rxBRssiValue, S => float.Parse(S));
+            double dCriticalValue;
+
+            f3Average = (fBRssi.Sum() - fBRssi.Min()) / 3;
+            dCriticalValue = f3Average * 0.8;
 
             fThreshold = float.Parse(tbRx1Threshold.Text);
             fTmp = float.Parse(rxBRssiValue[0]);
@@ -2180,6 +2210,11 @@ namespace MiniSasHd4Dot0DcTest
             {
                 tbBRx1.ForeColor = System.Drawing.Color.Red;
                 tbBRx1.BackColor = System.Drawing.Color.Pink;
+            }
+            else if (fTmp < dCriticalValue)
+            {
+                tbBRx1.ForeColor = SystemColors.ControlText;
+                tbBRx1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(255)))), ((int)(((byte)(112)))));
             }
             else
             {
@@ -2196,6 +2231,11 @@ namespace MiniSasHd4Dot0DcTest
                 tbBRx2.ForeColor = System.Drawing.Color.Red;
                 tbBRx2.BackColor = System.Drawing.Color.Pink;
             }
+            else if (fTmp < dCriticalValue)
+            {
+                tbBRx2.ForeColor = SystemColors.ControlText;
+                tbBRx2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(255)))), ((int)(((byte)(112)))));
+            }
             else
             {
                 tbBRx2.ForeColor = SystemColors.ControlText;
@@ -2211,6 +2251,11 @@ namespace MiniSasHd4Dot0DcTest
                 tbBRx3.ForeColor = System.Drawing.Color.Red;
                 tbBRx3.BackColor = System.Drawing.Color.Pink;
             }
+            else if (fTmp < dCriticalValue)
+            {
+                tbBRx3.ForeColor = SystemColors.ControlText;
+                tbBRx3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(255)))), ((int)(((byte)(112)))));
+            }
             else
             {
                 tbBRx3.ForeColor = SystemColors.ControlText;
@@ -2225,6 +2270,11 @@ namespace MiniSasHd4Dot0DcTest
             {
                 tbBRx4.ForeColor = System.Drawing.Color.Red;
                 tbBRx4.BackColor = System.Drawing.Color.Pink;
+            }
+            else if (fTmp < dCriticalValue)
+            {
+                tbBRx4.ForeColor = SystemColors.ControlText;
+                tbBRx4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(255)))), ((int)(((byte)(112)))));
             }
             else
             {
