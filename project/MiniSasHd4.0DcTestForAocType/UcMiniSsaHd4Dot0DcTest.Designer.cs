@@ -26,9 +26,8 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
-        {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+        {            
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle = new System.Windows.Forms.DataGridViewCellStyle();
             this.bLog = new System.Windows.Forms.Button();
             this.lAfterBurnInPowerDifferentLimit = new System.Windows.Forms.Label();
             this.tbAfterBurnInPowerDifferentLimit = new System.Windows.Forms.TextBox();
@@ -36,12 +35,12 @@
             this.tcFunctionSelect = new System.Windows.Forms.TabControl();
             this.tpLog = new System.Windows.Forms.TabPage();
             this.gbDataList = new System.Windows.Forms.GroupBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.lYield = new System.Windows.Forms.Label();
             this.lDataNumber = new System.Windows.Forms.Label();
             this.lGradeT = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.bDelRecord = new System.Windows.Forms.Button();
             this.bSaveFile = new System.Windows.Forms.Button();
             this.tbLogFilePath = new System.Windows.Forms.TextBox();
@@ -235,20 +234,20 @@
             // lAfterBurnInPowerDifferentLimit
             // 
             this.lAfterBurnInPowerDifferentLimit.AutoSize = true;
-            this.lAfterBurnInPowerDifferentLimit.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lAfterBurnInPowerDifferentLimit.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lAfterBurnInPowerDifferentLimit.Location = new System.Drawing.Point(6, 9);
             this.lAfterBurnInPowerDifferentLimit.Name = "lAfterBurnInPowerDifferentLimit";
-            this.lAfterBurnInPowerDifferentLimit.Size = new System.Drawing.Size(338, 24);
+            this.lAfterBurnInPowerDifferentLimit.Size = new System.Drawing.Size(360, 27);
             this.lAfterBurnInPowerDifferentLimit.TabIndex = 8;
             this.lAfterBurnInPowerDifferentLimit.Text = "Power diff percentage after burn-In:";
             // 
             // tbAfterBurnInPowerDifferentLimit
             // 
             this.tbAfterBurnInPowerDifferentLimit.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbAfterBurnInPowerDifferentLimit.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbAfterBurnInPowerDifferentLimit.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbAfterBurnInPowerDifferentLimit.Location = new System.Drawing.Point(390, 6);
             this.tbAfterBurnInPowerDifferentLimit.Name = "tbAfterBurnInPowerDifferentLimit";
-            this.tbAfterBurnInPowerDifferentLimit.Size = new System.Drawing.Size(60, 36);
+            this.tbAfterBurnInPowerDifferentLimit.Size = new System.Drawing.Size(60, 35);
             this.tbAfterBurnInPowerDifferentLimit.TabIndex = 9;
             this.tbAfterBurnInPowerDifferentLimit.Text = "20";
             // 
@@ -323,6 +322,30 @@
             this.gbDataList.TabStop = false;
             this.gbDataList.Text = "DataList";
             // 
+            // lYield
+            // 
+            this.lYield.AutoSize = true;
+            this.lYield.Location = new System.Drawing.Point(459, 15);
+            this.lYield.Name = "lYield";
+            this.lYield.Size = new System.Drawing.Size(0, 21);
+            this.lYield.TabIndex = 100;
+            // 
+            // lDataNumber
+            // 
+            this.lDataNumber.AutoSize = true;
+            this.lDataNumber.Location = new System.Drawing.Point(127, 15);
+            this.lDataNumber.Name = "lDataNumber";
+            this.lDataNumber.Size = new System.Drawing.Size(0, 21);
+            this.lDataNumber.TabIndex = 99;
+            // 
+            // lGradeT
+            // 
+            this.lGradeT.AutoSize = true;
+            this.lGradeT.Location = new System.Drawing.Point(304, 15);
+            this.lGradeT.Name = "lGradeT";
+            this.lGradeT.Size = new System.Drawing.Size(0, 21);
+            this.lGradeT.TabIndex = 98;
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -349,30 +372,6 @@
             this.label6.Size = new System.Drawing.Size(147, 21);
             this.label6.TabIndex = 101;
             this.label6.Text = "Number of data：";
-            // 
-            // lYield
-            // 
-            this.lYield.AutoSize = true;
-            this.lYield.Location = new System.Drawing.Point(459, 15);
-            this.lYield.Name = "lYield";
-            this.lYield.Size = new System.Drawing.Size(0, 21);
-            this.lYield.TabIndex = 100;
-            // 
-            // lDataNumber
-            // 
-            this.lDataNumber.AutoSize = true;
-            this.lDataNumber.Location = new System.Drawing.Point(127, 15);
-            this.lDataNumber.Name = "lDataNumber";
-            this.lDataNumber.Size = new System.Drawing.Size(0, 21);
-            this.lDataNumber.TabIndex = 99;
-            // 
-            // lGradeT
-            // 
-            this.lGradeT.AutoSize = true;
-            this.lGradeT.Location = new System.Drawing.Point(304, 15);
-            this.lGradeT.Name = "lGradeT";
-            this.lGradeT.Size = new System.Drawing.Size(0, 21);
-            this.lGradeT.TabIndex = 98;
             // 
             // bDelRecord
             // 
@@ -401,7 +400,7 @@
             this.tbLogFilePath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(206)))), ((int)(((byte)(147)))));
             this.tbLogFilePath.Enabled = false;
             this.tbLogFilePath.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbLogFilePath.Location = new System.Drawing.Point(242, 375);
+            this.tbLogFilePath.Location = new System.Drawing.Point(246, 371);
             this.tbLogFilePath.Name = "tbLogFilePath";
             this.tbLogFilePath.Size = new System.Drawing.Size(858, 35);
             this.tbLogFilePath.TabIndex = 95;
@@ -420,26 +419,18 @@
             // dgvRecord
             // 
             this.dgvRecord.AllowUserToResizeColumns = false;
-            this.dgvRecord.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(228)))), ((int)(((byte)(199)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(28)))), ((int)(((byte)(21)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.dgvRecord.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvRecord.AllowUserToResizeRows = false;            
             this.dgvRecord.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvRecord.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgvRecord.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;            
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(213)))), ((int)(((byte)(178)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(28)))), ((int)(((byte)(21)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvRecord.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dgvRecord.Location = new System.Drawing.Point(6, 39);
+            dataGridViewCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;            
+            dataGridViewCellStyle.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(28)))), ((int)(((byte)(21)))));
+            dataGridViewCellStyle.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvRecord.DefaultCellStyle = dataGridViewCellStyle;
+            this.dgvRecord.Location = new System.Drawing.Point(6, 37);
             this.dgvRecord.Name = "dgvRecord";
             this.dgvRecord.ReadOnly = true;
             this.dgvRecord.RowTemplate.Height = 24;
@@ -1111,11 +1102,11 @@
             // 
             this.lClassification.AutoSize = true;
             this.lClassification.BackColor = System.Drawing.Color.Green;
-            this.lClassification.Font = new System.Drawing.Font("Times New Roman", 120F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lClassification.Font = new System.Drawing.Font("Times New Roman", 99.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lClassification.ForeColor = System.Drawing.Color.White;
-            this.lClassification.Location = new System.Drawing.Point(1096, 105);
+            this.lClassification.Location = new System.Drawing.Point(1099, 109);
             this.lClassification.Name = "lClassification";
-            this.lClassification.Size = new System.Drawing.Size(0, 179);
+            this.lClassification.Size = new System.Drawing.Size(0, 151);
             this.lClassification.TabIndex = 106;
             // 
             // gbStatus
@@ -1232,20 +1223,20 @@
             // tbBurnInBiasCurrent
             // 
             this.tbBurnInBiasCurrent.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbBurnInBiasCurrent.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbBurnInBiasCurrent.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbBurnInBiasCurrent.Location = new System.Drawing.Point(954, 6);
             this.tbBurnInBiasCurrent.Name = "tbBurnInBiasCurrent";
-            this.tbBurnInBiasCurrent.Size = new System.Drawing.Size(65, 36);
+            this.tbBurnInBiasCurrent.Size = new System.Drawing.Size(65, 35);
             this.tbBurnInBiasCurrent.TabIndex = 93;
             this.tbBurnInBiasCurrent.Text = "10000";
             // 
             // lBurnInBiasCurrent
             // 
             this.lBurnInBiasCurrent.AutoSize = true;
-            this.lBurnInBiasCurrent.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lBurnInBiasCurrent.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lBurnInBiasCurrent.Location = new System.Drawing.Point(813, 9);
             this.lBurnInBiasCurrent.Name = "lBurnInBiasCurrent";
-            this.lBurnInBiasCurrent.Size = new System.Drawing.Size(135, 24);
+            this.lBurnInBiasCurrent.Size = new System.Drawing.Size(143, 27);
             this.lBurnInBiasCurrent.TabIndex = 92;
             this.lBurnInBiasCurrent.Text = "Burn-in (uA):";
             // 
@@ -1315,20 +1306,20 @@
             // tbBeforeAndAfterBurnInDcTestBiasCurrent
             // 
             this.tbBeforeAndAfterBurnInDcTestBiasCurrent.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbBeforeAndAfterBurnInDcTestBiasCurrent.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbBeforeAndAfterBurnInDcTestBiasCurrent.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbBeforeAndAfterBurnInDcTestBiasCurrent.Location = new System.Drawing.Point(747, 6);
             this.tbBeforeAndAfterBurnInDcTestBiasCurrent.Name = "tbBeforeAndAfterBurnInDcTestBiasCurrent";
-            this.tbBeforeAndAfterBurnInDcTestBiasCurrent.Size = new System.Drawing.Size(60, 36);
+            this.tbBeforeAndAfterBurnInDcTestBiasCurrent.Size = new System.Drawing.Size(60, 35);
             this.tbBeforeAndAfterBurnInDcTestBiasCurrent.TabIndex = 86;
             this.tbBeforeAndAfterBurnInDcTestBiasCurrent.Text = "7000";
             // 
             // lBeforeAndAfterBurnInDcTestBiasCurrent
             // 
             this.lBeforeAndAfterBurnInDcTestBiasCurrent.AutoSize = true;
-            this.lBeforeAndAfterBurnInDcTestBiasCurrent.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lBeforeAndAfterBurnInDcTestBiasCurrent.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lBeforeAndAfterBurnInDcTestBiasCurrent.Location = new System.Drawing.Point(456, 9);
             this.lBeforeAndAfterBurnInDcTestBiasCurrent.Name = "lBeforeAndAfterBurnInDcTestBiasCurrent";
-            this.lBeforeAndAfterBurnInDcTestBiasCurrent.Size = new System.Drawing.Size(285, 24);
+            this.lBeforeAndAfterBurnInDcTestBiasCurrent.Size = new System.Drawing.Size(303, 27);
             this.lBeforeAndAfterBurnInDcTestBiasCurrent.TabIndex = 85;
             this.lBeforeAndAfterBurnInDcTestBiasCurrent.Text = "Before and after burn-in (uA):";
             // 
@@ -1381,266 +1372,266 @@
             // lHtMaxThreshold
             // 
             this.lHtMaxThreshold.AutoSize = true;
-            this.lHtMaxThreshold.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lHtMaxThreshold.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.lHtMaxThreshold.Location = new System.Drawing.Point(545, 32);
             this.lHtMaxThreshold.Name = "lHtMaxThreshold";
-            this.lHtMaxThreshold.Size = new System.Drawing.Size(53, 24);
+            this.lHtMaxThreshold.Size = new System.Drawing.Size(57, 27);
             this.lHtMaxThreshold.TabIndex = 99;
             this.lHtMaxThreshold.Text = "HT+";
             // 
             // tbHtMaxThreshold
             // 
             this.tbHtMaxThreshold.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbHtMaxThreshold.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbHtMaxThreshold.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbHtMaxThreshold.Location = new System.Drawing.Point(539, 64);
             this.tbHtMaxThreshold.Name = "tbHtMaxThreshold";
-            this.tbHtMaxThreshold.Size = new System.Drawing.Size(60, 36);
+            this.tbHtMaxThreshold.Size = new System.Drawing.Size(60, 35);
             this.tbHtMaxThreshold.TabIndex = 98;
             // 
             // lLtMaxThreshold
             // 
             this.lLtMaxThreshold.AutoSize = true;
-            this.lLtMaxThreshold.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lLtMaxThreshold.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.lLtMaxThreshold.Location = new System.Drawing.Point(412, 32);
             this.lLtMaxThreshold.Name = "lLtMaxThreshold";
-            this.lLtMaxThreshold.Size = new System.Drawing.Size(51, 24);
+            this.lLtMaxThreshold.Size = new System.Drawing.Size(53, 27);
             this.lLtMaxThreshold.TabIndex = 97;
             this.lLtMaxThreshold.Text = "LT+";
             // 
             // tbLtMaxThreshold
             // 
             this.tbLtMaxThreshold.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbLtMaxThreshold.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbLtMaxThreshold.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbLtMaxThreshold.Location = new System.Drawing.Point(407, 64);
             this.tbLtMaxThreshold.Name = "tbLtMaxThreshold";
-            this.tbLtMaxThreshold.Size = new System.Drawing.Size(60, 36);
+            this.tbLtMaxThreshold.Size = new System.Drawing.Size(60, 35);
             this.tbLtMaxThreshold.TabIndex = 96;
             // 
             // lHtMinThreshold
             // 
             this.lHtMinThreshold.AutoSize = true;
-            this.lHtMinThreshold.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lHtMinThreshold.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.lHtMinThreshold.Location = new System.Drawing.Point(479, 32);
             this.lHtMinThreshold.Name = "lHtMinThreshold";
-            this.lHtMinThreshold.Size = new System.Drawing.Size(48, 24);
+            this.lHtMinThreshold.Size = new System.Drawing.Size(49, 27);
             this.lHtMinThreshold.TabIndex = 95;
             this.lHtMinThreshold.Text = "HT-";
             // 
             // tbHtMinThreshold
             // 
             this.tbHtMinThreshold.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbHtMinThreshold.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbHtMinThreshold.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbHtMinThreshold.Location = new System.Drawing.Point(473, 64);
             this.tbHtMinThreshold.Name = "tbHtMinThreshold";
-            this.tbHtMinThreshold.Size = new System.Drawing.Size(60, 36);
+            this.tbHtMinThreshold.Size = new System.Drawing.Size(60, 35);
             this.tbHtMinThreshold.TabIndex = 94;
             // 
             // lLtMinThreshold
             // 
             this.lLtMinThreshold.AutoSize = true;
-            this.lLtMinThreshold.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lLtMinThreshold.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.lLtMinThreshold.Location = new System.Drawing.Point(348, 32);
             this.lLtMinThreshold.Name = "lLtMinThreshold";
-            this.lLtMinThreshold.Size = new System.Drawing.Size(46, 24);
+            this.lLtMinThreshold.Size = new System.Drawing.Size(45, 27);
             this.lLtMinThreshold.TabIndex = 93;
             this.lLtMinThreshold.Text = "LT-";
             // 
             // tbLtMinThreshold
             // 
             this.tbLtMinThreshold.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbLtMinThreshold.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbLtMinThreshold.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbLtMinThreshold.Location = new System.Drawing.Point(341, 64);
             this.tbLtMinThreshold.Name = "tbLtMinThreshold";
-            this.tbLtMinThreshold.Size = new System.Drawing.Size(60, 36);
+            this.tbLtMinThreshold.Size = new System.Drawing.Size(60, 35);
             this.tbLtMinThreshold.TabIndex = 92;
             // 
             // lMpdThreshold
             // 
             this.lMpdThreshold.AutoSize = true;
-            this.lMpdThreshold.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lMpdThreshold.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.lMpdThreshold.Location = new System.Drawing.Point(6, 151);
             this.lMpdThreshold.Name = "lMpdThreshold";
-            this.lMpdThreshold.Size = new System.Drawing.Size(65, 24);
+            this.lMpdThreshold.Size = new System.Drawing.Size(70, 27);
             this.lMpdThreshold.TabIndex = 91;
             this.lMpdThreshold.Text = "MPD:";
             // 
             // tbMpd4Threshold
             // 
             this.tbMpd4Threshold.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbMpd4Threshold.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbMpd4Threshold.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbMpd4Threshold.Location = new System.Drawing.Point(275, 148);
             this.tbMpd4Threshold.Name = "tbMpd4Threshold";
-            this.tbMpd4Threshold.Size = new System.Drawing.Size(60, 36);
+            this.tbMpd4Threshold.Size = new System.Drawing.Size(60, 35);
             this.tbMpd4Threshold.TabIndex = 90;
             this.tbMpd4Threshold.Text = "0";
             // 
             // tbMpd1Threshold
             // 
             this.tbMpd1Threshold.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbMpd1Threshold.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbMpd1Threshold.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbMpd1Threshold.Location = new System.Drawing.Point(77, 148);
             this.tbMpd1Threshold.Name = "tbMpd1Threshold";
-            this.tbMpd1Threshold.Size = new System.Drawing.Size(60, 36);
+            this.tbMpd1Threshold.Size = new System.Drawing.Size(60, 35);
             this.tbMpd1Threshold.TabIndex = 87;
             this.tbMpd1Threshold.Text = "0";
             // 
             // tbMpd2Threshold
             // 
             this.tbMpd2Threshold.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbMpd2Threshold.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbMpd2Threshold.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbMpd2Threshold.Location = new System.Drawing.Point(143, 148);
             this.tbMpd2Threshold.Name = "tbMpd2Threshold";
-            this.tbMpd2Threshold.Size = new System.Drawing.Size(60, 36);
+            this.tbMpd2Threshold.Size = new System.Drawing.Size(60, 35);
             this.tbMpd2Threshold.TabIndex = 88;
             this.tbMpd2Threshold.Text = "0";
             // 
             // tbMpd3Threshold
             // 
             this.tbMpd3Threshold.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbMpd3Threshold.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbMpd3Threshold.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbMpd3Threshold.Location = new System.Drawing.Point(209, 148);
             this.tbMpd3Threshold.Name = "tbMpd3Threshold";
-            this.tbMpd3Threshold.Size = new System.Drawing.Size(60, 36);
+            this.tbMpd3Threshold.Size = new System.Drawing.Size(60, 35);
             this.tbMpd3Threshold.TabIndex = 89;
             this.tbMpd3Threshold.Text = "0";
             // 
             // lRxThreshold
             // 
             this.lRxThreshold.AutoSize = true;
-            this.lRxThreshold.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lRxThreshold.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.lRxThreshold.Location = new System.Drawing.Point(5, 109);
             this.lRxThreshold.Name = "lRxThreshold";
-            this.lRxThreshold.Size = new System.Drawing.Size(42, 24);
+            this.lRxThreshold.Size = new System.Drawing.Size(46, 27);
             this.lRxThreshold.TabIndex = 86;
             this.lRxThreshold.Text = "Rx:";
             // 
             // tbRx4Threshold
             // 
             this.tbRx4Threshold.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRx4Threshold.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRx4Threshold.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbRx4Threshold.Location = new System.Drawing.Point(275, 106);
             this.tbRx4Threshold.Name = "tbRx4Threshold";
-            this.tbRx4Threshold.Size = new System.Drawing.Size(60, 36);
+            this.tbRx4Threshold.Size = new System.Drawing.Size(60, 35);
             this.tbRx4Threshold.TabIndex = 85;
             this.tbRx4Threshold.Text = "5000";
             // 
             // tbRx1Threshold
             // 
             this.tbRx1Threshold.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRx1Threshold.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRx1Threshold.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbRx1Threshold.Location = new System.Drawing.Point(77, 106);
             this.tbRx1Threshold.Name = "tbRx1Threshold";
-            this.tbRx1Threshold.Size = new System.Drawing.Size(60, 36);
+            this.tbRx1Threshold.Size = new System.Drawing.Size(60, 35);
             this.tbRx1Threshold.TabIndex = 82;
             this.tbRx1Threshold.Text = "5000";
             // 
             // tbRx2Threshold
             // 
             this.tbRx2Threshold.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRx2Threshold.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRx2Threshold.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbRx2Threshold.Location = new System.Drawing.Point(143, 106);
             this.tbRx2Threshold.Name = "tbRx2Threshold";
-            this.tbRx2Threshold.Size = new System.Drawing.Size(60, 36);
+            this.tbRx2Threshold.Size = new System.Drawing.Size(60, 35);
             this.tbRx2Threshold.TabIndex = 83;
             this.tbRx2Threshold.Text = "5000";
             // 
             // tbRx3Threshold
             // 
             this.tbRx3Threshold.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRx3Threshold.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRx3Threshold.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbRx3Threshold.Location = new System.Drawing.Point(209, 106);
             this.tbRx3Threshold.Name = "tbRx3Threshold";
-            this.tbRx3Threshold.Size = new System.Drawing.Size(60, 36);
+            this.tbRx3Threshold.Size = new System.Drawing.Size(60, 35);
             this.tbRx3Threshold.TabIndex = 84;
             this.tbRx3Threshold.Text = "5000";
             // 
             // lTxThreshold
             // 
             this.lTxThreshold.AutoSize = true;
-            this.lTxThreshold.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lTxThreshold.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.lTxThreshold.Location = new System.Drawing.Point(6, 67);
             this.lTxThreshold.Name = "lTxThreshold";
-            this.lTxThreshold.Size = new System.Drawing.Size(41, 24);
+            this.lTxThreshold.Size = new System.Drawing.Size(44, 27);
             this.lTxThreshold.TabIndex = 81;
             this.lTxThreshold.Text = "Tx:";
             // 
             // tbTx4Threshold
             // 
             this.tbTx4Threshold.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbTx4Threshold.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbTx4Threshold.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbTx4Threshold.Location = new System.Drawing.Point(275, 64);
             this.tbTx4Threshold.Name = "tbTx4Threshold";
-            this.tbTx4Threshold.Size = new System.Drawing.Size(60, 36);
+            this.tbTx4Threshold.Size = new System.Drawing.Size(60, 35);
             this.tbTx4Threshold.TabIndex = 58;
             this.tbTx4Threshold.Text = "700";
             // 
             // tbTx1Threshold
             // 
             this.tbTx1Threshold.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbTx1Threshold.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbTx1Threshold.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbTx1Threshold.Location = new System.Drawing.Point(77, 64);
             this.tbTx1Threshold.Name = "tbTx1Threshold";
-            this.tbTx1Threshold.Size = new System.Drawing.Size(60, 36);
+            this.tbTx1Threshold.Size = new System.Drawing.Size(60, 35);
             this.tbTx1Threshold.TabIndex = 55;
             this.tbTx1Threshold.Text = "700";
             // 
             // tbTx2Threshold
             // 
             this.tbTx2Threshold.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbTx2Threshold.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbTx2Threshold.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbTx2Threshold.Location = new System.Drawing.Point(143, 64);
             this.tbTx2Threshold.Name = "tbTx2Threshold";
-            this.tbTx2Threshold.Size = new System.Drawing.Size(60, 36);
+            this.tbTx2Threshold.Size = new System.Drawing.Size(60, 35);
             this.tbTx2Threshold.TabIndex = 56;
             this.tbTx2Threshold.Text = "700";
             // 
             // tbTx3Threshold
             // 
             this.tbTx3Threshold.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbTx3Threshold.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbTx3Threshold.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbTx3Threshold.Location = new System.Drawing.Point(209, 64);
             this.tbTx3Threshold.Name = "tbTx3Threshold";
-            this.tbTx3Threshold.Size = new System.Drawing.Size(60, 36);
+            this.tbTx3Threshold.Size = new System.Drawing.Size(60, 35);
             this.tbTx3Threshold.TabIndex = 57;
             this.tbTx3Threshold.Text = "700";
             // 
             // lCh1Threshold
             // 
             this.lCh1Threshold.AutoSize = true;
-            this.lCh1Threshold.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lCh1Threshold.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.lCh1Threshold.Location = new System.Drawing.Point(84, 32);
             this.lCh1Threshold.Name = "lCh1Threshold";
-            this.lCh1Threshold.Size = new System.Drawing.Size(47, 24);
+            this.lCh1Threshold.Size = new System.Drawing.Size(52, 27);
             this.lCh1Threshold.TabIndex = 25;
             this.lCh1Threshold.Text = "Ch1";
             // 
             // lCh2Threshold
             // 
             this.lCh2Threshold.AutoSize = true;
-            this.lCh2Threshold.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lCh2Threshold.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.lCh2Threshold.Location = new System.Drawing.Point(150, 32);
             this.lCh2Threshold.Name = "lCh2Threshold";
-            this.lCh2Threshold.Size = new System.Drawing.Size(47, 24);
+            this.lCh2Threshold.Size = new System.Drawing.Size(52, 27);
             this.lCh2Threshold.TabIndex = 26;
             this.lCh2Threshold.Text = "Ch2";
             // 
             // lCh3Threshold
             // 
             this.lCh3Threshold.AutoSize = true;
-            this.lCh3Threshold.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lCh3Threshold.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.lCh3Threshold.Location = new System.Drawing.Point(216, 32);
             this.lCh3Threshold.Name = "lCh3Threshold";
-            this.lCh3Threshold.Size = new System.Drawing.Size(47, 24);
+            this.lCh3Threshold.Size = new System.Drawing.Size(52, 27);
             this.lCh3Threshold.TabIndex = 27;
             this.lCh3Threshold.Text = "Ch3";
             // 
             // lCh4Threshold
             // 
             this.lCh4Threshold.AutoSize = true;
-            this.lCh4Threshold.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lCh4Threshold.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.lCh4Threshold.Location = new System.Drawing.Point(282, 32);
             this.lCh4Threshold.Name = "lCh4Threshold";
-            this.lCh4Threshold.Size = new System.Drawing.Size(47, 24);
+            this.lCh4Threshold.Size = new System.Drawing.Size(52, 27);
             this.lCh4Threshold.TabIndex = 28;
             this.lCh4Threshold.Text = "Ch4";
             // 
@@ -1684,10 +1675,10 @@
             // tbRx4InputPower
             // 
             this.tbRx4InputPower.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRx4InputPower.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRx4InputPower.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbRx4InputPower.Location = new System.Drawing.Point(639, 62);
             this.tbRx4InputPower.Name = "tbRx4InputPower";
-            this.tbRx4InputPower.Size = new System.Drawing.Size(80, 36);
+            this.tbRx4InputPower.Size = new System.Drawing.Size(80, 35);
             this.tbRx4InputPower.TabIndex = 54;
             this.tbRx4InputPower.Text = "500.0";
             this.tbRx4InputPower.TextChanged += new System.EventHandler(this.tbRx4InputPower_TextChanged);
@@ -1695,111 +1686,111 @@
             // lRx4Input
             // 
             this.lRx4Input.AutoSize = true;
-            this.lRx4Input.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lRx4Input.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.lRx4Input.Location = new System.Drawing.Point(652, 35);
             this.lRx4Input.Name = "lRx4Input";
-            this.lRx4Input.Size = new System.Drawing.Size(47, 24);
+            this.lRx4Input.Size = new System.Drawing.Size(52, 27);
             this.lRx4Input.TabIndex = 53;
             this.lRx4Input.Text = "Rx4";
             // 
             // lRxPower
             // 
             this.lRxPower.AutoSize = true;
-            this.lRxPower.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lRxPower.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.lRxPower.Location = new System.Drawing.Point(6, 149);
             this.lRxPower.Name = "lRxPower";
-            this.lRxPower.Size = new System.Drawing.Size(152, 24);
+            this.lRxPower.Size = new System.Drawing.Size(163, 27);
             this.lRxPower.TabIndex = 76;
             this.lRxPower.Text = "Rx power(uW):";
             // 
             // tbRx4InputPowerRssi
             // 
             this.tbRx4InputPowerRssi.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRx4InputPowerRssi.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRx4InputPowerRssi.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbRx4InputPowerRssi.Location = new System.Drawing.Point(639, 104);
             this.tbRx4InputPowerRssi.Name = "tbRx4InputPowerRssi";
             this.tbRx4InputPowerRssi.ReadOnly = true;
-            this.tbRx4InputPowerRssi.Size = new System.Drawing.Size(80, 36);
+            this.tbRx4InputPowerRssi.Size = new System.Drawing.Size(80, 35);
             this.tbRx4InputPowerRssi.TabIndex = 59;
             this.tbRx4InputPowerRssi.Text = "16393.4";
             // 
             // tbRx4Power
             // 
             this.tbRx4Power.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRx4Power.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRx4Power.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbRx4Power.Location = new System.Drawing.Point(639, 146);
             this.tbRx4Power.Name = "tbRx4Power";
             this.tbRx4Power.ReadOnly = true;
-            this.tbRx4Power.Size = new System.Drawing.Size(80, 36);
+            this.tbRx4Power.Size = new System.Drawing.Size(80, 35);
             this.tbRx4Power.TabIndex = 75;
             // 
             // lRx1Input
             // 
             this.lRx1Input.AutoSize = true;
-            this.lRx1Input.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lRx1Input.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.lRx1Input.Location = new System.Drawing.Point(397, 35);
             this.lRx1Input.Name = "lRx1Input";
-            this.lRx1Input.Size = new System.Drawing.Size(47, 24);
+            this.lRx1Input.Size = new System.Drawing.Size(52, 27);
             this.lRx1Input.TabIndex = 45;
             this.lRx1Input.Text = "Rx1";
             // 
             // tbRx3Power
             // 
             this.tbRx3Power.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRx3Power.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRx3Power.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbRx3Power.Location = new System.Drawing.Point(553, 146);
             this.tbRx3Power.Name = "tbRx3Power";
             this.tbRx3Power.ReadOnly = true;
-            this.tbRx3Power.Size = new System.Drawing.Size(80, 36);
+            this.tbRx3Power.Size = new System.Drawing.Size(80, 35);
             this.tbRx3Power.TabIndex = 74;
             // 
             // lInputPower
             // 
             this.lInputPower.AutoSize = true;
-            this.lInputPower.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lInputPower.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.lInputPower.Location = new System.Drawing.Point(6, 65);
             this.lInputPower.Name = "lInputPower";
-            this.lInputPower.Size = new System.Drawing.Size(173, 24);
+            this.lInputPower.Size = new System.Drawing.Size(186, 27);
             this.lInputPower.TabIndex = 46;
             this.lInputPower.Text = "Input power(uW):";
             // 
             // tbRx2Power
             // 
             this.tbRx2Power.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRx2Power.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRx2Power.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbRx2Power.Location = new System.Drawing.Point(467, 146);
             this.tbRx2Power.Name = "tbRx2Power";
             this.tbRx2Power.ReadOnly = true;
-            this.tbRx2Power.Size = new System.Drawing.Size(80, 36);
+            this.tbRx2Power.Size = new System.Drawing.Size(80, 35);
             this.tbRx2Power.TabIndex = 73;
             // 
             // lRxRate
             // 
             this.lRxRate.AutoSize = true;
-            this.lRxRate.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lRxRate.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.lRxRate.Location = new System.Drawing.Point(6, 191);
             this.lRxRate.Name = "lRxRate";
-            this.lRxRate.Size = new System.Drawing.Size(57, 24);
+            this.lRxRate.Size = new System.Drawing.Size(63, 27);
             this.lRxRate.TabIndex = 47;
             this.lRxRate.Text = "Rate:";
             // 
             // tbRx1Power
             // 
             this.tbRx1Power.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRx1Power.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRx1Power.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbRx1Power.Location = new System.Drawing.Point(381, 146);
             this.tbRx1Power.Name = "tbRx1Power";
             this.tbRx1Power.ReadOnly = true;
-            this.tbRx1Power.Size = new System.Drawing.Size(80, 36);
+            this.tbRx1Power.Size = new System.Drawing.Size(80, 35);
             this.tbRx1Power.TabIndex = 72;
             // 
             // tbRx1InputPower
             // 
             this.tbRx1InputPower.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRx1InputPower.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRx1InputPower.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbRx1InputPower.Location = new System.Drawing.Point(381, 62);
             this.tbRx1InputPower.Name = "tbRx1InputPower";
-            this.tbRx1InputPower.Size = new System.Drawing.Size(80, 36);
+            this.tbRx1InputPower.Size = new System.Drawing.Size(80, 35);
             this.tbRx1InputPower.TabIndex = 48;
             this.tbRx1InputPower.Text = "500.0";
             this.tbRx1InputPower.TextChanged += new System.EventHandler(this.tbRx1InputPower_TextChanged);
@@ -1807,20 +1798,20 @@
             // lRx2Input
             // 
             this.lRx2Input.AutoSize = true;
-            this.lRx2Input.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lRx2Input.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.lRx2Input.Location = new System.Drawing.Point(474, 35);
             this.lRx2Input.Name = "lRx2Input";
-            this.lRx2Input.Size = new System.Drawing.Size(47, 24);
+            this.lRx2Input.Size = new System.Drawing.Size(52, 27);
             this.lRx2Input.TabIndex = 49;
             this.lRx2Input.Text = "Rx2";
             // 
             // tbRx2InputPower
             // 
             this.tbRx2InputPower.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRx2InputPower.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRx2InputPower.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbRx2InputPower.Location = new System.Drawing.Point(467, 62);
             this.tbRx2InputPower.Name = "tbRx2InputPower";
-            this.tbRx2InputPower.Size = new System.Drawing.Size(80, 36);
+            this.tbRx2InputPower.Size = new System.Drawing.Size(80, 35);
             this.tbRx2InputPower.TabIndex = 50;
             this.tbRx2InputPower.Text = "500.0";
             this.tbRx2InputPower.TextChanged += new System.EventHandler(this.tbRx2InputPower_TextChanged);
@@ -1828,20 +1819,20 @@
             // lRx3Input
             // 
             this.lRx3Input.AutoSize = true;
-            this.lRx3Input.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lRx3Input.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.lRx3Input.Location = new System.Drawing.Point(570, 35);
             this.lRx3Input.Name = "lRx3Input";
-            this.lRx3Input.Size = new System.Drawing.Size(47, 24);
+            this.lRx3Input.Size = new System.Drawing.Size(52, 27);
             this.lRx3Input.TabIndex = 51;
             this.lRx3Input.Text = "Rx3";
             // 
             // tbRx3InputPower
             // 
             this.tbRx3InputPower.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRx3InputPower.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRx3InputPower.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbRx3InputPower.Location = new System.Drawing.Point(553, 62);
             this.tbRx3InputPower.Name = "tbRx3InputPower";
-            this.tbRx3InputPower.Size = new System.Drawing.Size(80, 36);
+            this.tbRx3InputPower.Size = new System.Drawing.Size(80, 35);
             this.tbRx3InputPower.TabIndex = 52;
             this.tbRx3InputPower.Text = "500.0";
             this.tbRx3InputPower.TextChanged += new System.EventHandler(this.tbRx3InputPower_TextChanged);
@@ -1849,93 +1840,93 @@
             // tbRx4PowerRate
             // 
             this.tbRx4PowerRate.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRx4PowerRate.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRx4PowerRate.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbRx4PowerRate.Location = new System.Drawing.Point(639, 188);
             this.tbRx4PowerRate.Name = "tbRx4PowerRate";
             this.tbRx4PowerRate.ReadOnly = true;
-            this.tbRx4PowerRate.Size = new System.Drawing.Size(80, 36);
+            this.tbRx4PowerRate.Size = new System.Drawing.Size(80, 35);
             this.tbRx4PowerRate.TabIndex = 67;
             // 
             // lRssiRateAndConversion
             // 
             this.lRssiRateAndConversion.AutoSize = true;
-            this.lRssiRateAndConversion.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lRssiRateAndConversion.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.lRssiRateAndConversion.Location = new System.Drawing.Point(6, 107);
             this.lRssiRateAndConversion.Name = "lRssiRateAndConversion";
-            this.lRssiRateAndConversion.Size = new System.Drawing.Size(158, 24);
+            this.lRssiRateAndConversion.Size = new System.Drawing.Size(171, 27);
             this.lRssiRateAndConversion.TabIndex = 55;
             this.lRssiRateAndConversion.Text = "Rate and Result:";
             // 
             // tbRx3PowerRate
             // 
             this.tbRx3PowerRate.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRx3PowerRate.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRx3PowerRate.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbRx3PowerRate.Location = new System.Drawing.Point(553, 188);
             this.tbRx3PowerRate.Name = "tbRx3PowerRate";
             this.tbRx3PowerRate.ReadOnly = true;
-            this.tbRx3PowerRate.Size = new System.Drawing.Size(80, 36);
+            this.tbRx3PowerRate.Size = new System.Drawing.Size(80, 35);
             this.tbRx3PowerRate.TabIndex = 66;
             // 
             // tbRx1InputPowerRssi
             // 
             this.tbRx1InputPowerRssi.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRx1InputPowerRssi.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRx1InputPowerRssi.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbRx1InputPowerRssi.Location = new System.Drawing.Point(381, 104);
             this.tbRx1InputPowerRssi.Name = "tbRx1InputPowerRssi";
             this.tbRx1InputPowerRssi.ReadOnly = true;
-            this.tbRx1InputPowerRssi.Size = new System.Drawing.Size(80, 36);
+            this.tbRx1InputPowerRssi.Size = new System.Drawing.Size(80, 35);
             this.tbRx1InputPowerRssi.TabIndex = 56;
             this.tbRx1InputPowerRssi.Text = "16393.4";
             // 
             // tbRx2PowerRate
             // 
             this.tbRx2PowerRate.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRx2PowerRate.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRx2PowerRate.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbRx2PowerRate.Location = new System.Drawing.Point(467, 188);
             this.tbRx2PowerRate.Name = "tbRx2PowerRate";
             this.tbRx2PowerRate.ReadOnly = true;
-            this.tbRx2PowerRate.Size = new System.Drawing.Size(80, 36);
+            this.tbRx2PowerRate.Size = new System.Drawing.Size(80, 35);
             this.tbRx2PowerRate.TabIndex = 65;
             // 
             // tbRx2InputPowerRssi
             // 
             this.tbRx2InputPowerRssi.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRx2InputPowerRssi.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRx2InputPowerRssi.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbRx2InputPowerRssi.Location = new System.Drawing.Point(467, 104);
             this.tbRx2InputPowerRssi.Name = "tbRx2InputPowerRssi";
             this.tbRx2InputPowerRssi.ReadOnly = true;
-            this.tbRx2InputPowerRssi.Size = new System.Drawing.Size(80, 36);
+            this.tbRx2InputPowerRssi.Size = new System.Drawing.Size(80, 35);
             this.tbRx2InputPowerRssi.TabIndex = 57;
             this.tbRx2InputPowerRssi.Text = "16393.4";
             // 
             // tbRx1PowerRate
             // 
             this.tbRx1PowerRate.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRx1PowerRate.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRx1PowerRate.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbRx1PowerRate.Location = new System.Drawing.Point(381, 188);
             this.tbRx1PowerRate.Name = "tbRx1PowerRate";
             this.tbRx1PowerRate.ReadOnly = true;
-            this.tbRx1PowerRate.Size = new System.Drawing.Size(80, 36);
+            this.tbRx1PowerRate.Size = new System.Drawing.Size(80, 35);
             this.tbRx1PowerRate.TabIndex = 64;
             // 
             // tbRx3InputPowerRssi
             // 
             this.tbRx3InputPowerRssi.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRx3InputPowerRssi.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRx3InputPowerRssi.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbRx3InputPowerRssi.Location = new System.Drawing.Point(553, 104);
             this.tbRx3InputPowerRssi.Name = "tbRx3InputPowerRssi";
             this.tbRx3InputPowerRssi.ReadOnly = true;
-            this.tbRx3InputPowerRssi.Size = new System.Drawing.Size(80, 36);
+            this.tbRx3InputPowerRssi.Size = new System.Drawing.Size(80, 35);
             this.tbRx3InputPowerRssi.TabIndex = 58;
             this.tbRx3InputPowerRssi.Text = "16393.4";
             // 
             // tbRxRssiRateNumerator
             // 
             this.tbRxRssiRateNumerator.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRxRssiRateNumerator.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRxRssiRateNumerator.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbRxRssiRateNumerator.Location = new System.Drawing.Point(215, 104);
             this.tbRxRssiRateNumerator.Name = "tbRxRssiRateNumerator";
-            this.tbRxRssiRateNumerator.Size = new System.Drawing.Size(60, 36);
+            this.tbRxRssiRateNumerator.Size = new System.Drawing.Size(60, 35);
             this.tbRxRssiRateNumerator.TabIndex = 63;
             this.tbRxRssiRateNumerator.Text = "2000";
             this.tbRxRssiRateNumerator.TextChanged += new System.EventHandler(this.tbRxRssiRateNumerator_TextChanged);
@@ -1943,30 +1934,30 @@
             // lRxRateDenominator
             // 
             this.lRxRateDenominator.AutoSize = true;
-            this.lRxRateDenominator.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lRxRateDenominator.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.lRxRateDenominator.Location = new System.Drawing.Point(300, 35);
             this.lRxRateDenominator.Name = "lRxRateDenominator";
-            this.lRxRateDenominator.Size = new System.Drawing.Size(47, 24);
+            this.lRxRateDenominator.Size = new System.Drawing.Size(52, 27);
             this.lRxRateDenominator.TabIndex = 60;
             this.lRxRateDenominator.Text = "Den";
             // 
             // lRxRateNumerator
             // 
             this.lRxRateNumerator.AutoSize = true;
-            this.lRxRateNumerator.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lRxRateNumerator.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.lRxRateNumerator.Location = new System.Drawing.Point(216, 35);
             this.lRxRateNumerator.Name = "lRxRateNumerator";
-            this.lRxRateNumerator.Size = new System.Drawing.Size(47, 24);
+            this.lRxRateNumerator.Size = new System.Drawing.Size(51, 27);
             this.lRxRateNumerator.TabIndex = 62;
             this.lRxRateNumerator.Text = "Mol";
             // 
             // tbRxRssiRateDenominator
             // 
             this.tbRxRssiRateDenominator.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRxRssiRateDenominator.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRxRssiRateDenominator.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbRxRssiRateDenominator.Location = new System.Drawing.Point(299, 104);
             this.tbRxRssiRateDenominator.Name = "tbRxRssiRateDenominator";
-            this.tbRxRssiRateDenominator.Size = new System.Drawing.Size(60, 36);
+            this.tbRxRssiRateDenominator.Size = new System.Drawing.Size(60, 35);
             this.tbRxRssiRateDenominator.TabIndex = 61;
             this.tbRxRssiRateDenominator.Text = "61";
             this.tbRxRssiRateDenominator.TextChanged += new System.EventHandler(this.tbRxRssiRateDenominator_TextChanged);
@@ -1994,203 +1985,202 @@
             // lRxI2cConfig
             // 
             this.lRxI2cConfig.AutoSize = true;
-            this.lRxI2cConfig.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lRxI2cConfig.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.lRxI2cConfig.Location = new System.Drawing.Point(6, 62);
             this.lRxI2cConfig.Name = "lRxI2cConfig";
-            this.lRxI2cConfig.Size = new System.Drawing.Size(42, 24);
+            this.lRxI2cConfig.Size = new System.Drawing.Size(46, 27);
             this.lRxI2cConfig.TabIndex = 19;
             this.lRxI2cConfig.Text = "Rx:";
             // 
             // tbI2cMpdRegisterAddr
             // 
             this.tbI2cMpdRegisterAddr.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbI2cMpdRegisterAddr.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbI2cMpdRegisterAddr.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbI2cMpdRegisterAddr.Location = new System.Drawing.Point(280, 101);
             this.tbI2cMpdRegisterAddr.Name = "tbI2cMpdRegisterAddr";
-            this.tbI2cMpdRegisterAddr.Size = new System.Drawing.Size(60, 36);
+            this.tbI2cMpdRegisterAddr.Size = new System.Drawing.Size(60, 35);
             this.tbI2cMpdRegisterAddr.TabIndex = 80;
             this.tbI2cMpdRegisterAddr.Text = "50";
             // 
             // lBeTestDevAddr
             // 
             this.lBeTestDevAddr.AutoSize = true;
-            this.lBeTestDevAddr.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lBeTestDevAddr.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.lBeTestDevAddr.Location = new System.Drawing.Point(73, 32);
             this.lBeTestDevAddr.Name = "lBeTestDevAddr";
-            this.lBeTestDevAddr.Size = new System.Drawing.Size(99, 24);
+            this.lBeTestDevAddr.Size = new System.Drawing.Size(106, 27);
             this.lBeTestDevAddr.TabIndex = 20;
             this.lBeTestDevAddr.Text = "Dev Addr";
             // 
             // tbI2cMpdRegisterPage
             // 
             this.tbI2cMpdRegisterPage.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbI2cMpdRegisterPage.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbI2cMpdRegisterPage.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbI2cMpdRegisterPage.Location = new System.Drawing.Point(186, 101);
             this.tbI2cMpdRegisterPage.Name = "tbI2cMpdRegisterPage";
-            this.tbI2cMpdRegisterPage.Size = new System.Drawing.Size(60, 36);
+            this.tbI2cMpdRegisterPage.Size = new System.Drawing.Size(60, 35);
             this.tbI2cMpdRegisterPage.TabIndex = 79;
             this.tbI2cMpdRegisterPage.Text = "0";
             // 
             // tbI2cRxDevAddr
             // 
             this.tbI2cRxDevAddr.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbI2cRxDevAddr.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbI2cRxDevAddr.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbI2cRxDevAddr.Location = new System.Drawing.Point(92, 59);
             this.tbI2cRxDevAddr.Name = "tbI2cRxDevAddr";
-            this.tbI2cRxDevAddr.Size = new System.Drawing.Size(60, 36);
+            this.tbI2cRxDevAddr.Size = new System.Drawing.Size(60, 35);
             this.tbI2cRxDevAddr.TabIndex = 35;
             this.tbI2cRxDevAddr.Text = "80";
             // 
             // tbI2cMpdDevAddr
             // 
             this.tbI2cMpdDevAddr.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbI2cMpdDevAddr.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbI2cMpdDevAddr.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbI2cMpdDevAddr.Location = new System.Drawing.Point(92, 101);
             this.tbI2cMpdDevAddr.Name = "tbI2cMpdDevAddr";
-            this.tbI2cMpdDevAddr.Size = new System.Drawing.Size(60, 36);
+            this.tbI2cMpdDevAddr.Size = new System.Drawing.Size(60, 35);
             this.tbI2cMpdDevAddr.TabIndex = 78;
             this.tbI2cMpdDevAddr.Text = "80";
             // 
             // lBeTestedRegisterPage
             // 
             this.lBeTestedRegisterPage.AutoSize = true;
-            this.lBeTestedRegisterPage.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lBeTestedRegisterPage.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.lBeTestedRegisterPage.Location = new System.Drawing.Point(189, 32);
             this.lBeTestedRegisterPage.Name = "lBeTestedRegisterPage";
-            this.lBeTestedRegisterPage.Size = new System.Drawing.Size(54, 24);
+            this.lBeTestedRegisterPage.Size = new System.Drawing.Size(59, 27);
             this.lBeTestedRegisterPage.TabIndex = 36;
             this.lBeTestedRegisterPage.Text = "Page";
             // 
             // lMpdI2cConfig
             // 
             this.lMpdI2cConfig.AutoSize = true;
-            this.lMpdI2cConfig.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lMpdI2cConfig.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.lMpdI2cConfig.Location = new System.Drawing.Point(6, 104);
             this.lMpdI2cConfig.Name = "lMpdI2cConfig";
-            this.lMpdI2cConfig.Size = new System.Drawing.Size(65, 24);
+            this.lMpdI2cConfig.Size = new System.Drawing.Size(70, 27);
             this.lMpdI2cConfig.TabIndex = 77;
             this.lMpdI2cConfig.Text = "MPD:";
             // 
             // tbI2cRxRegisterPage
             // 
             this.tbI2cRxRegisterPage.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbI2cRxRegisterPage.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbI2cRxRegisterPage.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbI2cRxRegisterPage.Location = new System.Drawing.Point(186, 59);
             this.tbI2cRxRegisterPage.Name = "tbI2cRxRegisterPage";
-            this.tbI2cRxRegisterPage.Size = new System.Drawing.Size(60, 36);
+            this.tbI2cRxRegisterPage.Size = new System.Drawing.Size(60, 35);
             this.tbI2cRxRegisterPage.TabIndex = 37;
             this.tbI2cRxRegisterPage.Text = "0";
             // 
             // lBeTestedRegisterAddr
             // 
             this.lBeTestedRegisterAddr.AutoSize = true;
-            this.lBeTestedRegisterAddr.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lBeTestedRegisterAddr.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.lBeTestedRegisterAddr.Location = new System.Drawing.Point(261, 32);
             this.lBeTestedRegisterAddr.Name = "lBeTestedRegisterAddr";
-            this.lBeTestedRegisterAddr.Size = new System.Drawing.Size(98, 24);
+            this.lBeTestedRegisterAddr.Size = new System.Drawing.Size(104, 27);
             this.lBeTestedRegisterAddr.TabIndex = 38;
             this.lBeTestedRegisterAddr.Text = "Reg Addr";
             // 
             // tbI2cRxRegisterAddr
             // 
             this.tbI2cRxRegisterAddr.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbI2cRxRegisterAddr.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbI2cRxRegisterAddr.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbI2cRxRegisterAddr.Location = new System.Drawing.Point(280, 59);
             this.tbI2cRxRegisterAddr.Name = "tbI2cRxRegisterAddr";
-            this.tbI2cRxRegisterAddr.Size = new System.Drawing.Size(60, 36);
+            this.tbI2cRxRegisterAddr.Size = new System.Drawing.Size(60, 35);
             this.tbI2cRxRegisterAddr.TabIndex = 39;
             this.tbI2cRxRegisterAddr.Text = "108";
             // 
             // tbPassword126
             // 
             this.tbPassword126.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbPassword126.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbPassword126.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbPassword126.Location = new System.Drawing.Point(324, 48);
             this.tbPassword126.Name = "tbPassword126";
-            this.tbPassword126.Size = new System.Drawing.Size(60, 36);
+            this.tbPassword126.Size = new System.Drawing.Size(60, 35);
             this.tbPassword126.TabIndex = 44;
             this.tbPassword126.Text = "0";
             // 
             // tbPassword125
             // 
             this.tbPassword125.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbPassword125.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbPassword125.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbPassword125.Location = new System.Drawing.Point(256, 48);
             this.tbPassword125.Name = "tbPassword125";
-            this.tbPassword125.Size = new System.Drawing.Size(60, 36);
+            this.tbPassword125.Size = new System.Drawing.Size(60, 35);
             this.tbPassword125.TabIndex = 43;
             this.tbPassword125.Text = "0";
             // 
             // tbPassword124
             // 
             this.tbPassword124.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbPassword124.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbPassword124.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbPassword124.Location = new System.Drawing.Point(192, 48);
             this.tbPassword124.Name = "tbPassword124";
-            this.tbPassword124.Size = new System.Drawing.Size(60, 36);
+            this.tbPassword124.Size = new System.Drawing.Size(60, 35);
             this.tbPassword124.TabIndex = 42;
             this.tbPassword124.Text = "0";
             // 
             // l
             // 
             this.l.AutoSize = true;
-            this.l.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.l.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.l.Location = new System.Drawing.Point(8, 51);
             this.l.Name = "l";
-            this.l.Size = new System.Drawing.Size(103, 24);
+            this.l.Size = new System.Drawing.Size(110, 27);
             this.l.TabIndex = 41;
             this.l.Text = "Password:";
             // 
             // tbPassword123
             // 
             this.tbPassword123.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbPassword123.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbPassword123.Font = new System.Drawing.Font("Times New Roman", 18F);
             this.tbPassword123.Location = new System.Drawing.Point(126, 48);
             this.tbPassword123.Name = "tbPassword123";
-            this.tbPassword123.Size = new System.Drawing.Size(60, 36);
+            this.tbPassword123.Size = new System.Drawing.Size(60, 35);
             this.tbPassword123.TabIndex = 40;
             this.tbPassword123.Text = "0";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(218)))), ((int)(((byte)(177)))));
-            this.label9.Location = new System.Drawing.Point(1107, 13);
+            this.label9.Location = new System.Drawing.Point(1001, 15);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(45, 21);
+            this.label9.Size = new System.Drawing.Size(130, 21);
             this.label9.TabIndex = 104;
-            this.label9.Text = "Pass";
+            this.label9.Text = "Figure legend：";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(255)))), ((int)(((byte)(112)))));
-            this.label10.Location = new System.Drawing.Point(1151, 13);
+            this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(218)))), ((int)(((byte)(177)))));
+            this.label10.Location = new System.Drawing.Point(1110, 15);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(63, 21);
+            this.label10.Size = new System.Drawing.Size(45, 21);
             this.label10.TabIndex = 105;
-            this.label10.Text = "Critical";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label10.Text = "Pass";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.Color.Pink;
-            this.label11.Location = new System.Drawing.Point(1213, 13);
+            this.label11.Location = new System.Drawing.Point(1211, 15);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(37, 21);
             this.label11.TabIndex = 106;
             this.label11.Text = "Fail";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(996, 13);
+            this.label12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(255)))), ((int)(((byte)(112)))));
+            this.label12.Location = new System.Drawing.Point(1154, 15);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(130, 21);
+            this.label12.Size = new System.Drawing.Size(63, 21);
             this.label12.TabIndex = 107;
-            this.label12.Text = "Figure legend：";
+            this.label12.Text = "Critical";
+            this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // UcMiniSsaHd4Dot0DcTest
             // 
@@ -2398,10 +2388,10 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lYield;
         private System.Windows.Forms.Label lDataNumber;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
     }
 }
 

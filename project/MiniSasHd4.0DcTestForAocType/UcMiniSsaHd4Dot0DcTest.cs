@@ -66,7 +66,7 @@ namespace MiniSasHd4Dot0DcTest
             bwMonitor.WorkerReportsProgress = true;
             bwMonitor.WorkerSupportsCancellation = false;
             bwMonitor.DoWork += new DoWorkEventHandler(MonitorValueUpdateApi);
-            bwMonitor.ProgressChanged += new ProgressChangedEventHandler(MonitorProgressChangedApi);            
+            bwMonitor.ProgressChanged += new ProgressChangedEventHandler(MonitorProgressChangedApi);
 
             Directory.CreateDirectory(fileDirectory);
             tbLogFilePath.Text = fileDirectory + "\\";
@@ -74,6 +74,7 @@ namespace MiniSasHd4Dot0DcTest
             dtValue.Columns.Add("Lable", typeof(String));
             dtValue.Columns.Add("Time", typeof(String));
             dtValue.Columns.Add("SN", typeof(String));
+            dtValue.Columns.Add("Grade", typeof(String));
 
             dtValue.Columns.Add("ARx1", typeof(String));
             dtValue.Columns.Add("ARx2", typeof(String));
@@ -89,7 +90,6 @@ namespace MiniSasHd4Dot0DcTest
             dtValue.Columns.Add("TempB", typeof(String));
 
             dtValue.Columns.Add("Operator", typeof(String));
-            dtValue.Columns.Add("Grade", typeof(String));
             dtValue.Columns.Add("Note", typeof(String));
 
             dgvRecord.DataSource = dtValue;
@@ -374,10 +374,10 @@ namespace MiniSasHd4Dot0DcTest
 
             _CheckLosStatus();
 
-            dtValue.Rows.Add(tbLogLable.Text, System.DateTime.Now.ToString("yy/MM/dd_HH:mm:ss"), tbSerialNumber.Text,
+            dtValue.Rows.Add(tbLogLable.Text, System.DateTime.Now.ToString("yy/MM/dd_HH:mm:ss"), tbSerialNumber.Text, grade,
                 saARxValue[0], saARxValue[1], saARxValue[2], saARxValue[3],
                 saBRxValue[0], saBRxValue[1], saBRxValue[2], saBRxValue[3],
-                sTemperatureA, sTemperatureB, tbOperator.Text, grade, lastNote);
+                sTemperatureA, sTemperatureB, tbOperator.Text, lastNote);
             dgvRecord.FirstDisplayedScrollingRowIndex = 0;
             lastNote = "";
             _UpdateDataListStatus();
@@ -389,9 +389,11 @@ namespace MiniSasHd4Dot0DcTest
             int  nRows;
             float yield, numberOfData, countGradeT;
             String GradeT = "T";
+            double dAverage, dGreadT;
+            float[] fThreshold = new float[4];
 
             numberOfData = countGradeT = 0;
-            
+
             nRows = dgvRecord.Rows.Count - 1;
             for (int i = 0; i < nRows; i++)
             {
@@ -404,6 +406,48 @@ namespace MiniSasHd4Dot0DcTest
             lDataNumber.Text = "" + numberOfData + " pcs";
             lGradeT.Text = "" + countGradeT + " pcs";
             lYield.Text = yield.ToString("0.0") + " %";
+
+            for (int i = 0; i < dgvRecord.Rows.Count; i++)
+            {
+                if(i % 2 == 1)
+                    dgvRecord.Rows[i].DefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(250)))), ((int)(((byte)(224)))));
+                else
+                    dgvRecord.Rows[i].DefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(237)))), ((int)(((byte)(205)))));
+            }
+                        
+            fThreshold[0] = Convert.ToInt32(tbRx1Threshold.Text);
+            fThreshold[1] = Convert.ToInt32(tbRx2Threshold.Text);
+            fThreshold[2] = Convert.ToInt32(tbRx3Threshold.Text);
+            fThreshold[3] = Convert.ToInt32(tbRx4Threshold.Text);
+
+            for (int i = 4; i < 12; i++)
+            {
+                if (i < 8)
+                {
+                    foreach (DataGridViewRow row in dgvRecord.Rows)
+                    {
+                        
+                        if (Convert.ToInt32(row.Cells[i].Value) <= fThreshold[i - 4])
+                            row.Cells[i].Style.ForeColor = Color.Red;
+                        else
+                            row.Cells[i].Style.ForeColor = System.Drawing.SystemColors.ControlText;
+                    }
+                }
+
+                else if (i >= 8 && i < 12)
+                {
+                    foreach (DataGridViewRow row in dgvRecord.Rows)
+                    {
+                        if (Convert.ToInt32(row.Cells[i].Value) <= fThreshold[i - 8])
+                            row.Cells[i].Style.ForeColor = Color.Red;
+                        else
+                            row.Cells[i].Style.ForeColor = System.Drawing.SystemColors.ControlText;
+                    }
+                }
+            }
+
+
+
         }
 
         private int _SetQsfpMode(byte mode)
@@ -2105,7 +2149,7 @@ namespace MiniSasHd4Dot0DcTest
         private int _UpdateRxRssiValueGuiA()
         {
             float fTmp, fThreshold, f3Average;
-            float[] fARssi = Array.ConvertAll(rxARssiValue, S => float.Parse(S));            
+            float[] fARssi = Array.ConvertAll(rxARssiValue, S => float.Parse(S));
             double dCriticalValue;
 
             f3Average = (fARssi.Sum() - fARssi.Min()) / 3;
@@ -2118,7 +2162,7 @@ namespace MiniSasHd4Dot0DcTest
                 tbARx1.ForeColor = System.Drawing.Color.Red;
                 tbARx1.BackColor = System.Drawing.Color.Pink;
              }
-            else if (fTmp < dCriticalValue) 
+            else if (fTmp < dCriticalValue)
             {
                 tbARx1.ForeColor = SystemColors.ControlText;
                 tbARx1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(255)))), ((int)(((byte)(112)))));
@@ -2497,7 +2541,7 @@ namespace MiniSasHd4Dot0DcTest
                 return;
 
             swLog = new StreamWriter(tbLogFilePath.Text);
-            swLog.WriteLine("Lable,Time,SN,ARx1,ARx2,ARx3,ARx4,BRx1,BRx2,BRx3,BRx4,TemperatureA,TemperatureB,Operator,Grade,Note");
+            swLog.WriteLine("Lable,Time,SN,Grade,ARx1,ARx2,ARx3,ARx4,BRx1,BRx2,BRx3,BRx4,TemperatureA,TemperatureB,Operator,Note");
             foreach (DataRow row in dtValue.Rows) {
                 swLog.WriteLine(row[0].ToString() + "," + row[1].ToString() + "," + row[2].ToString() + "," +
                     row[3].ToString() + "," + row[4].ToString() + "," + row[5].ToString() + "," +
@@ -3437,6 +3481,11 @@ namespace MiniSasHd4Dot0DcTest
         }
 
         private void dgvRecord_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label12_Click(object sender, EventArgs e)
         {
 
         }

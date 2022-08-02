@@ -38,7 +38,7 @@
             // 
             this.cbMeasuredObjectI2cAdapterConnectedA.AutoSize = true;
             this.cbMeasuredObjectI2cAdapterConnectedA.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbMeasuredObjectI2cAdapterConnectedA.Location = new System.Drawing.Point(20, 6);
+            this.cbMeasuredObjectI2cAdapterConnectedA.Location = new System.Drawing.Point(20, 10);
             this.cbMeasuredObjectI2cAdapterConnectedA.Margin = new System.Windows.Forms.Padding(4);
             this.cbMeasuredObjectI2cAdapterConnectedA.Name = "cbMeasuredObjectI2cAdapterConnectedA";
             this.cbMeasuredObjectI2cAdapterConnectedA.Size = new System.Drawing.Size(220, 25);
@@ -52,7 +52,7 @@
             this.cbAutoMonitor.AutoSize = true;
             this.cbAutoMonitor.BackColor = System.Drawing.SystemColors.Control;
             this.cbAutoMonitor.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbAutoMonitor.Location = new System.Drawing.Point(565, 6);
+            this.cbAutoMonitor.Location = new System.Drawing.Point(565, 10);
             this.cbAutoMonitor.Margin = new System.Windows.Forms.Padding(4);
             this.cbAutoMonitor.Name = "cbAutoMonitor";
             this.cbAutoMonitor.Size = new System.Drawing.Size(121, 25);
@@ -76,7 +76,7 @@
             // 
             this.cbMeasuredObjectI2cAdapterConnectedB.AutoSize = true;
             this.cbMeasuredObjectI2cAdapterConnectedB.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbMeasuredObjectI2cAdapterConnectedB.Location = new System.Drawing.Point(248, 6);
+            this.cbMeasuredObjectI2cAdapterConnectedB.Location = new System.Drawing.Point(248, 10);
             this.cbMeasuredObjectI2cAdapterConnectedB.Margin = new System.Windows.Forms.Padding(4);
             this.cbMeasuredObjectI2cAdapterConnectedB.Name = "cbMeasuredObjectI2cAdapterConnectedB";
             this.cbMeasuredObjectI2cAdapterConnectedB.Size = new System.Drawing.Size(219, 25);
@@ -87,10 +87,10 @@
             // 
             // ucMiniSsaHd4Dot0DcTest
             // 
-            this.ucMiniSsaHd4Dot0DcTest.Location = new System.Drawing.Point(2, 26);
+            this.ucMiniSsaHd4Dot0DcTest.Location = new System.Drawing.Point(13, 32);
             this.ucMiniSsaHd4Dot0DcTest.Margin = new System.Windows.Forms.Padding(4);
             this.ucMiniSsaHd4Dot0DcTest.Name = "ucMiniSsaHd4Dot0DcTest";
-            this.ucMiniSsaHd4Dot0DcTest.Size = new System.Drawing.Size(1489, 886);
+            this.ucMiniSsaHd4Dot0DcTest.Size = new System.Drawing.Size(1487, 880);
             this.ucMiniSsaHd4Dot0DcTest.TabIndex = 8;
             // 
             // MainForm
