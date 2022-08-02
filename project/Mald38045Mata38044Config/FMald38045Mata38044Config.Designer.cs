@@ -32,15 +32,19 @@
             this.cbConnected = new System.Windows.Forms.CheckBox();
             this.tcMald38045Mata38044Config = new System.Windows.Forms.TabControl();
             this.tpMald38045Ch1_4 = new System.Windows.Forms.TabPage();
-            this.ucMald38045ConfigCh1_4 = new Mald38045Mata38044Config.ucMald38045Config();
+            this.ucMald38045ConfigCh1_4 = new Mald38045Mata38044Config.UcMald38045Config();
             this.tpMata38044Ch4_1 = new System.Windows.Forms.TabPage();
+            this.ucMata38044ConfigCh4_1 = new Mald38045Mata38044Config.UcMata38044Config();
             this.tpMald38045Ch5_8 = new System.Windows.Forms.TabPage();
-            this.ucMald38045ConfigCh5_8 = new Mald38045Mata38044Config.ucMald38045Config();
+            this.ucMald38045ConfigCh5_8 = new Mald38045Mata38044Config.UcMald38045Config();
             this.tpMata38044Ch8_5 = new System.Windows.Forms.TabPage();
+            this.ucMata38044ConfigCh8_5 = new Mald38045Mata38044Config.UcMata38044Config();
             this.bStoreIntoFlash = new System.Windows.Forms.Button();
             this.tcMald38045Mata38044Config.SuspendLayout();
             this.tpMald38045Ch1_4.SuspendLayout();
+            this.tpMata38044Ch4_1.SuspendLayout();
             this.tpMald38045Ch5_8.SuspendLayout();
+            this.tpMata38044Ch8_5.SuspendLayout();
             this.SuspendLayout();
             // 
             // lPassword
@@ -109,6 +113,7 @@
             // 
             // tpMata38044Ch4_1
             // 
+            this.tpMata38044Ch4_1.Controls.Add(this.ucMata38044ConfigCh4_1);
             this.tpMata38044Ch4_1.Location = new System.Drawing.Point(4, 22);
             this.tpMata38044Ch4_1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpMata38044Ch4_1.Name = "tpMata38044Ch4_1";
@@ -117,6 +122,13 @@
             this.tpMata38044Ch4_1.TabIndex = 1;
             this.tpMata38044Ch4_1.Text = "Mata38044 Ch4~1";
             this.tpMata38044Ch4_1.UseVisualStyleBackColor = true;
+            // 
+            // ucMata38044ConfigCh4_1
+            // 
+            this.ucMata38044ConfigCh4_1.Location = new System.Drawing.Point(5, 5);
+            this.ucMata38044ConfigCh4_1.Name = "ucMata38044ConfigCh4_1";
+            this.ucMata38044ConfigCh4_1.Size = new System.Drawing.Size(826, 456);
+            this.ucMata38044ConfigCh4_1.TabIndex = 0;
             // 
             // tpMald38045Ch5_8
             // 
@@ -140,6 +152,7 @@
             // 
             // tpMata38044Ch8_5
             // 
+            this.tpMata38044Ch8_5.Controls.Add(this.ucMata38044ConfigCh8_5);
             this.tpMata38044Ch8_5.Location = new System.Drawing.Point(4, 22);
             this.tpMata38044Ch8_5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpMata38044Ch8_5.Name = "tpMata38044Ch8_5";
@@ -148,6 +161,13 @@
             this.tpMata38044Ch8_5.TabIndex = 3;
             this.tpMata38044Ch8_5.Text = "Mata38044 Ch8~5";
             this.tpMata38044Ch8_5.UseVisualStyleBackColor = true;
+            // 
+            // ucMata38044ConfigCh8_5
+            // 
+            this.ucMata38044ConfigCh8_5.Location = new System.Drawing.Point(5, 5);
+            this.ucMata38044ConfigCh8_5.Name = "ucMata38044ConfigCh8_5";
+            this.ucMata38044ConfigCh8_5.Size = new System.Drawing.Size(826, 456);
+            this.ucMata38044ConfigCh8_5.TabIndex = 0;
             // 
             // bStoreIntoFlash
             // 
@@ -171,10 +191,12 @@
             this.Controls.Add(this.lPassword);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FMald38045Mata38044Config";
-            this.Text = "Mald38045 & Mata38044 Config GUI_20220616";
+            this.Text = "Mald38045 & Mata38044 Config GUI_20220627";
             this.tcMald38045Mata38044Config.ResumeLayout(false);
             this.tpMald38045Ch1_4.ResumeLayout(false);
+            this.tpMata38044Ch4_1.ResumeLayout(false);
             this.tpMald38045Ch5_8.ResumeLayout(false);
+            this.tpMata38044Ch8_5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -190,9 +212,11 @@
         private System.Windows.Forms.TabPage tpMata38044Ch4_1;
         private System.Windows.Forms.TabPage tpMald38045Ch5_8;
         private System.Windows.Forms.TabPage tpMata38044Ch8_5;
-        private ucMald38045Config ucMald38045ConfigCh1_4;
+        private UcMald38045Config ucMald38045ConfigCh1_4;
         private System.Windows.Forms.Button bStoreIntoFlash;
-        private ucMald38045Config ucMald38045ConfigCh5_8;
+        private UcMald38045Config ucMald38045ConfigCh5_8;
+        private UcMata38044Config ucMata38044ConfigCh4_1;
+        private UcMata38044Config ucMata38044ConfigCh8_5;
     }
 }
 

@@ -14,7 +14,7 @@ namespace Mald38045Mata38044Config
     public partial class FMald38045Mata38044Config : Form
     {
         private I2cMaster i2cMaster = new I2cMaster();
-        private const byte devAddr = 0x00;
+        private const byte devAddr = 0x50;
 
         private int _SetModuleMode(byte mode)
         {
@@ -24,7 +24,7 @@ namespace Mald38045Mata38044Config
             if (i2cMaster.WriteApi(devAddr, 0x7E, 1, data) < 0)
                 return -1;
 
-            data[0] = 0xB0; //page
+            data[0] = 0xBB; //page
             if (i2cMaster.WriteApi(devAddr, 0x7F, 1, data) < 0)
                 return -1;
 
@@ -41,6 +41,9 @@ namespace Mald38045Mata38044Config
                 return -1;
 
             cbConnected.Checked = true;
+
+            if (_WriteModulePassword() < 0)
+                return -1;
 
             if (_SetModuleMode(0x4D) < 0)
                 return -1;
@@ -115,6 +118,8 @@ namespace Mald38045Mata38044Config
                     bankAndPage[1]++;
                 }
             }
+
+            return readLength;
          
         error:
             MessageBox.Show("Module no response!!");
@@ -132,6 +137,9 @@ namespace Mald38045Mata38044Config
                 if (_I2cMasterConnect() < 0)
                     return -1;
             }
+            
+            if (_WriteModulePassword() < 0)
+                goto error;
 
             if (_SetModuleMode(0x4D) < 0)
                 goto error;
@@ -210,6 +218,18 @@ namespace Mald38045Mata38044Config
             ucMald38045ConfigCh5_8.SetRegStartAddrApi(0xEE);
             ucMald38045ConfigCh5_8.SetI2cReadCBApi(_I2cRead);
             ucMald38045ConfigCh5_8.SetI2cWriteCBApi(_I2cWrite);
+
+            ucMata38044ConfigCh4_1.SetRegBankApi(2);
+            ucMata38044ConfigCh4_1.SetRegPageApi(0xB0);
+            ucMata38044ConfigCh4_1.SetRegStartAddrApi(0x80); //Reg length:256 (Page:0xB0 Addr:0x80 ~ Page:0xB1 Addr:0xFF)
+            ucMata38044ConfigCh4_1.SetI2cReadCBApi(_I2cRead);
+            ucMata38044ConfigCh4_1.SetI2cWriteCBApi(_I2cWrite);
+
+            ucMata38044ConfigCh8_5.SetRegBankApi(2);
+            ucMata38044ConfigCh8_5.SetRegPageApi(0xB2);
+            ucMata38044ConfigCh8_5.SetRegStartAddrApi(0x80);
+            ucMata38044ConfigCh8_5.SetI2cReadCBApi(_I2cRead);
+            ucMata38044ConfigCh8_5.SetI2cWriteCBApi(_I2cWrite);
         }
 
         private void cbConnected_CheckedChanged(object sender, EventArgs e)
@@ -217,7 +237,6 @@ namespace Mald38045Mata38044Config
             if (cbConnected.Checked == true) {
                 if (_I2cMasterConnect() < 0)
                     return;
-                _WriteModulePassword();
             }
             else
                 _I2cMasterDisconnect();
@@ -239,16 +258,16 @@ namespace Mald38045Mata38044Config
             if (i2cMaster.WriteApi(devAddr, 0x7E, 1, data) < 0)
                 goto exit;
 
-            data[0] = 0xB0; //page
+            data[0] = 0xBB; //page
             if (i2cMaster.WriteApi(devAddr, 0x7F, 1, data) < 0)
                 goto exit;
 
             data[0] = 0xBB;
-            if (i2cMaster.WriteApi(devAddr, 0xAA, 1, data) < 0)
+            if (i2cMaster.WriteApi(devAddr, 0xA2, 1, data) < 0)
                 goto exit;
 
             data[0] = 0xCC;
-            if (i2cMaster.WriteApi(devAddr, 0xAA, 1, data) < 0)
+            if (i2cMaster.WriteApi(devAddr, 0xA2, 1, data) < 0)
                 goto exit;
 
             Thread.Sleep(1000);
