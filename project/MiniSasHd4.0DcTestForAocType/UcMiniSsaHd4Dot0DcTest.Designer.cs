@@ -27,7 +27,7 @@
         /// </summary>
         private void InitializeComponent()
         {            
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.bLog = new System.Windows.Forms.Button();
             this.lAfterBurnInPowerDifferentLimit = new System.Windows.Forms.Label();
             this.tbAfterBurnInPowerDifferentLimit = new System.Windows.Forms.TextBox();
@@ -35,6 +35,10 @@
             this.tcFunctionSelect = new System.Windows.Forms.TabControl();
             this.tpLog = new System.Windows.Forms.TabPage();
             this.gbDataList = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.lYield = new System.Windows.Forms.Label();
             this.lDataNumber = new System.Windows.Forms.Label();
             this.lGradeT = new System.Windows.Forms.Label();
@@ -198,10 +202,6 @@
             this.tbPassword124 = new System.Windows.Forms.TextBox();
             this.l = new System.Windows.Forms.Label();
             this.tbPassword123 = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.tcFunctionSelect.SuspendLayout();
             this.tpLog.SuspendLayout();
             this.gbDataList.SuspendLayout();
@@ -322,6 +322,46 @@
             this.gbDataList.TabStop = false;
             this.gbDataList.Text = "DataList";
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(255)))), ((int)(((byte)(112)))));
+            this.label12.Location = new System.Drawing.Point(1154, 15);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(63, 21);
+            this.label12.TabIndex = 107;
+            this.label12.Text = "Critical";
+            this.label12.Click += new System.EventHandler(this.label12_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Pink;
+            this.label11.Location = new System.Drawing.Point(1211, 15);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(37, 21);
+            this.label11.TabIndex = 106;
+            this.label11.Text = "Fail";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(218)))), ((int)(((byte)(177)))));
+            this.label10.Location = new System.Drawing.Point(1110, 15);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(45, 21);
+            this.label10.TabIndex = 105;
+            this.label10.Text = "Pass";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(1001, 15);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(130, 21);
+            this.label9.TabIndex = 104;
+            this.label9.Text = "Figure legend：";
+            // 
             // lYield
             // 
             this.lYield.AutoSize = true;
@@ -419,17 +459,18 @@
             // dgvRecord
             // 
             this.dgvRecord.AllowUserToResizeColumns = false;
-            this.dgvRecord.AllowUserToResizeRows = false;            
+            this.dgvRecord.AllowUserToResizeRows = false;
             this.dgvRecord.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvRecord.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgvRecord.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;            
-            dataGridViewCellStyle.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(28)))), ((int)(((byte)(21)))));
-            dataGridViewCellStyle.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvRecord.DefaultCellStyle = dataGridViewCellStyle;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(163)))), ((int)(((byte)(115)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvRecord.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvRecord.Location = new System.Drawing.Point(6, 37);
             this.dgvRecord.Name = "dgvRecord";
             this.dgvRecord.ReadOnly = true;
@@ -452,7 +493,7 @@
             // 
             // gbPartB
             // 
-            this.gbPartB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(255)))), ((int)(((byte)(220)))));
+            this.gbPartB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(255)))), ((int)(((byte)(220)))));            
             this.gbPartB.Controls.Add(this.tbBTx4Los);
             this.gbPartB.Controls.Add(this.tbBRx4Los);
             this.gbPartB.Controls.Add(this.tbBTx3Los);
@@ -711,7 +752,7 @@
             // 
             // gbPartA
             // 
-            this.gbPartA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(223)))), ((int)(((byte)(200)))));
+            this.gbPartA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(255)))), ((int)(((byte)(220)))));            
             this.gbPartA.Controls.Add(this.tbATx4Los);
             this.gbPartA.Controls.Add(this.tbARx4Los);
             this.gbPartA.Controls.Add(this.tbATx3Los);
@@ -854,7 +895,7 @@
             // 
             // tbModuleSerialNumberA
             // 
-            this.tbModuleSerialNumberA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(178)))), ((int)(((byte)(137)))));
+            this.tbModuleSerialNumberA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(218)))), ((int)(((byte)(177)))));
             this.tbModuleSerialNumberA.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbModuleSerialNumberA.Location = new System.Drawing.Point(45, 18);
             this.tbModuleSerialNumberA.Name = "tbModuleSerialNumberA";
@@ -865,7 +906,7 @@
             // 
             // tbTemperatureA
             // 
-            this.tbTemperatureA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(178)))), ((int)(((byte)(137)))));
+            this.tbTemperatureA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(218)))), ((int)(((byte)(177)))));
             this.tbTemperatureA.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbTemperatureA.Location = new System.Drawing.Point(354, 18);
             this.tbTemperatureA.Name = "tbTemperatureA";
@@ -888,7 +929,7 @@
             // 
             // tbARx1
             // 
-            this.tbARx1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(178)))), ((int)(((byte)(137)))));
+            this.tbARx1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(218)))), ((int)(((byte)(177)))));
             this.tbARx1.Font = new System.Drawing.Font("Times New Roman", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbARx1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.tbARx1.Location = new System.Drawing.Point(6, 67);
@@ -910,7 +951,7 @@
             // 
             // tbARx2
             // 
-            this.tbARx2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(178)))), ((int)(((byte)(137)))));
+            this.tbARx2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(218)))), ((int)(((byte)(177)))));
             this.tbARx2.Font = new System.Drawing.Font("Times New Roman", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbARx2.Location = new System.Drawing.Point(112, 67);
             this.tbARx2.Name = "tbARx2";
@@ -921,7 +962,7 @@
             // 
             // tbARx3
             // 
-            this.tbARx3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(178)))), ((int)(((byte)(137)))));
+            this.tbARx3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(218)))), ((int)(((byte)(177)))));
             this.tbARx3.Font = new System.Drawing.Font("Times New Roman", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbARx3.Location = new System.Drawing.Point(218, 67);
             this.tbARx3.Name = "tbARx3";
@@ -932,7 +973,7 @@
             // 
             // tbARx4
             // 
-            this.tbARx4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(178)))), ((int)(((byte)(137)))));
+            this.tbARx4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(218)))), ((int)(((byte)(177)))));
             this.tbARx4.Font = new System.Drawing.Font("Times New Roman", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbARx4.Location = new System.Drawing.Point(324, 67);
             this.tbARx4.Name = "tbARx4";
@@ -2141,46 +2182,6 @@
             this.tbPassword123.Size = new System.Drawing.Size(60, 35);
             this.tbPassword123.TabIndex = 40;
             this.tbPassword123.Text = "0";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(1001, 15);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(130, 21);
-            this.label9.TabIndex = 104;
-            this.label9.Text = "Figure legend：";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(218)))), ((int)(((byte)(177)))));
-            this.label10.Location = new System.Drawing.Point(1110, 15);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(45, 21);
-            this.label10.TabIndex = 105;
-            this.label10.Text = "Pass";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.Pink;
-            this.label11.Location = new System.Drawing.Point(1211, 15);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(37, 21);
-            this.label11.TabIndex = 106;
-            this.label11.Text = "Fail";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(255)))), ((int)(((byte)(112)))));
-            this.label12.Location = new System.Drawing.Point(1154, 15);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(63, 21);
-            this.label12.TabIndex = 107;
-            this.label12.Text = "Critical";
-            this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // UcMiniSsaHd4Dot0DcTest
             // 
