@@ -465,7 +465,7 @@
             this.dgvRecord.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(163)))), ((int)(((byte)(115)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -493,7 +493,7 @@
             // 
             // gbPartB
             // 
-            this.gbPartB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(255)))), ((int)(((byte)(220)))));            
+            this.gbPartB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(255)))), ((int)(((byte)(220)))));
             this.gbPartB.Controls.Add(this.tbBTx4Los);
             this.gbPartB.Controls.Add(this.tbBRx4Los);
             this.gbPartB.Controls.Add(this.tbBTx3Los);
@@ -533,6 +533,7 @@
             this.tbBTx4Los.Size = new System.Drawing.Size(60, 11);
             this.tbBTx4Los.TabIndex = 150;
             this.tbBTx4Los.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbBTx4Los.Visible = false;
             // 
             // tbBRx4Los
             // 
@@ -553,6 +554,7 @@
             this.tbBTx3Los.Size = new System.Drawing.Size(60, 11);
             this.tbBTx3Los.TabIndex = 148;
             this.tbBTx3Los.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbBTx3Los.Visible = false;
             // 
             // tbBRx3Los
             // 
@@ -573,6 +575,7 @@
             this.tbBTx2Los.Size = new System.Drawing.Size(60, 11);
             this.tbBTx2Los.TabIndex = 146;
             this.tbBTx2Los.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbBTx2Los.Visible = false;
             // 
             // tbBRx2Los
             // 
@@ -593,6 +596,7 @@
             this.label4.Size = new System.Drawing.Size(47, 15);
             this.label4.TabIndex = 144;
             this.label4.Text = "Tx-LOS";
+            this.label4.Visible = false;
             // 
             // tbBTx1Los
             // 
@@ -603,6 +607,7 @@
             this.tbBTx1Los.Size = new System.Drawing.Size(60, 11);
             this.tbBTx1Los.TabIndex = 143;
             this.tbBTx1Los.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbBTx1Los.Visible = false;
             // 
             // label5
             // 
@@ -752,7 +757,7 @@
             // 
             // gbPartA
             // 
-            this.gbPartA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(255)))), ((int)(((byte)(220)))));            
+            this.gbPartA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(255)))), ((int)(((byte)(220)))));
             this.gbPartA.Controls.Add(this.tbATx4Los);
             this.gbPartA.Controls.Add(this.tbARx4Los);
             this.gbPartA.Controls.Add(this.tbATx3Los);
@@ -792,6 +797,7 @@
             this.tbATx4Los.Size = new System.Drawing.Size(60, 11);
             this.tbATx4Los.TabIndex = 140;
             this.tbATx4Los.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbATx4Los.Visible = false;
             // 
             // tbARx4Los
             // 
@@ -812,6 +818,7 @@
             this.tbATx3Los.Size = new System.Drawing.Size(60, 11);
             this.tbATx3Los.TabIndex = 138;
             this.tbATx3Los.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbATx3Los.Visible = false;
             // 
             // tbARx3Los
             // 
@@ -832,6 +839,7 @@
             this.tbATx2Los.Size = new System.Drawing.Size(60, 11);
             this.tbATx2Los.TabIndex = 136;
             this.tbATx2Los.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbATx2Los.Visible = false;
             // 
             // tbARx2Los
             // 
@@ -852,6 +860,7 @@
             this.label3.Size = new System.Drawing.Size(47, 15);
             this.label3.TabIndex = 134;
             this.label3.Text = "Tx-LOS";
+            this.label3.Visible = false;
             // 
             // tbATx1Los
             // 
@@ -862,6 +871,7 @@
             this.tbATx1Los.Size = new System.Drawing.Size(60, 11);
             this.tbATx1Los.TabIndex = 133;
             this.tbATx1Los.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbATx1Los.Visible = false;
             // 
             // label2
             // 

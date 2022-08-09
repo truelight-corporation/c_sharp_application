@@ -33,7 +33,7 @@ namespace MiniSasHd4Dot0DcTest
         private BackgroundWorker bwMonitor;
         private DialogResult drAskOverwrite;
         private volatile String[] rxARssiValue = new String[4];
-        private volatile String[] rxBRssiValue = new string[4];
+        private volatile String[] rxBRssiValue = new String[4];
         private volatile String[] rxAPowerRate = new String[4];
         private volatile String[] rxAPowerValue = new String[4];
         private volatile String[] rxBPowerRate = new String[4];
@@ -43,7 +43,7 @@ namespace MiniSasHd4Dot0DcTest
         private volatile String logModeSelect;
         private volatile String serialNumber, serialNumberA, serialNumberB, newSerialNumberA, newSerialNumberB;
         private volatile String lastNote;
-        private volatile int acConfigRowCount;
+        private volatile int acConfigRowCount, count;
         private volatile bool monitorStart = false;
         private volatile bool logValue = false;
         private volatile byte[] losStatusA = new byte[1];
@@ -57,7 +57,7 @@ namespace MiniSasHd4Dot0DcTest
             rxARssiValue[0] = rxARssiValue[1] = rxARssiValue[2] = rxARssiValue[3] = "0";
             rxBRssiValue[0] = rxBRssiValue[1] = rxBRssiValue[2] = rxBRssiValue[3] = "0";
 
-            losStatusA[0] = losStatusB[0] = 0xFF;            
+            losStatusA[0] = losStatusB[0] = 0xFF;
             temperatureA = "0";
             temperatureB = "0";
             lastNote = serialNumber = serialNumberA = serialNumberB = "";
@@ -238,7 +238,7 @@ namespace MiniSasHd4Dot0DcTest
                 lResult.ForeColor = System.Drawing.SystemColors.ControlText;
                 lResult.Text = "OK (" + serialNumber + ")";
                 lClassification.ForeColor = System.Drawing.Color.White;
-                lClassification.BackColor = System.Drawing.Color.Green;
+                lClassification.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(218)))), ((int)(((byte)(177)))));
                 lClassification.Text = "A";
             }
             else {
@@ -311,7 +311,7 @@ namespace MiniSasHd4Dot0DcTest
                 lResult.ForeColor = System.Drawing.SystemColors.ControlText;
                 lResult.Text = "OK (" + serialNumber + ")";
                 lClassification.ForeColor = System.Drawing.Color.White;
-                lClassification.BackColor = System.Drawing.Color.Green;
+                lClassification.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(218)))), ((int)(((byte)(177)))));
                 lClassification.Text = "A";
             }
             else {
@@ -971,9 +971,10 @@ namespace MiniSasHd4Dot0DcTest
             return;
         }
 
-        private int _ReadTemperatureValueA()
+        private int _ReadTemperatureValue()
         {
-            byte[] data = new byte[8];
+            byte[] dataA = new byte[8];
+            byte[] dataB = new byte[8];
             byte[] bATmp = new byte[2];
             byte[] reverseData;
             float fTmp;
@@ -982,16 +983,26 @@ namespace MiniSasHd4Dot0DcTest
             if (i2cWriteACB == null)
                 return -1;
 
+            if (i2cWriteBCB == null)
+                return -1;
+
             if (i2cReadACB == null)
+                return -1;
+
+            if (i2cReadBCB == null)
                 return -1;
 
             int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
 
-            if (i2cReadACB((byte)devAddr, 22, 2, data) != 2)
-                goto clearData;
+            if (i2cReadACB((byte)devAddr, 22, 2, dataA) != 2)
+                goto clearDataA;
 
+            if (i2cReadBCB((byte)devAddr, 22, 2, dataB) != 2)
+                goto clearDataB;
+
+            //for Part-A
             try {
-                Buffer.BlockCopy(data, 0, bATmp, 0, 2);
+                Buffer.BlockCopy(dataA, 0, bATmp, 0, 2);
             }
             catch (Exception eBC) {
                 MessageBox.Show(eBC.ToString());
@@ -1003,36 +1014,10 @@ namespace MiniSasHd4Dot0DcTest
             fTmp = fTmp / 256;
             temperatureA = fTmp.ToString("0.0");
 
-            return 0;
-
-        clearData:
-            temperatureA = "0";
-
-            return 0;
-        }
-
-        private int _ReadTemperatureValueB()
-        {
-            byte[] data = new byte[8];
-            byte[] bATmp = new byte[2];
-            byte[] reverseData;
-            float fTmp;
-            int devAddr;
-
-            if (i2cWriteBCB == null)
-                return -1;
-
-            if (i2cReadBCB == null)
-                return -1;
-
-            int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
-
-            if (i2cReadBCB((byte)devAddr, 22, 2, data) != 2)
-                goto clearData;
-
+            //for Part-B
             try
             {
-                Buffer.BlockCopy(data, 0, bATmp, 0, 2);
+                Buffer.BlockCopy(dataB, 0, bATmp, 0, 2);
             }
             catch (Exception eBC)
             {
@@ -1047,41 +1032,57 @@ namespace MiniSasHd4Dot0DcTest
 
             return 0;
 
-        clearData:
+        clearDataA:
+            temperatureA = "0";
+
+        clearDataB:
             temperatureB = "0";
 
             return 0;
         }
 
-        private int _ReadRxRssiValueA()
+        private int _ReadRxRssiValue()
         {
-            byte[] data = new byte[8];
-            byte[] bATmp = new byte[2];
+            byte[] dataA = new byte[8];
+            byte[] dataB = new byte[8];
+            byte[] bATmp = new byte[2];            
             byte[] reverseData;
             int devAddr, page, regAddr;
 
             if (i2cWriteACB == null)
                 return -1;
+            if (i2cWriteBCB == null)
+                return -1;
 
             if (i2cReadACB == null)
                 return -1;
+            if (i2cReadBCB == null)
+                return -1;            
 
             int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
             int.TryParse(tbI2cRxRegisterPage.Text, out page);
             int.TryParse(tbI2cRxRegisterAddr.Text, out regAddr);
 
             if (page > 0) {
-                data[0] = (byte)page;
+                dataA[0] = (byte)page;
+                dataB[0] = (byte)page;
 
-                if (i2cWriteACB((byte)devAddr, 127, 1, data) < 0)
-                    goto clearData;
+                if (i2cWriteACB((byte)devAddr, 127, 1, dataA) < 0)
+                    goto clearDataA;
+
+                if (i2cWriteBCB((byte)devAddr, 127, 1, dataB) < 0)
+                    goto clearDataB;
             }
 
-            if (i2cReadACB((byte)devAddr, (byte)regAddr, 8, data) != 8)
-                goto clearData;
+            if (i2cReadACB((byte)devAddr, (byte)regAddr, 8, dataA) != 8)
+                goto clearDataA;
 
+            if (i2cReadBCB((byte)devAddr, (byte)regAddr, 8, dataB) != 8)
+                goto clearDataB;
+
+            //for Part-A
             try {
-                Buffer.BlockCopy(data, 0, bATmp, 0, 2);
+                Buffer.BlockCopy(dataA, 0, bATmp, 0, 2);
             }
             catch (Exception eBC) {
                 MessageBox.Show(eBC.ToString());
@@ -1090,9 +1091,10 @@ namespace MiniSasHd4Dot0DcTest
 
             reverseData = bATmp.Reverse().ToArray();
             rxARssiValue[0] = (BitConverter.ToUInt16(reverseData, 0)).ToString();
+            //rxARssiValue[0] = Convert.ToString(count);
 
             try {
-                Buffer.BlockCopy(data, 2, bATmp, 0, 2);
+                Buffer.BlockCopy(dataA, 2, bATmp, 0, 2);
             }
             catch (Exception eBC) {
                 MessageBox.Show(eBC.ToString());
@@ -1101,9 +1103,10 @@ namespace MiniSasHd4Dot0DcTest
 
             reverseData = bATmp.Reverse().ToArray();
             rxARssiValue[1] = (BitConverter.ToUInt16(reverseData, 0)).ToString();
+            //rxARssiValue[1] = Convert.ToString(count);
 
             try {
-                Buffer.BlockCopy(data, 4, bATmp, 0, 2);
+                Buffer.BlockCopy(dataA, 4, bATmp, 0, 2);
             }
             catch (Exception eBC) {
                 MessageBox.Show(eBC.ToString());
@@ -1112,9 +1115,10 @@ namespace MiniSasHd4Dot0DcTest
 
             reverseData = bATmp.Reverse().ToArray();
             rxARssiValue[2] = (BitConverter.ToUInt16(reverseData, 0)).ToString();
+            //rxARssiValue[2] = Convert.ToString(count);
 
             try {
-                Buffer.BlockCopy(data, 6, bATmp, 0, 2);
+                Buffer.BlockCopy(dataA, 6, bATmp, 0, 2);
             }
             catch (Exception eBC) {
                 MessageBox.Show(eBC.ToString());
@@ -1123,46 +1127,12 @@ namespace MiniSasHd4Dot0DcTest
 
             reverseData = bATmp.Reverse().ToArray();
             rxARssiValue[3] = (BitConverter.ToUInt16(reverseData, 0)).ToString();
+            //rxARssiValue[3] = Convert.ToString(count);
 
-            return 0;
-
-        clearData:
-            rxARssiValue[0] = rxARssiValue[1] = rxARssiValue[2] = rxARssiValue[3] = "0";
-
-            return 0;
-        }
-
-        private int _ReadRxRssiValueB()
-        {
-            byte[] data = new byte[8];
-            byte[] bATmp = new byte[2];
-            byte[] reverseData;
-            int devAddr, page, regAddr;
-
-            if (i2cWriteBCB == null)
-                return -1;
-
-            if (i2cReadBCB == null)
-                return -1;
-
-            int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
-            int.TryParse(tbI2cRxRegisterPage.Text, out page);
-            int.TryParse(tbI2cRxRegisterAddr.Text, out regAddr);
-
-            if (page > 0)
-            {
-                data[0] = (byte)page;
-
-                if (i2cWriteBCB((byte)devAddr, 127, 1, data) < 0)
-                    goto clearData;
-            }
-
-            if (i2cReadBCB((byte)devAddr, (byte)regAddr, 8, data) != 8)
-                goto clearData;
-
+            // for Part-B
             try
             {
-                Buffer.BlockCopy(data, 0, bATmp, 0, 2);
+                Buffer.BlockCopy(dataB, 0, bATmp, 0, 2);
             }
             catch (Exception eBC)
             {
@@ -1172,10 +1142,11 @@ namespace MiniSasHd4Dot0DcTest
 
             reverseData = bATmp.Reverse().ToArray();
             rxBRssiValue[0] = (BitConverter.ToUInt16(reverseData, 0)).ToString();
+            //rxBRssiValue[0] = Convert.ToString(count);
 
             try
             {
-                Buffer.BlockCopy(data, 2, bATmp, 0, 2);
+                Buffer.BlockCopy(dataB, 2, bATmp, 0, 2);
             }
             catch (Exception eBC)
             {
@@ -1185,10 +1156,11 @@ namespace MiniSasHd4Dot0DcTest
 
             reverseData = bATmp.Reverse().ToArray();
             rxBRssiValue[1] = (BitConverter.ToUInt16(reverseData, 0)).ToString();
+            //rxBRssiValue[1] = Convert.ToString(count);
 
             try
             {
-                Buffer.BlockCopy(data, 4, bATmp, 0, 2);
+                Buffer.BlockCopy(dataB, 4, bATmp, 0, 2);
             }
             catch (Exception eBC)
             {
@@ -1198,10 +1170,11 @@ namespace MiniSasHd4Dot0DcTest
 
             reverseData = bATmp.Reverse().ToArray();
             rxBRssiValue[2] = (BitConverter.ToUInt16(reverseData, 0)).ToString();
+            //rxBRssiValue[2] = Convert.ToString(count);
 
             try
             {
-                Buffer.BlockCopy(data, 6, bATmp, 0, 2);
+                Buffer.BlockCopy(dataB, 6, bATmp, 0, 2);
             }
             catch (Exception eBC)
             {
@@ -1211,10 +1184,14 @@ namespace MiniSasHd4Dot0DcTest
 
             reverseData = bATmp.Reverse().ToArray();
             rxBRssiValue[3] = (BitConverter.ToUInt16(reverseData, 0)).ToString();
+            //rxBRssiValue[3] = Convert.ToString(count);
 
             return 0;
 
-        clearData:
+        clearDataA:
+            rxARssiValue[0] = rxARssiValue[1] = rxARssiValue[2] = rxARssiValue[3] = "0";
+
+        clearDataB:
             rxBRssiValue[0] = rxBRssiValue[1] = rxBRssiValue[2] = rxBRssiValue[3] = "0";
 
             return 0;
@@ -1358,46 +1335,19 @@ namespace MiniSasHd4Dot0DcTest
             return 0;
         }
 
-        private int _ReadSerialNumberValueA()
+        private int _ReadSerialNumberValue()
         {
-            byte[] data = new byte[16];
+            byte[] dataA = new byte[16];
+            byte[] dataB = new byte[16];
             int devAddr;
 
             if (i2cWriteACB == null)
                 return -1;
 
-            if (i2cReadACB == null)
+            if (i2cWriteBCB == null)
                 return -1;
 
-            int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
-
-            if (cbCustomerPage.SelectedIndex == 0)
-                data[0] = 0x05;
-            else
-                data[0] = 0x81;
-
-            if (i2cWriteACB((byte)devAddr, 127, 1, data) < 0)
-                goto clearData;
-
-            if (i2cReadACB((byte)devAddr, 220, 16, data) != 16)
-                goto clearData;
-
-            serialNumberA = System.Text.Encoding.Default.GetString(data);
-
-            return 0;
-
-        clearData:
-            serialNumberA = "";
-
-            return 0;
-        }
-
-        private int _ReadSerialNumberValueB()
-        {
-            byte[] data = new byte[16];
-            int devAddr;
-
-            if (i2cWriteBCB == null)
+            if (i2cReadACB == null)
                 return -1;
 
             if (i2cReadBCB == null)
@@ -1406,49 +1356,51 @@ namespace MiniSasHd4Dot0DcTest
             int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
 
             if (cbCustomerPage.SelectedIndex == 0)
-                data[0] = 0x05;
+            {
+                dataA[0] = 0x05;
+                dataB[0] = 0x05;
+            }
             else
-                data[0] = 0x81;
+            {
+                dataA[0] = 0x81;
+                dataB[0] = 0x81;
+            }
 
-            if (i2cWriteBCB((byte)devAddr, 127, 1, data) < 0)
-                goto clearData;
+            if (i2cWriteACB((byte)devAddr, 127, 1, dataA) < 0)
+                goto clearDataA;
 
-            if (i2cReadBCB((byte)devAddr, 220, 16, data) != 16)
-                goto clearData;
+            if (i2cWriteBCB((byte)devAddr, 127, 1, dataB) < 0)
+                goto clearDataB;
 
-            serialNumberB = System.Text.Encoding.Default.GetString(data);
+            if (i2cReadACB((byte)devAddr, 220, 16, dataA) != 16)
+                goto clearDataA;
+
+            if (i2cReadBCB((byte)devAddr, 220, 16, dataB) != 16)
+                goto clearDataB;
+
+            serialNumberA = System.Text.Encoding.Default.GetString(dataA);
+            serialNumberB = System.Text.Encoding.Default.GetString(dataB);
 
             return 0;
 
-        clearData:
+        clearDataA:
+            serialNumberA = "";
+
+        clearDataB:
             serialNumberB = "";
 
             return 0;
         }
 
-        private int _ReadLosValueA()
-        {
-            byte[] data = new byte[1];
-            int devAddr;
-
-            if (i2cReadACB == null)
-                return -1;
-
-            int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
-            
-            if (i2cReadACB((byte)devAddr, 3, 1, losStatusA) != 1)
-                goto clearData;            
-
-            clearData:
-            return 0;
-        }
-
-        private int _ReadLosValueB()
+        private int _ReadLosValue()
         {
             byte[] data = new byte[1];
             int devAddr;
 
             if (i2cReadBCB == null)
+                return -1;
+
+            if (i2cReadACB == null)
                 return -1;
 
             int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
@@ -1456,221 +1408,10 @@ namespace MiniSasHd4Dot0DcTest
             if (i2cReadBCB((byte)devAddr, 3, 1, losStatusB) != 1)
                 goto clearData;
 
-            clearData:
-            return 0;
-        }
-
-        private int _ReadRxIcRssiA()
-        {
-            byte[] data = new byte[16];
-            int devAddr, delay, tmp;
-
-            delay = 100;
-
-            if (i2cWriteACB == null)
-                return -1;
-
-            if (i2cReadACB == null)
-                return -1;
-
-            int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
-
-            if (i2cReadACB((byte)devAddr, 0, 1, data) != 1)
+            if (i2cReadACB((byte)devAddr, 3, 1, losStatusA) != 1)
                 goto clearData;
-
-            if (data[0] != 0x77)
-                return -1;
-
-            data[0] = 0x0F;
-            if (i2cWriteACB((byte)devAddr, 0x16, 1, data) < 0)
-                goto clearData;
-
-            data[0] = 0xF0;
-            if (i2cWriteACB((byte)devAddr, 0x40, 1, data) < 0)
-                goto clearData;
-
-            //RSSI0
-            data[0] = 0xC0;
-            if (i2cWriteACB((byte)devAddr, 0x03, 1, data) < 0)
-                goto clearData;
-
-            Thread.Sleep(delay);
-
-            if (i2cReadACB((byte)devAddr, 0x1A, 1, data) != 1)
-                goto clearData;
-
-            if (data[0] == 0)
-                rxARssiValue[0] = "0";
-            else {
-                tmp = 4 + (8 * data[0]);
-                rxARssiValue[0] = tmp.ToString();
-            }
-
-            //RSSI1
-            data[0] = 0xD0;
-            if (i2cWriteACB((byte)devAddr, 0x03, 1, data) < 0)
-                goto clearData;
-
-            Thread.Sleep(delay);
-
-            if (i2cReadACB((byte)devAddr, 0x1A, 1, data) != 1)
-                goto clearData;
-            
-            if (data[0] == 0)
-                rxARssiValue[0] = "0";
-            else {
-                tmp = 4 + (8 * data[0]);
-                rxARssiValue[1] = tmp.ToString();
-            }
-
-            //RSSI2
-            data[0] = 0xE0;
-            if (i2cWriteACB((byte)devAddr, 0x03, 1, data) < 0)
-                goto clearData;
-
-            Thread.Sleep(delay);
-
-            if (i2cReadACB((byte)devAddr, 0x1A, 1, data) != 1)
-                goto clearData;
-
-            if (data[0] == 0)
-                rxARssiValue[0] = "0";
-            else {
-                tmp = 4 + (8 * data[0]);
-                rxARssiValue[2] = tmp.ToString();
-            }
-
-            //RSSI3
-            data[0] = 0xF0;
-            if (i2cWriteACB((byte)devAddr, 0x03, 1, data) < 0)
-                goto clearData;
-
-            Thread.Sleep(delay);
-
-            if (i2cReadACB((byte)devAddr, 0x1A, 1, data) != 1)
-                goto clearData;
-
-            if (data[0] == 0)
-                rxARssiValue[0] = "0";
-            else {
-                tmp = 4 + (8 * data[0]);
-                rxARssiValue[3] = tmp.ToString();
-            }
-
-            return 0;
 
         clearData:
-            rxARssiValue[0] = rxARssiValue[1] = rxARssiValue[2] = rxARssiValue[3] = "0";
-
-            return 0;
-        }
-
-        private int _ReadRxIcRssiB()
-        {
-            byte[] data = new byte[16];
-            int devAddr, delay, tmp;
-
-            delay = 100;
-
-            if (i2cWriteBCB == null)
-                return -1;
-
-            if (i2cReadBCB == null)
-                return -1;
-
-            int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
-
-            if (i2cReadBCB((byte)devAddr, 0, 1, data) != 1)
-                goto clearData;
-
-            if (data[0] != 0x77)
-                return -1;
-
-            data[0] = 0x0F;
-            if (i2cWriteBCB((byte)devAddr, 0x16, 1, data) < 0)
-                goto clearData;
-
-            data[0] = 0xF0;
-            if (i2cWriteBCB((byte)devAddr, 0x40, 1, data) < 0)
-                goto clearData;
-
-            //RSSI0
-            data[0] = 0xC0;
-            if (i2cWriteBCB((byte)devAddr, 0x03, 1, data) < 0)
-                goto clearData;
-
-            Thread.Sleep(delay);
-
-            if (i2cReadBCB((byte)devAddr, 0x1A, 1, data) != 1)
-                goto clearData;
-
-            if (data[0] == 0)
-                rxBRssiValue[0] = "0";
-            else
-            {
-                tmp = 4 + (8 * data[0]);
-                rxBRssiValue[0] = tmp.ToString();
-            }
-
-            //RSSI1
-            data[0] = 0xD0;
-            if (i2cWriteBCB((byte)devAddr, 0x03, 1, data) < 0)
-                goto clearData;
-
-            Thread.Sleep(delay);
-
-            if (i2cReadBCB((byte)devAddr, 0x1A, 1, data) != 1)
-                goto clearData;
-
-            if (data[0] == 0)
-                rxBRssiValue[0] = "0";
-            else
-            {
-                tmp = 4 + (8 * data[0]);
-                rxBRssiValue[1] = tmp.ToString();
-            }
-
-            //RSSI2
-            data[0] = 0xE0;
-            if (i2cWriteBCB((byte)devAddr, 0x03, 1, data) < 0)
-                goto clearData;
-
-            Thread.Sleep(delay);
-
-            if (i2cReadBCB((byte)devAddr, 0x1A, 1, data) != 1)
-                goto clearData;
-
-            if (data[0] == 0)
-                rxBRssiValue[0] = "0";
-            else
-            {
-                tmp = 4 + (8 * data[0]);
-                rxBRssiValue[2] = tmp.ToString();
-            }
-
-            //RSSI3
-            data[0] = 0xF0;
-            if (i2cWriteBCB((byte)devAddr, 0x03, 1, data) < 0)
-                goto clearData;
-
-            Thread.Sleep(delay);
-
-            if (i2cReadBCB((byte)devAddr, 0x1A, 1, data) != 1)
-                goto clearData;
-
-            if (data[0] == 0)
-                rxBRssiValue[0] = "0";
-            else
-            {
-                tmp = 4 + (8 * data[0]);
-                rxBRssiValue[3] = tmp.ToString();
-            }
-
-            return 0;
-
-        clearData:
-            rxBRssiValue[0] = rxBRssiValue[1] = rxBRssiValue[2] = rxBRssiValue[3] = "0";
-
             return 0;
         }
 
@@ -1682,29 +1423,25 @@ namespace MiniSasHd4Dot0DcTest
             switch (logModeSelect) {
                 
                 default:
-                    if (_ReadTemperatureValueA() < 0)
-                        rxValueReadError = true;
-                    if (_ReadTemperatureValueB() < 0)
+
+
+                    if (_ReadLosValue() < 0)
                         rxValueReadError = true;
 
-                    if (_ReadRxRssiValueA() < 0)
-                        rxValueReadError = true;
-                    if (_ReadRxRssiValueB() < 0)
+                    if (_ReadTemperatureValue() < 0)
                         rxValueReadError = true;
 
+                    if (_ReadRxRssiValue() < 0)
+                        rxValueReadError = true;
+
+                    
                     if (_ReadRxPowerValueA() < 0)
                         rxValueReadError = true;
                     if (_ReadRxPowerValueB() < 0)
                         rxValueReadError = true;
+                    
 
-                    if (_ReadSerialNumberValueA() < 0)
-                        rxValueReadError = true;
-                    if (_ReadSerialNumberValueB() < 0)
-                        rxValueReadError = true;
-
-                    if (_ReadLosValueA() < 0)
-                        rxValueReadError = true;
-                    if (_ReadLosValueB() < 0)
+                    if (_ReadSerialNumberValue() < 0)
                         rxValueReadError = true;
 
                     if ((String.Compare(rxARssiValue[0], "65535") == 0) &&
@@ -1741,7 +1478,7 @@ namespace MiniSasHd4Dot0DcTest
                     int.TryParse(tbBeforeAndAfterBurnInDcTestBiasCurrent.Text, out iDcBias);
                     int.TryParse(tbBurnInBiasCurrent.Text, out iBurnInCurrent);
                     switch (logModeSelect) {
-                        
+                        /*
                         case "BeforeBurnIn":
                             bwMonitor.ReportProgress(1, null);
                       
@@ -1812,13 +1549,15 @@ namespace MiniSasHd4Dot0DcTest
                             while (logValue == true) // Wait log done
                                 Thread.Sleep(100);
                             break;
+                            */
 
                         default:
                             if (!((tbARx1.Text == "0") && (tbARx2.Text == "0") && (tbARx3.Text == "0") && (tbARx4.Text == "0")
                                 && (tbTemperatureA.Text == "0")))
                             {
-                                if ((_SetModuleSerialNumberA() < 0) || (_StoreConfigIntoFlashA() < 0) ||
-                                (_GetModuleMonitorValue() < 0)) {
+                                if ((_GetModuleMonitorValue() < 0) || (_SetModuleSerialNumberA() < 0) || 
+                                    (_StoreConfigIntoFlashA() < 0))
+                                {
                                     bGetModuleMonitorValueError = true;
                                     break;
                                 }
@@ -1827,8 +1566,8 @@ namespace MiniSasHd4Dot0DcTest
                             if (!((tbBRx1.Text == "0") && (tbBRx2.Text == "0") && (tbBRx3.Text == "0") && (tbBRx4.Text == "0")
                                 && (tbTemperatureB.Text == "0")))
                             {
-                                if ((_SetModuleSerialNumberB() < 0) || (_StoreConfigIntoFlashB() < 0) ||
-                                (_GetModuleMonitorValue() < 0))
+                                if ((_GetModuleMonitorValue() < 0) || (_SetModuleSerialNumberB() < 0) || 
+                                    (_StoreConfigIntoFlashB() < 0))
                                 {
                                     bGetModuleMonitorValueError = true;
                                     break;
@@ -2154,14 +1893,18 @@ namespace MiniSasHd4Dot0DcTest
             return 0;
         }
                 
-        private int _UpdateRxRssiValueGuiA()
+        private int _UpdateRxRssiValueGui()
         {
             float fTmp, fThreshold, f3Average;
             float[] fARssi = Array.ConvertAll(rxARssiValue, S => float.Parse(S));
-            double dCriticalValue;
+            float[] fBRssi = Array.ConvertAll(rxBRssiValue, S => float.Parse(S));
+            double dCriticalValueA , dCriticalValueB;
 
             f3Average = (fARssi.Sum() - fARssi.Min()) / 3;
-            dCriticalValue = f3Average * 0.8;
+            dCriticalValueA = f3Average * 0.8;
+
+            f3Average = (fBRssi.Sum() - fBRssi.Min()) / 3;
+            dCriticalValueB = f3Average * 0.8;
 
             fThreshold = float.Parse(tbRx1Threshold.Text);
             fTmp = float.Parse(rxARssiValue[0]);
@@ -2170,7 +1913,7 @@ namespace MiniSasHd4Dot0DcTest
                 tbARx1.ForeColor = System.Drawing.Color.Red;
                 tbARx1.BackColor = System.Drawing.Color.Pink;
              }
-            else if (fTmp < dCriticalValue)
+            else if (fTmp < dCriticalValueA)
             {
                 tbARx1.ForeColor = SystemColors.ControlText;
                 tbARx1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(255)))), ((int)(((byte)(112)))));
@@ -2183,6 +1926,24 @@ namespace MiniSasHd4Dot0DcTest
             tbARx1.Text = rxARssiValue[0];
             tbARx1.Update();
 
+            fTmp = float.Parse(rxBRssiValue[0]);
+            if (fTmp < fThreshold)
+            {
+                tbBRx1.ForeColor = System.Drawing.Color.Red;
+                tbBRx1.BackColor = System.Drawing.Color.Pink;
+            }
+            else if (fTmp < dCriticalValueB)
+            {
+                tbBRx1.ForeColor = SystemColors.ControlText;
+                tbBRx1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(255)))), ((int)(((byte)(112)))));
+            }
+            else
+            {
+                tbBRx1.ForeColor = SystemColors.ControlText;
+                tbBRx1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(218)))), ((int)(((byte)(177)))));
+            }
+            tbBRx1.Text = rxBRssiValue[0];
+            tbBRx1.Update();
 
             fThreshold = float.Parse(tbRx2Threshold.Text);
             fTmp = float.Parse(rxARssiValue[1]);
@@ -2191,7 +1952,7 @@ namespace MiniSasHd4Dot0DcTest
                 tbARx2.ForeColor = System.Drawing.Color.Red;
                 tbARx2.BackColor = System.Drawing.Color.Pink;
             }
-            else if (fTmp < dCriticalValue)
+            else if (fTmp < dCriticalValueA)
             {
                 tbARx2.ForeColor = SystemColors.ControlText;
                 tbARx2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(255)))), ((int)(((byte)(112)))));
@@ -2203,7 +1964,26 @@ namespace MiniSasHd4Dot0DcTest
             }
             tbARx2.Text = rxARssiValue[1];
             tbARx2.Update();
- 
+
+            fTmp = float.Parse(rxBRssiValue[1]);
+            if (fBRssi[1] < fThreshold)
+            {
+                tbBRx2.ForeColor = System.Drawing.Color.Red;
+                tbBRx2.BackColor = System.Drawing.Color.Pink;
+            }
+            else if (fBRssi[1] < dCriticalValueB)
+            {
+                tbBRx2.ForeColor = SystemColors.ControlText;
+                tbBRx2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(255)))), ((int)(((byte)(112)))));
+            }
+            else
+            {
+                tbBRx2.ForeColor = SystemColors.ControlText;
+                tbBRx2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(218)))), ((int)(((byte)(177)))));
+            }
+            tbBRx2.Text = rxBRssiValue[1];
+            tbBRx2.Update();
+
             fThreshold = float.Parse(tbRx3Threshold.Text);
             fTmp = float.Parse(rxARssiValue[2]);
             if (fTmp < fThreshold)
@@ -2211,7 +1991,7 @@ namespace MiniSasHd4Dot0DcTest
                 tbARx3.ForeColor = System.Drawing.Color.Red;
                 tbARx3.BackColor = System.Drawing.Color.Pink;
             }
-            else if (fTmp < dCriticalValue)
+            else if (fTmp < dCriticalValueA)
             {
                 tbARx3.ForeColor = SystemColors.ControlText;
                 tbARx3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(255)))), ((int)(((byte)(112)))));
@@ -2224,6 +2004,25 @@ namespace MiniSasHd4Dot0DcTest
             tbARx3.Text = rxARssiValue[2];
             tbARx3.Update();
 
+            fTmp = float.Parse(rxBRssiValue[2]);
+            if (fBRssi[2] < fThreshold)
+            {
+                tbBRx3.ForeColor = System.Drawing.Color.Red;
+                tbBRx3.BackColor = System.Drawing.Color.Pink;
+            }
+            else if (fBRssi[2] < dCriticalValueB)
+            {
+                tbBRx3.ForeColor = SystemColors.ControlText;
+                tbBRx3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(255)))), ((int)(((byte)(112)))));
+            }
+            else
+            {
+                tbBRx3.ForeColor = SystemColors.ControlText;
+                tbBRx3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(218)))), ((int)(((byte)(177)))));
+            }
+            tbBRx3.Text = rxBRssiValue[2];
+            tbBRx3.Update();
+
             fThreshold = float.Parse(tbRx4Threshold.Text);
             fTmp = float.Parse(rxARssiValue[3]);
             if (fTmp < fThreshold)
@@ -2231,7 +2030,7 @@ namespace MiniSasHd4Dot0DcTest
                 tbARx4.ForeColor = System.Drawing.Color.Red;
                 tbARx4.BackColor = System.Drawing.Color.Pink;
             }
-            else if (fTmp < dCriticalValue)
+            else if (fTmp < dCriticalValueA)
             {
                 tbARx4.ForeColor = SystemColors.ControlText;
                 tbARx4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(255)))), ((int)(((byte)(112)))));
@@ -2243,7 +2042,26 @@ namespace MiniSasHd4Dot0DcTest
             }
             tbARx4.Text = rxARssiValue[3];
             tbARx4.Update();
- 
+
+            fTmp = float.Parse(rxBRssiValue[3]);
+            if (fBRssi[3] < fThreshold)
+            {
+                tbBRx4.ForeColor = System.Drawing.Color.Red;
+                tbBRx4.BackColor = System.Drawing.Color.Pink;
+            }
+            else if (fBRssi[3] < dCriticalValueB)
+            {
+                tbBRx4.ForeColor = SystemColors.ControlText;
+                tbBRx4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(255)))), ((int)(((byte)(112)))));
+            }
+            else
+            {
+                tbBRx4.ForeColor = SystemColors.ControlText;
+                tbBRx4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(218)))), ((int)(((byte)(177)))));
+            }
+            tbBRx4.Text = rxBRssiValue[3];
+            tbBRx4.Update();
+
             return 0;
         }
 
@@ -2353,6 +2171,7 @@ namespace MiniSasHd4Dot0DcTest
 
         private int _UpdateLosStatusGui()
         {
+            //for Part-A
             if ((losStatusA[0] & 0x01) == 0)                
                 tbARx1Los.BackColor = Color.LightGreen;            
             else                
@@ -2393,7 +2212,7 @@ namespace MiniSasHd4Dot0DcTest
             else
                 tbATx4Los.BackColor = Color.Pink;
 
-
+            //for Part-B
             if ((losStatusB[0] & 0x01) == 0)
                 tbBRx1Los.BackColor = Color.LightGreen;
             else
@@ -2434,14 +2253,16 @@ namespace MiniSasHd4Dot0DcTest
             else
                 tbBTx4Los.BackColor = Color.Pink;
 
-
             return 0;
         }
 
         public void MonitorProgressChangedApi(object sender, ProgressChangedEventArgs e)
         {
             float fTmp;
-            float fTemperatureRead;
+
+            count++;
+            if (count > 256)
+                count = 0;
 
             float.TryParse(tbBeforeAndAfterBurnInDcTestBiasCurrent.Text, out fTmp);
             fTmp /= 1000;
@@ -2485,13 +2306,12 @@ namespace MiniSasHd4Dot0DcTest
                 default:
                     break;
             }
-                        
+
             tbTemperatureA.Text = temperatureA;
             tbTemperatureA.Update();
             tbTemperatureB.Text = temperatureB;
             tbTemperatureB.Update();
-            _UpdateRxRssiValueGuiA();
-            _UpdateRxRssiValueGuiB();
+            _UpdateRxRssiValueGui();            
             _UpdateModuleSerailNumberValueGui();
             _UpdateLosStatusGui();
 
