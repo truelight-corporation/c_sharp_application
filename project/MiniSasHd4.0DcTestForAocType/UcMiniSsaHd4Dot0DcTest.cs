@@ -94,12 +94,6 @@ namespace MiniSasHd4Dot0DcTest
 
             dgvRecord.DataSource = dtValue;
 
-            dtAfterBurnInConfig.Columns.Add("Command", typeof(String));
-            dtAfterBurnInConfig.Columns.Add("Parameter1", typeof(String));
-            dtAfterBurnInConfig.Columns.Add("Parameter2", typeof(String));
-            dtAfterBurnInConfig.Columns.Add("Parameter3", typeof(String));
-
-            dgvAfterBurnInConfig.DataSource = dtAfterBurnInConfig;
         }
 
         public int SetI2cReadACBApi(I2cReadCB cb)
@@ -237,7 +231,7 @@ namespace MiniSasHd4Dot0DcTest
             if (bPass == true) {
                 lResult.ForeColor = System.Drawing.SystemColors.ControlText;
                 lResult.Text = "OK (" + serialNumber + ")";
-                lClassification.ForeColor = System.Drawing.Color.White;
+                lClassification.ForeColor = System.Drawing.Color.Black;
                 lClassification.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(218)))), ((int)(((byte)(177)))));
                 lClassification.Text = "A";
             }
@@ -310,7 +304,7 @@ namespace MiniSasHd4Dot0DcTest
             if (bPass == true) {
                 lResult.ForeColor = System.Drawing.SystemColors.ControlText;
                 lResult.Text = "OK (" + serialNumber + ")";
-                lClassification.ForeColor = System.Drawing.Color.White;
+                lClassification.ForeColor = System.Drawing.Color.Black;
                 lClassification.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(218)))), ((int)(((byte)(177)))));
                 lClassification.Text = "A";
             }
@@ -971,10 +965,9 @@ namespace MiniSasHd4Dot0DcTest
             return;
         }
 
-        private int _ReadTemperatureValue()
+        private int _ReadTemperatureValueA()
         {
             byte[] dataA = new byte[8];
-            byte[] dataB = new byte[8];
             byte[] bATmp = new byte[2];
             byte[] reverseData;
             float fTmp;
@@ -983,22 +976,13 @@ namespace MiniSasHd4Dot0DcTest
             if (i2cWriteACB == null)
                 return -1;
 
-            if (i2cWriteBCB == null)
-                return -1;
-
             if (i2cReadACB == null)
-                return -1;
-
-            if (i2cReadBCB == null)
                 return -1;
 
             int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
 
             if (i2cReadACB((byte)devAddr, 22, 2, dataA) != 2)
                 goto clearDataA;
-
-            if (i2cReadBCB((byte)devAddr, 22, 2, dataB) != 2)
-                goto clearDataB;
 
             //for Part-A
             try {
@@ -1013,6 +997,34 @@ namespace MiniSasHd4Dot0DcTest
             fTmp = BitConverter.ToInt16(reverseData, 0);
             fTmp = fTmp / 256;
             temperatureA = fTmp.ToString("0.0");
+
+            return 0;
+
+        clearDataA:
+            temperatureA = "0";
+
+            return 0;
+        }
+
+        private int _ReadTemperatureValueB()
+        {
+
+            byte[] dataB = new byte[8];
+            byte[] bATmp = new byte[2];
+            byte[] reverseData;
+            float fTmp;
+            int devAddr;
+
+            if (i2cWriteBCB == null)
+                return -1;
+
+            if (i2cReadBCB == null)
+                return -1;
+
+            int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
+
+            if (i2cReadBCB((byte)devAddr, 22, 2, dataB) != 2)
+                goto clearDataB;
 
             //for Part-B
             try
@@ -1032,32 +1044,24 @@ namespace MiniSasHd4Dot0DcTest
 
             return 0;
 
-        clearDataA:
-            temperatureA = "0";
-
         clearDataB:
             temperatureB = "0";
 
             return 0;
         }
 
-        private int _ReadRxRssiValue()
+        private int _ReadRxRssiValueA()
         {
             byte[] dataA = new byte[8];
-            byte[] dataB = new byte[8];
             byte[] bATmp = new byte[2];            
             byte[] reverseData;
             int devAddr, page, regAddr;
 
             if (i2cWriteACB == null)
                 return -1;
-            if (i2cWriteBCB == null)
-                return -1;
 
             if (i2cReadACB == null)
-                return -1;
-            if (i2cReadBCB == null)
-                return -1;            
+                return -1;          
 
             int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
             int.TryParse(tbI2cRxRegisterPage.Text, out page);
@@ -1065,20 +1069,13 @@ namespace MiniSasHd4Dot0DcTest
 
             if (page > 0) {
                 dataA[0] = (byte)page;
-                dataB[0] = (byte)page;
 
                 if (i2cWriteACB((byte)devAddr, 127, 1, dataA) < 0)
                     goto clearDataA;
-
-                if (i2cWriteBCB((byte)devAddr, 127, 1, dataB) < 0)
-                    goto clearDataB;
             }
 
             if (i2cReadACB((byte)devAddr, (byte)regAddr, 8, dataA) != 8)
                 goto clearDataA;
-
-            if (i2cReadBCB((byte)devAddr, (byte)regAddr, 8, dataB) != 8)
-                goto clearDataB;
 
             //for Part-A
             try {
@@ -1127,8 +1124,44 @@ namespace MiniSasHd4Dot0DcTest
 
             reverseData = bATmp.Reverse().ToArray();
             rxARssiValue[3] = (BitConverter.ToUInt16(reverseData, 0)).ToString();
-            //rxARssiValue[3] = Convert.ToString(count);
+            //rxARssiValue[3] = Convert.ToString(count);            
 
+            return 0;
+
+        clearDataA:
+            rxARssiValue[0] = rxARssiValue[1] = rxARssiValue[2] = rxARssiValue[3] = "0";
+
+            return 0;
+        }
+
+        private int _ReadRxRssiValueB()
+        {
+            byte[] dataB = new byte[8];
+            byte[] bATmp = new byte[2];
+            byte[] reverseData;
+            int devAddr, page, regAddr;
+
+            if (i2cWriteBCB == null)
+                return -1;
+
+            if (i2cReadBCB == null)
+                return -1;
+
+            int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
+            int.TryParse(tbI2cRxRegisterPage.Text, out page);
+            int.TryParse(tbI2cRxRegisterAddr.Text, out regAddr);
+
+            if (page > 0)
+            {
+                dataB[0] = (byte)page;
+
+                if (i2cWriteBCB((byte)devAddr, 127, 1, dataB) < 0)
+                    goto clearDataB;
+            }
+
+            if (i2cReadBCB((byte)devAddr, (byte)regAddr, 8, dataB) != 8)
+                goto clearDataB;
+            
             // for Part-B
             try
             {
@@ -1187,9 +1220,6 @@ namespace MiniSasHd4Dot0DcTest
             //rxBRssiValue[3] = Convert.ToString(count);
 
             return 0;
-
-        clearDataA:
-            rxARssiValue[0] = rxARssiValue[1] = rxARssiValue[2] = rxARssiValue[3] = "0";
 
         clearDataB:
             rxBRssiValue[0] = rxBRssiValue[1] = rxBRssiValue[2] = rxBRssiValue[3] = "0";
@@ -1261,7 +1291,7 @@ namespace MiniSasHd4Dot0DcTest
             return 0;
 
         clearData:
-            rxAPowerValue[0] = rxAPowerValue[1] = rxAPowerValue[2] = rxAPowerValue[3] = "0";
+            rxAPowerValue[0] = rxAPowerValue[1] = rxAPowerValue[2] = rxAPowerValue[3] = "1";
             rxAPowerRate[0] = rxAPowerRate[1] = rxAPowerRate[2] = rxAPowerRate[3] = "0";
             return 0;
         }
@@ -1335,19 +1365,46 @@ namespace MiniSasHd4Dot0DcTest
             return 0;
         }
 
-        private int _ReadSerialNumberValue()
+        private int _ReadSerialNumberValueA()
         {
             byte[] dataA = new byte[16];
-            byte[] dataB = new byte[16];
             int devAddr;
 
             if (i2cWriteACB == null)
                 return -1;
 
-            if (i2cWriteBCB == null)
+            if (i2cReadACB == null)
                 return -1;
 
-            if (i2cReadACB == null)
+            int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
+
+            if (cbCustomerPage.SelectedIndex == 0)
+                dataA[0] = 0x05;
+            else
+                dataA[0] = 0x81;
+
+            if (i2cWriteACB((byte)devAddr, 127, 1, dataA) < 0)
+                goto clearDataA;
+
+            if (i2cReadACB((byte)devAddr, 220, 16, dataA) != 16)
+                goto clearDataA;
+
+            serialNumberA = System.Text.Encoding.Default.GetString(dataA);
+
+            return 0;
+
+        clearDataA:
+            serialNumberA = "";
+
+            return 0;
+        }
+
+        private int _ReadSerialNumberValueB()
+        {
+            byte[] dataB = new byte[16];
+            int devAddr;
+
+            if (i2cWriteBCB == null)
                 return -1;
 
             if (i2cReadBCB == null)
@@ -1356,35 +1413,19 @@ namespace MiniSasHd4Dot0DcTest
             int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
 
             if (cbCustomerPage.SelectedIndex == 0)
-            {
-                dataA[0] = 0x05;
                 dataB[0] = 0x05;
-            }
             else
-            {
-                dataA[0] = 0x81;
                 dataB[0] = 0x81;
-            }
-
-            if (i2cWriteACB((byte)devAddr, 127, 1, dataA) < 0)
-                goto clearDataA;
 
             if (i2cWriteBCB((byte)devAddr, 127, 1, dataB) < 0)
                 goto clearDataB;
 
-            if (i2cReadACB((byte)devAddr, 220, 16, dataA) != 16)
-                goto clearDataA;
-
             if (i2cReadBCB((byte)devAddr, 220, 16, dataB) != 16)
                 goto clearDataB;
 
-            serialNumberA = System.Text.Encoding.Default.GetString(dataA);
             serialNumberB = System.Text.Encoding.Default.GetString(dataB);
 
             return 0;
-
-        clearDataA:
-            serialNumberA = "";
 
         clearDataB:
             serialNumberB = "";
@@ -1392,7 +1433,24 @@ namespace MiniSasHd4Dot0DcTest
             return 0;
         }
 
-        private int _ReadLosValue()
+        private int _ReadLosValueA()
+        {
+            byte[] data = new byte[1];
+            int devAddr;
+
+            if (i2cReadACB == null)
+                return -1;
+
+            int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
+
+            if (i2cReadACB((byte)devAddr, 3, 1, losStatusA) != 1)
+                goto clearData;
+
+        clearData:
+            return 0;
+        }
+
+        private int _ReadLosValueB()
         {
             byte[] data = new byte[1];
             int devAddr;
@@ -1400,18 +1458,12 @@ namespace MiniSasHd4Dot0DcTest
             if (i2cReadBCB == null)
                 return -1;
 
-            if (i2cReadACB == null)
-                return -1;
-
             int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
 
             if (i2cReadBCB((byte)devAddr, 3, 1, losStatusB) != 1)
                 goto clearData;
 
-            if (i2cReadACB((byte)devAddr, 3, 1, losStatusA) != 1)
-                goto clearData;
-
-        clearData:
+            clearData:
             return 0;
         }
 
@@ -1424,24 +1476,31 @@ namespace MiniSasHd4Dot0DcTest
                 
                 default:
 
-
-                    if (_ReadLosValue() < 0)
+                    if (_ReadLosValueA() < 0)
+                        rxValueReadError = true;
+                    if (_ReadLosValueB() < 0)
                         rxValueReadError = true;
 
-                    if (_ReadTemperatureValue() < 0)
+                    if (_ReadTemperatureValueA() < 0)
+                        rxValueReadError = true;
+                    if (_ReadTemperatureValueB() < 0)
                         rxValueReadError = true;
 
-                    if (_ReadRxRssiValue() < 0)
+                    if (_ReadRxRssiValueA() < 0)
+                        rxValueReadError = true;
+                    if (_ReadRxRssiValueB() < 0)
                         rxValueReadError = true;
 
-                    
+                    /*
                     if (_ReadRxPowerValueA() < 0)
                         rxValueReadError = true;
                     if (_ReadRxPowerValueB() < 0)
                         rxValueReadError = true;
-                    
+                    */
 
-                    if (_ReadSerialNumberValue() < 0)
+                    if (_ReadSerialNumberValueA() < 0)
+                        rxValueReadError = true;
+                    if (_ReadSerialNumberValueB() < 0)
                         rxValueReadError = true;
 
                     if ((String.Compare(rxARssiValue[0], "65535") == 0) &&
@@ -1475,8 +1534,8 @@ namespace MiniSasHd4Dot0DcTest
                 bGetModuleMonitorValueError = false;
 
                 if (logValue == true) {
-                    int.TryParse(tbBeforeAndAfterBurnInDcTestBiasCurrent.Text, out iDcBias);
-                    int.TryParse(tbBurnInBiasCurrent.Text, out iBurnInCurrent);
+                    iDcBias = 7000;
+                    iBurnInCurrent = 10000;
                     switch (logModeSelect) {
                         /*
                         case "BeforeBurnIn":
@@ -1552,6 +1611,7 @@ namespace MiniSasHd4Dot0DcTest
                             */
 
                         default:
+                            //for Part-A
                             if (!((tbARx1.Text == "0") && (tbARx2.Text == "0") && (tbARx3.Text == "0") && (tbARx4.Text == "0")
                                 && (tbTemperatureA.Text == "0")))
                             {
@@ -1563,6 +1623,7 @@ namespace MiniSasHd4Dot0DcTest
                                 }
                             }
 
+                            //for Part-B
                             if (!((tbBRx1.Text == "0") && (tbBRx2.Text == "0") && (tbBRx3.Text == "0") && (tbBRx4.Text == "0")
                                 && (tbTemperatureB.Text == "0")))
                             {
@@ -1709,128 +1770,7 @@ namespace MiniSasHd4Dot0DcTest
 
             return 0;
         }
-
-        private int _SetAfterBurnInAcConfigA()
-        {
-            byte[] data = new byte[1];
-            byte devAddr, regAddr;
-            int delayTime;
-
-            if (_SetQsfpMode(0x4D) < 0)
-                return -1;
-
-            if (_WritePassword() < 0)
-                return -1;
-
-            if (i2cWriteACB == null)
-                return -1;
-
-            foreach (DataRow row in dtAfterBurnInConfig.Rows) {
-                acConfigRowCount++;
-                switch (row[0].ToString()) {
-                    case "Delay10mSec":
-                        delayTime = int.Parse(row[1].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
-                        bwMonitor.ReportProgress(6, null);
-                        Thread.Sleep(delayTime);
-                        break;
-
-                    case "Write":
-                        devAddr = byte.Parse(row[1].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
-                        regAddr = byte.Parse(row[2].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
-                        data[0] = byte.Parse(row[3].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
-                        i2cWriteACB(devAddr, regAddr, 1, data);
-                        break;
-
-                    case "Read":
-                        devAddr = byte.Parse(row[1].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
-                        regAddr = byte.Parse(row[2].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
-                        while (i2cReadACB(devAddr, regAddr, 1, data) != 1) {
-                            MessageBox.Show("i2cReadCB() fail!!");
-                            Thread.Sleep(100);
-                        }
-                        if (data[0] != byte.Parse(row[3].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber)) {
-                            MessageBox.Show("DevAddr:0x" + devAddr.ToString("X2") + "RegAddr:0x" + regAddr.ToString("X2") +
-                                "Value:0x" + data[0].ToString("X2") + " != " + row[3].ToString());
-                            return -1;
-                        }
-                        break;
-
-                    default:
-                        break;
-                }
-
-                if (acConfigRowCount % 5 == 0) {
-                    bwMonitor.ReportProgress(6, null);
-                    Thread.Sleep(1);
-                }
-            }
-
-            return 0;
-        }
-
-        private int _SetAfterBurnInAcConfigB()
-        {
-            byte[] data = new byte[1];
-            byte devAddr, regAddr;
-            int delayTime;
-
-            if (_SetQsfpMode(0x4D) < 0)
-                return -1;
-
-            if (_WritePassword() < 0)
-                return -1;
-
-            if (i2cWriteBCB == null)
-                return -1;
-
-            foreach (DataRow row in dtAfterBurnInConfig.Rows)
-            {
-                acConfigRowCount++;
-                switch (row[0].ToString())
-                {
-                    case "Delay10mSec":
-                        delayTime = int.Parse(row[1].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
-                        bwMonitor.ReportProgress(6, null);
-                        Thread.Sleep(delayTime);
-                        break;
-
-                    case "Write":
-                        devAddr = byte.Parse(row[1].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
-                        regAddr = byte.Parse(row[2].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
-                        data[0] = byte.Parse(row[3].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
-                        i2cWriteBCB(devAddr, regAddr, 1, data);
-                        break;
-
-                    case "Read":
-                        devAddr = byte.Parse(row[1].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
-                        regAddr = byte.Parse(row[2].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
-                        while (i2cReadBCB(devAddr, regAddr, 1, data) != 1)
-                        {
-                            MessageBox.Show("i2cReadCB() fail!!");
-                            Thread.Sleep(100);
-                        }
-                        if (data[0] != byte.Parse(row[3].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber))
-                        {
-                            MessageBox.Show("DevAddr:0x" + devAddr.ToString("X2") + "RegAddr:0x" + regAddr.ToString("X2") +
-                                "Value:0x" + data[0].ToString("X2") + " != " + row[3].ToString());
-                            return -1;
-                        }
-                        break;
-
-                    default:
-                        break;
-                }
-
-                if (acConfigRowCount % 5 == 0)
-                {
-                    bwMonitor.ReportProgress(6, null);
-                    Thread.Sleep(1);
-                }
-            }
-
-            return 0;
-        }
-
+       
         private int _AutoCorrectRxPowerRate()
         {
             float input, rssi;
@@ -1895,16 +1835,37 @@ namespace MiniSasHd4Dot0DcTest
                 
         private int _UpdateRxRssiValueGui()
         {
-            float fTmp, fThreshold, f3Average;
+            float fTmp, fThreshold, f3Average, fCriticalRadioA, fCriticalRadioB, fCheck;
             float[] fARssi = Array.ConvertAll(rxARssiValue, S => float.Parse(S));
             float[] fBRssi = Array.ConvertAll(rxBRssiValue, S => float.Parse(S));
-            double dCriticalValueA , dCriticalValueB;
+            double dCriticalValueA , dCriticalValueB ;
+
+            try
+            {
+                Convert.ToInt32(tbRxCriticalLevel.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                tbRxCriticalLevel.Text = "0";
+            }
+
+            fCheck = Convert.ToInt32(tbRxCriticalLevel.Text);
+            if (fCheck >100)
+                tbRxCriticalLevel.Text = "100";
+            else if (fCheck < 0)
+                tbRxCriticalLevel.Text = "0";
+
+            fCriticalRadioA = Convert.ToInt32(tbRxCriticalLevel.Text);
+            fCriticalRadioB = Convert.ToInt32(tbRxCriticalLevel.Text);
+
+
 
             f3Average = (fARssi.Sum() - fARssi.Min()) / 3;
-            dCriticalValueA = f3Average * 0.8;
+            dCriticalValueA = f3Average * (fCriticalRadioA / 100);
 
             f3Average = (fBRssi.Sum() - fBRssi.Min()) / 3;
-            dCriticalValueB = f3Average * 0.8;
+            dCriticalValueB = f3Average * (fCriticalRadioB / 100);
 
             fThreshold = float.Parse(tbRx1Threshold.Text);
             fTmp = float.Parse(rxARssiValue[0]);
@@ -2156,7 +2117,6 @@ namespace MiniSasHd4Dot0DcTest
             return 0;
         }
 
-
         private int _UpdateModuleSerailNumberValueGui()
         {
             tbModuleSerialNumberA.Text = serialNumberA;
@@ -2165,7 +2125,6 @@ namespace MiniSasHd4Dot0DcTest
             tbModuleSerialNumberB.Text = serialNumberB;
             tbModuleSerialNumberB.Update();
             
-
             return 0;
         }
 
@@ -2264,7 +2223,7 @@ namespace MiniSasHd4Dot0DcTest
             if (count > 256)
                 count = 0;
 
-            float.TryParse(tbBeforeAndAfterBurnInDcTestBiasCurrent.Text, out fTmp);
+            fTmp = 7000;
             fTmp /= 1000;
 
             switch (e.ProgressPercentage) {
@@ -2666,10 +2625,7 @@ namespace MiniSasHd4Dot0DcTest
             using (XmlWriter xwConfig = XmlWriter.Create(sfdSelectFile.FileName)) {
                 xwConfig.WriteStartDocument();
                 xwConfig.WriteStartElement("DcTestConfig");
-                {
-                    xwConfig.WriteElementString("AfterBurnInPowerDifferentPercentage", tbAfterBurnInPowerDifferentLimit.Text);
-                    xwConfig.WriteElementString("BeforeAndAfterBurnInDcTestBiasCurrent", tbBeforeAndAfterBurnInDcTestBiasCurrent.Text);
-                    xwConfig.WriteElementString("BurnInBiasCurrent", tbBurnInBiasCurrent.Text);
+                {                    
                     xwConfig.WriteElementString("ModulePassword123", tbPassword123.Text);
                     xwConfig.WriteElementString("ModulePassword124", tbPassword124.Text);
                     xwConfig.WriteElementString("ModulePassword125", tbPassword125.Text);
@@ -2680,30 +2636,16 @@ namespace MiniSasHd4Dot0DcTest
                         xwConfig.WriteElementString("I2cRxDevAddr", tbI2cRxDevAddr.Text);
                         xwConfig.WriteElementString("I2cRxRegisterPage", tbI2cRxRegisterPage.Text);
                         xwConfig.WriteElementString("I2cRxRegisterAddr", tbI2cRxRegisterAddr.Text);
-                        xwConfig.WriteElementString("I2cMpdDevAddr", tbI2cMpdDevAddr.Text);
-                        xwConfig.WriteElementString("I2cMpdRegisterPage", tbI2cMpdRegisterPage.Text);
-                        xwConfig.WriteElementString("I2cMpdRegisterAddr", tbI2cMpdRegisterAddr.Text);
                     }
                     xwConfig.WriteEndElement(); //I2cConfig
 
                     xwConfig.WriteStartElement("MonitorThresholdConfig");
                     {
-                        xwConfig.WriteElementString("Tx1Threshold", tbTx1Threshold.Text);
-                        xwConfig.WriteElementString("Tx2Threshold", tbTx2Threshold.Text);
-                        xwConfig.WriteElementString("Tx3Threshold", tbTx3Threshold.Text);
-                        xwConfig.WriteElementString("Tx4Threshold", tbTx4Threshold.Text);
-                        xwConfig.WriteElementString("LtMinThreshold", tbLtMinThreshold.Text);
-                        xwConfig.WriteElementString("LtMaxThreshold", tbLtMaxThreshold.Text);
-                        xwConfig.WriteElementString("HtMinThreshold", tbHtMinThreshold.Text);
-                        xwConfig.WriteElementString("HtMaxThreshold", tbHtMaxThreshold.Text);
                         xwConfig.WriteElementString("Rx1Threshold", tbRx1Threshold.Text);
                         xwConfig.WriteElementString("Rx2Threshold", tbRx2Threshold.Text);
                         xwConfig.WriteElementString("Rx3Threshold", tbRx3Threshold.Text);
                         xwConfig.WriteElementString("Rx4Threshold", tbRx4Threshold.Text);
-                        xwConfig.WriteElementString("Mpd1Threshold", tbMpd1Threshold.Text);
-                        xwConfig.WriteElementString("Mpd2Threshold", tbMpd2Threshold.Text);
-                        xwConfig.WriteElementString("Mpd3Threshold", tbMpd3Threshold.Text);
-                        xwConfig.WriteElementString("Mpd4Threshold", tbMpd4Threshold.Text);
+                        xwConfig.WriteElementString("RxCriticalLevel", tbRxCriticalLevel.Text);
                     }
                     xwConfig.WriteEndElement(); //MonitorThresholdConfig
 
@@ -2726,8 +2668,9 @@ namespace MiniSasHd4Dot0DcTest
                         xwConfig.WriteElementString("IgnoreTxLos", cbIgnoreTxLos.Checked.ToString());
                     }
                     xwConfig.WriteEndElement(); //CustomerPageConfig
-
+                    /*
                     sTmp = "";
+                    
                     foreach (DataRow row in dtAfterBurnInConfig.Rows) {
                         switch (row[0].ToString()) {
                             case "Delay10mSec":
@@ -2742,10 +2685,11 @@ namespace MiniSasHd4Dot0DcTest
 
                             default:
                                 break;
-                        }
-                        
+                        }                        
                     }
+                    
                     xwConfig.WriteElementString("AfterBurnInAcConfig", sTmp);
+                    */
                 }
                 xwConfig.WriteEndElement(); //DcTestConfig
                 xwConfig.WriteEndDocument();
@@ -2768,18 +2712,6 @@ namespace MiniSasHd4Dot0DcTest
 
                         case "I2cRxRegisterAddr":
                             tbI2cRxRegisterAddr.Text = reader.ReadElementContentAsString();
-                            break;
-
-                        case "I2cMpdDevAddr":
-                            tbI2cMpdDevAddr.Text = reader.ReadElementContentAsString();
-                            break;
-
-                        case "I2cMpdRegisterPage":
-                            tbI2cMpdRegisterPage.Text = reader.ReadElementContentAsString();
-                            break;
-
-                        case "I2cMpdRegisterAddr":
-                            tbI2cMpdRegisterAddr.Text = reader.ReadElementContentAsString();
                             return;
 
                         default:
@@ -2800,38 +2732,7 @@ namespace MiniSasHd4Dot0DcTest
             while (true) {
                 if (reader.IsStartElement()) {
                     switch (reader.Name) {
-                        case "Tx1Threshold":
-                            tbTx1Threshold.Text = reader.ReadElementContentAsString();
-                            break;
-
-                        case "Tx2Threshold":
-                            tbTx2Threshold.Text = reader.ReadElementContentAsString();
-                            break;
-
-                        case "Tx3Threshold":
-                            tbTx3Threshold.Text = reader.ReadElementContentAsString();
-                            break;
-
-                        case "Tx4Threshold":
-                            tbTx4Threshold.Text = reader.ReadElementContentAsString();
-                            break;
-
-                        case "LtMinThreshold":
-                            tbLtMinThreshold.Text = reader.ReadElementContentAsString();
-                            break;
-
-                        case "LtMaxThreshold":
-                            tbLtMaxThreshold.Text = reader.ReadElementContentAsString();
-                            break;
-
-                        case "HtMinThreshold":
-                            tbHtMinThreshold.Text = reader.ReadElementContentAsString();
-                            break;
-
-                        case "HtMaxThreshold":
-                            tbHtMaxThreshold.Text = reader.ReadElementContentAsString();
-                            break;
-
+                        
                         case "Rx1Threshold":
                             tbRx1Threshold.Text = reader.ReadElementContentAsString();
                             break;
@@ -2848,20 +2749,8 @@ namespace MiniSasHd4Dot0DcTest
                             tbRx4Threshold.Text = reader.ReadElementContentAsString();
                             break;
 
-                        case "Mpd1Threshold":
-                            tbMpd1Threshold.Text = reader.ReadElementContentAsString();
-                            break;
-
-                        case "Mpd2Threshold":
-                            tbMpd2Threshold.Text = reader.ReadElementContentAsString();
-                            break;
-
-                        case "Mpd3Threshold":
-                            tbMpd3Threshold.Text = reader.ReadElementContentAsString();
-                            break;
-
-                        case "Mpd4Threshold":
-                            tbMpd4Threshold.Text = reader.ReadElementContentAsString();
+                        case "RxCriticalLevel":
+                            tbRxCriticalLevel.Text = reader.ReadElementContentAsString();
                             return;
 
                         default:
@@ -2957,7 +2846,6 @@ namespace MiniSasHd4Dot0DcTest
             }
         }
 
-
         private void _PaserAfterBurnInAcConfig(string cfg)
         {
             StringReader srReader;
@@ -2988,17 +2876,6 @@ namespace MiniSasHd4Dot0DcTest
             while (true) {
                 if (reader.IsStartElement()) {
                     switch (reader.Name) {
-                        case "AfterBurnInPowerDifferentPercentage":
-                            tbAfterBurnInPowerDifferentLimit.Text = reader.ReadElementContentAsString();
-                            break;
-
-                        case "BeforeAndAfterBurnInDcTestBiasCurrent":
-                            tbBeforeAndAfterBurnInDcTestBiasCurrent.Text = reader.ReadElementContentAsString();
-                            break;
-
-                        case "BurnInBiasCurrent":
-                            tbBurnInBiasCurrent.Text = reader.ReadElementContentAsString();
-                            break;
 
                         case "ModulePassword123":
                             tbPassword123.Text = reader.ReadElementContentAsString();
@@ -3034,21 +2911,26 @@ namespace MiniSasHd4Dot0DcTest
                         case "MiscConfig":
                             _PaserMiscConfigXml(reader);
                             reader.Read();
-                            break;
-
-                        case "AfterBurnInAcConfig":
-                            _PaserAfterBurnInAcConfig(reader.ReadElementContentAsString());
-                            break;
+                            break;                                                   
 
                         default:
                             break;
                     }
                 }
+                
                 else {
                     reader.MoveToContent();
-                    reader.ReadEndElement();
+                    try
+                    {
+                        reader.ReadEndElement();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
                     break;
                 }
+               
             }
         }
 
@@ -3090,11 +2972,19 @@ namespace MiniSasHd4Dot0DcTest
 
         private void initialConfigFile()
         {
-            String initialFilePath = "C:\\DcTestLog\\Default.xml";
+            String initialFilePath = "Default.xml";
 
             tbConfigFilePath.Text = initialFilePath;
             tbConfigFilePath.SelectionStart = tbConfigFilePath.Text.Length;
             tbConfigFilePath.ScrollToCaret();
+            try 
+            {
+                XmlReader xrConfig = XmlReader.Create(initialFilePath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
 
             using (XmlReader xrConfig = XmlReader.Create(initialFilePath))
             {
@@ -3287,6 +3177,37 @@ namespace MiniSasHd4Dot0DcTest
             }
         }
 
+        private int ignoreTxLos()
+        {
+            if (cbIgnoreTxLos.Checked == true)
+            {
+                tbATx1Los.Visible = false;
+                tbATx2Los.Visible = false;
+                tbATx3Los.Visible = false;
+                tbATx4Los.Visible = false;
+                tbBTx1Los.Visible = false;
+                tbBTx2Los.Visible = false;
+                tbBTx3Los.Visible = false;
+                tbBTx4Los.Visible = false;
+                lTxLosA.Visible = false;
+                lTxLosB.Visible = false;
+            }
+            else if (cbIgnoreTxLos.Checked == false)
+            {
+                tbATx1Los.Visible = true;
+                tbATx2Los.Visible = true;
+                tbATx3Los.Visible = true;
+                tbATx4Los.Visible = true;
+                tbBTx1Los.Visible = true;
+                tbBTx2Los.Visible = true;
+                tbBTx3Los.Visible = true;
+                tbBTx4Los.Visible = true;
+                lTxLosA.Visible = true;
+                lTxLosB.Visible = true;
+            }
+            return -1;
+        }
+
         private void lTemperature_Click(object sender, EventArgs e)
         {
 
@@ -3310,6 +3231,12 @@ namespace MiniSasHd4Dot0DcTest
         private void dgvRecord_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void cbIgnoreTxLos_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ignoreTxLos() < 0)
+                return;
         }
 
         private void label12_Click(object sender, EventArgs e)

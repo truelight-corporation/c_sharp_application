@@ -166,9 +166,18 @@ namespace MiniSasHd4Dot0DcTest
                 cbAutoMonitor.Checked = true;
             }
             else {
+                    
+                if(cbMeasuredObjectI2cAdapterConnectedB.Enabled == true)
+                {
+                    cbAutoMonitor.Checked = true;
+                    cbAutoMonitor.Enabled = true;
+                }
+                else
+                {
                     ucMiniSsaHd4Dot0DcTest.StopMonitorApi();
                     cbAutoMonitor.Checked = false;
                     cbAutoMonitor.Enabled = false;
+                }                   
                 
                 _MeasuredObjectI2cDisconnectA();
             }
@@ -184,9 +193,18 @@ namespace MiniSasHd4Dot0DcTest
             }
             else
             {
-                ucMiniSsaHd4Dot0DcTest.StopMonitorApi();
-                cbAutoMonitor.Checked = false;
-                cbAutoMonitor.Enabled = false;
+                
+                if (cbMeasuredObjectI2cAdapterConnectedA.Enabled == true)
+                {
+                    cbAutoMonitor.Checked = true;
+                    cbAutoMonitor.Enabled = true;
+                }
+                else
+                {
+                    ucMiniSsaHd4Dot0DcTest.StopMonitorApi();
+                    cbAutoMonitor.Checked = false;
+                    cbAutoMonitor.Enabled = false;
+                }
 
                 _MeasuredObjectI2cDisconnectB();
             }

@@ -67,20 +67,18 @@
   <ItemGroup>
     <Reference Include="AardvarkAdapter, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\AardvarkAdapter.dll</HintPath>
-    </Reference>
-    <Reference Include="ExfoIqs1600ScpiInterface">
-      <HintPath>..\..\dll\interface\EXFO\ExfoIqs1600ScpiInterface.dll</HintPath>
+      <HintPath>..\..\dll\device\AardvarkAdapter.dll</HintPath>
     </Reference>
     <Reference Include="I2cMasterInterface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\I2cMasterInterface.dll</HintPath>
+      <HintPath>..\..\dll\interface\I2cMasterInterface.dll</HintPath>
     </Reference>
     <Reference Include="Mcp2221Adapter, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\Mcp2221Adapter.dll</HintPath>
+      <HintPath>..\..\dll\device\Mcp2221Adapter.dll</HintPath>
     </Reference>
-    <Reference Include="SCPIcontrol">
+    <Reference Include="SCPIcontrol, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\dll\interface\SCPIcontrol.dll</HintPath>
     </Reference>
     <Reference Include="System" />
