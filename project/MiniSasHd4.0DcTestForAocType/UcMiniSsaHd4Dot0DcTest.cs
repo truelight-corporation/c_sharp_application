@@ -40,6 +40,8 @@ namespace MiniSasHd4Dot0DcTest
         private volatile String[] rxBPowerValue = new String[4];
         private volatile String temperatureA;
         private volatile String temperatureB;
+        private volatile String temperatureOffsetA, temperatureSlopeA;
+        private volatile String temperatureOffsetB, temperatureSlopeB;
         private volatile String logModeSelect;
         private volatile String serialNumber, serialNumberA, serialNumberB, newSerialNumberA, newSerialNumberB;
         private volatile String lastNote;
@@ -60,6 +62,8 @@ namespace MiniSasHd4Dot0DcTest
             losStatusA[0] = losStatusB[0] = 0xFF;
             temperatureA = "0";
             temperatureB = "0";
+            temperatureOffsetA = temperatureSlopeA = "";
+            temperatureOffsetB = temperatureSlopeB = "";
             lastNote = serialNumber = serialNumberA = serialNumberB = "";
 
             bwMonitor = new BackgroundWorker();
@@ -790,7 +794,7 @@ namespace MiniSasHd4Dot0DcTest
 
             return 0;
         }
-
+        
         private int _StoreConfigIntoFlashA()
         {
             byte[] data = new byte[1];
@@ -806,6 +810,7 @@ namespace MiniSasHd4Dot0DcTest
             data[0] = 0xAA;
             if (i2cWriteACB(80, 162, 1, data) < 0)
                 return -1;
+            Thread.Sleep(500);
 
             return 0;
         }
@@ -825,6 +830,7 @@ namespace MiniSasHd4Dot0DcTest
             data[0] = 0xAA;
             if (i2cWriteBCB(80, 162, 1, data) < 0)
                 return -1;
+            Thread.Sleep(500);
 
             return 0;
         }
@@ -834,7 +840,7 @@ namespace MiniSasHd4Dot0DcTest
             String[] saTmp;
             String sPartA = "A";
             String sPartB = "B";
-            int iTmp;
+            int iTmp;            
 
             if (tbOperator.Text.Length == 0) {
                 MessageBox.Show("Please input operator!!");
@@ -956,13 +962,15 @@ namespace MiniSasHd4Dot0DcTest
             */
 
             logValue = true;
-
+                        
             return;
 
         Error:
             bLog.Enabled = true;
             lAction.Text = "";
             return;
+
+
         }
 
         private int _ReadTemperatureValueA()
@@ -1046,6 +1054,316 @@ namespace MiniSasHd4Dot0DcTest
 
         clearDataB:
             temperatureB = "0";
+
+            return 0;
+        }
+
+        private int _UpdateTemperatureCorrectorA()
+        {
+            byte[] dataA = new byte[1];
+            byte[] data = new byte[2];
+            sbyte[] sData = new sbyte[1];
+            int tmp;
+            int devAddr, page;
+
+            if (i2cWriteACB == null)
+                return -1;
+
+            if (i2cReadACB == null)
+                return -1;
+
+            int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
+            int.TryParse(tbI2cRxRegisterPage.Text, out page);
+
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x04;
+            else
+                data[0] = 0x80;
+
+            if (i2cWriteACB((byte)devAddr, 127, 1, data) < 0)
+                return -1;
+
+            if (i2cReadACB((byte)devAddr, 241, 1, data) != 1)
+                goto clear;
+
+            try
+            {
+                Buffer.BlockCopy(data, 0, sData, 0, 1);
+            }
+            catch (Exception eBC)
+            {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+
+            temperatureOffsetA = "" + sData[0].ToString();
+
+            if (i2cReadACB((byte)devAddr, 242, 2, data) != 2)
+                goto clear;
+
+            tmp = BitConverter.ToInt16(data, 0);
+            temperatureSlopeA = "" + tmp.ToString();            
+            
+            return 0;
+        clear:
+            temperatureOffsetA = temperatureSlopeA = "";
+            return 0;
+        }
+
+        private int _UpdateTemperatureCorrectorB()
+        {
+            byte[] dataB = new byte[1];
+            byte[] data = new byte[2];
+            sbyte[] sData = new sbyte[1];
+            int  tmp;
+            int devAddr, page;
+
+            if (i2cWriteBCB == null)
+                return -1;
+
+            if (i2cReadBCB == null)
+                return -1;
+
+            int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
+            int.TryParse(tbI2cRxRegisterPage.Text, out page);
+
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x04;
+            else
+                data[0] = 0x80;
+
+            if (i2cWriteBCB((byte)devAddr, 127, 1, data) < 0)
+                return -1;
+
+            if (i2cReadBCB((byte)devAddr, 241, 1, data) != 1)
+                goto clear;
+
+            try
+            {
+                Buffer.BlockCopy(data, 0, sData, 0, 1);
+            }
+            catch (Exception eBC)
+            {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+
+            temperatureOffsetB = "" +sData[0].ToString();
+
+            if (i2cReadBCB((byte)devAddr, 242, 2, data) != 2)
+                goto clear;
+
+            tmp = BitConverter.ToInt16(data, 0);
+            temperatureSlopeB = "" + tmp.ToString();
+
+            return 0;
+        clear:
+            temperatureOffsetB = temperatureSlopeB = "";
+            return 0;
+        }
+
+        private int _AutoCorrectTemperatureA()
+        {
+            float fModuleTemperature, fPresetTemperature;
+            float fTemperatureDiff;
+            sbyte[] sOffset = new sbyte[1];
+
+            try
+            {
+                fPresetTemperature = Convert.ToSingle(tbPresetTemperature.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return -1;
+            }
+
+            try
+            {
+                fModuleTemperature = Convert.ToSingle(tbTemperatureA.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return -1;
+            }
+
+            fTemperatureDiff = (fPresetTemperature - fModuleTemperature) * 2;
+            if ((fTemperatureDiff > 127) || (fTemperatureDiff < -128))
+            {
+                MessageBox.Show("Part-A Offset value out of range: " + fTemperatureDiff + " (-128 ~ 127)!!");
+                return -1;
+            }
+
+            try
+            {
+                sOffset[0] = Convert.ToSByte(fTemperatureDiff);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return -1;
+            }
+
+            temperatureOffsetA = sOffset[0].ToString();
+
+            if (_WriteTemperatureCorrectionA() < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _AutoCorrectTemperatureB()
+        {
+            float fModuleTemperature, fPresetTemperature;
+            float fTemperatureDiff;
+            sbyte[] sOffset = new sbyte[1];
+
+            try
+            {
+                fPresetTemperature = Convert.ToSingle(tbPresetTemperature.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return -1;
+            }
+
+            try
+            {
+                fModuleTemperature = Convert.ToSingle(tbTemperatureB.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return -1;
+            }
+
+            fTemperatureDiff = (fPresetTemperature - fModuleTemperature) * 2;
+            if ((fTemperatureDiff > 127) || (fTemperatureDiff < -128))
+            {
+                MessageBox.Show("Part-A Offset value out of range: " + fTemperatureDiff + " (-128 ~ 127)!!");
+                return -1;
+            }
+
+            try
+            {
+                sOffset[0] = Convert.ToSByte(fTemperatureDiff);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return -1;
+            }
+
+            temperatureOffsetB = sOffset[0].ToString();
+
+            if (_WriteTemperatureCorrectionB() < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteTemperatureCorrectionA()
+        {
+            byte[] data = new byte[2];
+            sbyte[] sData = new sbyte[1];            
+            int devAddr;
+            /*
+            if (_WritePassword() < 0)
+                return -1;
+
+            if (_SetQsfpMode(0x4D) < 0)
+                return -1;
+            */
+            if (i2cWriteACB == null)
+                return -1;
+
+            int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
+                                    
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x04;
+            else
+                data[0] = 0x80;
+
+            if (i2cWriteACB((byte)devAddr, 127, 1, data) < 0)
+                return -1;
+
+            sData[0] = Convert.ToSByte(temperatureOffsetA);
+            try
+            {
+                Buffer.BlockCopy(sData, 0, data, 0, 1);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return -1;
+            }
+
+            if (i2cWriteACB((byte)devAddr, 241, 1, data) < 0)
+                return -1;            
+
+            return 0;
+        }
+
+        private int _WriteTemperatureCorrectionB()
+        {
+            byte[] data = new byte[2];
+            sbyte[] sData = new sbyte[1];
+            int devAddr;
+            /*
+            if (_WritePassword() < 0)
+                return -1;
+
+            if (_SetQsfpMode(0x4D) < 0)
+                return -1;
+            */
+            if (i2cWriteBCB == null)
+                return -1;
+
+            int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
+
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x04;
+            else
+                data[0] = 0x80;
+
+            if (i2cWriteBCB((byte)devAddr, 127, 1, data) < 0)
+                return -1;
+
+            sData[0] = Convert.ToSByte(temperatureOffsetB);
+            try
+            {
+                Buffer.BlockCopy(sData, 0, data, 0, 1);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return -1;
+            }
+
+            if (i2cWriteBCB((byte)devAddr, 241, 1, data) < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _ResetTemperatureOffsetA()
+        {
+            temperatureOffsetA = "0";
+
+            if (_WriteTemperatureCorrectionA() < 0)
+                return -1;
+                        
+            return 0;           
+        }
+
+        private int _ResetTemperatureOffsetB()
+        {
+            temperatureOffsetB = "0";
+
+            if (_WriteTemperatureCorrectionB() < 0)
+                return -1;
 
             return 0;
         }
@@ -1291,7 +1609,7 @@ namespace MiniSasHd4Dot0DcTest
             return 0;
 
         clearData:
-            rxAPowerValue[0] = rxAPowerValue[1] = rxAPowerValue[2] = rxAPowerValue[3] = "1";
+            rxAPowerValue[0] = rxAPowerValue[1] = rxAPowerValue[2] = rxAPowerValue[3] = "0";
             rxAPowerRate[0] = rxAPowerRate[1] = rxAPowerRate[2] = rxAPowerRate[3] = "0";
             return 0;
         }
@@ -1469,9 +1787,9 @@ namespace MiniSasHd4Dot0DcTest
 
         private int _GetModuleMonitorValue()
         {
-            bool rxValueReadError, txPowerReadError;
+            bool rxValueReadError, txPowerReadError, temperatureCorrectorError;
 
-            rxValueReadError = txPowerReadError = false;
+            rxValueReadError = txPowerReadError = temperatureCorrectorError = false;
             switch (logModeSelect) {
                 
                 default:
@@ -1485,7 +1803,13 @@ namespace MiniSasHd4Dot0DcTest
                         rxValueReadError = true;
                     if (_ReadTemperatureValueB() < 0)
                         rxValueReadError = true;
-
+                    
+                    if (_UpdateTemperatureCorrectorA() < 0)
+                        temperatureCorrectorError = true;
+                    
+                    if (_UpdateTemperatureCorrectorB() < 0)
+                        temperatureCorrectorError = true;
+                    
                     if (_ReadRxRssiValueA() < 0)
                         rxValueReadError = true;
                     if (_ReadRxRssiValueB() < 0)
@@ -1496,7 +1820,7 @@ namespace MiniSasHd4Dot0DcTest
                         rxValueReadError = true;
                     if (_ReadRxPowerValueB() < 0)
                         rxValueReadError = true;
-                    */
+                    */                   
 
                     if (_ReadSerialNumberValueA() < 0)
                         rxValueReadError = true;
@@ -1519,7 +1843,7 @@ namespace MiniSasHd4Dot0DcTest
                     break;
             }
 
-            if (rxValueReadError || txPowerReadError)
+            if (rxValueReadError || txPowerReadError || temperatureCorrectorError)
                 return -1;
             
             return 0;
@@ -1615,7 +1939,9 @@ namespace MiniSasHd4Dot0DcTest
                             if (!((tbARx1.Text == "0") && (tbARx2.Text == "0") && (tbARx3.Text == "0") && (tbARx4.Text == "0")
                                 && (tbTemperatureA.Text == "0")))
                             {
-                                if ((_GetModuleMonitorValue() < 0) || (_SetModuleSerialNumberA() < 0) || 
+                                if ((_GetModuleMonitorValue() < 0) ||
+                                    (_SetModuleSerialNumberA() < 0) ||
+                                    (_AutoCorrectTemperatureA() < 0) ||
                                     (_StoreConfigIntoFlashA() < 0))
                                 {
                                     bGetModuleMonitorValueError = true;
@@ -1627,7 +1953,9 @@ namespace MiniSasHd4Dot0DcTest
                             if (!((tbBRx1.Text == "0") && (tbBRx2.Text == "0") && (tbBRx3.Text == "0") && (tbBRx4.Text == "0")
                                 && (tbTemperatureB.Text == "0")))
                             {
-                                if ((_GetModuleMonitorValue() < 0) || (_SetModuleSerialNumberB() < 0) || 
+                                if ((_GetModuleMonitorValue() < 0) ||
+                                    (_SetModuleSerialNumberB() < 0) ||
+                                    (_AutoCorrectTemperatureB() <0) ||
                                     (_StoreConfigIntoFlashB() < 0))
                                 {
                                     bGetModuleMonitorValueError = true;
@@ -2270,9 +2598,13 @@ namespace MiniSasHd4Dot0DcTest
             tbTemperatureA.Update();
             tbTemperatureB.Text = temperatureB;
             tbTemperatureB.Update();
+            lTemperatureCorrectorA.Text = "Offset: " + temperatureOffsetA + "/ Slope:" + temperatureSlopeA;
+            tbTemperatureA.Update();
+            lTemperatureCorrectorB.Text = "Offset: " + temperatureOffsetB + "/ Slope:" + temperatureSlopeB;
+            tbTemperatureB.Update();
             _UpdateRxRssiValueGui();            
             _UpdateModuleSerailNumberValueGui();
-            _UpdateLosStatusGui();
+            _UpdateLosStatusGui();            
 
             tbRx1Power.Text = rxAPowerValue[0];
             tbRx1Power.Update();
@@ -2353,7 +2685,7 @@ namespace MiniSasHd4Dot0DcTest
 
             return 0;
         }
-
+                
         private void tbRx1InputPower_TextChanged(object sender, EventArgs e)
         {
             float input, rssi;
@@ -2420,7 +2752,7 @@ namespace MiniSasHd4Dot0DcTest
             catch (Exception eCT) {
                 MessageBox.Show(eCT.ToString());
             }
-        }
+        }       
 
         private void tbRxRssiRateNumerator_TextChanged(object sender, EventArgs e)
         {
@@ -3019,13 +3351,16 @@ namespace MiniSasHd4Dot0DcTest
             byte[] data = new byte[17];
             byte[] baReadTmp = new byte[17];
             int devAddr, i;
-
-            bClear.Enabled = false;
+                        
+            bClearModuleSN.Enabled = false;
             lAction.Text = "";
             lAction.Text = "Processing...";
 
-            _WritePassword();
-            _SetQsfpMode(0x4D);
+            if (_WritePassword() < 0)
+                return ;
+
+            if (_SetQsfpMode(0x4D) < 0)
+                return ;
 
             int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
 
@@ -3055,7 +3390,7 @@ namespace MiniSasHd4Dot0DcTest
             else
                 lAction.Text = "Part A is missing!!\n";
 
-            if (tbModuleSerialNumberA.Text != "")
+            if (tbModuleSerialNumberB.Text != "")
             {
                 i2cWriteBCB((byte)devAddr, 127, 1, data);
                 newSerialNumberB = "";
@@ -3075,7 +3410,7 @@ namespace MiniSasHd4Dot0DcTest
             else
                 lAction.Text += "Part B is missing!!\n";
 
-            bClear.Enabled = true;
+            bClearModuleSN.Enabled = true;
             lAction.Text += "Clear done of the serial number";
             return ;
 
@@ -3233,10 +3568,40 @@ namespace MiniSasHd4Dot0DcTest
 
         }
 
+        private void bTemperatureCorrection_Click(object sender, EventArgs e)
+        {
+            bTemperatureCorrection.Enabled = false;
+            if (_WriteTemperatureCorrectionA() < 0)
+                return ;
+
+            if (_WriteTemperatureCorrectionB() < 0)
+                return;
+
+            bTemperatureCorrection.Enabled = true;
+        }
+
+        private void bResetT_Click(object sender, EventArgs e)
+        {
+            bResetT.Enabled = false;
+            if (_ResetTemperatureOffsetA() < 0)
+                return;
+
+            if (_ResetTemperatureOffsetB() < 0)
+                return;
+
+            bResetT.Enabled = true;
+            return;
+        }
+
         private void cbIgnoreTxLos_CheckedChanged(object sender, EventArgs e)
         {
             if (ignoreTxLos() < 0)
                 return;
+        }
+
+        private void bSaveFile_Click_1(object sender, EventArgs e)
+        {
+
         }
 
         private void label12_Click(object sender, EventArgs e)

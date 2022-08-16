@@ -27,11 +27,13 @@
         /// </summary>
         private void InitializeComponent()
         {            
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.bLog = new System.Windows.Forms.Button();
             this.lResult = new System.Windows.Forms.Label();
             this.tcFunctionSelect = new System.Windows.Forms.TabControl();
             this.tpLog = new System.Windows.Forms.TabPage();
+            this.bResetT = new System.Windows.Forms.Button();
+            this.bTemperatureCorrection = new System.Windows.Forms.Button();
             this.gbDataList = new System.Windows.Forms.GroupBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -48,9 +50,9 @@
             this.tbLogFilePath = new System.Windows.Forms.TextBox();
             this.lLogFilePath = new System.Windows.Forms.Label();
             this.dgvRecord = new System.Windows.Forms.DataGridView();
-            this.bClear = new System.Windows.Forms.Button();
+            this.bClearModuleSN = new System.Windows.Forms.Button();
             this.gbPartB = new System.Windows.Forms.GroupBox();
-            this.lBRx22 = new System.Windows.Forms.Label();
+            this.lTemperatureCorrectorB = new System.Windows.Forms.Label();
             this.tbBTx4Los = new System.Windows.Forms.TextBox();
             this.tbBRx4Los = new System.Windows.Forms.TextBox();
             this.tbBTx3Los = new System.Windows.Forms.TextBox();
@@ -72,7 +74,9 @@
             this.lBRx1 = new System.Windows.Forms.Label();
             this.lBRx4 = new System.Windows.Forms.Label();
             this.lBRx3 = new System.Windows.Forms.Label();
+            this.lBRx22 = new System.Windows.Forms.Label();
             this.gbPartA = new System.Windows.Forms.GroupBox();
+            this.lTemperatureCorrectorA = new System.Windows.Forms.Label();
             this.tbATx4Los = new System.Windows.Forms.TextBox();
             this.tbARx4Los = new System.Windows.Forms.TextBox();
             this.tbATx3Los = new System.Windows.Forms.TextBox();
@@ -113,14 +117,19 @@
             this.lConfigFile = new System.Windows.Forms.Label();
             this.tbConfigFilePath = new System.Windows.Forms.TextBox();
             this.cbLogMode = new System.Windows.Forms.ComboBox();
-            this.lLogMode = new System.Windows.Forms.Label();
-            this.tpConfig = new System.Windows.Forms.TabPage();
+            this.tp = new System.Windows.Forms.TabPage();
+            this.gbCorrection = new System.Windows.Forms.GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.tbPresetTemperature = new System.Windows.Forms.TextBox();
             this.cbIgnoreTxLos = new System.Windows.Forms.CheckBox();
             this.cbIgnoreRxLos = new System.Windows.Forms.CheckBox();
             this.cbCustomerPage = new System.Windows.Forms.ComboBox();
             this.lCustomerPage = new System.Windows.Forms.Label();
             this.bSaveConfig = new System.Windows.Forms.Button();
-            this.gbMonitorThreshold = new System.Windows.Forms.GroupBox();
+            this.gbSpecification = new System.Windows.Forms.GroupBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tbRxCriticalLevel = new System.Windows.Forms.TextBox();
             this.lRxThreshold = new System.Windows.Forms.Label();
@@ -174,9 +183,6 @@
             this.tbPassword124 = new System.Windows.Forms.TextBox();
             this.l = new System.Windows.Forms.Label();
             this.tbPassword123 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             this.tcFunctionSelect.SuspendLayout();
             this.tpLog.SuspendLayout();
             this.gbDataList.SuspendLayout();
@@ -185,8 +191,9 @@
             this.gbPartA.SuspendLayout();
             this.gbInformation.SuspendLayout();
             this.gbStatus.SuspendLayout();
-            this.tpConfig.SuspendLayout();
-            this.gbMonitorThreshold.SuspendLayout();
+            this.tp.SuspendLayout();
+            this.gbCorrection.SuspendLayout();
+            this.gbSpecification.SuspendLayout();
             this.gbRxPowerRateConfig.SuspendLayout();
             this.gbI2cConfig.SuspendLayout();
             this.SuspendLayout();
@@ -217,7 +224,7 @@
             // tcFunctionSelect
             // 
             this.tcFunctionSelect.Controls.Add(this.tpLog);
-            this.tcFunctionSelect.Controls.Add(this.tpConfig);
+            this.tcFunctionSelect.Controls.Add(this.tp);
             this.tcFunctionSelect.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tcFunctionSelect.Location = new System.Drawing.Point(3, 3);
             this.tcFunctionSelect.Name = "tcFunctionSelect";
@@ -228,8 +235,10 @@
             // tpLog
             // 
             this.tpLog.BackColor = System.Drawing.Color.Transparent;
+            this.tpLog.Controls.Add(this.bResetT);
+            this.tpLog.Controls.Add(this.bTemperatureCorrection);
             this.tpLog.Controls.Add(this.gbDataList);
-            this.tpLog.Controls.Add(this.bClear);
+            this.tpLog.Controls.Add(this.bClearModuleSN);
             this.tpLog.Controls.Add(this.gbPartB);
             this.tpLog.Controls.Add(this.gbPartA);
             this.tpLog.Controls.Add(this.gbInformation);
@@ -240,7 +249,6 @@
             this.tpLog.Controls.Add(this.lConfigFile);
             this.tpLog.Controls.Add(this.tbConfigFilePath);
             this.tpLog.Controls.Add(this.cbLogMode);
-            this.tpLog.Controls.Add(this.lLogMode);
             this.tpLog.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tpLog.Location = new System.Drawing.Point(4, 36);
             this.tpLog.Name = "tpLog";
@@ -248,6 +256,31 @@
             this.tpLog.Size = new System.Drawing.Size(1266, 655);
             this.tpLog.TabIndex = 1;
             this.tpLog.Text = "Record";
+            // 
+            // bResetT
+            // 
+            this.bResetT.BackColor = System.Drawing.Color.LightPink;
+            this.bResetT.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bResetT.Location = new System.Drawing.Point(718, 11);
+            this.bResetT.Name = "bResetT";
+            this.bResetT.Size = new System.Drawing.Size(54, 23);
+            this.bResetT.TabIndex = 125;
+            this.bResetT.Text = "ResetT";
+            this.bResetT.UseVisualStyleBackColor = false;
+            this.bResetT.Click += new System.EventHandler(this.bResetT_Click);
+            // 
+            // bTemperatureCorrection
+            // 
+            this.bTemperatureCorrection.BackColor = System.Drawing.Color.LightPink;
+            this.bTemperatureCorrection.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bTemperatureCorrection.Location = new System.Drawing.Point(608, 12);
+            this.bTemperatureCorrection.Name = "bTemperatureCorrection";
+            this.bTemperatureCorrection.Size = new System.Drawing.Size(104, 23);
+            this.bTemperatureCorrection.TabIndex = 121;
+            this.bTemperatureCorrection.Text = "Temp.Correction";
+            this.bTemperatureCorrection.UseVisualStyleBackColor = false;
+            this.bTemperatureCorrection.Visible = false;
+            this.bTemperatureCorrection.Click += new System.EventHandler(this.bTemperatureCorrection_Click);
             // 
             // gbDataList
             // 
@@ -376,6 +409,7 @@
             this.bDelRecord.TabIndex = 97;
             this.bDelRecord.Text = "Del Log";
             this.bDelRecord.UseVisualStyleBackColor = false;
+            this.bDelRecord.Click += new System.EventHandler(this.bDelRecord_Click);
             // 
             // bSaveFile
             // 
@@ -387,6 +421,7 @@
             this.bSaveFile.TabIndex = 96;
             this.bSaveFile.Text = "Save";
             this.bSaveFile.UseVisualStyleBackColor = false;
+            this.bSaveFile.Click += new System.EventHandler(this.bSaveFile_Click_1);
             // 
             // tbLogFilePath
             // 
@@ -416,14 +451,14 @@
             this.dgvRecord.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvRecord.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgvRecord.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(163)))), ((int)(((byte)(115)))));
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvRecord.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(163)))), ((int)(((byte)(115)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvRecord.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvRecord.Location = new System.Drawing.Point(6, 37);
             this.dgvRecord.Name = "dgvRecord";
             this.dgvRecord.ReadOnly = true;
@@ -432,21 +467,22 @@
             this.dgvRecord.TabIndex = 93;
             this.dgvRecord.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRecord_CellContentClick);
             // 
-            // bClear
+            // bClearModuleSN
             // 
-            this.bClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(163)))), ((int)(((byte)(128)))));
-            this.bClear.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bClear.Location = new System.Drawing.Point(778, 12);
-            this.bClear.Name = "bClear";
-            this.bClear.Size = new System.Drawing.Size(104, 23);
-            this.bClear.TabIndex = 119;
-            this.bClear.Text = "ClearModuleSN";
-            this.bClear.UseVisualStyleBackColor = false;
-            this.bClear.Click += new System.EventHandler(this.clearSerialNumberFromFlash);
+            this.bClearModuleSN.BackColor = System.Drawing.Color.LightPink;
+            this.bClearModuleSN.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bClearModuleSN.Location = new System.Drawing.Point(778, 12);
+            this.bClearModuleSN.Name = "bClearModuleSN";
+            this.bClearModuleSN.Size = new System.Drawing.Size(104, 23);
+            this.bClearModuleSN.TabIndex = 119;
+            this.bClearModuleSN.Text = "ClearModuleSN";
+            this.bClearModuleSN.UseVisualStyleBackColor = false;
+            this.bClearModuleSN.Click += new System.EventHandler(this.clearSerialNumberFromFlash);
             // 
             // gbPartB
             // 
             this.gbPartB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(255)))), ((int)(((byte)(220)))));
+            this.gbPartB.Controls.Add(this.lTemperatureCorrectorB);
             this.gbPartB.Controls.Add(this.tbBTx4Los);
             this.gbPartB.Controls.Add(this.tbBRx4Los);
             this.gbPartB.Controls.Add(this.tbBTx3Los);
@@ -477,16 +513,15 @@
             this.gbPartB.TabStop = false;
             this.gbPartB.Text = "Part-B";
             // 
-            // lBRx22
+            // lTemperatureCorrectorB
             // 
-            this.lBRx22.AutoSize = true;
-            this.lBRx22.BackColor = System.Drawing.Color.Transparent;
-            this.lBRx22.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lBRx22.Location = new System.Drawing.Point(109, 50);
-            this.lBRx22.Name = "lBRx22";
-            this.lBRx22.Size = new System.Drawing.Size(41, 21);
-            this.lBRx22.TabIndex = 30;
-            this.lBRx22.Text = "Rx2";
+            this.lTemperatureCorrectorB.AutoSize = true;
+            this.lTemperatureCorrectorB.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lTemperatureCorrectorB.Location = new System.Drawing.Point(256, 35);
+            this.lTemperatureCorrectorB.Name = "lTemperatureCorrectorB";
+            this.lTemperatureCorrectorB.Size = new System.Drawing.Size(19, 14);
+            this.lTemperatureCorrectorB.TabIndex = 151;
+            this.lTemperatureCorrectorB.Text = "---";
             // 
             // tbBTx4Los
             // 
@@ -629,7 +664,7 @@
             // 
             this.lTemperatureB.AutoSize = true;
             this.lTemperatureB.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lTemperatureB.Location = new System.Drawing.Point(255, 25);
+            this.lTemperatureB.Location = new System.Drawing.Point(255, 19);
             this.lTemperatureB.Name = "lTemperatureB";
             this.lTemperatureB.Size = new System.Drawing.Size(107, 21);
             this.lTemperatureB.TabIndex = 105;
@@ -709,9 +744,21 @@
             this.lBRx3.TabIndex = 28;
             this.lBRx3.Text = "Rx3";
             // 
+            // lBRx22
+            // 
+            this.lBRx22.AutoSize = true;
+            this.lBRx22.BackColor = System.Drawing.Color.Transparent;
+            this.lBRx22.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lBRx22.Location = new System.Drawing.Point(109, 50);
+            this.lBRx22.Name = "lBRx22";
+            this.lBRx22.Size = new System.Drawing.Size(41, 21);
+            this.lBRx22.TabIndex = 30;
+            this.lBRx22.Text = "Rx2";
+            // 
             // gbPartA
             // 
             this.gbPartA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(255)))), ((int)(((byte)(220)))));
+            this.gbPartA.Controls.Add(this.lTemperatureCorrectorA);
             this.gbPartA.Controls.Add(this.tbATx4Los);
             this.gbPartA.Controls.Add(this.tbARx4Los);
             this.gbPartA.Controls.Add(this.tbATx3Los);
@@ -741,6 +788,16 @@
             this.gbPartA.TabIndex = 117;
             this.gbPartA.TabStop = false;
             this.gbPartA.Text = "Part-A";
+            // 
+            // lTemperatureCorrectorA
+            // 
+            this.lTemperatureCorrectorA.AutoSize = true;
+            this.lTemperatureCorrectorA.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lTemperatureCorrectorA.Location = new System.Drawing.Point(256, 35);
+            this.lTemperatureCorrectorA.Name = "lTemperatureCorrectorA";
+            this.lTemperatureCorrectorA.Size = new System.Drawing.Size(19, 14);
+            this.lTemperatureCorrectorA.TabIndex = 141;
+            this.lTemperatureCorrectorA.Text = "---";
             // 
             // tbATx4Los
             // 
@@ -884,7 +941,7 @@
             // 
             this.lTemperatureA.AutoSize = true;
             this.lTemperatureA.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lTemperatureA.Location = new System.Drawing.Point(255, 25);
+            this.lTemperatureA.Location = new System.Drawing.Point(255, 19);
             this.lTemperatureA.Name = "lTemperatureA";
             this.lTemperatureA.Size = new System.Drawing.Size(107, 21);
             this.lTemperatureA.TabIndex = 103;
@@ -1175,47 +1232,69 @@
             this.cbLogMode.FormattingEnabled = true;
             this.cbLogMode.Items.AddRange(new object[] {
             "Log"});
-            this.cbLogMode.Location = new System.Drawing.Point(620, 9);
+            this.cbLogMode.Location = new System.Drawing.Point(489, 8);
             this.cbLogMode.Name = "cbLogMode";
-            this.cbLogMode.Size = new System.Drawing.Size(196, 29);
+            this.cbLogMode.Size = new System.Drawing.Size(100, 29);
             this.cbLogMode.TabIndex = 21;
             this.cbLogMode.Text = "Log";
             this.cbLogMode.Visible = false;
             this.cbLogMode.SelectedIndexChanged += new System.EventHandler(this.cbLogMode_SelectedIndexChanged);
             // 
-            // lLogMode
+            // tp
             // 
-            this.lLogMode.AutoSize = true;
-            this.lLogMode.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lLogMode.Location = new System.Drawing.Point(540, 10);
-            this.lLogMode.Name = "lLogMode";
-            this.lLogMode.Size = new System.Drawing.Size(74, 27);
-            this.lLogMode.TabIndex = 22;
-            this.lLogMode.Text = "Mode:";
-            this.lLogMode.Visible = false;
+            this.tp.Controls.Add(this.gbCorrection);
+            this.tp.Controls.Add(this.cbIgnoreTxLos);
+            this.tp.Controls.Add(this.cbIgnoreRxLos);
+            this.tp.Controls.Add(this.cbCustomerPage);
+            this.tp.Controls.Add(this.lCustomerPage);
+            this.tp.Controls.Add(this.bSaveConfig);
+            this.tp.Controls.Add(this.gbSpecification);
+            this.tp.Controls.Add(this.gbRxPowerRateConfig);
+            this.tp.Controls.Add(this.gbI2cConfig);
+            this.tp.Controls.Add(this.tbPassword126);
+            this.tp.Controls.Add(this.tbPassword125);
+            this.tp.Controls.Add(this.tbPassword124);
+            this.tp.Controls.Add(this.l);
+            this.tp.Controls.Add(this.tbPassword123);
+            this.tp.Location = new System.Drawing.Point(4, 36);
+            this.tp.Name = "tp";
+            this.tp.Padding = new System.Windows.Forms.Padding(3);
+            this.tp.Size = new System.Drawing.Size(1266, 655);
+            this.tp.TabIndex = 0;
+            this.tp.Text = "Config";
+            this.tp.UseVisualStyleBackColor = true;
             // 
-            // tpConfig
+            // gbCorrection
             // 
-            this.tpConfig.Controls.Add(this.cbIgnoreTxLos);
-            this.tpConfig.Controls.Add(this.cbIgnoreRxLos);
-            this.tpConfig.Controls.Add(this.cbCustomerPage);
-            this.tpConfig.Controls.Add(this.lCustomerPage);
-            this.tpConfig.Controls.Add(this.bSaveConfig);
-            this.tpConfig.Controls.Add(this.gbMonitorThreshold);
-            this.tpConfig.Controls.Add(this.gbRxPowerRateConfig);
-            this.tpConfig.Controls.Add(this.gbI2cConfig);
-            this.tpConfig.Controls.Add(this.tbPassword126);
-            this.tpConfig.Controls.Add(this.tbPassword125);
-            this.tpConfig.Controls.Add(this.tbPassword124);
-            this.tpConfig.Controls.Add(this.l);
-            this.tpConfig.Controls.Add(this.tbPassword123);
-            this.tpConfig.Location = new System.Drawing.Point(4, 36);
-            this.tpConfig.Name = "tpConfig";
-            this.tpConfig.Padding = new System.Windows.Forms.Padding(3);
-            this.tpConfig.Size = new System.Drawing.Size(1266, 655);
-            this.tpConfig.TabIndex = 0;
-            this.tpConfig.Text = "Config";
-            this.tpConfig.UseVisualStyleBackColor = true;
+            this.gbCorrection.Controls.Add(this.label15);
+            this.gbCorrection.Controls.Add(this.tbPresetTemperature);
+            this.gbCorrection.Location = new System.Drawing.Point(17, 350);
+            this.gbCorrection.Name = "gbCorrection";
+            this.gbCorrection.Size = new System.Drawing.Size(422, 73);
+            this.gbCorrection.TabIndex = 92;
+            this.gbCorrection.TabStop = false;
+            this.gbCorrection.Text = "Correction items";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Times New Roman", 18F);
+            this.label15.Location = new System.Drawing.Point(6, 28);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(205, 27);
+            this.label15.TabIndex = 87;
+            this.label15.Text = "Preset Temperature:";
+            // 
+            // tbPresetTemperature
+            // 
+            this.tbPresetTemperature.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(218)))), ((int)(((byte)(177)))));
+            this.tbPresetTemperature.Font = new System.Drawing.Font("Times New Roman", 18F);
+            this.tbPresetTemperature.Location = new System.Drawing.Point(200, 25);
+            this.tbPresetTemperature.Name = "tbPresetTemperature";
+            this.tbPresetTemperature.Size = new System.Drawing.Size(60, 35);
+            this.tbPresetTemperature.TabIndex = 88;
+            this.tbPresetTemperature.Text = "25";
+            this.tbPresetTemperature.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // cbIgnoreTxLos
             // 
@@ -1270,28 +1349,58 @@
             this.bSaveConfig.UseVisualStyleBackColor = true;
             this.bSaveConfig.Click += new System.EventHandler(this.bSaveConfig_Click);
             // 
-            // gbMonitorThreshold
+            // gbSpecification
             // 
-            this.gbMonitorThreshold.Controls.Add(this.label14);
-            this.gbMonitorThreshold.Controls.Add(this.label13);
-            this.gbMonitorThreshold.Controls.Add(this.label4);
-            this.gbMonitorThreshold.Controls.Add(this.label3);
-            this.gbMonitorThreshold.Controls.Add(this.tbRxCriticalLevel);
-            this.gbMonitorThreshold.Controls.Add(this.lRxThreshold);
-            this.gbMonitorThreshold.Controls.Add(this.tbRx4Threshold);
-            this.gbMonitorThreshold.Controls.Add(this.tbRx1Threshold);
-            this.gbMonitorThreshold.Controls.Add(this.tbRx2Threshold);
-            this.gbMonitorThreshold.Controls.Add(this.tbRx3Threshold);
-            this.gbMonitorThreshold.Controls.Add(this.lCh1Threshold);
-            this.gbMonitorThreshold.Controls.Add(this.lCh2Threshold);
-            this.gbMonitorThreshold.Controls.Add(this.lCh3Threshold);
-            this.gbMonitorThreshold.Controls.Add(this.lCh4Threshold);
-            this.gbMonitorThreshold.Location = new System.Drawing.Point(17, 182);
-            this.gbMonitorThreshold.Name = "gbMonitorThreshold";
-            this.gbMonitorThreshold.Size = new System.Drawing.Size(422, 162);
-            this.gbMonitorThreshold.TabIndex = 83;
-            this.gbMonitorThreshold.TabStop = false;
-            this.gbMonitorThreshold.Text = "Specification";
+            this.gbSpecification.Controls.Add(this.label14);
+            this.gbSpecification.Controls.Add(this.label13);
+            this.gbSpecification.Controls.Add(this.label4);
+            this.gbSpecification.Controls.Add(this.label3);
+            this.gbSpecification.Controls.Add(this.tbRxCriticalLevel);
+            this.gbSpecification.Controls.Add(this.lRxThreshold);
+            this.gbSpecification.Controls.Add(this.tbRx4Threshold);
+            this.gbSpecification.Controls.Add(this.tbRx1Threshold);
+            this.gbSpecification.Controls.Add(this.tbRx2Threshold);
+            this.gbSpecification.Controls.Add(this.tbRx3Threshold);
+            this.gbSpecification.Controls.Add(this.lCh1Threshold);
+            this.gbSpecification.Controls.Add(this.lCh2Threshold);
+            this.gbSpecification.Controls.Add(this.lCh3Threshold);
+            this.gbSpecification.Controls.Add(this.lCh4Threshold);
+            this.gbSpecification.Location = new System.Drawing.Point(17, 182);
+            this.gbSpecification.Name = "gbSpecification";
+            this.gbSpecification.Size = new System.Drawing.Size(422, 162);
+            this.gbSpecification.TabIndex = 83;
+            this.gbSpecification.TabStop = false;
+            this.gbSpecification.Text = "Specification items";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(265, 136);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(86, 15);
+            this.label14.TabIndex = 103;
+            this.label14.Text = "(Range: 0~100)";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(6, 127);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(101, 15);
+            this.label13.TabIndex = 102;
+            this.label13.Text = "(Auxiliary option)";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(6, 72);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(73, 15);
+            this.label4.TabIndex = 101;
+            this.label4.Text = "(Lower limit)";
             // 
             // label3
             // 
@@ -1438,9 +1547,9 @@
             this.gbRxPowerRateConfig.Controls.Add(this.lRxRateDenominator);
             this.gbRxPowerRateConfig.Controls.Add(this.lRxRateNumerator);
             this.gbRxPowerRateConfig.Controls.Add(this.tbRxRssiRateDenominator);
-            this.gbRxPowerRateConfig.Location = new System.Drawing.Point(17, 378);
+            this.gbRxPowerRateConfig.Location = new System.Drawing.Point(17, 539);
             this.gbRxPowerRateConfig.Name = "gbRxPowerRateConfig";
-            this.gbRxPowerRateConfig.Size = new System.Drawing.Size(733, 234);
+            this.gbRxPowerRateConfig.Size = new System.Drawing.Size(733, 42);
             this.gbRxPowerRateConfig.TabIndex = 82;
             this.gbRxPowerRateConfig.TabStop = false;
             this.gbRxPowerRateConfig.Text = "Input optical power correct";
@@ -1897,36 +2006,6 @@
             this.tbPassword123.Text = "0";
             this.tbPassword123.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(6, 72);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(73, 15);
-            this.label4.TabIndex = 101;
-            this.label4.Text = "(Lower limit)";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(6, 127);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(101, 15);
-            this.label13.TabIndex = 102;
-            this.label13.Text = "(Auxiliary option)";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(265, 136);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(86, 15);
-            this.label14.TabIndex = 103;
-            this.label14.Text = "(Range: 0~100)";
-            // 
             // UcMiniSsaHd4Dot0DcTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1948,10 +2027,12 @@
             this.gbInformation.PerformLayout();
             this.gbStatus.ResumeLayout(false);
             this.gbStatus.PerformLayout();
-            this.tpConfig.ResumeLayout(false);
-            this.tpConfig.PerformLayout();
-            this.gbMonitorThreshold.ResumeLayout(false);
-            this.gbMonitorThreshold.PerformLayout();
+            this.tp.ResumeLayout(false);
+            this.tp.PerformLayout();
+            this.gbCorrection.ResumeLayout(false);
+            this.gbCorrection.PerformLayout();
+            this.gbSpecification.ResumeLayout(false);
+            this.gbSpecification.PerformLayout();
             this.gbRxPowerRateConfig.ResumeLayout(false);
             this.gbRxPowerRateConfig.PerformLayout();
             this.gbI2cConfig.ResumeLayout(false);
@@ -1964,7 +2045,7 @@
         private System.Windows.Forms.Button bLog;
         private System.Windows.Forms.Label lResult;
         private System.Windows.Forms.TabControl tcFunctionSelect;
-        private System.Windows.Forms.TabPage tpConfig;
+        private System.Windows.Forms.TabPage tp;
         private System.Windows.Forms.TabPage tpLog;
         private System.Windows.Forms.TextBox tbI2cRxRegisterPage;
         private System.Windows.Forms.Label lBeTestedRegisterPage;
@@ -2008,12 +2089,11 @@
         private System.Windows.Forms.TextBox tbRx2Power;
         private System.Windows.Forms.TextBox tbRx1Power;
         private System.Windows.Forms.ComboBox cbLogMode;
-        private System.Windows.Forms.Label lLogMode;
         private System.Windows.Forms.Button bOpenConfigFile;
         private System.Windows.Forms.TextBox tbConfigFilePath;
         private System.Windows.Forms.Label lConfigFile;
         private System.Windows.Forms.GroupBox gbI2cConfig;
-        private System.Windows.Forms.GroupBox gbMonitorThreshold;
+        private System.Windows.Forms.GroupBox gbSpecification;
         private System.Windows.Forms.Label lRxThreshold;
         private System.Windows.Forms.TextBox tbRx4Threshold;
         private System.Windows.Forms.TextBox tbRx1Threshold;
@@ -2088,7 +2168,7 @@
         private System.Windows.Forms.TextBox tbARx3Los;
         private System.Windows.Forms.TextBox tbATx2Los;
         private System.Windows.Forms.TextBox tbARx2Los;
-        private System.Windows.Forms.Button bClear;
+        private System.Windows.Forms.Button bClearModuleSN;
         private System.Windows.Forms.GroupBox gbDataList;
         private System.Windows.Forms.Button bDelRecord;
         private System.Windows.Forms.Button bSaveFile;
@@ -2110,6 +2190,13 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button bTemperatureCorrection;
+        private System.Windows.Forms.GroupBox gbCorrection;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox tbPresetTemperature;
+        private System.Windows.Forms.Label lTemperatureCorrectorB;
+        private System.Windows.Forms.Label lTemperatureCorrectorA;
+        private System.Windows.Forms.Button bResetT;
     }
 }
 
