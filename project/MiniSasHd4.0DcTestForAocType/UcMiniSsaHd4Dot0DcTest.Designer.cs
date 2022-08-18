@@ -28,6 +28,7 @@
         private void InitializeComponent()
         {            
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.bLog = new System.Windows.Forms.Button();
             this.lResult = new System.Windows.Forms.Label();
             this.tcFunctionSelect = new System.Windows.Forms.TabControl();
@@ -279,7 +280,6 @@
             this.bTemperatureCorrection.TabIndex = 121;
             this.bTemperatureCorrection.Text = "Temp.Correction";
             this.bTemperatureCorrection.UseVisualStyleBackColor = false;
-            this.bTemperatureCorrection.Visible = false;
             this.bTemperatureCorrection.Click += new System.EventHandler(this.bTemperatureCorrection_Click);
             // 
             // gbDataList
@@ -448,17 +448,20 @@
             // 
             this.dgvRecord.AllowUserToResizeColumns = false;
             this.dgvRecord.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(250)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvRecord.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvRecord.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvRecord.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgvRecord.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(163)))), ((int)(((byte)(115)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvRecord.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(237)))), ((int)(((byte)(205)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(163)))), ((int)(((byte)(115)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvRecord.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvRecord.Location = new System.Drawing.Point(6, 37);
             this.dgvRecord.Name = "dgvRecord";
             this.dgvRecord.ReadOnly = true;
@@ -1116,7 +1119,7 @@
             this.tbSubLotNumber.Location = new System.Drawing.Point(411, 20);
             this.tbSubLotNumber.Name = "tbSubLotNumber";
             this.tbSubLotNumber.Size = new System.Drawing.Size(70, 35);
-            this.tbSubLotNumber.TabIndex = 100;
+            this.tbSubLotNumber.TabIndex = 4;
             this.tbSubLotNumber.Enter += new System.EventHandler(this.tbSubLotNumber_Enter);
             this.tbSubLotNumber.Leave += new System.EventHandler(this.tbSubLotNumber_Leave);
             // 

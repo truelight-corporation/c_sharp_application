@@ -73,7 +73,7 @@ namespace MiniSasHd4Dot0DcTest
             bwMonitor.ProgressChanged += new ProgressChangedEventHandler(MonitorProgressChangedApi);
 
             Directory.CreateDirectory(fileDirectory);
-            tbLogFilePath.Text = fileDirectory + "\\";
+            tbLogFilePath.Text = fileDirectory + "\\";            
 
             dtValue.Columns.Add("Lable", typeof(String));
             dtValue.Columns.Add("Time", typeof(String));
@@ -90,8 +90,8 @@ namespace MiniSasHd4Dot0DcTest
             dtValue.Columns.Add("BRx3", typeof(String));
             dtValue.Columns.Add("BRx4", typeof(String));
 
-            dtValue.Columns.Add("TempA", typeof(String));
-            dtValue.Columns.Add("TempB", typeof(String));
+            //dtValue.Columns.Add("TempA", typeof(String));
+            //dtValue.Columns.Add("TempB", typeof(String));
 
             dtValue.Columns.Add("Operator", typeof(String));
             dtValue.Columns.Add("Note", typeof(String));
@@ -339,6 +339,64 @@ namespace MiniSasHd4Dot0DcTest
             return 0;
         }
 
+        private void _OpenLogFile()
+        {
+            StreamReader srLog;
+            String sLine;
+            String[] saItems;
+
+            lastLogFileName = tbLotNumber.Text + "-" + tbSubLotNumber.Text + ".csv";
+            tbLogFilePath.Text = fileDirectory + "\\" + lastLogFileName;
+            tbLogFilePath.Update();
+
+            try
+            {
+                srLog = new StreamReader(tbLogFilePath.Text);
+            }
+            catch (FileNotFoundException e)
+            {
+                if (e != null)
+                    return;
+                return;
+            }
+
+            if ((sLine = srLog.ReadLine()) == null) //Header
+                return;
+
+            while ((sLine = srLog.ReadLine()) != null)
+            { //Record
+                saItems = sLine.Split(',');
+                if (saItems.Length < 14)
+                    continue;
+
+                if (saItems.Length == 14)
+                {
+                    dtValue.Rows.Add(saItems[0], saItems[1], saItems[2], saItems[3], saItems[4],
+                                    saItems[5], saItems[6], saItems[7], saItems[8], saItems[9],
+                                    saItems[10], saItems[11], saItems[12], saItems[13]);
+                }
+                /*
+                if (saItems.Length == 17) { //Old version log
+                    dtValue.Rows.Add(saItems[0], saItems[1], saItems[2], saItems[3], saItems[4],
+                        saItems[5], saItems[6], saItems[7], saItems[8], saItems[9], saItems[10],
+                        saItems[11], saItems[12], saItems[13], saItems[14], "", "", "", "", "", saItems[15], saItems[16]);
+                }
+                else if (saItems.Length == 22) { //Old version log
+                    dtValue.Rows.Add(saItems[0], saItems[1], saItems[2], saItems[3], saItems[4],
+                        saItems[5], saItems[6], saItems[7], saItems[8], saItems[9], saItems[10],
+                        saItems[11], saItems[12], saItems[13], saItems[14], saItems[15], saItems[16], saItems[17],
+                        saItems[18], saItems[19], saItems[20], saItems[21]);
+                }
+                */
+            }
+
+            srLog.Close();
+            dgvRecord.Sort(dgvRecord.Columns[1], ListSortDirection.Descending);
+            bLog.Enabled = true;
+            //_UpdateDataListStatus();
+            _UpdateDataListStatusLite();
+        }
+
         private void _AddLogValue(bool checkPowerDiff)
         {          
             String[] saARxValue = new String[4];
@@ -364,8 +422,8 @@ namespace MiniSasHd4Dot0DcTest
             saBRxValue[2] = tbBRx3.Text;
             saBRxValue[3] = tbBRx4.Text;
 
-            sTemperatureA = tbTemperatureA.Text;
-            sTemperatureB = tbTemperatureB.Text;
+            //sTemperatureA = tbTemperatureA.Text;
+            //sTemperatureB = tbTemperatureB.Text;
 
             _CheckRxValueThreshold(saARxValue, saBRxValue);
             grade = lClassification.Text;
@@ -375,35 +433,27 @@ namespace MiniSasHd4Dot0DcTest
             dtValue.Rows.Add(tbLogLable.Text, System.DateTime.Now.ToString("yy/MM/dd_HH:mm:ss"), tbSerialNumber.Text, grade,
                 saARxValue[0], saARxValue[1], saARxValue[2], saARxValue[3],
                 saBRxValue[0], saBRxValue[1], saBRxValue[2], saBRxValue[3],
-                sTemperatureA, sTemperatureB, tbOperator.Text, lastNote);
+                tbOperator.Text, lastNote);
             dgvRecord.FirstDisplayedScrollingRowIndex = 0;
             lastNote = "";
-            _UpdateDataListStatus();
+            //_UpdateDataListStatus();
+            _UpdateDataListStatusLite();
 
         }
 
         private void _UpdateDataListStatus()
         {
-            int  nRows;
-            float yield, numberOfData, countGradeT;
+            float yield, numberOfData, countGradeT, tmp;
             String sGradeT = "T";            
             float[] fThreshold = new float[4];
 
-            numberOfData = countGradeT = 0;
-
-            nRows = dgvRecord.Rows.Count - 1;
-            for (int i = 0; i < nRows; i++)
-            {
-                if (dgvRecord.Rows[i].Cells[3].Value.ToString() == sGradeT)
-                    countGradeT++;
-            }
-
-            numberOfData = nRows;
-            yield = (numberOfData - countGradeT) / numberOfData *100;            
-            lDataNumber.Text = "" + numberOfData + " pcs";
-            lGradeT.Text = "" + countGradeT + " pcs";
-            lYield.Text = yield.ToString("0.0") + " %";
-
+            countGradeT = 0;
+            numberOfData = dgvRecord.Rows.Count - 1;
+            fThreshold[0] = Convert.ToInt32(tbRx1Threshold.Text);
+            fThreshold[1] = Convert.ToInt32(tbRx2Threshold.Text);
+            fThreshold[2] = Convert.ToInt32(tbRx3Threshold.Text);
+            fThreshold[3] = Convert.ToInt32(tbRx4Threshold.Text);            
+            
             for (int i = 0; i < dgvRecord.Rows.Count; i++)
             {
                 if(i % 2 == 0)
@@ -415,21 +465,16 @@ namespace MiniSasHd4Dot0DcTest
             foreach (DataGridViewRow row in dgvRecord.Rows)
             {
                 if (Convert.ToString(row.Cells[3].Value) == sGradeT)
+                {
                     row.Cells[3].Style.ForeColor = Color.Red;
+                    countGradeT++;
+                }
                 else
                     row.Cells[3].Style.ForeColor = System.Drawing.SystemColors.ControlText;
-            }
 
-            fThreshold[0] = Convert.ToInt32(tbRx1Threshold.Text);
-            fThreshold[1] = Convert.ToInt32(tbRx2Threshold.Text);
-            fThreshold[2] = Convert.ToInt32(tbRx3Threshold.Text);
-            fThreshold[3] = Convert.ToInt32(tbRx4Threshold.Text);
-
-            for (int i = 4; i < 12; i++)
-            {
-                if (i < 8)
+                for (int i = 4; i < 12; i++)
                 {
-                    foreach (DataGridViewRow row in dgvRecord.Rows)
+                    if (i < 8)
                     {
                         row.Cells[i].Style.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
                         if (Convert.ToInt32(row.Cells[i].Value) <= fThreshold[i - 4])
@@ -437,23 +482,76 @@ namespace MiniSasHd4Dot0DcTest
                         else
                             row.Cells[i].Style.ForeColor = System.Drawing.SystemColors.ControlText;
                     }
-                }
 
-                else if (i >= 8 && i < 12)
-                {
-                    foreach (DataGridViewRow row in dgvRecord.Rows)
+                    else if (i >= 8 && i < 12)
                     {
                         row.Cells[i].Style.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
                         if (Convert.ToInt32(row.Cells[i].Value) <= fThreshold[i - 8])
                             row.Cells[i].Style.ForeColor = Color.Red;
                         else
-                            row.Cells[i].Style.ForeColor = System.Drawing.SystemColors.ControlText;
+                            row.Cells[i].Style.ForeColor = System.Drawing.SystemColors.ControlText;                        
                     }
-                }                                
+                }
             }
 
-            dgvRecord.Columns[15].DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-                       
+            yield = (numberOfData - countGradeT) / numberOfData * 100;
+            
+            lDataNumber.Text = "" + numberOfData + " pcs";
+            lGradeT.Text = "" + countGradeT + " pcs";
+            lYield.Text = yield.ToString("0.0") + " %";
+            dgvRecord.Columns[13].DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            return;
+        }
+
+        private void _UpdateDataListStatusLite()
+        {
+            float yield, numberOfData, countGradeT, tmp;
+            String sGradeT = "T";
+            float[] fThreshold = new float[4];
+            
+            countGradeT = 0;
+            numberOfData = dgvRecord.Rows.Count - 1;
+
+            foreach (DataGridViewRow row in dgvRecord.Rows)
+            {
+                if (Convert.ToString(row.Cells[3].Value) == sGradeT)
+                {
+                    row.Cells[3].Style.ForeColor = Color.Red;
+                    countGradeT++;
+                }
+                else
+                    row.Cells[3].Style.ForeColor = System.Drawing.SystemColors.ControlText;
+
+                for (int i = 4; i < 12; i++)
+                {
+                    if (i < 8)
+                    {                        
+                        if (Convert.ToInt32(row.Cells[i].Value) <= fThreshold[i - 4])
+                            row.Cells[i].Style.ForeColor = Color.Red;
+                        else
+                            row.Cells[i].Style.ForeColor = System.Drawing.SystemColors.ControlText;
+                    }
+
+                    else if (i >= 8 && i < 12)
+                    {                        
+                        if (Convert.ToInt32(row.Cells[i].Value) <= fThreshold[i - 8])
+                            row.Cells[i].Style.ForeColor = Color.Red;
+                        else
+                            row.Cells[i].Style.ForeColor = System.Drawing.SystemColors.ControlText;
+                    }
+                }
+            }
+
+            if (Single.IsNaN((numberOfData - countGradeT) / numberOfData * 100))
+                yield = 0;
+            else
+                yield = ((numberOfData - countGradeT) / numberOfData * 100);
+            
+            lDataNumber.Text = "" + numberOfData + " pcs";
+            lGradeT.Text = "" + countGradeT + " pcs";
+            lYield.Text = "" + yield.ToString("0.0") + " %";
+            dgvRecord.Columns[13].DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            return;
         }
 
         private int _SetQsfpMode(byte mode)
@@ -467,6 +565,7 @@ namespace MiniSasHd4Dot0DcTest
 
             if (i2cWriteACB(80, 127, 1, data) < 0)
                 return -1;
+
             if (i2cWriteBCB(80, 127, 1, data) < 0)
                 return -1;
 
@@ -474,191 +573,9 @@ namespace MiniSasHd4Dot0DcTest
 
             if (i2cWriteACB(80, 164, 1, data) < 0)
                 return -1;
+
             if (i2cWriteBCB(80, 164, 1, data) < 0)
                 return -1;
-
-            return 0;
-        }
-
-        private int _SetBias(int uA, bool burnIn)
-        {
-            byte[] data = new byte[1];
-            byte[] baWritedata = new byte[22];
-            byte[] baReadData = new byte[22];
-            byte[] bATmp;
-
-            if (_WritePassword() < 0)
-                return -1;
-
-            if (_SetQsfpMode(0x4D) < 0)
-                return -1;
-
-            if (i2cWriteACB == null)
-                return -1;
-            if (i2cWriteBCB == null)
-                return -1;
-
-            if (i2cReadACB == null)
-                return -1;
-            if (i2cReadBCB == null)
-                return -1;
-
-            if (cbCustomerPage.SelectedIndex == 0)
-                data[0] = 0x05;
-            else
-                data[0] = 0x81;
-
-            if (i2cWriteACB(80, 127, 1, data) < 0)
-                return -1;
-            if (i2cWriteBCB(80, 127, 1, data) < 0)
-                return -1;
-
-            baWritedata[0] = Convert.ToByte(4 / 0.04); //Min
-            baWritedata[1] = Convert.ToByte(10.2 / 0.04); //Max
-
-            baWritedata[2] = (byte)Convert.ToSByte(0 * 100); //Ch1 EqA
-            bATmp = BitConverter.GetBytes(Convert.ToInt16(0 * 10)); //Ch1 EqA
-            baWritedata[3] = bATmp[1];
-            baWritedata[4] = bATmp[0];
-            bATmp = BitConverter.GetBytes(Convert.ToUInt16(uA)); //Ch1 EqC
-            baWritedata[5] = bATmp[1];
-            baWritedata[6] = bATmp[0];
-
-            baWritedata[7] = (byte)Convert.ToSByte(0 * 100); //Ch2 EqA
-            bATmp = BitConverter.GetBytes(Convert.ToInt16(0 * 10)); //Ch2 EqA
-            baWritedata[8] = bATmp[1];
-            baWritedata[9] = bATmp[0];
-            bATmp = BitConverter.GetBytes(Convert.ToUInt16(uA)); //Ch2 EqC
-            baWritedata[10] = bATmp[1];
-            baWritedata[11] = bATmp[0];
-
-            baWritedata[12] = (byte)Convert.ToSByte(0 * 100); //Ch3 EqA
-            bATmp = BitConverter.GetBytes(Convert.ToInt16(0 * 10)); //Ch3 EqA
-            baWritedata[13] = bATmp[1];
-            baWritedata[14] = bATmp[0];
-            bATmp = BitConverter.GetBytes(Convert.ToUInt16(uA)); //Ch3 EqC
-            baWritedata[15] = bATmp[1];
-            baWritedata[16] = bATmp[0];
-
-            baWritedata[17] = (byte)Convert.ToSByte(0 * 100); //Ch4 EqA
-            bATmp = BitConverter.GetBytes(Convert.ToInt16(0 * 10)); //Ch4 EqA
-            baWritedata[18] = bATmp[1];
-            baWritedata[19] = bATmp[0];
-            bATmp = BitConverter.GetBytes(Convert.ToUInt16(uA)); //Ch4 EqC
-            baWritedata[20] = bATmp[1];
-            baWritedata[21] = bATmp[0];
-
-            if (i2cWriteACB(80, 128, 22, baWritedata) < 0)
-                return -1;
-            if (i2cWriteBCB(80, 128, 22, baWritedata) < 0)
-                return -1;
-
-            //Write enable temperature compensate
-            data[0] = 1;
-            if (burnIn == true) //enable burn-in
-                data[0] |= 0x02;
-            if (i2cWriteACB(80, 252, 1, data) < 0)
-                return -1;
-            if (i2cWriteBCB(80, 252, 1, data) < 0)
-                return -1;
-
-            if (cbCustomerPage.SelectedIndex == 0)
-                data[0] = 0x04;
-            else
-                data[0] = 0x80;
-
-            if (i2cWriteACB(80, 127, 1, data) < 0)
-                return -1;
-            if (i2cWriteBCB(80, 127, 1, data) < 0)
-                return -1;
-
-            //Write 223 to enable temperature compensate
-            data[0] = 0;
-            if (i2cWriteACB(80, 223, 1, data) < 0)
-                return -1;
-            if (i2cWriteBCB(80, 223, 1, data) < 0)
-                return -1;
-
-            if (cbCustomerPage.SelectedIndex == 0)
-                data[0] = 0x05;
-            else
-                data[0] = 0x81;
-
-            if (i2cWriteACB(80, 127, 1, data) < 0)
-                return -1;
-            if (i2cWriteBCB(80, 127, 1, data) < 0)
-                return -1;
-
-            Thread.Sleep(100); //Wait change page
-
-            if (i2cReadACB(80, 128, 22, baReadData) != 22)
-                return -1;
-            if (i2cReadBCB(80, 128, 22, baReadData) != 22)
-                return -1;
-
-            if (baReadData[0] != baWritedata[0])
-                MessageBox.Show("Set Max bias Fail!! Read(" + baReadData[0].ToString("X2") +
-                    ") != Write(" + baWritedata[0].ToString("X2") + ")\n!!Please re-log!!");
-
-            if (baReadData[1] != baWritedata[1])
-                MessageBox.Show("Set Min bias fail!! Read(" + baReadData[1].ToString("X2") +
-                    ") != Write(" + baWritedata[1].ToString("X2") + ")\n!!Please re-log!!");
-
-            if (baReadData[2] != baWritedata[2])
-                MessageBox.Show("Set Ch1 EqA fail!! Read(" + baReadData[2].ToString("X2") +
-                    ") != Write(" + baWritedata[2].ToString("X2") + ")\n!!Please re-log!!");
-
-            if ((baReadData[3] != baWritedata[3]) || (baReadData[4] != baWritedata[4]))
-                MessageBox.Show("Set Ch1 EqB fail!! Read(" + baReadData[3].ToString("X2") +
-                    baReadData[4].ToString("X2") + ") != Write(" + baWritedata[3].ToString("X2") +
-                    baWritedata[4].ToString("X2") + ")\n!!Please re-log!!");
-
-            if ((baReadData[5] != baWritedata[5]) || (baReadData[6] != baWritedata[6]))
-                MessageBox.Show("Set Ch1 EqC fail!! Read(" + baReadData[5].ToString("X2") +
-                    baReadData[6].ToString("X2") + ") != Write(" + baWritedata[5].ToString("X2") +
-                    baWritedata[6].ToString("X2") + ")\n!!Please re-log!!");
-
-            if (baReadData[7] != baWritedata[7])
-                MessageBox.Show("Set Ch2 EqA fail!! Read(" + baReadData[7].ToString("X2") +
-                    ") != Write(" + baWritedata[7].ToString("X2") + ")\n!!Please re-log!!");
-
-            if ((baReadData[8] != baWritedata[8]) || (baReadData[9] != baWritedata[9]))
-                MessageBox.Show("Set Ch2 EqB fail!! Read(" + baReadData[8].ToString("X2") +
-                    baReadData[9].ToString("X2") + ") != Write(" + baWritedata[8].ToString("X2") +
-                    baWritedata[9].ToString("X2") + ")\n!!Please re-log!!");
-
-            if ((baReadData[10] != baWritedata[10]) || (baReadData[11] != baWritedata[11]))
-                MessageBox.Show("Set Ch2 EqC fail!! Read(" + baReadData[10].ToString("X2") +
-                    baReadData[11].ToString("X2") + ") != Write(" + baWritedata[10].ToString("X2") +
-                    baWritedata[11].ToString("X2") + ")\n!!Please re-log!!");
-
-            if (baReadData[12] != baWritedata[12])
-                MessageBox.Show("Set Ch3 EqA fail!! Read(" + baReadData[12].ToString("X2") +
-                    ") != Write(" + baWritedata[12].ToString("X2") + ")\n!!Please re-log!!");
-
-            if ((baReadData[13] != baWritedata[13]) || (baReadData[14] != baWritedata[14]))
-                MessageBox.Show("Set Ch3 EqB fail!! Read(" + baReadData[13].ToString("X2") +
-                    baReadData[14].ToString("X2") + ") != Write(" + baWritedata[13].ToString("X2") +
-                    baWritedata[14].ToString("X2") + ")\n!!Please re-log!!");
-
-            if ((baReadData[15] != baWritedata[15]) || (baReadData[16] != baWritedata[16]))
-                MessageBox.Show("Set Ch3 EqC fail!! Read(" + baReadData[15].ToString("X2") +
-                    baReadData[16].ToString("X2") + ") != Write(" + baWritedata[15].ToString("X2") +
-                    baWritedata[16].ToString("X2") + ")\n!!Please re-log!!");
-
-            if (baReadData[17] != baWritedata[17])
-                MessageBox.Show("Set Ch4 EqA fail!! Read(" + baReadData[7].ToString("X2") +
-                    ") != Write(" + baWritedata[7].ToString("X2") + ")\n!!Please re-log!!");
-
-            if ((baReadData[18] != baWritedata[18]) || (baReadData[19] != baWritedata[19]))
-                MessageBox.Show("Set Ch4 EqB fail!! Read(" + baReadData[18].ToString("X2") +
-                    baReadData[19].ToString("X2") + ") != Write(" + baWritedata[18].ToString("X2") +
-                    baWritedata[19].ToString("X2") + ")\n!!Please re-log!!");
-
-            if ((baReadData[20] != baWritedata[20]) || (baReadData[21] != baWritedata[21]))
-                MessageBox.Show("Set Ch4 EqC fail!! Read(" + baReadData[20].ToString("X2") +
-                    baReadData[21].ToString("X2") + ") != Write(" + baWritedata[20].ToString("X2") +
-                    baWritedata[21].ToString("X2") + ")\n!!Please re-log!!");
 
             return 0;
         }
@@ -692,7 +609,7 @@ namespace MiniSasHd4Dot0DcTest
 
             if (i2cWriteACB((byte)devAddr, 127, 1, data) < 0)
                 return -1;
-                        
+
             tmp = System.Text.Encoding.Default.GetBytes(newSerialNumberA);
             if (tmp.Length > 17){
                 MessageBox.Show("newSerialNumber length:" + tmp.Length + " > 17 Error!!");
@@ -708,8 +625,6 @@ namespace MiniSasHd4Dot0DcTest
             if (i2cWriteACB((byte)devAddr, 220, 17, data) < 0)
                 return -1;
             
-            Thread.Sleep(100); // Wait command proecss
-
             if (i2cReadACB((byte)devAddr, 220, 17, baReadTmp) != 17)
                 return -1;
             data = System.Text.Encoding.Default.GetBytes(newSerialNumberA);
@@ -756,7 +671,7 @@ namespace MiniSasHd4Dot0DcTest
 
             if (i2cWriteBCB((byte)devAddr, 127, 1, data) < 0)
                 return -1;
-                        
+
             tmp = System.Text.Encoding.Default.GetBytes(newSerialNumberB);
             
             if (tmp.Length > 17){
@@ -772,8 +687,6 @@ namespace MiniSasHd4Dot0DcTest
 
             if (i2cWriteBCB((byte)devAddr, 220, 17, data) < 0)
                 return -1;
-
-            Thread.Sleep(100); // Wait command proecss
 
             if (i2cReadBCB((byte)devAddr, 220, 17, baReadTmp) != 17)
                 return -1;
@@ -810,7 +723,6 @@ namespace MiniSasHd4Dot0DcTest
             data[0] = 0xAA;
             if (i2cWriteACB(80, 162, 1, data) < 0)
                 return -1;
-            Thread.Sleep(500);
 
             return 0;
         }
@@ -826,12 +738,11 @@ namespace MiniSasHd4Dot0DcTest
 
             if (i2cWriteBCB(80, 127, 1, data) < 0)
                 return -1;
-
+            
             data[0] = 0xAA;
             if (i2cWriteBCB(80, 162, 1, data) < 0)
                 return -1;
-            Thread.Sleep(500);
-
+            
             return 0;
         }
 
@@ -928,48 +839,14 @@ namespace MiniSasHd4Dot0DcTest
                 MessageBox.Show("LOT number wrong!!");
                 goto Error;
             }
-
-            /*
-            if (logModeSelect == "BeforeBurnIn") {
-                while (tbSerialNumber.Text[0] == ' ')
-                    tbSerialNumber.Text = tbSerialNumber.Text.Substring(1, tbSerialNumber.Text.Length - 1);
-                if (tbSerialNumber.Text.Length != 4) {
-                    int.TryParse(tbSerialNumber.Text, out iTmp);
-                    tbSerialNumber.Text = iTmp.ToString("0000");
-                }
-                if (tbLotNumber.Text.Length == 8)
-                    newSerialNumber = tbLotNumber.Text + tbSubLotNumber.Text + tbSerialNumber.Text;
-                else {
-                    lAction.Text = "LOT number wrong!!";
-                    MessageBox.Show("LOT number wrong!!");
-                    goto Error;
-                }
-            }
-            else if (logModeSelect == "AfterBurnIn") {
-                if (tbModuleSerialNumberA.Text.Length >= 15) {
-                    if ((tbLotNumber.Text != tbModuleSerialNumberA.Text.Substring(0, 8)) ||
-                        (tbSubLotNumber.Text != tbModuleSerialNumberA.Text.Substring(8, 3))) {
-                        if (dtValue.Rows.Count > 0)
-                            _SaveLogFile();
-                        tbLotNumber.Text = tbModuleSerialNumberA.Text.Substring(0, 8);
-                        tbSubLotNumber.Text = tbModuleSerialNumberA.Text.Substring(8, 3);
-                        _OpenLogFile();
-                    }
-                    int.TryParse(tbModuleSerialNumberA.Text.Substring(11, 4), out iTmp);
-                    tbSerialNumber.Text = iTmp.ToString("0000");
-                }
-            }
-            */
-
-            logValue = true;
                         
+            logValue = true;                       
             return;
 
         Error:
             bLog.Enabled = true;
             lAction.Text = "";
             return;
-
 
         }
 
@@ -1005,12 +882,10 @@ namespace MiniSasHd4Dot0DcTest
             fTmp = BitConverter.ToInt16(reverseData, 0);
             fTmp = fTmp / 256;
             temperatureA = fTmp.ToString("0.0");
-
             return 0;
 
         clearDataA:
             temperatureA = "0";
-
             return 0;
         }
 
@@ -1049,12 +924,10 @@ namespace MiniSasHd4Dot0DcTest
             fTmp = BitConverter.ToInt16(reverseData, 0);
             fTmp = fTmp / 256;
             temperatureB = fTmp.ToString("0.0");
-
             return 0;
 
         clearDataB:
             temperatureB = "0";
-
             return 0;
         }
 
@@ -1105,6 +978,7 @@ namespace MiniSasHd4Dot0DcTest
             temperatureSlopeA = "" + tmp.ToString();            
             
             return 0;
+
         clear:
             temperatureOffsetA = temperatureSlopeA = "";
             return 0;
@@ -1157,6 +1031,7 @@ namespace MiniSasHd4Dot0DcTest
             temperatureSlopeB = "" + tmp.ToString();
 
             return 0;
+
         clear:
             temperatureOffsetB = temperatureSlopeB = "";
             return 0;
@@ -1269,14 +1144,17 @@ namespace MiniSasHd4Dot0DcTest
             byte[] data = new byte[2];
             sbyte[] sData = new sbyte[1];            
             int devAddr;
-            /*
+            
             if (_WritePassword() < 0)
                 return -1;
 
             if (_SetQsfpMode(0x4D) < 0)
                 return -1;
-            */
+            
             if (i2cWriteACB == null)
+                return -1;
+
+            if (i2cReadACB == null)
                 return -1;
 
             int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
@@ -1288,8 +1166,16 @@ namespace MiniSasHd4Dot0DcTest
 
             if (i2cWriteACB((byte)devAddr, 127, 1, data) < 0)
                 return -1;
+            
+            try
+            {
+                sData[0] = Convert.ToSByte(temperatureOffsetA);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
 
-            sData[0] = Convert.ToSByte(temperatureOffsetA);
             try
             {
                 Buffer.BlockCopy(sData, 0, data, 0, 1);
@@ -1301,7 +1187,10 @@ namespace MiniSasHd4Dot0DcTest
             }
 
             if (i2cWriteACB((byte)devAddr, 241, 1, data) < 0)
-                return -1;            
+                return -1;
+
+            if (_StoreConfigIntoFlashA() < 0)
+                return -1;
 
             return 0;
         }
@@ -1311,14 +1200,17 @@ namespace MiniSasHd4Dot0DcTest
             byte[] data = new byte[2];
             sbyte[] sData = new sbyte[1];
             int devAddr;
-            /*
+            
             if (_WritePassword() < 0)
                 return -1;
 
             if (_SetQsfpMode(0x4D) < 0)
                 return -1;
-            */
+            
             if (i2cWriteBCB == null)
+                return -1;
+
+            if (i2cReadBCB == null)
                 return -1;
 
             int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
@@ -1329,9 +1221,16 @@ namespace MiniSasHd4Dot0DcTest
                 data[0] = 0x80;
 
             if (i2cWriteBCB((byte)devAddr, 127, 1, data) < 0)
-                return -1;
+                return -1;            
+            try
+            {
+                sData[0] = Convert.ToSByte(temperatureOffsetB);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
 
-            sData[0] = Convert.ToSByte(temperatureOffsetB);
             try
             {
                 Buffer.BlockCopy(sData, 0, data, 0, 1);
@@ -1343,6 +1242,9 @@ namespace MiniSasHd4Dot0DcTest
             }
 
             if (i2cWriteBCB((byte)devAddr, 241, 1, data) < 0)
+                return -1;            
+
+            if (_StoreConfigIntoFlashB() < 0)
                 return -1;
 
             return 0;
@@ -1389,7 +1291,7 @@ namespace MiniSasHd4Dot0DcTest
                 dataA[0] = (byte)page;
 
                 if (i2cWriteACB((byte)devAddr, 127, 1, dataA) < 0)
-                    goto clearDataA;
+                    goto clearDataA;                
             }
 
             if (i2cReadACB((byte)devAddr, (byte)regAddr, 8, dataA) != 8)
@@ -1934,15 +1836,65 @@ namespace MiniSasHd4Dot0DcTest
                             break;
                             */
 
+                        case "TemperatureCorrection":
+                            bwMonitor.ReportProgress(8, null);
+                            //for Part-A
+                            if ((_GetModuleMonitorValue() < 0) ||                                   
+                                (_AutoCorrectTemperatureA() < 0))
+                            {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+                            bwMonitor.ReportProgress(9, null);
+                            //for Part-B
+                            if ((_GetModuleMonitorValue() < 0) ||
+                                (_AutoCorrectTemperatureB() < 0))
+                            {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+
+                            bwMonitor.ReportProgress(10, null);
+                            while (logValue == true) // Wait log done
+                                Thread.Sleep(1);
+                            break;
+
+                        case "ResetTemperatureCorrectValue":
+
+                            bwMonitor.ReportProgress(6, null);
+                            if (_ResetTemperatureOffsetA() < 0)                          
+                            {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+
+                            bwMonitor.ReportProgress(7, null);
+                            if (_ResetTemperatureOffsetB() < 0)
+                            {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+
+                            bwMonitor.ReportProgress(10, null);
+                            while (logValue == true) // Wait log done
+                                Thread.Sleep(1);
+                            break;
+
                         default:
                             //for Part-A
                             if (!((tbARx1.Text == "0") && (tbARx2.Text == "0") && (tbARx3.Text == "0") && (tbARx4.Text == "0")
                                 && (tbTemperatureA.Text == "0")))
                             {
+                                bwMonitor.ReportProgress(11, null);
                                 if ((_GetModuleMonitorValue() < 0) ||
-                                    (_SetModuleSerialNumberA() < 0) ||
-                                    (_AutoCorrectTemperatureA() < 0) ||
-                                    (_StoreConfigIntoFlashA() < 0))
+                                    (_SetModuleSerialNumberA() < 0))
+                                {
+                                    bGetModuleMonitorValueError = true;
+                                    break;
+                                }
+
+                                bwMonitor.ReportProgress(8, null);
+                                if ((_AutoCorrectTemperatureA() < 0))
                                 {
                                     bGetModuleMonitorValueError = true;
                                     break;
@@ -1953,10 +1905,16 @@ namespace MiniSasHd4Dot0DcTest
                             if (!((tbBRx1.Text == "0") && (tbBRx2.Text == "0") && (tbBRx3.Text == "0") && (tbBRx4.Text == "0")
                                 && (tbTemperatureB.Text == "0")))
                             {
+                                bwMonitor.ReportProgress(12, null);
                                 if ((_GetModuleMonitorValue() < 0) ||
-                                    (_SetModuleSerialNumberB() < 0) ||
-                                    (_AutoCorrectTemperatureB() <0) ||
-                                    (_StoreConfigIntoFlashB() < 0))
+                                    (_SetModuleSerialNumberB() < 0))
+                                {
+                                    bGetModuleMonitorValueError = true;
+                                    break;
+                                }
+
+                                bwMonitor.ReportProgress(9, null);
+                                if ((_AutoCorrectTemperatureB() < 0))
                                 {
                                     bGetModuleMonitorValueError = true;
                                     break;
@@ -1967,7 +1925,7 @@ namespace MiniSasHd4Dot0DcTest
                             bwMonitor.ReportProgress(10, null);
 
                             while (logValue == true) // Wait log done
-                                Thread.Sleep(100);
+                                Thread.Sleep(1);
                             break;
                     }
                 }
@@ -1975,13 +1933,13 @@ namespace MiniSasHd4Dot0DcTest
                     if (_GetModuleMonitorValue() < 0)
                         bGetModuleMonitorValueError = true;
                     else
-                        bwMonitor.ReportProgress(0, null);    
+                        bwMonitor.ReportProgress(0, null);
                 }
 
                 if (bGetModuleMonitorValueError == false)
-                    Thread.Sleep(100);
+                    Thread.Sleep(1);
                 else
-                    Thread.Sleep(500);
+                    Thread.Sleep(100);
             }
 
             bwMonitor.ReportProgress(100, null);
@@ -2015,6 +1973,7 @@ namespace MiniSasHd4Dot0DcTest
 
             if (i2cWriteACB(80, 123, 4, data) < 0)
                 return -1;
+
             if (i2cWriteBCB(80, 123, 4, data) < 0)
                 return -1;
 
@@ -2035,132 +1994,20 @@ namespace MiniSasHd4Dot0DcTest
 
             if (i2cWriteACB(80, 127, 1, data) < 0)
                 return -1;
+            
             if (i2cWriteBCB(80, 127, 1, data) < 0)
                 return -1;
-
+            
             data[0] = 0xAA;
             if (i2cWriteACB(80, 162, 1, data) < 0)
                 return -1;
+            
             if (i2cWriteBCB(80, 162, 1, data) < 0)
                 return -1;
 
             return 0;
         }
-        
-        private int _WritePowerRate()
-        {
-            byte[] data;
 
-            if ((tbRx1PowerRate.Text.Length == 0) || (tbRx2PowerRate.Text.Length == 0) ||
-                (tbRx3PowerRate.Text.Length == 0) || (tbRx4PowerRate.Text.Length == 0)) {
-                MessageBox.Show("Please input Rx power rate!!");
-                return -1;
-            }
-
-            if (_SetQsfpMode(0x4D) < 0)
-                return -1;
-
-            if (_WritePassword() < 0)
-                return -1;
-            
-            if (i2cWriteACB == null)
-                return -1;
-            if (i2cWriteBCB == null)
-                return -1;
-
-            data = new byte[4];
-
-            if (cbCustomerPage.SelectedIndex == 0)
-                data[0] = 0x04;
-            else
-                data[0] = 0x80;
-
-            i2cWriteACB(80, 127, 1, data);
-            i2cWriteBCB(80, 127, 1, data);
-
-            try {
-                data[0] = Convert.ToByte(tbRx1PowerRate.Text);
-                data[1] = Convert.ToByte(tbRx2PowerRate.Text);
-                data[2] = Convert.ToByte(tbRx3PowerRate.Text);
-                data[3] = Convert.ToByte(tbRx4PowerRate.Text);
-            }
-            catch (Exception eTB) {
-                MessageBox.Show("Rx power rate out of range (0 ~ 255)!!\n" + eTB.ToString());
-                return -1;
-            }
-
-            i2cWriteACB(80, 244, 4, data);
-            i2cWriteBCB(80, 244, 4, data);
-
-            _StorePowerRateConfig(); 
-
-            Thread.Sleep(1000);
-
-            return 0;
-        }
-       
-        private int _AutoCorrectRxPowerRate()
-        {
-            float input, rssi;
-            int rate;
-
-            lAction.Text = "Correct Rx power rate...";
-            lAction.Update();
-
-            rate = 0;
-
-            if ((tbRx1InputPower.Text.Length == 0) || (tbRx2InputPower.Text.Length == 0) ||
-                (tbRx3InputPower.Text.Length == 0) || (tbRx4InputPower.Text.Length == 0)) {
-                MessageBox.Show("Input power empty!!");
-                return -1;
-            }
-
-            try {
-                input = Convert.ToSingle(tbRx1InputPowerRssi.Text);
-                rssi = Convert.ToSingle(tbARx1.Text);
-                rate = Convert.ToInt32(Math.Ceiling(rssi * 100 / input));
-            }
-            catch (Exception eCT) {
-                MessageBox.Show(eCT.ToString());
-            }
-            tbRx1PowerRate.Text = rate.ToString();
-
-            try {
-                input = Convert.ToSingle(tbRx2InputPowerRssi.Text);
-                rssi = Convert.ToSingle(tbARx2.Text);
-                rate = Convert.ToInt32(Math.Ceiling(rssi * 100 / input));
-            }
-            catch (Exception eCT) {
-                MessageBox.Show(eCT.ToString());
-            }
-            tbRx2PowerRate.Text = rate.ToString();
-
-            try {
-                input = Convert.ToSingle(tbRx3InputPowerRssi.Text);
-                rssi = Convert.ToSingle(tbARx3.Text);
-                rate = Convert.ToInt32(Math.Ceiling(rssi * 100 / input));
-            }
-            catch (Exception eCT) {
-                MessageBox.Show(eCT.ToString());
-            }
-            tbRx3PowerRate.Text = rate.ToString();
-
-            try {
-                input = Convert.ToSingle(tbRx4InputPowerRssi.Text);
-                rssi = Convert.ToSingle(tbARx4.Text);
-                rate = Convert.ToInt32(Math.Ceiling(rssi * 100 / input));
-            }
-            catch (Exception eCT) {
-                MessageBox.Show(eCT.ToString());
-            }
-            tbRx4PowerRate.Text = rate.ToString();
-
-            if (_WritePowerRate() < 0)
-                return -1;
-
-            return 0;
-        }
-                
         private int _UpdateRxRssiValueGui()
         {
             float fTmp, fThreshold, f3Average, fCriticalRadioA, fCriticalRadioB, fCheck;
@@ -2579,9 +2426,39 @@ namespace MiniSasHd4Dot0DcTest
                     lAction.Text = "Set bias " + fTmp.ToString() + "mA and store ...";
                     lAction.Update();
                     return;
-
+/*
                 case 6:
                     lAction.Text = "Set AC Config " + acConfigRowCount + "/" + dtAfterBurnInConfig.Rows.Count + " ...";
+                    lAction.Update();
+                    return;
+*/
+                case 6:
+                    lAction.Text = "Reset the corrct value form Part-A...";
+                    lAction.Update();
+                    return;
+
+                case 7:
+                    lAction.Text = "Reset the corrct value form Part-B...";
+                    lAction.Update();
+                    return;
+
+                case 8:
+                    lAction.Text = "Temperature correction for Part-A";
+                    lAction.Update();
+                    return;
+
+                case 9:
+                    lAction.Text = "Temperature correction for Part-B";
+                    lAction.Update();
+                    return;
+
+                case 11:
+                    lAction.Text = "Setting serial number for Part-A ...";
+                    lAction.Update();
+                    return;
+
+                case 12:
+                    lAction.Text = "Setting serial number for Part-B ..";
                     lAction.Update();
                     return;
 
@@ -2598,11 +2475,13 @@ namespace MiniSasHd4Dot0DcTest
             tbTemperatureA.Update();
             tbTemperatureB.Text = temperatureB;
             tbTemperatureB.Update();
-            lTemperatureCorrectorA.Text = "Offset: " + temperatureOffsetA + "/ Slope:" + temperatureSlopeA;
+            lTemperatureCorrectorA.Text = "Offset: " + temperatureOffsetA + " / Slope:" + temperatureSlopeA;
             tbTemperatureA.Update();
-            lTemperatureCorrectorB.Text = "Offset: " + temperatureOffsetB + "/ Slope:" + temperatureSlopeB;
+            lTemperatureCorrectorB.Text = "Offset: " + temperatureOffsetB + " / Slope:" + temperatureSlopeB;
             tbTemperatureB.Update();
-            _UpdateRxRssiValueGui();            
+            //_UpdateDataListStatus();
+            _UpdateDataListStatusLite();
+            _UpdateRxRssiValueGui();
             _UpdateModuleSerailNumberValueGui();
             _UpdateLosStatusGui();            
 
@@ -2638,15 +2517,37 @@ namespace MiniSasHd4Dot0DcTest
                         break;
 
                     case "BeforeBurnIn":
-                    default:
-                        _AddLogValue(false);
                         lAction.Text = "Log Added.";
                         lAction.Update();
-                        tbSerialNumber.SelectAll();
                         break;
+
+                    default:
+
+                        if (logModeSelect == "TemperatureCorrection")
+                        {
+                            lAction.Text = "Corrected done!!";
+                            lAction.Update();
+                            break;
+                        }
+                        else if (logModeSelect == "ResetTemperatureCorrectValue")
+                        {
+                            lAction.Text = "Reset done!!";
+                            lAction.Update();
+                            break;
+                        }
+                        else
+                        {
+                            _AddLogValue(false);
+                            lAction.Text = "Log Added.";
+                            lAction.Update();
+                            tbSerialNumber.SelectAll();
+                            break;
+                        }                         
                 }
                 logValue = false;
                 bLog.Enabled = true;
+                bResetT.Enabled = true;
+                bTemperatureCorrection.Enabled = true;
             }
             
         }
@@ -2659,14 +2560,13 @@ namespace MiniSasHd4Dot0DcTest
                 return;
 
             swLog = new StreamWriter(tbLogFilePath.Text);
-            swLog.WriteLine("Lable,Time,SN,Grade,ARx1,ARx2,ARx3,ARx4,BRx1,BRx2,BRx3,BRx4,TemperatureA,TemperatureB,Operator,Note");
+            swLog.WriteLine("Lable,Time,SN,Grade,ARx1,ARx2,ARx3,ARx4,BRx1,BRx2,BRx3,BRx4,Operator,Note");
             foreach (DataRow row in dtValue.Rows) {
                 swLog.WriteLine(row[0].ToString() + "," + row[1].ToString() + "," + row[2].ToString() + "," +
                     row[3].ToString() + "," + row[4].ToString() + "," + row[5].ToString() + "," +
                     row[6].ToString() + "," + row[7].ToString() + "," + row[8].ToString() + "," +
                     row[9].ToString() + "," + row[10].ToString() + "," + row[11].ToString() + "," +
-                    row[12].ToString() + "," + row[13].ToString() + "," + row[14].ToString() + "," + 
-                    row[15].ToString());
+                    row[12].ToString() + "," + row[13].ToString());
             }
             swLog.Close();
             tbLotNumber.Text = "";
@@ -2770,58 +2670,7 @@ namespace MiniSasHd4Dot0DcTest
             tbRx4InputPower_TextChanged(sender, e);
         }
 
-        private void _OpenLogFile()
-        {
-            StreamReader srLog;
-            String sLine;
-            String[] saItems;
-
-            lastLogFileName = tbLotNumber.Text + "-" + tbSubLotNumber.Text + ".csv";
-            tbLogFilePath.Text = fileDirectory + "\\" + lastLogFileName;
-            tbLogFilePath.Update();
-
-            try {
-                srLog = new StreamReader(tbLogFilePath.Text);
-            }
-            catch (FileNotFoundException e) {
-                if (e != null)
-                    return;
-                return;
-            }
-
-            if ((sLine = srLog.ReadLine()) == null) //Header
-                return;
-
-            while ((sLine = srLog.ReadLine()) != null) { //Record
-                saItems = sLine.Split(',');
-                if (saItems.Length < 16)
-                    continue;
-
-                if (saItems.Length == 16){
-                    dtValue.Rows.Add(saItems[0], saItems[1], saItems[2], saItems[3], saItems[4],
-                                    saItems[5], saItems[6], saItems[7], saItems[8], saItems[9], 
-                                    saItems[10], saItems[11], saItems[12], saItems[13], saItems[14], saItems[15]);
-                }
-/*
-                if (saItems.Length == 17) { //Old version log
-                    dtValue.Rows.Add(saItems[0], saItems[1], saItems[2], saItems[3], saItems[4],
-                        saItems[5], saItems[6], saItems[7], saItems[8], saItems[9], saItems[10],
-                        saItems[11], saItems[12], saItems[13], saItems[14], "", "", "", "", "", saItems[15], saItems[16]);
-                }
-                else if (saItems.Length == 22) { //Old version log
-                    dtValue.Rows.Add(saItems[0], saItems[1], saItems[2], saItems[3], saItems[4],
-                        saItems[5], saItems[6], saItems[7], saItems[8], saItems[9], saItems[10],
-                        saItems[11], saItems[12], saItems[13], saItems[14], saItems[15], saItems[16], saItems[17],
-                        saItems[18], saItems[19], saItems[20], saItems[21]);
-                }
-*/
-            }
-
-            srLog.Close();
-            dgvRecord.Sort(dgvRecord.Columns[1], ListSortDirection.Descending);
-            bLog.Enabled = true;
-            _UpdateDataListStatus();
-        }
+        
 
         private void tbLotNumber_Leave(object sender, EventArgs e)
         {
@@ -2842,7 +2691,7 @@ namespace MiniSasHd4Dot0DcTest
             if ((tbLotNumber.Text.Length < 8) || (tbSubLotNumber.Text.Length < 1))
                 return;
 
-            _OpenLogFile();
+            //_OpenLogFile();
         }
 
         private void tbLotNumber_Enter(object sender, EventArgs e)
@@ -3384,7 +3233,6 @@ namespace MiniSasHd4Dot0DcTest
                 }
 
                 i2cWriteACB((byte)devAddr, 220, 17, data);
-                Thread.Sleep(100); // Wait command proecss
                 tbModuleSerialNumberA.Update();
             }
             else
@@ -3404,7 +3252,6 @@ namespace MiniSasHd4Dot0DcTest
                 }
 
                 i2cWriteBCB((byte)devAddr, 220, 17, data);
-                Thread.Sleep(100); // Wait command proecss
                 tbModuleSerialNumberB.Update();
             }
             else
@@ -3571,26 +3418,17 @@ namespace MiniSasHd4Dot0DcTest
         private void bTemperatureCorrection_Click(object sender, EventArgs e)
         {
             bTemperatureCorrection.Enabled = false;
-            if (_WriteTemperatureCorrectionA() < 0)
-                return ;
+            logModeSelect = "TemperatureCorrection";
+            logValue = true;
 
-            if (_WriteTemperatureCorrectionB() < 0)
-                return;
-
-            bTemperatureCorrection.Enabled = true;
         }
 
         private void bResetT_Click(object sender, EventArgs e)
         {
             bResetT.Enabled = false;
-            if (_ResetTemperatureOffsetA() < 0)
-                return;
+            logModeSelect = "ResetTemperatureCorrectValue";
+            logValue = true;
 
-            if (_ResetTemperatureOffsetB() < 0)
-                return;
-
-            bResetT.Enabled = true;
-            return;
         }
 
         private void cbIgnoreTxLos_CheckedChanged(object sender, EventArgs e)
