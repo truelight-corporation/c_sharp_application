@@ -961,6 +961,8 @@
             this.cbAdaptationMuteChAll = new System.Windows.Forms.CheckBox();
             this.cbTxPdbLbkInChAll = new System.Windows.Forms.CheckBox();
             this.cbTxPdbLbkOutChAll = new System.Windows.Forms.CheckBox();
+            this.tpCmis = new System.Windows.Forms.TabPage();
+            this.dgvCmisReg = new System.Windows.Forms.DataGridView();
             this.tcMata38044Config.SuspendLayout();
             this.tpGlobal.SuspendLayout();
             this.tpDiagnostics.SuspendLayout();
@@ -1001,6 +1003,8 @@
             this.gbOutputBufferControlTopChAll.SuspendLayout();
             this.gbOutputBufferControlMidChAll.SuspendLayout();
             this.gbOutputBufferControlBotChAll.SuspendLayout();
+            this.tpCmis.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCmisReg)).BeginInit();
             this.SuspendLayout();
             // 
             // bReadAll
@@ -1022,6 +1026,7 @@
             this.tcMata38044Config.Controls.Add(this.tpTiaControl);
             this.tcMata38044Config.Controls.Add(this.tpCdrControl);
             this.tcMata38044Config.Controls.Add(this.tpOutputBufferControl);
+            this.tcMata38044Config.Controls.Add(this.tpCmis);
             this.tcMata38044Config.Location = new System.Drawing.Point(3, 26);
             this.tcMata38044Config.Name = "tcMata38044Config";
             this.tcMata38044Config.SelectedIndex = 0;
@@ -11477,6 +11482,28 @@
             this.cbTxPdbLbkOutChAll.UseVisualStyleBackColor = true;
             this.cbTxPdbLbkOutChAll.CheckedChanged += new System.EventHandler(this.cbTxPdbLbkOutChAll_CheckedChanged);
             // 
+            // tpCmis
+            // 
+            this.tpCmis.Controls.Add(this.dgvCmisReg);
+            this.tpCmis.Location = new System.Drawing.Point(4, 22);
+            this.tpCmis.Name = "tpCmis";
+            this.tpCmis.Padding = new System.Windows.Forms.Padding(3);
+            this.tpCmis.Size = new System.Drawing.Size(812, 402);
+            this.tpCmis.TabIndex = 6;
+            this.tpCmis.Text = "CMIS";
+            this.tpCmis.UseVisualStyleBackColor = true;
+            // 
+            // dgvCmisReg
+            // 
+            this.dgvCmisReg.AllowUserToAddRows = false;
+            this.dgvCmisReg.AllowUserToDeleteRows = false;
+            this.dgvCmisReg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCmisReg.Location = new System.Drawing.Point(6, 6);
+            this.dgvCmisReg.Name = "dgvCmisReg";
+            this.dgvCmisReg.RowTemplate.Height = 24;
+            this.dgvCmisReg.Size = new System.Drawing.Size(360, 390);
+            this.dgvCmisReg.TabIndex = 0;
+            // 
             // UcMata38044Config
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -11558,6 +11585,8 @@
             this.gbOutputBufferControlMidChAll.PerformLayout();
             this.gbOutputBufferControlBotChAll.ResumeLayout(false);
             this.gbOutputBufferControlBotChAll.PerformLayout();
+            this.tpCmis.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCmisReg)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -12498,5 +12527,7 @@
         private System.Windows.Forms.CheckBox cbAdaptationMuteChAll;
         private System.Windows.Forms.CheckBox cbTxPdbLbkInChAll;
         private System.Windows.Forms.CheckBox cbTxPdbLbkOutChAll;
+        private System.Windows.Forms.TabPage tpCmis;
+        private System.Windows.Forms.DataGridView dgvCmisReg;
     }
 }

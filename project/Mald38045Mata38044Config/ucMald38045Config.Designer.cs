@@ -850,6 +850,8 @@
             this.cbMuteCntlChAll = new System.Windows.Forms.ComboBox();
             this.lMuteCntlChAll = new System.Windows.Forms.Label();
             this.cbTxDisableChAll = new System.Windows.Forms.CheckBox();
+            this.tpCmis = new System.Windows.Forms.TabPage();
+            this.dgvCmisReg = new System.Windows.Forms.DataGridView();
             this.tcMald38045Config.SuspendLayout();
             this.tpGlobal.SuspendLayout();
             this.tpDiagnostics.SuspendLayout();
@@ -868,6 +870,8 @@
             this.tpLaserDriverControlCh2.SuspendLayout();
             this.tpLaserDriverControlCh3.SuspendLayout();
             this.tpLaserDriverControlChAll.SuspendLayout();
+            this.tpCmis.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCmisReg)).BeginInit();
             this.SuspendLayout();
             // 
             // bReadAll
@@ -888,6 +892,7 @@
             this.tcMald38045Config.Controls.Add(this.tpDdmi);
             this.tcMald38045Config.Controls.Add(this.tpCdrControl);
             this.tcMald38045Config.Controls.Add(this.tpLaserDriverControl);
+            this.tcMald38045Config.Controls.Add(this.tpCmis);
             this.tcMald38045Config.Location = new System.Drawing.Point(3, 26);
             this.tcMald38045Config.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tcMald38045Config.Name = "tcMald38045Config";
@@ -10254,6 +10259,29 @@
             this.cbTxDisableChAll.UseVisualStyleBackColor = true;
             this.cbTxDisableChAll.CheckedChanged += new System.EventHandler(this.cbTxDisableChAll_CheckedChanged);
             // 
+            // tpCmis
+            // 
+            this.tpCmis.Controls.Add(this.dgvCmisReg);
+            this.tpCmis.Location = new System.Drawing.Point(4, 22);
+            this.tpCmis.Name = "tpCmis";
+            this.tpCmis.Padding = new System.Windows.Forms.Padding(3);
+            this.tpCmis.Size = new System.Drawing.Size(813, 402);
+            this.tpCmis.TabIndex = 5;
+            this.tpCmis.Text = "CMIS";
+            this.tpCmis.UseVisualStyleBackColor = true;
+            // 
+            // dgvCmisReg
+            // 
+            this.dgvCmisReg.AllowUserToAddRows = false;
+            this.dgvCmisReg.AllowUserToDeleteRows = false;
+            this.dgvCmisReg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCmisReg.Location = new System.Drawing.Point(6, 6);
+            this.dgvCmisReg.Name = "dgvCmisReg";
+            this.dgvCmisReg.ReadOnly = true;
+            this.dgvCmisReg.RowTemplate.Height = 24;
+            this.dgvCmisReg.Size = new System.Drawing.Size(360, 390);
+            this.dgvCmisReg.TabIndex = 0;
+            // 
             // UcMald38045Config
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -10294,6 +10322,8 @@
             this.tpLaserDriverControlCh3.PerformLayout();
             this.tpLaserDriverControlChAll.ResumeLayout(false);
             this.tpLaserDriverControlChAll.PerformLayout();
+            this.tpCmis.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCmisReg)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -11123,5 +11153,7 @@
         private System.Windows.Forms.ComboBox cbMuteCntlChAll;
         private System.Windows.Forms.Label lMuteCntlChAll;
         private System.Windows.Forms.CheckBox cbTxDisableChAll;
+        private System.Windows.Forms.TabPage tpCmis;
+        private System.Windows.Forms.DataGridView dgvCmisReg;
     }
 }

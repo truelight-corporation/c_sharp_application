@@ -14,6 +14,7 @@ namespace Mald38045Mata38044Config
         public delegate int I2cReadCB(byte bank ,byte page, byte regAddr, int length, byte[] data);
         public delegate int I2cWriteCB(byte bank ,byte page, byte regAddr, int length, byte[] data);
 
+        private DataTable dtCmisReg = new DataTable();
         private byte regBank = 0x00;
         private byte regPage = 0xB0;
         private byte regStartAddr = 0x00;
@@ -2269,6 +2270,12 @@ namespace Mald38045Mata38044Config
             item.Text = "0x01:Faster R&F time";
             item.Value = 0x01;
             cbTxBotPostPolinvChAll.Items.Add(item);
+
+            dtCmisReg.Columns.Add("# (Dec)", typeof(String));
+            dtCmisReg.Columns.Add("# (Hex)", typeof(String));
+            dtCmisReg.Columns.Add("Data", typeof(String));
+
+            dgvCmisReg.DataSource = dtCmisReg;
         }
 
         public int SetI2cReadCBApi(I2cReadCB cb)
@@ -5295,7 +5302,7 @@ namespace Mald38045Mata38044Config
         private void bReadAll_Click(object sender, EventArgs e)
         {
             byte[] data = new byte[256];
-            int rv;
+            int i, rv;
 
             if (reading == true)
                 return;
@@ -5310,6 +5317,9 @@ namespace Mald38045Mata38044Config
             rv = i2cReadCB(regBank, regPage, regStartAddr, 238, data);
             if (rv != 238)
                 goto exit;
+
+            for (i = 0; i < rv; i++)
+                dtCmisReg.Rows.Add(i.ToString("D3"), "0x" + i.ToString("X2"), "0x" + data[i].ToString("X2"));
 
             _ParsePage00Addr00(data[0]);
             _ParsePage00Addr01(data[1]);
