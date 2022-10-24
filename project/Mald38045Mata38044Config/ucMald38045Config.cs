@@ -9814,7 +9814,7 @@ namespace Mald38045Mata38044Config
             if (reading == true)
                 return;
 
-            if (_WritePage30Addr1F() < 0)
+            if (_WritePage30Addr20() < 0)
                 return;
         }
 
@@ -9823,7 +9823,7 @@ namespace Mald38045Mata38044Config
             if (reading == true)
                 return;
 
-            if (_WritePage30Addr1F() < 0)
+            if (_WritePage30Addr20() < 0)
                 return;
         }
 
@@ -9854,7 +9854,7 @@ namespace Mald38045Mata38044Config
             if (reading == true)
                 return;
 
-            if (_WritePage31Addr1F() < 0)
+            if (_WritePage31Addr20() < 0)
                 return;
         }
 
@@ -9863,7 +9863,7 @@ namespace Mald38045Mata38044Config
             if (reading == true)
                 return;
 
-            if (_WritePage31Addr1F() < 0)
+            if (_WritePage31Addr20() < 0)
                 return;
         }
 
@@ -9894,7 +9894,7 @@ namespace Mald38045Mata38044Config
             if (reading == true)
                 return;
 
-            if (_WritePage32Addr1F() < 0)
+            if (_WritePage32Addr20() < 0)
                 return;
         }
 
@@ -9903,7 +9903,7 @@ namespace Mald38045Mata38044Config
             if (reading == true)
                 return;
 
-            if (_WritePage32Addr1F() < 0)
+            if (_WritePage32Addr20() < 0)
                 return;
         }
 
@@ -9934,7 +9934,7 @@ namespace Mald38045Mata38044Config
             if (reading == true)
                 return;
 
-            if (_WritePage33Addr1F() < 0)
+            if (_WritePage33Addr20() < 0)
                 return;
         }
 
@@ -9943,7 +9943,7 @@ namespace Mald38045Mata38044Config
             if (reading == true)
                 return;
 
-            if (_WritePage33Addr1F() < 0)
+            if (_WritePage33Addr20() < 0)
                 return;
         }
 
@@ -9986,7 +9986,7 @@ namespace Mald38045Mata38044Config
             if (reading == true)
                 return;
 
-            if (_WritePage2FAddr1F() < 0)
+            if (_WritePage2FAddr20() < 0)
                 return;
         }
 
@@ -9995,7 +9995,7 @@ namespace Mald38045Mata38044Config
             if (reading == true)
                 return;
 
-            if (_WritePage2FAddr1F() < 0)
+            if (_WritePage2FAddr20() < 0)
                 return;
         }
 

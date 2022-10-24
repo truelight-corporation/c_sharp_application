@@ -191,7 +191,7 @@
             this.Controls.Add(this.lPassword);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FMald38045Mata38044Config";
-            this.Text = "Mald38045 & Mata38044 Config GUI_20221007";
+            this.Text = "Mald38045 & Mata38044 Config GUI_20221024_1552";
             this.tcMald38045Mata38044Config.ResumeLayout(false);
             this.tpMald38045Ch1_4.ResumeLayout(false);
             this.tpMata38044Ch4_1.ResumeLayout(false);
