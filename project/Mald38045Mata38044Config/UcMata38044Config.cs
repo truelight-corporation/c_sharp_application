@@ -6548,7 +6548,7 @@ namespace Mald38045Mata38044Config
             data[0] = 0x00;
 
             if (cbPrbsEnNrz.Checked == true)
-                data[0] |= 0x01;
+                data[0] |= 0x20;
 
             rv = I2cWrite(13, 1, data);
             if (rv < 0)
