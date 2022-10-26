@@ -5131,7 +5131,7 @@ namespace Mald38045Mata38044Config
                 cbTxPdbDatdelTopCh1.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacDatdelTopCh1.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x0F))
                     cbDacTxDacDatdelTopCh1.SelectedItem = item;
             }
         }
@@ -5144,7 +5144,7 @@ namespace Mald38045Mata38044Config
                 cbTxPdbDatdelMidCh1.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacDatdelMidCh1.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x0F))
                     cbDacTxDacDatdelMidCh1.SelectedItem = item;
             }
         }
@@ -5157,7 +5157,7 @@ namespace Mald38045Mata38044Config
                 cbTxPdbDatdelBotCh1.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacDatdelBotCh1.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x0F))
                     cbDacTxDacDatdelBotCh1.SelectedItem = item;
             }
         }
@@ -5446,7 +5446,7 @@ namespace Mald38045Mata38044Config
                 cbTxPdbDatdelTopCh2.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacDatdelTopCh2.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x0F))
                     cbDacTxDacDatdelTopCh2.SelectedItem = item;
             }
         }
@@ -5459,7 +5459,7 @@ namespace Mald38045Mata38044Config
                 cbTxPdbDatdelMidCh2.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacDatdelMidCh2.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x0F))
                     cbDacTxDacDatdelMidCh2.SelectedItem = item;
             }
         }
@@ -5472,7 +5472,7 @@ namespace Mald38045Mata38044Config
                 cbTxPdbDatdelBotCh2.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacDatdelBotCh2.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x0F))
                     cbDacTxDacDatdelBotCh2.SelectedItem = item;
             }
         }
@@ -5582,26 +5582,26 @@ namespace Mald38045Mata38044Config
 
         private void _ParsePage43Addr04(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x08) == 0)
                 cbDacTxDacMain3bPdbMidCh3.Checked = false;
             else
                 cbDacTxDacMain3bPdbMidCh3.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacMain3bMidCh3.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x07))
                     cbDacTxDacMain3bMidCh3.SelectedItem = item;
             }
         }
 
         private void _ParsePage43Addr05(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x08) == 0)
                 cbDacTxDacMain3bPdbBotCh3.Checked = false;
             else
                 cbDacTxDacMain3bPdbBotCh3.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacMain3bBotCh3.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x07))
                     cbDacTxDacMain3bBotCh3.SelectedItem = item;
             }
         }

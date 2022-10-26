@@ -4906,9 +4906,9 @@ namespace Mald38045Mata38044Config
             else
                 cbDacTxDacPostBotPdbCh0.Checked = true;
 
-            foreach (ComboboxItem item in cbDacTxDacPostTopCh0.Items) {
+            foreach (ComboboxItem item in cbDacTxDacPostBotCh0.Items) {
                 if (item.Value == (data & 0x7F))
-                    cbDacTxDacPostTopCh0.SelectedItem = item;
+                    cbDacTxDacPostBotCh0.SelectedItem = item;
             }
         }
 
@@ -4919,9 +4919,9 @@ namespace Mald38045Mata38044Config
             else
                 cbDacTxDacPostBotPdbCh1.Checked = true;
 
-            foreach (ComboboxItem item in cbDacTxDacPostTopCh1.Items) {
+            foreach (ComboboxItem item in cbDacTxDacPostBotCh1.Items) {
                 if (item.Value == (data & 0x7F))
-                    cbDacTxDacPostTopCh1.SelectedItem = item;
+                    cbDacTxDacPostBotCh1.SelectedItem = item;
             }
         }
 
@@ -4932,9 +4932,9 @@ namespace Mald38045Mata38044Config
             else
                 cbDacTxDacPostBotPdbCh2.Checked = true;
 
-            foreach (ComboboxItem item in cbDacTxDacPostTopCh2.Items) {
+            foreach (ComboboxItem item in cbDacTxDacPostBotCh2.Items) {
                 if (item.Value == (data & 0x7F))
-                    cbDacTxDacPostTopCh2.SelectedItem = item;
+                    cbDacTxDacPostBotCh2.SelectedItem = item;
             }
         }
 
@@ -4945,9 +4945,9 @@ namespace Mald38045Mata38044Config
             else
                 cbDacTxDacPostBotPdbCh3.Checked = true;
 
-            foreach (ComboboxItem item in cbDacTxDacPostTopCh3.Items) {
+            foreach (ComboboxItem item in cbDacTxDacPostBotCh3.Items) {
                 if (item.Value == (data & 0x7F))
-                    cbDacTxDacPostTopCh3.SelectedItem = item;
+                    cbDacTxDacPostBotCh3.SelectedItem = item;
             }
         }
 
@@ -6014,7 +6014,7 @@ namespace Mald38045Mata38044Config
             data[0] = 0x00;
 
             if (cbPrbsEnNrz.Checked == true)
-                data[0] |= 0x01;
+                data[0] |= 0x20;
 
             rv = I2cWrite(13, 1, data);
             if (rv < 0)
