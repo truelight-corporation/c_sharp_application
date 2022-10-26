@@ -4624,100 +4624,100 @@ namespace Mald38045Mata38044Config
 
         private void _ParsePage40Addr03(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x08) == 0)
                 cbDacTxDacMain3bPdbBotCh0.Checked = false;
             else
                 cbDacTxDacMain3bPdbBotCh0.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacMain3bBotCh0.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x07))
                     cbDacTxDacMain3bBotCh0.SelectedItem = item;
             }
         }
 
         private void _ParsePage40Addr04(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x08) == 0)
                 cbDacTxDacMain3bPdbMidCh0.Checked = false;
             else
                 cbDacTxDacMain3bPdbMidCh0.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacMain3bMidCh0.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x07))
                     cbDacTxDacMain3bMidCh0.SelectedItem = item;
             }
         }
 
         private void _ParsePage40Addr05(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x08) == 0)
                 cbDacTxDacMain3bPdbTopCh0.Checked = false;
             else
                 cbDacTxDacMain3bPdbTopCh0.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacMain3bTopCh0.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x07))
                     cbDacTxDacMain3bTopCh0.SelectedItem = item;
             }
         }
 
         private void _ParsePage40Addr06(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x20) == 0)
                 cbTxDcdDacPolflipBotCh0.Checked = false;
             else
                 cbTxDcdDacPolflipBotCh0.Checked = true;
 
-            if ((data & 0x40) == 0)
+            if ((data & 0x10) == 0)
                 cbDacTxDacDcdPdbBotCh0.Checked = false;
             else
                 cbDacTxDacDcdPdbBotCh0.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacDcdBotCh0.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x0F))
                     cbDacTxDacDcdBotCh0.SelectedItem = item;
             }
         }
 
         private void _ParsePage40Addr07(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x20) == 0)
                 cbTxDcdDacPolflipMidCh0.Checked = false;
             else
                 cbTxDcdDacPolflipMidCh0.Checked = true;
 
-            if ((data & 0x40) == 0)
+            if ((data & 0x10) == 0)
                 cbDacTxDacDcdPdbMidCh0.Checked = false;
             else
                 cbDacTxDacDcdPdbMidCh0.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacDcdMidCh0.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x0F))
                     cbDacTxDacDcdMidCh0.SelectedItem = item;
             }
         }
 
         private void _ParsePage40Addr08(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x20) == 0)
                 cbTxDcdDacPolflipTopCh0.Checked = false;
             else
                 cbTxDcdDacPolflipTopCh0.Checked = true;
 
-            if ((data & 0x40) == 0)
+            if ((data & 0x10) == 0)
                 cbDacTxDacDcdPdbTopCh0.Checked = false;
             else
                 cbDacTxDacDcdPdbTopCh0.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacDcdTopCh0.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x0F))
                     cbDacTxDacDcdTopCh0.SelectedItem = item;
             }
         }
 
         private void _ParsePage40Addr09(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x40) == 0)
                 cbDacTxDacPrePdbBotCh0.Checked = false;
             else
                 cbDacTxDacPrePdbBotCh0.Checked = true;
@@ -4730,7 +4730,7 @@ namespace Mald38045Mata38044Config
 
         private void _ParsePage40Addr0A(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x40) == 0)
                 cbDacTxDacPrePdbMidCh0.Checked = false;
             else
                 cbDacTxDacPrePdbMidCh0.Checked = true;
@@ -4743,7 +4743,7 @@ namespace Mald38045Mata38044Config
 
         private void _ParsePage40Addr0B(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x40) == 0)
                 cbDacTxDacPrePdbTopCh0.Checked = false;
             else
                 cbDacTxDacPrePdbTopCh0.Checked = true;
@@ -4810,39 +4810,39 @@ namespace Mald38045Mata38044Config
 
         private void _ParsePage40Addr1B(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x10) == 0)
                 cbTxPdbDatdelBotCh0.Checked = false;
             else
                 cbTxPdbDatdelBotCh0.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacDatdelBotCh0.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x0F))
                     cbDacTxDacDatdelBotCh0.SelectedItem = item;
             }
         }
 
         private void _ParsePage40Addr1C(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x10) == 0)
                 cbTxPdbDatdelBotCh0.Checked = false;
             else
                 cbTxPdbDatdelBotCh0.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacDatdelBotCh0.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x0F))
                     cbDacTxDacDatdelBotCh0.SelectedItem = item;
             }
         }
 
         private void _ParsePage40Addr1D(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x10) == 0)
                 cbTxPdbDatdelBotCh0.Checked = false;
             else
                 cbTxPdbDatdelBotCh0.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacDatdelBotCh0.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x0F))
                     cbDacTxDacDatdelBotCh0.SelectedItem = item;
             }
         }
@@ -6149,7 +6149,7 @@ namespace Mald38045Mata38044Config
             if (cbI2cAddressMode.Checked == true)
                 data[0] |= 0x10;
 
-            bTmp = Convert.ToByte(cbReset.SelectedIndex);
+            bTmp = Convert.ToByte(cbRssiChSel.SelectedIndex);
             bTmp <<= 2;
             data[0] |= bTmp;
 
@@ -12838,7 +12838,7 @@ namespace Mald38045Mata38044Config
             if (cbDacTxDacMain6bPdbBotCh0.Checked == true)
                 data[0] |= 0x40;
 
-            bTmp = Convert.ToByte(cbDacTxDacMain6bBotCh0.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacMain6bTopCh0.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(176, 1, data);
@@ -12857,13 +12857,13 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxPolinvBotCh1.Checked == true)
+            if (cbTxPolinvTopCh1.Checked == true)
                 data[0] |= 0x80;
 
-            if (cbDacTxDacMain6bPdbBotCh1.Checked == true)
+            if (cbDacTxDacMain6bPdbTopCh1.Checked == true)
                 data[0] |= 0x40;
 
-            bTmp = Convert.ToByte(cbDacTxDacMain6bBotCh1.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacMain6bTopCh1.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(196, 1, data);
@@ -12882,13 +12882,13 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxPolinvBotCh2.Checked == true)
+            if (cbTxPolinvTopCh2.Checked == true)
                 data[0] |= 0x80;
 
-            if (cbDacTxDacMain6bPdbBotCh2.Checked == true)
+            if (cbDacTxDacMain6bPdbTopCh2.Checked == true)
                 data[0] |= 0x40;
 
-            bTmp = Convert.ToByte(cbDacTxDacMain6bBotCh2.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacMain6bTopCh2.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(216, 1, data);
@@ -12907,13 +12907,13 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxPolinvBotCh3.Checked == true)
+            if (cbTxPolinvTopCh3.Checked == true)
                 data[0] |= 0x80;
 
-            if (cbDacTxDacMain6bPdbBotCh3.Checked == true)
+            if (cbDacTxDacMain6bPdbTopCh3.Checked == true)
                 data[0] |= 0x40;
 
-            bTmp = Convert.ToByte(cbDacTxDacMain6bBotCh3.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacMain6bTopCh3.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(236, 1, data);
@@ -12932,13 +12932,13 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxPolinvBotChAll.Checked == true)
+            if (cbTxPolinvTopChAll.Checked == true)
                 data[0] |= 0x80;
 
-            if (cbDacTxDacMain6bPdbBotChAll.Checked == true)
+            if (cbDacTxDacMain6bPdbTopChAll.Checked == true)
                 data[0] |= 0x40;
 
-            bTmp = Convert.ToByte(cbDacTxDacMain6bBotChAll.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacMain6bTopChAll.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(176, 1, data);
@@ -12960,7 +12960,7 @@ namespace Mald38045Mata38044Config
             return 0;
         }
 
-        private void cbTxPolinvBotCh0_CheckedChanged(object sender, EventArgs e)
+        private void cbTxPolinvTopCh0_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -12969,7 +12969,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain6bPdbBotCh0_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain6bPdbTopCh0_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -12978,7 +12978,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain6bBotCh0_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain6bTopCh0_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -12987,7 +12987,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbTxPolinvBotCh1_CheckedChanged(object sender, EventArgs e)
+        private void cbTxPolinvTopCh1_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -12996,7 +12996,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain6bPdbBotCh1_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain6bPdbTopCh1_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13005,7 +13005,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain6bBotCh1_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain6bTopCh1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13014,7 +13014,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbTxPolinvBotCh2_CheckedChanged(object sender, EventArgs e)
+        private void cbTxPolinvTopCh2_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13023,7 +13023,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain6bPdbBotCh2_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain6bPdbTopCh2_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13032,7 +13032,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain6bBotCh2_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain6bTopCh2_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13041,7 +13041,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbTxPolinvBotCh3_CheckedChanged(object sender, EventArgs e)
+        private void cbTxPolinvTopCh3_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13050,7 +13050,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain6bPdbBotCh3_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain6bPdbTopCh3_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13059,7 +13059,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain6bBotCh3_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain6bTopCh3_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13068,7 +13068,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbTxPolinvBotChAll_CheckedChanged(object sender, EventArgs e)
+        private void cbTxPolinvTopChAll_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13077,7 +13077,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain6bPdbBotChAll_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain6bPdbTopChAll_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13086,7 +13086,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain6bBotChAll_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain6bTopChAll_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13376,13 +13376,13 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxPolinvTopCh0.Checked == true)
+            if (cbTxPolinvBotCh0.Checked == true)
                 data[0] |= 0x80;
 
-            if (cbDacTxDacMain6bPdbTopCh0.Checked == true)
+            if (cbDacTxDacMain6bPdbBotCh0.Checked == true)
                 data[0] |= 0x40;
 
-            bTmp = Convert.ToByte(cbDacTxDacMain6bTopCh0.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacMain6bBotCh0.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(178, 1, data);
@@ -13401,13 +13401,13 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxPolinvTopCh1.Checked == true)
+            if (cbTxPolinvBotCh1.Checked == true)
                 data[0] |= 0x80;
 
-            if (cbDacTxDacMain6bPdbTopCh1.Checked == true)
+            if (cbDacTxDacMain6bPdbBotCh1.Checked == true)
                 data[0] |= 0x40;
 
-            bTmp = Convert.ToByte(cbDacTxDacMain6bTopCh1.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacMain6bBotCh1.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(198, 1, data);
@@ -13426,13 +13426,13 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxPolinvTopCh2.Checked == true)
+            if (cbTxPolinvBotCh2.Checked == true)
                 data[0] |= 0x80;
 
-            if (cbDacTxDacMain6bPdbTopCh2.Checked == true)
+            if (cbDacTxDacMain6bPdbBotCh2.Checked == true)
                 data[0] |= 0x40;
 
-            bTmp = Convert.ToByte(cbDacTxDacMain6bTopCh2.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacMain6bBotCh2.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(218, 1, data);
@@ -13451,13 +13451,13 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxPolinvTopCh3.Checked == true)
+            if (cbTxPolinvBotCh3.Checked == true)
                 data[0] |= 0x80;
 
-            if (cbDacTxDacMain6bPdbTopCh3.Checked == true)
+            if (cbDacTxDacMain6bPdbBotCh3.Checked == true)
                 data[0] |= 0x40;
 
-            bTmp = Convert.ToByte(cbDacTxDacMain6bTopCh3.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacMain6bBotCh3.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(238, 1, data);
@@ -13476,13 +13476,13 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxPolinvTopChAll.Checked == true)
+            if (cbTxPolinvBotChAll.Checked == true)
                 data[0] |= 0x80;
 
-            if (cbDacTxDacMain6bPdbTopChAll.Checked == true)
+            if (cbDacTxDacMain6bPdbBotChAll.Checked == true)
                 data[0] |= 0x40;
 
-            bTmp = Convert.ToByte(cbDacTxDacMain6bTopChAll.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacMain6bBotChAll.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(178, 1, data);
@@ -13504,7 +13504,7 @@ namespace Mald38045Mata38044Config
             return 0;
         }
 
-        private void cbTxPolinvTopCh0_CheckedChanged(object sender, EventArgs e)
+        private void cbTxPolinvBotCh0_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13513,7 +13513,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain6bPdbTopCh0_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain6bPdbBotCh0_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13522,7 +13522,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain6bTopCh0_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain6bBotCh0_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13531,7 +13531,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbTxPolinvTopCh1_CheckedChanged(object sender, EventArgs e)
+        private void cbTxPolinvBotCh1_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13540,7 +13540,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain6bPdbTopCh1_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain6bPdbBotCh1_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13549,7 +13549,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain6bTopCh1_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain6bBotCh1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13558,7 +13558,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbTxPolinvTopCh2_CheckedChanged(object sender, EventArgs e)
+        private void cbTxPolinvBotCh2_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13567,7 +13567,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain6bPdbTopCh2_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain6bPdbBotCh2_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13576,7 +13576,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain6bTopCh2_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain6bBotCh2_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13585,7 +13585,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbTxPolinvTopCh3_CheckedChanged(object sender, EventArgs e)
+        private void cbTxPolinvBotCh3_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13594,7 +13594,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain6bPdbTopCh3_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain6bPdbBotCh3_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13603,7 +13603,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain6bTopCh3_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain6bBotCh3_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13612,7 +13612,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbTxPolinvTopChAll_CheckedChanged(object sender, EventArgs e)
+        private void cbTxPolinvBotChAll_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13621,7 +13621,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain6bPdbTopChAll_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain6bPdbBotChAll_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13630,7 +13630,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain6bTopChAll_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain6bBotChAll_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13648,10 +13648,10 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbDacTxDacMain3bPdbBotCh0.Checked == true)
+            if (cbDacTxDacMain3bPdbTopCh0.Checked == true)
                 data[0] |= 0x08;
 
-            bTmp = Convert.ToByte(cbDacTxDacMain3bBotCh0.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacMain3bTopCh0.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(179, 1, data);
@@ -13670,10 +13670,10 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbDacTxDacMain3bPdbBotCh1.Checked == true)
+            if (cbDacTxDacMain3bPdbTopCh1.Checked == true)
                 data[0] |= 0x08;
 
-            bTmp = Convert.ToByte(cbDacTxDacMain3bBotCh1.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacMain3bTopCh1.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(199, 1, data);
@@ -13692,10 +13692,10 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbDacTxDacMain3bPdbBotCh2.Checked == true)
+            if (cbDacTxDacMain3bPdbTopCh2.Checked == true)
                 data[0] |= 0x08;
 
-            bTmp = Convert.ToByte(cbDacTxDacMain3bBotCh2.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacMain3bTopCh2.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(219, 1, data);
@@ -13714,10 +13714,10 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbDacTxDacMain3bPdbBotCh3.Checked == true)
+            if (cbDacTxDacMain3bPdbTopCh3.Checked == true)
                 data[0] |= 0x08;
 
-            bTmp = Convert.ToByte(cbDacTxDacMain3bBotCh3.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacMain3bTopCh3.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(239, 1, data);
@@ -13736,10 +13736,10 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbDacTxDacMain3bPdbBotChAll.Checked == true)
+            if (cbDacTxDacMain3bPdbTopChAll.Checked == true)
                 data[0] |= 0x08;
 
-            bTmp = Convert.ToByte(cbDacTxDacMain3bBotChAll.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacMain3bTopChAll.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(179, 1, data);
@@ -13761,7 +13761,7 @@ namespace Mald38045Mata38044Config
             return 0;
         }
 
-        private void cbDacTxDacMain3bPdbBotCh0_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain3bPdbTopCh0_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13770,7 +13770,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain3bBotCh0_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain3bTopCh0_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13779,7 +13779,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain3bPdbBotCh1_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain3bPdbTopCh1_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13788,7 +13788,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain3bBotCh1_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain3bTopCh1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13797,7 +13797,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain3bPdbBotCh2_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain3bPdbTopCh2_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13806,7 +13806,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain3bBotCh2_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain3bTopCh2_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13815,7 +13815,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain3bPdbBotCh3_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain3bPdbTopCh3_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13824,7 +13824,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain3bBotCh3_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain3bTopCh3_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13833,7 +13833,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain3bPdbBotChAll_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain3bPdbTopChAll_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -13842,7 +13842,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain3bBotChAll_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain3bTopChAll_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -14073,10 +14073,10 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbDacTxDacMain3bPdbTopCh0.Checked == true)
+            if (cbDacTxDacMain3bPdbBotCh0.Checked == true)
                 data[0] |= 0x08;
 
-            bTmp = Convert.ToByte(cbDacTxDacMain3bTopCh0.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacMain3bBotCh0.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(181, 1, data);
@@ -14095,10 +14095,10 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbDacTxDacMain3bPdbTopCh1.Checked == true)
+            if (cbDacTxDacMain3bPdbBotCh1.Checked == true)
                 data[0] |= 0x08;
 
-            bTmp = Convert.ToByte(cbDacTxDacMain3bTopCh1.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacMain3bBotCh1.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(201, 1, data);
@@ -14117,10 +14117,10 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbDacTxDacMain3bPdbTopCh2.Checked == true)
+            if (cbDacTxDacMain3bPdbBotCh2.Checked == true)
                 data[0] |= 0x08;
 
-            bTmp = Convert.ToByte(cbDacTxDacMain3bTopCh2.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacMain3bBotCh2.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(221, 1, data);
@@ -14139,10 +14139,10 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbDacTxDacMain3bPdbTopCh3.Checked == true)
+            if (cbDacTxDacMain3bPdbBotCh3.Checked == true)
                 data[0] |= 0x08;
 
-            bTmp = Convert.ToByte(cbDacTxDacMain3bTopCh3.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacMain3bBotCh3.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(241, 1, data);
@@ -14161,10 +14161,10 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbDacTxDacMain3bPdbTopChAll.Checked == true)
+            if (cbDacTxDacMain3bPdbBotChAll.Checked == true)
                 data[0] |= 0x08;
 
-            bTmp = Convert.ToByte(cbDacTxDacMain3bTopChAll.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacMain3bBotChAll.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(181, 1, data);
@@ -14186,7 +14186,7 @@ namespace Mald38045Mata38044Config
             return 0;
         }
 
-        private void cbDacTxDacMain3bPdbTopCh0_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain3bPdbBotCh0_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -14195,7 +14195,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain3bTopCh0_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain3bBotCh0_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -14204,7 +14204,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain3bPdbTopCh1_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain3bPdbBotCh1_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -14213,7 +14213,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain3bTopCh1_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain3bBotCh1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -14222,7 +14222,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain3bPdbTopCh2_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain3bPdbBotCh2_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -14231,7 +14231,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain3bTopCh2_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain3bBotCh2_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -14240,7 +14240,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain3bPdbTopCh3_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain3bPdbBotCh3_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -14249,7 +14249,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain3bTopCh3_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain3bBotCh3_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -14258,7 +14258,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain3bPdbTopChAll_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain3bPdbBotChAll_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -14267,7 +14267,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacMain3bTopChAll_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacMain3bBotChAll_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -14285,13 +14285,13 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxDcdDacPolflipBotCh0.Checked == true)
+            if (cbTxDcdDacPolflipTopCh0.Checked == true)
                 data[0] |= 0x20;
 
-            if (cbDacTxDacDcdPdbBotCh0.Checked == true)
+            if (cbDacTxDacDcdPdbTopCh0.Checked == true)
                 data[0] |= 0x10;
 
-            bTmp = Convert.ToByte(cbDacTxDacDcdBotCh0.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacDcdTopCh0.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(182, 1, data);
@@ -14310,13 +14310,13 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxDcdDacPolflipBotCh1.Checked == true)
+            if (cbTxDcdDacPolflipTopCh1.Checked == true)
                 data[0] |= 0x20;
 
-            if (cbDacTxDacDcdPdbBotCh1.Checked == true)
+            if (cbDacTxDacDcdPdbTopCh1.Checked == true)
                 data[0] |= 0x10;
 
-            bTmp = Convert.ToByte(cbDacTxDacDcdBotCh1.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacDcdTopCh1.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(202, 1, data);
@@ -14335,13 +14335,13 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxDcdDacPolflipBotCh2.Checked == true)
+            if (cbTxDcdDacPolflipTopCh2.Checked == true)
                 data[0] |= 0x20;
 
-            if (cbDacTxDacDcdPdbBotCh2.Checked == true)
+            if (cbDacTxDacDcdPdbTopCh2.Checked == true)
                 data[0] |= 0x10;
 
-            bTmp = Convert.ToByte(cbDacTxDacDcdBotCh2.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacDcdTopCh2.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(222, 1, data);
@@ -14360,13 +14360,13 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxDcdDacPolflipBotCh3.Checked == true)
+            if (cbTxDcdDacPolflipTopCh3.Checked == true)
                 data[0] |= 0x20;
 
-            if (cbDacTxDacDcdPdbBotCh3.Checked == true)
+            if (cbDacTxDacDcdPdbTopCh3.Checked == true)
                 data[0] |= 0x10;
 
-            bTmp = Convert.ToByte(cbDacTxDacDcdBotCh3.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacDcdTopCh3.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(242, 1, data);
@@ -14385,13 +14385,13 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxDcdDacPolflipBotChAll.Checked == true)
+            if (cbTxDcdDacPolflipTopChAll.Checked == true)
                 data[0] |= 0x20;
 
-            if (cbDacTxDacDcdPdbBotChAll.Checked == true)
+            if (cbDacTxDacDcdPdbTopChAll.Checked == true)
                 data[0] |= 0x10;
 
-            bTmp = Convert.ToByte(cbDacTxDacDcdBotChAll.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacDcdTopChAll.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(182, 1, data);
@@ -14413,7 +14413,7 @@ namespace Mald38045Mata38044Config
             return 0;
         }
 
-        private void cbTxDcdDacPolflipBotCh0_CheckedChanged(object sender, EventArgs e)
+        private void cbTxDcdDacPolflipTopCh0_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -14422,7 +14422,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacDcdPdbBotCh0_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacDcdPdbTopCh0_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -14431,7 +14431,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacDcdBotCh0_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacDcdTopCh0_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -14440,7 +14440,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbTxDcdDacPolflipBotCh1_CheckedChanged(object sender, EventArgs e)
+        private void cbTxDcdDacPolflipTopCh1_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -14449,7 +14449,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacDcdPdbBotCh1_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacDcdPdbTopCh1_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -14458,7 +14458,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacDcdBotCh1_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacDcdTopCh1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -14467,7 +14467,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbTxDcdDacPolflipBotCh2_CheckedChanged(object sender, EventArgs e)
+        private void cbTxDcdDacPolflipTopCh2_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -14476,7 +14476,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacDcdPdbBotCh2_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacDcdPdbTopCh2_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -14485,7 +14485,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacDcdBotCh2_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacDcdTopCh2_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -14494,7 +14494,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbTxDcdDacPolflipBotCh3_CheckedChanged(object sender, EventArgs e)
+        private void cbTxDcdDacPolflipTopCh3_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -14503,7 +14503,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacDcdPdbBotCh3_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacDcdPdbTopCh3_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -14512,7 +14512,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacDcdBotCh3_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacDcdTopCh3_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -14521,7 +14521,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbTxDcdDacPolflipBotChAll_CheckedChanged(object sender, EventArgs e)
+        private void cbTxDcdDacPolflipTopChAll_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -14530,7 +14530,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacDcdPdbBotChAll_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacDcdPdbTopChAll_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -14539,7 +14539,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacDcdBotChAll_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacDcdTopChAll_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -14829,13 +14829,13 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxDcdDacPolflipTopCh0.Checked == true)
+            if (cbTxDcdDacPolflipBotCh0.Checked == true)
                 data[0] |= 0x20;
 
-            if (cbDacTxDacDcdPdbTopCh0.Checked == true)
+            if (cbDacTxDacDcdPdbBotCh0.Checked == true)
                 data[0] |= 0x10;
 
-            bTmp = Convert.ToByte(cbDacTxDacDcdTopCh0.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacDcdBotCh0.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(184, 1, data);
@@ -14854,13 +14854,13 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxDcdDacPolflipTopCh1.Checked == true)
+            if (cbTxDcdDacPolflipBotCh1.Checked == true)
                 data[0] |= 0x20;
 
-            if (cbDacTxDacDcdPdbTopCh1.Checked == true)
+            if (cbDacTxDacDcdPdbBotCh1.Checked == true)
                 data[0] |= 0x10;
 
-            bTmp = Convert.ToByte(cbDacTxDacDcdTopCh1.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacDcdBotCh1.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(204, 1, data);
@@ -14879,13 +14879,13 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxDcdDacPolflipTopCh2.Checked == true)
+            if (cbTxDcdDacPolflipBotCh2.Checked == true)
                 data[0] |= 0x20;
 
-            if (cbDacTxDacDcdPdbTopCh2.Checked == true)
+            if (cbDacTxDacDcdPdbBotCh2.Checked == true)
                 data[0] |= 0x10;
 
-            bTmp = Convert.ToByte(cbDacTxDacDcdTopCh2.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacDcdBotCh2.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(224, 1, data);
@@ -14904,13 +14904,13 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxDcdDacPolflipTopCh3.Checked == true)
+            if (cbTxDcdDacPolflipBotCh3.Checked == true)
                 data[0] |= 0x20;
 
-            if (cbDacTxDacDcdPdbTopCh3.Checked == true)
+            if (cbDacTxDacDcdPdbBotCh3.Checked == true)
                 data[0] |= 0x10;
 
-            bTmp = Convert.ToByte(cbDacTxDacDcdTopCh3.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacDcdBotCh3.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(244, 1, data);
@@ -14929,13 +14929,13 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxDcdDacPolflipTopChAll.Checked == true)
+            if (cbTxDcdDacPolflipBotChAll.Checked == true)
                 data[0] |= 0x20;
 
-            if (cbDacTxDacDcdPdbTopChAll.Checked == true)
+            if (cbDacTxDacDcdPdbBotChAll.Checked == true)
                 data[0] |= 0x10;
 
-            bTmp = Convert.ToByte(cbDacTxDacDcdTopChAll.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacDcdBotChAll.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(184, 1, data);
@@ -14957,7 +14957,7 @@ namespace Mald38045Mata38044Config
             return 0;
         }
 
-        private void cbTxDcdDacPolflipTopCh0_CheckedChanged(object sender, EventArgs e)
+        private void cbTxDcdDacPolflipBotCh0_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -14966,7 +14966,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacDcdPdbTopCh0_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacDcdPdbBotCh0_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -14975,7 +14975,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacDcdTopCh0_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacDcdBotCh0_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -14984,7 +14984,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbTxDcdDacPolflipTopCh1_CheckedChanged(object sender, EventArgs e)
+        private void cbTxDcdDacPolflipBotCh1_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -14993,7 +14993,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacDcdPdbTopCh1_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacDcdPdbBotCh1_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15002,7 +15002,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacDcdTopCh1_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacDcdBotCh1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15011,7 +15011,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbTxDcdDacPolflipTopCh2_CheckedChanged(object sender, EventArgs e)
+        private void cbTxDcdDacPolflipBotCh2_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15020,7 +15020,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacDcdPdbTopCh2_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacDcdPdbBotCh2_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15029,7 +15029,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacDcdTopCh2_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacDcdBotCh2_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15038,7 +15038,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbTxDcdDacPolflipTopCh3_CheckedChanged(object sender, EventArgs e)
+        private void cbTxDcdDacPolflipBotCh3_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15047,7 +15047,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacDcdPdbTopCh3_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacDcdPdbBotCh3_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15056,7 +15056,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacDcdTopCh3_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacDcdBotCh3_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15065,7 +15065,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbTxDcdDacPolflipTopChAll_CheckedChanged(object sender, EventArgs e)
+        private void cbTxDcdDacPolflipBotChAll_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15074,7 +15074,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacDcdPdbTopChAll_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacDcdPdbBotChAll_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15083,7 +15083,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacDcdTopChAll_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacDcdBotChAll_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15101,10 +15101,10 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbDacTxDacPrePdbBotCh0.Checked == true)
+            if (cbDacTxDacPrePdbTopCh0.Checked == true)
                 data[0] |= 0x40;
 
-            bTmp = Convert.ToByte(cbDacTxDacPreBotCh0.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacPreTopCh0.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(185, 1, data);
@@ -15123,10 +15123,10 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbDacTxDacPrePdbBotCh1.Checked == true)
+            if (cbDacTxDacPrePdbTopCh1.Checked == true)
                 data[0] |= 0x40;
 
-            bTmp = Convert.ToByte(cbDacTxDacPreBotCh1.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacPreTopCh1.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(205, 1, data);
@@ -15145,10 +15145,10 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbDacTxDacPrePdbBotCh2.Checked == true)
+            if (cbDacTxDacPrePdbTopCh2.Checked == true)
                 data[0] |= 0x40;
 
-            bTmp = Convert.ToByte(cbDacTxDacPreBotCh2.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacPreTopCh2.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(225, 1, data);
@@ -15167,10 +15167,10 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbDacTxDacPrePdbBotCh3.Checked == true)
+            if (cbDacTxDacPrePdbTopCh3.Checked == true)
                 data[0] |= 0x40;
 
-            bTmp = Convert.ToByte(cbDacTxDacPreBotCh3.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacPreTopCh3.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(245, 1, data);
@@ -15189,10 +15189,10 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbDacTxDacPrePdbBotChAll.Checked == true)
+            if (cbDacTxDacPrePdbTopChAll.Checked == true)
                 data[0] |= 0x40;
 
-            bTmp = Convert.ToByte(cbDacTxDacPreBotChAll.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacPreTopChAll.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(185, 1, data);
@@ -15214,7 +15214,7 @@ namespace Mald38045Mata38044Config
             return 0;
         }
 
-        private void cbDacTxDacPrePdbBotCh0_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacPrePdbTopCh0_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15223,7 +15223,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPreBotCh0_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacPreTopCh0_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15232,7 +15232,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPrePdbBotCh1_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacPrePdbTopCh1_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15241,7 +15241,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPreBotCh1_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacPreTopCh1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15250,7 +15250,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPrePdbBotCh2_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacPrePdbTopCh2_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15259,7 +15259,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPreBotCh2_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacPreTopCh2_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15268,7 +15268,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPrePdbBotCh3_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacPrePdbTopCh3_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15277,7 +15277,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPreBotCh3_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacPreTopCh3_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15286,7 +15286,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPrePdbBotChAll_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacPrePdbTopChAll_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15295,7 +15295,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPreBotChAll_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacPreTopChAll_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15525,10 +15525,10 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbDacTxDacPrePdbTopCh0.Checked == true)
+            if (cbDacTxDacPrePdbBotCh0.Checked == true)
                 data[0] |= 0x40;
 
-            bTmp = Convert.ToByte(cbDacTxDacPreTopCh0.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacPreBotCh0.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(187, 1, data);
@@ -15547,10 +15547,10 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbDacTxDacPrePdbTopCh1.Checked == true)
+            if (cbDacTxDacPrePdbBotCh1.Checked == true)
                 data[0] |= 0x40;
 
-            bTmp = Convert.ToByte(cbDacTxDacPreTopCh1.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacPreBotCh1.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(207, 1, data);
@@ -15569,10 +15569,10 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbDacTxDacPrePdbTopCh2.Checked == true)
+            if (cbDacTxDacPrePdbBotCh2.Checked == true)
                 data[0] |= 0x40;
 
-            bTmp = Convert.ToByte(cbDacTxDacPreTopCh2.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacPreBotCh2.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(227, 1, data);
@@ -15591,10 +15591,10 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbDacTxDacPrePdbTopCh3.Checked == true)
+            if (cbDacTxDacPrePdbBotCh3.Checked == true)
                 data[0] |= 0x40;
 
-            bTmp = Convert.ToByte(cbDacTxDacPreTopCh3.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacPreBotCh3.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(247, 1, data);
@@ -15613,10 +15613,10 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbDacTxDacPrePdbTopChAll.Checked == true)
+            if (cbDacTxDacPrePdbBotChAll.Checked == true)
                 data[0] |= 0x40;
 
-            bTmp = Convert.ToByte(cbDacTxDacPreTopChAll.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacPreBotChAll.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(187, 1, data);
@@ -15638,7 +15638,7 @@ namespace Mald38045Mata38044Config
             return 0;
         }
 
-        private void cbDacTxDacPrePdbTopCh0_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacPrePdbBotCh0_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15647,7 +15647,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPreTopCh0_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacPreBotCh0_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15656,7 +15656,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPrePdbTopCh1_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacPrePdbBotCh1_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15665,7 +15665,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPreTopCh1_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacPreBotCh1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15674,7 +15674,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPrePdbTopCh2_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacPrePdbBotCh2_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15683,7 +15683,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPreTopCh2_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacPreBotCh2_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15692,7 +15692,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPrePdbTopCh3_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacPrePdbBotCh3_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15701,7 +15701,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPreTopCh3_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacPreBotCh3_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15710,7 +15710,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPrePdbTopChAll_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacPrePdbBotChAll_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15719,7 +15719,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPreTopChAll_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacPreBotChAll_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15737,13 +15737,13 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxPostPolinvBotCh0.Checked == true)
+            if (cbTxPostPolinvTopCh0.Checked == true)
                 data[0] |= 0x80;
 
-            if (cbDacTxDacPostPdbBotCh0.Checked == true)
+            if (cbDacTxDacPostPdbTopCh0.Checked == true)
                 data[0] |= 0x40;
 
-            bTmp = Convert.ToByte(cbDacTxDacPostBotCh0.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacPostTopCh0.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(188, 1, data);
@@ -15762,13 +15762,13 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxPostPolinvBotCh1.Checked == true)
+            if (cbTxPostPolinvTopCh1.Checked == true)
                 data[0] |= 0x80;
 
-            if (cbDacTxDacPostPdbBotCh1.Checked == true)
+            if (cbDacTxDacPostPdbTopCh1.Checked == true)
                 data[0] |= 0x40;
 
-            bTmp = Convert.ToByte(cbDacTxDacPostBotCh1.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacPostTopCh1.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(208, 1, data);
@@ -15787,13 +15787,13 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxPostPolinvBotCh2.Checked == true)
+            if (cbTxPostPolinvTopCh2.Checked == true)
                 data[0] |= 0x80;
 
-            if (cbDacTxDacPostPdbBotCh2.Checked == true)
+            if (cbDacTxDacPostPdbTopCh2.Checked == true)
                 data[0] |= 0x40;
 
-            bTmp = Convert.ToByte(cbDacTxDacPostBotCh2.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacPostTopCh2.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(228, 1, data);
@@ -15812,13 +15812,13 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxPostPolinvBotCh3.Checked == true)
+            if (cbTxPostPolinvTopCh3.Checked == true)
                 data[0] |= 0x80;
 
-            if (cbDacTxDacPostPdbBotCh3.Checked == true)
+            if (cbDacTxDacPostPdbTopCh3.Checked == true)
                 data[0] |= 0x40;
 
-            bTmp = Convert.ToByte(cbDacTxDacPostBotCh3.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacPostTopCh3.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(248, 1, data);
@@ -15837,13 +15837,13 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxPostPolinvBotChAll.Checked == true)
+            if (cbTxPostPolinvTopChAll.Checked == true)
                 data[0] |= 0x80;
 
-            if (cbDacTxDacPostPdbBotChAll.Checked == true)
+            if (cbDacTxDacPostPdbTopChAll.Checked == true)
                 data[0] |= 0x40;
 
-            bTmp = Convert.ToByte(cbDacTxDacPostBotChAll.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacPostTopChAll.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(188, 1, data);
@@ -15865,7 +15865,7 @@ namespace Mald38045Mata38044Config
             return 0;
         }
 
-        private void cbTxPostPolinvBotCh0_CheckedChanged(object sender, EventArgs e)
+        private void cbTxPostPolinvTopCh0_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15874,7 +15874,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPostPdbBotCh0_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacPostPdbTopCh0_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15883,7 +15883,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPostBotCh0_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacPostTopCh0_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15892,7 +15892,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbTxPostPolinvBotCh1_CheckedChanged(object sender, EventArgs e)
+        private void cbTxPostPolinvTopCh1_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15901,7 +15901,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPostPdbBotCh1_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacPostPdbTopCh1_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15910,7 +15910,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPostBotCh1_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacPostTopCh1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15919,7 +15919,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbTxPostPolinvBotCh2_CheckedChanged(object sender, EventArgs e)
+        private void cbTxPostPolinvTopCh2_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15928,7 +15928,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPostPdbBotCh2_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacPostPdbTopCh2_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15937,7 +15937,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPostBotCh2_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacPostTopCh2_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15946,7 +15946,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbTxPostPolinvBotCh3_CheckedChanged(object sender, EventArgs e)
+        private void cbTxPostPolinvTopCh3_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15955,7 +15955,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPostPdbBotCh3_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacPostPdbTopCh3_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15964,7 +15964,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPostBotCh3_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacPostTopCh3_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15973,7 +15973,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbTxPostPolinvBotChAll_CheckedChanged(object sender, EventArgs e)
+        private void cbTxPostPolinvTopChAll_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15982,7 +15982,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPostPdbBotChAll_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacPostPdbTopChAll_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -15991,7 +15991,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPostBotChAll_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacPostTopChAll_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -16009,13 +16009,13 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxPostPolinvBotCh0.Checked == true)
+            if (cbTxPostPolinvMidCh0.Checked == true)
                 data[0] |= 0x80;
 
-            if (cbDacTxDacPostPdbBotCh0.Checked == true)
+            if (cbDacTxDacPostPdbMidCh0.Checked == true)
                 data[0] |= 0x40;
 
-            bTmp = Convert.ToByte(cbDacTxDacPostBotCh0.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacPostMidCh0.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(189, 1, data);
@@ -16034,13 +16034,13 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxPostPolinvBotCh1.Checked == true)
+            if (cbTxPostPolinvMidCh1.Checked == true)
                 data[0] |= 0x80;
 
-            if (cbDacTxDacPostPdbBotCh1.Checked == true)
+            if (cbDacTxDacPostPdbMidCh1.Checked == true)
                 data[0] |= 0x40;
 
-            bTmp = Convert.ToByte(cbDacTxDacPostBotCh1.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacPostMidCh1.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(209, 1, data);
@@ -16059,13 +16059,13 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxPostPolinvBotCh2.Checked == true)
+            if (cbTxPostPolinvMidCh2.Checked == true)
                 data[0] |= 0x80;
 
-            if (cbDacTxDacPostPdbBotCh2.Checked == true)
+            if (cbDacTxDacPostPdbMidCh2.Checked == true)
                 data[0] |= 0x40;
 
-            bTmp = Convert.ToByte(cbDacTxDacPostBotCh2.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacPostMidCh2.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(229, 1, data);
@@ -16084,13 +16084,13 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxPostPolinvBotCh3.Checked == true)
+            if (cbTxPostPolinvMidCh3.Checked == true)
                 data[0] |= 0x80;
 
-            if (cbDacTxDacPostPdbBotCh3.Checked == true)
+            if (cbDacTxDacPostPdbMidCh3.Checked == true)
                 data[0] |= 0x40;
 
-            bTmp = Convert.ToByte(cbDacTxDacPostBotCh3.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacPostMidCh3.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(249, 1, data);
@@ -16109,13 +16109,13 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxPostPolinvBotChAll.Checked == true)
+            if (cbTxPostPolinvMidChAll.Checked == true)
                 data[0] |= 0x80;
 
-            if (cbDacTxDacPostPdbBotChAll.Checked == true)
+            if (cbDacTxDacPostPdbMidChAll.Checked == true)
                 data[0] |= 0x40;
 
-            bTmp = Convert.ToByte(cbDacTxDacPostBotChAll.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacPostMidChAll.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(189, 1, data);
@@ -16409,7 +16409,7 @@ namespace Mald38045Mata38044Config
             return 0;
         }
 
-        private void cbTxPostPolinvTopCh0_CheckedChanged(object sender, EventArgs e)
+        private void cbTxPostPolinvBotCh0_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -16418,7 +16418,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPostPdbTopCh0_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacPostPdbBotCh0_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -16427,7 +16427,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPostTopCh0_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacPostBotCh0_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -16436,7 +16436,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbTxPostPolinvTopCh1_CheckedChanged(object sender, EventArgs e)
+        private void cbTxPostPolinvBotCh1_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -16445,7 +16445,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPostPdbTopCh1_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacPostPdbBotCh1_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -16454,7 +16454,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPostTopCh1_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacPostBotCh1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -16463,7 +16463,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbTxPostPolinvTopCh2_CheckedChanged(object sender, EventArgs e)
+        private void cbTxPostPolinvBotCh2_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -16472,7 +16472,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPostPdbTopCh2_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacPostPdbBotCh2_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -16481,7 +16481,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPostTopCh2_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacPostBotCh2_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -16490,7 +16490,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbTxPostPolinvTopCh3_CheckedChanged(object sender, EventArgs e)
+        private void cbTxPostPolinvBotCh3_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -16499,7 +16499,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPostPdbTopCh3_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacPostPdbBotCh3_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -16508,7 +16508,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPostTopCh3_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacPostBotCh3_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -16517,7 +16517,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbTxPostPolinvTopChAll_CheckedChanged(object sender, EventArgs e)
+        private void cbTxPostPolinvBotChAll_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -16526,7 +16526,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPostPdbTopChAll_CheckedChanged(object sender, EventArgs e)
+        private void cbDacTxDacPostPdbBotChAll_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -16535,7 +16535,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacPostTopChAll_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacPostBotChAll_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -16553,10 +16553,10 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxPdbDatdelBotCh0.Checked == true)
+            if (cbTxPdbDatdelTopCh0.Checked == true)
                 data[0] |= 0x10;
 
-            bTmp = Convert.ToByte(cbDacTxDacDatdelBotCh0.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacDatdelTopCh0.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(191, 1, data);
@@ -16575,10 +16575,10 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxPdbDatdelBotCh1.Checked == true)
+            if (cbTxPdbDatdelTopCh1.Checked == true)
                 data[0] |= 0x10;
 
-            bTmp = Convert.ToByte(cbDacTxDacDatdelBotCh1.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacDatdelTopCh1.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(211, 1, data);
@@ -16597,10 +16597,10 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxPdbDatdelBotCh2.Checked == true)
+            if (cbTxPdbDatdelTopCh2.Checked == true)
                 data[0] |= 0x10;
 
-            bTmp = Convert.ToByte(cbDacTxDacDatdelBotCh2.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacDatdelTopCh2.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(231, 1, data);
@@ -16619,10 +16619,10 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxPdbDatdelBotCh3.Checked == true)
+            if (cbTxPdbDatdelTopCh3.Checked == true)
                 data[0] |= 0x10;
 
-            bTmp = Convert.ToByte(cbDacTxDacDatdelBotCh3.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacDatdelTopCh3.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(251, 1, data);
@@ -16641,10 +16641,10 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxPdbDatdelBotChAll.Checked == true)
+            if (cbTxPdbDatdelTopChAll.Checked == true)
                 data[0] |= 0x10;
 
-            bTmp = Convert.ToByte(cbDacTxDacDatdelBotChAll.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacDatdelTopChAll.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(191, 1, data);
@@ -16666,7 +16666,7 @@ namespace Mald38045Mata38044Config
             return 0;
         }
 
-        private void cbTxPdbDatdelBotCh0_CheckedChanged(object sender, EventArgs e)
+        private void cbTxPdbDatdelTopCh0_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -16675,7 +16675,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacDatdelBotCh0_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacDatdelTopCh0_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -16684,7 +16684,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbTxPdbDatdelBotCh1_CheckedChanged(object sender, EventArgs e)
+        private void cbTxPdbDatdelTopCh1_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -16693,7 +16693,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacDatdelBotCh1_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacDatdelTopCh1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -16702,7 +16702,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbTxPdbDatdelBotCh2_CheckedChanged(object sender, EventArgs e)
+        private void cbTxPdbDatdelTopCh2_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -16711,7 +16711,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacDatdelBotCh2_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacDatdelTopCh2_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -16720,7 +16720,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbTxPdbDatdelBotCh3_CheckedChanged(object sender, EventArgs e)
+        private void cbTxPdbDatdelTopCh3_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -16729,7 +16729,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacDatdelBotCh3_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacDatdelTopCh3_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -16738,7 +16738,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbTxPdbDatdelBotChAll_CheckedChanged(object sender, EventArgs e)
+        private void cbTxPdbDatdelTopChAll_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -16747,7 +16747,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacDatdelBotChAll_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacDatdelTopChAll_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -16977,10 +16977,10 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxPdbDatdelTopCh0.Checked == true)
+            if (cbTxPdbDatdelBotCh0.Checked == true)
                 data[0] |= 0x10;
 
-            bTmp = Convert.ToByte(cbDacTxDacDatdelTopCh0.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacDatdelBotCh0.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(193, 1, data);
@@ -16999,10 +16999,10 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxPdbDatdelTopCh1.Checked == true)
+            if (cbTxPdbDatdelBotCh1.Checked == true)
                 data[0] |= 0x10;
 
-            bTmp = Convert.ToByte(cbDacTxDacDatdelTopCh1.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacDatdelBotCh1.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(213, 1, data);
@@ -17021,10 +17021,10 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxPdbDatdelTopCh2.Checked == true)
+            if (cbTxPdbDatdelBotCh2.Checked == true)
                 data[0] |= 0x10;
 
-            bTmp = Convert.ToByte(cbDacTxDacDatdelTopCh2.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacDatdelBotCh2.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(233, 1, data);
@@ -17043,10 +17043,10 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxPdbDatdelTopCh3.Checked == true)
+            if (cbTxPdbDatdelBotCh3.Checked == true)
                 data[0] |= 0x10;
 
-            bTmp = Convert.ToByte(cbDacTxDacDatdelTopCh3.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacDatdelBotCh3.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(253, 1, data);
@@ -17065,10 +17065,10 @@ namespace Mald38045Mata38044Config
             bTmp = 0;
             data[0] = 0x00; //Default
 
-            if (cbTxPdbDatdelTopChAll.Checked == true)
+            if (cbTxPdbDatdelBotChAll.Checked == true)
                 data[0] |= 0x10;
 
-            bTmp = Convert.ToByte(cbDacTxDacDatdelTopChAll.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacDatdelBotChAll.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(193, 1, data);
@@ -17090,7 +17090,7 @@ namespace Mald38045Mata38044Config
             return 0;
         }
 
-        private void cbTxPdbDatdelTopCh0_CheckedChanged(object sender, EventArgs e)
+        private void cbTxPdbDatdelBotCh0_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -17099,7 +17099,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacDatdelTopCh0_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacDatdelBotCh0_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -17108,7 +17108,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbTxPdbDatdelTopCh1_CheckedChanged(object sender, EventArgs e)
+        private void cbTxPdbDatdelBotCh1_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -17117,7 +17117,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacDatdelTopCh1_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacDatdelBotCh1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -17126,7 +17126,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbTxPdbDatdelTopCh2_CheckedChanged(object sender, EventArgs e)
+        private void cbTxPdbDatdelBotCh2_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -17135,7 +17135,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacDatdelTopCh2_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacDatdelBotCh2_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -17144,7 +17144,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbTxPdbDatdelTopCh3_CheckedChanged(object sender, EventArgs e)
+        private void cbTxPdbDatdelBotCh3_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -17153,7 +17153,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacDatdelTopCh3_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacDatdelBotCh3_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -17162,7 +17162,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbTxPdbDatdelTopChAll_CheckedChanged(object sender, EventArgs e)
+        private void cbTxPdbDatdelBotChAll_CheckedChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
@@ -17171,7 +17171,7 @@ namespace Mald38045Mata38044Config
                 return;
         }
 
-        private void cbDacTxDacDatdelTopChAll_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbDacTxDacDatdelBotChAll_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (reading == true)
                 return;
