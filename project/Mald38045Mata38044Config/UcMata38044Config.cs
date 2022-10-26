@@ -4939,100 +4939,100 @@ namespace Mald38045Mata38044Config
 
         private void _ParsePage41Addr03(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x08) == 0)
                 cbDacTxDacMain3bPdbTopCh1.Checked = false;
             else
                 cbDacTxDacMain3bPdbTopCh1.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacMain3bTopCh1.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x07))
                     cbDacTxDacMain3bTopCh1.SelectedItem = item;
             }
         }
 
         private void _ParsePage41Addr04(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x08) == 0)
                 cbDacTxDacMain3bPdbMidCh1.Checked = false;
             else
                 cbDacTxDacMain3bPdbMidCh1.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacMain3bMidCh1.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x07))
                     cbDacTxDacMain3bMidCh1.SelectedItem = item;
             }
         }
 
         private void _ParsePage41Addr05(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x08) == 0)
                 cbDacTxDacMain3bPdbBotCh1.Checked = false;
             else
                 cbDacTxDacMain3bPdbBotCh1.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacMain3bBotCh1.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x07))
                     cbDacTxDacMain3bBotCh1.SelectedItem = item;
             }
         }
 
         private void _ParsePage41Addr06(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x20) == 0)
                 cbTxDcdDacPolflipTopCh1.Checked = false;
             else
                 cbTxDcdDacPolflipTopCh1.Checked = true;
 
-            if ((data & 0x40) == 0)
+            if ((data & 0x10) == 0)
                 cbDacTxDacDcdPdbTopCh1.Checked = false;
             else
                 cbDacTxDacDcdPdbTopCh1.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacDcdTopCh1.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x0F))
                     cbDacTxDacDcdTopCh1.SelectedItem = item;
             }
         }
 
         private void _ParsePage41Addr07(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x20) == 0)
                 cbTxDcdDacPolflipMidCh1.Checked = false;
             else
                 cbTxDcdDacPolflipMidCh1.Checked = true;
 
-            if ((data & 0x40) == 0)
+            if ((data & 0x10) == 0)
                 cbDacTxDacDcdPdbMidCh1.Checked = false;
             else
                 cbDacTxDacDcdPdbMidCh1.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacDcdMidCh1.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x0F))
                     cbDacTxDacDcdMidCh1.SelectedItem = item;
             }
         }
 
         private void _ParsePage41Addr08(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x20) == 0)
                 cbTxDcdDacPolflipBotCh1.Checked = false;
             else
                 cbTxDcdDacPolflipBotCh1.Checked = true;
 
-            if ((data & 0x40) == 0)
+            if ((data & 0x10) == 0)
                 cbDacTxDacDcdPdbBotCh1.Checked = false;
             else
                 cbDacTxDacDcdPdbBotCh1.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacDcdBotCh1.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x0F))
                     cbDacTxDacDcdBotCh1.SelectedItem = item;
             }
         }
 
         private void _ParsePage41Addr09(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x40) == 0)
                 cbDacTxDacPrePdbTopCh1.Checked = false;
             else
                 cbDacTxDacPrePdbTopCh1.Checked = true;
@@ -5045,7 +5045,7 @@ namespace Mald38045Mata38044Config
 
         private void _ParsePage41Addr0A(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x40) == 0)
                 cbDacTxDacPrePdbMidCh1.Checked = false;
             else
                 cbDacTxDacPrePdbMidCh1.Checked = true;
@@ -5058,7 +5058,7 @@ namespace Mald38045Mata38044Config
 
         private void _ParsePage41Addr0B(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x40) == 0)
                 cbDacTxDacPrePdbBotCh1.Checked = false;
             else
                 cbDacTxDacPrePdbBotCh1.Checked = true;
@@ -5125,7 +5125,7 @@ namespace Mald38045Mata38044Config
 
         private void _ParsePage41Addr1B(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x10) == 0)
                 cbTxPdbDatdelTopCh1.Checked = false;
             else
                 cbTxPdbDatdelTopCh1.Checked = true;
@@ -5138,7 +5138,7 @@ namespace Mald38045Mata38044Config
 
         private void _ParsePage41Addr1C(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x10) == 0)
                 cbTxPdbDatdelMidCh1.Checked = false;
             else
                 cbTxPdbDatdelMidCh1.Checked = true;
@@ -5151,7 +5151,7 @@ namespace Mald38045Mata38044Config
 
         private void _ParsePage41Addr1D(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x10) == 0)
                 cbTxPdbDatdelBotCh1.Checked = false;
             else
                 cbTxPdbDatdelBotCh1.Checked = true;
@@ -5254,100 +5254,100 @@ namespace Mald38045Mata38044Config
 
         private void _ParsePage42Addr03(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x08) == 0)
                 cbDacTxDacMain3bPdbTopCh2.Checked = false;
             else
                 cbDacTxDacMain3bPdbTopCh2.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacMain3bTopCh2.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x07))
                     cbDacTxDacMain3bTopCh2.SelectedItem = item;
             }
         }
 
         private void _ParsePage42Addr04(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x08) == 0)
                 cbDacTxDacMain3bPdbMidCh2.Checked = false;
             else
                 cbDacTxDacMain3bPdbMidCh2.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacMain3bMidCh2.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x07))
                     cbDacTxDacMain3bMidCh2.SelectedItem = item;
             }
         }
 
         private void _ParsePage42Addr05(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x08) == 0)
                 cbDacTxDacMain3bPdbBotCh2.Checked = false;
             else
                 cbDacTxDacMain3bPdbBotCh2.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacMain3bBotCh2.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x07))
                     cbDacTxDacMain3bBotCh2.SelectedItem = item;
             }
         }
 
         private void _ParsePage42Addr06(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x20) == 0)
                 cbTxDcdDacPolflipTopCh2.Checked = false;
             else
                 cbTxDcdDacPolflipTopCh2.Checked = true;
 
-            if ((data & 0x40) == 0)
+            if ((data & 0x10) == 0)
                 cbDacTxDacDcdPdbTopCh2.Checked = false;
             else
                 cbDacTxDacDcdPdbTopCh2.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacDcdTopCh2.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x0F))
                     cbDacTxDacDcdTopCh2.SelectedItem = item;
             }
         }
 
         private void _ParsePage42Addr07(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x20) == 0)
                 cbTxDcdDacPolflipMidCh2.Checked = false;
             else
                 cbTxDcdDacPolflipMidCh2.Checked = true;
 
-            if ((data & 0x40) == 0)
+            if ((data & 0x10) == 0)
                 cbDacTxDacDcdPdbMidCh2.Checked = false;
             else
                 cbDacTxDacDcdPdbMidCh2.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacDcdMidCh2.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x0F))
                     cbDacTxDacDcdMidCh2.SelectedItem = item;
             }
         }
 
         private void _ParsePage42Addr08(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x20) == 0)
                 cbTxDcdDacPolflipBotCh2.Checked = false;
             else
                 cbTxDcdDacPolflipBotCh2.Checked = true;
 
-            if ((data & 0x40) == 0)
+            if ((data & 0x10) == 0)
                 cbDacTxDacDcdPdbBotCh2.Checked = false;
             else
                 cbDacTxDacDcdPdbBotCh2.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacDcdBotCh2.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x0F))
                     cbDacTxDacDcdBotCh2.SelectedItem = item;
             }
         }
 
         private void _ParsePage42Addr09(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x40) == 0)
                 cbDacTxDacPrePdbTopCh2.Checked = false;
             else
                 cbDacTxDacPrePdbTopCh2.Checked = true;
@@ -5360,7 +5360,7 @@ namespace Mald38045Mata38044Config
 
         private void _ParsePage42Addr0A(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x40) == 0)
                 cbDacTxDacPrePdbMidCh2.Checked = false;
             else
                 cbDacTxDacPrePdbMidCh2.Checked = true;
@@ -5373,7 +5373,7 @@ namespace Mald38045Mata38044Config
 
         private void _ParsePage42Addr0B(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x40) == 0)
                 cbDacTxDacPrePdbBotCh2.Checked = false;
             else
                 cbDacTxDacPrePdbBotCh2.Checked = true;
@@ -5440,7 +5440,7 @@ namespace Mald38045Mata38044Config
 
         private void _ParsePage42Addr1B(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x10) == 0)
                 cbTxPdbDatdelTopCh2.Checked = false;
             else
                 cbTxPdbDatdelTopCh2.Checked = true;
@@ -5453,7 +5453,7 @@ namespace Mald38045Mata38044Config
 
         private void _ParsePage42Addr1C(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x10) == 0)
                 cbTxPdbDatdelMidCh2.Checked = false;
             else
                 cbTxPdbDatdelMidCh2.Checked = true;
@@ -5466,7 +5466,7 @@ namespace Mald38045Mata38044Config
 
         private void _ParsePage42Addr1D(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x10) == 0)
                 cbTxPdbDatdelBotCh2.Checked = false;
             else
                 cbTxPdbDatdelBotCh2.Checked = true;
@@ -5569,13 +5569,13 @@ namespace Mald38045Mata38044Config
 
         private void _ParsePage43Addr03(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x08) == 0)
                 cbDacTxDacMain3bPdbTopCh3.Checked = false;
             else
                 cbDacTxDacMain3bPdbTopCh3.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacMain3bTopCh3.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x07))
                     cbDacTxDacMain3bTopCh3.SelectedItem = item;
             }
         }
@@ -5608,61 +5608,61 @@ namespace Mald38045Mata38044Config
 
         private void _ParsePage43Addr06(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x20) == 0)
                 cbTxDcdDacPolflipTopCh3.Checked = false;
             else
                 cbTxDcdDacPolflipTopCh3.Checked = true;
 
-            if ((data & 0x40) == 0)
+            if ((data & 0x10) == 0)
                 cbDacTxDacDcdPdbTopCh3.Checked = false;
             else
                 cbDacTxDacDcdPdbTopCh3.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacDcdTopCh3.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x0F))
                     cbDacTxDacDcdTopCh3.SelectedItem = item;
             }
         }
 
         private void _ParsePage43Addr07(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x20) == 0)
                 cbTxDcdDacPolflipMidCh3.Checked = false;
             else
                 cbTxDcdDacPolflipMidCh3.Checked = true;
 
-            if ((data & 0x40) == 0)
+            if ((data & 0x10) == 0)
                 cbDacTxDacDcdPdbMidCh3.Checked = false;
             else
                 cbDacTxDacDcdPdbMidCh3.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacDcdMidCh3.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x0F))
                     cbDacTxDacDcdMidCh3.SelectedItem = item;
             }
         }
 
         private void _ParsePage43Addr08(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x20) == 0)
                 cbTxDcdDacPolflipBotCh3.Checked = false;
             else
                 cbTxDcdDacPolflipBotCh3.Checked = true;
 
-            if ((data & 0x40) == 0)
+            if ((data & 0x10) == 0)
                 cbDacTxDacDcdPdbBotCh3.Checked = false;
             else
                 cbDacTxDacDcdPdbBotCh3.Checked = true;
 
             foreach (ComboboxItem item in cbDacTxDacDcdBotCh3.Items) {
-                if (item.Value == (data & 0x3F))
+                if (item.Value == (data & 0x0F))
                     cbDacTxDacDcdBotCh3.SelectedItem = item;
             }
         }
 
         private void _ParsePage43Addr09(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x40) == 0)
                 cbDacTxDacPrePdbTopCh3.Checked = false;
             else
                 cbDacTxDacPrePdbTopCh3.Checked = true;
@@ -5675,7 +5675,7 @@ namespace Mald38045Mata38044Config
 
         private void _ParsePage43Addr0A(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x40) == 0)
                 cbDacTxDacPrePdbMidCh3.Checked = false;
             else
                 cbDacTxDacPrePdbMidCh3.Checked = true;
@@ -5688,7 +5688,7 @@ namespace Mald38045Mata38044Config
 
         private void _ParsePage43Addr0B(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x40) == 0)
                 cbDacTxDacPrePdbBotCh3.Checked = false;
             else
                 cbDacTxDacPrePdbBotCh3.Checked = true;
@@ -5755,7 +5755,7 @@ namespace Mald38045Mata38044Config
 
         private void _ParsePage43Addr1B(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x10) == 0)
                 cbTxPdbDatdelTopCh3.Checked = false;
             else
                 cbTxPdbDatdelTopCh3.Checked = true;
@@ -5768,7 +5768,7 @@ namespace Mald38045Mata38044Config
 
         private void _ParsePage43Addr1C(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x10) == 0)
                 cbTxPdbDatdelMidCh3.Checked = false;
             else
                 cbTxPdbDatdelMidCh3.Checked = true;
@@ -5781,7 +5781,7 @@ namespace Mald38045Mata38044Config
 
         private void _ParsePage43Addr1D(byte data)
         {
-            if ((data & 0x80) == 0)
+            if ((data & 0x10) == 0)
                 cbTxPdbDatdelBotCh3.Checked = false;
             else
                 cbTxPdbDatdelBotCh3.Checked = true;
