@@ -179,7 +179,11 @@ namespace Gn1190Corrector
             if (qsfpI2cWriteCB == null)
                 return -1;
 
-            data = new byte[] { 4, 0 };
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x04;
+            else
+                data[0] = 0x80;
+            
             qsfpI2cWriteCB(80, 127, 1, data);
             if (qsfpI2cReadCB(80, 241, 1, data) != 1)
                 return -1;
@@ -253,10 +257,15 @@ namespace Gn1190Corrector
 
         private int _SetQsfpMode(byte mode)
         {
-            byte[] data = new byte[] { 32 };
+            byte[] data = new byte[1];
 
             if (qsfpI2cWriteCB == null)
                 return -1;
+
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x20;
+            else
+                data[0] = 0xAA;
 
             if (bStoreAcConfigToFile.Enabled == false)
                 _I2cWriteToString(80, 127, 1, data, ref sAcConfig);
@@ -302,7 +311,11 @@ namespace Gn1190Corrector
             if (qsfpI2cWriteCB == null)
                 return -1;
 
-            data = new byte[] { 4, 0 };
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x04;
+            else
+                data[0] = 0x80;
+            
             qsfpI2cWriteCB(80, 127, 1, data);
             if (qsfpI2cReadCB(80, 240, 1, data) != 1)
                 return -1;
@@ -353,7 +366,11 @@ namespace Gn1190Corrector
                 return -1;
             }
 
-            data[0] = 4;
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x04;
+            else
+                data[0] = 0x80;
+            
             if (bStoreAcConfigToFile.Enabled == false)
                 _I2cWriteToString(80, 127, 1, data, ref sAcConfig);
             else
@@ -496,7 +513,11 @@ namespace Gn1190Corrector
                 return -1;
             }
 
-            data[0] = 4;
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x04;
+            else
+                data[0] = 0x80;
+            
             if (bStoreAcConfigToFile.Enabled == false)
                 _I2cWriteToString(80, 127, 1, data, ref sAcConfig);
             else
@@ -667,7 +688,11 @@ namespace Gn1190Corrector
             if (qsfpI2cWriteCB == null)
                 return -1;
 
-            data[0] = 32;
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x20;
+            else
+                data[0] = 0xAA;
+            
             qsfpI2cWriteCB(80, 127, 1, data);
             if (qsfpI2cReadCB(80, 128, 2, data) != 2)
                 return -1;
@@ -708,7 +733,12 @@ namespace Gn1190Corrector
             if (tbRxPowerRateMin.Text.Length == 0)
                 tbRxPowerRateMin.Text = (data[0] - 12).ToString();
 
-            data = new byte[] { 4, 0, 0, 0 };
+            data = new byte[4];
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x04;
+            else
+                data[0] = 0x80;
+
             qsfpI2cWriteCB(80, 127, 1, data);
             if (qsfpI2cReadCB(80, 244, 4, data) != 4)
                 return -1;
@@ -729,7 +759,7 @@ namespace Gn1190Corrector
 
         private int _WriteRxPowerRate()
         {
-            byte[] data = new byte[] { 4, 0, 0, 0 }; ;
+            byte[] data = new byte[4];
 
             if ((tbRxPowerRate1.Text.Length == 0) || (tbRxPowerRate2.Text.Length == 0) ||
                 (tbRxPowerRate3.Text.Length == 0) || (tbRxPowerRate4.Text.Length == 0)) {
@@ -745,6 +775,11 @@ namespace Gn1190Corrector
 
             if (qsfpI2cWriteCB == null)
                 return -1;
+
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x04;
+            else
+                data[0] = 0x80;
 
             qsfpI2cWriteCB(80, 127, 1, data);
 
@@ -899,7 +934,11 @@ namespace Gn1190Corrector
             if (qsfpI2cWriteCB == null)
                 return -1;
 
-            data[0] = 5;
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x05;
+            else
+                data[0] = 0x81;
+            
             if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
 
@@ -1036,12 +1075,21 @@ namespace Gn1190Corrector
             if (qsfpI2cReadCB(80, 252, 1, data) != 1)
                 return -1;
 
-            if (data[0] % 2 == 1)
+            if ((data[0] & 0x01) != 0)
                 cbTemperatureCompensation.Checked = true;
             else
                 cbTemperatureCompensation.Checked = false;
 
-            data[0] = 4;
+            if ((data[0] & 0x02) != 0)
+                cbBurnIn.Checked = true;
+            else
+                cbBurnIn.Checked = false;
+
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x04;
+            else
+                data[0] = 0x80;
+            
             if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
 
@@ -1422,7 +1470,11 @@ namespace Gn1190Corrector
             if (qsfpI2cWriteCB == null)
                 return -1;
 
-            data[0] = 5;
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x05;
+            else
+                data[0] = 0x81;
+
             if (bStoreAcConfigToFile.Enabled == false)
                 _I2cWriteToString(80, 127, 1, data, ref sAcConfig);
             else {
@@ -1843,7 +1895,11 @@ namespace Gn1190Corrector
 
             Thread.Sleep(1);
 
-            data[0] = 4;
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x04;
+            else
+                data[0] = 0x80;
+            
             if (bStoreAcConfigToFile.Enabled == false)
                 _I2cWriteToString(80, 127, 1, data, ref sAcConfig);
             else {
@@ -2728,7 +2784,11 @@ namespace Gn1190Corrector
 
             Thread.Sleep(1);
 
-            data[0] = 5;
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x05;
+            else
+                data[0] = 0x81;
+            
             if (bStoreAcConfigToFile.Enabled == false)
                 _I2cWriteToString(80, 127, 1, data, ref sAcConfig);
             else {
@@ -2740,6 +2800,9 @@ namespace Gn1190Corrector
                 data[0] = 0x01;
             else
                 data[0] = 0x00;
+
+            if (cbBurnIn.Checked)
+                data[0] |= 0x02;
 
             if (bStoreAcConfigToFile.Enabled == false) {
                 _I2cWriteToString(80, 252, 1, data, ref sAcConfig);
@@ -2768,7 +2831,11 @@ namespace Gn1190Corrector
             if (qsfpI2cWriteCB == null)
                 return -1;
 
-            data[0] = 5;
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x05;
+            else
+                data[0] = 0x81;
+            
             if (bStoreAcConfigToFile.Enabled == false)
                 _I2cWriteToString(80, 127, 1, data, ref sAcConfig);
             else
@@ -2894,7 +2961,11 @@ namespace Gn1190Corrector
             if (qsfpI2cWriteCB == null)
                 return -1;
 
-            data[0] = 5;
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x05;
+            else
+                data[0] = 0x81;
+            
             if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
 
@@ -2915,6 +2986,86 @@ namespace Gn1190Corrector
         {
             if (cbTemperatureCompensation.Checked == false) {
                 if (_DisableTemperatureCompensation() < 0)
+                    return;
+            }
+        }
+
+        private int _EnableBurnIn()
+        {
+            byte[] data = new byte[1];
+
+            if (_WritePassword() < 0)
+                return -1;
+
+            if (_SetQsfpMode(0x4D) < 0)
+                return -1;
+
+            if (qsfpI2cWriteCB == null)
+                return -1;
+
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x05;
+            else
+                data[0] = 0x81;
+
+            if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
+                return -1;
+
+            if (qsfpI2cReadCB == null)
+                return -1;
+
+            if (qsfpI2cReadCB(80, 252, 1, data) != 1)
+                return -1;
+
+            data[0] |= 0x02;
+            if (qsfpI2cWriteCB(80, 252, 1, data) < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _DisableBurnIn()
+        {
+            byte[] data = new byte[1];
+
+            if (_WritePassword() < 0)
+                return -1;
+
+            if (_SetQsfpMode(0x4D) < 0)
+                return -1;
+
+            if (qsfpI2cWriteCB == null)
+                return -1;
+
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x05;
+            else
+                data[0] = 0x81;
+
+            if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
+                return -1;
+
+            if (qsfpI2cReadCB == null)
+                return -1;
+
+            if (qsfpI2cReadCB(80, 252, 1, data) != 1)
+                return -1;
+
+            data[0] &= 0xFD;
+            if (qsfpI2cWriteCB(80, 252, 1, data) < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private void cbBurnIn_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbBurnIn.Checked == true) {
+                if (_EnableBurnIn() < 0)
+                    return;
+            }
+            else {
+                if (_DisableBurnIn() < 0)
                     return;
             }
         }
@@ -3032,7 +3183,11 @@ namespace Gn1190Corrector
             if (qsfpI2cWriteCB == null)
                 goto exit;
 
-            data[0] = 32;
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x20;
+            else
+                data[0] = 0xAA;
+            
             if (bStoreAcConfigToFile.Enabled == false)
                 _I2cWriteToString(80, 127, 1, data, ref sAcConfig);
             else {
@@ -3070,7 +3225,11 @@ namespace Gn1190Corrector
 
             bLutTemperatureUpdate.Enabled = false;
 
-            data[0] = 32;
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x20;
+            else
+                data[0] = 0xAA;
+            
             if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
                 goto exit;
 
@@ -3156,7 +3315,11 @@ namespace Gn1190Corrector
             if (qsfpI2cWriteCB == null)
                 return -1;
 
-            data[0] = 32;
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x20;
+            else
+                data[0] = 0xAA;
+            
             qsfpI2cWriteCB(80, 127, 1, data);
             if (qsfpI2cReadCB(80, 136, 2, data) != 2)
                 return -1;
@@ -3197,7 +3360,12 @@ namespace Gn1190Corrector
             if (tbTxPowerRateMin.Text.Length == 0)
                 tbTxPowerRateMin.Text = (data[0] - 12).ToString();
 
-            data = new byte[] { 4, 0, 0, 0 };
+            data = new byte[4];
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x04;
+            else
+                data[0] = 0x80;
+            
             qsfpI2cWriteCB(80, 127, 1, data);
             if (qsfpI2cReadCB(80, 248, 4, data) != 4)
                 return -1;
@@ -3218,7 +3386,7 @@ namespace Gn1190Corrector
 
         private int _WriteTxPowerRate()
         {
-            byte[] data = new byte[] { 4, 0, 0, 0 }; ;
+            byte[] data = new byte[4];
 
             if ((tbTxPowerRate1.Text.Length == 0) || (tbTxPowerRate2.Text.Length == 0) ||
                 (tbTxPowerRate3.Text.Length == 0) || (tbTxPowerRate4.Text.Length == 0))
@@ -3235,6 +3403,11 @@ namespace Gn1190Corrector
 
             if (qsfpI2cWriteCB == null)
                 return -1;
+
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x04;
+            else
+                data[0] = 0x80;
 
             qsfpI2cWriteCB(80, 127, 1, data);
 

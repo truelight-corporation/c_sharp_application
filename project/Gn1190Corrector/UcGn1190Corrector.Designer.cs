@@ -106,7 +106,6 @@
             this.lInputPower = new System.Windows.Forms.Label();
             this.lRxCh1 = new System.Windows.Forms.Label();
             this.gbAcMcEquation = new System.Windows.Forms.GroupBox();
-            this.bStoreAcConfigToFile = new System.Windows.Forms.Button();
             this.bLutTemperatureUpdate = new System.Windows.Forms.Button();
             this.tbLutTemperature = new System.Windows.Forms.TextBox();
             this.lLutTemperature = new System.Windows.Forms.Label();
@@ -227,6 +226,7 @@
             this.lVhfCompProp = new System.Windows.Forms.Label();
             this.lBaBmMaxCurrent = new System.Windows.Forms.Label();
             this.tbAverageCurrentMin = new System.Windows.Forms.TextBox();
+            this.bStoreAcConfigToFile = new System.Windows.Forms.Button();
             this.bStoreIntoFlash = new System.Windows.Forms.Button();
             this.gbVcc = new System.Windows.Forms.GroupBox();
             this.bVoltageReset = new System.Windows.Forms.Button();
@@ -288,6 +288,9 @@
             this.tbTxOutputPower1 = new System.Windows.Forms.TextBox();
             this.lOutputPower = new System.Windows.Forms.Label();
             this.lTxCh1 = new System.Windows.Forms.Label();
+            this.cbCustomerPage = new System.Windows.Forms.ComboBox();
+            this.lCustomerPage = new System.Windows.Forms.Label();
+            this.cbBurnIn = new System.Windows.Forms.CheckBox();
             this.gbTemperature.SuspendLayout();
             this.gbAutoCorrect.SuspendLayout();
             this.gbRxPowerRate.SuspendLayout();
@@ -1077,6 +1080,7 @@
             // 
             // gbAcMcEquation
             // 
+            this.gbAcMcEquation.Controls.Add(this.cbBurnIn);
             this.gbAcMcEquation.Controls.Add(this.bLutTemperatureUpdate);
             this.gbAcMcEquation.Controls.Add(this.tbLutTemperature);
             this.gbAcMcEquation.Controls.Add(this.lLutTemperature);
@@ -1203,16 +1207,6 @@
             this.gbAcMcEquation.TabIndex = 22;
             this.gbAcMcEquation.TabStop = false;
             this.gbAcMcEquation.Text = "Average and Modulation Current Equation, Drive Tune and Modulation Slope Table";
-            // 
-            // bStoreAcConfigToFile
-            // 
-            this.bStoreAcConfigToFile.Location = new System.Drawing.Point(187, 32);
-            this.bStoreAcConfigToFile.Name = "bStoreAcConfigToFile";
-            this.bStoreAcConfigToFile.Size = new System.Drawing.Size(100, 23);
-            this.bStoreAcConfigToFile.TabIndex = 191;
-            this.bStoreAcConfigToFile.Text = "儲存DC站格式";
-            this.bStoreAcConfigToFile.UseVisualStyleBackColor = true;
-            this.bStoreAcConfigToFile.Click += new System.EventHandler(this.bStoreAcConfigToFile_Click);
             // 
             // bLutTemperatureUpdate
             // 
@@ -1982,7 +1976,7 @@
             // 
             // bAcMcWrite
             // 
-            this.bAcMcWrite.Location = new System.Drawing.Point(378, 85);
+            this.bAcMcWrite.Location = new System.Drawing.Point(378, 116);
             this.bAcMcWrite.Name = "bAcMcWrite";
             this.bAcMcWrite.Size = new System.Drawing.Size(60, 23);
             this.bAcMcWrite.TabIndex = 36;
@@ -1992,7 +1986,7 @@
             // 
             // bAcMcRead
             // 
-            this.bAcMcRead.Location = new System.Drawing.Point(378, 56);
+            this.bAcMcRead.Location = new System.Drawing.Point(378, 87);
             this.bAcMcRead.Name = "bAcMcRead";
             this.bAcMcRead.Size = new System.Drawing.Size(60, 23);
             this.bAcMcRead.TabIndex = 36;
@@ -2104,7 +2098,7 @@
             // 
             // bLutClear
             // 
-            this.bLutClear.Location = new System.Drawing.Point(378, 114);
+            this.bLutClear.Location = new System.Drawing.Point(378, 145);
             this.bLutClear.Name = "bLutClear";
             this.bLutClear.Size = new System.Drawing.Size(60, 23);
             this.bLutClear.TabIndex = 14;
@@ -2247,9 +2241,19 @@
             this.tbAverageCurrentMin.Size = new System.Drawing.Size(50, 22);
             this.tbAverageCurrentMin.TabIndex = 4;
             // 
+            // bStoreAcConfigToFile
+            // 
+            this.bStoreAcConfigToFile.Location = new System.Drawing.Point(187, 32);
+            this.bStoreAcConfigToFile.Name = "bStoreAcConfigToFile";
+            this.bStoreAcConfigToFile.Size = new System.Drawing.Size(100, 23);
+            this.bStoreAcConfigToFile.TabIndex = 191;
+            this.bStoreAcConfigToFile.Text = "儲存DC站格式";
+            this.bStoreAcConfigToFile.UseVisualStyleBackColor = true;
+            this.bStoreAcConfigToFile.Click += new System.EventHandler(this.bStoreAcConfigToFile_Click);
+            // 
             // bStoreIntoFlash
             // 
-            this.bStoreIntoFlash.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.bStoreIntoFlash.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.bStoreIntoFlash.Location = new System.Drawing.Point(363, 104);
             this.bStoreIntoFlash.Name = "bStoreIntoFlash";
             this.bStoreIntoFlash.Size = new System.Drawing.Size(247, 67);
@@ -2846,11 +2850,45 @@
             this.lTxCh1.TabIndex = 0;
             this.lTxCh1.Text = "Tx1";
             // 
+            // cbCustomerPage
+            // 
+            this.cbCustomerPage.FormattingEnabled = true;
+            this.cbCustomerPage.Items.AddRange(new object[] {
+            "Old: 4, 5, 32",
+            "New: 128, 129, 252"});
+            this.cbCustomerPage.Location = new System.Drawing.Point(87, 62);
+            this.cbCustomerPage.Name = "cbCustomerPage";
+            this.cbCustomerPage.Size = new System.Drawing.Size(200, 20);
+            this.cbCustomerPage.TabIndex = 192;
+            this.cbCustomerPage.Text = "Old: 4, 5, 32";
+            // 
+            // lCustomerPage
+            // 
+            this.lCustomerPage.AutoSize = true;
+            this.lCustomerPage.Location = new System.Drawing.Point(3, 65);
+            this.lCustomerPage.Name = "lCustomerPage";
+            this.lCustomerPage.Size = new System.Drawing.Size(78, 12);
+            this.lCustomerPage.TabIndex = 193;
+            this.lCustomerPage.Text = "Customer Page:";
+            // 
+            // cbBurnIn
+            // 
+            this.cbBurnIn.AutoSize = true;
+            this.cbBurnIn.Location = new System.Drawing.Point(378, 62);
+            this.cbBurnIn.Name = "cbBurnIn";
+            this.cbBurnIn.Size = new System.Drawing.Size(58, 16);
+            this.cbBurnIn.TabIndex = 191;
+            this.cbBurnIn.Text = "BurnIn";
+            this.cbBurnIn.UseVisualStyleBackColor = true;
+            this.cbBurnIn.CheckedChanged += new System.EventHandler(this.cbBurnIn_CheckedChanged);
+            // 
             // UcGn1190Corrector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.lCustomerPage);
+            this.Controls.Add(this.cbCustomerPage);
             this.Controls.Add(this.bStoreAcConfigToFile);
             this.Controls.Add(this.gbTxPowerRate);
             this.Controls.Add(this.gbVcc);
@@ -3150,5 +3188,8 @@
         private System.Windows.Forms.Label lOutputPower;
         private System.Windows.Forms.Label lTxCh1;
         private System.Windows.Forms.Button bStoreAcConfigToFile;
+        private System.Windows.Forms.ComboBox cbCustomerPage;
+        private System.Windows.Forms.Label lCustomerPage;
+        private System.Windows.Forms.CheckBox cbBurnIn;
     }
 }
