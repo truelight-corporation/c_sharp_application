@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QsfpDdCommonManagementInterfaceSpecification", "QsfpDdCommonManagementInterfaceSpecification.csproj", "{CC21CE36-02DC-4BA2-A3E9-61E13D4F9351}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC21CE36-02DC-4BA2-A3E9-61E13D4F9351}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC21CE36-02DC-4BA2-A3E9-61E13D4F9351}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC21CE36-02DC-4BA2-A3E9-61E13D4F9351}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC21CE36-02DC-4BA2-A3E9-61E13D4F9351}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4B862004-6A63-43ED-BF8C-F3FC55A976A8}
+	EndGlobalSection
+EndGlobal
