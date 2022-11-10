@@ -37,19 +37,21 @@
             this.cbConnected = new System.Windows.Forms.CheckBox();
             this.tcCmisReg = new System.Windows.Forms.TabControl();
             this.tpDDM = new System.Windows.Forms.TabPage();
+            this.ucDigitalDiagnosticsMonitoring = new QsfpDdCommonManagementInterfaceSpecification.ucDigitalDiagnosticsMonitoring();
             this.tpLowPage = new System.Windows.Forms.TabPage();
+            this.ucLowPage = new QsfpDdCommonManagementInterfaceSpecification.ucLowPage();
             this.tpUpPage00h = new System.Windows.Forms.TabPage();
             this.tpUpPage01h = new System.Windows.Forms.TabPage();
             this.tpUpPage02h = new System.Windows.Forms.TabPage();
             this.tpUpPage03h = new System.Windows.Forms.TabPage();
             this.tpUpPage10h = new System.Windows.Forms.TabPage();
             this.tpUpPage11h = new System.Windows.Forms.TabPage();
+            this.ucUpPage111 = new QsfpDdCommonManagementInterfaceSpecification.ucUpPage11();
             this.tpUpPage9Fh = new System.Windows.Forms.TabPage();
             this.tpUpPageB0h = new System.Windows.Forms.TabPage();
-            this.ucDigitalDiagnosticsMonitoring = new QsfpDdCommonManagementInterfaceSpecification.ucDigitalDiagnosticsMonitoring();
-            this.ucUpPage111 = new QsfpDdCommonManagementInterfaceSpecification.ucUpPage11();
             this.tcCmisReg.SuspendLayout();
             this.tpDDM.SuspendLayout();
+            this.tpLowPage.SuspendLayout();
             this.tpUpPage11h.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -144,7 +146,7 @@
             this.tcCmisReg.Location = new System.Drawing.Point(12, 38);
             this.tcCmisReg.Name = "tcCmisReg";
             this.tcCmisReg.SelectedIndex = 0;
-            this.tcCmisReg.Size = new System.Drawing.Size(984, 734);
+            this.tcCmisReg.Size = new System.Drawing.Size(1240, 734);
             this.tcCmisReg.TabIndex = 18;
             // 
             // tpDDM
@@ -153,27 +155,42 @@
             this.tpDDM.Location = new System.Drawing.Point(4, 22);
             this.tpDDM.Name = "tpDDM";
             this.tpDDM.Padding = new System.Windows.Forms.Padding(3);
-            this.tpDDM.Size = new System.Drawing.Size(976, 708);
+            this.tpDDM.Size = new System.Drawing.Size(1232, 708);
             this.tpDDM.TabIndex = 9;
             this.tpDDM.Text = "DDM";
             this.tpDDM.UseVisualStyleBackColor = true;
             // 
+            // ucDigitalDiagnosticsMonitoring
+            // 
+            this.ucDigitalDiagnosticsMonitoring.Location = new System.Drawing.Point(6, 6);
+            this.ucDigitalDiagnosticsMonitoring.Name = "ucDigitalDiagnosticsMonitoring";
+            this.ucDigitalDiagnosticsMonitoring.Size = new System.Drawing.Size(1220, 696);
+            this.ucDigitalDiagnosticsMonitoring.TabIndex = 0;
+            // 
             // tpLowPage
             // 
+            this.tpLowPage.Controls.Add(this.ucLowPage);
             this.tpLowPage.Location = new System.Drawing.Point(4, 22);
             this.tpLowPage.Name = "tpLowPage";
             this.tpLowPage.Padding = new System.Windows.Forms.Padding(3);
-            this.tpLowPage.Size = new System.Drawing.Size(976, 708);
+            this.tpLowPage.Size = new System.Drawing.Size(1232, 708);
             this.tpLowPage.TabIndex = 0;
             this.tpLowPage.Text = "LP";
             this.tpLowPage.UseVisualStyleBackColor = true;
+            // 
+            // ucLowPage
+            // 
+            this.ucLowPage.Location = new System.Drawing.Point(6, 6);
+            this.ucLowPage.Name = "ucLowPage";
+            this.ucLowPage.Size = new System.Drawing.Size(1220, 696);
+            this.ucLowPage.TabIndex = 0;
             // 
             // tpUpPage00h
             // 
             this.tpUpPage00h.Location = new System.Drawing.Point(4, 22);
             this.tpUpPage00h.Name = "tpUpPage00h";
             this.tpUpPage00h.Padding = new System.Windows.Forms.Padding(3);
-            this.tpUpPage00h.Size = new System.Drawing.Size(976, 708);
+            this.tpUpPage00h.Size = new System.Drawing.Size(1232, 708);
             this.tpUpPage00h.TabIndex = 1;
             this.tpUpPage00h.Text = "UP00h";
             this.tpUpPage00h.UseVisualStyleBackColor = true;
@@ -183,7 +200,7 @@
             this.tpUpPage01h.Location = new System.Drawing.Point(4, 22);
             this.tpUpPage01h.Name = "tpUpPage01h";
             this.tpUpPage01h.Padding = new System.Windows.Forms.Padding(3);
-            this.tpUpPage01h.Size = new System.Drawing.Size(976, 708);
+            this.tpUpPage01h.Size = new System.Drawing.Size(1232, 708);
             this.tpUpPage01h.TabIndex = 2;
             this.tpUpPage01h.Text = "UP01h";
             this.tpUpPage01h.UseVisualStyleBackColor = true;
@@ -193,7 +210,7 @@
             this.tpUpPage02h.Location = new System.Drawing.Point(4, 22);
             this.tpUpPage02h.Name = "tpUpPage02h";
             this.tpUpPage02h.Padding = new System.Windows.Forms.Padding(3);
-            this.tpUpPage02h.Size = new System.Drawing.Size(976, 708);
+            this.tpUpPage02h.Size = new System.Drawing.Size(1232, 708);
             this.tpUpPage02h.TabIndex = 3;
             this.tpUpPage02h.Text = "UP02h";
             this.tpUpPage02h.UseVisualStyleBackColor = true;
@@ -203,7 +220,7 @@
             this.tpUpPage03h.Location = new System.Drawing.Point(4, 22);
             this.tpUpPage03h.Name = "tpUpPage03h";
             this.tpUpPage03h.Padding = new System.Windows.Forms.Padding(3);
-            this.tpUpPage03h.Size = new System.Drawing.Size(976, 708);
+            this.tpUpPage03h.Size = new System.Drawing.Size(1232, 708);
             this.tpUpPage03h.TabIndex = 4;
             this.tpUpPage03h.Text = "UP03h";
             this.tpUpPage03h.UseVisualStyleBackColor = true;
@@ -213,7 +230,7 @@
             this.tpUpPage10h.Location = new System.Drawing.Point(4, 22);
             this.tpUpPage10h.Name = "tpUpPage10h";
             this.tpUpPage10h.Padding = new System.Windows.Forms.Padding(3);
-            this.tpUpPage10h.Size = new System.Drawing.Size(976, 708);
+            this.tpUpPage10h.Size = new System.Drawing.Size(1232, 708);
             this.tpUpPage10h.TabIndex = 5;
             this.tpUpPage10h.Text = "UP10h";
             this.tpUpPage10h.UseVisualStyleBackColor = true;
@@ -224,17 +241,24 @@
             this.tpUpPage11h.Location = new System.Drawing.Point(4, 22);
             this.tpUpPage11h.Name = "tpUpPage11h";
             this.tpUpPage11h.Padding = new System.Windows.Forms.Padding(3);
-            this.tpUpPage11h.Size = new System.Drawing.Size(976, 708);
+            this.tpUpPage11h.Size = new System.Drawing.Size(1232, 708);
             this.tpUpPage11h.TabIndex = 6;
             this.tpUpPage11h.Text = "UP11h";
             this.tpUpPage11h.UseVisualStyleBackColor = true;
+            // 
+            // ucUpPage111
+            // 
+            this.ucUpPage111.Location = new System.Drawing.Point(6, 6);
+            this.ucUpPage111.Name = "ucUpPage111";
+            this.ucUpPage111.Size = new System.Drawing.Size(964, 696);
+            this.ucUpPage111.TabIndex = 0;
             // 
             // tpUpPage9Fh
             // 
             this.tpUpPage9Fh.Location = new System.Drawing.Point(4, 22);
             this.tpUpPage9Fh.Name = "tpUpPage9Fh";
             this.tpUpPage9Fh.Padding = new System.Windows.Forms.Padding(3);
-            this.tpUpPage9Fh.Size = new System.Drawing.Size(976, 708);
+            this.tpUpPage9Fh.Size = new System.Drawing.Size(1232, 708);
             this.tpUpPage9Fh.TabIndex = 7;
             this.tpUpPage9Fh.Text = "UP9Fh";
             this.tpUpPage9Fh.UseVisualStyleBackColor = true;
@@ -244,30 +268,16 @@
             this.tpUpPageB0h.Location = new System.Drawing.Point(4, 22);
             this.tpUpPageB0h.Name = "tpUpPageB0h";
             this.tpUpPageB0h.Padding = new System.Windows.Forms.Padding(3);
-            this.tpUpPageB0h.Size = new System.Drawing.Size(976, 708);
+            this.tpUpPageB0h.Size = new System.Drawing.Size(1232, 708);
             this.tpUpPageB0h.TabIndex = 8;
             this.tpUpPageB0h.Text = "UPB0h~";
             this.tpUpPageB0h.UseVisualStyleBackColor = true;
-            // 
-            // ucDigitalDiagnosticsMonitoring
-            // 
-            this.ucDigitalDiagnosticsMonitoring.Location = new System.Drawing.Point(6, 6);
-            this.ucDigitalDiagnosticsMonitoring.Name = "ucDigitalDiagnosticsMonitoring";
-            this.ucDigitalDiagnosticsMonitoring.Size = new System.Drawing.Size(964, 696);
-            this.ucDigitalDiagnosticsMonitoring.TabIndex = 0;
-            // 
-            // ucUpPage111
-            // 
-            this.ucUpPage111.Location = new System.Drawing.Point(6, 6);
-            this.ucUpPage111.Name = "ucUpPage111";
-            this.ucUpPage111.Size = new System.Drawing.Size(964, 696);
-            this.ucUpPage111.TabIndex = 0;
             // 
             // FCommonManagementInterfaceSpecification
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1008, 784);
+            this.ClientSize = new System.Drawing.Size(1264, 784);
             this.Controls.Add(this.tcCmisReg);
             this.Controls.Add(this.cbFirmwareVersionCheck);
             this.Controls.Add(this.tbFirmwareDateCheck);
@@ -278,9 +288,10 @@
             this.Controls.Add(this.lFirmwareVersion);
             this.Controls.Add(this.cbConnected);
             this.Name = "FCommonManagementInterfaceSpecification";
-            this.Text = "CMIS 20221104";
+            this.Text = "CMIS 20221110";
             this.tcCmisReg.ResumeLayout(false);
             this.tpDDM.ResumeLayout(false);
+            this.tpLowPage.ResumeLayout(false);
             this.tpUpPage11h.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -310,6 +321,7 @@
         private System.Windows.Forms.TabPage tpUpPageB0h;
         private ucUpPage11 ucUpPage111;
         private ucDigitalDiagnosticsMonitoring ucDigitalDiagnosticsMonitoring;
+        private ucLowPage ucLowPage;
     }
 }
 

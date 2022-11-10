@@ -66,6 +66,12 @@
     <Compile Include="ucDigitalDiagnosticsMonitoring.Designer.cs">
       <DependentUpon>ucDigitalDiagnosticsMonitoring.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucLowPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucLowPage.Designer.cs">
+      <DependentUpon>ucLowPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucUpPage11.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -86,6 +92,9 @@
     </Compile>
     <EmbeddedResource Include="ucDigitalDiagnosticsMonitoring.resx">
       <DependentUpon>ucDigitalDiagnosticsMonitoring.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucLowPage.resx">
+      <DependentUpon>ucLowPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucUpPage11.resx">
       <DependentUpon>ucUpPage11.cs</DependentUpon>

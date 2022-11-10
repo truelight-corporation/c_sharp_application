@@ -83,12 +83,19 @@ namespace QsfpDdCommonManagementInterfaceSpecification
                 MessageBox.Show("ucDigitalDiagnosticsMonitoring.SetI2cReadCBApi() faile Error!!");
                 return;
             }
-            /*
-            if (ucDigitalDiagnosticsMonitoring.SetWritePasswordCBApi(ucInformation.WritePassword) < 0) {
+            if (ucDigitalDiagnosticsMonitoring.SetWritePasswordCBApi(ucLowPage.WritePassword) < 0) {
                 MessageBox.Show("ucDigitalDiagnosticsMonitoring.SetWritePasswordCBApi() faile Error!!");
                 return;
             }
-            */
+
+            if (ucLowPage.SetI2cReadCBApi(_I2cRead) < 0) {
+                MessageBox.Show("ucLowPage.SetI2cReadCBApi() faile Error!!");
+                return;
+            }
+            if (ucLowPage.SetI2cWriteCBApi(_I2cWrite) < 0) {
+                MessageBox.Show("ucLowPage.SetI2cReadCBApi() faile Error!!");
+                return;
+            }
         }
 
         private int _CheckFirmwareVersion()
