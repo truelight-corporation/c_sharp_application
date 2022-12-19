@@ -60,6 +60,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UcMissionMode.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcMissionMode.Designer.cs">
+      <DependentUpon>UcMissionMode.cs</DependentUpon>
+    </Compile>
     <Compile Include="UcMald38045Config.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -84,6 +90,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UcMissionMode.resx">
+      <DependentUpon>UcMissionMode.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UcMald38045Config.resx">
       <DependentUpon>UcMald38045Config.cs</DependentUpon>
     </EmbeddedResource>

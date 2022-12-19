@@ -39,12 +39,15 @@
             this.ucMald38045ConfigCh5_8 = new Mald38045Mata38044Config.UcMald38045Config();
             this.tpMata38044Ch8_5 = new System.Windows.Forms.TabPage();
             this.ucMata38044ConfigCh8_5 = new Mald38045Mata38044Config.UcMata38044Config();
+            this.tbMissionMode = new System.Windows.Forms.TabPage();
+            this.ucMissionMode = new Mald38045Mata38044Config.UcMissionMode();
             this.bStoreIntoFlash = new System.Windows.Forms.Button();
             this.tcMald38045Mata38044Config.SuspendLayout();
             this.tpMald38045Ch1_4.SuspendLayout();
             this.tpMata38044Ch4_1.SuspendLayout();
             this.tpMald38045Ch5_8.SuspendLayout();
             this.tpMata38044Ch8_5.SuspendLayout();
+            this.tbMissionMode.SuspendLayout();
             this.SuspendLayout();
             // 
             // lPassword
@@ -84,6 +87,7 @@
             this.tcMald38045Mata38044Config.Controls.Add(this.tpMata38044Ch4_1);
             this.tcMald38045Mata38044Config.Controls.Add(this.tpMald38045Ch5_8);
             this.tcMald38045Mata38044Config.Controls.Add(this.tpMata38044Ch8_5);
+            this.tcMald38045Mata38044Config.Controls.Add(this.tbMissionMode);
             this.tcMald38045Mata38044Config.Location = new System.Drawing.Point(10, 31);
             this.tcMald38045Mata38044Config.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tcMald38045Mata38044Config.Name = "tcMald38045Mata38044Config";
@@ -169,6 +173,24 @@
             this.ucMata38044ConfigCh8_5.Size = new System.Drawing.Size(826, 456);
             this.ucMata38044ConfigCh8_5.TabIndex = 0;
             // 
+            // tbMissionMode
+            // 
+            this.tbMissionMode.Controls.Add(this.ucMissionMode);
+            this.tbMissionMode.Location = new System.Drawing.Point(4, 22);
+            this.tbMissionMode.Name = "tbMissionMode";
+            this.tbMissionMode.Padding = new System.Windows.Forms.Padding(3);
+            this.tbMissionMode.Size = new System.Drawing.Size(835, 462);
+            this.tbMissionMode.TabIndex = 4;
+            this.tbMissionMode.Text = "Mission mode";
+            this.tbMissionMode.UseVisualStyleBackColor = true;
+            // 
+            // ucMissionMode
+            // 
+            this.ucMissionMode.Location = new System.Drawing.Point(5, 5);
+            this.ucMissionMode.Name = "ucMissionMode";
+            this.ucMissionMode.Size = new System.Drawing.Size(826, 456);
+            this.ucMissionMode.TabIndex = 0;
+            // 
             // bStoreIntoFlash
             // 
             this.bStoreIntoFlash.Location = new System.Drawing.Point(580, 6);
@@ -197,6 +219,7 @@
             this.tpMata38044Ch4_1.ResumeLayout(false);
             this.tpMald38045Ch5_8.ResumeLayout(false);
             this.tpMata38044Ch8_5.ResumeLayout(false);
+            this.tbMissionMode.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -217,6 +240,8 @@
         private UcMald38045Config ucMald38045ConfigCh5_8;
         private UcMata38044Config ucMata38044ConfigCh4_1;
         private UcMata38044Config ucMata38044ConfigCh8_5;
+        private System.Windows.Forms.TabPage tbMissionMode;
+        private UcMissionMode ucMissionMode;
     }
 }
 
