@@ -288,7 +288,7 @@
             this.Controls.Add(this.lFirmwareVersion);
             this.Controls.Add(this.cbConnected);
             this.Name = "FCommonManagementInterfaceSpecification";
-            this.Text = "CMIS 20221110";
+            this.Text = "CMIS 20221128";
             this.tcCmisReg.ResumeLayout(false);
             this.tpDDM.ResumeLayout(false);
             this.tpLowPage.ResumeLayout(false);
