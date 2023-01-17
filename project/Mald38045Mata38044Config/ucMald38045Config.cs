@@ -5318,6 +5318,11 @@ namespace Mald38045Mata38044Config
             if (rv != 238)
                 goto exit;
 
+            while (dtCmisReg.Rows.Count > 1)
+            {
+                dtCmisReg.Rows.RemoveAt(dtCmisReg.Rows.Count - 1);
+            }
+
             for (i = 0; i < rv; i++)
                 dtCmisReg.Rows.Add(i.ToString("D3"), "0x" + i.ToString("X2"), "0x" + data[i].ToString("X2"));
 

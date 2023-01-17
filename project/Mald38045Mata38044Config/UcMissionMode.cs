@@ -19,6 +19,7 @@ namespace Mald38045Mata38044Config
         private byte regStartAddr = 0x00;
         private I2cReadCB i2cReadCB;
         private I2cWriteCB i2cWriteCB;
+        private bool reading = false;
 
         private int I2cNotImplemented(byte bank, byte page, byte regAddr, int length, byte[] data)
         {
@@ -92,36 +93,52 @@ namespace Mald38045Mata38044Config
 
         private int _RxMaintenceModeControl()
         {
-            byte[] data = new byte[1];
+            byte[] data = new byte[2];
             int rv;
 
-            data[0] = 0;
+            data[0] = data[1] = 0;
 
-            if (cbTa38044G1Ch1.Checked == true)
+            if (cbTa38044G1Ch1.Checked == false)
                 data[0] |= 0x01;
+            else
+                data[1] |= 0x01;
 
-            if (cbTa38044G1Ch2.Checked == true)
+            if (cbTa38044G1Ch2.Checked == false)
                 data[0] |= 0x02;
+            else
+                data[1] |= 0x02;
 
-            if (cbTa38044G1Ch3.Checked == true)
+            if (cbTa38044G1Ch3.Checked == false)
                 data[0] |= 0x04;
+            else
+                data[1] |= 0x04;
 
-            if (cbTa38044G1Ch4.Checked == true)
+            if (cbTa38044G1Ch4.Checked == false)
                 data[0] |= 0x08;
+            else
+                data[1] |= 0x08;
 
-            if (cbTa38044G2Ch5.Checked == true)
+            if (cbTa38044G2Ch5.Checked == false)
                 data[0] |= 0x10;
+            else
+                data[1] |= 0x10;
 
-            if (cbTa38044G2Ch6.Checked == true)
+            if (cbTa38044G2Ch6.Checked == false)
                 data[0] |= 0x20;
+            else
+                data[1] |= 0x20;
 
-            if (cbTa38044G2Ch7.Checked == true)
+            if (cbTa38044G2Ch7.Checked == false)
                 data[0] |= 0x40;
+            else
+                data[1] |= 0x40;
 
-            if (cbTa38044G2Ch8.Checked == true)
+            if (cbTa38044G2Ch8.Checked == false)
                 data[0] |= 0x80;
+            else
+                data[1] |= 0x80;
 
-            rv = I2cWrite(0, 1, data);
+            rv = I2cWrite(0, 2, data);
             if (rv < 0)
                 return -1;
 
@@ -130,8 +147,272 @@ namespace Mald38045Mata38044Config
 
         private void bRxModeSwitch_Click(object sender, EventArgs e)
         {
+            regBank = 0x00;
+            regPage = 0xBB;
+            regStartAddr = 0xA0;
+
             if (_RxMaintenceModeControl() < 0)
                 return;
+        }
+
+        private int _TxMaintenceModeControl()
+        {
+            byte[] data = new byte[1];
+            int rv;
+
+            data[0] = data[1] = 0;
+
+            if (cbLd38045G1Ch1.Checked == false)
+                data[0] |= 0x01;
+            else
+                data[1] |= 0x01;
+
+            if (cbLd38045G1Ch2.Checked == false)
+                data[0] |= 0x02;
+            else
+                data[1] |= 0x02;
+
+            if (cbLd38045G1Ch3.Checked == false)
+                data[0] |= 0x04;
+            else
+                data[1] |= 0x04;
+
+            if (cbLd38045G1Ch4.Checked == false)
+                data[0] |= 0x08;
+            else
+                data[1] |= 0x08;
+
+            if (cbLd38045G2Ch5.Checked == false)
+                data[0] |= 0x10;
+            else
+                data[1] |= 0x10;
+
+            if (cbLd38045G2Ch6.Checked == false)
+                data[0] |= 0x20;
+            else
+                data[1] |= 0x20;
+
+            if (cbLd38045G2Ch7.Checked == false)
+                data[0] |= 0x40;
+            else
+                data[1] |= 0x40;
+
+            if (cbLd38045G2Ch8.Checked == false)
+                data[0] |= 0x80;
+            else
+                data[1] |= 0x80;
+
+            rv = I2cWrite(0, 2, data);
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private void bTxModeSwitch_Click(object sender, EventArgs e)
+        {
+            regBank = 0x00;
+            regPage = 0xBB;
+            regStartAddr = 0x9E;
+
+            if (_TxMaintenceModeControl() < 0)
+                return;
+        }
+
+        private int _WriteBank03PageC4Addr80()
+        {
+            byte[] data = new byte[3];
+            int rv;
+
+            data[0] = data[1] = data[2] = 0x00;
+            data[0] = Convert.ToByte(tbLdG1Page.Text);
+            data[1] = Convert.ToByte(tbLdG1Addr.Text);
+            data[2] = Convert.ToByte(tbLdG1Value.Text);
+            rv = I2cWrite(0, 3, data);
+
+            tbLdG1Status.Text = _CmisExtendAddrControlForRead();
+
+            if (rv <= 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteBank04PageC4Addr80()
+        {
+
+            byte[] data = new byte[3];
+            int rv;
+
+            data[0] = data[1] = data[2] = 0x00;
+            data[0] = Convert.ToByte(tbLdG2Page.Text);
+            data[1] = Convert.ToByte(tbLdG2Addr.Text);
+            data[2] = Convert.ToByte(tbLdG2Value.Text);
+            rv = I2cWrite(0, 3, data);
+
+            tbLdG2Status.Text = _CmisExtendAddrControlForRead();
+
+            if (rv <= 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteBank05PageC4Addr80()
+        {
+
+            byte[] data = new byte[3];
+            int rv;
+
+            data[0] = data[1] = data[2] = 0x00;
+            data[0] = Convert.ToByte(tbTaG1Page.Text);
+            data[1] = Convert.ToByte(tbTaG1Addr.Text);
+            data[2] = Convert.ToByte(tbTaG1Value.Text);
+            rv = I2cWrite(0, 3, data);
+
+            tbTaG1Status.Text = _CmisExtendAddrControlForRead();
+
+            if (rv <= 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WriteBank06PageC4Addr80()
+        {
+            byte[] data = new byte[3];
+            int rv;
+
+            data[0] = data[1] = data[2] = 0x00;
+            data[0] = Convert.ToByte(tbTaG2Page.Text);
+            data[1] = Convert.ToByte(tbTaG2Addr.Text);
+            data[2] = Convert.ToByte(tbTaG2Value.Text);
+            rv = I2cWrite(0, 3, data);
+
+            tbTaG2Status.Text = _CmisExtendAddrControlForRead();
+
+            if (rv <= 0)
+                return -1;
+
+            return 0;
+        }
+
+        private string _CmisExtendAddrControlForRead()
+        {
+            byte[] data = new byte[4];
+            int i, rv;
+            string x = "";
+
+            if (reading == true)
+                return x;
+
+            if (i2cReadCB == null)
+                return x;
+
+            reading = true;
+            rv = i2cReadCB(regBank, regPage, regStartAddr, 4, data);
+            if (rv != 4)
+                goto exit;
+
+            return Convert.ToString(data[4]);
+
+            exit:
+                reading = false;
+                return x;
+        }
+
+        private void textCharCheck_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if((e.KeyChar >= '0' && e.KeyChar <= '9') || (e.KeyChar >= 'a' && e.KeyChar <= 'f') || (e.KeyChar >= 'A' && e.KeyChar <= 'F'))
+            {
+                if((e.KeyChar >='a' && e.KeyChar <= 'f'))
+                {
+                    e.KeyChar = Convert.ToChar(e.KeyChar.ToString().ToUpper());
+                    e.Handled = false;
+                }
+            }
+            else
+                e.Handled = true;
+        }
+
+        private void bTaG2Write_Click(object sender, EventArgs e)
+        {
+            bTaG2Write.Enabled = false;
+            regBank = 6;
+            regPage = 0xC4;
+            regStartAddr = 0x80;
+            _WriteBank06PageC4Addr80();
+            bTaG2Write.Enabled = true;
+        }
+
+        private void bTaG1Write_Click(object sender, EventArgs e)
+        {
+            bTaG1Write.Enabled = false;
+            regBank = 5;
+            regPage = 0xC4;
+            regStartAddr = 0x80;
+            _WriteBank05PageC4Addr80();
+            bTaG1Write.Enabled = true;
+        }
+
+        private void bLdG2Write_Click(object sender, EventArgs e)
+        {
+            bLdG2Write.Enabled = false;
+            regBank = 4;
+            regPage = 0xC4;
+            regStartAddr = 0x80;
+            _WriteBank04PageC4Addr80();
+            bLdG2Write.Enabled = true;
+        }
+
+        private void bLdG1Write_Click(object sender, EventArgs e)
+        {
+            bLdG1Write.Enabled = false;
+            regBank = 3;
+            regPage = 0xC4;
+            regStartAddr = 0x80;
+            _WriteBank03PageC4Addr80();
+            bLdG1Write.Enabled = true;
+        }
+
+        private void bTaG2Read_Click(object sender, EventArgs e)
+        {
+            bTaG2Read.Enabled = false;
+            regBank = 6;
+            regPage = 0xC4;
+            regStartAddr = 0x80;
+            tbTaG2Status.Text = _CmisExtendAddrControlForRead();
+            bTaG2Read.Enabled = true;
+        }
+
+        private void bTaG1Read_Click(object sender, EventArgs e)
+        {
+            bTaG1Read.Enabled = false;
+            regBank = 5;
+            regPage = 0xC4;
+            regStartAddr = 0x80;
+            tbTaG1Status.Text = _CmisExtendAddrControlForRead();
+            bTaG1Read.Enabled = true;
+        }
+
+        private void bLdG2Read_Click(object sender, EventArgs e)
+        {
+            bLdG2Read.Enabled = false;
+            regBank = 4;
+            regPage = 0xC4;
+            regStartAddr = 0x80;
+            tbLdG2Status.Text = _CmisExtendAddrControlForRead();
+            bLdG2Read.Enabled = true;
+        }
+
+        private void bLdG1Read_Click(object sender, EventArgs e)
+        {
+            bLdG1Read.Enabled = false;
+            regBank = 3;
+            regPage = 0xC4;
+            regStartAddr = 0x80;
+            tbLdG1Status.Text = _CmisExtendAddrControlForRead();
+            bLdG1Read.Enabled = true;
         }
     }
      

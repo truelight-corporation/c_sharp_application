@@ -230,12 +230,10 @@ namespace Mald38045Mata38044Config
             ucMata38044ConfigCh8_5.SetRegStartAddrApi(0x80);
             ucMata38044ConfigCh8_5.SetI2cReadCBApi(_I2cRead);
             ucMata38044ConfigCh8_5.SetI2cWriteCBApi(_I2cWrite);
-
-            ucMissionMode.SetRegBankApi(0);
-            ucMissionMode.SetRegPageApi(0xBB);
-            ucMissionMode.SetRegStartAddrApi(0xA1);
+           
             ucMissionMode.SetI2cReadCBApi(_I2cRead);
             ucMissionMode.SetI2cWriteCBApi(_I2cWrite);
+            
         }
 
         private void cbConnected_CheckedChanged(object sender, EventArgs e)
