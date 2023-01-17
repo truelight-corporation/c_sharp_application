@@ -20,6 +20,8 @@ namespace Mald38045Mata38044Config
         private I2cReadCB i2cReadCB;
         private I2cWriteCB i2cWriteCB;
         private bool reading = false;
+        private bool txMaintenanceMode = false;
+        private bool rxMaintenanceMode = false;
 
         private int I2cNotImplemented(byte bank, byte page, byte regAddr, int length, byte[] data)
         {
@@ -216,6 +218,168 @@ namespace Mald38045Mata38044Config
             regStartAddr = 0x9E;
 
             if (_TxMaintenceModeControl() < 0)
+                return;
+        }
+
+        private int _TxMaintenceModeCheck()
+        {
+            byte[] dataEnable = new byte[1];
+            byte[] dataDisable = new byte[1];
+            int rv;
+
+            dataEnable[0] = dataDisable[0] = 0;
+
+            if (rbLd38045EnableCh1.Checked == true)
+                dataEnable[0] |= 0x01;
+            else
+                dataDisable[1] |= 0x01;
+
+            if (rbLd38045EnableCh2.Checked == true)
+                dataEnable[0] |= 0x02;
+            else
+                dataDisable[1] |= 0x02;
+
+            if (rbLd38045EnableCh3.Checked == true)
+                dataEnable[0] |= 0x04;
+            else
+                dataDisable[1] |= 0x04;
+
+            if (rbLd38045EnableCh4.Checked == true)
+                dataEnable[0] |= 0x08;
+            else
+                dataDisable[1] |= 0x08;
+
+            if (rbLd38045EnableCh5.Checked == true)
+                dataEnable[0] |= 0x10;
+            else
+                dataDisable[1] |= 0x10;
+
+            if (rbLd38045EnableCh6.Checked == true)
+                dataEnable[0] |= 0x20;
+            else
+                dataDisable[1] |= 0x20;
+
+            if (rbLd38045EnableCh7.Checked == true)
+                dataEnable[0] |= 0x40;
+            else
+                dataDisable[1] |= 0x40;
+
+            if (rbLd38045EnableCh8.Checked == true)
+                dataEnable[0] |= 0x80;
+            else
+                dataDisable[1] |= 0x80;
+
+            if (txMaintenanceMode == true)
+                rv = I2cWrite(1, 1, dataEnable);
+            else
+                rv = I2cWrite(0, 1, dataDisable);
+
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private void bTxModeEnable_Click(object sender, EventArgs e)
+        {
+            regBank = 0x00;
+            regPage = 0xBB;
+            regStartAddr = 0x9E;
+            txMaintenanceMode = true;
+
+            if (_TxMaintenceModeCheck() < 0)
+                return;
+        }
+
+        private void bTxModeDisable_Click(object sender, EventArgs e)
+        {
+            regBank = 0x00;
+            regPage = 0xBB;
+            regStartAddr = 0x9E;
+            txMaintenanceMode = false;
+
+            if (_TxMaintenceModeCheck() < 0)
+                return;
+        }
+
+        private int _RxMaintenceModeCheck()
+        {
+            byte[] dataEnable = new byte[1];
+            byte[] dataDisable = new byte[1];
+            int rv;
+
+            dataEnable[0] = dataDisable[0] = 0;
+
+            if (rbTa38044EnableCh1.Checked == true)
+                dataEnable[0] |= 0x01;
+            else
+                dataDisable[1] |= 0x01;
+
+            if (rbTa38044EnableCh2.Checked == true)
+                dataEnable[0] |= 0x02;
+            else
+                dataDisable[1] |= 0x02;
+
+            if (rbTa38044EnableCh3.Checked == true)
+                dataEnable[0] |= 0x04;
+            else
+                dataDisable[1] |= 0x04;
+
+            if (rbTa38044EnableCh4.Checked == true)
+                dataEnable[0] |= 0x08;
+            else
+                dataDisable[1] |= 0x08;
+
+            if (rbTa38044EnableCh5.Checked == true)
+                dataEnable[0] |= 0x10;
+            else
+                dataDisable[1] |= 0x10;
+
+            if (rbTa38044EnableCh6.Checked == true)
+                dataEnable[0] |= 0x20;
+            else
+                dataDisable[1] |= 0x20;
+
+            if (rbTa38044EnableCh7.Checked == true)
+                dataEnable[0] |= 0x40;
+            else
+                dataDisable[1] |= 0x40;
+
+            if (rbTa38044EnableCh8.Checked == true)
+                dataEnable[0] |= 0x80;
+            else
+                dataDisable[1] |= 0x80;
+
+            if (rxMaintenanceMode == true)
+                rv = I2cWrite(1, 1, dataEnable);
+            else
+                rv = I2cWrite(0, 1, dataDisable);
+
+            if (rv < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private void bRxModeEnable_Click(object sender, EventArgs e)
+        {
+            regBank = 0x00;
+            regPage = 0xBB;
+            regStartAddr = 0xA0;
+            rxMaintenanceMode = true;
+
+            if (_RxMaintenceModeCheck() < 0)
+                return;
+        }
+
+        private void bRxModeDisable_Click(object sender, EventArgs e)
+        {
+            regBank = 0x00;
+            regPage = 0xBB;
+            regStartAddr = 0xA0;
+            rxMaintenanceMode = false;
+
+            if (_RxMaintenceModeCheck() < 0)
                 return;
         }
 
