@@ -159,7 +159,7 @@ namespace Mald38045Mata38044Config
 
         private int _TxMaintenceModeControl()
         {
-            byte[] data = new byte[1];
+            byte[] data = new byte[2];
             int rv;
 
             data[0] = data[1] = 0;
@@ -232,42 +232,42 @@ namespace Mald38045Mata38044Config
             if (rbLd38045EnableCh1.Checked == true)
                 dataEnable[0] |= 0x01;
             else
-                dataDisable[1] |= 0x01;
+                dataDisable[0] |= 0x01;
 
             if (rbLd38045EnableCh2.Checked == true)
                 dataEnable[0] |= 0x02;
             else
-                dataDisable[1] |= 0x02;
+                dataDisable[0] |= 0x02;
 
             if (rbLd38045EnableCh3.Checked == true)
                 dataEnable[0] |= 0x04;
             else
-                dataDisable[1] |= 0x04;
+                dataDisable[0] |= 0x04;
 
             if (rbLd38045EnableCh4.Checked == true)
                 dataEnable[0] |= 0x08;
             else
-                dataDisable[1] |= 0x08;
+                dataDisable[0] |= 0x08;
 
             if (rbLd38045EnableCh5.Checked == true)
                 dataEnable[0] |= 0x10;
             else
-                dataDisable[1] |= 0x10;
+                dataDisable[0] |= 0x10;
 
             if (rbLd38045EnableCh6.Checked == true)
                 dataEnable[0] |= 0x20;
             else
-                dataDisable[1] |= 0x20;
+                dataDisable[0] |= 0x20;
 
             if (rbLd38045EnableCh7.Checked == true)
                 dataEnable[0] |= 0x40;
             else
-                dataDisable[1] |= 0x40;
+                dataDisable[0] |= 0x40;
 
             if (rbLd38045EnableCh8.Checked == true)
                 dataEnable[0] |= 0x80;
             else
-                dataDisable[1] |= 0x80;
+                dataDisable[0] |= 0x80;
 
             if (txMaintenanceMode == true)
                 rv = I2cWrite(1, 1, dataEnable);
@@ -313,42 +313,42 @@ namespace Mald38045Mata38044Config
             if (rbTa38044EnableCh1.Checked == true)
                 dataEnable[0] |= 0x01;
             else
-                dataDisable[1] |= 0x01;
+                dataDisable[0] |= 0x01;
 
             if (rbTa38044EnableCh2.Checked == true)
                 dataEnable[0] |= 0x02;
             else
-                dataDisable[1] |= 0x02;
+                dataDisable[0] |= 0x02;
 
             if (rbTa38044EnableCh3.Checked == true)
                 dataEnable[0] |= 0x04;
             else
-                dataDisable[1] |= 0x04;
+                dataDisable[0] |= 0x04;
 
             if (rbTa38044EnableCh4.Checked == true)
                 dataEnable[0] |= 0x08;
             else
-                dataDisable[1] |= 0x08;
+                dataDisable[0] |= 0x08;
 
             if (rbTa38044EnableCh5.Checked == true)
                 dataEnable[0] |= 0x10;
             else
-                dataDisable[1] |= 0x10;
+                dataDisable[0] |= 0x10;
 
             if (rbTa38044EnableCh6.Checked == true)
                 dataEnable[0] |= 0x20;
             else
-                dataDisable[1] |= 0x20;
+                dataDisable[0] |= 0x20;
 
             if (rbTa38044EnableCh7.Checked == true)
                 dataEnable[0] |= 0x40;
             else
-                dataDisable[1] |= 0x40;
+                dataDisable[0] |= 0x40;
 
             if (rbTa38044EnableCh8.Checked == true)
                 dataEnable[0] |= 0x80;
             else
-                dataDisable[1] |= 0x80;
+                dataDisable[0] |= 0x80;
 
             if (rxMaintenanceMode == true)
                 rv = I2cWrite(1, 1, dataEnable);
