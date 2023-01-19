@@ -480,25 +480,25 @@ namespace Mald38045Mata38044Config
             if (cbLd38045G1Ch1.Checked == true)
                 dataEnable[0] |= 0x01;
            
-            if (rbLd38045EnableCh2.Checked == true)
+            if (cbLd38045G1Ch2.Checked == true)
                 dataEnable[0] |= 0x02;
            
-            if (rbLd38045EnableCh3.Checked == true)
+            if (cbLd38045G1Ch3.Checked == true)
                 dataEnable[0] |= 0x04;
             
-            if (rbLd38045EnableCh4.Checked == true)
+            if (cbLd38045G1Ch4.Checked == true)
                 dataEnable[0] |= 0x08;
             
-            if (rbLd38045EnableCh5.Checked == true)
+            if (cbLd38045G2Ch5.Checked == true)
                 dataEnable[0] |= 0x10;
            
-            if (rbLd38045EnableCh6.Checked == true)
+            if (cbLd38045G2Ch6.Checked == true)
                 dataEnable[0] |= 0x20;
             
-            if (rbLd38045EnableCh7.Checked == true)
+            if (cbLd38045G2Ch7.Checked == true)
                 dataEnable[0] |= 0x40;
             
-            if (rbLd38045EnableCh8.Checked == true)
+            if (cbLd38045G2Ch8.Checked == true)
                 dataEnable[0] |= 0x80;
 
             if (groupIndex == 1)
