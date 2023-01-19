@@ -32,21 +32,29 @@
             this.bTxModeSwitch = new System.Windows.Forms.Button();
             this.bRxModeSwitch = new System.Windows.Forms.Button();
             this.gbMata38044Ch8_5 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.cbTa38044G2Ch7 = new System.Windows.Forms.CheckBox();
             this.cbTa38044G2Ch5 = new System.Windows.Forms.CheckBox();
             this.cbTa38044G2Ch6 = new System.Windows.Forms.CheckBox();
             this.cbTa38044G2Ch8 = new System.Windows.Forms.CheckBox();
             this.gbMald38045Ch1_4 = new System.Windows.Forms.GroupBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.cbLd38045G1Ch3 = new System.Windows.Forms.CheckBox();
             this.cbLd38045G1Ch1 = new System.Windows.Forms.CheckBox();
             this.cbLd38045G1Ch2 = new System.Windows.Forms.CheckBox();
             this.cbLd38045G1Ch4 = new System.Windows.Forms.CheckBox();
             this.gbMald38045Ch5_8 = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.cbLd38045G2Ch7 = new System.Windows.Forms.CheckBox();
             this.cbLd38045G2Ch5 = new System.Windows.Forms.CheckBox();
             this.cbLd38045G2Ch6 = new System.Windows.Forms.CheckBox();
             this.cbLd38045G2Ch8 = new System.Windows.Forms.CheckBox();
             this.gbMata38044Ch4_1 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.cbTa38044G1Ch3 = new System.Windows.Forms.CheckBox();
+            this.cbTa38044G1Ch1 = new System.Windows.Forms.CheckBox();
+            this.cbTa38044G1Ch2 = new System.Windows.Forms.CheckBox();
+            this.cbTa38044G1Ch4 = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.bLdG2Write = new System.Windows.Forms.Button();
@@ -93,38 +101,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lable1 = new System.Windows.Forms.Label();
             this.tbTaG2Page = new System.Windows.Forms.TextBox();
-            this.cbTa38044G1Ch4 = new System.Windows.Forms.CheckBox();
-            this.cbTa38044G1Ch2 = new System.Windows.Forms.CheckBox();
-            this.cbTa38044G1Ch1 = new System.Windows.Forms.CheckBox();
-            this.cbTa38044G1Ch3 = new System.Windows.Forms.CheckBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.Ch8 = new System.Windows.Forms.GroupBox();
-            this.rbTa38044DisableCh8 = new System.Windows.Forms.RadioButton();
-            this.rbTa38044EnableCh8 = new System.Windows.Forms.RadioButton();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.rbTa38044DisableCh7 = new System.Windows.Forms.RadioButton();
-            this.rbTa38044EnableCh7 = new System.Windows.Forms.RadioButton();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.rbTa38044DisableCh6 = new System.Windows.Forms.RadioButton();
-            this.rbTa38044EnableCh6 = new System.Windows.Forms.RadioButton();
-            this.groupBox11 = new System.Windows.Forms.GroupBox();
-            this.rbTa38044DisableCh5 = new System.Windows.Forms.RadioButton();
-            this.rbTa38044EnableCh5 = new System.Windows.Forms.RadioButton();
-            this.groupBox12 = new System.Windows.Forms.GroupBox();
-            this.rbTa38044DisableCh4 = new System.Windows.Forms.RadioButton();
-            this.rbTa38044EnableCh4 = new System.Windows.Forms.RadioButton();
-            this.groupBox13 = new System.Windows.Forms.GroupBox();
-            this.rbTa38044DisableCh3 = new System.Windows.Forms.RadioButton();
-            this.rbTa38044EnableCh3 = new System.Windows.Forms.RadioButton();
-            this.groupBox14 = new System.Windows.Forms.GroupBox();
-            this.rbTa38044DisableCh2 = new System.Windows.Forms.RadioButton();
-            this.rbTa38044EnableCh2 = new System.Windows.Forms.RadioButton();
-            this.groupBox15 = new System.Windows.Forms.GroupBox();
-            this.rbTa38044DisableCh1 = new System.Windows.Forms.RadioButton();
-            this.rbTa38044EnableCh1 = new System.Windows.Forms.RadioButton();
-            this.bRxModeEnable = new System.Windows.Forms.Button();
-            this.bRxModeDisable = new System.Windows.Forms.Button();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
             this.bTxModeDisable = new System.Windows.Forms.Button();
             this.bTxModeEnable = new System.Windows.Forms.Button();
@@ -152,6 +129,33 @@
             this.groupBox24 = new System.Windows.Forms.GroupBox();
             this.rbLd38045DisableCh1 = new System.Windows.Forms.RadioButton();
             this.rbLd38045EnableCh1 = new System.Windows.Forms.RadioButton();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.bRxModeDisable = new System.Windows.Forms.Button();
+            this.bRxModeEnable = new System.Windows.Forms.Button();
+            this.groupBox15 = new System.Windows.Forms.GroupBox();
+            this.rbTa38044DisableCh1 = new System.Windows.Forms.RadioButton();
+            this.rbTa38044EnableCh1 = new System.Windows.Forms.RadioButton();
+            this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.rbTa38044DisableCh2 = new System.Windows.Forms.RadioButton();
+            this.rbTa38044EnableCh2 = new System.Windows.Forms.RadioButton();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.rbTa38044DisableCh3 = new System.Windows.Forms.RadioButton();
+            this.rbTa38044EnableCh3 = new System.Windows.Forms.RadioButton();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.rbTa38044DisableCh4 = new System.Windows.Forms.RadioButton();
+            this.rbTa38044EnableCh4 = new System.Windows.Forms.RadioButton();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.rbTa38044DisableCh5 = new System.Windows.Forms.RadioButton();
+            this.rbTa38044EnableCh5 = new System.Windows.Forms.RadioButton();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.rbTa38044DisableCh6 = new System.Windows.Forms.RadioButton();
+            this.rbTa38044EnableCh6 = new System.Windows.Forms.RadioButton();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.rbTa38044DisableCh7 = new System.Windows.Forms.RadioButton();
+            this.rbTa38044EnableCh7 = new System.Windows.Forms.RadioButton();
+            this.Ch8 = new System.Windows.Forms.GroupBox();
+            this.rbTa38044DisableCh8 = new System.Windows.Forms.RadioButton();
+            this.rbTa38044EnableCh8 = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.gbMata38044Ch8_5.SuspendLayout();
             this.gbMald38045Ch1_4.SuspendLayout();
@@ -163,15 +167,6 @@
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox6.SuspendLayout();
-            this.groupBox8.SuspendLayout();
-            this.Ch8.SuspendLayout();
-            this.groupBox9.SuspendLayout();
-            this.groupBox10.SuspendLayout();
-            this.groupBox11.SuspendLayout();
-            this.groupBox12.SuspendLayout();
-            this.groupBox13.SuspendLayout();
-            this.groupBox14.SuspendLayout();
-            this.groupBox15.SuspendLayout();
             this.groupBox16.SuspendLayout();
             this.groupBox17.SuspendLayout();
             this.groupBox18.SuspendLayout();
@@ -181,6 +176,15 @@
             this.groupBox22.SuspendLayout();
             this.groupBox23.SuspendLayout();
             this.groupBox24.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            this.groupBox15.SuspendLayout();
+            this.groupBox14.SuspendLayout();
+            this.groupBox13.SuspendLayout();
+            this.groupBox12.SuspendLayout();
+            this.groupBox11.SuspendLayout();
+            this.groupBox10.SuspendLayout();
+            this.groupBox9.SuspendLayout();
+            this.Ch8.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -191,23 +195,22 @@
             this.groupBox1.Controls.Add(this.gbMald38045Ch1_4);
             this.groupBox1.Controls.Add(this.gbMald38045Ch5_8);
             this.groupBox1.Controls.Add(this.gbMata38044Ch4_1);
-            this.groupBox1.Location = new System.Drawing.Point(589, 14);
+            this.groupBox1.Location = new System.Drawing.Point(16, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(547, 151);
+            this.groupBox1.Size = new System.Drawing.Size(547, 189);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Maintence mode";
-            this.groupBox1.Visible = false;
             // 
             // bTxModeSwitch
             // 
-            this.bTxModeSwitch.Location = new System.Drawing.Point(461, 99);
+            this.bTxModeSwitch.Location = new System.Drawing.Point(461, 122);
             this.bTxModeSwitch.Name = "bTxModeSwitch";
             this.bTxModeSwitch.Size = new System.Drawing.Size(75, 23);
             this.bTxModeSwitch.TabIndex = 18;
             this.bTxModeSwitch.Text = "Mode switch";
             this.bTxModeSwitch.UseVisualStyleBackColor = true;
-            this.bTxModeSwitch.Click += new System.EventHandler(this.bTxModeSwitch_Click);
+            this.bTxModeSwitch.Click += new System.EventHandler(this.bTxModeEnable_Click);
             // 
             // bRxModeSwitch
             // 
@@ -217,20 +220,32 @@
             this.bRxModeSwitch.TabIndex = 8;
             this.bRxModeSwitch.Text = "Mode switch";
             this.bRxModeSwitch.UseVisualStyleBackColor = true;
-            this.bRxModeSwitch.Click += new System.EventHandler(this.bRxModeSwitch_Click);
+            this.bRxModeSwitch.Click += new System.EventHandler(this.bRxModeEnable_Click);
             // 
             // gbMata38044Ch8_5
             // 
+            this.gbMata38044Ch8_5.CausesValidation = false;
+            this.gbMata38044Ch8_5.Controls.Add(this.button1);
             this.gbMata38044Ch8_5.Controls.Add(this.cbTa38044G2Ch7);
             this.gbMata38044Ch8_5.Controls.Add(this.cbTa38044G2Ch5);
             this.gbMata38044Ch8_5.Controls.Add(this.cbTa38044G2Ch6);
             this.gbMata38044Ch8_5.Controls.Add(this.cbTa38044G2Ch8);
             this.gbMata38044Ch8_5.Location = new System.Drawing.Point(15, 21);
             this.gbMata38044Ch8_5.Name = "gbMata38044Ch8_5";
-            this.gbMata38044Ch8_5.Size = new System.Drawing.Size(217, 55);
+            this.gbMata38044Ch8_5.Size = new System.Drawing.Size(217, 70);
             this.gbMata38044Ch8_5.TabIndex = 11;
             this.gbMata38044Ch8_5.TabStop = false;
-            this.gbMata38044Ch8_5.Text = "Mata38044";
+            this.gbMata38044Ch8_5.Text = "Mata38044Ch8~5";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(71, 40);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 20;
+            this.button1.Text = "Disable";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.bRxModeDisableForG2_Click);
             // 
             // cbTa38044G2Ch7
             // 
@@ -274,16 +289,27 @@
             // 
             // gbMald38045Ch1_4
             // 
+            this.gbMald38045Ch1_4.Controls.Add(this.button3);
             this.gbMald38045Ch1_4.Controls.Add(this.cbLd38045G1Ch3);
             this.gbMald38045Ch1_4.Controls.Add(this.cbLd38045G1Ch1);
             this.gbMald38045Ch1_4.Controls.Add(this.cbLd38045G1Ch2);
             this.gbMald38045Ch1_4.Controls.Add(this.cbLd38045G1Ch4);
-            this.gbMald38045Ch1_4.Location = new System.Drawing.Point(15, 82);
+            this.gbMald38045Ch1_4.Location = new System.Drawing.Point(15, 101);
             this.gbMald38045Ch1_4.Name = "gbMald38045Ch1_4";
-            this.gbMald38045Ch1_4.Size = new System.Drawing.Size(217, 55);
+            this.gbMald38045Ch1_4.Size = new System.Drawing.Size(217, 70);
             this.gbMald38045Ch1_4.TabIndex = 4;
             this.gbMald38045Ch1_4.TabStop = false;
             this.gbMald38045Ch1_4.Text = "Mald38045Ch1~4";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(71, 40);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 21;
+            this.button3.Text = "Disable";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.bTxModeDisableForG1_Click);
             // 
             // cbLd38045G1Ch3
             // 
@@ -327,16 +353,27 @@
             // 
             // gbMald38045Ch5_8
             // 
+            this.gbMald38045Ch5_8.Controls.Add(this.button4);
             this.gbMald38045Ch5_8.Controls.Add(this.cbLd38045G2Ch7);
             this.gbMald38045Ch5_8.Controls.Add(this.cbLd38045G2Ch5);
             this.gbMald38045Ch5_8.Controls.Add(this.cbLd38045G2Ch6);
             this.gbMald38045Ch5_8.Controls.Add(this.cbLd38045G2Ch8);
-            this.gbMald38045Ch5_8.Location = new System.Drawing.Point(238, 82);
+            this.gbMald38045Ch5_8.Location = new System.Drawing.Point(239, 101);
             this.gbMald38045Ch5_8.Name = "gbMald38045Ch5_8";
-            this.gbMald38045Ch5_8.Size = new System.Drawing.Size(217, 55);
+            this.gbMald38045Ch5_8.Size = new System.Drawing.Size(217, 70);
             this.gbMald38045Ch5_8.TabIndex = 9;
             this.gbMald38045Ch5_8.TabStop = false;
             this.gbMald38045Ch5_8.Text = "Mald38045Ch5~8";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(71, 40);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 22;
+            this.button4.Text = "Disable";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.bTxModeDisableForG2_Click);
             // 
             // cbLd38045G2Ch7
             // 
@@ -380,16 +417,67 @@
             // 
             // gbMata38044Ch4_1
             // 
+            this.gbMata38044Ch4_1.Controls.Add(this.button2);
             this.gbMata38044Ch4_1.Controls.Add(this.cbTa38044G1Ch3);
             this.gbMata38044Ch4_1.Controls.Add(this.cbTa38044G1Ch1);
             this.gbMata38044Ch4_1.Controls.Add(this.cbTa38044G1Ch2);
             this.gbMata38044Ch4_1.Controls.Add(this.cbTa38044G1Ch4);
             this.gbMata38044Ch4_1.Location = new System.Drawing.Point(238, 21);
             this.gbMata38044Ch4_1.Name = "gbMata38044Ch4_1";
-            this.gbMata38044Ch4_1.Size = new System.Drawing.Size(217, 55);
+            this.gbMata38044Ch4_1.Size = new System.Drawing.Size(217, 70);
             this.gbMata38044Ch4_1.TabIndex = 10;
             this.gbMata38044Ch4_1.TabStop = false;
             this.gbMata38044Ch4_1.Text = "Mata38044Ch4~1";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(71, 40);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 21;
+            this.button2.Text = "Disable";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.bRxModeDisableForG1_Click);
+            // 
+            // cbTa38044G1Ch3
+            // 
+            this.cbTa38044G1Ch3.AutoSize = true;
+            this.cbTa38044G1Ch3.Location = new System.Drawing.Point(56, 21);
+            this.cbTa38044G1Ch3.Name = "cbTa38044G1Ch3";
+            this.cbTa38044G1Ch3.Size = new System.Drawing.Size(44, 16);
+            this.cbTa38044G1Ch3.TabIndex = 2;
+            this.cbTa38044G1Ch3.Text = "Ch3";
+            this.cbTa38044G1Ch3.UseVisualStyleBackColor = true;
+            // 
+            // cbTa38044G1Ch1
+            // 
+            this.cbTa38044G1Ch1.AutoSize = true;
+            this.cbTa38044G1Ch1.Location = new System.Drawing.Point(156, 21);
+            this.cbTa38044G1Ch1.Name = "cbTa38044G1Ch1";
+            this.cbTa38044G1Ch1.Size = new System.Drawing.Size(44, 16);
+            this.cbTa38044G1Ch1.TabIndex = 0;
+            this.cbTa38044G1Ch1.Text = "Ch1";
+            this.cbTa38044G1Ch1.UseVisualStyleBackColor = true;
+            // 
+            // cbTa38044G1Ch2
+            // 
+            this.cbTa38044G1Ch2.AutoSize = true;
+            this.cbTa38044G1Ch2.Location = new System.Drawing.Point(106, 21);
+            this.cbTa38044G1Ch2.Name = "cbTa38044G1Ch2";
+            this.cbTa38044G1Ch2.Size = new System.Drawing.Size(44, 16);
+            this.cbTa38044G1Ch2.TabIndex = 1;
+            this.cbTa38044G1Ch2.Text = "Ch2";
+            this.cbTa38044G1Ch2.UseVisualStyleBackColor = true;
+            // 
+            // cbTa38044G1Ch4
+            // 
+            this.cbTa38044G1Ch4.AutoSize = true;
+            this.cbTa38044G1Ch4.Location = new System.Drawing.Point(6, 21);
+            this.cbTa38044G1Ch4.Name = "cbTa38044G1Ch4";
+            this.cbTa38044G1Ch4.Size = new System.Drawing.Size(44, 16);
+            this.cbTa38044G1Ch4.TabIndex = 3;
+            this.cbTa38044G1Ch4.Text = "Ch4";
+            this.cbTa38044G1Ch4.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -398,7 +486,7 @@
             this.groupBox2.Controls.Add(this.groupBox4);
             this.groupBox2.Controls.Add(this.label16);
             this.groupBox2.Controls.Add(this.groupBox3);
-            this.groupBox2.Location = new System.Drawing.Point(16, 239);
+            this.groupBox2.Location = new System.Drawing.Point(16, 207);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(547, 199);
             this.groupBox2.TabIndex = 5;
@@ -422,7 +510,7 @@
             this.groupBox5.Size = new System.Drawing.Size(240, 73);
             this.groupBox5.TabIndex = 19;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Mata38045Ch5~8";
+            this.groupBox5.Text = "Mald38045Ch5~8";
             // 
             // bLdG2Write
             // 
@@ -442,6 +530,7 @@
             this.bLdG2Read.TabIndex = 34;
             this.bLdG2Read.Text = "Read";
             this.bLdG2Read.UseVisualStyleBackColor = true;
+            this.bLdG2Read.Click += new System.EventHandler(this.bLdG2Read_Click);
             // 
             // tbLdG2Status
             // 
@@ -452,6 +541,7 @@
             this.tbLdG2Status.ReadOnly = true;
             this.tbLdG2Status.Size = new System.Drawing.Size(42, 19);
             this.tbLdG2Status.TabIndex = 10;
+            this.tbLdG2Status.Text = "--";
             this.tbLdG2Status.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbLdG2Value
@@ -543,7 +633,7 @@
             this.groupBox7.Size = new System.Drawing.Size(240, 73);
             this.groupBox7.TabIndex = 18;
             this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Mata38045Ch1~4";
+            this.groupBox7.Text = "Mald38045Ch1~4";
             // 
             // bLdG1Write
             // 
@@ -563,6 +653,7 @@
             this.bLdG1Read.TabIndex = 39;
             this.bLdG1Read.Text = "Read";
             this.bLdG1Read.UseVisualStyleBackColor = true;
+            this.bLdG1Read.Click += new System.EventHandler(this.bLdG1Read_Click);
             // 
             // tbLdG1Status
             // 
@@ -573,6 +664,7 @@
             this.tbLdG1Status.ReadOnly = true;
             this.tbLdG1Status.Size = new System.Drawing.Size(42, 19);
             this.tbLdG1Status.TabIndex = 10;
+            this.tbLdG1Status.Text = "--";
             this.tbLdG1Status.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbLdG1Value
@@ -684,6 +776,7 @@
             this.bTaG1Read.TabIndex = 24;
             this.bTaG1Read.Text = "Read";
             this.bTaG1Read.UseVisualStyleBackColor = true;
+            this.bTaG1Read.Click += new System.EventHandler(this.bTaG1Read_Click);
             // 
             // tbTaG1Status
             // 
@@ -694,6 +787,7 @@
             this.tbTaG1Status.ReadOnly = true;
             this.tbTaG1Status.Size = new System.Drawing.Size(42, 19);
             this.tbTaG1Status.TabIndex = 10;
+            this.tbTaG1Status.Text = "--";
             this.tbTaG1Status.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbTaG1Value
@@ -814,6 +908,7 @@
             this.bTaG2Read.TabIndex = 29;
             this.bTaG2Read.Text = "Read";
             this.bTaG2Read.UseVisualStyleBackColor = true;
+            this.bTaG2Read.Click += new System.EventHandler(this.bTaG2Read_Click);
             // 
             // tbTaG2Status
             // 
@@ -824,6 +919,7 @@
             this.tbTaG2Status.ReadOnly = true;
             this.tbTaG2Status.Size = new System.Drawing.Size(42, 19);
             this.tbTaG2Status.TabIndex = 10;
+            this.tbTaG2Status.Text = "--";
             this.tbTaG2Status.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbTaG2Value
@@ -898,345 +994,17 @@
             this.tbTaG2Page.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbTaG2Page.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textCharCheck_KeyPress);
             // 
-            // cbTa38044G1Ch4
-            // 
-            this.cbTa38044G1Ch4.AutoSize = true;
-            this.cbTa38044G1Ch4.Location = new System.Drawing.Point(6, 21);
-            this.cbTa38044G1Ch4.Name = "cbTa38044G1Ch4";
-            this.cbTa38044G1Ch4.Size = new System.Drawing.Size(44, 16);
-            this.cbTa38044G1Ch4.TabIndex = 3;
-            this.cbTa38044G1Ch4.Text = "Ch4";
-            this.cbTa38044G1Ch4.UseVisualStyleBackColor = true;
-            // 
-            // cbTa38044G1Ch2
-            // 
-            this.cbTa38044G1Ch2.AutoSize = true;
-            this.cbTa38044G1Ch2.Location = new System.Drawing.Point(106, 21);
-            this.cbTa38044G1Ch2.Name = "cbTa38044G1Ch2";
-            this.cbTa38044G1Ch2.Size = new System.Drawing.Size(44, 16);
-            this.cbTa38044G1Ch2.TabIndex = 1;
-            this.cbTa38044G1Ch2.Text = "Ch2";
-            this.cbTa38044G1Ch2.UseVisualStyleBackColor = true;
-            // 
-            // cbTa38044G1Ch1
-            // 
-            this.cbTa38044G1Ch1.AutoSize = true;
-            this.cbTa38044G1Ch1.Location = new System.Drawing.Point(156, 21);
-            this.cbTa38044G1Ch1.Name = "cbTa38044G1Ch1";
-            this.cbTa38044G1Ch1.Size = new System.Drawing.Size(44, 16);
-            this.cbTa38044G1Ch1.TabIndex = 0;
-            this.cbTa38044G1Ch1.Text = "Ch1";
-            this.cbTa38044G1Ch1.UseVisualStyleBackColor = true;
-            // 
-            // cbTa38044G1Ch3
-            // 
-            this.cbTa38044G1Ch3.AutoSize = true;
-            this.cbTa38044G1Ch3.Location = new System.Drawing.Point(56, 21);
-            this.cbTa38044G1Ch3.Name = "cbTa38044G1Ch3";
-            this.cbTa38044G1Ch3.Size = new System.Drawing.Size(44, 16);
-            this.cbTa38044G1Ch3.TabIndex = 2;
-            this.cbTa38044G1Ch3.Text = "Ch3";
-            this.cbTa38044G1Ch3.UseVisualStyleBackColor = true;
-            // 
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.groupBox16);
             this.groupBox6.Controls.Add(this.groupBox8);
-            this.groupBox6.Location = new System.Drawing.Point(16, 14);
+            this.groupBox6.Location = new System.Drawing.Point(617, 12);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(547, 219);
             this.groupBox6.TabIndex = 6;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Maintence mode";
-            // 
-            // groupBox8
-            // 
-            this.groupBox8.Controls.Add(this.bRxModeDisable);
-            this.groupBox8.Controls.Add(this.bRxModeEnable);
-            this.groupBox8.Controls.Add(this.groupBox15);
-            this.groupBox8.Controls.Add(this.groupBox14);
-            this.groupBox8.Controls.Add(this.groupBox13);
-            this.groupBox8.Controls.Add(this.groupBox12);
-            this.groupBox8.Controls.Add(this.groupBox11);
-            this.groupBox8.Controls.Add(this.groupBox10);
-            this.groupBox8.Controls.Add(this.groupBox9);
-            this.groupBox8.Controls.Add(this.Ch8);
-            this.groupBox8.Location = new System.Drawing.Point(15, 21);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(521, 91);
-            this.groupBox8.TabIndex = 12;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Mata38044";
-            // 
-            // Ch8
-            // 
-            this.Ch8.Controls.Add(this.rbTa38044DisableCh8);
-            this.Ch8.Controls.Add(this.rbTa38044EnableCh8);
-            this.Ch8.Location = new System.Drawing.Point(8, 15);
-            this.Ch8.Name = "Ch8";
-            this.Ch8.Size = new System.Drawing.Size(42, 70);
-            this.Ch8.TabIndex = 5;
-            this.Ch8.TabStop = false;
-            this.Ch8.Text = "Ch8";
-            // 
-            // rbTa38044DisableCh8
-            // 
-            this.rbTa38044DisableCh8.AutoSize = true;
-            this.rbTa38044DisableCh8.Location = new System.Drawing.Point(14, 43);
-            this.rbTa38044DisableCh8.Name = "rbTa38044DisableCh8";
-            this.rbTa38044DisableCh8.Size = new System.Drawing.Size(14, 13);
-            this.rbTa38044DisableCh8.TabIndex = 6;
-            this.rbTa38044DisableCh8.TabStop = true;
-            this.rbTa38044DisableCh8.UseVisualStyleBackColor = true;
-            // 
-            // rbTa38044EnableCh8
-            // 
-            this.rbTa38044EnableCh8.AutoSize = true;
-            this.rbTa38044EnableCh8.Location = new System.Drawing.Point(14, 21);
-            this.rbTa38044EnableCh8.Name = "rbTa38044EnableCh8";
-            this.rbTa38044EnableCh8.Size = new System.Drawing.Size(14, 13);
-            this.rbTa38044EnableCh8.TabIndex = 5;
-            this.rbTa38044EnableCh8.TabStop = true;
-            this.rbTa38044EnableCh8.UseVisualStyleBackColor = true;
-            // 
-            // groupBox9
-            // 
-            this.groupBox9.Controls.Add(this.rbTa38044DisableCh7);
-            this.groupBox9.Controls.Add(this.rbTa38044EnableCh7);
-            this.groupBox9.Location = new System.Drawing.Point(56, 15);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(42, 70);
-            this.groupBox9.TabIndex = 6;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Ch7";
-            // 
-            // rbTa38044DisableCh7
-            // 
-            this.rbTa38044DisableCh7.AutoSize = true;
-            this.rbTa38044DisableCh7.Location = new System.Drawing.Point(14, 43);
-            this.rbTa38044DisableCh7.Name = "rbTa38044DisableCh7";
-            this.rbTa38044DisableCh7.Size = new System.Drawing.Size(14, 13);
-            this.rbTa38044DisableCh7.TabIndex = 6;
-            this.rbTa38044DisableCh7.TabStop = true;
-            this.rbTa38044DisableCh7.UseVisualStyleBackColor = true;
-            // 
-            // rbTa38044EnableCh7
-            // 
-            this.rbTa38044EnableCh7.AutoSize = true;
-            this.rbTa38044EnableCh7.Location = new System.Drawing.Point(14, 21);
-            this.rbTa38044EnableCh7.Name = "rbTa38044EnableCh7";
-            this.rbTa38044EnableCh7.Size = new System.Drawing.Size(14, 13);
-            this.rbTa38044EnableCh7.TabIndex = 5;
-            this.rbTa38044EnableCh7.TabStop = true;
-            this.rbTa38044EnableCh7.UseVisualStyleBackColor = true;
-            // 
-            // groupBox10
-            // 
-            this.groupBox10.Controls.Add(this.rbTa38044DisableCh6);
-            this.groupBox10.Controls.Add(this.rbTa38044EnableCh6);
-            this.groupBox10.Location = new System.Drawing.Point(104, 15);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(42, 70);
-            this.groupBox10.TabIndex = 7;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "Ch6";
-            // 
-            // rbTa38044DisableCh6
-            // 
-            this.rbTa38044DisableCh6.AutoSize = true;
-            this.rbTa38044DisableCh6.Location = new System.Drawing.Point(14, 43);
-            this.rbTa38044DisableCh6.Name = "rbTa38044DisableCh6";
-            this.rbTa38044DisableCh6.Size = new System.Drawing.Size(14, 13);
-            this.rbTa38044DisableCh6.TabIndex = 6;
-            this.rbTa38044DisableCh6.TabStop = true;
-            this.rbTa38044DisableCh6.UseVisualStyleBackColor = true;
-            // 
-            // rbTa38044EnableCh6
-            // 
-            this.rbTa38044EnableCh6.AutoSize = true;
-            this.rbTa38044EnableCh6.Location = new System.Drawing.Point(14, 21);
-            this.rbTa38044EnableCh6.Name = "rbTa38044EnableCh6";
-            this.rbTa38044EnableCh6.Size = new System.Drawing.Size(14, 13);
-            this.rbTa38044EnableCh6.TabIndex = 5;
-            this.rbTa38044EnableCh6.TabStop = true;
-            this.rbTa38044EnableCh6.UseVisualStyleBackColor = true;
-            // 
-            // groupBox11
-            // 
-            this.groupBox11.Controls.Add(this.rbTa38044DisableCh5);
-            this.groupBox11.Controls.Add(this.rbTa38044EnableCh5);
-            this.groupBox11.Location = new System.Drawing.Point(152, 15);
-            this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(42, 70);
-            this.groupBox11.TabIndex = 8;
-            this.groupBox11.TabStop = false;
-            this.groupBox11.Text = "Ch5";
-            // 
-            // rbTa38044DisableCh5
-            // 
-            this.rbTa38044DisableCh5.AutoSize = true;
-            this.rbTa38044DisableCh5.Location = new System.Drawing.Point(14, 43);
-            this.rbTa38044DisableCh5.Name = "rbTa38044DisableCh5";
-            this.rbTa38044DisableCh5.Size = new System.Drawing.Size(14, 13);
-            this.rbTa38044DisableCh5.TabIndex = 6;
-            this.rbTa38044DisableCh5.TabStop = true;
-            this.rbTa38044DisableCh5.UseVisualStyleBackColor = true;
-            // 
-            // rbTa38044EnableCh5
-            // 
-            this.rbTa38044EnableCh5.AutoSize = true;
-            this.rbTa38044EnableCh5.Location = new System.Drawing.Point(14, 21);
-            this.rbTa38044EnableCh5.Name = "rbTa38044EnableCh5";
-            this.rbTa38044EnableCh5.Size = new System.Drawing.Size(14, 13);
-            this.rbTa38044EnableCh5.TabIndex = 5;
-            this.rbTa38044EnableCh5.TabStop = true;
-            this.rbTa38044EnableCh5.UseVisualStyleBackColor = true;
-            // 
-            // groupBox12
-            // 
-            this.groupBox12.Controls.Add(this.rbTa38044DisableCh4);
-            this.groupBox12.Controls.Add(this.rbTa38044EnableCh4);
-            this.groupBox12.Location = new System.Drawing.Point(200, 15);
-            this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(42, 70);
-            this.groupBox12.TabIndex = 9;
-            this.groupBox12.TabStop = false;
-            this.groupBox12.Text = "Ch4";
-            // 
-            // rbTa38044DisableCh4
-            // 
-            this.rbTa38044DisableCh4.AutoSize = true;
-            this.rbTa38044DisableCh4.Location = new System.Drawing.Point(14, 43);
-            this.rbTa38044DisableCh4.Name = "rbTa38044DisableCh4";
-            this.rbTa38044DisableCh4.Size = new System.Drawing.Size(14, 13);
-            this.rbTa38044DisableCh4.TabIndex = 6;
-            this.rbTa38044DisableCh4.TabStop = true;
-            this.rbTa38044DisableCh4.UseVisualStyleBackColor = true;
-            // 
-            // rbTa38044EnableCh4
-            // 
-            this.rbTa38044EnableCh4.AutoSize = true;
-            this.rbTa38044EnableCh4.Location = new System.Drawing.Point(14, 21);
-            this.rbTa38044EnableCh4.Name = "rbTa38044EnableCh4";
-            this.rbTa38044EnableCh4.Size = new System.Drawing.Size(14, 13);
-            this.rbTa38044EnableCh4.TabIndex = 5;
-            this.rbTa38044EnableCh4.TabStop = true;
-            this.rbTa38044EnableCh4.UseVisualStyleBackColor = true;
-            // 
-            // groupBox13
-            // 
-            this.groupBox13.Controls.Add(this.rbTa38044DisableCh3);
-            this.groupBox13.Controls.Add(this.rbTa38044EnableCh3);
-            this.groupBox13.Location = new System.Drawing.Point(248, 15);
-            this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(42, 70);
-            this.groupBox13.TabIndex = 10;
-            this.groupBox13.TabStop = false;
-            this.groupBox13.Text = "Ch3";
-            // 
-            // rbTa38044DisableCh3
-            // 
-            this.rbTa38044DisableCh3.AutoSize = true;
-            this.rbTa38044DisableCh3.Location = new System.Drawing.Point(14, 43);
-            this.rbTa38044DisableCh3.Name = "rbTa38044DisableCh3";
-            this.rbTa38044DisableCh3.Size = new System.Drawing.Size(14, 13);
-            this.rbTa38044DisableCh3.TabIndex = 6;
-            this.rbTa38044DisableCh3.TabStop = true;
-            this.rbTa38044DisableCh3.UseVisualStyleBackColor = true;
-            // 
-            // rbTa38044EnableCh3
-            // 
-            this.rbTa38044EnableCh3.AutoSize = true;
-            this.rbTa38044EnableCh3.Location = new System.Drawing.Point(14, 21);
-            this.rbTa38044EnableCh3.Name = "rbTa38044EnableCh3";
-            this.rbTa38044EnableCh3.Size = new System.Drawing.Size(14, 13);
-            this.rbTa38044EnableCh3.TabIndex = 5;
-            this.rbTa38044EnableCh3.TabStop = true;
-            this.rbTa38044EnableCh3.UseVisualStyleBackColor = true;
-            // 
-            // groupBox14
-            // 
-            this.groupBox14.Controls.Add(this.rbTa38044DisableCh2);
-            this.groupBox14.Controls.Add(this.rbTa38044EnableCh2);
-            this.groupBox14.Location = new System.Drawing.Point(296, 15);
-            this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Size = new System.Drawing.Size(42, 70);
-            this.groupBox14.TabIndex = 11;
-            this.groupBox14.TabStop = false;
-            this.groupBox14.Text = "Ch2";
-            // 
-            // rbTa38044DisableCh2
-            // 
-            this.rbTa38044DisableCh2.AutoSize = true;
-            this.rbTa38044DisableCh2.Location = new System.Drawing.Point(14, 43);
-            this.rbTa38044DisableCh2.Name = "rbTa38044DisableCh2";
-            this.rbTa38044DisableCh2.Size = new System.Drawing.Size(14, 13);
-            this.rbTa38044DisableCh2.TabIndex = 6;
-            this.rbTa38044DisableCh2.TabStop = true;
-            this.rbTa38044DisableCh2.UseVisualStyleBackColor = true;
-            // 
-            // rbTa38044EnableCh2
-            // 
-            this.rbTa38044EnableCh2.AutoSize = true;
-            this.rbTa38044EnableCh2.Location = new System.Drawing.Point(14, 21);
-            this.rbTa38044EnableCh2.Name = "rbTa38044EnableCh2";
-            this.rbTa38044EnableCh2.Size = new System.Drawing.Size(14, 13);
-            this.rbTa38044EnableCh2.TabIndex = 5;
-            this.rbTa38044EnableCh2.TabStop = true;
-            this.rbTa38044EnableCh2.UseVisualStyleBackColor = true;
-            // 
-            // groupBox15
-            // 
-            this.groupBox15.Controls.Add(this.rbTa38044DisableCh1);
-            this.groupBox15.Controls.Add(this.rbTa38044EnableCh1);
-            this.groupBox15.Location = new System.Drawing.Point(344, 15);
-            this.groupBox15.Name = "groupBox15";
-            this.groupBox15.Size = new System.Drawing.Size(79, 70);
-            this.groupBox15.TabIndex = 12;
-            this.groupBox15.TabStop = false;
-            this.groupBox15.Text = "Ch1";
-            // 
-            // rbTa38044DisableCh1
-            // 
-            this.rbTa38044DisableCh1.AutoSize = true;
-            this.rbTa38044DisableCh1.Location = new System.Drawing.Point(14, 43);
-            this.rbTa38044DisableCh1.Name = "rbTa38044DisableCh1";
-            this.rbTa38044DisableCh1.Size = new System.Drawing.Size(57, 16);
-            this.rbTa38044DisableCh1.TabIndex = 6;
-            this.rbTa38044DisableCh1.TabStop = true;
-            this.rbTa38044DisableCh1.Text = "Disable";
-            this.rbTa38044DisableCh1.UseVisualStyleBackColor = true;
-            // 
-            // rbTa38044EnableCh1
-            // 
-            this.rbTa38044EnableCh1.AutoSize = true;
-            this.rbTa38044EnableCh1.Location = new System.Drawing.Point(14, 21);
-            this.rbTa38044EnableCh1.Name = "rbTa38044EnableCh1";
-            this.rbTa38044EnableCh1.Size = new System.Drawing.Size(55, 16);
-            this.rbTa38044EnableCh1.TabIndex = 5;
-            this.rbTa38044EnableCh1.TabStop = true;
-            this.rbTa38044EnableCh1.Text = "Enable";
-            this.rbTa38044EnableCh1.UseVisualStyleBackColor = true;
-            // 
-            // bRxModeEnable
-            // 
-            this.bRxModeEnable.Location = new System.Drawing.Point(433, 32);
-            this.bRxModeEnable.Name = "bRxModeEnable";
-            this.bRxModeEnable.Size = new System.Drawing.Size(75, 23);
-            this.bRxModeEnable.TabIndex = 13;
-            this.bRxModeEnable.Text = "Enable";
-            this.bRxModeEnable.UseVisualStyleBackColor = true;
-            this.bRxModeEnable.Click += new System.EventHandler(this.bRxModeEnable_Click);
-            // 
-            // bRxModeDisable
-            // 
-            this.bRxModeDisable.Location = new System.Drawing.Point(433, 55);
-            this.bRxModeDisable.Name = "bRxModeDisable";
-            this.bRxModeDisable.Size = new System.Drawing.Size(75, 23);
-            this.bRxModeDisable.TabIndex = 14;
-            this.bRxModeDisable.Text = "Disable";
-            this.bRxModeDisable.UseVisualStyleBackColor = true;
-            this.bRxModeDisable.Click += new System.EventHandler(this.bRxModeDisable_Click);
+            this.groupBox6.Visible = false;
             // 
             // groupBox16
             // 
@@ -1527,6 +1295,295 @@
             this.rbLd38045EnableCh1.TabStop = true;
             this.rbLd38045EnableCh1.UseVisualStyleBackColor = true;
             // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.bRxModeDisable);
+            this.groupBox8.Controls.Add(this.bRxModeEnable);
+            this.groupBox8.Controls.Add(this.groupBox15);
+            this.groupBox8.Controls.Add(this.groupBox14);
+            this.groupBox8.Controls.Add(this.groupBox13);
+            this.groupBox8.Controls.Add(this.groupBox12);
+            this.groupBox8.Controls.Add(this.groupBox11);
+            this.groupBox8.Controls.Add(this.groupBox10);
+            this.groupBox8.Controls.Add(this.groupBox9);
+            this.groupBox8.Controls.Add(this.Ch8);
+            this.groupBox8.Location = new System.Drawing.Point(15, 21);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(521, 91);
+            this.groupBox8.TabIndex = 12;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Mata38044";
+            // 
+            // bRxModeDisable
+            // 
+            this.bRxModeDisable.Location = new System.Drawing.Point(433, 55);
+            this.bRxModeDisable.Name = "bRxModeDisable";
+            this.bRxModeDisable.Size = new System.Drawing.Size(75, 23);
+            this.bRxModeDisable.TabIndex = 14;
+            this.bRxModeDisable.Text = "Disable";
+            this.bRxModeDisable.UseVisualStyleBackColor = true;
+            this.bRxModeDisable.Click += new System.EventHandler(this.bRxModeDisable_Click);
+            // 
+            // bRxModeEnable
+            // 
+            this.bRxModeEnable.Location = new System.Drawing.Point(433, 32);
+            this.bRxModeEnable.Name = "bRxModeEnable";
+            this.bRxModeEnable.Size = new System.Drawing.Size(75, 23);
+            this.bRxModeEnable.TabIndex = 13;
+            this.bRxModeEnable.Text = "Enable";
+            this.bRxModeEnable.UseVisualStyleBackColor = true;
+            this.bRxModeEnable.Click += new System.EventHandler(this.bRxModeEnable_Click);
+            // 
+            // groupBox15
+            // 
+            this.groupBox15.Controls.Add(this.rbTa38044DisableCh1);
+            this.groupBox15.Controls.Add(this.rbTa38044EnableCh1);
+            this.groupBox15.Location = new System.Drawing.Point(344, 15);
+            this.groupBox15.Name = "groupBox15";
+            this.groupBox15.Size = new System.Drawing.Size(79, 70);
+            this.groupBox15.TabIndex = 12;
+            this.groupBox15.TabStop = false;
+            this.groupBox15.Text = "Ch1";
+            // 
+            // rbTa38044DisableCh1
+            // 
+            this.rbTa38044DisableCh1.AutoSize = true;
+            this.rbTa38044DisableCh1.Location = new System.Drawing.Point(14, 43);
+            this.rbTa38044DisableCh1.Name = "rbTa38044DisableCh1";
+            this.rbTa38044DisableCh1.Size = new System.Drawing.Size(57, 16);
+            this.rbTa38044DisableCh1.TabIndex = 6;
+            this.rbTa38044DisableCh1.TabStop = true;
+            this.rbTa38044DisableCh1.Text = "Disable";
+            this.rbTa38044DisableCh1.UseVisualStyleBackColor = true;
+            // 
+            // rbTa38044EnableCh1
+            // 
+            this.rbTa38044EnableCh1.AutoSize = true;
+            this.rbTa38044EnableCh1.Location = new System.Drawing.Point(14, 21);
+            this.rbTa38044EnableCh1.Name = "rbTa38044EnableCh1";
+            this.rbTa38044EnableCh1.Size = new System.Drawing.Size(55, 16);
+            this.rbTa38044EnableCh1.TabIndex = 5;
+            this.rbTa38044EnableCh1.TabStop = true;
+            this.rbTa38044EnableCh1.Text = "Enable";
+            this.rbTa38044EnableCh1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox14
+            // 
+            this.groupBox14.Controls.Add(this.rbTa38044DisableCh2);
+            this.groupBox14.Controls.Add(this.rbTa38044EnableCh2);
+            this.groupBox14.Location = new System.Drawing.Point(296, 15);
+            this.groupBox14.Name = "groupBox14";
+            this.groupBox14.Size = new System.Drawing.Size(42, 70);
+            this.groupBox14.TabIndex = 11;
+            this.groupBox14.TabStop = false;
+            this.groupBox14.Text = "Ch2";
+            // 
+            // rbTa38044DisableCh2
+            // 
+            this.rbTa38044DisableCh2.AutoSize = true;
+            this.rbTa38044DisableCh2.Location = new System.Drawing.Point(14, 43);
+            this.rbTa38044DisableCh2.Name = "rbTa38044DisableCh2";
+            this.rbTa38044DisableCh2.Size = new System.Drawing.Size(14, 13);
+            this.rbTa38044DisableCh2.TabIndex = 6;
+            this.rbTa38044DisableCh2.TabStop = true;
+            this.rbTa38044DisableCh2.UseVisualStyleBackColor = true;
+            // 
+            // rbTa38044EnableCh2
+            // 
+            this.rbTa38044EnableCh2.AutoSize = true;
+            this.rbTa38044EnableCh2.Location = new System.Drawing.Point(14, 21);
+            this.rbTa38044EnableCh2.Name = "rbTa38044EnableCh2";
+            this.rbTa38044EnableCh2.Size = new System.Drawing.Size(14, 13);
+            this.rbTa38044EnableCh2.TabIndex = 5;
+            this.rbTa38044EnableCh2.TabStop = true;
+            this.rbTa38044EnableCh2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox13
+            // 
+            this.groupBox13.Controls.Add(this.rbTa38044DisableCh3);
+            this.groupBox13.Controls.Add(this.rbTa38044EnableCh3);
+            this.groupBox13.Location = new System.Drawing.Point(248, 15);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Size = new System.Drawing.Size(42, 70);
+            this.groupBox13.TabIndex = 10;
+            this.groupBox13.TabStop = false;
+            this.groupBox13.Text = "Ch3";
+            // 
+            // rbTa38044DisableCh3
+            // 
+            this.rbTa38044DisableCh3.AutoSize = true;
+            this.rbTa38044DisableCh3.Location = new System.Drawing.Point(14, 43);
+            this.rbTa38044DisableCh3.Name = "rbTa38044DisableCh3";
+            this.rbTa38044DisableCh3.Size = new System.Drawing.Size(14, 13);
+            this.rbTa38044DisableCh3.TabIndex = 6;
+            this.rbTa38044DisableCh3.TabStop = true;
+            this.rbTa38044DisableCh3.UseVisualStyleBackColor = true;
+            // 
+            // rbTa38044EnableCh3
+            // 
+            this.rbTa38044EnableCh3.AutoSize = true;
+            this.rbTa38044EnableCh3.Location = new System.Drawing.Point(14, 21);
+            this.rbTa38044EnableCh3.Name = "rbTa38044EnableCh3";
+            this.rbTa38044EnableCh3.Size = new System.Drawing.Size(14, 13);
+            this.rbTa38044EnableCh3.TabIndex = 5;
+            this.rbTa38044EnableCh3.TabStop = true;
+            this.rbTa38044EnableCh3.UseVisualStyleBackColor = true;
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.rbTa38044DisableCh4);
+            this.groupBox12.Controls.Add(this.rbTa38044EnableCh4);
+            this.groupBox12.Location = new System.Drawing.Point(200, 15);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(42, 70);
+            this.groupBox12.TabIndex = 9;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "Ch4";
+            // 
+            // rbTa38044DisableCh4
+            // 
+            this.rbTa38044DisableCh4.AutoSize = true;
+            this.rbTa38044DisableCh4.Location = new System.Drawing.Point(14, 43);
+            this.rbTa38044DisableCh4.Name = "rbTa38044DisableCh4";
+            this.rbTa38044DisableCh4.Size = new System.Drawing.Size(14, 13);
+            this.rbTa38044DisableCh4.TabIndex = 6;
+            this.rbTa38044DisableCh4.TabStop = true;
+            this.rbTa38044DisableCh4.UseVisualStyleBackColor = true;
+            // 
+            // rbTa38044EnableCh4
+            // 
+            this.rbTa38044EnableCh4.AutoSize = true;
+            this.rbTa38044EnableCh4.Location = new System.Drawing.Point(14, 21);
+            this.rbTa38044EnableCh4.Name = "rbTa38044EnableCh4";
+            this.rbTa38044EnableCh4.Size = new System.Drawing.Size(14, 13);
+            this.rbTa38044EnableCh4.TabIndex = 5;
+            this.rbTa38044EnableCh4.TabStop = true;
+            this.rbTa38044EnableCh4.UseVisualStyleBackColor = true;
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.rbTa38044DisableCh5);
+            this.groupBox11.Controls.Add(this.rbTa38044EnableCh5);
+            this.groupBox11.Location = new System.Drawing.Point(152, 15);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(42, 70);
+            this.groupBox11.TabIndex = 8;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Ch5";
+            // 
+            // rbTa38044DisableCh5
+            // 
+            this.rbTa38044DisableCh5.AutoSize = true;
+            this.rbTa38044DisableCh5.Location = new System.Drawing.Point(14, 43);
+            this.rbTa38044DisableCh5.Name = "rbTa38044DisableCh5";
+            this.rbTa38044DisableCh5.Size = new System.Drawing.Size(14, 13);
+            this.rbTa38044DisableCh5.TabIndex = 6;
+            this.rbTa38044DisableCh5.TabStop = true;
+            this.rbTa38044DisableCh5.UseVisualStyleBackColor = true;
+            // 
+            // rbTa38044EnableCh5
+            // 
+            this.rbTa38044EnableCh5.AutoSize = true;
+            this.rbTa38044EnableCh5.Location = new System.Drawing.Point(14, 21);
+            this.rbTa38044EnableCh5.Name = "rbTa38044EnableCh5";
+            this.rbTa38044EnableCh5.Size = new System.Drawing.Size(14, 13);
+            this.rbTa38044EnableCh5.TabIndex = 5;
+            this.rbTa38044EnableCh5.TabStop = true;
+            this.rbTa38044EnableCh5.UseVisualStyleBackColor = true;
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.rbTa38044DisableCh6);
+            this.groupBox10.Controls.Add(this.rbTa38044EnableCh6);
+            this.groupBox10.Location = new System.Drawing.Point(104, 15);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(42, 70);
+            this.groupBox10.TabIndex = 7;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Ch6";
+            // 
+            // rbTa38044DisableCh6
+            // 
+            this.rbTa38044DisableCh6.AutoSize = true;
+            this.rbTa38044DisableCh6.Location = new System.Drawing.Point(14, 43);
+            this.rbTa38044DisableCh6.Name = "rbTa38044DisableCh6";
+            this.rbTa38044DisableCh6.Size = new System.Drawing.Size(14, 13);
+            this.rbTa38044DisableCh6.TabIndex = 6;
+            this.rbTa38044DisableCh6.TabStop = true;
+            this.rbTa38044DisableCh6.UseVisualStyleBackColor = true;
+            // 
+            // rbTa38044EnableCh6
+            // 
+            this.rbTa38044EnableCh6.AutoSize = true;
+            this.rbTa38044EnableCh6.Location = new System.Drawing.Point(14, 21);
+            this.rbTa38044EnableCh6.Name = "rbTa38044EnableCh6";
+            this.rbTa38044EnableCh6.Size = new System.Drawing.Size(14, 13);
+            this.rbTa38044EnableCh6.TabIndex = 5;
+            this.rbTa38044EnableCh6.TabStop = true;
+            this.rbTa38044EnableCh6.UseVisualStyleBackColor = true;
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.rbTa38044DisableCh7);
+            this.groupBox9.Controls.Add(this.rbTa38044EnableCh7);
+            this.groupBox9.Location = new System.Drawing.Point(56, 15);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(42, 70);
+            this.groupBox9.TabIndex = 6;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Ch7";
+            // 
+            // rbTa38044DisableCh7
+            // 
+            this.rbTa38044DisableCh7.AutoSize = true;
+            this.rbTa38044DisableCh7.Location = new System.Drawing.Point(14, 43);
+            this.rbTa38044DisableCh7.Name = "rbTa38044DisableCh7";
+            this.rbTa38044DisableCh7.Size = new System.Drawing.Size(14, 13);
+            this.rbTa38044DisableCh7.TabIndex = 6;
+            this.rbTa38044DisableCh7.TabStop = true;
+            this.rbTa38044DisableCh7.UseVisualStyleBackColor = true;
+            // 
+            // rbTa38044EnableCh7
+            // 
+            this.rbTa38044EnableCh7.AutoSize = true;
+            this.rbTa38044EnableCh7.Location = new System.Drawing.Point(14, 21);
+            this.rbTa38044EnableCh7.Name = "rbTa38044EnableCh7";
+            this.rbTa38044EnableCh7.Size = new System.Drawing.Size(14, 13);
+            this.rbTa38044EnableCh7.TabIndex = 5;
+            this.rbTa38044EnableCh7.TabStop = true;
+            this.rbTa38044EnableCh7.UseVisualStyleBackColor = true;
+            // 
+            // Ch8
+            // 
+            this.Ch8.Controls.Add(this.rbTa38044DisableCh8);
+            this.Ch8.Controls.Add(this.rbTa38044EnableCh8);
+            this.Ch8.Location = new System.Drawing.Point(8, 15);
+            this.Ch8.Name = "Ch8";
+            this.Ch8.Size = new System.Drawing.Size(42, 70);
+            this.Ch8.TabIndex = 5;
+            this.Ch8.TabStop = false;
+            this.Ch8.Text = "Ch8";
+            // 
+            // rbTa38044DisableCh8
+            // 
+            this.rbTa38044DisableCh8.AutoSize = true;
+            this.rbTa38044DisableCh8.Location = new System.Drawing.Point(14, 43);
+            this.rbTa38044DisableCh8.Name = "rbTa38044DisableCh8";
+            this.rbTa38044DisableCh8.Size = new System.Drawing.Size(14, 13);
+            this.rbTa38044DisableCh8.TabIndex = 6;
+            this.rbTa38044DisableCh8.TabStop = true;
+            this.rbTa38044DisableCh8.UseVisualStyleBackColor = true;
+            // 
+            // rbTa38044EnableCh8
+            // 
+            this.rbTa38044EnableCh8.AutoSize = true;
+            this.rbTa38044EnableCh8.Location = new System.Drawing.Point(14, 21);
+            this.rbTa38044EnableCh8.Name = "rbTa38044EnableCh8";
+            this.rbTa38044EnableCh8.Size = new System.Drawing.Size(14, 13);
+            this.rbTa38044EnableCh8.TabIndex = 5;
+            this.rbTa38044EnableCh8.TabStop = true;
+            this.rbTa38044EnableCh8.UseVisualStyleBackColor = true;
+            // 
             // UcMissionMode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1556,23 +1613,6 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox6.ResumeLayout(false);
-            this.groupBox8.ResumeLayout(false);
-            this.Ch8.ResumeLayout(false);
-            this.Ch8.PerformLayout();
-            this.groupBox9.ResumeLayout(false);
-            this.groupBox9.PerformLayout();
-            this.groupBox10.ResumeLayout(false);
-            this.groupBox10.PerformLayout();
-            this.groupBox11.ResumeLayout(false);
-            this.groupBox11.PerformLayout();
-            this.groupBox12.ResumeLayout(false);
-            this.groupBox12.PerformLayout();
-            this.groupBox13.ResumeLayout(false);
-            this.groupBox13.PerformLayout();
-            this.groupBox14.ResumeLayout(false);
-            this.groupBox14.PerformLayout();
-            this.groupBox15.ResumeLayout(false);
-            this.groupBox15.PerformLayout();
             this.groupBox16.ResumeLayout(false);
             this.groupBox17.ResumeLayout(false);
             this.groupBox17.PerformLayout();
@@ -1590,6 +1630,23 @@
             this.groupBox23.PerformLayout();
             this.groupBox24.ResumeLayout(false);
             this.groupBox24.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox15.ResumeLayout(false);
+            this.groupBox15.PerformLayout();
+            this.groupBox14.ResumeLayout(false);
+            this.groupBox14.PerformLayout();
+            this.groupBox13.ResumeLayout(false);
+            this.groupBox13.PerformLayout();
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
+            this.Ch8.ResumeLayout(false);
+            this.Ch8.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1719,5 +1776,9 @@
         private System.Windows.Forms.GroupBox Ch8;
         private System.Windows.Forms.RadioButton rbTa38044DisableCh8;
         private System.Windows.Forms.RadioButton rbTa38044EnableCh8;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button2;
     }
 }
