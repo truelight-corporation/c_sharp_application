@@ -492,6 +492,7 @@
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "CMIS extend addr control";
+            this.groupBox2.Visible = false;
             // 
             // groupBox5
             // 
