@@ -615,9 +615,9 @@ namespace Mald38045Mata38044Config
             int rv;
 
             data[0] = data[1] = data[2] = 0x00;
-            data[0] = Convert.ToByte(tbTaG2Page.Text);
-            data[1] = Convert.ToByte(tbTaG2Addr.Text);
-            data[2] = Convert.ToByte(tbTaG2Value.Text);
+            data[0] = Convert.ToByte(tbTaG2Page.Text, 16);
+            data[1] = Convert.ToByte(tbTaG2Addr.Text, 16);
+            data[2] = Convert.ToByte(tbTaG2Value.Text, 16);
             rv = I2cWrite(0, 3, data);
 
             tbTaG2Status.Text = _CmisExtendAddrControlForRead();
