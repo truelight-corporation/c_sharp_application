@@ -2159,7 +2159,7 @@ namespace Mald38045Mata38044Config
                 item = new ComboboxItem();
                 item.Text = "0x" + i.ToString("X2") + ":" + (dTmp / 127 * i).ToString("F2") + "dB";
                 item.Value = i;
-                cbDacTxDacPreTopCh3.Items.Add(item);
+                cbDacTxDacPreMidCh3.Items.Add(item);
                 item = new ComboboxItem();
                 item.Text = "0x" + i.ToString("X2") + ":" + (dTmp / 127 * i).ToString("F2") + "dB";
                 item.Value = i;
@@ -2175,7 +2175,7 @@ namespace Mald38045Mata38044Config
                 item = new ComboboxItem();
                 item.Text = "0x" + i.ToString("X2") + ":" + (dTmp / 127 * i).ToString("F2") + "dB";
                 item.Value = i;
-                cbDacTxDacPostBotCh2.Items.Add(item);
+                cbDacTxDacPostMidCh2.Items.Add(item);
                 item = new ComboboxItem();
                 item.Text = "0x" + i.ToString("X2") + ":" + (dTmp / 127 * i).ToString("F2") + "dB";
                 item.Value = i;
@@ -4893,9 +4893,9 @@ namespace Mald38045Mata38044Config
             else
                 cbDacTxDacPreTopPdbCh3.Checked = true;
 
-            foreach (ComboboxItem item in cbDacTxDacPreTopCh3.Items) {
+            foreach (ComboboxItem item in cbDacTxDacPreMidCh3.Items) {
                 if (item.Value == (data & 0x7F))
-                    cbDacTxDacPreTopCh3.SelectedItem = item;
+                    cbDacTxDacPreMidCh3.SelectedItem = item;
             }
         }
 
@@ -4932,9 +4932,9 @@ namespace Mald38045Mata38044Config
             else
                 cbDacTxDacPostBotPdbCh2.Checked = true;
 
-            foreach (ComboboxItem item in cbDacTxDacPostBotCh2.Items) {
+            foreach (ComboboxItem item in cbDacTxDacPostMidCh2.Items) {
                 if (item.Value == (data & 0x7F))
-                    cbDacTxDacPostBotCh2.SelectedItem = item;
+                    cbDacTxDacPostMidCh2.SelectedItem = item;
             }
         }
 
@@ -14229,7 +14229,7 @@ namespace Mald38045Mata38044Config
             if (cbDacTxDacPreTopPdbCh3.Checked == true)
                 data[0] |= 0x80;
 
-            bTmp = Convert.ToByte(cbDacTxDacPreTopCh3.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacPreMidCh3.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(227, 1, data);
@@ -14401,7 +14401,7 @@ namespace Mald38045Mata38044Config
             if (cbDacTxDacPostBotPdbCh2.Checked == true)
                 data[0] |= 0x80;
 
-            bTmp = Convert.ToByte(cbDacTxDacPostBotCh2.SelectedIndex);
+            bTmp = Convert.ToByte(cbDacTxDacPostMidCh2.SelectedIndex);
             data[0] |= bTmp;
 
             rv = I2cWrite(202, 1, data);
@@ -16018,5 +16018,6 @@ namespace Mald38045Mata38044Config
             if (_WritePage3FAddr26() < 0)
                 return;
         }
+        
     }
 }

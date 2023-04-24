@@ -479,27 +479,17 @@
             this.tpLaserDriverControl = new System.Windows.Forms.TabPage();
             this.tcLaserDriverControl = new System.Windows.Forms.TabControl();
             this.tpLaserDriverControlCh0 = new System.Windows.Forms.TabPage();
-            this.cbTxIbiasAdcSelectCh0 = new System.Windows.Forms.CheckBox();
-            this.lTxDesiredImodCh0 = new System.Windows.Forms.Label();
-            this.cbTxDesiredImodCh0 = new System.Windows.Forms.ComboBox();
-            this.cbTxEnableAutoImodCh0 = new System.Windows.Forms.CheckBox();
-            this.cbTxPdbLbkInCh0 = new System.Windows.Forms.CheckBox();
-            this.cbTxPdbLbkOutCh0 = new System.Windows.Forms.CheckBox();
-            this.lTxTopPostPolinvCh0 = new System.Windows.Forms.Label();
-            this.cbTxTopPostPolinvCh0 = new System.Windows.Forms.ComboBox();
-            this.lTxMidPostPolinvCh0 = new System.Windows.Forms.Label();
-            this.cbTxMidPostPolinvCh0 = new System.Windows.Forms.ComboBox();
-            this.lTxBotPostPolinvCh0 = new System.Windows.Forms.Label();
-            this.cbTxBotPostPolinvCh0 = new System.Windows.Forms.ComboBox();
-            this.cbDacTxDacPostTopCh0 = new System.Windows.Forms.ComboBox();
-            this.lDacTxDacPostTopCh0 = new System.Windows.Forms.Label();
-            this.cbDacTxDacPostTopPdbCh0 = new System.Windows.Forms.CheckBox();
-            this.cbDacTxDacPostMidCh0 = new System.Windows.Forms.ComboBox();
-            this.lDacTxDacPostMidCh0 = new System.Windows.Forms.Label();
-            this.cbDacTxDacPostMidPdbCh0 = new System.Windows.Forms.CheckBox();
+            this.gbPostEmphasis = new System.Windows.Forms.GroupBox();
             this.cbDacTxDacPostBotCh0 = new System.Windows.Forms.ComboBox();
             this.lDacTxDacPostBotCh0 = new System.Windows.Forms.Label();
             this.cbDacTxDacPostBotPdbCh0 = new System.Windows.Forms.CheckBox();
+            this.cbDacTxDacPostMidCh0 = new System.Windows.Forms.ComboBox();
+            this.lDacTxDacPostMidCh0 = new System.Windows.Forms.Label();
+            this.cbDacTxDacPostMidPdbCh0 = new System.Windows.Forms.CheckBox();
+            this.cbDacTxDacPostTopCh0 = new System.Windows.Forms.ComboBox();
+            this.lDacTxDacPostTopCh0 = new System.Windows.Forms.Label();
+            this.cbDacTxDacPostTopPdbCh0 = new System.Windows.Forms.CheckBox();
+            this.gbPreEmphasis = new System.Windows.Forms.GroupBox();
             this.cbDacTxDacPreTopCh0 = new System.Windows.Forms.ComboBox();
             this.lDacTxDacPreTopCh0 = new System.Windows.Forms.Label();
             this.cbDacTxDacPreTopPdbCh0 = new System.Windows.Forms.CheckBox();
@@ -507,14 +497,16 @@
             this.lDacTxDacPreMidCh0 = new System.Windows.Forms.Label();
             this.cbDacTxDacPreMidPdbCh0 = new System.Windows.Forms.CheckBox();
             this.cbDacTxDacPreBotCh0 = new System.Windows.Forms.ComboBox();
-            this.lDacTxDacMain8bTopCh0 = new System.Windows.Forms.Label();
-            this.cbDacTxDacMain8bTopCh0 = new System.Windows.Forms.ComboBox();
-            this.lDacTxDacMain8bMidCh0 = new System.Windows.Forms.Label();
-            this.cbDacTxDacMain8bMidCh0 = new System.Windows.Forms.ComboBox();
             this.lDacTxDacPreBotCh0 = new System.Windows.Forms.Label();
             this.cbDacTxDacPreBotPdbCh0 = new System.Windows.Forms.CheckBox();
-            this.lDacTxDacMain8bBotCh0 = new System.Windows.Forms.Label();
+            this.gbModulationCurrent = new System.Windows.Forms.GroupBox();
+            this.cbDacTxDacMain8bTopCh0 = new System.Windows.Forms.ComboBox();
+            this.cbDacTxDacMain8bMidCh0 = new System.Windows.Forms.ComboBox();
             this.cbDacTxDacMain8bBotCh0 = new System.Windows.Forms.ComboBox();
+            this.lDacTxDacMain8bTopCh0 = new System.Windows.Forms.Label();
+            this.lDacTxDacMain8bMidCh0 = new System.Windows.Forms.Label();
+            this.lDacTxDacMain8bBotCh0 = new System.Windows.Forms.Label();
+            this.gbCrossPoint = new System.Windows.Forms.GroupBox();
             this.lDacTxDacDcdTopCh0 = new System.Windows.Forms.Label();
             this.cbDacTxDacDcdTopCh0 = new System.Windows.Forms.ComboBox();
             this.cbDacTxDacDcdTopPdbCh0 = new System.Windows.Forms.CheckBox();
@@ -530,6 +522,18 @@
             this.cbDacTxDacDcdBotPdbCh0 = new System.Windows.Forms.CheckBox();
             this.cbTxBotDcdDacPolflipCh0 = new System.Windows.Forms.CheckBox();
             this.cbTxIdoubleEnBotCh0 = new System.Windows.Forms.CheckBox();
+            this.cbTxIbiasAdcSelectCh0 = new System.Windows.Forms.CheckBox();
+            this.lTxDesiredImodCh0 = new System.Windows.Forms.Label();
+            this.cbTxDesiredImodCh0 = new System.Windows.Forms.ComboBox();
+            this.cbTxEnableAutoImodCh0 = new System.Windows.Forms.CheckBox();
+            this.cbTxPdbLbkInCh0 = new System.Windows.Forms.CheckBox();
+            this.cbTxPdbLbkOutCh0 = new System.Windows.Forms.CheckBox();
+            this.lTxTopPostPolinvCh0 = new System.Windows.Forms.Label();
+            this.cbTxTopPostPolinvCh0 = new System.Windows.Forms.ComboBox();
+            this.lTxMidPostPolinvCh0 = new System.Windows.Forms.Label();
+            this.cbTxMidPostPolinvCh0 = new System.Windows.Forms.ComboBox();
+            this.lTxBotPostPolinvCh0 = new System.Windows.Forms.Label();
+            this.cbTxBotPostPolinvCh0 = new System.Windows.Forms.ComboBox();
             this.lTxIburninCh0 = new System.Windows.Forms.Label();
             this.cbTxIburninCh0 = new System.Windows.Forms.ComboBox();
             this.cbTxBurninEnCh0 = new System.Windows.Forms.CheckBox();
@@ -554,27 +558,17 @@
             this.lMuteCntlCh0 = new System.Windows.Forms.Label();
             this.cbTxDisableCh0 = new System.Windows.Forms.CheckBox();
             this.tpLaserDriverControlCh1 = new System.Windows.Forms.TabPage();
-            this.cbTxIbiasAdcSelectCh1 = new System.Windows.Forms.CheckBox();
-            this.lTxDesiredImodCh1 = new System.Windows.Forms.Label();
-            this.cbTxDesiredImodCh1 = new System.Windows.Forms.ComboBox();
-            this.cbTxEnableAutoImodCh1 = new System.Windows.Forms.CheckBox();
-            this.cbTxPdbLbkInCh1 = new System.Windows.Forms.CheckBox();
-            this.cbTxPdbLbkOutCh1 = new System.Windows.Forms.CheckBox();
-            this.lTxTopPostPolinvCh1 = new System.Windows.Forms.Label();
-            this.cbTxTopPostPolinvCh1 = new System.Windows.Forms.ComboBox();
-            this.lTxMidPostPolinvCh1 = new System.Windows.Forms.Label();
-            this.cbTxMidPostPolinvCh1 = new System.Windows.Forms.ComboBox();
-            this.lTxBotPostPolinvCh1 = new System.Windows.Forms.Label();
-            this.cbTxBotPostPolinvCh1 = new System.Windows.Forms.ComboBox();
-            this.cbDacTxDacPostTopCh1 = new System.Windows.Forms.ComboBox();
-            this.lDacTxDacPostTopCh1 = new System.Windows.Forms.Label();
-            this.cbDacTxDacPostTopPdbCh1 = new System.Windows.Forms.CheckBox();
-            this.cbDacTxDacPostMidCh1 = new System.Windows.Forms.ComboBox();
-            this.lDacTxDacPostMidCh1 = new System.Windows.Forms.Label();
-            this.cbDacTxDacPostMidPdbCh1 = new System.Windows.Forms.CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cbDacTxDacPostBotCh1 = new System.Windows.Forms.ComboBox();
             this.lDacTxDacPostBotCh1 = new System.Windows.Forms.Label();
             this.cbDacTxDacPostBotPdbCh1 = new System.Windows.Forms.CheckBox();
+            this.cbDacTxDacPostMidCh1 = new System.Windows.Forms.ComboBox();
+            this.lDacTxDacPostMidCh1 = new System.Windows.Forms.Label();
+            this.cbDacTxDacPostMidPdbCh1 = new System.Windows.Forms.CheckBox();
+            this.cbDacTxDacPostTopCh1 = new System.Windows.Forms.ComboBox();
+            this.lDacTxDacPostTopCh1 = new System.Windows.Forms.Label();
+            this.cbDacTxDacPostTopPdbCh1 = new System.Windows.Forms.CheckBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cbDacTxDacPreTopCh1 = new System.Windows.Forms.ComboBox();
             this.lDacTxDacPreTopCh1 = new System.Windows.Forms.Label();
             this.cbDacTxDacPreTopPdbCh1 = new System.Windows.Forms.CheckBox();
@@ -582,14 +576,16 @@
             this.lDacTxDacPreMidCh1 = new System.Windows.Forms.Label();
             this.cbDacTxDacPreMidPdbCh1 = new System.Windows.Forms.CheckBox();
             this.cbDacTxDacPreBotCh1 = new System.Windows.Forms.ComboBox();
-            this.lDacTxDacMain8bTopCh1 = new System.Windows.Forms.Label();
-            this.cbDacTxDacMain8bTopCh1 = new System.Windows.Forms.ComboBox();
-            this.lDacTxDacMain8bMidCh1 = new System.Windows.Forms.Label();
-            this.cbDacTxDacMain8bMidCh1 = new System.Windows.Forms.ComboBox();
             this.lDacTxDacPreBotCh1 = new System.Windows.Forms.Label();
             this.cbDacTxDacPreBotPdbCh1 = new System.Windows.Forms.CheckBox();
-            this.lDacTxDacMain8bBotCh1 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cbDacTxDacMain8bTopCh1 = new System.Windows.Forms.ComboBox();
+            this.cbDacTxDacMain8bMidCh1 = new System.Windows.Forms.ComboBox();
             this.cbDacTxDacMain8bBotCh1 = new System.Windows.Forms.ComboBox();
+            this.lDacTxDacMain8bTopCh1 = new System.Windows.Forms.Label();
+            this.lDacTxDacMain8bMidCh1 = new System.Windows.Forms.Label();
+            this.lDacTxDacMain8bBotCh1 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.lDacTxDacDcdTopCh1 = new System.Windows.Forms.Label();
             this.cbDacTxDacDcdTopCh1 = new System.Windows.Forms.ComboBox();
             this.cbDacTxDacDcdTopPdbCh1 = new System.Windows.Forms.CheckBox();
@@ -605,6 +601,18 @@
             this.cbDacTxDacDcdBotPdbCh1 = new System.Windows.Forms.CheckBox();
             this.cbTxBotDcdDacPolflipCh1 = new System.Windows.Forms.CheckBox();
             this.cbTxIdoubleEnBotCh1 = new System.Windows.Forms.CheckBox();
+            this.cbTxIbiasAdcSelectCh1 = new System.Windows.Forms.CheckBox();
+            this.lTxDesiredImodCh1 = new System.Windows.Forms.Label();
+            this.cbTxDesiredImodCh1 = new System.Windows.Forms.ComboBox();
+            this.cbTxEnableAutoImodCh1 = new System.Windows.Forms.CheckBox();
+            this.cbTxPdbLbkInCh1 = new System.Windows.Forms.CheckBox();
+            this.cbTxPdbLbkOutCh1 = new System.Windows.Forms.CheckBox();
+            this.lTxTopPostPolinvCh1 = new System.Windows.Forms.Label();
+            this.cbTxTopPostPolinvCh1 = new System.Windows.Forms.ComboBox();
+            this.lTxMidPostPolinvCh1 = new System.Windows.Forms.Label();
+            this.cbTxMidPostPolinvCh1 = new System.Windows.Forms.ComboBox();
+            this.lTxBotPostPolinvCh1 = new System.Windows.Forms.Label();
+            this.cbTxBotPostPolinvCh1 = new System.Windows.Forms.ComboBox();
             this.lTxIburninCh1 = new System.Windows.Forms.Label();
             this.cbTxIburninCh1 = new System.Windows.Forms.ComboBox();
             this.cbTxBurninEnCh1 = new System.Windows.Forms.CheckBox();
@@ -629,27 +637,17 @@
             this.lMuteCntlCh1 = new System.Windows.Forms.Label();
             this.cbTxDisableCh1 = new System.Windows.Forms.CheckBox();
             this.tpLaserDriverControlCh2 = new System.Windows.Forms.TabPage();
-            this.cbTxIbiasAdcSelectCh2 = new System.Windows.Forms.CheckBox();
-            this.lTxDesiredImodCh2 = new System.Windows.Forms.Label();
-            this.cbTxDesiredImodCh2 = new System.Windows.Forms.ComboBox();
-            this.cbTxEnableAutoImodCh2 = new System.Windows.Forms.CheckBox();
-            this.cbTxPdbLbkInCh2 = new System.Windows.Forms.CheckBox();
-            this.cbTxPdbLbkOutCh2 = new System.Windows.Forms.CheckBox();
-            this.lTxTopPostPolinvCh2 = new System.Windows.Forms.Label();
-            this.cbTxTopPostPolinvCh2 = new System.Windows.Forms.ComboBox();
-            this.lTxMidPostPolinvCh2 = new System.Windows.Forms.Label();
-            this.cbTxMidPostPolinvCh2 = new System.Windows.Forms.ComboBox();
-            this.lTxBotPostPolinvCh2 = new System.Windows.Forms.Label();
-            this.cbTxBotPostPolinvCh2 = new System.Windows.Forms.ComboBox();
-            this.cbDacTxDacPostTopCh2 = new System.Windows.Forms.ComboBox();
-            this.lDacTxDacPostTopCh2 = new System.Windows.Forms.Label();
-            this.cbDacTxDacPostTopPdbCh2 = new System.Windows.Forms.CheckBox();
-            this.cbDacTxDacPostMidCh2 = new System.Windows.Forms.ComboBox();
-            this.lDacTxDacPostMidCh2 = new System.Windows.Forms.Label();
-            this.cbDacTxDacPostMidPdbCh2 = new System.Windows.Forms.CheckBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.cbDacTxDacPostBotCh2 = new System.Windows.Forms.ComboBox();
             this.lDacTxDacPostBotCh2 = new System.Windows.Forms.Label();
             this.cbDacTxDacPostBotPdbCh2 = new System.Windows.Forms.CheckBox();
+            this.cbDacTxDacPostMidCh2 = new System.Windows.Forms.ComboBox();
+            this.lDacTxDacPostMidCh2 = new System.Windows.Forms.Label();
+            this.cbDacTxDacPostMidPdbCh2 = new System.Windows.Forms.CheckBox();
+            this.cbDacTxDacPostTopCh2 = new System.Windows.Forms.ComboBox();
+            this.lDacTxDacPostTopCh2 = new System.Windows.Forms.Label();
+            this.cbDacTxDacPostTopPdbCh2 = new System.Windows.Forms.CheckBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.cbDacTxDacPreTopCh2 = new System.Windows.Forms.ComboBox();
             this.lDacTxDacPreTopCh2 = new System.Windows.Forms.Label();
             this.cbDacTxDacPreTopPdbCh2 = new System.Windows.Forms.CheckBox();
@@ -657,14 +655,16 @@
             this.lDacTxDacPreMidCh2 = new System.Windows.Forms.Label();
             this.cbDacTxDacPreMidPdbCh2 = new System.Windows.Forms.CheckBox();
             this.cbDacTxDacPreBotCh2 = new System.Windows.Forms.ComboBox();
-            this.lDacTxDacMain8bTopCh2 = new System.Windows.Forms.Label();
-            this.cbDacTxDacMain8bTopCh2 = new System.Windows.Forms.ComboBox();
-            this.lDacTxDacMain8bMidCh2 = new System.Windows.Forms.Label();
-            this.cbDacTxDacMain8bMidCh2 = new System.Windows.Forms.ComboBox();
             this.lDacTxDacPreBotCh2 = new System.Windows.Forms.Label();
             this.cbDacTxDacPreBotPdbCh2 = new System.Windows.Forms.CheckBox();
-            this.lDacTxDacMain8bBotCh2 = new System.Windows.Forms.Label();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.cbDacTxDacMain8bTopCh2 = new System.Windows.Forms.ComboBox();
+            this.cbDacTxDacMain8bMidCh2 = new System.Windows.Forms.ComboBox();
             this.cbDacTxDacMain8bBotCh2 = new System.Windows.Forms.ComboBox();
+            this.lDacTxDacMain8bTopCh2 = new System.Windows.Forms.Label();
+            this.lDacTxDacMain8bMidCh2 = new System.Windows.Forms.Label();
+            this.lDacTxDacMain8bBotCh2 = new System.Windows.Forms.Label();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.lDacTxDacDcdTopCh2 = new System.Windows.Forms.Label();
             this.cbDacTxDacDcdTopCh2 = new System.Windows.Forms.ComboBox();
             this.cbDacTxDacDcdTopPdbCh2 = new System.Windows.Forms.CheckBox();
@@ -680,6 +680,18 @@
             this.cbDacTxDacDcdBotPdbCh2 = new System.Windows.Forms.CheckBox();
             this.cbTxBotDcdDacPolflipCh2 = new System.Windows.Forms.CheckBox();
             this.cbTxIdoubleEnBotCh2 = new System.Windows.Forms.CheckBox();
+            this.cbTxIbiasAdcSelectCh2 = new System.Windows.Forms.CheckBox();
+            this.lTxDesiredImodCh2 = new System.Windows.Forms.Label();
+            this.cbTxDesiredImodCh2 = new System.Windows.Forms.ComboBox();
+            this.cbTxEnableAutoImodCh2 = new System.Windows.Forms.CheckBox();
+            this.cbTxPdbLbkInCh2 = new System.Windows.Forms.CheckBox();
+            this.cbTxPdbLbkOutCh2 = new System.Windows.Forms.CheckBox();
+            this.lTxTopPostPolinvCh2 = new System.Windows.Forms.Label();
+            this.cbTxTopPostPolinvCh2 = new System.Windows.Forms.ComboBox();
+            this.lTxMidPostPolinvCh2 = new System.Windows.Forms.Label();
+            this.cbTxMidPostPolinvCh2 = new System.Windows.Forms.ComboBox();
+            this.lTxBotPostPolinvCh2 = new System.Windows.Forms.Label();
+            this.cbTxBotPostPolinvCh2 = new System.Windows.Forms.ComboBox();
             this.lTxIburninCh2 = new System.Windows.Forms.Label();
             this.cbTxIburninCh2 = new System.Windows.Forms.ComboBox();
             this.cbTxBurninEnCh2 = new System.Windows.Forms.CheckBox();
@@ -704,27 +716,17 @@
             this.lMuteCntlCh2 = new System.Windows.Forms.Label();
             this.cbTxDisableCh2 = new System.Windows.Forms.CheckBox();
             this.tpLaserDriverControlCh3 = new System.Windows.Forms.TabPage();
-            this.cbTxIbiasAdcSelectCh3 = new System.Windows.Forms.CheckBox();
-            this.lTxDesiredImodCh3 = new System.Windows.Forms.Label();
-            this.cbTxDesiredImodCh3 = new System.Windows.Forms.ComboBox();
-            this.cbTxEnableAutoImodCh3 = new System.Windows.Forms.CheckBox();
-            this.cbTxPdbLbkInCh3 = new System.Windows.Forms.CheckBox();
-            this.cbTxPdbLbkOutCh3 = new System.Windows.Forms.CheckBox();
-            this.lTxTopPostPolinvCh3 = new System.Windows.Forms.Label();
-            this.cbTxTopPostPolinvCh3 = new System.Windows.Forms.ComboBox();
-            this.lTxMidPostPolinvCh3 = new System.Windows.Forms.Label();
-            this.cbTxMidPostPolinvCh3 = new System.Windows.Forms.ComboBox();
-            this.lTxBotPostPolinvCh3 = new System.Windows.Forms.Label();
-            this.cbTxBotPostPolinvCh3 = new System.Windows.Forms.ComboBox();
-            this.cbDacTxDacPostTopCh3 = new System.Windows.Forms.ComboBox();
-            this.lDacTxDacPostTopCh3 = new System.Windows.Forms.Label();
-            this.cbDacTxDacPostTopPdbCh3 = new System.Windows.Forms.CheckBox();
-            this.cbDacTxDacPostMidCh3 = new System.Windows.Forms.ComboBox();
-            this.lDacTxDacPostMidCh3 = new System.Windows.Forms.Label();
-            this.cbDacTxDacPostMidPdbCh3 = new System.Windows.Forms.CheckBox();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.cbDacTxDacPostBotCh3 = new System.Windows.Forms.ComboBox();
             this.lDacTxDacPostBotCh3 = new System.Windows.Forms.Label();
             this.cbDacTxDacPostBotPdbCh3 = new System.Windows.Forms.CheckBox();
+            this.cbDacTxDacPostMidCh3 = new System.Windows.Forms.ComboBox();
+            this.lDacTxDacPostMidCh3 = new System.Windows.Forms.Label();
+            this.cbDacTxDacPostMidPdbCh3 = new System.Windows.Forms.CheckBox();
+            this.cbDacTxDacPostTopCh3 = new System.Windows.Forms.ComboBox();
+            this.lDacTxDacPostTopCh3 = new System.Windows.Forms.Label();
+            this.cbDacTxDacPostTopPdbCh3 = new System.Windows.Forms.CheckBox();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.cbDacTxDacPreTopCh3 = new System.Windows.Forms.ComboBox();
             this.lDacTxDacPreTopCh3 = new System.Windows.Forms.Label();
             this.cbDacTxDacPreTopPdbCh3 = new System.Windows.Forms.CheckBox();
@@ -732,14 +734,16 @@
             this.lDacTxDacPreMidCh3 = new System.Windows.Forms.Label();
             this.cbDacTxDacPreMidPdbCh3 = new System.Windows.Forms.CheckBox();
             this.cbDacTxDacPreBotCh3 = new System.Windows.Forms.ComboBox();
-            this.lDacTxDacMain8bTopCh3 = new System.Windows.Forms.Label();
-            this.cbDacTxDacMain8bTopCh3 = new System.Windows.Forms.ComboBox();
-            this.lDacTxDacMain8bMidCh3 = new System.Windows.Forms.Label();
-            this.cbDacTxDacMain8bMidCh3 = new System.Windows.Forms.ComboBox();
             this.lDacTxDacPreBotCh3 = new System.Windows.Forms.Label();
             this.cbDacTxDacPreBotPdbCh3 = new System.Windows.Forms.CheckBox();
-            this.lDacTxDacMain8bBotCh3 = new System.Windows.Forms.Label();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.cbDacTxDacMain8bTopCh3 = new System.Windows.Forms.ComboBox();
+            this.cbDacTxDacMain8bMidCh3 = new System.Windows.Forms.ComboBox();
             this.cbDacTxDacMain8bBotCh3 = new System.Windows.Forms.ComboBox();
+            this.lDacTxDacMain8bTopCh3 = new System.Windows.Forms.Label();
+            this.lDacTxDacMain8bMidCh3 = new System.Windows.Forms.Label();
+            this.lDacTxDacMain8bBotCh3 = new System.Windows.Forms.Label();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
             this.lDacTxDacDcdTopCh3 = new System.Windows.Forms.Label();
             this.cbDacTxDacDcdTopCh3 = new System.Windows.Forms.ComboBox();
             this.cbDacTxDacDcdTopPdbCh3 = new System.Windows.Forms.CheckBox();
@@ -755,6 +759,18 @@
             this.cbDacTxDacDcdBotPdbCh3 = new System.Windows.Forms.CheckBox();
             this.cbTxBotDcdDacPolflipCh3 = new System.Windows.Forms.CheckBox();
             this.cbTxIdoubleEnBotCh3 = new System.Windows.Forms.CheckBox();
+            this.cbTxIbiasAdcSelectCh3 = new System.Windows.Forms.CheckBox();
+            this.lTxDesiredImodCh3 = new System.Windows.Forms.Label();
+            this.cbTxDesiredImodCh3 = new System.Windows.Forms.ComboBox();
+            this.cbTxEnableAutoImodCh3 = new System.Windows.Forms.CheckBox();
+            this.cbTxPdbLbkInCh3 = new System.Windows.Forms.CheckBox();
+            this.cbTxPdbLbkOutCh3 = new System.Windows.Forms.CheckBox();
+            this.lTxTopPostPolinvCh3 = new System.Windows.Forms.Label();
+            this.cbTxTopPostPolinvCh3 = new System.Windows.Forms.ComboBox();
+            this.lTxMidPostPolinvCh3 = new System.Windows.Forms.Label();
+            this.cbTxMidPostPolinvCh3 = new System.Windows.Forms.ComboBox();
+            this.lTxBotPostPolinvCh3 = new System.Windows.Forms.Label();
+            this.cbTxBotPostPolinvCh3 = new System.Windows.Forms.ComboBox();
             this.lTxIburninCh3 = new System.Windows.Forms.Label();
             this.cbTxIburninCh3 = new System.Windows.Forms.ComboBox();
             this.cbTxBurninEnCh3 = new System.Windows.Forms.CheckBox();
@@ -866,9 +882,25 @@
             this.tpLaserDriverControl.SuspendLayout();
             this.tcLaserDriverControl.SuspendLayout();
             this.tpLaserDriverControlCh0.SuspendLayout();
+            this.gbPostEmphasis.SuspendLayout();
+            this.gbPreEmphasis.SuspendLayout();
+            this.gbModulationCurrent.SuspendLayout();
+            this.gbCrossPoint.SuspendLayout();
             this.tpLaserDriverControlCh1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.tpLaserDriverControlCh2.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.tpLaserDriverControlCh3.SuspendLayout();
+            this.groupBox9.SuspendLayout();
+            this.groupBox10.SuspendLayout();
+            this.groupBox11.SuspendLayout();
+            this.groupBox12.SuspendLayout();
             this.tpLaserDriverControlChAll.SuspendLayout();
             this.tpCmis.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCmisReg)).BeginInit();
@@ -5980,6 +6012,10 @@
             // 
             // tpLaserDriverControlCh0
             // 
+            this.tpLaserDriverControlCh0.Controls.Add(this.gbPostEmphasis);
+            this.tpLaserDriverControlCh0.Controls.Add(this.gbPreEmphasis);
+            this.tpLaserDriverControlCh0.Controls.Add(this.gbModulationCurrent);
+            this.tpLaserDriverControlCh0.Controls.Add(this.gbCrossPoint);
             this.tpLaserDriverControlCh0.Controls.Add(this.cbTxIbiasAdcSelectCh0);
             this.tpLaserDriverControlCh0.Controls.Add(this.lTxDesiredImodCh0);
             this.tpLaserDriverControlCh0.Controls.Add(this.cbTxDesiredImodCh0);
@@ -5992,45 +6028,6 @@
             this.tpLaserDriverControlCh0.Controls.Add(this.cbTxMidPostPolinvCh0);
             this.tpLaserDriverControlCh0.Controls.Add(this.lTxBotPostPolinvCh0);
             this.tpLaserDriverControlCh0.Controls.Add(this.cbTxBotPostPolinvCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.cbDacTxDacPostTopCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.lDacTxDacPostTopCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.cbDacTxDacPostTopPdbCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.cbDacTxDacPostMidCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.lDacTxDacPostMidCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.cbDacTxDacPostMidPdbCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.cbDacTxDacPostBotCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.lDacTxDacPostBotCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.cbDacTxDacPostBotPdbCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.cbDacTxDacPreTopCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.lDacTxDacPreTopCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.cbDacTxDacPreTopPdbCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.cbDacTxDacPreMidCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.lDacTxDacPreMidCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.cbDacTxDacPreMidPdbCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.cbDacTxDacPreBotCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.lDacTxDacMain8bTopCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.cbDacTxDacMain8bTopCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.lDacTxDacMain8bMidCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.cbDacTxDacMain8bMidCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.lDacTxDacPreBotCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.cbDacTxDacPreBotPdbCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.lDacTxDacMain8bBotCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.cbDacTxDacMain8bBotCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.lDacTxDacDcdTopCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.cbDacTxDacDcdTopCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.cbDacTxDacDcdTopPdbCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.cbTxTopDcdDacPolflipCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.cbTxIdoubleEnTopCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.lDacTxDacDcdMidCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.cbDacTxDacDcdMidCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.cbDacTxDacDcdMidPdbCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.cbTxMidDcdDacPolflipCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.cbTxIdoubleEnMidCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.lDacTxDacDcdBotCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.cbDacTxDacDcdBotCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.cbDacTxDacDcdBotPdbCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.cbTxBotDcdDacPolflipCh0);
-            this.tpLaserDriverControlCh0.Controls.Add(this.cbTxIdoubleEnBotCh0);
             this.tpLaserDriverControlCh0.Controls.Add(this.lTxIburninCh0);
             this.tpLaserDriverControlCh0.Controls.Add(this.cbTxIburninCh0);
             this.tpLaserDriverControlCh0.Controls.Add(this.cbTxBurninEnCh0);
@@ -6063,10 +6060,466 @@
             this.tpLaserDriverControlCh0.Text = "Ch0";
             this.tpLaserDriverControlCh0.UseVisualStyleBackColor = true;
             // 
+            // gbPostEmphasis
+            // 
+            this.gbPostEmphasis.Controls.Add(this.cbDacTxDacPostBotCh0);
+            this.gbPostEmphasis.Controls.Add(this.lDacTxDacPostBotCh0);
+            this.gbPostEmphasis.Controls.Add(this.cbDacTxDacPostBotPdbCh0);
+            this.gbPostEmphasis.Controls.Add(this.cbDacTxDacPostMidCh0);
+            this.gbPostEmphasis.Controls.Add(this.lDacTxDacPostMidCh0);
+            this.gbPostEmphasis.Controls.Add(this.cbDacTxDacPostMidPdbCh0);
+            this.gbPostEmphasis.Controls.Add(this.cbDacTxDacPostTopCh0);
+            this.gbPostEmphasis.Controls.Add(this.lDacTxDacPostTopCh0);
+            this.gbPostEmphasis.Controls.Add(this.cbDacTxDacPostTopPdbCh0);
+            this.gbPostEmphasis.Location = new System.Drawing.Point(336, 207);
+            this.gbPostEmphasis.Name = "gbPostEmphasis";
+            this.gbPostEmphasis.Size = new System.Drawing.Size(325, 85);
+            this.gbPostEmphasis.TabIndex = 77;
+            this.gbPostEmphasis.TabStop = false;
+            this.gbPostEmphasis.Text = "PostEmphasis";
+            // 
+            // cbDacTxDacPostBotCh0
+            // 
+            this.cbDacTxDacPostBotCh0.FormattingEnabled = true;
+            this.cbDacTxDacPostBotCh0.Location = new System.Drawing.Point(234, 60);
+            this.cbDacTxDacPostBotCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacPostBotCh0.Name = "cbDacTxDacPostBotCh0";
+            this.cbDacTxDacPostBotCh0.Size = new System.Drawing.Size(86, 20);
+            this.cbDacTxDacPostBotCh0.TabIndex = 70;
+            // 
+            // lDacTxDacPostBotCh0
+            // 
+            this.lDacTxDacPostBotCh0.AutoSize = true;
+            this.lDacTxDacPostBotCh0.Location = new System.Drawing.Point(135, 62);
+            this.lDacTxDacPostBotCh0.Name = "lDacTxDacPostBotCh0";
+            this.lDacTxDacPostBotCh0.Size = new System.Drawing.Size(97, 12);
+            this.lDacTxDacPostBotCh0.TabIndex = 69;
+            this.lDacTxDacPostBotCh0.Text = "Dac tx dac post bot:";
+            // 
+            // cbDacTxDacPostBotPdbCh0
+            // 
+            this.cbDacTxDacPostBotPdbCh0.AutoSize = true;
+            this.cbDacTxDacPostBotPdbCh0.Location = new System.Drawing.Point(4, 62);
+            this.cbDacTxDacPostBotPdbCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacPostBotPdbCh0.Name = "cbDacTxDacPostBotPdbCh0";
+            this.cbDacTxDacPostBotPdbCh0.Size = new System.Drawing.Size(134, 16);
+            this.cbDacTxDacPostBotPdbCh0.TabIndex = 68;
+            this.cbDacTxDacPostBotPdbCh0.Text = "Dac tx dac post bot pdb";
+            this.cbDacTxDacPostBotPdbCh0.UseVisualStyleBackColor = true;
+            // 
+            // cbDacTxDacPostMidCh0
+            // 
+            this.cbDacTxDacPostMidCh0.FormattingEnabled = true;
+            this.cbDacTxDacPostMidCh0.Location = new System.Drawing.Point(234, 38);
+            this.cbDacTxDacPostMidCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacPostMidCh0.Name = "cbDacTxDacPostMidCh0";
+            this.cbDacTxDacPostMidCh0.Size = new System.Drawing.Size(86, 20);
+            this.cbDacTxDacPostMidCh0.TabIndex = 67;
+            // 
+            // lDacTxDacPostMidCh0
+            // 
+            this.lDacTxDacPostMidCh0.AutoSize = true;
+            this.lDacTxDacPostMidCh0.Location = new System.Drawing.Point(135, 40);
+            this.lDacTxDacPostMidCh0.Name = "lDacTxDacPostMidCh0";
+            this.lDacTxDacPostMidCh0.Size = new System.Drawing.Size(100, 12);
+            this.lDacTxDacPostMidCh0.TabIndex = 66;
+            this.lDacTxDacPostMidCh0.Text = "Dac tx dac post mid:";
+            // 
+            // cbDacTxDacPostMidPdbCh0
+            // 
+            this.cbDacTxDacPostMidPdbCh0.AutoSize = true;
+            this.cbDacTxDacPostMidPdbCh0.Location = new System.Drawing.Point(4, 40);
+            this.cbDacTxDacPostMidPdbCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacPostMidPdbCh0.Name = "cbDacTxDacPostMidPdbCh0";
+            this.cbDacTxDacPostMidPdbCh0.Size = new System.Drawing.Size(137, 16);
+            this.cbDacTxDacPostMidPdbCh0.TabIndex = 65;
+            this.cbDacTxDacPostMidPdbCh0.Text = "Dac tx dac post mid pdb";
+            this.cbDacTxDacPostMidPdbCh0.UseVisualStyleBackColor = true;
+            // 
+            // cbDacTxDacPostTopCh0
+            // 
+            this.cbDacTxDacPostTopCh0.FormattingEnabled = true;
+            this.cbDacTxDacPostTopCh0.Location = new System.Drawing.Point(234, 16);
+            this.cbDacTxDacPostTopCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacPostTopCh0.Name = "cbDacTxDacPostTopCh0";
+            this.cbDacTxDacPostTopCh0.Size = new System.Drawing.Size(86, 20);
+            this.cbDacTxDacPostTopCh0.TabIndex = 64;
+            // 
+            // lDacTxDacPostTopCh0
+            // 
+            this.lDacTxDacPostTopCh0.AutoSize = true;
+            this.lDacTxDacPostTopCh0.Location = new System.Drawing.Point(135, 18);
+            this.lDacTxDacPostTopCh0.Name = "lDacTxDacPostTopCh0";
+            this.lDacTxDacPostTopCh0.Size = new System.Drawing.Size(97, 12);
+            this.lDacTxDacPostTopCh0.TabIndex = 63;
+            this.lDacTxDacPostTopCh0.Text = "Dac tx dac post top:";
+            // 
+            // cbDacTxDacPostTopPdbCh0
+            // 
+            this.cbDacTxDacPostTopPdbCh0.AutoSize = true;
+            this.cbDacTxDacPostTopPdbCh0.Location = new System.Drawing.Point(4, 18);
+            this.cbDacTxDacPostTopPdbCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacPostTopPdbCh0.Name = "cbDacTxDacPostTopPdbCh0";
+            this.cbDacTxDacPostTopPdbCh0.Size = new System.Drawing.Size(134, 16);
+            this.cbDacTxDacPostTopPdbCh0.TabIndex = 62;
+            this.cbDacTxDacPostTopPdbCh0.Text = "Dac tx dac post top pdb";
+            this.cbDacTxDacPostTopPdbCh0.UseVisualStyleBackColor = true;
+            // 
+            // gbPreEmphasis
+            // 
+            this.gbPreEmphasis.Controls.Add(this.cbDacTxDacPreTopCh0);
+            this.gbPreEmphasis.Controls.Add(this.lDacTxDacPreTopCh0);
+            this.gbPreEmphasis.Controls.Add(this.cbDacTxDacPreTopPdbCh0);
+            this.gbPreEmphasis.Controls.Add(this.cbDacTxDacPreMidCh0);
+            this.gbPreEmphasis.Controls.Add(this.lDacTxDacPreMidCh0);
+            this.gbPreEmphasis.Controls.Add(this.cbDacTxDacPreMidPdbCh0);
+            this.gbPreEmphasis.Controls.Add(this.cbDacTxDacPreBotCh0);
+            this.gbPreEmphasis.Controls.Add(this.lDacTxDacPreBotCh0);
+            this.gbPreEmphasis.Controls.Add(this.cbDacTxDacPreBotPdbCh0);
+            this.gbPreEmphasis.Location = new System.Drawing.Point(5, 207);
+            this.gbPreEmphasis.Name = "gbPreEmphasis";
+            this.gbPreEmphasis.Size = new System.Drawing.Size(325, 85);
+            this.gbPreEmphasis.TabIndex = 76;
+            this.gbPreEmphasis.TabStop = false;
+            this.gbPreEmphasis.Text = "PreEmphasis";
+            // 
+            // cbDacTxDacPreTopCh0
+            // 
+            this.cbDacTxDacPreTopCh0.FormattingEnabled = true;
+            this.cbDacTxDacPreTopCh0.Location = new System.Drawing.Point(231, 16);
+            this.cbDacTxDacPreTopCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacPreTopCh0.Name = "cbDacTxDacPreTopCh0";
+            this.cbDacTxDacPreTopCh0.Size = new System.Drawing.Size(86, 20);
+            this.cbDacTxDacPreTopCh0.TabIndex = 61;
+            // 
+            // lDacTxDacPreTopCh0
+            // 
+            this.lDacTxDacPreTopCh0.AutoSize = true;
+            this.lDacTxDacPreTopCh0.Location = new System.Drawing.Point(135, 18);
+            this.lDacTxDacPreTopCh0.Name = "lDacTxDacPreTopCh0";
+            this.lDacTxDacPreTopCh0.Size = new System.Drawing.Size(93, 12);
+            this.lDacTxDacPreTopCh0.TabIndex = 60;
+            this.lDacTxDacPreTopCh0.Text = "Dac tx dac pre top:";
+            // 
+            // cbDacTxDacPreTopPdbCh0
+            // 
+            this.cbDacTxDacPreTopPdbCh0.AutoSize = true;
+            this.cbDacTxDacPreTopPdbCh0.Location = new System.Drawing.Point(4, 18);
+            this.cbDacTxDacPreTopPdbCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacPreTopPdbCh0.Name = "cbDacTxDacPreTopPdbCh0";
+            this.cbDacTxDacPreTopPdbCh0.Size = new System.Drawing.Size(130, 16);
+            this.cbDacTxDacPreTopPdbCh0.TabIndex = 59;
+            this.cbDacTxDacPreTopPdbCh0.Text = "Dac tx dac pre top pdb";
+            this.cbDacTxDacPreTopPdbCh0.UseVisualStyleBackColor = true;
+            // 
+            // cbDacTxDacPreMidCh0
+            // 
+            this.cbDacTxDacPreMidCh0.FormattingEnabled = true;
+            this.cbDacTxDacPreMidCh0.Location = new System.Drawing.Point(231, 38);
+            this.cbDacTxDacPreMidCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacPreMidCh0.Name = "cbDacTxDacPreMidCh0";
+            this.cbDacTxDacPreMidCh0.Size = new System.Drawing.Size(86, 20);
+            this.cbDacTxDacPreMidCh0.TabIndex = 58;
+            // 
+            // lDacTxDacPreMidCh0
+            // 
+            this.lDacTxDacPreMidCh0.AutoSize = true;
+            this.lDacTxDacPreMidCh0.Location = new System.Drawing.Point(135, 40);
+            this.lDacTxDacPreMidCh0.Name = "lDacTxDacPreMidCh0";
+            this.lDacTxDacPreMidCh0.Size = new System.Drawing.Size(96, 12);
+            this.lDacTxDacPreMidCh0.TabIndex = 57;
+            this.lDacTxDacPreMidCh0.Text = "Dac tx dac pre mid:";
+            // 
+            // cbDacTxDacPreMidPdbCh0
+            // 
+            this.cbDacTxDacPreMidPdbCh0.AutoSize = true;
+            this.cbDacTxDacPreMidPdbCh0.Location = new System.Drawing.Point(4, 40);
+            this.cbDacTxDacPreMidPdbCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacPreMidPdbCh0.Name = "cbDacTxDacPreMidPdbCh0";
+            this.cbDacTxDacPreMidPdbCh0.Size = new System.Drawing.Size(133, 16);
+            this.cbDacTxDacPreMidPdbCh0.TabIndex = 56;
+            this.cbDacTxDacPreMidPdbCh0.Text = "Dac tx dac pre mid pdb";
+            this.cbDacTxDacPreMidPdbCh0.UseVisualStyleBackColor = true;
+            // 
+            // cbDacTxDacPreBotCh0
+            // 
+            this.cbDacTxDacPreBotCh0.FormattingEnabled = true;
+            this.cbDacTxDacPreBotCh0.Location = new System.Drawing.Point(231, 60);
+            this.cbDacTxDacPreBotCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacPreBotCh0.Name = "cbDacTxDacPreBotCh0";
+            this.cbDacTxDacPreBotCh0.Size = new System.Drawing.Size(86, 20);
+            this.cbDacTxDacPreBotCh0.TabIndex = 55;
+            // 
+            // lDacTxDacPreBotCh0
+            // 
+            this.lDacTxDacPreBotCh0.AutoSize = true;
+            this.lDacTxDacPreBotCh0.Location = new System.Drawing.Point(135, 63);
+            this.lDacTxDacPreBotCh0.Name = "lDacTxDacPreBotCh0";
+            this.lDacTxDacPreBotCh0.Size = new System.Drawing.Size(93, 12);
+            this.lDacTxDacPreBotCh0.TabIndex = 54;
+            this.lDacTxDacPreBotCh0.Text = "Dac tx dac pre bot:";
+            // 
+            // cbDacTxDacPreBotPdbCh0
+            // 
+            this.cbDacTxDacPreBotPdbCh0.AutoSize = true;
+            this.cbDacTxDacPreBotPdbCh0.Location = new System.Drawing.Point(4, 62);
+            this.cbDacTxDacPreBotPdbCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacPreBotPdbCh0.Name = "cbDacTxDacPreBotPdbCh0";
+            this.cbDacTxDacPreBotPdbCh0.Size = new System.Drawing.Size(130, 16);
+            this.cbDacTxDacPreBotPdbCh0.TabIndex = 53;
+            this.cbDacTxDacPreBotPdbCh0.Text = "Dac tx dac pre bot pdb";
+            this.cbDacTxDacPreBotPdbCh0.UseVisualStyleBackColor = true;
+            // 
+            // gbModulationCurrent
+            // 
+            this.gbModulationCurrent.Controls.Add(this.cbDacTxDacMain8bTopCh0);
+            this.gbModulationCurrent.Controls.Add(this.cbDacTxDacMain8bMidCh0);
+            this.gbModulationCurrent.Controls.Add(this.cbDacTxDacMain8bBotCh0);
+            this.gbModulationCurrent.Controls.Add(this.lDacTxDacMain8bTopCh0);
+            this.gbModulationCurrent.Controls.Add(this.lDacTxDacMain8bMidCh0);
+            this.gbModulationCurrent.Controls.Add(this.lDacTxDacMain8bBotCh0);
+            this.gbModulationCurrent.Location = new System.Drawing.Point(5, 116);
+            this.gbModulationCurrent.Name = "gbModulationCurrent";
+            this.gbModulationCurrent.Size = new System.Drawing.Size(220, 85);
+            this.gbModulationCurrent.TabIndex = 75;
+            this.gbModulationCurrent.TabStop = false;
+            this.gbModulationCurrent.Text = "Modulation current";
+            // 
+            // cbDacTxDacMain8bTopCh0
+            // 
+            this.cbDacTxDacMain8bTopCh0.FormattingEnabled = true;
+            this.cbDacTxDacMain8bTopCh0.Location = new System.Drawing.Point(125, 12);
+            this.cbDacTxDacMain8bTopCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacMain8bTopCh0.Name = "cbDacTxDacMain8bTopCh0";
+            this.cbDacTxDacMain8bTopCh0.Size = new System.Drawing.Size(90, 20);
+            this.cbDacTxDacMain8bTopCh0.TabIndex = 48;
+            // 
+            // cbDacTxDacMain8bMidCh0
+            // 
+            this.cbDacTxDacMain8bMidCh0.FormattingEnabled = true;
+            this.cbDacTxDacMain8bMidCh0.Location = new System.Drawing.Point(125, 34);
+            this.cbDacTxDacMain8bMidCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacMain8bMidCh0.Name = "cbDacTxDacMain8bMidCh0";
+            this.cbDacTxDacMain8bMidCh0.Size = new System.Drawing.Size(90, 20);
+            this.cbDacTxDacMain8bMidCh0.TabIndex = 47;
+            // 
+            // cbDacTxDacMain8bBotCh0
+            // 
+            this.cbDacTxDacMain8bBotCh0.FormattingEnabled = true;
+            this.cbDacTxDacMain8bBotCh0.Location = new System.Drawing.Point(125, 56);
+            this.cbDacTxDacMain8bBotCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacMain8bBotCh0.Name = "cbDacTxDacMain8bBotCh0";
+            this.cbDacTxDacMain8bBotCh0.Size = new System.Drawing.Size(90, 20);
+            this.cbDacTxDacMain8bBotCh0.TabIndex = 46;
+            // 
+            // lDacTxDacMain8bTopCh0
+            // 
+            this.lDacTxDacMain8bTopCh0.AutoSize = true;
+            this.lDacTxDacMain8bTopCh0.Location = new System.Drawing.Point(6, 18);
+            this.lDacTxDacMain8bTopCh0.Name = "lDacTxDacMain8bTopCh0";
+            this.lDacTxDacMain8bTopCh0.Size = new System.Drawing.Size(113, 12);
+            this.lDacTxDacMain8bTopCh0.TabIndex = 45;
+            this.lDacTxDacMain8bTopCh0.Text = "Dac tx dac main8b top:";
+            // 
+            // lDacTxDacMain8bMidCh0
+            // 
+            this.lDacTxDacMain8bMidCh0.AutoSize = true;
+            this.lDacTxDacMain8bMidCh0.Location = new System.Drawing.Point(6, 40);
+            this.lDacTxDacMain8bMidCh0.Name = "lDacTxDacMain8bMidCh0";
+            this.lDacTxDacMain8bMidCh0.Size = new System.Drawing.Size(116, 12);
+            this.lDacTxDacMain8bMidCh0.TabIndex = 43;
+            this.lDacTxDacMain8bMidCh0.Text = "Dac tx dac main8b mid:";
+            // 
+            // lDacTxDacMain8bBotCh0
+            // 
+            this.lDacTxDacMain8bBotCh0.AutoSize = true;
+            this.lDacTxDacMain8bBotCh0.Location = new System.Drawing.Point(6, 62);
+            this.lDacTxDacMain8bBotCh0.Name = "lDacTxDacMain8bBotCh0";
+            this.lDacTxDacMain8bBotCh0.Size = new System.Drawing.Size(113, 12);
+            this.lDacTxDacMain8bBotCh0.TabIndex = 39;
+            this.lDacTxDacMain8bBotCh0.Text = "Dac tx dac main8b bot:";
+            // 
+            // gbCrossPoint
+            // 
+            this.gbCrossPoint.Controls.Add(this.lDacTxDacDcdTopCh0);
+            this.gbCrossPoint.Controls.Add(this.cbDacTxDacDcdTopCh0);
+            this.gbCrossPoint.Controls.Add(this.cbDacTxDacDcdTopPdbCh0);
+            this.gbCrossPoint.Controls.Add(this.cbTxTopDcdDacPolflipCh0);
+            this.gbCrossPoint.Controls.Add(this.cbTxIdoubleEnTopCh0);
+            this.gbCrossPoint.Controls.Add(this.lDacTxDacDcdMidCh0);
+            this.gbCrossPoint.Controls.Add(this.cbDacTxDacDcdMidCh0);
+            this.gbCrossPoint.Controls.Add(this.cbDacTxDacDcdMidPdbCh0);
+            this.gbCrossPoint.Controls.Add(this.cbTxMidDcdDacPolflipCh0);
+            this.gbCrossPoint.Controls.Add(this.cbTxIdoubleEnMidCh0);
+            this.gbCrossPoint.Controls.Add(this.lDacTxDacDcdBotCh0);
+            this.gbCrossPoint.Controls.Add(this.cbDacTxDacDcdBotCh0);
+            this.gbCrossPoint.Controls.Add(this.cbDacTxDacDcdBotPdbCh0);
+            this.gbCrossPoint.Controls.Add(this.cbTxBotDcdDacPolflipCh0);
+            this.gbCrossPoint.Controls.Add(this.cbTxIdoubleEnBotCh0);
+            this.gbCrossPoint.Location = new System.Drawing.Point(234, 116);
+            this.gbCrossPoint.Name = "gbCrossPoint";
+            this.gbCrossPoint.Size = new System.Drawing.Size(550, 85);
+            this.gbCrossPoint.TabIndex = 74;
+            this.gbCrossPoint.TabStop = false;
+            this.gbCrossPoint.Text = "CrossPoint";
+            // 
+            // lDacTxDacDcdTopCh0
+            // 
+            this.lDacTxDacDcdTopCh0.AutoSize = true;
+            this.lDacTxDacDcdTopCh0.Location = new System.Drawing.Point(379, 18);
+            this.lDacTxDacDcdTopCh0.Name = "lDacTxDacDcdTopCh0";
+            this.lDacTxDacDcdTopCh0.Size = new System.Drawing.Size(95, 12);
+            this.lDacTxDacDcdTopCh0.TabIndex = 52;
+            this.lDacTxDacDcdTopCh0.Text = "Dac tx dac dcd top:";
+            // 
+            // cbDacTxDacDcdTopCh0
+            // 
+            this.cbDacTxDacDcdTopCh0.FormattingEnabled = true;
+            this.cbDacTxDacDcdTopCh0.Location = new System.Drawing.Point(478, 12);
+            this.cbDacTxDacDcdTopCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacDcdTopCh0.Name = "cbDacTxDacDcdTopCh0";
+            this.cbDacTxDacDcdTopCh0.Size = new System.Drawing.Size(65, 20);
+            this.cbDacTxDacDcdTopCh0.TabIndex = 51;
+            // 
+            // cbDacTxDacDcdTopPdbCh0
+            // 
+            this.cbDacTxDacDcdTopPdbCh0.AutoSize = true;
+            this.cbDacTxDacDcdTopPdbCh0.Location = new System.Drawing.Point(244, 18);
+            this.cbDacTxDacDcdTopPdbCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacDcdTopPdbCh0.Name = "cbDacTxDacDcdTopPdbCh0";
+            this.cbDacTxDacDcdTopPdbCh0.Size = new System.Drawing.Size(132, 16);
+            this.cbDacTxDacDcdTopPdbCh0.TabIndex = 50;
+            this.cbDacTxDacDcdTopPdbCh0.Text = "Dac tx dac dcd top pdb";
+            this.cbDacTxDacDcdTopPdbCh0.UseVisualStyleBackColor = true;
+            // 
+            // cbTxTopDcdDacPolflipCh0
+            // 
+            this.cbTxTopDcdDacPolflipCh0.AutoSize = true;
+            this.cbTxTopDcdDacPolflipCh0.Location = new System.Drawing.Point(114, 18);
+            this.cbTxTopDcdDacPolflipCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbTxTopDcdDacPolflipCh0.Name = "cbTxTopDcdDacPolflipCh0";
+            this.cbTxTopDcdDacPolflipCh0.Size = new System.Drawing.Size(128, 16);
+            this.cbTxTopDcdDacPolflipCh0.TabIndex = 49;
+            this.cbTxTopDcdDacPolflipCh0.Text = "Tx top dcd dac polflip";
+            this.cbTxTopDcdDacPolflipCh0.UseVisualStyleBackColor = true;
+            // 
+            // cbTxIdoubleEnTopCh0
+            // 
+            this.cbTxIdoubleEnTopCh0.AutoSize = true;
+            this.cbTxIdoubleEnTopCh0.Location = new System.Drawing.Point(6, 18);
+            this.cbTxIdoubleEnTopCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbTxIdoubleEnTopCh0.Name = "cbTxIdoubleEnTopCh0";
+            this.cbTxIdoubleEnTopCh0.Size = new System.Drawing.Size(107, 16);
+            this.cbTxIdoubleEnTopCh0.TabIndex = 48;
+            this.cbTxIdoubleEnTopCh0.Text = "Tx idouble en top";
+            this.cbTxIdoubleEnTopCh0.UseVisualStyleBackColor = true;
+            // 
+            // lDacTxDacDcdMidCh0
+            // 
+            this.lDacTxDacDcdMidCh0.AutoSize = true;
+            this.lDacTxDacDcdMidCh0.Location = new System.Drawing.Point(379, 40);
+            this.lDacTxDacDcdMidCh0.Name = "lDacTxDacDcdMidCh0";
+            this.lDacTxDacDcdMidCh0.Size = new System.Drawing.Size(98, 12);
+            this.lDacTxDacDcdMidCh0.TabIndex = 47;
+            this.lDacTxDacDcdMidCh0.Text = "Dac tx dac dcd mid:";
+            // 
+            // cbDacTxDacDcdMidCh0
+            // 
+            this.cbDacTxDacDcdMidCh0.FormattingEnabled = true;
+            this.cbDacTxDacDcdMidCh0.Location = new System.Drawing.Point(478, 34);
+            this.cbDacTxDacDcdMidCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacDcdMidCh0.Name = "cbDacTxDacDcdMidCh0";
+            this.cbDacTxDacDcdMidCh0.Size = new System.Drawing.Size(65, 20);
+            this.cbDacTxDacDcdMidCh0.TabIndex = 46;
+            // 
+            // cbDacTxDacDcdMidPdbCh0
+            // 
+            this.cbDacTxDacDcdMidPdbCh0.AutoSize = true;
+            this.cbDacTxDacDcdMidPdbCh0.Location = new System.Drawing.Point(244, 40);
+            this.cbDacTxDacDcdMidPdbCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacDcdMidPdbCh0.Name = "cbDacTxDacDcdMidPdbCh0";
+            this.cbDacTxDacDcdMidPdbCh0.Size = new System.Drawing.Size(135, 16);
+            this.cbDacTxDacDcdMidPdbCh0.TabIndex = 45;
+            this.cbDacTxDacDcdMidPdbCh0.Text = "Dac tx dac dcd mid pdb";
+            this.cbDacTxDacDcdMidPdbCh0.UseVisualStyleBackColor = true;
+            // 
+            // cbTxMidDcdDacPolflipCh0
+            // 
+            this.cbTxMidDcdDacPolflipCh0.AutoSize = true;
+            this.cbTxMidDcdDacPolflipCh0.Location = new System.Drawing.Point(114, 40);
+            this.cbTxMidDcdDacPolflipCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbTxMidDcdDacPolflipCh0.Name = "cbTxMidDcdDacPolflipCh0";
+            this.cbTxMidDcdDacPolflipCh0.Size = new System.Drawing.Size(131, 16);
+            this.cbTxMidDcdDacPolflipCh0.TabIndex = 44;
+            this.cbTxMidDcdDacPolflipCh0.Text = "Tx mid dcd dac polflip";
+            this.cbTxMidDcdDacPolflipCh0.UseVisualStyleBackColor = true;
+            // 
+            // cbTxIdoubleEnMidCh0
+            // 
+            this.cbTxIdoubleEnMidCh0.AutoSize = true;
+            this.cbTxIdoubleEnMidCh0.Location = new System.Drawing.Point(6, 40);
+            this.cbTxIdoubleEnMidCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbTxIdoubleEnMidCh0.Name = "cbTxIdoubleEnMidCh0";
+            this.cbTxIdoubleEnMidCh0.Size = new System.Drawing.Size(110, 16);
+            this.cbTxIdoubleEnMidCh0.TabIndex = 43;
+            this.cbTxIdoubleEnMidCh0.Text = "Tx idouble en mid";
+            this.cbTxIdoubleEnMidCh0.UseVisualStyleBackColor = true;
+            // 
+            // lDacTxDacDcdBotCh0
+            // 
+            this.lDacTxDacDcdBotCh0.AutoSize = true;
+            this.lDacTxDacDcdBotCh0.Location = new System.Drawing.Point(379, 63);
+            this.lDacTxDacDcdBotCh0.Name = "lDacTxDacDcdBotCh0";
+            this.lDacTxDacDcdBotCh0.Size = new System.Drawing.Size(95, 12);
+            this.lDacTxDacDcdBotCh0.TabIndex = 42;
+            this.lDacTxDacDcdBotCh0.Text = "Dac tx dac dcd bot:";
+            // 
+            // cbDacTxDacDcdBotCh0
+            // 
+            this.cbDacTxDacDcdBotCh0.FormattingEnabled = true;
+            this.cbDacTxDacDcdBotCh0.Location = new System.Drawing.Point(478, 56);
+            this.cbDacTxDacDcdBotCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacDcdBotCh0.Name = "cbDacTxDacDcdBotCh0";
+            this.cbDacTxDacDcdBotCh0.Size = new System.Drawing.Size(65, 20);
+            this.cbDacTxDacDcdBotCh0.TabIndex = 41;
+            // 
+            // cbDacTxDacDcdBotPdbCh0
+            // 
+            this.cbDacTxDacDcdBotPdbCh0.AutoSize = true;
+            this.cbDacTxDacDcdBotPdbCh0.Location = new System.Drawing.Point(244, 62);
+            this.cbDacTxDacDcdBotPdbCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacDcdBotPdbCh0.Name = "cbDacTxDacDcdBotPdbCh0";
+            this.cbDacTxDacDcdBotPdbCh0.Size = new System.Drawing.Size(132, 16);
+            this.cbDacTxDacDcdBotPdbCh0.TabIndex = 40;
+            this.cbDacTxDacDcdBotPdbCh0.Text = "Dac tx dac dcd bot pdb";
+            this.cbDacTxDacDcdBotPdbCh0.UseVisualStyleBackColor = true;
+            // 
+            // cbTxBotDcdDacPolflipCh0
+            // 
+            this.cbTxBotDcdDacPolflipCh0.AutoSize = true;
+            this.cbTxBotDcdDacPolflipCh0.Location = new System.Drawing.Point(114, 62);
+            this.cbTxBotDcdDacPolflipCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbTxBotDcdDacPolflipCh0.Name = "cbTxBotDcdDacPolflipCh0";
+            this.cbTxBotDcdDacPolflipCh0.Size = new System.Drawing.Size(128, 16);
+            this.cbTxBotDcdDacPolflipCh0.TabIndex = 39;
+            this.cbTxBotDcdDacPolflipCh0.Text = "Tx bot dcd dac polflip";
+            this.cbTxBotDcdDacPolflipCh0.UseVisualStyleBackColor = true;
+            // 
+            // cbTxIdoubleEnBotCh0
+            // 
+            this.cbTxIdoubleEnBotCh0.AutoSize = true;
+            this.cbTxIdoubleEnBotCh0.Location = new System.Drawing.Point(6, 62);
+            this.cbTxIdoubleEnBotCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbTxIdoubleEnBotCh0.Name = "cbTxIdoubleEnBotCh0";
+            this.cbTxIdoubleEnBotCh0.Size = new System.Drawing.Size(107, 16);
+            this.cbTxIdoubleEnBotCh0.TabIndex = 38;
+            this.cbTxIdoubleEnBotCh0.Text = "Tx idouble en bot";
+            this.cbTxIdoubleEnBotCh0.UseVisualStyleBackColor = true;
+            // 
             // cbTxIbiasAdcSelectCh0
             // 
             this.cbTxIbiasAdcSelectCh0.AutoSize = true;
-            this.cbTxIbiasAdcSelectCh0.Location = new System.Drawing.Point(467, 297);
+            this.cbTxIbiasAdcSelectCh0.Location = new System.Drawing.Point(468, 326);
             this.cbTxIbiasAdcSelectCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxIbiasAdcSelectCh0.Name = "cbTxIbiasAdcSelectCh0";
             this.cbTxIbiasAdcSelectCh0.Size = new System.Drawing.Size(108, 16);
@@ -6078,7 +6531,7 @@
             // lTxDesiredImodCh0
             // 
             this.lTxDesiredImodCh0.AutoSize = true;
-            this.lTxDesiredImodCh0.Location = new System.Drawing.Point(285, 298);
+            this.lTxDesiredImodCh0.Location = new System.Drawing.Point(286, 327);
             this.lTxDesiredImodCh0.Name = "lTxDesiredImodCh0";
             this.lTxDesiredImodCh0.Size = new System.Drawing.Size(84, 12);
             this.lTxDesiredImodCh0.TabIndex = 72;
@@ -6087,7 +6540,7 @@
             // cbTxDesiredImodCh0
             // 
             this.cbTxDesiredImodCh0.FormattingEnabled = true;
-            this.cbTxDesiredImodCh0.Location = new System.Drawing.Point(376, 295);
+            this.cbTxDesiredImodCh0.Location = new System.Drawing.Point(377, 324);
             this.cbTxDesiredImodCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxDesiredImodCh0.Name = "cbTxDesiredImodCh0";
             this.cbTxDesiredImodCh0.Size = new System.Drawing.Size(86, 20);
@@ -6097,7 +6550,7 @@
             // cbTxEnableAutoImodCh0
             // 
             this.cbTxEnableAutoImodCh0.AutoSize = true;
-            this.cbTxEnableAutoImodCh0.Location = new System.Drawing.Point(193, 297);
+            this.cbTxEnableAutoImodCh0.Location = new System.Drawing.Point(194, 326);
             this.cbTxEnableAutoImodCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxEnableAutoImodCh0.Name = "cbTxEnableAutoImodCh0";
             this.cbTxEnableAutoImodCh0.Size = new System.Drawing.Size(87, 16);
@@ -6109,7 +6562,7 @@
             // cbTxPdbLbkInCh0
             // 
             this.cbTxPdbLbkInCh0.AutoSize = true;
-            this.cbTxPdbLbkInCh0.Location = new System.Drawing.Point(103, 297);
+            this.cbTxPdbLbkInCh0.Location = new System.Drawing.Point(104, 326);
             this.cbTxPdbLbkInCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxPdbLbkInCh0.Name = "cbTxPdbLbkInCh0";
             this.cbTxPdbLbkInCh0.Size = new System.Drawing.Size(88, 16);
@@ -6121,7 +6574,7 @@
             // cbTxPdbLbkOutCh0
             // 
             this.cbTxPdbLbkOutCh0.AutoSize = true;
-            this.cbTxPdbLbkOutCh0.Location = new System.Drawing.Point(5, 297);
+            this.cbTxPdbLbkOutCh0.Location = new System.Drawing.Point(6, 326);
             this.cbTxPdbLbkOutCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxPdbLbkOutCh0.Name = "cbTxPdbLbkOutCh0";
             this.cbTxPdbLbkOutCh0.Size = new System.Drawing.Size(94, 16);
@@ -6133,7 +6586,7 @@
             // lTxTopPostPolinvCh0
             // 
             this.lTxTopPostPolinvCh0.AutoSize = true;
-            this.lTxTopPostPolinvCh0.Location = new System.Drawing.Point(475, 274);
+            this.lTxTopPostPolinvCh0.Location = new System.Drawing.Point(476, 303);
             this.lTxTopPostPolinvCh0.Name = "lTxTopPostPolinvCh0";
             this.lTxTopPostPolinvCh0.Size = new System.Drawing.Size(94, 12);
             this.lTxTopPostPolinvCh0.TabIndex = 67;
@@ -6142,7 +6595,7 @@
             // cbTxTopPostPolinvCh0
             // 
             this.cbTxTopPostPolinvCh0.FormattingEnabled = true;
-            this.cbTxTopPostPolinvCh0.Location = new System.Drawing.Point(576, 272);
+            this.cbTxTopPostPolinvCh0.Location = new System.Drawing.Point(577, 301);
             this.cbTxTopPostPolinvCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxTopPostPolinvCh0.Name = "cbTxTopPostPolinvCh0";
             this.cbTxTopPostPolinvCh0.Size = new System.Drawing.Size(129, 20);
@@ -6152,7 +6605,7 @@
             // lTxMidPostPolinvCh0
             // 
             this.lTxMidPostPolinvCh0.AutoSize = true;
-            this.lTxMidPostPolinvCh0.Location = new System.Drawing.Point(240, 274);
+            this.lTxMidPostPolinvCh0.Location = new System.Drawing.Point(241, 303);
             this.lTxMidPostPolinvCh0.Name = "lTxMidPostPolinvCh0";
             this.lTxMidPostPolinvCh0.Size = new System.Drawing.Size(97, 12);
             this.lTxMidPostPolinvCh0.TabIndex = 65;
@@ -6161,7 +6614,7 @@
             // cbTxMidPostPolinvCh0
             // 
             this.cbTxMidPostPolinvCh0.FormattingEnabled = true;
-            this.cbTxMidPostPolinvCh0.Location = new System.Drawing.Point(341, 272);
+            this.cbTxMidPostPolinvCh0.Location = new System.Drawing.Point(342, 301);
             this.cbTxMidPostPolinvCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxMidPostPolinvCh0.Name = "cbTxMidPostPolinvCh0";
             this.cbTxMidPostPolinvCh0.Size = new System.Drawing.Size(129, 20);
@@ -6171,7 +6624,7 @@
             // lTxBotPostPolinvCh0
             // 
             this.lTxBotPostPolinvCh0.AutoSize = true;
-            this.lTxBotPostPolinvCh0.Location = new System.Drawing.Point(5, 274);
+            this.lTxBotPostPolinvCh0.Location = new System.Drawing.Point(6, 303);
             this.lTxBotPostPolinvCh0.Name = "lTxBotPostPolinvCh0";
             this.lTxBotPostPolinvCh0.Size = new System.Drawing.Size(94, 12);
             this.lTxBotPostPolinvCh0.TabIndex = 63;
@@ -6180,425 +6633,17 @@
             // cbTxBotPostPolinvCh0
             // 
             this.cbTxBotPostPolinvCh0.FormattingEnabled = true;
-            this.cbTxBotPostPolinvCh0.Location = new System.Drawing.Point(106, 272);
+            this.cbTxBotPostPolinvCh0.Location = new System.Drawing.Point(107, 301);
             this.cbTxBotPostPolinvCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxBotPostPolinvCh0.Name = "cbTxBotPostPolinvCh0";
             this.cbTxBotPostPolinvCh0.Size = new System.Drawing.Size(129, 20);
             this.cbTxBotPostPolinvCh0.TabIndex = 62;
             this.cbTxBotPostPolinvCh0.SelectedIndexChanged += new System.EventHandler(this.cbTxBotPostPolinvCh0_SelectedIndexChanged);
             // 
-            // cbDacTxDacPostTopCh0
-            // 
-            this.cbDacTxDacPostTopCh0.FormattingEnabled = true;
-            this.cbDacTxDacPostTopCh0.Location = new System.Drawing.Point(591, 249);
-            this.cbDacTxDacPostTopCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacPostTopCh0.Name = "cbDacTxDacPostTopCh0";
-            this.cbDacTxDacPostTopCh0.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacPostTopCh0.TabIndex = 61;
-            this.cbDacTxDacPostTopCh0.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacPostTopCh0_SelectedIndexChanged);
-            // 
-            // lDacTxDacPostTopCh0
-            // 
-            this.lDacTxDacPostTopCh0.AutoSize = true;
-            this.lDacTxDacPostTopCh0.Location = new System.Drawing.Point(483, 251);
-            this.lDacTxDacPostTopCh0.Name = "lDacTxDacPostTopCh0";
-            this.lDacTxDacPostTopCh0.Size = new System.Drawing.Size(97, 12);
-            this.lDacTxDacPostTopCh0.TabIndex = 60;
-            this.lDacTxDacPostTopCh0.Text = "Dac tx dac post top:";
-            // 
-            // cbDacTxDacPostTopPdbCh0
-            // 
-            this.cbDacTxDacPostTopPdbCh0.AutoSize = true;
-            this.cbDacTxDacPostTopPdbCh0.Location = new System.Drawing.Point(344, 250);
-            this.cbDacTxDacPostTopPdbCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacPostTopPdbCh0.Name = "cbDacTxDacPostTopPdbCh0";
-            this.cbDacTxDacPostTopPdbCh0.Size = new System.Drawing.Size(134, 16);
-            this.cbDacTxDacPostTopPdbCh0.TabIndex = 59;
-            this.cbDacTxDacPostTopPdbCh0.Text = "Dac tx dac post top pdb";
-            this.cbDacTxDacPostTopPdbCh0.UseVisualStyleBackColor = true;
-            this.cbDacTxDacPostTopPdbCh0.CheckedChanged += new System.EventHandler(this.cbDacTxDacPostTopPdbCh0_CheckedChanged);
-            // 
-            // cbDacTxDacPostMidCh0
-            // 
-            this.cbDacTxDacPostMidCh0.FormattingEnabled = true;
-            this.cbDacTxDacPostMidCh0.Location = new System.Drawing.Point(253, 249);
-            this.cbDacTxDacPostMidCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacPostMidCh0.Name = "cbDacTxDacPostMidCh0";
-            this.cbDacTxDacPostMidCh0.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacPostMidCh0.TabIndex = 58;
-            this.cbDacTxDacPostMidCh0.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacPostMidCh0_SelectedIndexChanged);
-            // 
-            // lDacTxDacPostMidCh0
-            // 
-            this.lDacTxDacPostMidCh0.AutoSize = true;
-            this.lDacTxDacPostMidCh0.Location = new System.Drawing.Point(145, 251);
-            this.lDacTxDacPostMidCh0.Name = "lDacTxDacPostMidCh0";
-            this.lDacTxDacPostMidCh0.Size = new System.Drawing.Size(100, 12);
-            this.lDacTxDacPostMidCh0.TabIndex = 57;
-            this.lDacTxDacPostMidCh0.Text = "Dac tx dac post mid:";
-            // 
-            // cbDacTxDacPostMidPdbCh0
-            // 
-            this.cbDacTxDacPostMidPdbCh0.AutoSize = true;
-            this.cbDacTxDacPostMidPdbCh0.Location = new System.Drawing.Point(5, 250);
-            this.cbDacTxDacPostMidPdbCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacPostMidPdbCh0.Name = "cbDacTxDacPostMidPdbCh0";
-            this.cbDacTxDacPostMidPdbCh0.Size = new System.Drawing.Size(137, 16);
-            this.cbDacTxDacPostMidPdbCh0.TabIndex = 56;
-            this.cbDacTxDacPostMidPdbCh0.Text = "Dac tx dac post mid pdb";
-            this.cbDacTxDacPostMidPdbCh0.UseVisualStyleBackColor = true;
-            this.cbDacTxDacPostMidPdbCh0.CheckedChanged += new System.EventHandler(this.cbDacTxDacPostMidPdbCh0_CheckedChanged);
-            // 
-            // cbDacTxDacPostBotCh0
-            // 
-            this.cbDacTxDacPostBotCh0.FormattingEnabled = true;
-            this.cbDacTxDacPostBotCh0.Location = new System.Drawing.Point(586, 226);
-            this.cbDacTxDacPostBotCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacPostBotCh0.Name = "cbDacTxDacPostBotCh0";
-            this.cbDacTxDacPostBotCh0.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacPostBotCh0.TabIndex = 55;
-            this.cbDacTxDacPostBotCh0.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacPostBotCh0_SelectedIndexChanged);
-            // 
-            // lDacTxDacPostBotCh0
-            // 
-            this.lDacTxDacPostBotCh0.AutoSize = true;
-            this.lDacTxDacPostBotCh0.Location = new System.Drawing.Point(478, 228);
-            this.lDacTxDacPostBotCh0.Name = "lDacTxDacPostBotCh0";
-            this.lDacTxDacPostBotCh0.Size = new System.Drawing.Size(97, 12);
-            this.lDacTxDacPostBotCh0.TabIndex = 54;
-            this.lDacTxDacPostBotCh0.Text = "Dac tx dac post bot:";
-            // 
-            // cbDacTxDacPostBotPdbCh0
-            // 
-            this.cbDacTxDacPostBotPdbCh0.AutoSize = true;
-            this.cbDacTxDacPostBotPdbCh0.Location = new System.Drawing.Point(339, 227);
-            this.cbDacTxDacPostBotPdbCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacPostBotPdbCh0.Name = "cbDacTxDacPostBotPdbCh0";
-            this.cbDacTxDacPostBotPdbCh0.Size = new System.Drawing.Size(134, 16);
-            this.cbDacTxDacPostBotPdbCh0.TabIndex = 53;
-            this.cbDacTxDacPostBotPdbCh0.Text = "Dac tx dac post bot pdb";
-            this.cbDacTxDacPostBotPdbCh0.UseVisualStyleBackColor = true;
-            this.cbDacTxDacPostBotPdbCh0.CheckedChanged += new System.EventHandler(this.cbDacTxDacPostBotPdbCh0_CheckedChanged);
-            // 
-            // cbDacTxDacPreTopCh0
-            // 
-            this.cbDacTxDacPreTopCh0.FormattingEnabled = true;
-            this.cbDacTxDacPreTopCh0.Location = new System.Drawing.Point(248, 226);
-            this.cbDacTxDacPreTopCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacPreTopCh0.Name = "cbDacTxDacPreTopCh0";
-            this.cbDacTxDacPreTopCh0.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacPreTopCh0.TabIndex = 52;
-            this.cbDacTxDacPreTopCh0.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacPreTopCh0_SelectedIndexChanged);
-            // 
-            // lDacTxDacPreTopCh0
-            // 
-            this.lDacTxDacPreTopCh0.AutoSize = true;
-            this.lDacTxDacPreTopCh0.Location = new System.Drawing.Point(145, 228);
-            this.lDacTxDacPreTopCh0.Name = "lDacTxDacPreTopCh0";
-            this.lDacTxDacPreTopCh0.Size = new System.Drawing.Size(93, 12);
-            this.lDacTxDacPreTopCh0.TabIndex = 51;
-            this.lDacTxDacPreTopCh0.Text = "Dac tx dac pre top:";
-            // 
-            // cbDacTxDacPreTopPdbCh0
-            // 
-            this.cbDacTxDacPreTopPdbCh0.AutoSize = true;
-            this.cbDacTxDacPreTopPdbCh0.Location = new System.Drawing.Point(5, 227);
-            this.cbDacTxDacPreTopPdbCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacPreTopPdbCh0.Name = "cbDacTxDacPreTopPdbCh0";
-            this.cbDacTxDacPreTopPdbCh0.Size = new System.Drawing.Size(130, 16);
-            this.cbDacTxDacPreTopPdbCh0.TabIndex = 50;
-            this.cbDacTxDacPreTopPdbCh0.Text = "Dac tx dac pre top pdb";
-            this.cbDacTxDacPreTopPdbCh0.UseVisualStyleBackColor = true;
-            this.cbDacTxDacPreTopPdbCh0.CheckedChanged += new System.EventHandler(this.cbDacTxDacPreTopPdbCh0_CheckedChanged);
-            // 
-            // cbDacTxDacPreMidCh0
-            // 
-            this.cbDacTxDacPreMidCh0.FormattingEnabled = true;
-            this.cbDacTxDacPreMidCh0.Location = new System.Drawing.Point(581, 202);
-            this.cbDacTxDacPreMidCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacPreMidCh0.Name = "cbDacTxDacPreMidCh0";
-            this.cbDacTxDacPreMidCh0.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacPreMidCh0.TabIndex = 49;
-            this.cbDacTxDacPreMidCh0.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacPreMidCh0_SelectedIndexChanged);
-            // 
-            // lDacTxDacPreMidCh0
-            // 
-            this.lDacTxDacPreMidCh0.AutoSize = true;
-            this.lDacTxDacPreMidCh0.Location = new System.Drawing.Point(478, 205);
-            this.lDacTxDacPreMidCh0.Name = "lDacTxDacPreMidCh0";
-            this.lDacTxDacPreMidCh0.Size = new System.Drawing.Size(96, 12);
-            this.lDacTxDacPreMidCh0.TabIndex = 48;
-            this.lDacTxDacPreMidCh0.Text = "Dac tx dac pre mid:";
-            // 
-            // cbDacTxDacPreMidPdbCh0
-            // 
-            this.cbDacTxDacPreMidPdbCh0.AutoSize = true;
-            this.cbDacTxDacPreMidPdbCh0.Location = new System.Drawing.Point(339, 204);
-            this.cbDacTxDacPreMidPdbCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacPreMidPdbCh0.Name = "cbDacTxDacPreMidPdbCh0";
-            this.cbDacTxDacPreMidPdbCh0.Size = new System.Drawing.Size(133, 16);
-            this.cbDacTxDacPreMidPdbCh0.TabIndex = 47;
-            this.cbDacTxDacPreMidPdbCh0.Text = "Dac tx dac pre mid pdb";
-            this.cbDacTxDacPreMidPdbCh0.UseVisualStyleBackColor = true;
-            this.cbDacTxDacPreMidPdbCh0.CheckedChanged += new System.EventHandler(this.cbDacTxDacPreMidPdbCh0_CheckedChanged);
-            // 
-            // cbDacTxDacPreBotCh0
-            // 
-            this.cbDacTxDacPreBotCh0.FormattingEnabled = true;
-            this.cbDacTxDacPreBotCh0.Location = new System.Drawing.Point(248, 202);
-            this.cbDacTxDacPreBotCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacPreBotCh0.Name = "cbDacTxDacPreBotCh0";
-            this.cbDacTxDacPreBotCh0.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacPreBotCh0.TabIndex = 46;
-            this.cbDacTxDacPreBotCh0.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacPreBotCh0_SelectedIndexChanged);
-            // 
-            // lDacTxDacMain8bTopCh0
-            // 
-            this.lDacTxDacMain8bTopCh0.AutoSize = true;
-            this.lDacTxDacMain8bTopCh0.Location = new System.Drawing.Point(434, 183);
-            this.lDacTxDacMain8bTopCh0.Name = "lDacTxDacMain8bTopCh0";
-            this.lDacTxDacMain8bTopCh0.Size = new System.Drawing.Size(113, 12);
-            this.lDacTxDacMain8bTopCh0.TabIndex = 45;
-            this.lDacTxDacMain8bTopCh0.Text = "Dac tx dac main8b top:";
-            // 
-            // cbDacTxDacMain8bTopCh0
-            // 
-            this.cbDacTxDacMain8bTopCh0.FormattingEnabled = true;
-            this.cbDacTxDacMain8bTopCh0.Location = new System.Drawing.Point(557, 181);
-            this.cbDacTxDacMain8bTopCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacMain8bTopCh0.Name = "cbDacTxDacMain8bTopCh0";
-            this.cbDacTxDacMain8bTopCh0.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacMain8bTopCh0.TabIndex = 44;
-            this.cbDacTxDacMain8bTopCh0.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacMain8bTopCh0_SelectedIndexChanged);
-            // 
-            // lDacTxDacMain8bMidCh0
-            // 
-            this.lDacTxDacMain8bMidCh0.AutoSize = true;
-            this.lDacTxDacMain8bMidCh0.Location = new System.Drawing.Point(219, 183);
-            this.lDacTxDacMain8bMidCh0.Name = "lDacTxDacMain8bMidCh0";
-            this.lDacTxDacMain8bMidCh0.Size = new System.Drawing.Size(116, 12);
-            this.lDacTxDacMain8bMidCh0.TabIndex = 43;
-            this.lDacTxDacMain8bMidCh0.Text = "Dac tx dac main8b mid:";
-            // 
-            // cbDacTxDacMain8bMidCh0
-            // 
-            this.cbDacTxDacMain8bMidCh0.FormattingEnabled = true;
-            this.cbDacTxDacMain8bMidCh0.Location = new System.Drawing.Point(343, 181);
-            this.cbDacTxDacMain8bMidCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacMain8bMidCh0.Name = "cbDacTxDacMain8bMidCh0";
-            this.cbDacTxDacMain8bMidCh0.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacMain8bMidCh0.TabIndex = 42;
-            this.cbDacTxDacMain8bMidCh0.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacMain8bMidCh0_SelectedIndexChanged);
-            // 
-            // lDacTxDacPreBotCh0
-            // 
-            this.lDacTxDacPreBotCh0.AutoSize = true;
-            this.lDacTxDacPreBotCh0.Location = new System.Drawing.Point(145, 205);
-            this.lDacTxDacPreBotCh0.Name = "lDacTxDacPreBotCh0";
-            this.lDacTxDacPreBotCh0.Size = new System.Drawing.Size(93, 12);
-            this.lDacTxDacPreBotCh0.TabIndex = 41;
-            this.lDacTxDacPreBotCh0.Text = "Dac tx dac pre bot:";
-            // 
-            // cbDacTxDacPreBotPdbCh0
-            // 
-            this.cbDacTxDacPreBotPdbCh0.AutoSize = true;
-            this.cbDacTxDacPreBotPdbCh0.Location = new System.Drawing.Point(5, 204);
-            this.cbDacTxDacPreBotPdbCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacPreBotPdbCh0.Name = "cbDacTxDacPreBotPdbCh0";
-            this.cbDacTxDacPreBotPdbCh0.Size = new System.Drawing.Size(130, 16);
-            this.cbDacTxDacPreBotPdbCh0.TabIndex = 40;
-            this.cbDacTxDacPreBotPdbCh0.Text = "Dac tx dac pre bot pdb";
-            this.cbDacTxDacPreBotPdbCh0.UseVisualStyleBackColor = true;
-            this.cbDacTxDacPreBotPdbCh0.CheckedChanged += new System.EventHandler(this.cbDacTxDacPreBotPdbCh0_CheckedChanged);
-            // 
-            // lDacTxDacMain8bBotCh0
-            // 
-            this.lDacTxDacMain8bBotCh0.AutoSize = true;
-            this.lDacTxDacMain8bBotCh0.Location = new System.Drawing.Point(5, 183);
-            this.lDacTxDacMain8bBotCh0.Name = "lDacTxDacMain8bBotCh0";
-            this.lDacTxDacMain8bBotCh0.Size = new System.Drawing.Size(113, 12);
-            this.lDacTxDacMain8bBotCh0.TabIndex = 39;
-            this.lDacTxDacMain8bBotCh0.Text = "Dac tx dac main8b bot:";
-            // 
-            // cbDacTxDacMain8bBotCh0
-            // 
-            this.cbDacTxDacMain8bBotCh0.FormattingEnabled = true;
-            this.cbDacTxDacMain8bBotCh0.Location = new System.Drawing.Point(129, 181);
-            this.cbDacTxDacMain8bBotCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacMain8bBotCh0.Name = "cbDacTxDacMain8bBotCh0";
-            this.cbDacTxDacMain8bBotCh0.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacMain8bBotCh0.TabIndex = 38;
-            this.cbDacTxDacMain8bBotCh0.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacMain8bBotCh0_SelectedIndexChanged);
-            // 
-            // lDacTxDacDcdTopCh0
-            // 
-            this.lDacTxDacDcdTopCh0.AutoSize = true;
-            this.lDacTxDacDcdTopCh0.Location = new System.Drawing.Point(395, 162);
-            this.lDacTxDacDcdTopCh0.Name = "lDacTxDacDcdTopCh0";
-            this.lDacTxDacDcdTopCh0.Size = new System.Drawing.Size(95, 12);
-            this.lDacTxDacDcdTopCh0.TabIndex = 37;
-            this.lDacTxDacDcdTopCh0.Text = "Dac tx dac dcd top:";
-            // 
-            // cbDacTxDacDcdTopCh0
-            // 
-            this.cbDacTxDacDcdTopCh0.FormattingEnabled = true;
-            this.cbDacTxDacDcdTopCh0.Location = new System.Drawing.Point(501, 159);
-            this.cbDacTxDacDcdTopCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacDcdTopCh0.Name = "cbDacTxDacDcdTopCh0";
-            this.cbDacTxDacDcdTopCh0.Size = new System.Drawing.Size(78, 20);
-            this.cbDacTxDacDcdTopCh0.TabIndex = 36;
-            this.cbDacTxDacDcdTopCh0.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacDcdTopCh0_SelectedIndexChanged);
-            // 
-            // cbDacTxDacDcdTopPdbCh0
-            // 
-            this.cbDacTxDacDcdTopPdbCh0.AutoSize = true;
-            this.cbDacTxDacDcdTopPdbCh0.Location = new System.Drawing.Point(253, 161);
-            this.cbDacTxDacDcdTopPdbCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacDcdTopPdbCh0.Name = "cbDacTxDacDcdTopPdbCh0";
-            this.cbDacTxDacDcdTopPdbCh0.Size = new System.Drawing.Size(132, 16);
-            this.cbDacTxDacDcdTopPdbCh0.TabIndex = 35;
-            this.cbDacTxDacDcdTopPdbCh0.Text = "Dac tx dac dcd top pdb";
-            this.cbDacTxDacDcdTopPdbCh0.UseVisualStyleBackColor = true;
-            this.cbDacTxDacDcdTopPdbCh0.CheckedChanged += new System.EventHandler(this.cbDacTxDacDcdTopPdbCh0_CheckedChanged);
-            // 
-            // cbTxTopDcdDacPolflipCh0
-            // 
-            this.cbTxTopDcdDacPolflipCh0.AutoSize = true;
-            this.cbTxTopDcdDacPolflipCh0.Location = new System.Drawing.Point(118, 161);
-            this.cbTxTopDcdDacPolflipCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbTxTopDcdDacPolflipCh0.Name = "cbTxTopDcdDacPolflipCh0";
-            this.cbTxTopDcdDacPolflipCh0.Size = new System.Drawing.Size(128, 16);
-            this.cbTxTopDcdDacPolflipCh0.TabIndex = 34;
-            this.cbTxTopDcdDacPolflipCh0.Text = "Tx top dcd dac polflip";
-            this.cbTxTopDcdDacPolflipCh0.UseVisualStyleBackColor = true;
-            this.cbTxTopDcdDacPolflipCh0.CheckedChanged += new System.EventHandler(this.cbTxTopDcdDacPolflipCh0_CheckedChanged);
-            // 
-            // cbTxIdoubleEnTopCh0
-            // 
-            this.cbTxIdoubleEnTopCh0.AutoSize = true;
-            this.cbTxIdoubleEnTopCh0.Location = new System.Drawing.Point(5, 161);
-            this.cbTxIdoubleEnTopCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbTxIdoubleEnTopCh0.Name = "cbTxIdoubleEnTopCh0";
-            this.cbTxIdoubleEnTopCh0.Size = new System.Drawing.Size(107, 16);
-            this.cbTxIdoubleEnTopCh0.TabIndex = 33;
-            this.cbTxIdoubleEnTopCh0.Text = "Tx idouble en top";
-            this.cbTxIdoubleEnTopCh0.UseVisualStyleBackColor = true;
-            this.cbTxIdoubleEnTopCh0.CheckedChanged += new System.EventHandler(this.cbTxIdoubleEnTopCh0_CheckedChanged);
-            // 
-            // lDacTxDacDcdMidCh0
-            // 
-            this.lDacTxDacDcdMidCh0.AutoSize = true;
-            this.lDacTxDacDcdMidCh0.Location = new System.Drawing.Point(395, 138);
-            this.lDacTxDacDcdMidCh0.Name = "lDacTxDacDcdMidCh0";
-            this.lDacTxDacDcdMidCh0.Size = new System.Drawing.Size(98, 12);
-            this.lDacTxDacDcdMidCh0.TabIndex = 32;
-            this.lDacTxDacDcdMidCh0.Text = "Dac tx dac dcd mid:";
-            // 
-            // cbDacTxDacDcdMidCh0
-            // 
-            this.cbDacTxDacDcdMidCh0.FormattingEnabled = true;
-            this.cbDacTxDacDcdMidCh0.Location = new System.Drawing.Point(501, 136);
-            this.cbDacTxDacDcdMidCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacDcdMidCh0.Name = "cbDacTxDacDcdMidCh0";
-            this.cbDacTxDacDcdMidCh0.Size = new System.Drawing.Size(78, 20);
-            this.cbDacTxDacDcdMidCh0.TabIndex = 31;
-            this.cbDacTxDacDcdMidCh0.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacDcdMidCh0_SelectedIndexChanged);
-            // 
-            // cbDacTxDacDcdMidPdbCh0
-            // 
-            this.cbDacTxDacDcdMidPdbCh0.AutoSize = true;
-            this.cbDacTxDacDcdMidPdbCh0.Location = new System.Drawing.Point(253, 138);
-            this.cbDacTxDacDcdMidPdbCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacDcdMidPdbCh0.Name = "cbDacTxDacDcdMidPdbCh0";
-            this.cbDacTxDacDcdMidPdbCh0.Size = new System.Drawing.Size(135, 16);
-            this.cbDacTxDacDcdMidPdbCh0.TabIndex = 30;
-            this.cbDacTxDacDcdMidPdbCh0.Text = "Dac tx dac dcd mid pdb";
-            this.cbDacTxDacDcdMidPdbCh0.UseVisualStyleBackColor = true;
-            this.cbDacTxDacDcdMidPdbCh0.CheckedChanged += new System.EventHandler(this.cbDacTxDacDcdMidPdbCh0_CheckedChanged);
-            // 
-            // cbTxMidDcdDacPolflipCh0
-            // 
-            this.cbTxMidDcdDacPolflipCh0.AutoSize = true;
-            this.cbTxMidDcdDacPolflipCh0.Location = new System.Drawing.Point(118, 138);
-            this.cbTxMidDcdDacPolflipCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbTxMidDcdDacPolflipCh0.Name = "cbTxMidDcdDacPolflipCh0";
-            this.cbTxMidDcdDacPolflipCh0.Size = new System.Drawing.Size(131, 16);
-            this.cbTxMidDcdDacPolflipCh0.TabIndex = 29;
-            this.cbTxMidDcdDacPolflipCh0.Text = "Tx mid dcd dac polflip";
-            this.cbTxMidDcdDacPolflipCh0.UseVisualStyleBackColor = true;
-            this.cbTxMidDcdDacPolflipCh0.CheckedChanged += new System.EventHandler(this.cbTxMidDcdDacPolflipCh0_CheckedChanged);
-            // 
-            // cbTxIdoubleEnMidCh0
-            // 
-            this.cbTxIdoubleEnMidCh0.AutoSize = true;
-            this.cbTxIdoubleEnMidCh0.Location = new System.Drawing.Point(5, 138);
-            this.cbTxIdoubleEnMidCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbTxIdoubleEnMidCh0.Name = "cbTxIdoubleEnMidCh0";
-            this.cbTxIdoubleEnMidCh0.Size = new System.Drawing.Size(110, 16);
-            this.cbTxIdoubleEnMidCh0.TabIndex = 28;
-            this.cbTxIdoubleEnMidCh0.Text = "Tx idouble en mid";
-            this.cbTxIdoubleEnMidCh0.UseVisualStyleBackColor = true;
-            this.cbTxIdoubleEnMidCh0.CheckedChanged += new System.EventHandler(this.cbTxIdoubleEnMidCh0_CheckedChanged);
-            // 
-            // lDacTxDacDcdBotCh0
-            // 
-            this.lDacTxDacDcdBotCh0.AutoSize = true;
-            this.lDacTxDacDcdBotCh0.Location = new System.Drawing.Point(395, 115);
-            this.lDacTxDacDcdBotCh0.Name = "lDacTxDacDcdBotCh0";
-            this.lDacTxDacDcdBotCh0.Size = new System.Drawing.Size(95, 12);
-            this.lDacTxDacDcdBotCh0.TabIndex = 27;
-            this.lDacTxDacDcdBotCh0.Text = "Dac tx dac dcd bot:";
-            // 
-            // cbDacTxDacDcdBotCh0
-            // 
-            this.cbDacTxDacDcdBotCh0.FormattingEnabled = true;
-            this.cbDacTxDacDcdBotCh0.Location = new System.Drawing.Point(501, 113);
-            this.cbDacTxDacDcdBotCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacDcdBotCh0.Name = "cbDacTxDacDcdBotCh0";
-            this.cbDacTxDacDcdBotCh0.Size = new System.Drawing.Size(78, 20);
-            this.cbDacTxDacDcdBotCh0.TabIndex = 26;
-            this.cbDacTxDacDcdBotCh0.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacDcdBotCh0_SelectedIndexChanged);
-            // 
-            // cbDacTxDacDcdBotPdbCh0
-            // 
-            this.cbDacTxDacDcdBotPdbCh0.AutoSize = true;
-            this.cbDacTxDacDcdBotPdbCh0.Location = new System.Drawing.Point(253, 114);
-            this.cbDacTxDacDcdBotPdbCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacDcdBotPdbCh0.Name = "cbDacTxDacDcdBotPdbCh0";
-            this.cbDacTxDacDcdBotPdbCh0.Size = new System.Drawing.Size(132, 16);
-            this.cbDacTxDacDcdBotPdbCh0.TabIndex = 25;
-            this.cbDacTxDacDcdBotPdbCh0.Text = "Dac tx dac dcd bot pdb";
-            this.cbDacTxDacDcdBotPdbCh0.UseVisualStyleBackColor = true;
-            this.cbDacTxDacDcdBotPdbCh0.CheckedChanged += new System.EventHandler(this.cbDacTxDacDcdBotPdbCh0_CheckedChanged);
-            // 
-            // cbTxBotDcdDacPolflipCh0
-            // 
-            this.cbTxBotDcdDacPolflipCh0.AutoSize = true;
-            this.cbTxBotDcdDacPolflipCh0.Location = new System.Drawing.Point(118, 114);
-            this.cbTxBotDcdDacPolflipCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbTxBotDcdDacPolflipCh0.Name = "cbTxBotDcdDacPolflipCh0";
-            this.cbTxBotDcdDacPolflipCh0.Size = new System.Drawing.Size(128, 16);
-            this.cbTxBotDcdDacPolflipCh0.TabIndex = 24;
-            this.cbTxBotDcdDacPolflipCh0.Text = "Tx bot dcd dac polflip";
-            this.cbTxBotDcdDacPolflipCh0.UseVisualStyleBackColor = true;
-            this.cbTxBotDcdDacPolflipCh0.CheckedChanged += new System.EventHandler(this.cbTxBotDcdDacPolflipCh0_CheckedChanged);
-            // 
-            // cbTxIdoubleEnBotCh0
-            // 
-            this.cbTxIdoubleEnBotCh0.AutoSize = true;
-            this.cbTxIdoubleEnBotCh0.Location = new System.Drawing.Point(5, 114);
-            this.cbTxIdoubleEnBotCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbTxIdoubleEnBotCh0.Name = "cbTxIdoubleEnBotCh0";
-            this.cbTxIdoubleEnBotCh0.Size = new System.Drawing.Size(107, 16);
-            this.cbTxIdoubleEnBotCh0.TabIndex = 23;
-            this.cbTxIdoubleEnBotCh0.Text = "Tx idouble en bot";
-            this.cbTxIdoubleEnBotCh0.UseVisualStyleBackColor = true;
-            this.cbTxIdoubleEnBotCh0.CheckedChanged += new System.EventHandler(this.cbTxIdoubleEnBotCh0_CheckedChanged);
-            // 
             // lTxIburninCh0
             // 
             this.lTxIburninCh0.AutoSize = true;
-            this.lTxIburninCh0.Location = new System.Drawing.Point(232, 94);
+            this.lTxIburninCh0.Location = new System.Drawing.Point(604, 70);
             this.lTxIburninCh0.Name = "lTxIburninCh0";
             this.lTxIburninCh0.Size = new System.Drawing.Size(58, 12);
             this.lTxIburninCh0.TabIndex = 22;
@@ -6607,7 +6652,7 @@
             // cbTxIburninCh0
             // 
             this.cbTxIburninCh0.FormattingEnabled = true;
-            this.cbTxIburninCh0.Location = new System.Drawing.Point(293, 91);
+            this.cbTxIburninCh0.Location = new System.Drawing.Point(665, 67);
             this.cbTxIburninCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxIburninCh0.Name = "cbTxIburninCh0";
             this.cbTxIburninCh0.Size = new System.Drawing.Size(86, 20);
@@ -6617,7 +6662,7 @@
             // cbTxBurninEnCh0
             // 
             this.cbTxBurninEnCh0.AutoSize = true;
-            this.cbTxBurninEnCh0.Location = new System.Drawing.Point(146, 93);
+            this.cbTxBurninEnCh0.Location = new System.Drawing.Point(513, 70);
             this.cbTxBurninEnCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxBurninEnCh0.Name = "cbTxBurninEnCh0";
             this.cbTxBurninEnCh0.Size = new System.Drawing.Size(85, 16);
@@ -6648,7 +6693,7 @@
             // lTxIbiastuneCtrlCh0
             // 
             this.lTxIbiastuneCtrlCh0.AutoSize = true;
-            this.lTxIbiastuneCtrlCh0.Location = new System.Drawing.Point(318, 70);
+            this.lTxIbiastuneCtrlCh0.Location = new System.Drawing.Point(316, 70);
             this.lTxIbiastuneCtrlCh0.Name = "lTxIbiastuneCtrlCh0";
             this.lTxIbiastuneCtrlCh0.Size = new System.Drawing.Size(99, 12);
             this.lTxIbiastuneCtrlCh0.TabIndex = 17;
@@ -6657,7 +6702,7 @@
             // cbTxIbiasFinetuneCtrlCh0
             // 
             this.cbTxIbiasFinetuneCtrlCh0.FormattingEnabled = true;
-            this.cbTxIbiasFinetuneCtrlCh0.Location = new System.Drawing.Point(421, 68);
+            this.cbTxIbiasFinetuneCtrlCh0.Location = new System.Drawing.Point(421, 67);
             this.cbTxIbiasFinetuneCtrlCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxIbiasFinetuneCtrlCh0.Name = "cbTxIbiasFinetuneCtrlCh0";
             this.cbTxIbiasFinetuneCtrlCh0.Size = new System.Drawing.Size(86, 20);
@@ -6667,7 +6712,7 @@
             // lTxRvcselCh0
             // 
             this.lTxRvcselCh0.AutoSize = true;
-            this.lTxRvcselCh0.Location = new System.Drawing.Point(165, 70);
+            this.lTxRvcselCh0.Location = new System.Drawing.Point(161, 70);
             this.lTxRvcselCh0.Name = "lTxRvcselCh0";
             this.lTxRvcselCh0.Size = new System.Drawing.Size(51, 12);
             this.lTxRvcselCh0.TabIndex = 15;
@@ -6676,7 +6721,7 @@
             // cbTxRvcselCh0
             // 
             this.cbTxRvcselCh0.FormattingEnabled = true;
-            this.cbTxRvcselCh0.Location = new System.Drawing.Point(219, 68);
+            this.cbTxRvcselCh0.Location = new System.Drawing.Point(215, 67);
             this.cbTxRvcselCh0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxRvcselCh0.Name = "cbTxRvcselCh0";
             this.cbTxRvcselCh0.Size = new System.Drawing.Size(95, 20);
@@ -6843,6 +6888,10 @@
             // 
             // tpLaserDriverControlCh1
             // 
+            this.tpLaserDriverControlCh1.Controls.Add(this.groupBox1);
+            this.tpLaserDriverControlCh1.Controls.Add(this.groupBox2);
+            this.tpLaserDriverControlCh1.Controls.Add(this.groupBox3);
+            this.tpLaserDriverControlCh1.Controls.Add(this.groupBox4);
             this.tpLaserDriverControlCh1.Controls.Add(this.cbTxIbiasAdcSelectCh1);
             this.tpLaserDriverControlCh1.Controls.Add(this.lTxDesiredImodCh1);
             this.tpLaserDriverControlCh1.Controls.Add(this.cbTxDesiredImodCh1);
@@ -6855,45 +6904,6 @@
             this.tpLaserDriverControlCh1.Controls.Add(this.cbTxMidPostPolinvCh1);
             this.tpLaserDriverControlCh1.Controls.Add(this.lTxBotPostPolinvCh1);
             this.tpLaserDriverControlCh1.Controls.Add(this.cbTxBotPostPolinvCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.cbDacTxDacPostTopCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.lDacTxDacPostTopCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.cbDacTxDacPostTopPdbCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.cbDacTxDacPostMidCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.lDacTxDacPostMidCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.cbDacTxDacPostMidPdbCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.cbDacTxDacPostBotCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.lDacTxDacPostBotCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.cbDacTxDacPostBotPdbCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.cbDacTxDacPreTopCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.lDacTxDacPreTopCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.cbDacTxDacPreTopPdbCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.cbDacTxDacPreMidCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.lDacTxDacPreMidCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.cbDacTxDacPreMidPdbCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.cbDacTxDacPreBotCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.lDacTxDacMain8bTopCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.cbDacTxDacMain8bTopCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.lDacTxDacMain8bMidCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.cbDacTxDacMain8bMidCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.lDacTxDacPreBotCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.cbDacTxDacPreBotPdbCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.lDacTxDacMain8bBotCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.cbDacTxDacMain8bBotCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.lDacTxDacDcdTopCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.cbDacTxDacDcdTopCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.cbDacTxDacDcdTopPdbCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.cbTxTopDcdDacPolflipCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.cbTxIdoubleEnTopCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.lDacTxDacDcdMidCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.cbDacTxDacDcdMidCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.cbDacTxDacDcdMidPdbCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.cbTxMidDcdDacPolflipCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.cbTxIdoubleEnMidCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.lDacTxDacDcdBotCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.cbDacTxDacDcdBotCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.cbDacTxDacDcdBotPdbCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.cbTxBotDcdDacPolflipCh1);
-            this.tpLaserDriverControlCh1.Controls.Add(this.cbTxIdoubleEnBotCh1);
             this.tpLaserDriverControlCh1.Controls.Add(this.lTxIburninCh1);
             this.tpLaserDriverControlCh1.Controls.Add(this.cbTxIburninCh1);
             this.tpLaserDriverControlCh1.Controls.Add(this.cbTxBurninEnCh1);
@@ -6926,542 +6936,582 @@
             this.tpLaserDriverControlCh1.Text = "Ch1";
             this.tpLaserDriverControlCh1.UseVisualStyleBackColor = true;
             // 
-            // cbTxIbiasAdcSelectCh1
+            // groupBox1
             // 
-            this.cbTxIbiasAdcSelectCh1.AutoSize = true;
-            this.cbTxIbiasAdcSelectCh1.Location = new System.Drawing.Point(467, 297);
-            this.cbTxIbiasAdcSelectCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbTxIbiasAdcSelectCh1.Name = "cbTxIbiasAdcSelectCh1";
-            this.cbTxIbiasAdcSelectCh1.Size = new System.Drawing.Size(108, 16);
-            this.cbTxIbiasAdcSelectCh1.TabIndex = 147;
-            this.cbTxIbiasAdcSelectCh1.Text = "Tx ibias adc select";
-            this.cbTxIbiasAdcSelectCh1.UseVisualStyleBackColor = true;
-            this.cbTxIbiasAdcSelectCh1.CheckedChanged += new System.EventHandler(this.cbTxIbiasAdcSelectCh1_CheckedChanged);
-            // 
-            // lTxDesiredImodCh1
-            // 
-            this.lTxDesiredImodCh1.AutoSize = true;
-            this.lTxDesiredImodCh1.Location = new System.Drawing.Point(285, 298);
-            this.lTxDesiredImodCh1.Name = "lTxDesiredImodCh1";
-            this.lTxDesiredImodCh1.Size = new System.Drawing.Size(84, 12);
-            this.lTxDesiredImodCh1.TabIndex = 146;
-            this.lTxDesiredImodCh1.Text = "Tx desired imod:";
-            // 
-            // cbTxDesiredImodCh1
-            // 
-            this.cbTxDesiredImodCh1.FormattingEnabled = true;
-            this.cbTxDesiredImodCh1.Location = new System.Drawing.Point(376, 295);
-            this.cbTxDesiredImodCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbTxDesiredImodCh1.Name = "cbTxDesiredImodCh1";
-            this.cbTxDesiredImodCh1.Size = new System.Drawing.Size(86, 20);
-            this.cbTxDesiredImodCh1.TabIndex = 145;
-            this.cbTxDesiredImodCh1.SelectedIndexChanged += new System.EventHandler(this.cbTxDesiredImodCh1_SelectedIndexChanged);
-            // 
-            // cbTxEnableAutoImodCh1
-            // 
-            this.cbTxEnableAutoImodCh1.AutoSize = true;
-            this.cbTxEnableAutoImodCh1.Location = new System.Drawing.Point(193, 297);
-            this.cbTxEnableAutoImodCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbTxEnableAutoImodCh1.Name = "cbTxEnableAutoImodCh1";
-            this.cbTxEnableAutoImodCh1.Size = new System.Drawing.Size(87, 16);
-            this.cbTxEnableAutoImodCh1.TabIndex = 144;
-            this.cbTxEnableAutoImodCh1.Text = "Tx auto imod";
-            this.cbTxEnableAutoImodCh1.UseVisualStyleBackColor = true;
-            this.cbTxEnableAutoImodCh1.CheckedChanged += new System.EventHandler(this.cbTxEnableAutoImodCh1_CheckedChanged);
-            // 
-            // cbTxPdbLbkInCh1
-            // 
-            this.cbTxPdbLbkInCh1.AutoSize = true;
-            this.cbTxPdbLbkInCh1.Location = new System.Drawing.Point(103, 297);
-            this.cbTxPdbLbkInCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbTxPdbLbkInCh1.Name = "cbTxPdbLbkInCh1";
-            this.cbTxPdbLbkInCh1.Size = new System.Drawing.Size(88, 16);
-            this.cbTxPdbLbkInCh1.TabIndex = 143;
-            this.cbTxPdbLbkInCh1.Text = "Tx pdb lbk in";
-            this.cbTxPdbLbkInCh1.UseVisualStyleBackColor = true;
-            this.cbTxPdbLbkInCh1.CheckedChanged += new System.EventHandler(this.cbTxPdbLbkInCh1_CheckedChanged);
-            // 
-            // cbTxPdbLbkOutCh1
-            // 
-            this.cbTxPdbLbkOutCh1.AutoSize = true;
-            this.cbTxPdbLbkOutCh1.Location = new System.Drawing.Point(5, 297);
-            this.cbTxPdbLbkOutCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbTxPdbLbkOutCh1.Name = "cbTxPdbLbkOutCh1";
-            this.cbTxPdbLbkOutCh1.Size = new System.Drawing.Size(94, 16);
-            this.cbTxPdbLbkOutCh1.TabIndex = 142;
-            this.cbTxPdbLbkOutCh1.Text = "Tx pdb lbk out";
-            this.cbTxPdbLbkOutCh1.UseVisualStyleBackColor = true;
-            this.cbTxPdbLbkOutCh1.CheckedChanged += new System.EventHandler(this.cbTxPdbLbkOutCh1_CheckedChanged);
-            // 
-            // lTxTopPostPolinvCh1
-            // 
-            this.lTxTopPostPolinvCh1.AutoSize = true;
-            this.lTxTopPostPolinvCh1.Location = new System.Drawing.Point(475, 274);
-            this.lTxTopPostPolinvCh1.Name = "lTxTopPostPolinvCh1";
-            this.lTxTopPostPolinvCh1.Size = new System.Drawing.Size(94, 12);
-            this.lTxTopPostPolinvCh1.TabIndex = 141;
-            this.lTxTopPostPolinvCh1.Text = "Tx top post polinv:";
-            // 
-            // cbTxTopPostPolinvCh1
-            // 
-            this.cbTxTopPostPolinvCh1.FormattingEnabled = true;
-            this.cbTxTopPostPolinvCh1.Location = new System.Drawing.Point(576, 272);
-            this.cbTxTopPostPolinvCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbTxTopPostPolinvCh1.Name = "cbTxTopPostPolinvCh1";
-            this.cbTxTopPostPolinvCh1.Size = new System.Drawing.Size(129, 20);
-            this.cbTxTopPostPolinvCh1.TabIndex = 140;
-            this.cbTxTopPostPolinvCh1.SelectedIndexChanged += new System.EventHandler(this.cbTxTopPostPolinvCh1_SelectedIndexChanged);
-            // 
-            // lTxMidPostPolinvCh1
-            // 
-            this.lTxMidPostPolinvCh1.AutoSize = true;
-            this.lTxMidPostPolinvCh1.Location = new System.Drawing.Point(240, 274);
-            this.lTxMidPostPolinvCh1.Name = "lTxMidPostPolinvCh1";
-            this.lTxMidPostPolinvCh1.Size = new System.Drawing.Size(97, 12);
-            this.lTxMidPostPolinvCh1.TabIndex = 139;
-            this.lTxMidPostPolinvCh1.Text = "Tx mid post polinv:";
-            // 
-            // cbTxMidPostPolinvCh1
-            // 
-            this.cbTxMidPostPolinvCh1.FormattingEnabled = true;
-            this.cbTxMidPostPolinvCh1.Location = new System.Drawing.Point(341, 272);
-            this.cbTxMidPostPolinvCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbTxMidPostPolinvCh1.Name = "cbTxMidPostPolinvCh1";
-            this.cbTxMidPostPolinvCh1.Size = new System.Drawing.Size(129, 20);
-            this.cbTxMidPostPolinvCh1.TabIndex = 138;
-            this.cbTxMidPostPolinvCh1.SelectedIndexChanged += new System.EventHandler(this.cbTxMidPostPolinvCh1_SelectedIndexChanged);
-            // 
-            // lTxBotPostPolinvCh1
-            // 
-            this.lTxBotPostPolinvCh1.AutoSize = true;
-            this.lTxBotPostPolinvCh1.Location = new System.Drawing.Point(5, 274);
-            this.lTxBotPostPolinvCh1.Name = "lTxBotPostPolinvCh1";
-            this.lTxBotPostPolinvCh1.Size = new System.Drawing.Size(94, 12);
-            this.lTxBotPostPolinvCh1.TabIndex = 137;
-            this.lTxBotPostPolinvCh1.Text = "Tx bot post polinv:";
-            // 
-            // cbTxBotPostPolinvCh1
-            // 
-            this.cbTxBotPostPolinvCh1.FormattingEnabled = true;
-            this.cbTxBotPostPolinvCh1.Location = new System.Drawing.Point(106, 272);
-            this.cbTxBotPostPolinvCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbTxBotPostPolinvCh1.Name = "cbTxBotPostPolinvCh1";
-            this.cbTxBotPostPolinvCh1.Size = new System.Drawing.Size(129, 20);
-            this.cbTxBotPostPolinvCh1.TabIndex = 136;
-            this.cbTxBotPostPolinvCh1.SelectedIndexChanged += new System.EventHandler(this.cbTxBotPostPolinvCh1_SelectedIndexChanged);
-            // 
-            // cbDacTxDacPostTopCh1
-            // 
-            this.cbDacTxDacPostTopCh1.FormattingEnabled = true;
-            this.cbDacTxDacPostTopCh1.Location = new System.Drawing.Point(591, 249);
-            this.cbDacTxDacPostTopCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacPostTopCh1.Name = "cbDacTxDacPostTopCh1";
-            this.cbDacTxDacPostTopCh1.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacPostTopCh1.TabIndex = 135;
-            this.cbDacTxDacPostTopCh1.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacPostTopCh1_SelectedIndexChanged);
-            // 
-            // lDacTxDacPostTopCh1
-            // 
-            this.lDacTxDacPostTopCh1.AutoSize = true;
-            this.lDacTxDacPostTopCh1.Location = new System.Drawing.Point(483, 251);
-            this.lDacTxDacPostTopCh1.Name = "lDacTxDacPostTopCh1";
-            this.lDacTxDacPostTopCh1.Size = new System.Drawing.Size(97, 12);
-            this.lDacTxDacPostTopCh1.TabIndex = 134;
-            this.lDacTxDacPostTopCh1.Text = "Dac tx dac post top:";
-            // 
-            // cbDacTxDacPostTopPdbCh1
-            // 
-            this.cbDacTxDacPostTopPdbCh1.AutoSize = true;
-            this.cbDacTxDacPostTopPdbCh1.Location = new System.Drawing.Point(344, 250);
-            this.cbDacTxDacPostTopPdbCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacPostTopPdbCh1.Name = "cbDacTxDacPostTopPdbCh1";
-            this.cbDacTxDacPostTopPdbCh1.Size = new System.Drawing.Size(134, 16);
-            this.cbDacTxDacPostTopPdbCh1.TabIndex = 133;
-            this.cbDacTxDacPostTopPdbCh1.Text = "Dac tx dac post top pdb";
-            this.cbDacTxDacPostTopPdbCh1.UseVisualStyleBackColor = true;
-            this.cbDacTxDacPostTopPdbCh1.CheckedChanged += new System.EventHandler(this.cbDacTxDacPostTopPdbCh1_CheckedChanged);
-            // 
-            // cbDacTxDacPostMidCh1
-            // 
-            this.cbDacTxDacPostMidCh1.FormattingEnabled = true;
-            this.cbDacTxDacPostMidCh1.Location = new System.Drawing.Point(253, 249);
-            this.cbDacTxDacPostMidCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacPostMidCh1.Name = "cbDacTxDacPostMidCh1";
-            this.cbDacTxDacPostMidCh1.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacPostMidCh1.TabIndex = 132;
-            this.cbDacTxDacPostMidCh1.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacPostMidCh1_SelectedIndexChanged);
-            // 
-            // lDacTxDacPostMidCh1
-            // 
-            this.lDacTxDacPostMidCh1.AutoSize = true;
-            this.lDacTxDacPostMidCh1.Location = new System.Drawing.Point(145, 251);
-            this.lDacTxDacPostMidCh1.Name = "lDacTxDacPostMidCh1";
-            this.lDacTxDacPostMidCh1.Size = new System.Drawing.Size(100, 12);
-            this.lDacTxDacPostMidCh1.TabIndex = 131;
-            this.lDacTxDacPostMidCh1.Text = "Dac tx dac post mid:";
-            // 
-            // cbDacTxDacPostMidPdbCh1
-            // 
-            this.cbDacTxDacPostMidPdbCh1.AutoSize = true;
-            this.cbDacTxDacPostMidPdbCh1.Location = new System.Drawing.Point(5, 250);
-            this.cbDacTxDacPostMidPdbCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacPostMidPdbCh1.Name = "cbDacTxDacPostMidPdbCh1";
-            this.cbDacTxDacPostMidPdbCh1.Size = new System.Drawing.Size(137, 16);
-            this.cbDacTxDacPostMidPdbCh1.TabIndex = 130;
-            this.cbDacTxDacPostMidPdbCh1.Text = "Dac tx dac post mid pdb";
-            this.cbDacTxDacPostMidPdbCh1.UseVisualStyleBackColor = true;
-            this.cbDacTxDacPostMidPdbCh1.CheckedChanged += new System.EventHandler(this.cbDacTxDacPostMidPdbCh1_CheckedChanged);
+            this.groupBox1.Controls.Add(this.cbDacTxDacPostBotCh1);
+            this.groupBox1.Controls.Add(this.lDacTxDacPostBotCh1);
+            this.groupBox1.Controls.Add(this.cbDacTxDacPostBotPdbCh1);
+            this.groupBox1.Controls.Add(this.cbDacTxDacPostMidCh1);
+            this.groupBox1.Controls.Add(this.lDacTxDacPostMidCh1);
+            this.groupBox1.Controls.Add(this.cbDacTxDacPostMidPdbCh1);
+            this.groupBox1.Controls.Add(this.cbDacTxDacPostTopCh1);
+            this.groupBox1.Controls.Add(this.lDacTxDacPostTopCh1);
+            this.groupBox1.Controls.Add(this.cbDacTxDacPostTopPdbCh1);
+            this.groupBox1.Location = new System.Drawing.Point(336, 207);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(325, 85);
+            this.groupBox1.TabIndex = 112;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "PostEmphasis";
             // 
             // cbDacTxDacPostBotCh1
             // 
             this.cbDacTxDacPostBotCh1.FormattingEnabled = true;
-            this.cbDacTxDacPostBotCh1.Location = new System.Drawing.Point(586, 226);
+            this.cbDacTxDacPostBotCh1.Location = new System.Drawing.Point(234, 60);
             this.cbDacTxDacPostBotCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacPostBotCh1.Name = "cbDacTxDacPostBotCh1";
             this.cbDacTxDacPostBotCh1.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacPostBotCh1.TabIndex = 129;
-            this.cbDacTxDacPostBotCh1.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacPostBotCh1_SelectedIndexChanged);
+            this.cbDacTxDacPostBotCh1.TabIndex = 70;
             // 
             // lDacTxDacPostBotCh1
             // 
             this.lDacTxDacPostBotCh1.AutoSize = true;
-            this.lDacTxDacPostBotCh1.Location = new System.Drawing.Point(478, 228);
+            this.lDacTxDacPostBotCh1.Location = new System.Drawing.Point(135, 62);
             this.lDacTxDacPostBotCh1.Name = "lDacTxDacPostBotCh1";
             this.lDacTxDacPostBotCh1.Size = new System.Drawing.Size(97, 12);
-            this.lDacTxDacPostBotCh1.TabIndex = 128;
+            this.lDacTxDacPostBotCh1.TabIndex = 69;
             this.lDacTxDacPostBotCh1.Text = "Dac tx dac post bot:";
             // 
             // cbDacTxDacPostBotPdbCh1
             // 
             this.cbDacTxDacPostBotPdbCh1.AutoSize = true;
-            this.cbDacTxDacPostBotPdbCh1.Location = new System.Drawing.Point(339, 227);
+            this.cbDacTxDacPostBotPdbCh1.Location = new System.Drawing.Point(4, 62);
             this.cbDacTxDacPostBotPdbCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacPostBotPdbCh1.Name = "cbDacTxDacPostBotPdbCh1";
             this.cbDacTxDacPostBotPdbCh1.Size = new System.Drawing.Size(134, 16);
-            this.cbDacTxDacPostBotPdbCh1.TabIndex = 127;
+            this.cbDacTxDacPostBotPdbCh1.TabIndex = 68;
             this.cbDacTxDacPostBotPdbCh1.Text = "Dac tx dac post bot pdb";
             this.cbDacTxDacPostBotPdbCh1.UseVisualStyleBackColor = true;
-            this.cbDacTxDacPostBotPdbCh1.CheckedChanged += new System.EventHandler(this.cbDacTxDacPostBotPdbCh1_CheckedChanged);
+            // 
+            // cbDacTxDacPostMidCh1
+            // 
+            this.cbDacTxDacPostMidCh1.FormattingEnabled = true;
+            this.cbDacTxDacPostMidCh1.Location = new System.Drawing.Point(234, 38);
+            this.cbDacTxDacPostMidCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacPostMidCh1.Name = "cbDacTxDacPostMidCh1";
+            this.cbDacTxDacPostMidCh1.Size = new System.Drawing.Size(86, 20);
+            this.cbDacTxDacPostMidCh1.TabIndex = 67;
+            // 
+            // lDacTxDacPostMidCh1
+            // 
+            this.lDacTxDacPostMidCh1.AutoSize = true;
+            this.lDacTxDacPostMidCh1.Location = new System.Drawing.Point(135, 40);
+            this.lDacTxDacPostMidCh1.Name = "lDacTxDacPostMidCh1";
+            this.lDacTxDacPostMidCh1.Size = new System.Drawing.Size(100, 12);
+            this.lDacTxDacPostMidCh1.TabIndex = 66;
+            this.lDacTxDacPostMidCh1.Text = "Dac tx dac post mid:";
+            // 
+            // cbDacTxDacPostMidPdbCh1
+            // 
+            this.cbDacTxDacPostMidPdbCh1.AutoSize = true;
+            this.cbDacTxDacPostMidPdbCh1.Location = new System.Drawing.Point(4, 40);
+            this.cbDacTxDacPostMidPdbCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacPostMidPdbCh1.Name = "cbDacTxDacPostMidPdbCh1";
+            this.cbDacTxDacPostMidPdbCh1.Size = new System.Drawing.Size(137, 16);
+            this.cbDacTxDacPostMidPdbCh1.TabIndex = 65;
+            this.cbDacTxDacPostMidPdbCh1.Text = "Dac tx dac post mid pdb";
+            this.cbDacTxDacPostMidPdbCh1.UseVisualStyleBackColor = true;
+            // 
+            // cbDacTxDacPostTopCh1
+            // 
+            this.cbDacTxDacPostTopCh1.FormattingEnabled = true;
+            this.cbDacTxDacPostTopCh1.Location = new System.Drawing.Point(234, 16);
+            this.cbDacTxDacPostTopCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacPostTopCh1.Name = "cbDacTxDacPostTopCh1";
+            this.cbDacTxDacPostTopCh1.Size = new System.Drawing.Size(86, 20);
+            this.cbDacTxDacPostTopCh1.TabIndex = 64;
+            // 
+            // lDacTxDacPostTopCh1
+            // 
+            this.lDacTxDacPostTopCh1.AutoSize = true;
+            this.lDacTxDacPostTopCh1.Location = new System.Drawing.Point(135, 18);
+            this.lDacTxDacPostTopCh1.Name = "lDacTxDacPostTopCh1";
+            this.lDacTxDacPostTopCh1.Size = new System.Drawing.Size(97, 12);
+            this.lDacTxDacPostTopCh1.TabIndex = 63;
+            this.lDacTxDacPostTopCh1.Text = "Dac tx dac post top:";
+            // 
+            // cbDacTxDacPostTopPdbCh1
+            // 
+            this.cbDacTxDacPostTopPdbCh1.AutoSize = true;
+            this.cbDacTxDacPostTopPdbCh1.Location = new System.Drawing.Point(4, 18);
+            this.cbDacTxDacPostTopPdbCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacPostTopPdbCh1.Name = "cbDacTxDacPostTopPdbCh1";
+            this.cbDacTxDacPostTopPdbCh1.Size = new System.Drawing.Size(134, 16);
+            this.cbDacTxDacPostTopPdbCh1.TabIndex = 62;
+            this.cbDacTxDacPostTopPdbCh1.Text = "Dac tx dac post top pdb";
+            this.cbDacTxDacPostTopPdbCh1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.cbDacTxDacPreTopCh1);
+            this.groupBox2.Controls.Add(this.lDacTxDacPreTopCh1);
+            this.groupBox2.Controls.Add(this.cbDacTxDacPreTopPdbCh1);
+            this.groupBox2.Controls.Add(this.cbDacTxDacPreMidCh1);
+            this.groupBox2.Controls.Add(this.lDacTxDacPreMidCh1);
+            this.groupBox2.Controls.Add(this.cbDacTxDacPreMidPdbCh1);
+            this.groupBox2.Controls.Add(this.cbDacTxDacPreBotCh1);
+            this.groupBox2.Controls.Add(this.lDacTxDacPreBotCh1);
+            this.groupBox2.Controls.Add(this.cbDacTxDacPreBotPdbCh1);
+            this.groupBox2.Location = new System.Drawing.Point(5, 207);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(325, 85);
+            this.groupBox2.TabIndex = 111;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "PreEmphasis";
             // 
             // cbDacTxDacPreTopCh1
             // 
             this.cbDacTxDacPreTopCh1.FormattingEnabled = true;
-            this.cbDacTxDacPreTopCh1.Location = new System.Drawing.Point(248, 226);
+            this.cbDacTxDacPreTopCh1.Location = new System.Drawing.Point(231, 16);
             this.cbDacTxDacPreTopCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacPreTopCh1.Name = "cbDacTxDacPreTopCh1";
             this.cbDacTxDacPreTopCh1.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacPreTopCh1.TabIndex = 126;
-            this.cbDacTxDacPreTopCh1.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacPreTopCh1_SelectedIndexChanged);
+            this.cbDacTxDacPreTopCh1.TabIndex = 61;
             // 
             // lDacTxDacPreTopCh1
             // 
             this.lDacTxDacPreTopCh1.AutoSize = true;
-            this.lDacTxDacPreTopCh1.Location = new System.Drawing.Point(145, 228);
+            this.lDacTxDacPreTopCh1.Location = new System.Drawing.Point(135, 18);
             this.lDacTxDacPreTopCh1.Name = "lDacTxDacPreTopCh1";
             this.lDacTxDacPreTopCh1.Size = new System.Drawing.Size(93, 12);
-            this.lDacTxDacPreTopCh1.TabIndex = 125;
+            this.lDacTxDacPreTopCh1.TabIndex = 60;
             this.lDacTxDacPreTopCh1.Text = "Dac tx dac pre top:";
             // 
             // cbDacTxDacPreTopPdbCh1
             // 
             this.cbDacTxDacPreTopPdbCh1.AutoSize = true;
-            this.cbDacTxDacPreTopPdbCh1.Location = new System.Drawing.Point(5, 227);
+            this.cbDacTxDacPreTopPdbCh1.Location = new System.Drawing.Point(4, 18);
             this.cbDacTxDacPreTopPdbCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacPreTopPdbCh1.Name = "cbDacTxDacPreTopPdbCh1";
             this.cbDacTxDacPreTopPdbCh1.Size = new System.Drawing.Size(130, 16);
-            this.cbDacTxDacPreTopPdbCh1.TabIndex = 124;
+            this.cbDacTxDacPreTopPdbCh1.TabIndex = 59;
             this.cbDacTxDacPreTopPdbCh1.Text = "Dac tx dac pre top pdb";
             this.cbDacTxDacPreTopPdbCh1.UseVisualStyleBackColor = true;
-            this.cbDacTxDacPreTopPdbCh1.CheckedChanged += new System.EventHandler(this.cbDacTxDacPreTopPdbCh1_CheckedChanged);
             // 
             // cbDacTxDacPreMidCh1
             // 
             this.cbDacTxDacPreMidCh1.FormattingEnabled = true;
-            this.cbDacTxDacPreMidCh1.Location = new System.Drawing.Point(581, 202);
+            this.cbDacTxDacPreMidCh1.Location = new System.Drawing.Point(231, 38);
             this.cbDacTxDacPreMidCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacPreMidCh1.Name = "cbDacTxDacPreMidCh1";
             this.cbDacTxDacPreMidCh1.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacPreMidCh1.TabIndex = 123;
-            this.cbDacTxDacPreMidCh1.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacPreMidCh1_SelectedIndexChanged);
+            this.cbDacTxDacPreMidCh1.TabIndex = 58;
             // 
             // lDacTxDacPreMidCh1
             // 
             this.lDacTxDacPreMidCh1.AutoSize = true;
-            this.lDacTxDacPreMidCh1.Location = new System.Drawing.Point(478, 205);
+            this.lDacTxDacPreMidCh1.Location = new System.Drawing.Point(135, 40);
             this.lDacTxDacPreMidCh1.Name = "lDacTxDacPreMidCh1";
             this.lDacTxDacPreMidCh1.Size = new System.Drawing.Size(96, 12);
-            this.lDacTxDacPreMidCh1.TabIndex = 122;
+            this.lDacTxDacPreMidCh1.TabIndex = 57;
             this.lDacTxDacPreMidCh1.Text = "Dac tx dac pre mid:";
             // 
             // cbDacTxDacPreMidPdbCh1
             // 
             this.cbDacTxDacPreMidPdbCh1.AutoSize = true;
-            this.cbDacTxDacPreMidPdbCh1.Location = new System.Drawing.Point(339, 204);
+            this.cbDacTxDacPreMidPdbCh1.Location = new System.Drawing.Point(4, 40);
             this.cbDacTxDacPreMidPdbCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacPreMidPdbCh1.Name = "cbDacTxDacPreMidPdbCh1";
             this.cbDacTxDacPreMidPdbCh1.Size = new System.Drawing.Size(133, 16);
-            this.cbDacTxDacPreMidPdbCh1.TabIndex = 121;
+            this.cbDacTxDacPreMidPdbCh1.TabIndex = 56;
             this.cbDacTxDacPreMidPdbCh1.Text = "Dac tx dac pre mid pdb";
             this.cbDacTxDacPreMidPdbCh1.UseVisualStyleBackColor = true;
-            this.cbDacTxDacPreMidPdbCh1.CheckedChanged += new System.EventHandler(this.cbDacTxDacPreMidPdbCh1_CheckedChanged);
             // 
             // cbDacTxDacPreBotCh1
             // 
             this.cbDacTxDacPreBotCh1.FormattingEnabled = true;
-            this.cbDacTxDacPreBotCh1.Location = new System.Drawing.Point(248, 202);
+            this.cbDacTxDacPreBotCh1.Location = new System.Drawing.Point(231, 60);
             this.cbDacTxDacPreBotCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacPreBotCh1.Name = "cbDacTxDacPreBotCh1";
             this.cbDacTxDacPreBotCh1.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacPreBotCh1.TabIndex = 120;
-            this.cbDacTxDacPreBotCh1.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacPreBotCh1_SelectedIndexChanged);
-            // 
-            // lDacTxDacMain8bTopCh1
-            // 
-            this.lDacTxDacMain8bTopCh1.AutoSize = true;
-            this.lDacTxDacMain8bTopCh1.Location = new System.Drawing.Point(434, 183);
-            this.lDacTxDacMain8bTopCh1.Name = "lDacTxDacMain8bTopCh1";
-            this.lDacTxDacMain8bTopCh1.Size = new System.Drawing.Size(113, 12);
-            this.lDacTxDacMain8bTopCh1.TabIndex = 119;
-            this.lDacTxDacMain8bTopCh1.Text = "Dac tx dac main8b top:";
-            // 
-            // cbDacTxDacMain8bTopCh1
-            // 
-            this.cbDacTxDacMain8bTopCh1.FormattingEnabled = true;
-            this.cbDacTxDacMain8bTopCh1.Location = new System.Drawing.Point(557, 181);
-            this.cbDacTxDacMain8bTopCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacMain8bTopCh1.Name = "cbDacTxDacMain8bTopCh1";
-            this.cbDacTxDacMain8bTopCh1.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacMain8bTopCh1.TabIndex = 118;
-            this.cbDacTxDacMain8bTopCh1.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacMain8bTopCh1_SelectedIndexChanged);
-            // 
-            // lDacTxDacMain8bMidCh1
-            // 
-            this.lDacTxDacMain8bMidCh1.AutoSize = true;
-            this.lDacTxDacMain8bMidCh1.Location = new System.Drawing.Point(219, 183);
-            this.lDacTxDacMain8bMidCh1.Name = "lDacTxDacMain8bMidCh1";
-            this.lDacTxDacMain8bMidCh1.Size = new System.Drawing.Size(116, 12);
-            this.lDacTxDacMain8bMidCh1.TabIndex = 117;
-            this.lDacTxDacMain8bMidCh1.Text = "Dac tx dac main8b mid:";
-            // 
-            // cbDacTxDacMain8bMidCh1
-            // 
-            this.cbDacTxDacMain8bMidCh1.FormattingEnabled = true;
-            this.cbDacTxDacMain8bMidCh1.Location = new System.Drawing.Point(343, 181);
-            this.cbDacTxDacMain8bMidCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacMain8bMidCh1.Name = "cbDacTxDacMain8bMidCh1";
-            this.cbDacTxDacMain8bMidCh1.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacMain8bMidCh1.TabIndex = 116;
-            this.cbDacTxDacMain8bMidCh1.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacMain8bMidCh1_SelectedIndexChanged);
+            this.cbDacTxDacPreBotCh1.TabIndex = 55;
             // 
             // lDacTxDacPreBotCh1
             // 
             this.lDacTxDacPreBotCh1.AutoSize = true;
-            this.lDacTxDacPreBotCh1.Location = new System.Drawing.Point(145, 205);
+            this.lDacTxDacPreBotCh1.Location = new System.Drawing.Point(135, 63);
             this.lDacTxDacPreBotCh1.Name = "lDacTxDacPreBotCh1";
             this.lDacTxDacPreBotCh1.Size = new System.Drawing.Size(93, 12);
-            this.lDacTxDacPreBotCh1.TabIndex = 115;
+            this.lDacTxDacPreBotCh1.TabIndex = 54;
             this.lDacTxDacPreBotCh1.Text = "Dac tx dac pre bot:";
             // 
             // cbDacTxDacPreBotPdbCh1
             // 
             this.cbDacTxDacPreBotPdbCh1.AutoSize = true;
-            this.cbDacTxDacPreBotPdbCh1.Location = new System.Drawing.Point(5, 204);
+            this.cbDacTxDacPreBotPdbCh1.Location = new System.Drawing.Point(4, 62);
             this.cbDacTxDacPreBotPdbCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacPreBotPdbCh1.Name = "cbDacTxDacPreBotPdbCh1";
             this.cbDacTxDacPreBotPdbCh1.Size = new System.Drawing.Size(130, 16);
-            this.cbDacTxDacPreBotPdbCh1.TabIndex = 114;
+            this.cbDacTxDacPreBotPdbCh1.TabIndex = 53;
             this.cbDacTxDacPreBotPdbCh1.Text = "Dac tx dac pre bot pdb";
             this.cbDacTxDacPreBotPdbCh1.UseVisualStyleBackColor = true;
-            this.cbDacTxDacPreBotPdbCh1.CheckedChanged += new System.EventHandler(this.cbDacTxDacPreBotPdbCh1_CheckedChanged);
             // 
-            // lDacTxDacMain8bBotCh1
+            // groupBox3
             // 
-            this.lDacTxDacMain8bBotCh1.AutoSize = true;
-            this.lDacTxDacMain8bBotCh1.Location = new System.Drawing.Point(5, 183);
-            this.lDacTxDacMain8bBotCh1.Name = "lDacTxDacMain8bBotCh1";
-            this.lDacTxDacMain8bBotCh1.Size = new System.Drawing.Size(113, 12);
-            this.lDacTxDacMain8bBotCh1.TabIndex = 113;
-            this.lDacTxDacMain8bBotCh1.Text = "Dac tx dac main8b bot:";
+            this.groupBox3.Controls.Add(this.cbDacTxDacMain8bTopCh1);
+            this.groupBox3.Controls.Add(this.cbDacTxDacMain8bMidCh1);
+            this.groupBox3.Controls.Add(this.cbDacTxDacMain8bBotCh1);
+            this.groupBox3.Controls.Add(this.lDacTxDacMain8bTopCh1);
+            this.groupBox3.Controls.Add(this.lDacTxDacMain8bMidCh1);
+            this.groupBox3.Controls.Add(this.lDacTxDacMain8bBotCh1);
+            this.groupBox3.Location = new System.Drawing.Point(5, 116);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(220, 85);
+            this.groupBox3.TabIndex = 110;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Modulation current";
+            // 
+            // cbDacTxDacMain8bTopCh1
+            // 
+            this.cbDacTxDacMain8bTopCh1.FormattingEnabled = true;
+            this.cbDacTxDacMain8bTopCh1.Location = new System.Drawing.Point(125, 12);
+            this.cbDacTxDacMain8bTopCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacMain8bTopCh1.Name = "cbDacTxDacMain8bTopCh1";
+            this.cbDacTxDacMain8bTopCh1.Size = new System.Drawing.Size(90, 20);
+            this.cbDacTxDacMain8bTopCh1.TabIndex = 48;
+            // 
+            // cbDacTxDacMain8bMidCh1
+            // 
+            this.cbDacTxDacMain8bMidCh1.FormattingEnabled = true;
+            this.cbDacTxDacMain8bMidCh1.Location = new System.Drawing.Point(125, 34);
+            this.cbDacTxDacMain8bMidCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacMain8bMidCh1.Name = "cbDacTxDacMain8bMidCh1";
+            this.cbDacTxDacMain8bMidCh1.Size = new System.Drawing.Size(90, 20);
+            this.cbDacTxDacMain8bMidCh1.TabIndex = 47;
             // 
             // cbDacTxDacMain8bBotCh1
             // 
             this.cbDacTxDacMain8bBotCh1.FormattingEnabled = true;
-            this.cbDacTxDacMain8bBotCh1.Location = new System.Drawing.Point(129, 181);
+            this.cbDacTxDacMain8bBotCh1.Location = new System.Drawing.Point(125, 56);
             this.cbDacTxDacMain8bBotCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacMain8bBotCh1.Name = "cbDacTxDacMain8bBotCh1";
-            this.cbDacTxDacMain8bBotCh1.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacMain8bBotCh1.TabIndex = 112;
-            this.cbDacTxDacMain8bBotCh1.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacMain8bBotCh1_SelectedIndexChanged);
+            this.cbDacTxDacMain8bBotCh1.Size = new System.Drawing.Size(90, 20);
+            this.cbDacTxDacMain8bBotCh1.TabIndex = 46;
+            // 
+            // lDacTxDacMain8bTopCh1
+            // 
+            this.lDacTxDacMain8bTopCh1.AutoSize = true;
+            this.lDacTxDacMain8bTopCh1.Location = new System.Drawing.Point(6, 18);
+            this.lDacTxDacMain8bTopCh1.Name = "lDacTxDacMain8bTopCh1";
+            this.lDacTxDacMain8bTopCh1.Size = new System.Drawing.Size(113, 12);
+            this.lDacTxDacMain8bTopCh1.TabIndex = 45;
+            this.lDacTxDacMain8bTopCh1.Text = "Dac tx dac main8b top:";
+            // 
+            // lDacTxDacMain8bMidCh1
+            // 
+            this.lDacTxDacMain8bMidCh1.AutoSize = true;
+            this.lDacTxDacMain8bMidCh1.Location = new System.Drawing.Point(6, 40);
+            this.lDacTxDacMain8bMidCh1.Name = "lDacTxDacMain8bMidCh1";
+            this.lDacTxDacMain8bMidCh1.Size = new System.Drawing.Size(116, 12);
+            this.lDacTxDacMain8bMidCh1.TabIndex = 43;
+            this.lDacTxDacMain8bMidCh1.Text = "Dac tx dac main8b mid:";
+            // 
+            // lDacTxDacMain8bBotCh1
+            // 
+            this.lDacTxDacMain8bBotCh1.AutoSize = true;
+            this.lDacTxDacMain8bBotCh1.Location = new System.Drawing.Point(6, 62);
+            this.lDacTxDacMain8bBotCh1.Name = "lDacTxDacMain8bBotCh1";
+            this.lDacTxDacMain8bBotCh1.Size = new System.Drawing.Size(113, 12);
+            this.lDacTxDacMain8bBotCh1.TabIndex = 39;
+            this.lDacTxDacMain8bBotCh1.Text = "Dac tx dac main8b bot:";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.lDacTxDacDcdTopCh1);
+            this.groupBox4.Controls.Add(this.cbDacTxDacDcdTopCh1);
+            this.groupBox4.Controls.Add(this.cbDacTxDacDcdTopPdbCh1);
+            this.groupBox4.Controls.Add(this.cbTxTopDcdDacPolflipCh1);
+            this.groupBox4.Controls.Add(this.cbTxIdoubleEnTopCh1);
+            this.groupBox4.Controls.Add(this.lDacTxDacDcdMidCh1);
+            this.groupBox4.Controls.Add(this.cbDacTxDacDcdMidCh1);
+            this.groupBox4.Controls.Add(this.cbDacTxDacDcdMidPdbCh1);
+            this.groupBox4.Controls.Add(this.cbTxMidDcdDacPolflipCh1);
+            this.groupBox4.Controls.Add(this.cbTxIdoubleEnMidCh1);
+            this.groupBox4.Controls.Add(this.lDacTxDacDcdBotCh1);
+            this.groupBox4.Controls.Add(this.cbDacTxDacDcdBotCh1);
+            this.groupBox4.Controls.Add(this.cbDacTxDacDcdBotPdbCh1);
+            this.groupBox4.Controls.Add(this.cbTxBotDcdDacPolflipCh1);
+            this.groupBox4.Controls.Add(this.cbTxIdoubleEnBotCh1);
+            this.groupBox4.Location = new System.Drawing.Point(234, 116);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(550, 85);
+            this.groupBox4.TabIndex = 109;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "CrossPoint";
             // 
             // lDacTxDacDcdTopCh1
             // 
             this.lDacTxDacDcdTopCh1.AutoSize = true;
-            this.lDacTxDacDcdTopCh1.Location = new System.Drawing.Point(395, 162);
+            this.lDacTxDacDcdTopCh1.Location = new System.Drawing.Point(379, 18);
             this.lDacTxDacDcdTopCh1.Name = "lDacTxDacDcdTopCh1";
             this.lDacTxDacDcdTopCh1.Size = new System.Drawing.Size(95, 12);
-            this.lDacTxDacDcdTopCh1.TabIndex = 111;
+            this.lDacTxDacDcdTopCh1.TabIndex = 52;
             this.lDacTxDacDcdTopCh1.Text = "Dac tx dac dcd top:";
             // 
             // cbDacTxDacDcdTopCh1
             // 
             this.cbDacTxDacDcdTopCh1.FormattingEnabled = true;
-            this.cbDacTxDacDcdTopCh1.Location = new System.Drawing.Point(501, 159);
+            this.cbDacTxDacDcdTopCh1.Location = new System.Drawing.Point(478, 12);
             this.cbDacTxDacDcdTopCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacDcdTopCh1.Name = "cbDacTxDacDcdTopCh1";
-            this.cbDacTxDacDcdTopCh1.Size = new System.Drawing.Size(78, 20);
-            this.cbDacTxDacDcdTopCh1.TabIndex = 110;
-            this.cbDacTxDacDcdTopCh1.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacDcdTopCh1_SelectedIndexChanged);
+            this.cbDacTxDacDcdTopCh1.Size = new System.Drawing.Size(65, 20);
+            this.cbDacTxDacDcdTopCh1.TabIndex = 51;
             // 
             // cbDacTxDacDcdTopPdbCh1
             // 
             this.cbDacTxDacDcdTopPdbCh1.AutoSize = true;
-            this.cbDacTxDacDcdTopPdbCh1.Location = new System.Drawing.Point(253, 161);
+            this.cbDacTxDacDcdTopPdbCh1.Location = new System.Drawing.Point(244, 18);
             this.cbDacTxDacDcdTopPdbCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacDcdTopPdbCh1.Name = "cbDacTxDacDcdTopPdbCh1";
             this.cbDacTxDacDcdTopPdbCh1.Size = new System.Drawing.Size(132, 16);
-            this.cbDacTxDacDcdTopPdbCh1.TabIndex = 109;
+            this.cbDacTxDacDcdTopPdbCh1.TabIndex = 50;
             this.cbDacTxDacDcdTopPdbCh1.Text = "Dac tx dac dcd top pdb";
             this.cbDacTxDacDcdTopPdbCh1.UseVisualStyleBackColor = true;
-            this.cbDacTxDacDcdTopPdbCh1.CheckedChanged += new System.EventHandler(this.cbDacTxDacDcdTopPdbCh1_CheckedChanged);
             // 
             // cbTxTopDcdDacPolflipCh1
             // 
             this.cbTxTopDcdDacPolflipCh1.AutoSize = true;
-            this.cbTxTopDcdDacPolflipCh1.Location = new System.Drawing.Point(118, 161);
+            this.cbTxTopDcdDacPolflipCh1.Location = new System.Drawing.Point(114, 18);
             this.cbTxTopDcdDacPolflipCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxTopDcdDacPolflipCh1.Name = "cbTxTopDcdDacPolflipCh1";
             this.cbTxTopDcdDacPolflipCh1.Size = new System.Drawing.Size(128, 16);
-            this.cbTxTopDcdDacPolflipCh1.TabIndex = 108;
+            this.cbTxTopDcdDacPolflipCh1.TabIndex = 49;
             this.cbTxTopDcdDacPolflipCh1.Text = "Tx top dcd dac polflip";
             this.cbTxTopDcdDacPolflipCh1.UseVisualStyleBackColor = true;
-            this.cbTxTopDcdDacPolflipCh1.CheckedChanged += new System.EventHandler(this.cbTxTopDcdDacPolflipCh1_CheckedChanged);
             // 
             // cbTxIdoubleEnTopCh1
             // 
             this.cbTxIdoubleEnTopCh1.AutoSize = true;
-            this.cbTxIdoubleEnTopCh1.Location = new System.Drawing.Point(5, 161);
+            this.cbTxIdoubleEnTopCh1.Location = new System.Drawing.Point(6, 18);
             this.cbTxIdoubleEnTopCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxIdoubleEnTopCh1.Name = "cbTxIdoubleEnTopCh1";
             this.cbTxIdoubleEnTopCh1.Size = new System.Drawing.Size(107, 16);
-            this.cbTxIdoubleEnTopCh1.TabIndex = 107;
+            this.cbTxIdoubleEnTopCh1.TabIndex = 48;
             this.cbTxIdoubleEnTopCh1.Text = "Tx idouble en top";
             this.cbTxIdoubleEnTopCh1.UseVisualStyleBackColor = true;
-            this.cbTxIdoubleEnTopCh1.CheckedChanged += new System.EventHandler(this.cbTxIdoubleEnTopCh1_CheckedChanged);
             // 
             // lDacTxDacDcdMidCh1
             // 
             this.lDacTxDacDcdMidCh1.AutoSize = true;
-            this.lDacTxDacDcdMidCh1.Location = new System.Drawing.Point(395, 138);
+            this.lDacTxDacDcdMidCh1.Location = new System.Drawing.Point(379, 40);
             this.lDacTxDacDcdMidCh1.Name = "lDacTxDacDcdMidCh1";
             this.lDacTxDacDcdMidCh1.Size = new System.Drawing.Size(98, 12);
-            this.lDacTxDacDcdMidCh1.TabIndex = 106;
+            this.lDacTxDacDcdMidCh1.TabIndex = 47;
             this.lDacTxDacDcdMidCh1.Text = "Dac tx dac dcd mid:";
             // 
             // cbDacTxDacDcdMidCh1
             // 
             this.cbDacTxDacDcdMidCh1.FormattingEnabled = true;
-            this.cbDacTxDacDcdMidCh1.Location = new System.Drawing.Point(501, 136);
+            this.cbDacTxDacDcdMidCh1.Location = new System.Drawing.Point(478, 34);
             this.cbDacTxDacDcdMidCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacDcdMidCh1.Name = "cbDacTxDacDcdMidCh1";
-            this.cbDacTxDacDcdMidCh1.Size = new System.Drawing.Size(78, 20);
-            this.cbDacTxDacDcdMidCh1.TabIndex = 105;
-            this.cbDacTxDacDcdMidCh1.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacDcdMidCh1_SelectedIndexChanged);
+            this.cbDacTxDacDcdMidCh1.Size = new System.Drawing.Size(65, 20);
+            this.cbDacTxDacDcdMidCh1.TabIndex = 46;
             // 
             // cbDacTxDacDcdMidPdbCh1
             // 
             this.cbDacTxDacDcdMidPdbCh1.AutoSize = true;
-            this.cbDacTxDacDcdMidPdbCh1.Location = new System.Drawing.Point(253, 138);
+            this.cbDacTxDacDcdMidPdbCh1.Location = new System.Drawing.Point(244, 40);
             this.cbDacTxDacDcdMidPdbCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacDcdMidPdbCh1.Name = "cbDacTxDacDcdMidPdbCh1";
             this.cbDacTxDacDcdMidPdbCh1.Size = new System.Drawing.Size(135, 16);
-            this.cbDacTxDacDcdMidPdbCh1.TabIndex = 104;
+            this.cbDacTxDacDcdMidPdbCh1.TabIndex = 45;
             this.cbDacTxDacDcdMidPdbCh1.Text = "Dac tx dac dcd mid pdb";
             this.cbDacTxDacDcdMidPdbCh1.UseVisualStyleBackColor = true;
-            this.cbDacTxDacDcdMidPdbCh1.CheckedChanged += new System.EventHandler(this.cbDacTxDacDcdMidPdbCh1_CheckedChanged);
             // 
             // cbTxMidDcdDacPolflipCh1
             // 
             this.cbTxMidDcdDacPolflipCh1.AutoSize = true;
-            this.cbTxMidDcdDacPolflipCh1.Location = new System.Drawing.Point(118, 138);
+            this.cbTxMidDcdDacPolflipCh1.Location = new System.Drawing.Point(114, 40);
             this.cbTxMidDcdDacPolflipCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxMidDcdDacPolflipCh1.Name = "cbTxMidDcdDacPolflipCh1";
             this.cbTxMidDcdDacPolflipCh1.Size = new System.Drawing.Size(131, 16);
-            this.cbTxMidDcdDacPolflipCh1.TabIndex = 103;
+            this.cbTxMidDcdDacPolflipCh1.TabIndex = 44;
             this.cbTxMidDcdDacPolflipCh1.Text = "Tx mid dcd dac polflip";
             this.cbTxMidDcdDacPolflipCh1.UseVisualStyleBackColor = true;
-            this.cbTxMidDcdDacPolflipCh1.CheckedChanged += new System.EventHandler(this.cbTxMidDcdDacPolflipCh1_CheckedChanged);
             // 
             // cbTxIdoubleEnMidCh1
             // 
             this.cbTxIdoubleEnMidCh1.AutoSize = true;
-            this.cbTxIdoubleEnMidCh1.Location = new System.Drawing.Point(5, 138);
+            this.cbTxIdoubleEnMidCh1.Location = new System.Drawing.Point(6, 40);
             this.cbTxIdoubleEnMidCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxIdoubleEnMidCh1.Name = "cbTxIdoubleEnMidCh1";
             this.cbTxIdoubleEnMidCh1.Size = new System.Drawing.Size(110, 16);
-            this.cbTxIdoubleEnMidCh1.TabIndex = 102;
+            this.cbTxIdoubleEnMidCh1.TabIndex = 43;
             this.cbTxIdoubleEnMidCh1.Text = "Tx idouble en mid";
             this.cbTxIdoubleEnMidCh1.UseVisualStyleBackColor = true;
-            this.cbTxIdoubleEnMidCh1.CheckedChanged += new System.EventHandler(this.cbTxIdoubleEnMidCh1_CheckedChanged);
             // 
             // lDacTxDacDcdBotCh1
             // 
             this.lDacTxDacDcdBotCh1.AutoSize = true;
-            this.lDacTxDacDcdBotCh1.Location = new System.Drawing.Point(395, 115);
+            this.lDacTxDacDcdBotCh1.Location = new System.Drawing.Point(379, 63);
             this.lDacTxDacDcdBotCh1.Name = "lDacTxDacDcdBotCh1";
             this.lDacTxDacDcdBotCh1.Size = new System.Drawing.Size(95, 12);
-            this.lDacTxDacDcdBotCh1.TabIndex = 101;
+            this.lDacTxDacDcdBotCh1.TabIndex = 42;
             this.lDacTxDacDcdBotCh1.Text = "Dac tx dac dcd bot:";
             // 
             // cbDacTxDacDcdBotCh1
             // 
             this.cbDacTxDacDcdBotCh1.FormattingEnabled = true;
-            this.cbDacTxDacDcdBotCh1.Location = new System.Drawing.Point(501, 113);
+            this.cbDacTxDacDcdBotCh1.Location = new System.Drawing.Point(478, 56);
             this.cbDacTxDacDcdBotCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacDcdBotCh1.Name = "cbDacTxDacDcdBotCh1";
-            this.cbDacTxDacDcdBotCh1.Size = new System.Drawing.Size(78, 20);
-            this.cbDacTxDacDcdBotCh1.TabIndex = 100;
-            this.cbDacTxDacDcdBotCh1.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacDcdBotCh1_SelectedIndexChanged);
+            this.cbDacTxDacDcdBotCh1.Size = new System.Drawing.Size(65, 20);
+            this.cbDacTxDacDcdBotCh1.TabIndex = 41;
             // 
             // cbDacTxDacDcdBotPdbCh1
             // 
             this.cbDacTxDacDcdBotPdbCh1.AutoSize = true;
-            this.cbDacTxDacDcdBotPdbCh1.Location = new System.Drawing.Point(253, 114);
+            this.cbDacTxDacDcdBotPdbCh1.Location = new System.Drawing.Point(244, 62);
             this.cbDacTxDacDcdBotPdbCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacDcdBotPdbCh1.Name = "cbDacTxDacDcdBotPdbCh1";
             this.cbDacTxDacDcdBotPdbCh1.Size = new System.Drawing.Size(132, 16);
-            this.cbDacTxDacDcdBotPdbCh1.TabIndex = 99;
+            this.cbDacTxDacDcdBotPdbCh1.TabIndex = 40;
             this.cbDacTxDacDcdBotPdbCh1.Text = "Dac tx dac dcd bot pdb";
             this.cbDacTxDacDcdBotPdbCh1.UseVisualStyleBackColor = true;
-            this.cbDacTxDacDcdBotPdbCh1.CheckedChanged += new System.EventHandler(this.cbDacTxDacDcdBotPdbCh1_CheckedChanged);
             // 
             // cbTxBotDcdDacPolflipCh1
             // 
             this.cbTxBotDcdDacPolflipCh1.AutoSize = true;
-            this.cbTxBotDcdDacPolflipCh1.Location = new System.Drawing.Point(118, 114);
+            this.cbTxBotDcdDacPolflipCh1.Location = new System.Drawing.Point(114, 62);
             this.cbTxBotDcdDacPolflipCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxBotDcdDacPolflipCh1.Name = "cbTxBotDcdDacPolflipCh1";
             this.cbTxBotDcdDacPolflipCh1.Size = new System.Drawing.Size(128, 16);
-            this.cbTxBotDcdDacPolflipCh1.TabIndex = 98;
+            this.cbTxBotDcdDacPolflipCh1.TabIndex = 39;
             this.cbTxBotDcdDacPolflipCh1.Text = "Tx bot dcd dac polflip";
             this.cbTxBotDcdDacPolflipCh1.UseVisualStyleBackColor = true;
-            this.cbTxBotDcdDacPolflipCh1.CheckedChanged += new System.EventHandler(this.cbTxBotDcdDacPolflipCh1_CheckedChanged);
             // 
             // cbTxIdoubleEnBotCh1
             // 
             this.cbTxIdoubleEnBotCh1.AutoSize = true;
-            this.cbTxIdoubleEnBotCh1.Location = new System.Drawing.Point(5, 114);
+            this.cbTxIdoubleEnBotCh1.Location = new System.Drawing.Point(6, 62);
             this.cbTxIdoubleEnBotCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxIdoubleEnBotCh1.Name = "cbTxIdoubleEnBotCh1";
             this.cbTxIdoubleEnBotCh1.Size = new System.Drawing.Size(107, 16);
-            this.cbTxIdoubleEnBotCh1.TabIndex = 97;
+            this.cbTxIdoubleEnBotCh1.TabIndex = 38;
             this.cbTxIdoubleEnBotCh1.Text = "Tx idouble en bot";
             this.cbTxIdoubleEnBotCh1.UseVisualStyleBackColor = true;
-            this.cbTxIdoubleEnBotCh1.CheckedChanged += new System.EventHandler(this.cbTxIdoubleEnBotCh1_CheckedChanged);
+            // 
+            // cbTxIbiasAdcSelectCh1
+            // 
+            this.cbTxIbiasAdcSelectCh1.AutoSize = true;
+            this.cbTxIbiasAdcSelectCh1.Location = new System.Drawing.Point(468, 326);
+            this.cbTxIbiasAdcSelectCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbTxIbiasAdcSelectCh1.Name = "cbTxIbiasAdcSelectCh1";
+            this.cbTxIbiasAdcSelectCh1.Size = new System.Drawing.Size(108, 16);
+            this.cbTxIbiasAdcSelectCh1.TabIndex = 108;
+            this.cbTxIbiasAdcSelectCh1.Text = "Tx ibias adc select";
+            this.cbTxIbiasAdcSelectCh1.UseVisualStyleBackColor = true;
+            // 
+            // lTxDesiredImodCh1
+            // 
+            this.lTxDesiredImodCh1.AutoSize = true;
+            this.lTxDesiredImodCh1.Location = new System.Drawing.Point(286, 327);
+            this.lTxDesiredImodCh1.Name = "lTxDesiredImodCh1";
+            this.lTxDesiredImodCh1.Size = new System.Drawing.Size(84, 12);
+            this.lTxDesiredImodCh1.TabIndex = 107;
+            this.lTxDesiredImodCh1.Text = "Tx desired imod:";
+            // 
+            // cbTxDesiredImodCh1
+            // 
+            this.cbTxDesiredImodCh1.FormattingEnabled = true;
+            this.cbTxDesiredImodCh1.Location = new System.Drawing.Point(377, 324);
+            this.cbTxDesiredImodCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbTxDesiredImodCh1.Name = "cbTxDesiredImodCh1";
+            this.cbTxDesiredImodCh1.Size = new System.Drawing.Size(86, 20);
+            this.cbTxDesiredImodCh1.TabIndex = 106;
+            // 
+            // cbTxEnableAutoImodCh1
+            // 
+            this.cbTxEnableAutoImodCh1.AutoSize = true;
+            this.cbTxEnableAutoImodCh1.Location = new System.Drawing.Point(194, 326);
+            this.cbTxEnableAutoImodCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbTxEnableAutoImodCh1.Name = "cbTxEnableAutoImodCh1";
+            this.cbTxEnableAutoImodCh1.Size = new System.Drawing.Size(87, 16);
+            this.cbTxEnableAutoImodCh1.TabIndex = 105;
+            this.cbTxEnableAutoImodCh1.Text = "Tx auto imod";
+            this.cbTxEnableAutoImodCh1.UseVisualStyleBackColor = true;
+            // 
+            // cbTxPdbLbkInCh1
+            // 
+            this.cbTxPdbLbkInCh1.AutoSize = true;
+            this.cbTxPdbLbkInCh1.Location = new System.Drawing.Point(104, 326);
+            this.cbTxPdbLbkInCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbTxPdbLbkInCh1.Name = "cbTxPdbLbkInCh1";
+            this.cbTxPdbLbkInCh1.Size = new System.Drawing.Size(88, 16);
+            this.cbTxPdbLbkInCh1.TabIndex = 104;
+            this.cbTxPdbLbkInCh1.Text = "Tx pdb lbk in";
+            this.cbTxPdbLbkInCh1.UseVisualStyleBackColor = true;
+            // 
+            // cbTxPdbLbkOutCh1
+            // 
+            this.cbTxPdbLbkOutCh1.AutoSize = true;
+            this.cbTxPdbLbkOutCh1.Location = new System.Drawing.Point(6, 326);
+            this.cbTxPdbLbkOutCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbTxPdbLbkOutCh1.Name = "cbTxPdbLbkOutCh1";
+            this.cbTxPdbLbkOutCh1.Size = new System.Drawing.Size(94, 16);
+            this.cbTxPdbLbkOutCh1.TabIndex = 103;
+            this.cbTxPdbLbkOutCh1.Text = "Tx pdb lbk out";
+            this.cbTxPdbLbkOutCh1.UseVisualStyleBackColor = true;
+            // 
+            // lTxTopPostPolinvCh1
+            // 
+            this.lTxTopPostPolinvCh1.AutoSize = true;
+            this.lTxTopPostPolinvCh1.Location = new System.Drawing.Point(476, 303);
+            this.lTxTopPostPolinvCh1.Name = "lTxTopPostPolinvCh1";
+            this.lTxTopPostPolinvCh1.Size = new System.Drawing.Size(94, 12);
+            this.lTxTopPostPolinvCh1.TabIndex = 102;
+            this.lTxTopPostPolinvCh1.Text = "Tx top post polinv:";
+            // 
+            // cbTxTopPostPolinvCh1
+            // 
+            this.cbTxTopPostPolinvCh1.FormattingEnabled = true;
+            this.cbTxTopPostPolinvCh1.Location = new System.Drawing.Point(577, 301);
+            this.cbTxTopPostPolinvCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbTxTopPostPolinvCh1.Name = "cbTxTopPostPolinvCh1";
+            this.cbTxTopPostPolinvCh1.Size = new System.Drawing.Size(129, 20);
+            this.cbTxTopPostPolinvCh1.TabIndex = 101;
+            // 
+            // lTxMidPostPolinvCh1
+            // 
+            this.lTxMidPostPolinvCh1.AutoSize = true;
+            this.lTxMidPostPolinvCh1.Location = new System.Drawing.Point(241, 303);
+            this.lTxMidPostPolinvCh1.Name = "lTxMidPostPolinvCh1";
+            this.lTxMidPostPolinvCh1.Size = new System.Drawing.Size(97, 12);
+            this.lTxMidPostPolinvCh1.TabIndex = 100;
+            this.lTxMidPostPolinvCh1.Text = "Tx mid post polinv:";
+            // 
+            // cbTxMidPostPolinvCh1
+            // 
+            this.cbTxMidPostPolinvCh1.FormattingEnabled = true;
+            this.cbTxMidPostPolinvCh1.Location = new System.Drawing.Point(342, 301);
+            this.cbTxMidPostPolinvCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbTxMidPostPolinvCh1.Name = "cbTxMidPostPolinvCh1";
+            this.cbTxMidPostPolinvCh1.Size = new System.Drawing.Size(129, 20);
+            this.cbTxMidPostPolinvCh1.TabIndex = 99;
+            // 
+            // lTxBotPostPolinvCh1
+            // 
+            this.lTxBotPostPolinvCh1.AutoSize = true;
+            this.lTxBotPostPolinvCh1.Location = new System.Drawing.Point(6, 303);
+            this.lTxBotPostPolinvCh1.Name = "lTxBotPostPolinvCh1";
+            this.lTxBotPostPolinvCh1.Size = new System.Drawing.Size(94, 12);
+            this.lTxBotPostPolinvCh1.TabIndex = 98;
+            this.lTxBotPostPolinvCh1.Text = "Tx bot post polinv:";
+            // 
+            // cbTxBotPostPolinvCh1
+            // 
+            this.cbTxBotPostPolinvCh1.FormattingEnabled = true;
+            this.cbTxBotPostPolinvCh1.Location = new System.Drawing.Point(107, 301);
+            this.cbTxBotPostPolinvCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbTxBotPostPolinvCh1.Name = "cbTxBotPostPolinvCh1";
+            this.cbTxBotPostPolinvCh1.Size = new System.Drawing.Size(129, 20);
+            this.cbTxBotPostPolinvCh1.TabIndex = 97;
             // 
             // lTxIburninCh1
             // 
             this.lTxIburninCh1.AutoSize = true;
-            this.lTxIburninCh1.Location = new System.Drawing.Point(232, 94);
+            this.lTxIburninCh1.Location = new System.Drawing.Point(599, 71);
             this.lTxIburninCh1.Name = "lTxIburninCh1";
             this.lTxIburninCh1.Size = new System.Drawing.Size(58, 12);
             this.lTxIburninCh1.TabIndex = 96;
@@ -7470,7 +7520,7 @@
             // cbTxIburninCh1
             // 
             this.cbTxIburninCh1.FormattingEnabled = true;
-            this.cbTxIburninCh1.Location = new System.Drawing.Point(293, 91);
+            this.cbTxIburninCh1.Location = new System.Drawing.Point(660, 68);
             this.cbTxIburninCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxIburninCh1.Name = "cbTxIburninCh1";
             this.cbTxIburninCh1.Size = new System.Drawing.Size(86, 20);
@@ -7480,7 +7530,7 @@
             // cbTxBurninEnCh1
             // 
             this.cbTxBurninEnCh1.AutoSize = true;
-            this.cbTxBurninEnCh1.Location = new System.Drawing.Point(146, 93);
+            this.cbTxBurninEnCh1.Location = new System.Drawing.Point(513, 70);
             this.cbTxBurninEnCh1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxBurninEnCh1.Name = "cbTxBurninEnCh1";
             this.cbTxBurninEnCh1.Size = new System.Drawing.Size(85, 16);
@@ -7706,6 +7756,10 @@
             // 
             // tpLaserDriverControlCh2
             // 
+            this.tpLaserDriverControlCh2.Controls.Add(this.groupBox5);
+            this.tpLaserDriverControlCh2.Controls.Add(this.groupBox6);
+            this.tpLaserDriverControlCh2.Controls.Add(this.groupBox7);
+            this.tpLaserDriverControlCh2.Controls.Add(this.groupBox8);
             this.tpLaserDriverControlCh2.Controls.Add(this.cbTxIbiasAdcSelectCh2);
             this.tpLaserDriverControlCh2.Controls.Add(this.lTxDesiredImodCh2);
             this.tpLaserDriverControlCh2.Controls.Add(this.cbTxDesiredImodCh2);
@@ -7718,45 +7772,6 @@
             this.tpLaserDriverControlCh2.Controls.Add(this.cbTxMidPostPolinvCh2);
             this.tpLaserDriverControlCh2.Controls.Add(this.lTxBotPostPolinvCh2);
             this.tpLaserDriverControlCh2.Controls.Add(this.cbTxBotPostPolinvCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.cbDacTxDacPostTopCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.lDacTxDacPostTopCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.cbDacTxDacPostTopPdbCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.cbDacTxDacPostMidCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.lDacTxDacPostMidCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.cbDacTxDacPostMidPdbCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.cbDacTxDacPostBotCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.lDacTxDacPostBotCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.cbDacTxDacPostBotPdbCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.cbDacTxDacPreTopCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.lDacTxDacPreTopCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.cbDacTxDacPreTopPdbCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.cbDacTxDacPreMidCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.lDacTxDacPreMidCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.cbDacTxDacPreMidPdbCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.cbDacTxDacPreBotCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.lDacTxDacMain8bTopCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.cbDacTxDacMain8bTopCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.lDacTxDacMain8bMidCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.cbDacTxDacMain8bMidCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.lDacTxDacPreBotCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.cbDacTxDacPreBotPdbCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.lDacTxDacMain8bBotCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.cbDacTxDacMain8bBotCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.lDacTxDacDcdTopCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.cbDacTxDacDcdTopCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.cbDacTxDacDcdTopPdbCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.cbTxTopDcdDacPolflipCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.cbTxIdoubleEnTopCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.lDacTxDacDcdMidCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.cbDacTxDacDcdMidCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.cbDacTxDacDcdMidPdbCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.cbTxMidDcdDacPolflipCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.cbTxIdoubleEnMidCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.lDacTxDacDcdBotCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.cbDacTxDacDcdBotCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.cbDacTxDacDcdBotPdbCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.cbTxBotDcdDacPolflipCh2);
-            this.tpLaserDriverControlCh2.Controls.Add(this.cbTxIdoubleEnBotCh2);
             this.tpLaserDriverControlCh2.Controls.Add(this.lTxIburninCh2);
             this.tpLaserDriverControlCh2.Controls.Add(this.cbTxIburninCh2);
             this.tpLaserDriverControlCh2.Controls.Add(this.cbTxBurninEnCh2);
@@ -7789,542 +7804,582 @@
             this.tpLaserDriverControlCh2.Text = "Ch2";
             this.tpLaserDriverControlCh2.UseVisualStyleBackColor = true;
             // 
-            // cbTxIbiasAdcSelectCh2
+            // groupBox5
             // 
-            this.cbTxIbiasAdcSelectCh2.AutoSize = true;
-            this.cbTxIbiasAdcSelectCh2.Location = new System.Drawing.Point(467, 297);
-            this.cbTxIbiasAdcSelectCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbTxIbiasAdcSelectCh2.Name = "cbTxIbiasAdcSelectCh2";
-            this.cbTxIbiasAdcSelectCh2.Size = new System.Drawing.Size(108, 16);
-            this.cbTxIbiasAdcSelectCh2.TabIndex = 147;
-            this.cbTxIbiasAdcSelectCh2.Text = "Tx ibias adc select";
-            this.cbTxIbiasAdcSelectCh2.UseVisualStyleBackColor = true;
-            this.cbTxIbiasAdcSelectCh2.CheckedChanged += new System.EventHandler(this.cbTxIbiasAdcSelectCh2_CheckedChanged);
-            // 
-            // lTxDesiredImodCh2
-            // 
-            this.lTxDesiredImodCh2.AutoSize = true;
-            this.lTxDesiredImodCh2.Location = new System.Drawing.Point(285, 298);
-            this.lTxDesiredImodCh2.Name = "lTxDesiredImodCh2";
-            this.lTxDesiredImodCh2.Size = new System.Drawing.Size(84, 12);
-            this.lTxDesiredImodCh2.TabIndex = 146;
-            this.lTxDesiredImodCh2.Text = "Tx desired imod:";
-            // 
-            // cbTxDesiredImodCh2
-            // 
-            this.cbTxDesiredImodCh2.FormattingEnabled = true;
-            this.cbTxDesiredImodCh2.Location = new System.Drawing.Point(376, 295);
-            this.cbTxDesiredImodCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbTxDesiredImodCh2.Name = "cbTxDesiredImodCh2";
-            this.cbTxDesiredImodCh2.Size = new System.Drawing.Size(86, 20);
-            this.cbTxDesiredImodCh2.TabIndex = 145;
-            this.cbTxDesiredImodCh2.SelectedIndexChanged += new System.EventHandler(this.cbTxDesiredImodCh2_SelectedIndexChanged);
-            // 
-            // cbTxEnableAutoImodCh2
-            // 
-            this.cbTxEnableAutoImodCh2.AutoSize = true;
-            this.cbTxEnableAutoImodCh2.Location = new System.Drawing.Point(193, 297);
-            this.cbTxEnableAutoImodCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbTxEnableAutoImodCh2.Name = "cbTxEnableAutoImodCh2";
-            this.cbTxEnableAutoImodCh2.Size = new System.Drawing.Size(87, 16);
-            this.cbTxEnableAutoImodCh2.TabIndex = 144;
-            this.cbTxEnableAutoImodCh2.Text = "Tx auto imod";
-            this.cbTxEnableAutoImodCh2.UseVisualStyleBackColor = true;
-            this.cbTxEnableAutoImodCh2.CheckedChanged += new System.EventHandler(this.cbTxEnableAutoImodCh2_CheckedChanged);
-            // 
-            // cbTxPdbLbkInCh2
-            // 
-            this.cbTxPdbLbkInCh2.AutoSize = true;
-            this.cbTxPdbLbkInCh2.Location = new System.Drawing.Point(103, 297);
-            this.cbTxPdbLbkInCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbTxPdbLbkInCh2.Name = "cbTxPdbLbkInCh2";
-            this.cbTxPdbLbkInCh2.Size = new System.Drawing.Size(88, 16);
-            this.cbTxPdbLbkInCh2.TabIndex = 143;
-            this.cbTxPdbLbkInCh2.Text = "Tx pdb lbk in";
-            this.cbTxPdbLbkInCh2.UseVisualStyleBackColor = true;
-            this.cbTxPdbLbkInCh2.CheckedChanged += new System.EventHandler(this.cbTxPdbLbkInCh2_CheckedChanged);
-            // 
-            // cbTxPdbLbkOutCh2
-            // 
-            this.cbTxPdbLbkOutCh2.AutoSize = true;
-            this.cbTxPdbLbkOutCh2.Location = new System.Drawing.Point(5, 297);
-            this.cbTxPdbLbkOutCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbTxPdbLbkOutCh2.Name = "cbTxPdbLbkOutCh2";
-            this.cbTxPdbLbkOutCh2.Size = new System.Drawing.Size(94, 16);
-            this.cbTxPdbLbkOutCh2.TabIndex = 142;
-            this.cbTxPdbLbkOutCh2.Text = "Tx pdb lbk out";
-            this.cbTxPdbLbkOutCh2.UseVisualStyleBackColor = true;
-            this.cbTxPdbLbkOutCh2.CheckedChanged += new System.EventHandler(this.cbTxPdbLbkOutCh2_CheckedChanged);
-            // 
-            // lTxTopPostPolinvCh2
-            // 
-            this.lTxTopPostPolinvCh2.AutoSize = true;
-            this.lTxTopPostPolinvCh2.Location = new System.Drawing.Point(475, 274);
-            this.lTxTopPostPolinvCh2.Name = "lTxTopPostPolinvCh2";
-            this.lTxTopPostPolinvCh2.Size = new System.Drawing.Size(94, 12);
-            this.lTxTopPostPolinvCh2.TabIndex = 141;
-            this.lTxTopPostPolinvCh2.Text = "Tx top post polinv:";
-            // 
-            // cbTxTopPostPolinvCh2
-            // 
-            this.cbTxTopPostPolinvCh2.FormattingEnabled = true;
-            this.cbTxTopPostPolinvCh2.Location = new System.Drawing.Point(576, 272);
-            this.cbTxTopPostPolinvCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbTxTopPostPolinvCh2.Name = "cbTxTopPostPolinvCh2";
-            this.cbTxTopPostPolinvCh2.Size = new System.Drawing.Size(129, 20);
-            this.cbTxTopPostPolinvCh2.TabIndex = 140;
-            this.cbTxTopPostPolinvCh2.SelectedIndexChanged += new System.EventHandler(this.cbTxTopPostPolinvCh2_SelectedIndexChanged);
-            // 
-            // lTxMidPostPolinvCh2
-            // 
-            this.lTxMidPostPolinvCh2.AutoSize = true;
-            this.lTxMidPostPolinvCh2.Location = new System.Drawing.Point(240, 274);
-            this.lTxMidPostPolinvCh2.Name = "lTxMidPostPolinvCh2";
-            this.lTxMidPostPolinvCh2.Size = new System.Drawing.Size(97, 12);
-            this.lTxMidPostPolinvCh2.TabIndex = 139;
-            this.lTxMidPostPolinvCh2.Text = "Tx mid post polinv:";
-            // 
-            // cbTxMidPostPolinvCh2
-            // 
-            this.cbTxMidPostPolinvCh2.FormattingEnabled = true;
-            this.cbTxMidPostPolinvCh2.Location = new System.Drawing.Point(341, 272);
-            this.cbTxMidPostPolinvCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbTxMidPostPolinvCh2.Name = "cbTxMidPostPolinvCh2";
-            this.cbTxMidPostPolinvCh2.Size = new System.Drawing.Size(129, 20);
-            this.cbTxMidPostPolinvCh2.TabIndex = 138;
-            this.cbTxMidPostPolinvCh2.SelectedIndexChanged += new System.EventHandler(this.cbTxMidPostPolinvCh2_SelectedIndexChanged);
-            // 
-            // lTxBotPostPolinvCh2
-            // 
-            this.lTxBotPostPolinvCh2.AutoSize = true;
-            this.lTxBotPostPolinvCh2.Location = new System.Drawing.Point(5, 274);
-            this.lTxBotPostPolinvCh2.Name = "lTxBotPostPolinvCh2";
-            this.lTxBotPostPolinvCh2.Size = new System.Drawing.Size(94, 12);
-            this.lTxBotPostPolinvCh2.TabIndex = 137;
-            this.lTxBotPostPolinvCh2.Text = "Tx bot post polinv:";
-            // 
-            // cbTxBotPostPolinvCh2
-            // 
-            this.cbTxBotPostPolinvCh2.FormattingEnabled = true;
-            this.cbTxBotPostPolinvCh2.Location = new System.Drawing.Point(106, 272);
-            this.cbTxBotPostPolinvCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbTxBotPostPolinvCh2.Name = "cbTxBotPostPolinvCh2";
-            this.cbTxBotPostPolinvCh2.Size = new System.Drawing.Size(129, 20);
-            this.cbTxBotPostPolinvCh2.TabIndex = 136;
-            this.cbTxBotPostPolinvCh2.SelectedIndexChanged += new System.EventHandler(this.cbTxBotPostPolinvCh2_SelectedIndexChanged);
-            // 
-            // cbDacTxDacPostTopCh2
-            // 
-            this.cbDacTxDacPostTopCh2.FormattingEnabled = true;
-            this.cbDacTxDacPostTopCh2.Location = new System.Drawing.Point(591, 249);
-            this.cbDacTxDacPostTopCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacPostTopCh2.Name = "cbDacTxDacPostTopCh2";
-            this.cbDacTxDacPostTopCh2.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacPostTopCh2.TabIndex = 135;
-            this.cbDacTxDacPostTopCh2.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacPostTopCh2_SelectedIndexChanged);
-            // 
-            // lDacTxDacPostTopCh2
-            // 
-            this.lDacTxDacPostTopCh2.AutoSize = true;
-            this.lDacTxDacPostTopCh2.Location = new System.Drawing.Point(483, 251);
-            this.lDacTxDacPostTopCh2.Name = "lDacTxDacPostTopCh2";
-            this.lDacTxDacPostTopCh2.Size = new System.Drawing.Size(97, 12);
-            this.lDacTxDacPostTopCh2.TabIndex = 134;
-            this.lDacTxDacPostTopCh2.Text = "Dac tx dac post top:";
-            // 
-            // cbDacTxDacPostTopPdbCh2
-            // 
-            this.cbDacTxDacPostTopPdbCh2.AutoSize = true;
-            this.cbDacTxDacPostTopPdbCh2.Location = new System.Drawing.Point(344, 250);
-            this.cbDacTxDacPostTopPdbCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacPostTopPdbCh2.Name = "cbDacTxDacPostTopPdbCh2";
-            this.cbDacTxDacPostTopPdbCh2.Size = new System.Drawing.Size(134, 16);
-            this.cbDacTxDacPostTopPdbCh2.TabIndex = 133;
-            this.cbDacTxDacPostTopPdbCh2.Text = "Dac tx dac post top pdb";
-            this.cbDacTxDacPostTopPdbCh2.UseVisualStyleBackColor = true;
-            this.cbDacTxDacPostTopPdbCh2.CheckedChanged += new System.EventHandler(this.cbDacTxDacPostTopPdbCh2_CheckedChanged);
-            // 
-            // cbDacTxDacPostMidCh2
-            // 
-            this.cbDacTxDacPostMidCh2.FormattingEnabled = true;
-            this.cbDacTxDacPostMidCh2.Location = new System.Drawing.Point(253, 249);
-            this.cbDacTxDacPostMidCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacPostMidCh2.Name = "cbDacTxDacPostMidCh2";
-            this.cbDacTxDacPostMidCh2.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacPostMidCh2.TabIndex = 132;
-            this.cbDacTxDacPostMidCh2.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacPostMidCh2_SelectedIndexChanged);
-            // 
-            // lDacTxDacPostMidCh2
-            // 
-            this.lDacTxDacPostMidCh2.AutoSize = true;
-            this.lDacTxDacPostMidCh2.Location = new System.Drawing.Point(145, 251);
-            this.lDacTxDacPostMidCh2.Name = "lDacTxDacPostMidCh2";
-            this.lDacTxDacPostMidCh2.Size = new System.Drawing.Size(100, 12);
-            this.lDacTxDacPostMidCh2.TabIndex = 131;
-            this.lDacTxDacPostMidCh2.Text = "Dac tx dac post mid:";
-            // 
-            // cbDacTxDacPostMidPdbCh2
-            // 
-            this.cbDacTxDacPostMidPdbCh2.AutoSize = true;
-            this.cbDacTxDacPostMidPdbCh2.Location = new System.Drawing.Point(5, 250);
-            this.cbDacTxDacPostMidPdbCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacPostMidPdbCh2.Name = "cbDacTxDacPostMidPdbCh2";
-            this.cbDacTxDacPostMidPdbCh2.Size = new System.Drawing.Size(137, 16);
-            this.cbDacTxDacPostMidPdbCh2.TabIndex = 130;
-            this.cbDacTxDacPostMidPdbCh2.Text = "Dac tx dac post mid pdb";
-            this.cbDacTxDacPostMidPdbCh2.UseVisualStyleBackColor = true;
-            this.cbDacTxDacPostMidPdbCh2.CheckedChanged += new System.EventHandler(this.cbDacTxDacPostMidPdbCh2_CheckedChanged);
+            this.groupBox5.Controls.Add(this.cbDacTxDacPostBotCh2);
+            this.groupBox5.Controls.Add(this.lDacTxDacPostBotCh2);
+            this.groupBox5.Controls.Add(this.cbDacTxDacPostBotPdbCh2);
+            this.groupBox5.Controls.Add(this.cbDacTxDacPostMidCh2);
+            this.groupBox5.Controls.Add(this.lDacTxDacPostMidCh2);
+            this.groupBox5.Controls.Add(this.cbDacTxDacPostMidPdbCh2);
+            this.groupBox5.Controls.Add(this.cbDacTxDacPostTopCh2);
+            this.groupBox5.Controls.Add(this.lDacTxDacPostTopCh2);
+            this.groupBox5.Controls.Add(this.cbDacTxDacPostTopPdbCh2);
+            this.groupBox5.Location = new System.Drawing.Point(336, 207);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(325, 85);
+            this.groupBox5.TabIndex = 128;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "PostEmphasis";
             // 
             // cbDacTxDacPostBotCh2
             // 
             this.cbDacTxDacPostBotCh2.FormattingEnabled = true;
-            this.cbDacTxDacPostBotCh2.Location = new System.Drawing.Point(586, 226);
+            this.cbDacTxDacPostBotCh2.Location = new System.Drawing.Point(234, 60);
             this.cbDacTxDacPostBotCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacPostBotCh2.Name = "cbDacTxDacPostBotCh2";
             this.cbDacTxDacPostBotCh2.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacPostBotCh2.TabIndex = 129;
-            this.cbDacTxDacPostBotCh2.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacPostBotCh2_SelectedIndexChanged);
+            this.cbDacTxDacPostBotCh2.TabIndex = 70;
             // 
             // lDacTxDacPostBotCh2
             // 
             this.lDacTxDacPostBotCh2.AutoSize = true;
-            this.lDacTxDacPostBotCh2.Location = new System.Drawing.Point(478, 228);
+            this.lDacTxDacPostBotCh2.Location = new System.Drawing.Point(135, 62);
             this.lDacTxDacPostBotCh2.Name = "lDacTxDacPostBotCh2";
             this.lDacTxDacPostBotCh2.Size = new System.Drawing.Size(97, 12);
-            this.lDacTxDacPostBotCh2.TabIndex = 128;
+            this.lDacTxDacPostBotCh2.TabIndex = 69;
             this.lDacTxDacPostBotCh2.Text = "Dac tx dac post bot:";
             // 
             // cbDacTxDacPostBotPdbCh2
             // 
             this.cbDacTxDacPostBotPdbCh2.AutoSize = true;
-            this.cbDacTxDacPostBotPdbCh2.Location = new System.Drawing.Point(339, 227);
+            this.cbDacTxDacPostBotPdbCh2.Location = new System.Drawing.Point(4, 62);
             this.cbDacTxDacPostBotPdbCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacPostBotPdbCh2.Name = "cbDacTxDacPostBotPdbCh2";
             this.cbDacTxDacPostBotPdbCh2.Size = new System.Drawing.Size(134, 16);
-            this.cbDacTxDacPostBotPdbCh2.TabIndex = 127;
+            this.cbDacTxDacPostBotPdbCh2.TabIndex = 68;
             this.cbDacTxDacPostBotPdbCh2.Text = "Dac tx dac post bot pdb";
             this.cbDacTxDacPostBotPdbCh2.UseVisualStyleBackColor = true;
-            this.cbDacTxDacPostBotPdbCh2.CheckedChanged += new System.EventHandler(this.cbDacTxDacPostBotPdbCh2_CheckedChanged);
+            // 
+            // cbDacTxDacPostMidCh2
+            // 
+            this.cbDacTxDacPostMidCh2.FormattingEnabled = true;
+            this.cbDacTxDacPostMidCh2.Location = new System.Drawing.Point(234, 38);
+            this.cbDacTxDacPostMidCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacPostMidCh2.Name = "cbDacTxDacPostMidCh2";
+            this.cbDacTxDacPostMidCh2.Size = new System.Drawing.Size(86, 20);
+            this.cbDacTxDacPostMidCh2.TabIndex = 67;
+            // 
+            // lDacTxDacPostMidCh2
+            // 
+            this.lDacTxDacPostMidCh2.AutoSize = true;
+            this.lDacTxDacPostMidCh2.Location = new System.Drawing.Point(135, 40);
+            this.lDacTxDacPostMidCh2.Name = "lDacTxDacPostMidCh2";
+            this.lDacTxDacPostMidCh2.Size = new System.Drawing.Size(100, 12);
+            this.lDacTxDacPostMidCh2.TabIndex = 66;
+            this.lDacTxDacPostMidCh2.Text = "Dac tx dac post mid:";
+            // 
+            // cbDacTxDacPostMidPdbCh2
+            // 
+            this.cbDacTxDacPostMidPdbCh2.AutoSize = true;
+            this.cbDacTxDacPostMidPdbCh2.Location = new System.Drawing.Point(4, 40);
+            this.cbDacTxDacPostMidPdbCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacPostMidPdbCh2.Name = "cbDacTxDacPostMidPdbCh2";
+            this.cbDacTxDacPostMidPdbCh2.Size = new System.Drawing.Size(137, 16);
+            this.cbDacTxDacPostMidPdbCh2.TabIndex = 65;
+            this.cbDacTxDacPostMidPdbCh2.Text = "Dac tx dac post mid pdb";
+            this.cbDacTxDacPostMidPdbCh2.UseVisualStyleBackColor = true;
+            // 
+            // cbDacTxDacPostTopCh2
+            // 
+            this.cbDacTxDacPostTopCh2.FormattingEnabled = true;
+            this.cbDacTxDacPostTopCh2.Location = new System.Drawing.Point(234, 16);
+            this.cbDacTxDacPostTopCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacPostTopCh2.Name = "cbDacTxDacPostTopCh2";
+            this.cbDacTxDacPostTopCh2.Size = new System.Drawing.Size(86, 20);
+            this.cbDacTxDacPostTopCh2.TabIndex = 64;
+            // 
+            // lDacTxDacPostTopCh2
+            // 
+            this.lDacTxDacPostTopCh2.AutoSize = true;
+            this.lDacTxDacPostTopCh2.Location = new System.Drawing.Point(135, 18);
+            this.lDacTxDacPostTopCh2.Name = "lDacTxDacPostTopCh2";
+            this.lDacTxDacPostTopCh2.Size = new System.Drawing.Size(97, 12);
+            this.lDacTxDacPostTopCh2.TabIndex = 63;
+            this.lDacTxDacPostTopCh2.Text = "Dac tx dac post top:";
+            // 
+            // cbDacTxDacPostTopPdbCh2
+            // 
+            this.cbDacTxDacPostTopPdbCh2.AutoSize = true;
+            this.cbDacTxDacPostTopPdbCh2.Location = new System.Drawing.Point(4, 18);
+            this.cbDacTxDacPostTopPdbCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacPostTopPdbCh2.Name = "cbDacTxDacPostTopPdbCh2";
+            this.cbDacTxDacPostTopPdbCh2.Size = new System.Drawing.Size(134, 16);
+            this.cbDacTxDacPostTopPdbCh2.TabIndex = 62;
+            this.cbDacTxDacPostTopPdbCh2.Text = "Dac tx dac post top pdb";
+            this.cbDacTxDacPostTopPdbCh2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.cbDacTxDacPreTopCh2);
+            this.groupBox6.Controls.Add(this.lDacTxDacPreTopCh2);
+            this.groupBox6.Controls.Add(this.cbDacTxDacPreTopPdbCh2);
+            this.groupBox6.Controls.Add(this.cbDacTxDacPreMidCh2);
+            this.groupBox6.Controls.Add(this.lDacTxDacPreMidCh2);
+            this.groupBox6.Controls.Add(this.cbDacTxDacPreMidPdbCh2);
+            this.groupBox6.Controls.Add(this.cbDacTxDacPreBotCh2);
+            this.groupBox6.Controls.Add(this.lDacTxDacPreBotCh2);
+            this.groupBox6.Controls.Add(this.cbDacTxDacPreBotPdbCh2);
+            this.groupBox6.Location = new System.Drawing.Point(5, 207);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(325, 85);
+            this.groupBox6.TabIndex = 127;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "PreEmphasis";
             // 
             // cbDacTxDacPreTopCh2
             // 
             this.cbDacTxDacPreTopCh2.FormattingEnabled = true;
-            this.cbDacTxDacPreTopCh2.Location = new System.Drawing.Point(248, 226);
+            this.cbDacTxDacPreTopCh2.Location = new System.Drawing.Point(231, 16);
             this.cbDacTxDacPreTopCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacPreTopCh2.Name = "cbDacTxDacPreTopCh2";
             this.cbDacTxDacPreTopCh2.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacPreTopCh2.TabIndex = 126;
-            this.cbDacTxDacPreTopCh2.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacPreTopCh2_SelectedIndexChanged);
+            this.cbDacTxDacPreTopCh2.TabIndex = 61;
             // 
             // lDacTxDacPreTopCh2
             // 
             this.lDacTxDacPreTopCh2.AutoSize = true;
-            this.lDacTxDacPreTopCh2.Location = new System.Drawing.Point(145, 228);
+            this.lDacTxDacPreTopCh2.Location = new System.Drawing.Point(135, 18);
             this.lDacTxDacPreTopCh2.Name = "lDacTxDacPreTopCh2";
             this.lDacTxDacPreTopCh2.Size = new System.Drawing.Size(93, 12);
-            this.lDacTxDacPreTopCh2.TabIndex = 125;
+            this.lDacTxDacPreTopCh2.TabIndex = 60;
             this.lDacTxDacPreTopCh2.Text = "Dac tx dac pre top:";
             // 
             // cbDacTxDacPreTopPdbCh2
             // 
             this.cbDacTxDacPreTopPdbCh2.AutoSize = true;
-            this.cbDacTxDacPreTopPdbCh2.Location = new System.Drawing.Point(5, 227);
+            this.cbDacTxDacPreTopPdbCh2.Location = new System.Drawing.Point(4, 18);
             this.cbDacTxDacPreTopPdbCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacPreTopPdbCh2.Name = "cbDacTxDacPreTopPdbCh2";
             this.cbDacTxDacPreTopPdbCh2.Size = new System.Drawing.Size(130, 16);
-            this.cbDacTxDacPreTopPdbCh2.TabIndex = 124;
+            this.cbDacTxDacPreTopPdbCh2.TabIndex = 59;
             this.cbDacTxDacPreTopPdbCh2.Text = "Dac tx dac pre top pdb";
             this.cbDacTxDacPreTopPdbCh2.UseVisualStyleBackColor = true;
-            this.cbDacTxDacPreTopPdbCh2.CheckedChanged += new System.EventHandler(this.cbDacTxDacPreTopPdbCh2_CheckedChanged);
             // 
             // cbDacTxDacPreMidCh2
             // 
             this.cbDacTxDacPreMidCh2.FormattingEnabled = true;
-            this.cbDacTxDacPreMidCh2.Location = new System.Drawing.Point(581, 202);
+            this.cbDacTxDacPreMidCh2.Location = new System.Drawing.Point(231, 38);
             this.cbDacTxDacPreMidCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacPreMidCh2.Name = "cbDacTxDacPreMidCh2";
             this.cbDacTxDacPreMidCh2.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacPreMidCh2.TabIndex = 123;
-            this.cbDacTxDacPreMidCh2.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacPreMidCh2_SelectedIndexChanged);
+            this.cbDacTxDacPreMidCh2.TabIndex = 58;
             // 
             // lDacTxDacPreMidCh2
             // 
             this.lDacTxDacPreMidCh2.AutoSize = true;
-            this.lDacTxDacPreMidCh2.Location = new System.Drawing.Point(478, 205);
+            this.lDacTxDacPreMidCh2.Location = new System.Drawing.Point(135, 40);
             this.lDacTxDacPreMidCh2.Name = "lDacTxDacPreMidCh2";
             this.lDacTxDacPreMidCh2.Size = new System.Drawing.Size(96, 12);
-            this.lDacTxDacPreMidCh2.TabIndex = 122;
+            this.lDacTxDacPreMidCh2.TabIndex = 57;
             this.lDacTxDacPreMidCh2.Text = "Dac tx dac pre mid:";
             // 
             // cbDacTxDacPreMidPdbCh2
             // 
             this.cbDacTxDacPreMidPdbCh2.AutoSize = true;
-            this.cbDacTxDacPreMidPdbCh2.Location = new System.Drawing.Point(339, 204);
+            this.cbDacTxDacPreMidPdbCh2.Location = new System.Drawing.Point(4, 40);
             this.cbDacTxDacPreMidPdbCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacPreMidPdbCh2.Name = "cbDacTxDacPreMidPdbCh2";
             this.cbDacTxDacPreMidPdbCh2.Size = new System.Drawing.Size(133, 16);
-            this.cbDacTxDacPreMidPdbCh2.TabIndex = 121;
+            this.cbDacTxDacPreMidPdbCh2.TabIndex = 56;
             this.cbDacTxDacPreMidPdbCh2.Text = "Dac tx dac pre mid pdb";
             this.cbDacTxDacPreMidPdbCh2.UseVisualStyleBackColor = true;
-            this.cbDacTxDacPreMidPdbCh2.CheckedChanged += new System.EventHandler(this.cbDacTxDacPreMidPdbCh2_CheckedChanged);
             // 
             // cbDacTxDacPreBotCh2
             // 
             this.cbDacTxDacPreBotCh2.FormattingEnabled = true;
-            this.cbDacTxDacPreBotCh2.Location = new System.Drawing.Point(248, 202);
+            this.cbDacTxDacPreBotCh2.Location = new System.Drawing.Point(231, 60);
             this.cbDacTxDacPreBotCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacPreBotCh2.Name = "cbDacTxDacPreBotCh2";
             this.cbDacTxDacPreBotCh2.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacPreBotCh2.TabIndex = 120;
-            this.cbDacTxDacPreBotCh2.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacPreBotCh2_SelectedIndexChanged);
-            // 
-            // lDacTxDacMain8bTopCh2
-            // 
-            this.lDacTxDacMain8bTopCh2.AutoSize = true;
-            this.lDacTxDacMain8bTopCh2.Location = new System.Drawing.Point(434, 183);
-            this.lDacTxDacMain8bTopCh2.Name = "lDacTxDacMain8bTopCh2";
-            this.lDacTxDacMain8bTopCh2.Size = new System.Drawing.Size(113, 12);
-            this.lDacTxDacMain8bTopCh2.TabIndex = 119;
-            this.lDacTxDacMain8bTopCh2.Text = "Dac tx dac main8b top:";
-            // 
-            // cbDacTxDacMain8bTopCh2
-            // 
-            this.cbDacTxDacMain8bTopCh2.FormattingEnabled = true;
-            this.cbDacTxDacMain8bTopCh2.Location = new System.Drawing.Point(557, 181);
-            this.cbDacTxDacMain8bTopCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacMain8bTopCh2.Name = "cbDacTxDacMain8bTopCh2";
-            this.cbDacTxDacMain8bTopCh2.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacMain8bTopCh2.TabIndex = 118;
-            this.cbDacTxDacMain8bTopCh2.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacMain8bTopCh2_SelectedIndexChanged);
-            // 
-            // lDacTxDacMain8bMidCh2
-            // 
-            this.lDacTxDacMain8bMidCh2.AutoSize = true;
-            this.lDacTxDacMain8bMidCh2.Location = new System.Drawing.Point(219, 183);
-            this.lDacTxDacMain8bMidCh2.Name = "lDacTxDacMain8bMidCh2";
-            this.lDacTxDacMain8bMidCh2.Size = new System.Drawing.Size(116, 12);
-            this.lDacTxDacMain8bMidCh2.TabIndex = 117;
-            this.lDacTxDacMain8bMidCh2.Text = "Dac tx dac main8b mid:";
-            // 
-            // cbDacTxDacMain8bMidCh2
-            // 
-            this.cbDacTxDacMain8bMidCh2.FormattingEnabled = true;
-            this.cbDacTxDacMain8bMidCh2.Location = new System.Drawing.Point(343, 181);
-            this.cbDacTxDacMain8bMidCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacMain8bMidCh2.Name = "cbDacTxDacMain8bMidCh2";
-            this.cbDacTxDacMain8bMidCh2.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacMain8bMidCh2.TabIndex = 116;
-            this.cbDacTxDacMain8bMidCh2.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacMain8bMidCh2_SelectedIndexChanged);
+            this.cbDacTxDacPreBotCh2.TabIndex = 55;
             // 
             // lDacTxDacPreBotCh2
             // 
             this.lDacTxDacPreBotCh2.AutoSize = true;
-            this.lDacTxDacPreBotCh2.Location = new System.Drawing.Point(145, 205);
+            this.lDacTxDacPreBotCh2.Location = new System.Drawing.Point(135, 63);
             this.lDacTxDacPreBotCh2.Name = "lDacTxDacPreBotCh2";
             this.lDacTxDacPreBotCh2.Size = new System.Drawing.Size(93, 12);
-            this.lDacTxDacPreBotCh2.TabIndex = 115;
+            this.lDacTxDacPreBotCh2.TabIndex = 54;
             this.lDacTxDacPreBotCh2.Text = "Dac tx dac pre bot:";
             // 
             // cbDacTxDacPreBotPdbCh2
             // 
             this.cbDacTxDacPreBotPdbCh2.AutoSize = true;
-            this.cbDacTxDacPreBotPdbCh2.Location = new System.Drawing.Point(5, 204);
+            this.cbDacTxDacPreBotPdbCh2.Location = new System.Drawing.Point(4, 62);
             this.cbDacTxDacPreBotPdbCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacPreBotPdbCh2.Name = "cbDacTxDacPreBotPdbCh2";
             this.cbDacTxDacPreBotPdbCh2.Size = new System.Drawing.Size(130, 16);
-            this.cbDacTxDacPreBotPdbCh2.TabIndex = 114;
+            this.cbDacTxDacPreBotPdbCh2.TabIndex = 53;
             this.cbDacTxDacPreBotPdbCh2.Text = "Dac tx dac pre bot pdb";
             this.cbDacTxDacPreBotPdbCh2.UseVisualStyleBackColor = true;
-            this.cbDacTxDacPreBotPdbCh2.CheckedChanged += new System.EventHandler(this.cbDacTxDacPreBotPdbCh2_CheckedChanged);
             // 
-            // lDacTxDacMain8bBotCh2
+            // groupBox7
             // 
-            this.lDacTxDacMain8bBotCh2.AutoSize = true;
-            this.lDacTxDacMain8bBotCh2.Location = new System.Drawing.Point(5, 183);
-            this.lDacTxDacMain8bBotCh2.Name = "lDacTxDacMain8bBotCh2";
-            this.lDacTxDacMain8bBotCh2.Size = new System.Drawing.Size(113, 12);
-            this.lDacTxDacMain8bBotCh2.TabIndex = 113;
-            this.lDacTxDacMain8bBotCh2.Text = "Dac tx dac main8b bot:";
+            this.groupBox7.Controls.Add(this.cbDacTxDacMain8bTopCh2);
+            this.groupBox7.Controls.Add(this.cbDacTxDacMain8bMidCh2);
+            this.groupBox7.Controls.Add(this.cbDacTxDacMain8bBotCh2);
+            this.groupBox7.Controls.Add(this.lDacTxDacMain8bTopCh2);
+            this.groupBox7.Controls.Add(this.lDacTxDacMain8bMidCh2);
+            this.groupBox7.Controls.Add(this.lDacTxDacMain8bBotCh2);
+            this.groupBox7.Location = new System.Drawing.Point(5, 116);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(220, 85);
+            this.groupBox7.TabIndex = 126;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Modulation current";
+            // 
+            // cbDacTxDacMain8bTopCh2
+            // 
+            this.cbDacTxDacMain8bTopCh2.FormattingEnabled = true;
+            this.cbDacTxDacMain8bTopCh2.Location = new System.Drawing.Point(125, 12);
+            this.cbDacTxDacMain8bTopCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacMain8bTopCh2.Name = "cbDacTxDacMain8bTopCh2";
+            this.cbDacTxDacMain8bTopCh2.Size = new System.Drawing.Size(90, 20);
+            this.cbDacTxDacMain8bTopCh2.TabIndex = 48;
+            // 
+            // cbDacTxDacMain8bMidCh2
+            // 
+            this.cbDacTxDacMain8bMidCh2.FormattingEnabled = true;
+            this.cbDacTxDacMain8bMidCh2.Location = new System.Drawing.Point(125, 34);
+            this.cbDacTxDacMain8bMidCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacMain8bMidCh2.Name = "cbDacTxDacMain8bMidCh2";
+            this.cbDacTxDacMain8bMidCh2.Size = new System.Drawing.Size(90, 20);
+            this.cbDacTxDacMain8bMidCh2.TabIndex = 47;
             // 
             // cbDacTxDacMain8bBotCh2
             // 
             this.cbDacTxDacMain8bBotCh2.FormattingEnabled = true;
-            this.cbDacTxDacMain8bBotCh2.Location = new System.Drawing.Point(129, 181);
+            this.cbDacTxDacMain8bBotCh2.Location = new System.Drawing.Point(125, 56);
             this.cbDacTxDacMain8bBotCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacMain8bBotCh2.Name = "cbDacTxDacMain8bBotCh2";
-            this.cbDacTxDacMain8bBotCh2.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacMain8bBotCh2.TabIndex = 112;
-            this.cbDacTxDacMain8bBotCh2.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacMain8bBotCh2_SelectedIndexChanged);
+            this.cbDacTxDacMain8bBotCh2.Size = new System.Drawing.Size(90, 20);
+            this.cbDacTxDacMain8bBotCh2.TabIndex = 46;
+            // 
+            // lDacTxDacMain8bTopCh2
+            // 
+            this.lDacTxDacMain8bTopCh2.AutoSize = true;
+            this.lDacTxDacMain8bTopCh2.Location = new System.Drawing.Point(6, 18);
+            this.lDacTxDacMain8bTopCh2.Name = "lDacTxDacMain8bTopCh2";
+            this.lDacTxDacMain8bTopCh2.Size = new System.Drawing.Size(113, 12);
+            this.lDacTxDacMain8bTopCh2.TabIndex = 45;
+            this.lDacTxDacMain8bTopCh2.Text = "Dac tx dac main8b top:";
+            // 
+            // lDacTxDacMain8bMidCh2
+            // 
+            this.lDacTxDacMain8bMidCh2.AutoSize = true;
+            this.lDacTxDacMain8bMidCh2.Location = new System.Drawing.Point(6, 40);
+            this.lDacTxDacMain8bMidCh2.Name = "lDacTxDacMain8bMidCh2";
+            this.lDacTxDacMain8bMidCh2.Size = new System.Drawing.Size(116, 12);
+            this.lDacTxDacMain8bMidCh2.TabIndex = 43;
+            this.lDacTxDacMain8bMidCh2.Text = "Dac tx dac main8b mid:";
+            // 
+            // lDacTxDacMain8bBotCh2
+            // 
+            this.lDacTxDacMain8bBotCh2.AutoSize = true;
+            this.lDacTxDacMain8bBotCh2.Location = new System.Drawing.Point(6, 62);
+            this.lDacTxDacMain8bBotCh2.Name = "lDacTxDacMain8bBotCh2";
+            this.lDacTxDacMain8bBotCh2.Size = new System.Drawing.Size(113, 12);
+            this.lDacTxDacMain8bBotCh2.TabIndex = 39;
+            this.lDacTxDacMain8bBotCh2.Text = "Dac tx dac main8b bot:";
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.lDacTxDacDcdTopCh2);
+            this.groupBox8.Controls.Add(this.cbDacTxDacDcdTopCh2);
+            this.groupBox8.Controls.Add(this.cbDacTxDacDcdTopPdbCh2);
+            this.groupBox8.Controls.Add(this.cbTxTopDcdDacPolflipCh2);
+            this.groupBox8.Controls.Add(this.cbTxIdoubleEnTopCh2);
+            this.groupBox8.Controls.Add(this.lDacTxDacDcdMidCh2);
+            this.groupBox8.Controls.Add(this.cbDacTxDacDcdMidCh2);
+            this.groupBox8.Controls.Add(this.cbDacTxDacDcdMidPdbCh2);
+            this.groupBox8.Controls.Add(this.cbTxMidDcdDacPolflipCh2);
+            this.groupBox8.Controls.Add(this.cbTxIdoubleEnMidCh2);
+            this.groupBox8.Controls.Add(this.lDacTxDacDcdBotCh2);
+            this.groupBox8.Controls.Add(this.cbDacTxDacDcdBotCh2);
+            this.groupBox8.Controls.Add(this.cbDacTxDacDcdBotPdbCh2);
+            this.groupBox8.Controls.Add(this.cbTxBotDcdDacPolflipCh2);
+            this.groupBox8.Controls.Add(this.cbTxIdoubleEnBotCh2);
+            this.groupBox8.Location = new System.Drawing.Point(234, 116);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(550, 85);
+            this.groupBox8.TabIndex = 125;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "CrossPoint";
             // 
             // lDacTxDacDcdTopCh2
             // 
             this.lDacTxDacDcdTopCh2.AutoSize = true;
-            this.lDacTxDacDcdTopCh2.Location = new System.Drawing.Point(395, 162);
+            this.lDacTxDacDcdTopCh2.Location = new System.Drawing.Point(379, 18);
             this.lDacTxDacDcdTopCh2.Name = "lDacTxDacDcdTopCh2";
             this.lDacTxDacDcdTopCh2.Size = new System.Drawing.Size(95, 12);
-            this.lDacTxDacDcdTopCh2.TabIndex = 111;
+            this.lDacTxDacDcdTopCh2.TabIndex = 52;
             this.lDacTxDacDcdTopCh2.Text = "Dac tx dac dcd top:";
             // 
             // cbDacTxDacDcdTopCh2
             // 
             this.cbDacTxDacDcdTopCh2.FormattingEnabled = true;
-            this.cbDacTxDacDcdTopCh2.Location = new System.Drawing.Point(501, 159);
+            this.cbDacTxDacDcdTopCh2.Location = new System.Drawing.Point(478, 12);
             this.cbDacTxDacDcdTopCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacDcdTopCh2.Name = "cbDacTxDacDcdTopCh2";
-            this.cbDacTxDacDcdTopCh2.Size = new System.Drawing.Size(78, 20);
-            this.cbDacTxDacDcdTopCh2.TabIndex = 110;
-            this.cbDacTxDacDcdTopCh2.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacDcdTopCh2_SelectedIndexChanged);
+            this.cbDacTxDacDcdTopCh2.Size = new System.Drawing.Size(65, 20);
+            this.cbDacTxDacDcdTopCh2.TabIndex = 51;
             // 
             // cbDacTxDacDcdTopPdbCh2
             // 
             this.cbDacTxDacDcdTopPdbCh2.AutoSize = true;
-            this.cbDacTxDacDcdTopPdbCh2.Location = new System.Drawing.Point(253, 161);
+            this.cbDacTxDacDcdTopPdbCh2.Location = new System.Drawing.Point(244, 18);
             this.cbDacTxDacDcdTopPdbCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacDcdTopPdbCh2.Name = "cbDacTxDacDcdTopPdbCh2";
             this.cbDacTxDacDcdTopPdbCh2.Size = new System.Drawing.Size(132, 16);
-            this.cbDacTxDacDcdTopPdbCh2.TabIndex = 109;
+            this.cbDacTxDacDcdTopPdbCh2.TabIndex = 50;
             this.cbDacTxDacDcdTopPdbCh2.Text = "Dac tx dac dcd top pdb";
             this.cbDacTxDacDcdTopPdbCh2.UseVisualStyleBackColor = true;
-            this.cbDacTxDacDcdTopPdbCh2.CheckedChanged += new System.EventHandler(this.cbDacTxDacDcdTopPdbCh2_CheckedChanged);
             // 
             // cbTxTopDcdDacPolflipCh2
             // 
             this.cbTxTopDcdDacPolflipCh2.AutoSize = true;
-            this.cbTxTopDcdDacPolflipCh2.Location = new System.Drawing.Point(118, 161);
+            this.cbTxTopDcdDacPolflipCh2.Location = new System.Drawing.Point(114, 18);
             this.cbTxTopDcdDacPolflipCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxTopDcdDacPolflipCh2.Name = "cbTxTopDcdDacPolflipCh2";
             this.cbTxTopDcdDacPolflipCh2.Size = new System.Drawing.Size(128, 16);
-            this.cbTxTopDcdDacPolflipCh2.TabIndex = 108;
+            this.cbTxTopDcdDacPolflipCh2.TabIndex = 49;
             this.cbTxTopDcdDacPolflipCh2.Text = "Tx top dcd dac polflip";
             this.cbTxTopDcdDacPolflipCh2.UseVisualStyleBackColor = true;
-            this.cbTxTopDcdDacPolflipCh2.CheckedChanged += new System.EventHandler(this.cbTxTopDcdDacPolflipCh2_CheckedChanged);
             // 
             // cbTxIdoubleEnTopCh2
             // 
             this.cbTxIdoubleEnTopCh2.AutoSize = true;
-            this.cbTxIdoubleEnTopCh2.Location = new System.Drawing.Point(5, 161);
+            this.cbTxIdoubleEnTopCh2.Location = new System.Drawing.Point(6, 18);
             this.cbTxIdoubleEnTopCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxIdoubleEnTopCh2.Name = "cbTxIdoubleEnTopCh2";
             this.cbTxIdoubleEnTopCh2.Size = new System.Drawing.Size(107, 16);
-            this.cbTxIdoubleEnTopCh2.TabIndex = 107;
+            this.cbTxIdoubleEnTopCh2.TabIndex = 48;
             this.cbTxIdoubleEnTopCh2.Text = "Tx idouble en top";
             this.cbTxIdoubleEnTopCh2.UseVisualStyleBackColor = true;
-            this.cbTxIdoubleEnTopCh2.CheckedChanged += new System.EventHandler(this.cbTxIdoubleEnTopCh2_CheckedChanged);
             // 
             // lDacTxDacDcdMidCh2
             // 
             this.lDacTxDacDcdMidCh2.AutoSize = true;
-            this.lDacTxDacDcdMidCh2.Location = new System.Drawing.Point(395, 138);
+            this.lDacTxDacDcdMidCh2.Location = new System.Drawing.Point(379, 40);
             this.lDacTxDacDcdMidCh2.Name = "lDacTxDacDcdMidCh2";
             this.lDacTxDacDcdMidCh2.Size = new System.Drawing.Size(98, 12);
-            this.lDacTxDacDcdMidCh2.TabIndex = 106;
+            this.lDacTxDacDcdMidCh2.TabIndex = 47;
             this.lDacTxDacDcdMidCh2.Text = "Dac tx dac dcd mid:";
             // 
             // cbDacTxDacDcdMidCh2
             // 
             this.cbDacTxDacDcdMidCh2.FormattingEnabled = true;
-            this.cbDacTxDacDcdMidCh2.Location = new System.Drawing.Point(501, 136);
+            this.cbDacTxDacDcdMidCh2.Location = new System.Drawing.Point(478, 34);
             this.cbDacTxDacDcdMidCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacDcdMidCh2.Name = "cbDacTxDacDcdMidCh2";
-            this.cbDacTxDacDcdMidCh2.Size = new System.Drawing.Size(78, 20);
-            this.cbDacTxDacDcdMidCh2.TabIndex = 105;
-            this.cbDacTxDacDcdMidCh2.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacDcdMidCh2_SelectedIndexChanged);
+            this.cbDacTxDacDcdMidCh2.Size = new System.Drawing.Size(65, 20);
+            this.cbDacTxDacDcdMidCh2.TabIndex = 46;
             // 
             // cbDacTxDacDcdMidPdbCh2
             // 
             this.cbDacTxDacDcdMidPdbCh2.AutoSize = true;
-            this.cbDacTxDacDcdMidPdbCh2.Location = new System.Drawing.Point(253, 138);
+            this.cbDacTxDacDcdMidPdbCh2.Location = new System.Drawing.Point(244, 40);
             this.cbDacTxDacDcdMidPdbCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacDcdMidPdbCh2.Name = "cbDacTxDacDcdMidPdbCh2";
             this.cbDacTxDacDcdMidPdbCh2.Size = new System.Drawing.Size(135, 16);
-            this.cbDacTxDacDcdMidPdbCh2.TabIndex = 104;
+            this.cbDacTxDacDcdMidPdbCh2.TabIndex = 45;
             this.cbDacTxDacDcdMidPdbCh2.Text = "Dac tx dac dcd mid pdb";
             this.cbDacTxDacDcdMidPdbCh2.UseVisualStyleBackColor = true;
-            this.cbDacTxDacDcdMidPdbCh2.CheckedChanged += new System.EventHandler(this.cbDacTxDacDcdMidPdbCh2_CheckedChanged);
             // 
             // cbTxMidDcdDacPolflipCh2
             // 
             this.cbTxMidDcdDacPolflipCh2.AutoSize = true;
-            this.cbTxMidDcdDacPolflipCh2.Location = new System.Drawing.Point(118, 138);
+            this.cbTxMidDcdDacPolflipCh2.Location = new System.Drawing.Point(114, 40);
             this.cbTxMidDcdDacPolflipCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxMidDcdDacPolflipCh2.Name = "cbTxMidDcdDacPolflipCh2";
             this.cbTxMidDcdDacPolflipCh2.Size = new System.Drawing.Size(131, 16);
-            this.cbTxMidDcdDacPolflipCh2.TabIndex = 103;
+            this.cbTxMidDcdDacPolflipCh2.TabIndex = 44;
             this.cbTxMidDcdDacPolflipCh2.Text = "Tx mid dcd dac polflip";
             this.cbTxMidDcdDacPolflipCh2.UseVisualStyleBackColor = true;
-            this.cbTxMidDcdDacPolflipCh2.CheckedChanged += new System.EventHandler(this.cbTxMidDcdDacPolflipCh2_CheckedChanged);
             // 
             // cbTxIdoubleEnMidCh2
             // 
             this.cbTxIdoubleEnMidCh2.AutoSize = true;
-            this.cbTxIdoubleEnMidCh2.Location = new System.Drawing.Point(5, 138);
+            this.cbTxIdoubleEnMidCh2.Location = new System.Drawing.Point(6, 40);
             this.cbTxIdoubleEnMidCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxIdoubleEnMidCh2.Name = "cbTxIdoubleEnMidCh2";
             this.cbTxIdoubleEnMidCh2.Size = new System.Drawing.Size(110, 16);
-            this.cbTxIdoubleEnMidCh2.TabIndex = 102;
+            this.cbTxIdoubleEnMidCh2.TabIndex = 43;
             this.cbTxIdoubleEnMidCh2.Text = "Tx idouble en mid";
             this.cbTxIdoubleEnMidCh2.UseVisualStyleBackColor = true;
-            this.cbTxIdoubleEnMidCh2.CheckedChanged += new System.EventHandler(this.cbTxIdoubleEnMidCh2_CheckedChanged);
             // 
             // lDacTxDacDcdBotCh2
             // 
             this.lDacTxDacDcdBotCh2.AutoSize = true;
-            this.lDacTxDacDcdBotCh2.Location = new System.Drawing.Point(395, 115);
+            this.lDacTxDacDcdBotCh2.Location = new System.Drawing.Point(379, 63);
             this.lDacTxDacDcdBotCh2.Name = "lDacTxDacDcdBotCh2";
             this.lDacTxDacDcdBotCh2.Size = new System.Drawing.Size(95, 12);
-            this.lDacTxDacDcdBotCh2.TabIndex = 101;
+            this.lDacTxDacDcdBotCh2.TabIndex = 42;
             this.lDacTxDacDcdBotCh2.Text = "Dac tx dac dcd bot:";
             // 
             // cbDacTxDacDcdBotCh2
             // 
             this.cbDacTxDacDcdBotCh2.FormattingEnabled = true;
-            this.cbDacTxDacDcdBotCh2.Location = new System.Drawing.Point(501, 113);
+            this.cbDacTxDacDcdBotCh2.Location = new System.Drawing.Point(478, 56);
             this.cbDacTxDacDcdBotCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacDcdBotCh2.Name = "cbDacTxDacDcdBotCh2";
-            this.cbDacTxDacDcdBotCh2.Size = new System.Drawing.Size(78, 20);
-            this.cbDacTxDacDcdBotCh2.TabIndex = 100;
-            this.cbDacTxDacDcdBotCh2.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacDcdBotCh2_SelectedIndexChanged);
+            this.cbDacTxDacDcdBotCh2.Size = new System.Drawing.Size(65, 20);
+            this.cbDacTxDacDcdBotCh2.TabIndex = 41;
             // 
             // cbDacTxDacDcdBotPdbCh2
             // 
             this.cbDacTxDacDcdBotPdbCh2.AutoSize = true;
-            this.cbDacTxDacDcdBotPdbCh2.Location = new System.Drawing.Point(253, 114);
+            this.cbDacTxDacDcdBotPdbCh2.Location = new System.Drawing.Point(244, 62);
             this.cbDacTxDacDcdBotPdbCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacDcdBotPdbCh2.Name = "cbDacTxDacDcdBotPdbCh2";
             this.cbDacTxDacDcdBotPdbCh2.Size = new System.Drawing.Size(132, 16);
-            this.cbDacTxDacDcdBotPdbCh2.TabIndex = 99;
+            this.cbDacTxDacDcdBotPdbCh2.TabIndex = 40;
             this.cbDacTxDacDcdBotPdbCh2.Text = "Dac tx dac dcd bot pdb";
             this.cbDacTxDacDcdBotPdbCh2.UseVisualStyleBackColor = true;
-            this.cbDacTxDacDcdBotPdbCh2.CheckedChanged += new System.EventHandler(this.cbDacTxDacDcdBotPdbCh2_CheckedChanged);
             // 
             // cbTxBotDcdDacPolflipCh2
             // 
             this.cbTxBotDcdDacPolflipCh2.AutoSize = true;
-            this.cbTxBotDcdDacPolflipCh2.Location = new System.Drawing.Point(118, 114);
+            this.cbTxBotDcdDacPolflipCh2.Location = new System.Drawing.Point(114, 62);
             this.cbTxBotDcdDacPolflipCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxBotDcdDacPolflipCh2.Name = "cbTxBotDcdDacPolflipCh2";
             this.cbTxBotDcdDacPolflipCh2.Size = new System.Drawing.Size(128, 16);
-            this.cbTxBotDcdDacPolflipCh2.TabIndex = 98;
+            this.cbTxBotDcdDacPolflipCh2.TabIndex = 39;
             this.cbTxBotDcdDacPolflipCh2.Text = "Tx bot dcd dac polflip";
             this.cbTxBotDcdDacPolflipCh2.UseVisualStyleBackColor = true;
-            this.cbTxBotDcdDacPolflipCh2.CheckedChanged += new System.EventHandler(this.cbTxBotDcdDacPolflipCh2_CheckedChanged);
             // 
             // cbTxIdoubleEnBotCh2
             // 
             this.cbTxIdoubleEnBotCh2.AutoSize = true;
-            this.cbTxIdoubleEnBotCh2.Location = new System.Drawing.Point(5, 114);
+            this.cbTxIdoubleEnBotCh2.Location = new System.Drawing.Point(6, 62);
             this.cbTxIdoubleEnBotCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxIdoubleEnBotCh2.Name = "cbTxIdoubleEnBotCh2";
             this.cbTxIdoubleEnBotCh2.Size = new System.Drawing.Size(107, 16);
-            this.cbTxIdoubleEnBotCh2.TabIndex = 97;
+            this.cbTxIdoubleEnBotCh2.TabIndex = 38;
             this.cbTxIdoubleEnBotCh2.Text = "Tx idouble en bot";
             this.cbTxIdoubleEnBotCh2.UseVisualStyleBackColor = true;
-            this.cbTxIdoubleEnBotCh2.CheckedChanged += new System.EventHandler(this.cbTxIdoubleEnBotCh2_CheckedChanged);
+            // 
+            // cbTxIbiasAdcSelectCh2
+            // 
+            this.cbTxIbiasAdcSelectCh2.AutoSize = true;
+            this.cbTxIbiasAdcSelectCh2.Location = new System.Drawing.Point(468, 326);
+            this.cbTxIbiasAdcSelectCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbTxIbiasAdcSelectCh2.Name = "cbTxIbiasAdcSelectCh2";
+            this.cbTxIbiasAdcSelectCh2.Size = new System.Drawing.Size(108, 16);
+            this.cbTxIbiasAdcSelectCh2.TabIndex = 124;
+            this.cbTxIbiasAdcSelectCh2.Text = "Tx ibias adc select";
+            this.cbTxIbiasAdcSelectCh2.UseVisualStyleBackColor = true;
+            // 
+            // lTxDesiredImodCh2
+            // 
+            this.lTxDesiredImodCh2.AutoSize = true;
+            this.lTxDesiredImodCh2.Location = new System.Drawing.Point(286, 327);
+            this.lTxDesiredImodCh2.Name = "lTxDesiredImodCh2";
+            this.lTxDesiredImodCh2.Size = new System.Drawing.Size(84, 12);
+            this.lTxDesiredImodCh2.TabIndex = 123;
+            this.lTxDesiredImodCh2.Text = "Tx desired imod:";
+            // 
+            // cbTxDesiredImodCh2
+            // 
+            this.cbTxDesiredImodCh2.FormattingEnabled = true;
+            this.cbTxDesiredImodCh2.Location = new System.Drawing.Point(377, 324);
+            this.cbTxDesiredImodCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbTxDesiredImodCh2.Name = "cbTxDesiredImodCh2";
+            this.cbTxDesiredImodCh2.Size = new System.Drawing.Size(86, 20);
+            this.cbTxDesiredImodCh2.TabIndex = 122;
+            // 
+            // cbTxEnableAutoImodCh2
+            // 
+            this.cbTxEnableAutoImodCh2.AutoSize = true;
+            this.cbTxEnableAutoImodCh2.Location = new System.Drawing.Point(194, 326);
+            this.cbTxEnableAutoImodCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbTxEnableAutoImodCh2.Name = "cbTxEnableAutoImodCh2";
+            this.cbTxEnableAutoImodCh2.Size = new System.Drawing.Size(87, 16);
+            this.cbTxEnableAutoImodCh2.TabIndex = 121;
+            this.cbTxEnableAutoImodCh2.Text = "Tx auto imod";
+            this.cbTxEnableAutoImodCh2.UseVisualStyleBackColor = true;
+            // 
+            // cbTxPdbLbkInCh2
+            // 
+            this.cbTxPdbLbkInCh2.AutoSize = true;
+            this.cbTxPdbLbkInCh2.Location = new System.Drawing.Point(104, 326);
+            this.cbTxPdbLbkInCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbTxPdbLbkInCh2.Name = "cbTxPdbLbkInCh2";
+            this.cbTxPdbLbkInCh2.Size = new System.Drawing.Size(88, 16);
+            this.cbTxPdbLbkInCh2.TabIndex = 120;
+            this.cbTxPdbLbkInCh2.Text = "Tx pdb lbk in";
+            this.cbTxPdbLbkInCh2.UseVisualStyleBackColor = true;
+            // 
+            // cbTxPdbLbkOutCh2
+            // 
+            this.cbTxPdbLbkOutCh2.AutoSize = true;
+            this.cbTxPdbLbkOutCh2.Location = new System.Drawing.Point(6, 326);
+            this.cbTxPdbLbkOutCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbTxPdbLbkOutCh2.Name = "cbTxPdbLbkOutCh2";
+            this.cbTxPdbLbkOutCh2.Size = new System.Drawing.Size(94, 16);
+            this.cbTxPdbLbkOutCh2.TabIndex = 119;
+            this.cbTxPdbLbkOutCh2.Text = "Tx pdb lbk out";
+            this.cbTxPdbLbkOutCh2.UseVisualStyleBackColor = true;
+            // 
+            // lTxTopPostPolinvCh2
+            // 
+            this.lTxTopPostPolinvCh2.AutoSize = true;
+            this.lTxTopPostPolinvCh2.Location = new System.Drawing.Point(476, 303);
+            this.lTxTopPostPolinvCh2.Name = "lTxTopPostPolinvCh2";
+            this.lTxTopPostPolinvCh2.Size = new System.Drawing.Size(94, 12);
+            this.lTxTopPostPolinvCh2.TabIndex = 118;
+            this.lTxTopPostPolinvCh2.Text = "Tx top post polinv:";
+            // 
+            // cbTxTopPostPolinvCh2
+            // 
+            this.cbTxTopPostPolinvCh2.FormattingEnabled = true;
+            this.cbTxTopPostPolinvCh2.Location = new System.Drawing.Point(577, 301);
+            this.cbTxTopPostPolinvCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbTxTopPostPolinvCh2.Name = "cbTxTopPostPolinvCh2";
+            this.cbTxTopPostPolinvCh2.Size = new System.Drawing.Size(129, 20);
+            this.cbTxTopPostPolinvCh2.TabIndex = 117;
+            // 
+            // lTxMidPostPolinvCh2
+            // 
+            this.lTxMidPostPolinvCh2.AutoSize = true;
+            this.lTxMidPostPolinvCh2.Location = new System.Drawing.Point(241, 303);
+            this.lTxMidPostPolinvCh2.Name = "lTxMidPostPolinvCh2";
+            this.lTxMidPostPolinvCh2.Size = new System.Drawing.Size(97, 12);
+            this.lTxMidPostPolinvCh2.TabIndex = 116;
+            this.lTxMidPostPolinvCh2.Text = "Tx mid post polinv:";
+            // 
+            // cbTxMidPostPolinvCh2
+            // 
+            this.cbTxMidPostPolinvCh2.FormattingEnabled = true;
+            this.cbTxMidPostPolinvCh2.Location = new System.Drawing.Point(342, 301);
+            this.cbTxMidPostPolinvCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbTxMidPostPolinvCh2.Name = "cbTxMidPostPolinvCh2";
+            this.cbTxMidPostPolinvCh2.Size = new System.Drawing.Size(129, 20);
+            this.cbTxMidPostPolinvCh2.TabIndex = 115;
+            // 
+            // lTxBotPostPolinvCh2
+            // 
+            this.lTxBotPostPolinvCh2.AutoSize = true;
+            this.lTxBotPostPolinvCh2.Location = new System.Drawing.Point(6, 303);
+            this.lTxBotPostPolinvCh2.Name = "lTxBotPostPolinvCh2";
+            this.lTxBotPostPolinvCh2.Size = new System.Drawing.Size(94, 12);
+            this.lTxBotPostPolinvCh2.TabIndex = 114;
+            this.lTxBotPostPolinvCh2.Text = "Tx bot post polinv:";
+            // 
+            // cbTxBotPostPolinvCh2
+            // 
+            this.cbTxBotPostPolinvCh2.FormattingEnabled = true;
+            this.cbTxBotPostPolinvCh2.Location = new System.Drawing.Point(107, 301);
+            this.cbTxBotPostPolinvCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbTxBotPostPolinvCh2.Name = "cbTxBotPostPolinvCh2";
+            this.cbTxBotPostPolinvCh2.Size = new System.Drawing.Size(129, 20);
+            this.cbTxBotPostPolinvCh2.TabIndex = 113;
             // 
             // lTxIburninCh2
             // 
             this.lTxIburninCh2.AutoSize = true;
-            this.lTxIburninCh2.Location = new System.Drawing.Point(232, 94);
+            this.lTxIburninCh2.Location = new System.Drawing.Point(599, 71);
             this.lTxIburninCh2.Name = "lTxIburninCh2";
             this.lTxIburninCh2.Size = new System.Drawing.Size(58, 12);
             this.lTxIburninCh2.TabIndex = 96;
@@ -8333,7 +8388,7 @@
             // cbTxIburninCh2
             // 
             this.cbTxIburninCh2.FormattingEnabled = true;
-            this.cbTxIburninCh2.Location = new System.Drawing.Point(293, 91);
+            this.cbTxIburninCh2.Location = new System.Drawing.Point(660, 68);
             this.cbTxIburninCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxIburninCh2.Name = "cbTxIburninCh2";
             this.cbTxIburninCh2.Size = new System.Drawing.Size(86, 20);
@@ -8343,7 +8398,7 @@
             // cbTxBurninEnCh2
             // 
             this.cbTxBurninEnCh2.AutoSize = true;
-            this.cbTxBurninEnCh2.Location = new System.Drawing.Point(146, 93);
+            this.cbTxBurninEnCh2.Location = new System.Drawing.Point(513, 70);
             this.cbTxBurninEnCh2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxBurninEnCh2.Name = "cbTxBurninEnCh2";
             this.cbTxBurninEnCh2.Size = new System.Drawing.Size(85, 16);
@@ -8569,6 +8624,10 @@
             // 
             // tpLaserDriverControlCh3
             // 
+            this.tpLaserDriverControlCh3.Controls.Add(this.groupBox9);
+            this.tpLaserDriverControlCh3.Controls.Add(this.groupBox10);
+            this.tpLaserDriverControlCh3.Controls.Add(this.groupBox11);
+            this.tpLaserDriverControlCh3.Controls.Add(this.groupBox12);
             this.tpLaserDriverControlCh3.Controls.Add(this.cbTxIbiasAdcSelectCh3);
             this.tpLaserDriverControlCh3.Controls.Add(this.lTxDesiredImodCh3);
             this.tpLaserDriverControlCh3.Controls.Add(this.cbTxDesiredImodCh3);
@@ -8581,45 +8640,6 @@
             this.tpLaserDriverControlCh3.Controls.Add(this.cbTxMidPostPolinvCh3);
             this.tpLaserDriverControlCh3.Controls.Add(this.lTxBotPostPolinvCh3);
             this.tpLaserDriverControlCh3.Controls.Add(this.cbTxBotPostPolinvCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.cbDacTxDacPostTopCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.lDacTxDacPostTopCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.cbDacTxDacPostTopPdbCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.cbDacTxDacPostMidCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.lDacTxDacPostMidCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.cbDacTxDacPostMidPdbCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.cbDacTxDacPostBotCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.lDacTxDacPostBotCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.cbDacTxDacPostBotPdbCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.cbDacTxDacPreTopCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.lDacTxDacPreTopCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.cbDacTxDacPreTopPdbCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.cbDacTxDacPreMidCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.lDacTxDacPreMidCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.cbDacTxDacPreMidPdbCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.cbDacTxDacPreBotCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.lDacTxDacMain8bTopCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.cbDacTxDacMain8bTopCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.lDacTxDacMain8bMidCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.cbDacTxDacMain8bMidCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.lDacTxDacPreBotCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.cbDacTxDacPreBotPdbCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.lDacTxDacMain8bBotCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.cbDacTxDacMain8bBotCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.lDacTxDacDcdTopCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.cbDacTxDacDcdTopCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.cbDacTxDacDcdTopPdbCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.cbTxTopDcdDacPolflipCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.cbTxIdoubleEnTopCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.lDacTxDacDcdMidCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.cbDacTxDacDcdMidCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.cbDacTxDacDcdMidPdbCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.cbTxMidDcdDacPolflipCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.cbTxIdoubleEnMidCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.lDacTxDacDcdBotCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.cbDacTxDacDcdBotCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.cbDacTxDacDcdBotPdbCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.cbTxBotDcdDacPolflipCh3);
-            this.tpLaserDriverControlCh3.Controls.Add(this.cbTxIdoubleEnBotCh3);
             this.tpLaserDriverControlCh3.Controls.Add(this.lTxIburninCh3);
             this.tpLaserDriverControlCh3.Controls.Add(this.cbTxIburninCh3);
             this.tpLaserDriverControlCh3.Controls.Add(this.cbTxBurninEnCh3);
@@ -8652,542 +8672,582 @@
             this.tpLaserDriverControlCh3.Text = "Ch3";
             this.tpLaserDriverControlCh3.UseVisualStyleBackColor = true;
             // 
-            // cbTxIbiasAdcSelectCh3
+            // groupBox9
             // 
-            this.cbTxIbiasAdcSelectCh3.AutoSize = true;
-            this.cbTxIbiasAdcSelectCh3.Location = new System.Drawing.Point(467, 297);
-            this.cbTxIbiasAdcSelectCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbTxIbiasAdcSelectCh3.Name = "cbTxIbiasAdcSelectCh3";
-            this.cbTxIbiasAdcSelectCh3.Size = new System.Drawing.Size(108, 16);
-            this.cbTxIbiasAdcSelectCh3.TabIndex = 147;
-            this.cbTxIbiasAdcSelectCh3.Text = "Tx ibias adc select";
-            this.cbTxIbiasAdcSelectCh3.UseVisualStyleBackColor = true;
-            this.cbTxIbiasAdcSelectCh3.CheckedChanged += new System.EventHandler(this.cbTxIbiasAdcSelectCh3_CheckedChanged);
-            // 
-            // lTxDesiredImodCh3
-            // 
-            this.lTxDesiredImodCh3.AutoSize = true;
-            this.lTxDesiredImodCh3.Location = new System.Drawing.Point(285, 298);
-            this.lTxDesiredImodCh3.Name = "lTxDesiredImodCh3";
-            this.lTxDesiredImodCh3.Size = new System.Drawing.Size(84, 12);
-            this.lTxDesiredImodCh3.TabIndex = 146;
-            this.lTxDesiredImodCh3.Text = "Tx desired imod:";
-            // 
-            // cbTxDesiredImodCh3
-            // 
-            this.cbTxDesiredImodCh3.FormattingEnabled = true;
-            this.cbTxDesiredImodCh3.Location = new System.Drawing.Point(376, 295);
-            this.cbTxDesiredImodCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbTxDesiredImodCh3.Name = "cbTxDesiredImodCh3";
-            this.cbTxDesiredImodCh3.Size = new System.Drawing.Size(86, 20);
-            this.cbTxDesiredImodCh3.TabIndex = 145;
-            this.cbTxDesiredImodCh3.SelectedIndexChanged += new System.EventHandler(this.cbTxDesiredImodCh3_SelectedIndexChanged);
-            // 
-            // cbTxEnableAutoImodCh3
-            // 
-            this.cbTxEnableAutoImodCh3.AutoSize = true;
-            this.cbTxEnableAutoImodCh3.Location = new System.Drawing.Point(193, 297);
-            this.cbTxEnableAutoImodCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbTxEnableAutoImodCh3.Name = "cbTxEnableAutoImodCh3";
-            this.cbTxEnableAutoImodCh3.Size = new System.Drawing.Size(87, 16);
-            this.cbTxEnableAutoImodCh3.TabIndex = 144;
-            this.cbTxEnableAutoImodCh3.Text = "Tx auto imod";
-            this.cbTxEnableAutoImodCh3.UseVisualStyleBackColor = true;
-            this.cbTxEnableAutoImodCh3.CheckedChanged += new System.EventHandler(this.cbTxEnableAutoImodCh3_CheckedChanged);
-            // 
-            // cbTxPdbLbkInCh3
-            // 
-            this.cbTxPdbLbkInCh3.AutoSize = true;
-            this.cbTxPdbLbkInCh3.Location = new System.Drawing.Point(103, 297);
-            this.cbTxPdbLbkInCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbTxPdbLbkInCh3.Name = "cbTxPdbLbkInCh3";
-            this.cbTxPdbLbkInCh3.Size = new System.Drawing.Size(88, 16);
-            this.cbTxPdbLbkInCh3.TabIndex = 143;
-            this.cbTxPdbLbkInCh3.Text = "Tx pdb lbk in";
-            this.cbTxPdbLbkInCh3.UseVisualStyleBackColor = true;
-            this.cbTxPdbLbkInCh3.CheckedChanged += new System.EventHandler(this.cbTxPdbLbkInCh3_CheckedChanged);
-            // 
-            // cbTxPdbLbkOutCh3
-            // 
-            this.cbTxPdbLbkOutCh3.AutoSize = true;
-            this.cbTxPdbLbkOutCh3.Location = new System.Drawing.Point(5, 297);
-            this.cbTxPdbLbkOutCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbTxPdbLbkOutCh3.Name = "cbTxPdbLbkOutCh3";
-            this.cbTxPdbLbkOutCh3.Size = new System.Drawing.Size(94, 16);
-            this.cbTxPdbLbkOutCh3.TabIndex = 142;
-            this.cbTxPdbLbkOutCh3.Text = "Tx pdb lbk out";
-            this.cbTxPdbLbkOutCh3.UseVisualStyleBackColor = true;
-            this.cbTxPdbLbkOutCh3.CheckedChanged += new System.EventHandler(this.cbTxPdbLbkOutCh3_CheckedChanged);
-            // 
-            // lTxTopPostPolinvCh3
-            // 
-            this.lTxTopPostPolinvCh3.AutoSize = true;
-            this.lTxTopPostPolinvCh3.Location = new System.Drawing.Point(475, 274);
-            this.lTxTopPostPolinvCh3.Name = "lTxTopPostPolinvCh3";
-            this.lTxTopPostPolinvCh3.Size = new System.Drawing.Size(94, 12);
-            this.lTxTopPostPolinvCh3.TabIndex = 141;
-            this.lTxTopPostPolinvCh3.Text = "Tx top post polinv:";
-            // 
-            // cbTxTopPostPolinvCh3
-            // 
-            this.cbTxTopPostPolinvCh3.FormattingEnabled = true;
-            this.cbTxTopPostPolinvCh3.Location = new System.Drawing.Point(576, 272);
-            this.cbTxTopPostPolinvCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbTxTopPostPolinvCh3.Name = "cbTxTopPostPolinvCh3";
-            this.cbTxTopPostPolinvCh3.Size = new System.Drawing.Size(129, 20);
-            this.cbTxTopPostPolinvCh3.TabIndex = 140;
-            this.cbTxTopPostPolinvCh3.SelectedIndexChanged += new System.EventHandler(this.cbTxTopPostPolinvCh3_SelectedIndexChanged);
-            // 
-            // lTxMidPostPolinvCh3
-            // 
-            this.lTxMidPostPolinvCh3.AutoSize = true;
-            this.lTxMidPostPolinvCh3.Location = new System.Drawing.Point(240, 274);
-            this.lTxMidPostPolinvCh3.Name = "lTxMidPostPolinvCh3";
-            this.lTxMidPostPolinvCh3.Size = new System.Drawing.Size(97, 12);
-            this.lTxMidPostPolinvCh3.TabIndex = 139;
-            this.lTxMidPostPolinvCh3.Text = "Tx mid post polinv:";
-            // 
-            // cbTxMidPostPolinvCh3
-            // 
-            this.cbTxMidPostPolinvCh3.FormattingEnabled = true;
-            this.cbTxMidPostPolinvCh3.Location = new System.Drawing.Point(341, 272);
-            this.cbTxMidPostPolinvCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbTxMidPostPolinvCh3.Name = "cbTxMidPostPolinvCh3";
-            this.cbTxMidPostPolinvCh3.Size = new System.Drawing.Size(129, 20);
-            this.cbTxMidPostPolinvCh3.TabIndex = 138;
-            this.cbTxMidPostPolinvCh3.SelectedIndexChanged += new System.EventHandler(this.cbTxMidPostPolinvCh3_SelectedIndexChanged);
-            // 
-            // lTxBotPostPolinvCh3
-            // 
-            this.lTxBotPostPolinvCh3.AutoSize = true;
-            this.lTxBotPostPolinvCh3.Location = new System.Drawing.Point(5, 274);
-            this.lTxBotPostPolinvCh3.Name = "lTxBotPostPolinvCh3";
-            this.lTxBotPostPolinvCh3.Size = new System.Drawing.Size(94, 12);
-            this.lTxBotPostPolinvCh3.TabIndex = 137;
-            this.lTxBotPostPolinvCh3.Text = "Tx bot post polinv:";
-            // 
-            // cbTxBotPostPolinvCh3
-            // 
-            this.cbTxBotPostPolinvCh3.FormattingEnabled = true;
-            this.cbTxBotPostPolinvCh3.Location = new System.Drawing.Point(106, 272);
-            this.cbTxBotPostPolinvCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbTxBotPostPolinvCh3.Name = "cbTxBotPostPolinvCh3";
-            this.cbTxBotPostPolinvCh3.Size = new System.Drawing.Size(129, 20);
-            this.cbTxBotPostPolinvCh3.TabIndex = 136;
-            this.cbTxBotPostPolinvCh3.SelectedIndexChanged += new System.EventHandler(this.cbTxBotPostPolinvCh3_SelectedIndexChanged);
-            // 
-            // cbDacTxDacPostTopCh3
-            // 
-            this.cbDacTxDacPostTopCh3.FormattingEnabled = true;
-            this.cbDacTxDacPostTopCh3.Location = new System.Drawing.Point(591, 249);
-            this.cbDacTxDacPostTopCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacPostTopCh3.Name = "cbDacTxDacPostTopCh3";
-            this.cbDacTxDacPostTopCh3.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacPostTopCh3.TabIndex = 135;
-            this.cbDacTxDacPostTopCh3.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacPostTopCh3_SelectedIndexChanged);
-            // 
-            // lDacTxDacPostTopCh3
-            // 
-            this.lDacTxDacPostTopCh3.AutoSize = true;
-            this.lDacTxDacPostTopCh3.Location = new System.Drawing.Point(483, 251);
-            this.lDacTxDacPostTopCh3.Name = "lDacTxDacPostTopCh3";
-            this.lDacTxDacPostTopCh3.Size = new System.Drawing.Size(97, 12);
-            this.lDacTxDacPostTopCh3.TabIndex = 134;
-            this.lDacTxDacPostTopCh3.Text = "Dac tx dac post top:";
-            // 
-            // cbDacTxDacPostTopPdbCh3
-            // 
-            this.cbDacTxDacPostTopPdbCh3.AutoSize = true;
-            this.cbDacTxDacPostTopPdbCh3.Location = new System.Drawing.Point(344, 250);
-            this.cbDacTxDacPostTopPdbCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacPostTopPdbCh3.Name = "cbDacTxDacPostTopPdbCh3";
-            this.cbDacTxDacPostTopPdbCh3.Size = new System.Drawing.Size(134, 16);
-            this.cbDacTxDacPostTopPdbCh3.TabIndex = 133;
-            this.cbDacTxDacPostTopPdbCh3.Text = "Dac tx dac post top pdb";
-            this.cbDacTxDacPostTopPdbCh3.UseVisualStyleBackColor = true;
-            this.cbDacTxDacPostTopPdbCh3.CheckedChanged += new System.EventHandler(this.cbDacTxDacPostTopPdbCh3_CheckedChanged);
-            // 
-            // cbDacTxDacPostMidCh3
-            // 
-            this.cbDacTxDacPostMidCh3.FormattingEnabled = true;
-            this.cbDacTxDacPostMidCh3.Location = new System.Drawing.Point(253, 249);
-            this.cbDacTxDacPostMidCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacPostMidCh3.Name = "cbDacTxDacPostMidCh3";
-            this.cbDacTxDacPostMidCh3.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacPostMidCh3.TabIndex = 132;
-            this.cbDacTxDacPostMidCh3.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacPostMidCh3_SelectedIndexChanged);
-            // 
-            // lDacTxDacPostMidCh3
-            // 
-            this.lDacTxDacPostMidCh3.AutoSize = true;
-            this.lDacTxDacPostMidCh3.Location = new System.Drawing.Point(145, 251);
-            this.lDacTxDacPostMidCh3.Name = "lDacTxDacPostMidCh3";
-            this.lDacTxDacPostMidCh3.Size = new System.Drawing.Size(100, 12);
-            this.lDacTxDacPostMidCh3.TabIndex = 131;
-            this.lDacTxDacPostMidCh3.Text = "Dac tx dac post mid:";
-            // 
-            // cbDacTxDacPostMidPdbCh3
-            // 
-            this.cbDacTxDacPostMidPdbCh3.AutoSize = true;
-            this.cbDacTxDacPostMidPdbCh3.Location = new System.Drawing.Point(5, 250);
-            this.cbDacTxDacPostMidPdbCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacPostMidPdbCh3.Name = "cbDacTxDacPostMidPdbCh3";
-            this.cbDacTxDacPostMidPdbCh3.Size = new System.Drawing.Size(137, 16);
-            this.cbDacTxDacPostMidPdbCh3.TabIndex = 130;
-            this.cbDacTxDacPostMidPdbCh3.Text = "Dac tx dac post mid pdb";
-            this.cbDacTxDacPostMidPdbCh3.UseVisualStyleBackColor = true;
-            this.cbDacTxDacPostMidPdbCh3.CheckedChanged += new System.EventHandler(this.cbDacTxDacPostMidPdbCh3_CheckedChanged);
+            this.groupBox9.Controls.Add(this.cbDacTxDacPostBotCh3);
+            this.groupBox9.Controls.Add(this.lDacTxDacPostBotCh3);
+            this.groupBox9.Controls.Add(this.cbDacTxDacPostBotPdbCh3);
+            this.groupBox9.Controls.Add(this.cbDacTxDacPostMidCh3);
+            this.groupBox9.Controls.Add(this.lDacTxDacPostMidCh3);
+            this.groupBox9.Controls.Add(this.cbDacTxDacPostMidPdbCh3);
+            this.groupBox9.Controls.Add(this.cbDacTxDacPostTopCh3);
+            this.groupBox9.Controls.Add(this.lDacTxDacPostTopCh3);
+            this.groupBox9.Controls.Add(this.cbDacTxDacPostTopPdbCh3);
+            this.groupBox9.Location = new System.Drawing.Point(336, 207);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(325, 85);
+            this.groupBox9.TabIndex = 128;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "PostEmphasis";
             // 
             // cbDacTxDacPostBotCh3
             // 
             this.cbDacTxDacPostBotCh3.FormattingEnabled = true;
-            this.cbDacTxDacPostBotCh3.Location = new System.Drawing.Point(586, 226);
+            this.cbDacTxDacPostBotCh3.Location = new System.Drawing.Point(234, 60);
             this.cbDacTxDacPostBotCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacPostBotCh3.Name = "cbDacTxDacPostBotCh3";
             this.cbDacTxDacPostBotCh3.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacPostBotCh3.TabIndex = 129;
-            this.cbDacTxDacPostBotCh3.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacPostBotCh3_SelectedIndexChanged);
+            this.cbDacTxDacPostBotCh3.TabIndex = 70;
             // 
             // lDacTxDacPostBotCh3
             // 
             this.lDacTxDacPostBotCh3.AutoSize = true;
-            this.lDacTxDacPostBotCh3.Location = new System.Drawing.Point(478, 228);
+            this.lDacTxDacPostBotCh3.Location = new System.Drawing.Point(135, 62);
             this.lDacTxDacPostBotCh3.Name = "lDacTxDacPostBotCh3";
             this.lDacTxDacPostBotCh3.Size = new System.Drawing.Size(97, 12);
-            this.lDacTxDacPostBotCh3.TabIndex = 128;
+            this.lDacTxDacPostBotCh3.TabIndex = 69;
             this.lDacTxDacPostBotCh3.Text = "Dac tx dac post bot:";
             // 
             // cbDacTxDacPostBotPdbCh3
             // 
             this.cbDacTxDacPostBotPdbCh3.AutoSize = true;
-            this.cbDacTxDacPostBotPdbCh3.Location = new System.Drawing.Point(339, 227);
+            this.cbDacTxDacPostBotPdbCh3.Location = new System.Drawing.Point(4, 62);
             this.cbDacTxDacPostBotPdbCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacPostBotPdbCh3.Name = "cbDacTxDacPostBotPdbCh3";
             this.cbDacTxDacPostBotPdbCh3.Size = new System.Drawing.Size(134, 16);
-            this.cbDacTxDacPostBotPdbCh3.TabIndex = 127;
+            this.cbDacTxDacPostBotPdbCh3.TabIndex = 68;
             this.cbDacTxDacPostBotPdbCh3.Text = "Dac tx dac post bot pdb";
             this.cbDacTxDacPostBotPdbCh3.UseVisualStyleBackColor = true;
-            this.cbDacTxDacPostBotPdbCh3.CheckedChanged += new System.EventHandler(this.cbDacTxDacPostBotPdbCh3_CheckedChanged);
+            // 
+            // cbDacTxDacPostMidCh3
+            // 
+            this.cbDacTxDacPostMidCh3.FormattingEnabled = true;
+            this.cbDacTxDacPostMidCh3.Location = new System.Drawing.Point(234, 38);
+            this.cbDacTxDacPostMidCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacPostMidCh3.Name = "cbDacTxDacPostMidCh3";
+            this.cbDacTxDacPostMidCh3.Size = new System.Drawing.Size(86, 20);
+            this.cbDacTxDacPostMidCh3.TabIndex = 67;
+            // 
+            // lDacTxDacPostMidCh3
+            // 
+            this.lDacTxDacPostMidCh3.AutoSize = true;
+            this.lDacTxDacPostMidCh3.Location = new System.Drawing.Point(135, 40);
+            this.lDacTxDacPostMidCh3.Name = "lDacTxDacPostMidCh3";
+            this.lDacTxDacPostMidCh3.Size = new System.Drawing.Size(100, 12);
+            this.lDacTxDacPostMidCh3.TabIndex = 66;
+            this.lDacTxDacPostMidCh3.Text = "Dac tx dac post mid:";
+            // 
+            // cbDacTxDacPostMidPdbCh3
+            // 
+            this.cbDacTxDacPostMidPdbCh3.AutoSize = true;
+            this.cbDacTxDacPostMidPdbCh3.Location = new System.Drawing.Point(4, 40);
+            this.cbDacTxDacPostMidPdbCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacPostMidPdbCh3.Name = "cbDacTxDacPostMidPdbCh3";
+            this.cbDacTxDacPostMidPdbCh3.Size = new System.Drawing.Size(137, 16);
+            this.cbDacTxDacPostMidPdbCh3.TabIndex = 65;
+            this.cbDacTxDacPostMidPdbCh3.Text = "Dac tx dac post mid pdb";
+            this.cbDacTxDacPostMidPdbCh3.UseVisualStyleBackColor = true;
+            // 
+            // cbDacTxDacPostTopCh3
+            // 
+            this.cbDacTxDacPostTopCh3.FormattingEnabled = true;
+            this.cbDacTxDacPostTopCh3.Location = new System.Drawing.Point(234, 16);
+            this.cbDacTxDacPostTopCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacPostTopCh3.Name = "cbDacTxDacPostTopCh3";
+            this.cbDacTxDacPostTopCh3.Size = new System.Drawing.Size(86, 20);
+            this.cbDacTxDacPostTopCh3.TabIndex = 64;
+            // 
+            // lDacTxDacPostTopCh3
+            // 
+            this.lDacTxDacPostTopCh3.AutoSize = true;
+            this.lDacTxDacPostTopCh3.Location = new System.Drawing.Point(135, 18);
+            this.lDacTxDacPostTopCh3.Name = "lDacTxDacPostTopCh3";
+            this.lDacTxDacPostTopCh3.Size = new System.Drawing.Size(97, 12);
+            this.lDacTxDacPostTopCh3.TabIndex = 63;
+            this.lDacTxDacPostTopCh3.Text = "Dac tx dac post top:";
+            // 
+            // cbDacTxDacPostTopPdbCh3
+            // 
+            this.cbDacTxDacPostTopPdbCh3.AutoSize = true;
+            this.cbDacTxDacPostTopPdbCh3.Location = new System.Drawing.Point(4, 18);
+            this.cbDacTxDacPostTopPdbCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacPostTopPdbCh3.Name = "cbDacTxDacPostTopPdbCh3";
+            this.cbDacTxDacPostTopPdbCh3.Size = new System.Drawing.Size(134, 16);
+            this.cbDacTxDacPostTopPdbCh3.TabIndex = 62;
+            this.cbDacTxDacPostTopPdbCh3.Text = "Dac tx dac post top pdb";
+            this.cbDacTxDacPostTopPdbCh3.UseVisualStyleBackColor = true;
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.cbDacTxDacPreTopCh3);
+            this.groupBox10.Controls.Add(this.lDacTxDacPreTopCh3);
+            this.groupBox10.Controls.Add(this.cbDacTxDacPreTopPdbCh3);
+            this.groupBox10.Controls.Add(this.cbDacTxDacPreMidCh3);
+            this.groupBox10.Controls.Add(this.lDacTxDacPreMidCh3);
+            this.groupBox10.Controls.Add(this.cbDacTxDacPreMidPdbCh3);
+            this.groupBox10.Controls.Add(this.cbDacTxDacPreBotCh3);
+            this.groupBox10.Controls.Add(this.lDacTxDacPreBotCh3);
+            this.groupBox10.Controls.Add(this.cbDacTxDacPreBotPdbCh3);
+            this.groupBox10.Location = new System.Drawing.Point(5, 207);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(325, 85);
+            this.groupBox10.TabIndex = 127;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "PreEmphasis";
             // 
             // cbDacTxDacPreTopCh3
             // 
             this.cbDacTxDacPreTopCh3.FormattingEnabled = true;
-            this.cbDacTxDacPreTopCh3.Location = new System.Drawing.Point(248, 226);
+            this.cbDacTxDacPreTopCh3.Location = new System.Drawing.Point(231, 16);
             this.cbDacTxDacPreTopCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacPreTopCh3.Name = "cbDacTxDacPreTopCh3";
             this.cbDacTxDacPreTopCh3.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacPreTopCh3.TabIndex = 126;
-            this.cbDacTxDacPreTopCh3.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacPreTopCh3_SelectedIndexChanged);
+            this.cbDacTxDacPreTopCh3.TabIndex = 61;
             // 
             // lDacTxDacPreTopCh3
             // 
             this.lDacTxDacPreTopCh3.AutoSize = true;
-            this.lDacTxDacPreTopCh3.Location = new System.Drawing.Point(145, 228);
+            this.lDacTxDacPreTopCh3.Location = new System.Drawing.Point(135, 18);
             this.lDacTxDacPreTopCh3.Name = "lDacTxDacPreTopCh3";
             this.lDacTxDacPreTopCh3.Size = new System.Drawing.Size(93, 12);
-            this.lDacTxDacPreTopCh3.TabIndex = 125;
+            this.lDacTxDacPreTopCh3.TabIndex = 60;
             this.lDacTxDacPreTopCh3.Text = "Dac tx dac pre top:";
             // 
             // cbDacTxDacPreTopPdbCh3
             // 
             this.cbDacTxDacPreTopPdbCh3.AutoSize = true;
-            this.cbDacTxDacPreTopPdbCh3.Location = new System.Drawing.Point(5, 227);
+            this.cbDacTxDacPreTopPdbCh3.Location = new System.Drawing.Point(4, 18);
             this.cbDacTxDacPreTopPdbCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacPreTopPdbCh3.Name = "cbDacTxDacPreTopPdbCh3";
             this.cbDacTxDacPreTopPdbCh3.Size = new System.Drawing.Size(130, 16);
-            this.cbDacTxDacPreTopPdbCh3.TabIndex = 124;
+            this.cbDacTxDacPreTopPdbCh3.TabIndex = 59;
             this.cbDacTxDacPreTopPdbCh3.Text = "Dac tx dac pre top pdb";
             this.cbDacTxDacPreTopPdbCh3.UseVisualStyleBackColor = true;
-            this.cbDacTxDacPreTopPdbCh3.CheckedChanged += new System.EventHandler(this.cbDacTxDacPreTopPdbCh3_CheckedChanged);
             // 
             // cbDacTxDacPreMidCh3
             // 
             this.cbDacTxDacPreMidCh3.FormattingEnabled = true;
-            this.cbDacTxDacPreMidCh3.Location = new System.Drawing.Point(581, 202);
+            this.cbDacTxDacPreMidCh3.Location = new System.Drawing.Point(231, 38);
             this.cbDacTxDacPreMidCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacPreMidCh3.Name = "cbDacTxDacPreMidCh3";
             this.cbDacTxDacPreMidCh3.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacPreMidCh3.TabIndex = 123;
-            this.cbDacTxDacPreMidCh3.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacPreMidCh3_SelectedIndexChanged);
+            this.cbDacTxDacPreMidCh3.TabIndex = 58;
             // 
             // lDacTxDacPreMidCh3
             // 
             this.lDacTxDacPreMidCh3.AutoSize = true;
-            this.lDacTxDacPreMidCh3.Location = new System.Drawing.Point(478, 205);
+            this.lDacTxDacPreMidCh3.Location = new System.Drawing.Point(135, 40);
             this.lDacTxDacPreMidCh3.Name = "lDacTxDacPreMidCh3";
             this.lDacTxDacPreMidCh3.Size = new System.Drawing.Size(96, 12);
-            this.lDacTxDacPreMidCh3.TabIndex = 122;
+            this.lDacTxDacPreMidCh3.TabIndex = 57;
             this.lDacTxDacPreMidCh3.Text = "Dac tx dac pre mid:";
             // 
             // cbDacTxDacPreMidPdbCh3
             // 
             this.cbDacTxDacPreMidPdbCh3.AutoSize = true;
-            this.cbDacTxDacPreMidPdbCh3.Location = new System.Drawing.Point(339, 204);
+            this.cbDacTxDacPreMidPdbCh3.Location = new System.Drawing.Point(4, 40);
             this.cbDacTxDacPreMidPdbCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacPreMidPdbCh3.Name = "cbDacTxDacPreMidPdbCh3";
             this.cbDacTxDacPreMidPdbCh3.Size = new System.Drawing.Size(133, 16);
-            this.cbDacTxDacPreMidPdbCh3.TabIndex = 121;
+            this.cbDacTxDacPreMidPdbCh3.TabIndex = 56;
             this.cbDacTxDacPreMidPdbCh3.Text = "Dac tx dac pre mid pdb";
             this.cbDacTxDacPreMidPdbCh3.UseVisualStyleBackColor = true;
-            this.cbDacTxDacPreMidPdbCh3.CheckedChanged += new System.EventHandler(this.cbDacTxDacPreMidPdbCh3_CheckedChanged);
             // 
             // cbDacTxDacPreBotCh3
             // 
             this.cbDacTxDacPreBotCh3.FormattingEnabled = true;
-            this.cbDacTxDacPreBotCh3.Location = new System.Drawing.Point(248, 202);
+            this.cbDacTxDacPreBotCh3.Location = new System.Drawing.Point(231, 60);
             this.cbDacTxDacPreBotCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacPreBotCh3.Name = "cbDacTxDacPreBotCh3";
             this.cbDacTxDacPreBotCh3.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacPreBotCh3.TabIndex = 120;
-            this.cbDacTxDacPreBotCh3.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacPreBotCh3_SelectedIndexChanged);
-            // 
-            // lDacTxDacMain8bTopCh3
-            // 
-            this.lDacTxDacMain8bTopCh3.AutoSize = true;
-            this.lDacTxDacMain8bTopCh3.Location = new System.Drawing.Point(434, 183);
-            this.lDacTxDacMain8bTopCh3.Name = "lDacTxDacMain8bTopCh3";
-            this.lDacTxDacMain8bTopCh3.Size = new System.Drawing.Size(113, 12);
-            this.lDacTxDacMain8bTopCh3.TabIndex = 119;
-            this.lDacTxDacMain8bTopCh3.Text = "Dac tx dac main8b top:";
-            // 
-            // cbDacTxDacMain8bTopCh3
-            // 
-            this.cbDacTxDacMain8bTopCh3.FormattingEnabled = true;
-            this.cbDacTxDacMain8bTopCh3.Location = new System.Drawing.Point(557, 181);
-            this.cbDacTxDacMain8bTopCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacMain8bTopCh3.Name = "cbDacTxDacMain8bTopCh3";
-            this.cbDacTxDacMain8bTopCh3.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacMain8bTopCh3.TabIndex = 118;
-            this.cbDacTxDacMain8bTopCh3.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacMain8bTopCh3_SelectedIndexChanged);
-            // 
-            // lDacTxDacMain8bMidCh3
-            // 
-            this.lDacTxDacMain8bMidCh3.AutoSize = true;
-            this.lDacTxDacMain8bMidCh3.Location = new System.Drawing.Point(219, 183);
-            this.lDacTxDacMain8bMidCh3.Name = "lDacTxDacMain8bMidCh3";
-            this.lDacTxDacMain8bMidCh3.Size = new System.Drawing.Size(116, 12);
-            this.lDacTxDacMain8bMidCh3.TabIndex = 117;
-            this.lDacTxDacMain8bMidCh3.Text = "Dac tx dac main8b mid:";
-            // 
-            // cbDacTxDacMain8bMidCh3
-            // 
-            this.cbDacTxDacMain8bMidCh3.FormattingEnabled = true;
-            this.cbDacTxDacMain8bMidCh3.Location = new System.Drawing.Point(343, 181);
-            this.cbDacTxDacMain8bMidCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDacTxDacMain8bMidCh3.Name = "cbDacTxDacMain8bMidCh3";
-            this.cbDacTxDacMain8bMidCh3.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacMain8bMidCh3.TabIndex = 116;
-            this.cbDacTxDacMain8bMidCh3.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacMain8bMidCh3_SelectedIndexChanged);
+            this.cbDacTxDacPreBotCh3.TabIndex = 55;
             // 
             // lDacTxDacPreBotCh3
             // 
             this.lDacTxDacPreBotCh3.AutoSize = true;
-            this.lDacTxDacPreBotCh3.Location = new System.Drawing.Point(145, 205);
+            this.lDacTxDacPreBotCh3.Location = new System.Drawing.Point(135, 63);
             this.lDacTxDacPreBotCh3.Name = "lDacTxDacPreBotCh3";
             this.lDacTxDacPreBotCh3.Size = new System.Drawing.Size(93, 12);
-            this.lDacTxDacPreBotCh3.TabIndex = 115;
+            this.lDacTxDacPreBotCh3.TabIndex = 54;
             this.lDacTxDacPreBotCh3.Text = "Dac tx dac pre bot:";
             // 
             // cbDacTxDacPreBotPdbCh3
             // 
             this.cbDacTxDacPreBotPdbCh3.AutoSize = true;
-            this.cbDacTxDacPreBotPdbCh3.Location = new System.Drawing.Point(5, 204);
+            this.cbDacTxDacPreBotPdbCh3.Location = new System.Drawing.Point(4, 62);
             this.cbDacTxDacPreBotPdbCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacPreBotPdbCh3.Name = "cbDacTxDacPreBotPdbCh3";
             this.cbDacTxDacPreBotPdbCh3.Size = new System.Drawing.Size(130, 16);
-            this.cbDacTxDacPreBotPdbCh3.TabIndex = 114;
+            this.cbDacTxDacPreBotPdbCh3.TabIndex = 53;
             this.cbDacTxDacPreBotPdbCh3.Text = "Dac tx dac pre bot pdb";
             this.cbDacTxDacPreBotPdbCh3.UseVisualStyleBackColor = true;
-            this.cbDacTxDacPreBotPdbCh3.CheckedChanged += new System.EventHandler(this.cbDacTxDacPreBotPdbCh3_CheckedChanged);
             // 
-            // lDacTxDacMain8bBotCh3
+            // groupBox11
             // 
-            this.lDacTxDacMain8bBotCh3.AutoSize = true;
-            this.lDacTxDacMain8bBotCh3.Location = new System.Drawing.Point(5, 183);
-            this.lDacTxDacMain8bBotCh3.Name = "lDacTxDacMain8bBotCh3";
-            this.lDacTxDacMain8bBotCh3.Size = new System.Drawing.Size(113, 12);
-            this.lDacTxDacMain8bBotCh3.TabIndex = 113;
-            this.lDacTxDacMain8bBotCh3.Text = "Dac tx dac main8b bot:";
+            this.groupBox11.Controls.Add(this.cbDacTxDacMain8bTopCh3);
+            this.groupBox11.Controls.Add(this.cbDacTxDacMain8bMidCh3);
+            this.groupBox11.Controls.Add(this.cbDacTxDacMain8bBotCh3);
+            this.groupBox11.Controls.Add(this.lDacTxDacMain8bTopCh3);
+            this.groupBox11.Controls.Add(this.lDacTxDacMain8bMidCh3);
+            this.groupBox11.Controls.Add(this.lDacTxDacMain8bBotCh3);
+            this.groupBox11.Location = new System.Drawing.Point(5, 116);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(220, 85);
+            this.groupBox11.TabIndex = 126;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Modulation current";
+            // 
+            // cbDacTxDacMain8bTopCh3
+            // 
+            this.cbDacTxDacMain8bTopCh3.FormattingEnabled = true;
+            this.cbDacTxDacMain8bTopCh3.Location = new System.Drawing.Point(125, 12);
+            this.cbDacTxDacMain8bTopCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacMain8bTopCh3.Name = "cbDacTxDacMain8bTopCh3";
+            this.cbDacTxDacMain8bTopCh3.Size = new System.Drawing.Size(90, 20);
+            this.cbDacTxDacMain8bTopCh3.TabIndex = 48;
+            // 
+            // cbDacTxDacMain8bMidCh3
+            // 
+            this.cbDacTxDacMain8bMidCh3.FormattingEnabled = true;
+            this.cbDacTxDacMain8bMidCh3.Location = new System.Drawing.Point(125, 34);
+            this.cbDacTxDacMain8bMidCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbDacTxDacMain8bMidCh3.Name = "cbDacTxDacMain8bMidCh3";
+            this.cbDacTxDacMain8bMidCh3.Size = new System.Drawing.Size(90, 20);
+            this.cbDacTxDacMain8bMidCh3.TabIndex = 47;
             // 
             // cbDacTxDacMain8bBotCh3
             // 
             this.cbDacTxDacMain8bBotCh3.FormattingEnabled = true;
-            this.cbDacTxDacMain8bBotCh3.Location = new System.Drawing.Point(129, 181);
+            this.cbDacTxDacMain8bBotCh3.Location = new System.Drawing.Point(125, 56);
             this.cbDacTxDacMain8bBotCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacMain8bBotCh3.Name = "cbDacTxDacMain8bBotCh3";
-            this.cbDacTxDacMain8bBotCh3.Size = new System.Drawing.Size(86, 20);
-            this.cbDacTxDacMain8bBotCh3.TabIndex = 112;
-            this.cbDacTxDacMain8bBotCh3.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacMain8bBotCh3_SelectedIndexChanged);
+            this.cbDacTxDacMain8bBotCh3.Size = new System.Drawing.Size(90, 20);
+            this.cbDacTxDacMain8bBotCh3.TabIndex = 46;
+            // 
+            // lDacTxDacMain8bTopCh3
+            // 
+            this.lDacTxDacMain8bTopCh3.AutoSize = true;
+            this.lDacTxDacMain8bTopCh3.Location = new System.Drawing.Point(6, 18);
+            this.lDacTxDacMain8bTopCh3.Name = "lDacTxDacMain8bTopCh3";
+            this.lDacTxDacMain8bTopCh3.Size = new System.Drawing.Size(113, 12);
+            this.lDacTxDacMain8bTopCh3.TabIndex = 45;
+            this.lDacTxDacMain8bTopCh3.Text = "Dac tx dac main8b top:";
+            // 
+            // lDacTxDacMain8bMidCh3
+            // 
+            this.lDacTxDacMain8bMidCh3.AutoSize = true;
+            this.lDacTxDacMain8bMidCh3.Location = new System.Drawing.Point(6, 40);
+            this.lDacTxDacMain8bMidCh3.Name = "lDacTxDacMain8bMidCh3";
+            this.lDacTxDacMain8bMidCh3.Size = new System.Drawing.Size(116, 12);
+            this.lDacTxDacMain8bMidCh3.TabIndex = 43;
+            this.lDacTxDacMain8bMidCh3.Text = "Dac tx dac main8b mid:";
+            // 
+            // lDacTxDacMain8bBotCh3
+            // 
+            this.lDacTxDacMain8bBotCh3.AutoSize = true;
+            this.lDacTxDacMain8bBotCh3.Location = new System.Drawing.Point(6, 62);
+            this.lDacTxDacMain8bBotCh3.Name = "lDacTxDacMain8bBotCh3";
+            this.lDacTxDacMain8bBotCh3.Size = new System.Drawing.Size(113, 12);
+            this.lDacTxDacMain8bBotCh3.TabIndex = 39;
+            this.lDacTxDacMain8bBotCh3.Text = "Dac tx dac main8b bot:";
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.lDacTxDacDcdTopCh3);
+            this.groupBox12.Controls.Add(this.cbDacTxDacDcdTopCh3);
+            this.groupBox12.Controls.Add(this.cbDacTxDacDcdTopPdbCh3);
+            this.groupBox12.Controls.Add(this.cbTxTopDcdDacPolflipCh3);
+            this.groupBox12.Controls.Add(this.cbTxIdoubleEnTopCh3);
+            this.groupBox12.Controls.Add(this.lDacTxDacDcdMidCh3);
+            this.groupBox12.Controls.Add(this.cbDacTxDacDcdMidCh3);
+            this.groupBox12.Controls.Add(this.cbDacTxDacDcdMidPdbCh3);
+            this.groupBox12.Controls.Add(this.cbTxMidDcdDacPolflipCh3);
+            this.groupBox12.Controls.Add(this.cbTxIdoubleEnMidCh3);
+            this.groupBox12.Controls.Add(this.lDacTxDacDcdBotCh3);
+            this.groupBox12.Controls.Add(this.cbDacTxDacDcdBotCh3);
+            this.groupBox12.Controls.Add(this.cbDacTxDacDcdBotPdbCh3);
+            this.groupBox12.Controls.Add(this.cbTxBotDcdDacPolflipCh3);
+            this.groupBox12.Controls.Add(this.cbTxIdoubleEnBotCh3);
+            this.groupBox12.Location = new System.Drawing.Point(234, 116);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(550, 85);
+            this.groupBox12.TabIndex = 125;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "CrossPoint";
             // 
             // lDacTxDacDcdTopCh3
             // 
             this.lDacTxDacDcdTopCh3.AutoSize = true;
-            this.lDacTxDacDcdTopCh3.Location = new System.Drawing.Point(395, 162);
+            this.lDacTxDacDcdTopCh3.Location = new System.Drawing.Point(379, 18);
             this.lDacTxDacDcdTopCh3.Name = "lDacTxDacDcdTopCh3";
             this.lDacTxDacDcdTopCh3.Size = new System.Drawing.Size(95, 12);
-            this.lDacTxDacDcdTopCh3.TabIndex = 111;
+            this.lDacTxDacDcdTopCh3.TabIndex = 52;
             this.lDacTxDacDcdTopCh3.Text = "Dac tx dac dcd top:";
             // 
             // cbDacTxDacDcdTopCh3
             // 
             this.cbDacTxDacDcdTopCh3.FormattingEnabled = true;
-            this.cbDacTxDacDcdTopCh3.Location = new System.Drawing.Point(501, 159);
+            this.cbDacTxDacDcdTopCh3.Location = new System.Drawing.Point(478, 12);
             this.cbDacTxDacDcdTopCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacDcdTopCh3.Name = "cbDacTxDacDcdTopCh3";
-            this.cbDacTxDacDcdTopCh3.Size = new System.Drawing.Size(78, 20);
-            this.cbDacTxDacDcdTopCh3.TabIndex = 110;
-            this.cbDacTxDacDcdTopCh3.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacDcdTopCh3_SelectedIndexChanged);
+            this.cbDacTxDacDcdTopCh3.Size = new System.Drawing.Size(65, 20);
+            this.cbDacTxDacDcdTopCh3.TabIndex = 51;
             // 
             // cbDacTxDacDcdTopPdbCh3
             // 
             this.cbDacTxDacDcdTopPdbCh3.AutoSize = true;
-            this.cbDacTxDacDcdTopPdbCh3.Location = new System.Drawing.Point(253, 161);
+            this.cbDacTxDacDcdTopPdbCh3.Location = new System.Drawing.Point(244, 18);
             this.cbDacTxDacDcdTopPdbCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacDcdTopPdbCh3.Name = "cbDacTxDacDcdTopPdbCh3";
             this.cbDacTxDacDcdTopPdbCh3.Size = new System.Drawing.Size(132, 16);
-            this.cbDacTxDacDcdTopPdbCh3.TabIndex = 109;
+            this.cbDacTxDacDcdTopPdbCh3.TabIndex = 50;
             this.cbDacTxDacDcdTopPdbCh3.Text = "Dac tx dac dcd top pdb";
             this.cbDacTxDacDcdTopPdbCh3.UseVisualStyleBackColor = true;
-            this.cbDacTxDacDcdTopPdbCh3.CheckedChanged += new System.EventHandler(this.cbDacTxDacDcdTopPdbCh3_CheckedChanged);
             // 
             // cbTxTopDcdDacPolflipCh3
             // 
             this.cbTxTopDcdDacPolflipCh3.AutoSize = true;
-            this.cbTxTopDcdDacPolflipCh3.Location = new System.Drawing.Point(118, 161);
+            this.cbTxTopDcdDacPolflipCh3.Location = new System.Drawing.Point(114, 18);
             this.cbTxTopDcdDacPolflipCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxTopDcdDacPolflipCh3.Name = "cbTxTopDcdDacPolflipCh3";
             this.cbTxTopDcdDacPolflipCh3.Size = new System.Drawing.Size(128, 16);
-            this.cbTxTopDcdDacPolflipCh3.TabIndex = 108;
+            this.cbTxTopDcdDacPolflipCh3.TabIndex = 49;
             this.cbTxTopDcdDacPolflipCh3.Text = "Tx top dcd dac polflip";
             this.cbTxTopDcdDacPolflipCh3.UseVisualStyleBackColor = true;
-            this.cbTxTopDcdDacPolflipCh3.CheckedChanged += new System.EventHandler(this.cbTxTopDcdDacPolflipCh3_CheckedChanged);
             // 
             // cbTxIdoubleEnTopCh3
             // 
             this.cbTxIdoubleEnTopCh3.AutoSize = true;
-            this.cbTxIdoubleEnTopCh3.Location = new System.Drawing.Point(5, 161);
+            this.cbTxIdoubleEnTopCh3.Location = new System.Drawing.Point(6, 18);
             this.cbTxIdoubleEnTopCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxIdoubleEnTopCh3.Name = "cbTxIdoubleEnTopCh3";
             this.cbTxIdoubleEnTopCh3.Size = new System.Drawing.Size(107, 16);
-            this.cbTxIdoubleEnTopCh3.TabIndex = 107;
+            this.cbTxIdoubleEnTopCh3.TabIndex = 48;
             this.cbTxIdoubleEnTopCh3.Text = "Tx idouble en top";
             this.cbTxIdoubleEnTopCh3.UseVisualStyleBackColor = true;
-            this.cbTxIdoubleEnTopCh3.CheckedChanged += new System.EventHandler(this.cbTxIdoubleEnTopCh3_CheckedChanged);
             // 
             // lDacTxDacDcdMidCh3
             // 
             this.lDacTxDacDcdMidCh3.AutoSize = true;
-            this.lDacTxDacDcdMidCh3.Location = new System.Drawing.Point(395, 138);
+            this.lDacTxDacDcdMidCh3.Location = new System.Drawing.Point(379, 40);
             this.lDacTxDacDcdMidCh3.Name = "lDacTxDacDcdMidCh3";
             this.lDacTxDacDcdMidCh3.Size = new System.Drawing.Size(98, 12);
-            this.lDacTxDacDcdMidCh3.TabIndex = 106;
+            this.lDacTxDacDcdMidCh3.TabIndex = 47;
             this.lDacTxDacDcdMidCh3.Text = "Dac tx dac dcd mid:";
             // 
             // cbDacTxDacDcdMidCh3
             // 
             this.cbDacTxDacDcdMidCh3.FormattingEnabled = true;
-            this.cbDacTxDacDcdMidCh3.Location = new System.Drawing.Point(501, 136);
+            this.cbDacTxDacDcdMidCh3.Location = new System.Drawing.Point(478, 34);
             this.cbDacTxDacDcdMidCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacDcdMidCh3.Name = "cbDacTxDacDcdMidCh3";
-            this.cbDacTxDacDcdMidCh3.Size = new System.Drawing.Size(78, 20);
-            this.cbDacTxDacDcdMidCh3.TabIndex = 105;
-            this.cbDacTxDacDcdMidCh3.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacDcdMidCh3_SelectedIndexChanged);
+            this.cbDacTxDacDcdMidCh3.Size = new System.Drawing.Size(65, 20);
+            this.cbDacTxDacDcdMidCh3.TabIndex = 46;
             // 
             // cbDacTxDacDcdMidPdbCh3
             // 
             this.cbDacTxDacDcdMidPdbCh3.AutoSize = true;
-            this.cbDacTxDacDcdMidPdbCh3.Location = new System.Drawing.Point(253, 138);
+            this.cbDacTxDacDcdMidPdbCh3.Location = new System.Drawing.Point(244, 40);
             this.cbDacTxDacDcdMidPdbCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacDcdMidPdbCh3.Name = "cbDacTxDacDcdMidPdbCh3";
             this.cbDacTxDacDcdMidPdbCh3.Size = new System.Drawing.Size(135, 16);
-            this.cbDacTxDacDcdMidPdbCh3.TabIndex = 104;
+            this.cbDacTxDacDcdMidPdbCh3.TabIndex = 45;
             this.cbDacTxDacDcdMidPdbCh3.Text = "Dac tx dac dcd mid pdb";
             this.cbDacTxDacDcdMidPdbCh3.UseVisualStyleBackColor = true;
-            this.cbDacTxDacDcdMidPdbCh3.CheckedChanged += new System.EventHandler(this.cbDacTxDacDcdMidPdbCh3_CheckedChanged);
             // 
             // cbTxMidDcdDacPolflipCh3
             // 
             this.cbTxMidDcdDacPolflipCh3.AutoSize = true;
-            this.cbTxMidDcdDacPolflipCh3.Location = new System.Drawing.Point(118, 138);
+            this.cbTxMidDcdDacPolflipCh3.Location = new System.Drawing.Point(114, 40);
             this.cbTxMidDcdDacPolflipCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxMidDcdDacPolflipCh3.Name = "cbTxMidDcdDacPolflipCh3";
             this.cbTxMidDcdDacPolflipCh3.Size = new System.Drawing.Size(131, 16);
-            this.cbTxMidDcdDacPolflipCh3.TabIndex = 103;
+            this.cbTxMidDcdDacPolflipCh3.TabIndex = 44;
             this.cbTxMidDcdDacPolflipCh3.Text = "Tx mid dcd dac polflip";
             this.cbTxMidDcdDacPolflipCh3.UseVisualStyleBackColor = true;
-            this.cbTxMidDcdDacPolflipCh3.CheckedChanged += new System.EventHandler(this.cbTxMidDcdDacPolflipCh3_CheckedChanged);
             // 
             // cbTxIdoubleEnMidCh3
             // 
             this.cbTxIdoubleEnMidCh3.AutoSize = true;
-            this.cbTxIdoubleEnMidCh3.Location = new System.Drawing.Point(5, 138);
+            this.cbTxIdoubleEnMidCh3.Location = new System.Drawing.Point(6, 40);
             this.cbTxIdoubleEnMidCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxIdoubleEnMidCh3.Name = "cbTxIdoubleEnMidCh3";
             this.cbTxIdoubleEnMidCh3.Size = new System.Drawing.Size(110, 16);
-            this.cbTxIdoubleEnMidCh3.TabIndex = 102;
+            this.cbTxIdoubleEnMidCh3.TabIndex = 43;
             this.cbTxIdoubleEnMidCh3.Text = "Tx idouble en mid";
             this.cbTxIdoubleEnMidCh3.UseVisualStyleBackColor = true;
-            this.cbTxIdoubleEnMidCh3.CheckedChanged += new System.EventHandler(this.cbTxIdoubleEnMidCh3_CheckedChanged);
             // 
             // lDacTxDacDcdBotCh3
             // 
             this.lDacTxDacDcdBotCh3.AutoSize = true;
-            this.lDacTxDacDcdBotCh3.Location = new System.Drawing.Point(395, 115);
+            this.lDacTxDacDcdBotCh3.Location = new System.Drawing.Point(379, 63);
             this.lDacTxDacDcdBotCh3.Name = "lDacTxDacDcdBotCh3";
             this.lDacTxDacDcdBotCh3.Size = new System.Drawing.Size(95, 12);
-            this.lDacTxDacDcdBotCh3.TabIndex = 101;
+            this.lDacTxDacDcdBotCh3.TabIndex = 42;
             this.lDacTxDacDcdBotCh3.Text = "Dac tx dac dcd bot:";
             // 
             // cbDacTxDacDcdBotCh3
             // 
             this.cbDacTxDacDcdBotCh3.FormattingEnabled = true;
-            this.cbDacTxDacDcdBotCh3.Location = new System.Drawing.Point(501, 113);
+            this.cbDacTxDacDcdBotCh3.Location = new System.Drawing.Point(478, 56);
             this.cbDacTxDacDcdBotCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacDcdBotCh3.Name = "cbDacTxDacDcdBotCh3";
-            this.cbDacTxDacDcdBotCh3.Size = new System.Drawing.Size(78, 20);
-            this.cbDacTxDacDcdBotCh3.TabIndex = 100;
-            this.cbDacTxDacDcdBotCh3.SelectedIndexChanged += new System.EventHandler(this.cbDacTxDacDcdBotCh3_SelectedIndexChanged);
+            this.cbDacTxDacDcdBotCh3.Size = new System.Drawing.Size(65, 20);
+            this.cbDacTxDacDcdBotCh3.TabIndex = 41;
             // 
             // cbDacTxDacDcdBotPdbCh3
             // 
             this.cbDacTxDacDcdBotPdbCh3.AutoSize = true;
-            this.cbDacTxDacDcdBotPdbCh3.Location = new System.Drawing.Point(253, 114);
+            this.cbDacTxDacDcdBotPdbCh3.Location = new System.Drawing.Point(244, 62);
             this.cbDacTxDacDcdBotPdbCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDacTxDacDcdBotPdbCh3.Name = "cbDacTxDacDcdBotPdbCh3";
             this.cbDacTxDacDcdBotPdbCh3.Size = new System.Drawing.Size(132, 16);
-            this.cbDacTxDacDcdBotPdbCh3.TabIndex = 99;
+            this.cbDacTxDacDcdBotPdbCh3.TabIndex = 40;
             this.cbDacTxDacDcdBotPdbCh3.Text = "Dac tx dac dcd bot pdb";
             this.cbDacTxDacDcdBotPdbCh3.UseVisualStyleBackColor = true;
-            this.cbDacTxDacDcdBotPdbCh3.CheckedChanged += new System.EventHandler(this.cbDacTxDacDcdBotPdbCh3_CheckedChanged);
             // 
             // cbTxBotDcdDacPolflipCh3
             // 
             this.cbTxBotDcdDacPolflipCh3.AutoSize = true;
-            this.cbTxBotDcdDacPolflipCh3.Location = new System.Drawing.Point(118, 114);
+            this.cbTxBotDcdDacPolflipCh3.Location = new System.Drawing.Point(114, 62);
             this.cbTxBotDcdDacPolflipCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxBotDcdDacPolflipCh3.Name = "cbTxBotDcdDacPolflipCh3";
             this.cbTxBotDcdDacPolflipCh3.Size = new System.Drawing.Size(128, 16);
-            this.cbTxBotDcdDacPolflipCh3.TabIndex = 98;
+            this.cbTxBotDcdDacPolflipCh3.TabIndex = 39;
             this.cbTxBotDcdDacPolflipCh3.Text = "Tx bot dcd dac polflip";
             this.cbTxBotDcdDacPolflipCh3.UseVisualStyleBackColor = true;
-            this.cbTxBotDcdDacPolflipCh3.CheckedChanged += new System.EventHandler(this.cbTxBotDcdDacPolflipCh3_CheckedChanged);
             // 
             // cbTxIdoubleEnBotCh3
             // 
             this.cbTxIdoubleEnBotCh3.AutoSize = true;
-            this.cbTxIdoubleEnBotCh3.Location = new System.Drawing.Point(5, 114);
+            this.cbTxIdoubleEnBotCh3.Location = new System.Drawing.Point(6, 62);
             this.cbTxIdoubleEnBotCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxIdoubleEnBotCh3.Name = "cbTxIdoubleEnBotCh3";
             this.cbTxIdoubleEnBotCh3.Size = new System.Drawing.Size(107, 16);
-            this.cbTxIdoubleEnBotCh3.TabIndex = 97;
+            this.cbTxIdoubleEnBotCh3.TabIndex = 38;
             this.cbTxIdoubleEnBotCh3.Text = "Tx idouble en bot";
             this.cbTxIdoubleEnBotCh3.UseVisualStyleBackColor = true;
-            this.cbTxIdoubleEnBotCh3.CheckedChanged += new System.EventHandler(this.cbTxIdoubleEnBotCh3_CheckedChanged);
+            // 
+            // cbTxIbiasAdcSelectCh3
+            // 
+            this.cbTxIbiasAdcSelectCh3.AutoSize = true;
+            this.cbTxIbiasAdcSelectCh3.Location = new System.Drawing.Point(468, 326);
+            this.cbTxIbiasAdcSelectCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbTxIbiasAdcSelectCh3.Name = "cbTxIbiasAdcSelectCh3";
+            this.cbTxIbiasAdcSelectCh3.Size = new System.Drawing.Size(108, 16);
+            this.cbTxIbiasAdcSelectCh3.TabIndex = 124;
+            this.cbTxIbiasAdcSelectCh3.Text = "Tx ibias adc select";
+            this.cbTxIbiasAdcSelectCh3.UseVisualStyleBackColor = true;
+            // 
+            // lTxDesiredImodCh3
+            // 
+            this.lTxDesiredImodCh3.AutoSize = true;
+            this.lTxDesiredImodCh3.Location = new System.Drawing.Point(286, 327);
+            this.lTxDesiredImodCh3.Name = "lTxDesiredImodCh3";
+            this.lTxDesiredImodCh3.Size = new System.Drawing.Size(84, 12);
+            this.lTxDesiredImodCh3.TabIndex = 123;
+            this.lTxDesiredImodCh3.Text = "Tx desired imod:";
+            // 
+            // cbTxDesiredImodCh3
+            // 
+            this.cbTxDesiredImodCh3.FormattingEnabled = true;
+            this.cbTxDesiredImodCh3.Location = new System.Drawing.Point(377, 324);
+            this.cbTxDesiredImodCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbTxDesiredImodCh3.Name = "cbTxDesiredImodCh3";
+            this.cbTxDesiredImodCh3.Size = new System.Drawing.Size(86, 20);
+            this.cbTxDesiredImodCh3.TabIndex = 122;
+            // 
+            // cbTxEnableAutoImodCh3
+            // 
+            this.cbTxEnableAutoImodCh3.AutoSize = true;
+            this.cbTxEnableAutoImodCh3.Location = new System.Drawing.Point(194, 326);
+            this.cbTxEnableAutoImodCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbTxEnableAutoImodCh3.Name = "cbTxEnableAutoImodCh3";
+            this.cbTxEnableAutoImodCh3.Size = new System.Drawing.Size(87, 16);
+            this.cbTxEnableAutoImodCh3.TabIndex = 121;
+            this.cbTxEnableAutoImodCh3.Text = "Tx auto imod";
+            this.cbTxEnableAutoImodCh3.UseVisualStyleBackColor = true;
+            // 
+            // cbTxPdbLbkInCh3
+            // 
+            this.cbTxPdbLbkInCh3.AutoSize = true;
+            this.cbTxPdbLbkInCh3.Location = new System.Drawing.Point(104, 326);
+            this.cbTxPdbLbkInCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbTxPdbLbkInCh3.Name = "cbTxPdbLbkInCh3";
+            this.cbTxPdbLbkInCh3.Size = new System.Drawing.Size(88, 16);
+            this.cbTxPdbLbkInCh3.TabIndex = 120;
+            this.cbTxPdbLbkInCh3.Text = "Tx pdb lbk in";
+            this.cbTxPdbLbkInCh3.UseVisualStyleBackColor = true;
+            // 
+            // cbTxPdbLbkOutCh3
+            // 
+            this.cbTxPdbLbkOutCh3.AutoSize = true;
+            this.cbTxPdbLbkOutCh3.Location = new System.Drawing.Point(6, 326);
+            this.cbTxPdbLbkOutCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbTxPdbLbkOutCh3.Name = "cbTxPdbLbkOutCh3";
+            this.cbTxPdbLbkOutCh3.Size = new System.Drawing.Size(94, 16);
+            this.cbTxPdbLbkOutCh3.TabIndex = 119;
+            this.cbTxPdbLbkOutCh3.Text = "Tx pdb lbk out";
+            this.cbTxPdbLbkOutCh3.UseVisualStyleBackColor = true;
+            // 
+            // lTxTopPostPolinvCh3
+            // 
+            this.lTxTopPostPolinvCh3.AutoSize = true;
+            this.lTxTopPostPolinvCh3.Location = new System.Drawing.Point(476, 303);
+            this.lTxTopPostPolinvCh3.Name = "lTxTopPostPolinvCh3";
+            this.lTxTopPostPolinvCh3.Size = new System.Drawing.Size(94, 12);
+            this.lTxTopPostPolinvCh3.TabIndex = 118;
+            this.lTxTopPostPolinvCh3.Text = "Tx top post polinv:";
+            // 
+            // cbTxTopPostPolinvCh3
+            // 
+            this.cbTxTopPostPolinvCh3.FormattingEnabled = true;
+            this.cbTxTopPostPolinvCh3.Location = new System.Drawing.Point(577, 301);
+            this.cbTxTopPostPolinvCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbTxTopPostPolinvCh3.Name = "cbTxTopPostPolinvCh3";
+            this.cbTxTopPostPolinvCh3.Size = new System.Drawing.Size(129, 20);
+            this.cbTxTopPostPolinvCh3.TabIndex = 117;
+            // 
+            // lTxMidPostPolinvCh3
+            // 
+            this.lTxMidPostPolinvCh3.AutoSize = true;
+            this.lTxMidPostPolinvCh3.Location = new System.Drawing.Point(241, 303);
+            this.lTxMidPostPolinvCh3.Name = "lTxMidPostPolinvCh3";
+            this.lTxMidPostPolinvCh3.Size = new System.Drawing.Size(97, 12);
+            this.lTxMidPostPolinvCh3.TabIndex = 116;
+            this.lTxMidPostPolinvCh3.Text = "Tx mid post polinv:";
+            // 
+            // cbTxMidPostPolinvCh3
+            // 
+            this.cbTxMidPostPolinvCh3.FormattingEnabled = true;
+            this.cbTxMidPostPolinvCh3.Location = new System.Drawing.Point(342, 301);
+            this.cbTxMidPostPolinvCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbTxMidPostPolinvCh3.Name = "cbTxMidPostPolinvCh3";
+            this.cbTxMidPostPolinvCh3.Size = new System.Drawing.Size(129, 20);
+            this.cbTxMidPostPolinvCh3.TabIndex = 115;
+            // 
+            // lTxBotPostPolinvCh3
+            // 
+            this.lTxBotPostPolinvCh3.AutoSize = true;
+            this.lTxBotPostPolinvCh3.Location = new System.Drawing.Point(6, 303);
+            this.lTxBotPostPolinvCh3.Name = "lTxBotPostPolinvCh3";
+            this.lTxBotPostPolinvCh3.Size = new System.Drawing.Size(94, 12);
+            this.lTxBotPostPolinvCh3.TabIndex = 114;
+            this.lTxBotPostPolinvCh3.Text = "Tx bot post polinv:";
+            // 
+            // cbTxBotPostPolinvCh3
+            // 
+            this.cbTxBotPostPolinvCh3.FormattingEnabled = true;
+            this.cbTxBotPostPolinvCh3.Location = new System.Drawing.Point(107, 301);
+            this.cbTxBotPostPolinvCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbTxBotPostPolinvCh3.Name = "cbTxBotPostPolinvCh3";
+            this.cbTxBotPostPolinvCh3.Size = new System.Drawing.Size(129, 20);
+            this.cbTxBotPostPolinvCh3.TabIndex = 113;
             // 
             // lTxIburninCh3
             // 
             this.lTxIburninCh3.AutoSize = true;
-            this.lTxIburninCh3.Location = new System.Drawing.Point(232, 94);
+            this.lTxIburninCh3.Location = new System.Drawing.Point(599, 71);
             this.lTxIburninCh3.Name = "lTxIburninCh3";
             this.lTxIburninCh3.Size = new System.Drawing.Size(58, 12);
             this.lTxIburninCh3.TabIndex = 96;
@@ -9196,7 +9256,7 @@
             // cbTxIburninCh3
             // 
             this.cbTxIburninCh3.FormattingEnabled = true;
-            this.cbTxIburninCh3.Location = new System.Drawing.Point(293, 91);
+            this.cbTxIburninCh3.Location = new System.Drawing.Point(660, 68);
             this.cbTxIburninCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxIburninCh3.Name = "cbTxIburninCh3";
             this.cbTxIburninCh3.Size = new System.Drawing.Size(86, 20);
@@ -9206,7 +9266,7 @@
             // cbTxBurninEnCh3
             // 
             this.cbTxBurninEnCh3.AutoSize = true;
-            this.cbTxBurninEnCh3.Location = new System.Drawing.Point(146, 93);
+            this.cbTxBurninEnCh3.Location = new System.Drawing.Point(513, 70);
             this.cbTxBurninEnCh3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTxBurninEnCh3.Name = "cbTxBurninEnCh3";
             this.cbTxBurninEnCh3.Size = new System.Drawing.Size(85, 16);
@@ -10314,12 +10374,44 @@
             this.tcLaserDriverControl.ResumeLayout(false);
             this.tpLaserDriverControlCh0.ResumeLayout(false);
             this.tpLaserDriverControlCh0.PerformLayout();
+            this.gbPostEmphasis.ResumeLayout(false);
+            this.gbPostEmphasis.PerformLayout();
+            this.gbPreEmphasis.ResumeLayout(false);
+            this.gbPreEmphasis.PerformLayout();
+            this.gbModulationCurrent.ResumeLayout(false);
+            this.gbModulationCurrent.PerformLayout();
+            this.gbCrossPoint.ResumeLayout(false);
+            this.gbCrossPoint.PerformLayout();
             this.tpLaserDriverControlCh1.ResumeLayout(false);
             this.tpLaserDriverControlCh1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.tpLaserDriverControlCh2.ResumeLayout(false);
             this.tpLaserDriverControlCh2.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.tpLaserDriverControlCh3.ResumeLayout(false);
             this.tpLaserDriverControlCh3.PerformLayout();
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
             this.tpLaserDriverControlChAll.ResumeLayout(false);
             this.tpLaserDriverControlChAll.PerformLayout();
             this.tpCmis.ResumeLayout(false);
@@ -10809,45 +10901,9 @@
         private System.Windows.Forms.Label lTxIburninCh0;
         private System.Windows.Forms.ComboBox cbTxIburninCh0;
         private System.Windows.Forms.CheckBox cbTxBurninEnCh0;
-        private System.Windows.Forms.Label lDacTxDacDcdBotCh0;
-        private System.Windows.Forms.ComboBox cbDacTxDacDcdBotCh0;
-        private System.Windows.Forms.CheckBox cbDacTxDacDcdBotPdbCh0;
-        private System.Windows.Forms.CheckBox cbTxBotDcdDacPolflipCh0;
-        private System.Windows.Forms.CheckBox cbTxIdoubleEnBotCh0;
-        private System.Windows.Forms.Label lDacTxDacDcdTopCh0;
-        private System.Windows.Forms.ComboBox cbDacTxDacDcdTopCh0;
-        private System.Windows.Forms.CheckBox cbDacTxDacDcdTopPdbCh0;
-        private System.Windows.Forms.CheckBox cbTxTopDcdDacPolflipCh0;
-        private System.Windows.Forms.CheckBox cbTxIdoubleEnTopCh0;
-        private System.Windows.Forms.Label lDacTxDacDcdMidCh0;
-        private System.Windows.Forms.ComboBox cbDacTxDacDcdMidCh0;
-        private System.Windows.Forms.CheckBox cbDacTxDacDcdMidPdbCh0;
-        private System.Windows.Forms.CheckBox cbTxMidDcdDacPolflipCh0;
-        private System.Windows.Forms.CheckBox cbTxIdoubleEnMidCh0;
         private System.Windows.Forms.Label lDacTxDacMain8bBotCh0;
-        private System.Windows.Forms.ComboBox cbDacTxDacMain8bBotCh0;
-        private System.Windows.Forms.Label lDacTxDacPreBotCh0;
-        private System.Windows.Forms.CheckBox cbDacTxDacPreBotPdbCh0;
         private System.Windows.Forms.Label lDacTxDacMain8bTopCh0;
-        private System.Windows.Forms.ComboBox cbDacTxDacMain8bTopCh0;
         private System.Windows.Forms.Label lDacTxDacMain8bMidCh0;
-        private System.Windows.Forms.ComboBox cbDacTxDacMain8bMidCh0;
-        private System.Windows.Forms.ComboBox cbDacTxDacPreBotCh0;
-        private System.Windows.Forms.ComboBox cbDacTxDacPreTopCh0;
-        private System.Windows.Forms.Label lDacTxDacPreTopCh0;
-        private System.Windows.Forms.CheckBox cbDacTxDacPreTopPdbCh0;
-        private System.Windows.Forms.ComboBox cbDacTxDacPreMidCh0;
-        private System.Windows.Forms.Label lDacTxDacPreMidCh0;
-        private System.Windows.Forms.CheckBox cbDacTxDacPreMidPdbCh0;
-        private System.Windows.Forms.ComboBox cbDacTxDacPostTopCh0;
-        private System.Windows.Forms.Label lDacTxDacPostTopCh0;
-        private System.Windows.Forms.CheckBox cbDacTxDacPostTopPdbCh0;
-        private System.Windows.Forms.ComboBox cbDacTxDacPostMidCh0;
-        private System.Windows.Forms.Label lDacTxDacPostMidCh0;
-        private System.Windows.Forms.CheckBox cbDacTxDacPostMidPdbCh0;
-        private System.Windows.Forms.ComboBox cbDacTxDacPostBotCh0;
-        private System.Windows.Forms.Label lDacTxDacPostBotCh0;
-        private System.Windows.Forms.CheckBox cbDacTxDacPostBotPdbCh0;
         private System.Windows.Forms.Label lTxBotPostPolinvCh0;
         private System.Windows.Forms.ComboBox cbTxBotPostPolinvCh0;
         private System.Windows.Forms.Label lTxDesiredImodCh0;
@@ -10860,57 +10916,6 @@
         private System.Windows.Forms.Label lTxMidPostPolinvCh0;
         private System.Windows.Forms.ComboBox cbTxMidPostPolinvCh0;
         private System.Windows.Forms.CheckBox cbTxIbiasAdcSelectCh0;
-        private System.Windows.Forms.CheckBox cbTxIbiasAdcSelectCh1;
-        private System.Windows.Forms.Label lTxDesiredImodCh1;
-        private System.Windows.Forms.ComboBox cbTxDesiredImodCh1;
-        private System.Windows.Forms.CheckBox cbTxEnableAutoImodCh1;
-        private System.Windows.Forms.CheckBox cbTxPdbLbkInCh1;
-        private System.Windows.Forms.CheckBox cbTxPdbLbkOutCh1;
-        private System.Windows.Forms.Label lTxTopPostPolinvCh1;
-        private System.Windows.Forms.ComboBox cbTxTopPostPolinvCh1;
-        private System.Windows.Forms.Label lTxMidPostPolinvCh1;
-        private System.Windows.Forms.ComboBox cbTxMidPostPolinvCh1;
-        private System.Windows.Forms.Label lTxBotPostPolinvCh1;
-        private System.Windows.Forms.ComboBox cbTxBotPostPolinvCh1;
-        private System.Windows.Forms.ComboBox cbDacTxDacPostTopCh1;
-        private System.Windows.Forms.Label lDacTxDacPostTopCh1;
-        private System.Windows.Forms.CheckBox cbDacTxDacPostTopPdbCh1;
-        private System.Windows.Forms.ComboBox cbDacTxDacPostMidCh1;
-        private System.Windows.Forms.Label lDacTxDacPostMidCh1;
-        private System.Windows.Forms.CheckBox cbDacTxDacPostMidPdbCh1;
-        private System.Windows.Forms.ComboBox cbDacTxDacPostBotCh1;
-        private System.Windows.Forms.Label lDacTxDacPostBotCh1;
-        private System.Windows.Forms.CheckBox cbDacTxDacPostBotPdbCh1;
-        private System.Windows.Forms.ComboBox cbDacTxDacPreTopCh1;
-        private System.Windows.Forms.Label lDacTxDacPreTopCh1;
-        private System.Windows.Forms.CheckBox cbDacTxDacPreTopPdbCh1;
-        private System.Windows.Forms.ComboBox cbDacTxDacPreMidCh1;
-        private System.Windows.Forms.Label lDacTxDacPreMidCh1;
-        private System.Windows.Forms.CheckBox cbDacTxDacPreMidPdbCh1;
-        private System.Windows.Forms.ComboBox cbDacTxDacPreBotCh1;
-        private System.Windows.Forms.Label lDacTxDacMain8bTopCh1;
-        private System.Windows.Forms.ComboBox cbDacTxDacMain8bTopCh1;
-        private System.Windows.Forms.Label lDacTxDacMain8bMidCh1;
-        private System.Windows.Forms.ComboBox cbDacTxDacMain8bMidCh1;
-        private System.Windows.Forms.Label lDacTxDacPreBotCh1;
-        private System.Windows.Forms.CheckBox cbDacTxDacPreBotPdbCh1;
-        private System.Windows.Forms.Label lDacTxDacMain8bBotCh1;
-        private System.Windows.Forms.ComboBox cbDacTxDacMain8bBotCh1;
-        private System.Windows.Forms.Label lDacTxDacDcdTopCh1;
-        private System.Windows.Forms.ComboBox cbDacTxDacDcdTopCh1;
-        private System.Windows.Forms.CheckBox cbDacTxDacDcdTopPdbCh1;
-        private System.Windows.Forms.CheckBox cbTxTopDcdDacPolflipCh1;
-        private System.Windows.Forms.CheckBox cbTxIdoubleEnTopCh1;
-        private System.Windows.Forms.Label lDacTxDacDcdMidCh1;
-        private System.Windows.Forms.ComboBox cbDacTxDacDcdMidCh1;
-        private System.Windows.Forms.CheckBox cbDacTxDacDcdMidPdbCh1;
-        private System.Windows.Forms.CheckBox cbTxMidDcdDacPolflipCh1;
-        private System.Windows.Forms.CheckBox cbTxIdoubleEnMidCh1;
-        private System.Windows.Forms.Label lDacTxDacDcdBotCh1;
-        private System.Windows.Forms.ComboBox cbDacTxDacDcdBotCh1;
-        private System.Windows.Forms.CheckBox cbDacTxDacDcdBotPdbCh1;
-        private System.Windows.Forms.CheckBox cbTxBotDcdDacPolflipCh1;
-        private System.Windows.Forms.CheckBox cbTxIdoubleEnBotCh1;
         private System.Windows.Forms.Label lTxIburninCh1;
         private System.Windows.Forms.ComboBox cbTxIburninCh1;
         private System.Windows.Forms.CheckBox cbTxBurninEnCh1;
@@ -10934,57 +10939,6 @@
         private System.Windows.Forms.ComboBox cbMuteCntlCh1;
         private System.Windows.Forms.Label lMuteCntlCh1;
         private System.Windows.Forms.CheckBox cbTxDisableCh1;
-        private System.Windows.Forms.CheckBox cbTxIbiasAdcSelectCh2;
-        private System.Windows.Forms.Label lTxDesiredImodCh2;
-        private System.Windows.Forms.ComboBox cbTxDesiredImodCh2;
-        private System.Windows.Forms.CheckBox cbTxEnableAutoImodCh2;
-        private System.Windows.Forms.CheckBox cbTxPdbLbkInCh2;
-        private System.Windows.Forms.CheckBox cbTxPdbLbkOutCh2;
-        private System.Windows.Forms.Label lTxTopPostPolinvCh2;
-        private System.Windows.Forms.ComboBox cbTxTopPostPolinvCh2;
-        private System.Windows.Forms.Label lTxMidPostPolinvCh2;
-        private System.Windows.Forms.ComboBox cbTxMidPostPolinvCh2;
-        private System.Windows.Forms.Label lTxBotPostPolinvCh2;
-        private System.Windows.Forms.ComboBox cbTxBotPostPolinvCh2;
-        private System.Windows.Forms.ComboBox cbDacTxDacPostTopCh2;
-        private System.Windows.Forms.Label lDacTxDacPostTopCh2;
-        private System.Windows.Forms.CheckBox cbDacTxDacPostTopPdbCh2;
-        private System.Windows.Forms.ComboBox cbDacTxDacPostMidCh2;
-        private System.Windows.Forms.Label lDacTxDacPostMidCh2;
-        private System.Windows.Forms.CheckBox cbDacTxDacPostMidPdbCh2;
-        private System.Windows.Forms.ComboBox cbDacTxDacPostBotCh2;
-        private System.Windows.Forms.Label lDacTxDacPostBotCh2;
-        private System.Windows.Forms.CheckBox cbDacTxDacPostBotPdbCh2;
-        private System.Windows.Forms.ComboBox cbDacTxDacPreTopCh2;
-        private System.Windows.Forms.Label lDacTxDacPreTopCh2;
-        private System.Windows.Forms.CheckBox cbDacTxDacPreTopPdbCh2;
-        private System.Windows.Forms.ComboBox cbDacTxDacPreMidCh2;
-        private System.Windows.Forms.Label lDacTxDacPreMidCh2;
-        private System.Windows.Forms.CheckBox cbDacTxDacPreMidPdbCh2;
-        private System.Windows.Forms.ComboBox cbDacTxDacPreBotCh2;
-        private System.Windows.Forms.Label lDacTxDacMain8bTopCh2;
-        private System.Windows.Forms.ComboBox cbDacTxDacMain8bTopCh2;
-        private System.Windows.Forms.Label lDacTxDacMain8bMidCh2;
-        private System.Windows.Forms.ComboBox cbDacTxDacMain8bMidCh2;
-        private System.Windows.Forms.Label lDacTxDacPreBotCh2;
-        private System.Windows.Forms.CheckBox cbDacTxDacPreBotPdbCh2;
-        private System.Windows.Forms.Label lDacTxDacMain8bBotCh2;
-        private System.Windows.Forms.ComboBox cbDacTxDacMain8bBotCh2;
-        private System.Windows.Forms.Label lDacTxDacDcdTopCh2;
-        private System.Windows.Forms.ComboBox cbDacTxDacDcdTopCh2;
-        private System.Windows.Forms.CheckBox cbDacTxDacDcdTopPdbCh2;
-        private System.Windows.Forms.CheckBox cbTxTopDcdDacPolflipCh2;
-        private System.Windows.Forms.CheckBox cbTxIdoubleEnTopCh2;
-        private System.Windows.Forms.Label lDacTxDacDcdMidCh2;
-        private System.Windows.Forms.ComboBox cbDacTxDacDcdMidCh2;
-        private System.Windows.Forms.CheckBox cbDacTxDacDcdMidPdbCh2;
-        private System.Windows.Forms.CheckBox cbTxMidDcdDacPolflipCh2;
-        private System.Windows.Forms.CheckBox cbTxIdoubleEnMidCh2;
-        private System.Windows.Forms.Label lDacTxDacDcdBotCh2;
-        private System.Windows.Forms.ComboBox cbDacTxDacDcdBotCh2;
-        private System.Windows.Forms.CheckBox cbDacTxDacDcdBotPdbCh2;
-        private System.Windows.Forms.CheckBox cbTxBotDcdDacPolflipCh2;
-        private System.Windows.Forms.CheckBox cbTxIdoubleEnBotCh2;
         private System.Windows.Forms.Label lTxIburninCh2;
         private System.Windows.Forms.ComboBox cbTxIburninCh2;
         private System.Windows.Forms.CheckBox cbTxBurninEnCh2;
@@ -11008,57 +10962,6 @@
         private System.Windows.Forms.ComboBox cbMuteCntlCh2;
         private System.Windows.Forms.Label lMuteCntlCh2;
         private System.Windows.Forms.CheckBox cbTxDisableCh2;
-        private System.Windows.Forms.CheckBox cbTxIbiasAdcSelectCh3;
-        private System.Windows.Forms.Label lTxDesiredImodCh3;
-        private System.Windows.Forms.ComboBox cbTxDesiredImodCh3;
-        private System.Windows.Forms.CheckBox cbTxEnableAutoImodCh3;
-        private System.Windows.Forms.CheckBox cbTxPdbLbkInCh3;
-        private System.Windows.Forms.CheckBox cbTxPdbLbkOutCh3;
-        private System.Windows.Forms.Label lTxTopPostPolinvCh3;
-        private System.Windows.Forms.ComboBox cbTxTopPostPolinvCh3;
-        private System.Windows.Forms.Label lTxMidPostPolinvCh3;
-        private System.Windows.Forms.ComboBox cbTxMidPostPolinvCh3;
-        private System.Windows.Forms.Label lTxBotPostPolinvCh3;
-        private System.Windows.Forms.ComboBox cbTxBotPostPolinvCh3;
-        private System.Windows.Forms.ComboBox cbDacTxDacPostTopCh3;
-        private System.Windows.Forms.Label lDacTxDacPostTopCh3;
-        private System.Windows.Forms.CheckBox cbDacTxDacPostTopPdbCh3;
-        private System.Windows.Forms.ComboBox cbDacTxDacPostMidCh3;
-        private System.Windows.Forms.Label lDacTxDacPostMidCh3;
-        private System.Windows.Forms.CheckBox cbDacTxDacPostMidPdbCh3;
-        private System.Windows.Forms.ComboBox cbDacTxDacPostBotCh3;
-        private System.Windows.Forms.Label lDacTxDacPostBotCh3;
-        private System.Windows.Forms.CheckBox cbDacTxDacPostBotPdbCh3;
-        private System.Windows.Forms.ComboBox cbDacTxDacPreTopCh3;
-        private System.Windows.Forms.Label lDacTxDacPreTopCh3;
-        private System.Windows.Forms.CheckBox cbDacTxDacPreTopPdbCh3;
-        private System.Windows.Forms.ComboBox cbDacTxDacPreMidCh3;
-        private System.Windows.Forms.Label lDacTxDacPreMidCh3;
-        private System.Windows.Forms.CheckBox cbDacTxDacPreMidPdbCh3;
-        private System.Windows.Forms.ComboBox cbDacTxDacPreBotCh3;
-        private System.Windows.Forms.Label lDacTxDacMain8bTopCh3;
-        private System.Windows.Forms.ComboBox cbDacTxDacMain8bTopCh3;
-        private System.Windows.Forms.Label lDacTxDacMain8bMidCh3;
-        private System.Windows.Forms.ComboBox cbDacTxDacMain8bMidCh3;
-        private System.Windows.Forms.Label lDacTxDacPreBotCh3;
-        private System.Windows.Forms.CheckBox cbDacTxDacPreBotPdbCh3;
-        private System.Windows.Forms.Label lDacTxDacMain8bBotCh3;
-        private System.Windows.Forms.ComboBox cbDacTxDacMain8bBotCh3;
-        private System.Windows.Forms.Label lDacTxDacDcdTopCh3;
-        private System.Windows.Forms.ComboBox cbDacTxDacDcdTopCh3;
-        private System.Windows.Forms.CheckBox cbDacTxDacDcdTopPdbCh3;
-        private System.Windows.Forms.CheckBox cbTxTopDcdDacPolflipCh3;
-        private System.Windows.Forms.CheckBox cbTxIdoubleEnTopCh3;
-        private System.Windows.Forms.Label lDacTxDacDcdMidCh3;
-        private System.Windows.Forms.ComboBox cbDacTxDacDcdMidCh3;
-        private System.Windows.Forms.CheckBox cbDacTxDacDcdMidPdbCh3;
-        private System.Windows.Forms.CheckBox cbTxMidDcdDacPolflipCh3;
-        private System.Windows.Forms.CheckBox cbTxIdoubleEnMidCh3;
-        private System.Windows.Forms.Label lDacTxDacDcdBotCh3;
-        private System.Windows.Forms.ComboBox cbDacTxDacDcdBotCh3;
-        private System.Windows.Forms.CheckBox cbDacTxDacDcdBotPdbCh3;
-        private System.Windows.Forms.CheckBox cbTxBotDcdDacPolflipCh3;
-        private System.Windows.Forms.CheckBox cbTxIdoubleEnBotCh3;
         private System.Windows.Forms.Label lTxIburninCh3;
         private System.Windows.Forms.ComboBox cbTxIburninCh3;
         private System.Windows.Forms.CheckBox cbTxBurninEnCh3;
@@ -11155,5 +11058,210 @@
         private System.Windows.Forms.CheckBox cbTxDisableChAll;
         private System.Windows.Forms.TabPage tpCmis;
         private System.Windows.Forms.DataGridView dgvCmisReg;
+        private System.Windows.Forms.GroupBox gbModulationCurrent;
+        private System.Windows.Forms.GroupBox gbCrossPoint;
+        private System.Windows.Forms.Label lDacTxDacDcdTopCh0;
+        private System.Windows.Forms.ComboBox cbDacTxDacDcdTopCh0;
+        private System.Windows.Forms.CheckBox cbDacTxDacDcdTopPdbCh0;
+        private System.Windows.Forms.CheckBox cbTxTopDcdDacPolflipCh0;
+        private System.Windows.Forms.CheckBox cbTxIdoubleEnTopCh0;
+        private System.Windows.Forms.Label lDacTxDacDcdMidCh0;
+        private System.Windows.Forms.ComboBox cbDacTxDacDcdMidCh0;
+        private System.Windows.Forms.CheckBox cbDacTxDacDcdMidPdbCh0;
+        private System.Windows.Forms.CheckBox cbTxMidDcdDacPolflipCh0;
+        private System.Windows.Forms.CheckBox cbTxIdoubleEnMidCh0;
+        private System.Windows.Forms.Label lDacTxDacDcdBotCh0;
+        private System.Windows.Forms.ComboBox cbDacTxDacDcdBotCh0;
+        private System.Windows.Forms.CheckBox cbDacTxDacDcdBotPdbCh0;
+        private System.Windows.Forms.CheckBox cbTxBotDcdDacPolflipCh0;
+        private System.Windows.Forms.CheckBox cbTxIdoubleEnBotCh0;
+        private System.Windows.Forms.GroupBox gbPostEmphasis;
+        private System.Windows.Forms.ComboBox cbDacTxDacPostBotCh0;
+        private System.Windows.Forms.Label lDacTxDacPostBotCh0;
+        private System.Windows.Forms.CheckBox cbDacTxDacPostBotPdbCh0;
+        private System.Windows.Forms.ComboBox cbDacTxDacPostMidCh0;
+        private System.Windows.Forms.Label lDacTxDacPostMidCh0;
+        private System.Windows.Forms.CheckBox cbDacTxDacPostMidPdbCh0;
+        private System.Windows.Forms.ComboBox cbDacTxDacPostTopCh0;
+        private System.Windows.Forms.Label lDacTxDacPostTopCh0;
+        private System.Windows.Forms.CheckBox cbDacTxDacPostTopPdbCh0;
+        private System.Windows.Forms.GroupBox gbPreEmphasis;
+        private System.Windows.Forms.ComboBox cbDacTxDacPreTopCh0;
+        private System.Windows.Forms.Label lDacTxDacPreTopCh0;
+        private System.Windows.Forms.CheckBox cbDacTxDacPreTopPdbCh0;
+        private System.Windows.Forms.ComboBox cbDacTxDacPreMidCh0;
+        private System.Windows.Forms.Label lDacTxDacPreMidCh0;
+        private System.Windows.Forms.CheckBox cbDacTxDacPreMidPdbCh0;
+        private System.Windows.Forms.ComboBox cbDacTxDacPreBotCh0;
+        private System.Windows.Forms.Label lDacTxDacPreBotCh0;
+        private System.Windows.Forms.CheckBox cbDacTxDacPreBotPdbCh0;
+        private System.Windows.Forms.ComboBox cbDacTxDacMain8bTopCh0;
+        private System.Windows.Forms.ComboBox cbDacTxDacMain8bMidCh0;
+        private System.Windows.Forms.ComboBox cbDacTxDacMain8bBotCh0;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ComboBox cbDacTxDacPostBotCh1;
+        private System.Windows.Forms.Label lDacTxDacPostBotCh1;
+        private System.Windows.Forms.CheckBox cbDacTxDacPostBotPdbCh1;
+        private System.Windows.Forms.ComboBox cbDacTxDacPostMidCh1;
+        private System.Windows.Forms.Label lDacTxDacPostMidCh1;
+        private System.Windows.Forms.CheckBox cbDacTxDacPostMidPdbCh1;
+        private System.Windows.Forms.ComboBox cbDacTxDacPostTopCh1;
+        private System.Windows.Forms.Label lDacTxDacPostTopCh1;
+        private System.Windows.Forms.CheckBox cbDacTxDacPostTopPdbCh1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ComboBox cbDacTxDacPreTopCh1;
+        private System.Windows.Forms.Label lDacTxDacPreTopCh1;
+        private System.Windows.Forms.CheckBox cbDacTxDacPreTopPdbCh1;
+        private System.Windows.Forms.ComboBox cbDacTxDacPreMidCh1;
+        private System.Windows.Forms.Label lDacTxDacPreMidCh1;
+        private System.Windows.Forms.CheckBox cbDacTxDacPreMidPdbCh1;
+        private System.Windows.Forms.ComboBox cbDacTxDacPreBotCh1;
+        private System.Windows.Forms.Label lDacTxDacPreBotCh1;
+        private System.Windows.Forms.CheckBox cbDacTxDacPreBotPdbCh1;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.ComboBox cbDacTxDacMain8bTopCh1;
+        private System.Windows.Forms.ComboBox cbDacTxDacMain8bMidCh1;
+        private System.Windows.Forms.ComboBox cbDacTxDacMain8bBotCh1;
+        private System.Windows.Forms.Label lDacTxDacMain8bTopCh1;
+        private System.Windows.Forms.Label lDacTxDacMain8bMidCh1;
+        private System.Windows.Forms.Label lDacTxDacMain8bBotCh1;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label lDacTxDacDcdTopCh1;
+        private System.Windows.Forms.ComboBox cbDacTxDacDcdTopCh1;
+        private System.Windows.Forms.CheckBox cbDacTxDacDcdTopPdbCh1;
+        private System.Windows.Forms.CheckBox cbTxTopDcdDacPolflipCh1;
+        private System.Windows.Forms.CheckBox cbTxIdoubleEnTopCh1;
+        private System.Windows.Forms.Label lDacTxDacDcdMidCh1;
+        private System.Windows.Forms.ComboBox cbDacTxDacDcdMidCh1;
+        private System.Windows.Forms.CheckBox cbDacTxDacDcdMidPdbCh1;
+        private System.Windows.Forms.CheckBox cbTxMidDcdDacPolflipCh1;
+        private System.Windows.Forms.CheckBox cbTxIdoubleEnMidCh1;
+        private System.Windows.Forms.Label lDacTxDacDcdBotCh1;
+        private System.Windows.Forms.ComboBox cbDacTxDacDcdBotCh1;
+        private System.Windows.Forms.CheckBox cbDacTxDacDcdBotPdbCh1;
+        private System.Windows.Forms.CheckBox cbTxBotDcdDacPolflipCh1;
+        private System.Windows.Forms.CheckBox cbTxIdoubleEnBotCh1;
+        private System.Windows.Forms.CheckBox cbTxIbiasAdcSelectCh1;
+        private System.Windows.Forms.Label lTxDesiredImodCh1;
+        private System.Windows.Forms.ComboBox cbTxDesiredImodCh1;
+        private System.Windows.Forms.CheckBox cbTxEnableAutoImodCh1;
+        private System.Windows.Forms.CheckBox cbTxPdbLbkInCh1;
+        private System.Windows.Forms.CheckBox cbTxPdbLbkOutCh1;
+        private System.Windows.Forms.Label lTxTopPostPolinvCh1;
+        private System.Windows.Forms.ComboBox cbTxTopPostPolinvCh1;
+        private System.Windows.Forms.Label lTxMidPostPolinvCh1;
+        private System.Windows.Forms.ComboBox cbTxMidPostPolinvCh1;
+        private System.Windows.Forms.Label lTxBotPostPolinvCh1;
+        private System.Windows.Forms.ComboBox cbTxBotPostPolinvCh1;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.ComboBox cbDacTxDacPostBotCh2;
+        private System.Windows.Forms.Label lDacTxDacPostBotCh2;
+        private System.Windows.Forms.CheckBox cbDacTxDacPostBotPdbCh2;
+        private System.Windows.Forms.ComboBox cbDacTxDacPostMidCh2;
+        private System.Windows.Forms.Label lDacTxDacPostMidCh2;
+        private System.Windows.Forms.CheckBox cbDacTxDacPostMidPdbCh2;
+        private System.Windows.Forms.ComboBox cbDacTxDacPostTopCh2;
+        private System.Windows.Forms.Label lDacTxDacPostTopCh2;
+        private System.Windows.Forms.CheckBox cbDacTxDacPostTopPdbCh2;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.ComboBox cbDacTxDacPreTopCh2;
+        private System.Windows.Forms.Label lDacTxDacPreTopCh2;
+        private System.Windows.Forms.CheckBox cbDacTxDacPreTopPdbCh2;
+        private System.Windows.Forms.ComboBox cbDacTxDacPreMidCh2;
+        private System.Windows.Forms.Label lDacTxDacPreMidCh2;
+        private System.Windows.Forms.CheckBox cbDacTxDacPreMidPdbCh2;
+        private System.Windows.Forms.ComboBox cbDacTxDacPreBotCh2;
+        private System.Windows.Forms.Label lDacTxDacPreBotCh2;
+        private System.Windows.Forms.CheckBox cbDacTxDacPreBotPdbCh2;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.ComboBox cbDacTxDacMain8bTopCh2;
+        private System.Windows.Forms.ComboBox cbDacTxDacMain8bMidCh2;
+        private System.Windows.Forms.ComboBox cbDacTxDacMain8bBotCh2;
+        private System.Windows.Forms.Label lDacTxDacMain8bTopCh2;
+        private System.Windows.Forms.Label lDacTxDacMain8bMidCh2;
+        private System.Windows.Forms.Label lDacTxDacMain8bBotCh2;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.Label lDacTxDacDcdTopCh2;
+        private System.Windows.Forms.ComboBox cbDacTxDacDcdTopCh2;
+        private System.Windows.Forms.CheckBox cbDacTxDacDcdTopPdbCh2;
+        private System.Windows.Forms.CheckBox cbTxTopDcdDacPolflipCh2;
+        private System.Windows.Forms.CheckBox cbTxIdoubleEnTopCh2;
+        private System.Windows.Forms.Label lDacTxDacDcdMidCh2;
+        private System.Windows.Forms.ComboBox cbDacTxDacDcdMidCh2;
+        private System.Windows.Forms.CheckBox cbDacTxDacDcdMidPdbCh2;
+        private System.Windows.Forms.CheckBox cbTxMidDcdDacPolflipCh2;
+        private System.Windows.Forms.CheckBox cbTxIdoubleEnMidCh2;
+        private System.Windows.Forms.Label lDacTxDacDcdBotCh2;
+        private System.Windows.Forms.ComboBox cbDacTxDacDcdBotCh2;
+        private System.Windows.Forms.CheckBox cbDacTxDacDcdBotPdbCh2;
+        private System.Windows.Forms.CheckBox cbTxBotDcdDacPolflipCh2;
+        private System.Windows.Forms.CheckBox cbTxIdoubleEnBotCh2;
+        private System.Windows.Forms.CheckBox cbTxIbiasAdcSelectCh2;
+        private System.Windows.Forms.Label lTxDesiredImodCh2;
+        private System.Windows.Forms.ComboBox cbTxDesiredImodCh2;
+        private System.Windows.Forms.CheckBox cbTxEnableAutoImodCh2;
+        private System.Windows.Forms.CheckBox cbTxPdbLbkInCh2;
+        private System.Windows.Forms.CheckBox cbTxPdbLbkOutCh2;
+        private System.Windows.Forms.Label lTxTopPostPolinvCh2;
+        private System.Windows.Forms.ComboBox cbTxTopPostPolinvCh2;
+        private System.Windows.Forms.Label lTxMidPostPolinvCh2;
+        private System.Windows.Forms.ComboBox cbTxMidPostPolinvCh2;
+        private System.Windows.Forms.Label lTxBotPostPolinvCh2;
+        private System.Windows.Forms.ComboBox cbTxBotPostPolinvCh2;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.ComboBox cbDacTxDacPostBotCh3;
+        private System.Windows.Forms.Label lDacTxDacPostBotCh3;
+        private System.Windows.Forms.CheckBox cbDacTxDacPostBotPdbCh3;
+        private System.Windows.Forms.ComboBox cbDacTxDacPostMidCh3;
+        private System.Windows.Forms.Label lDacTxDacPostMidCh3;
+        private System.Windows.Forms.CheckBox cbDacTxDacPostMidPdbCh3;
+        private System.Windows.Forms.ComboBox cbDacTxDacPostTopCh3;
+        private System.Windows.Forms.Label lDacTxDacPostTopCh3;
+        private System.Windows.Forms.CheckBox cbDacTxDacPostTopPdbCh3;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.ComboBox cbDacTxDacPreTopCh3;
+        private System.Windows.Forms.Label lDacTxDacPreTopCh3;
+        private System.Windows.Forms.CheckBox cbDacTxDacPreTopPdbCh3;
+        private System.Windows.Forms.ComboBox cbDacTxDacPreMidCh3;
+        private System.Windows.Forms.Label lDacTxDacPreMidCh3;
+        private System.Windows.Forms.CheckBox cbDacTxDacPreMidPdbCh3;
+        private System.Windows.Forms.ComboBox cbDacTxDacPreBotCh3;
+        private System.Windows.Forms.Label lDacTxDacPreBotCh3;
+        private System.Windows.Forms.CheckBox cbDacTxDacPreBotPdbCh3;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.ComboBox cbDacTxDacMain8bTopCh3;
+        private System.Windows.Forms.ComboBox cbDacTxDacMain8bMidCh3;
+        private System.Windows.Forms.ComboBox cbDacTxDacMain8bBotCh3;
+        private System.Windows.Forms.Label lDacTxDacMain8bTopCh3;
+        private System.Windows.Forms.Label lDacTxDacMain8bMidCh3;
+        private System.Windows.Forms.Label lDacTxDacMain8bBotCh3;
+        private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.Label lDacTxDacDcdTopCh3;
+        private System.Windows.Forms.ComboBox cbDacTxDacDcdTopCh3;
+        private System.Windows.Forms.CheckBox cbDacTxDacDcdTopPdbCh3;
+        private System.Windows.Forms.CheckBox cbTxTopDcdDacPolflipCh3;
+        private System.Windows.Forms.CheckBox cbTxIdoubleEnTopCh3;
+        private System.Windows.Forms.Label lDacTxDacDcdMidCh3;
+        private System.Windows.Forms.ComboBox cbDacTxDacDcdMidCh3;
+        private System.Windows.Forms.CheckBox cbDacTxDacDcdMidPdbCh3;
+        private System.Windows.Forms.CheckBox cbTxMidDcdDacPolflipCh3;
+        private System.Windows.Forms.CheckBox cbTxIdoubleEnMidCh3;
+        private System.Windows.Forms.Label lDacTxDacDcdBotCh3;
+        private System.Windows.Forms.ComboBox cbDacTxDacDcdBotCh3;
+        private System.Windows.Forms.CheckBox cbDacTxDacDcdBotPdbCh3;
+        private System.Windows.Forms.CheckBox cbTxBotDcdDacPolflipCh3;
+        private System.Windows.Forms.CheckBox cbTxIdoubleEnBotCh3;
+        private System.Windows.Forms.CheckBox cbTxIbiasAdcSelectCh3;
+        private System.Windows.Forms.Label lTxDesiredImodCh3;
+        private System.Windows.Forms.ComboBox cbTxDesiredImodCh3;
+        private System.Windows.Forms.CheckBox cbTxEnableAutoImodCh3;
+        private System.Windows.Forms.CheckBox cbTxPdbLbkInCh3;
+        private System.Windows.Forms.CheckBox cbTxPdbLbkOutCh3;
+        private System.Windows.Forms.Label lTxTopPostPolinvCh3;
+        private System.Windows.Forms.ComboBox cbTxTopPostPolinvCh3;
+        private System.Windows.Forms.Label lTxMidPostPolinvCh3;
+        private System.Windows.Forms.ComboBox cbTxMidPostPolinvCh3;
+        private System.Windows.Forms.Label lTxBotPostPolinvCh3;
+        private System.Windows.Forms.ComboBox cbTxBotPostPolinvCh3;
     }
 }
