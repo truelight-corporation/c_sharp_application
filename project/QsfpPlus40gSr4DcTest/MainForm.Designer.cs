@@ -141,7 +141,7 @@
             this.MaximumSize = new System.Drawing.Size(1305, 768);
             this.MinimumSize = new System.Drawing.Size(1305, 766);
             this.Name = "MainForm";
-            this.Text = "QSFP+ 40G SR4 DC Test 20230728_1313";
+            this.Text = "QSFP+ 40G SR4 DC Test 20230728_1625";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.ResumeLayout(false);

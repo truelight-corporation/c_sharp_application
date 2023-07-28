@@ -45,6 +45,7 @@ namespace QsfpPlus40gSr4DcTest
         private volatile bool monitorStart = false;
         private volatile bool logValue = false;
         private volatile byte[] losStatus = new byte[1];
+        private volatile int customerPage_selectIndex = 0;
 
         public UcQsfpPlus40gSr4DcTest()
         {
@@ -667,7 +668,7 @@ namespace QsfpPlus40gSr4DcTest
         {
             byte[] data = new byte[1];
 
-            if (cbCustomerPage.SelectedIndex == 0)
+            if (customerPage_selectIndex == 0)
                 data[0] = 0x20;
             else
                 data[0] = 0xAA;
@@ -702,7 +703,7 @@ namespace QsfpPlus40gSr4DcTest
             if (i2cReadCB == null)
                 return -1;
 
-            if (cbCustomerPage.SelectedIndex == 0)
+            if (customerPage_selectIndex == 0)
                 data[0] = 0x05;
             else
                 data[0] = 0x81;
@@ -755,7 +756,7 @@ namespace QsfpPlus40gSr4DcTest
             if (i2cWriteCB(80, 252, 1, data) < 0)
                 return -1;
 
-            if (cbCustomerPage.SelectedIndex == 0)
+            if (customerPage_selectIndex == 0)
                 data[0] = 0x04;
             else
                 data[0] = 0x80;
@@ -768,7 +769,7 @@ namespace QsfpPlus40gSr4DcTest
             if (i2cWriteCB(80, 223, 1, data) < 0)
                 return -1;
 
-            if (cbCustomerPage.SelectedIndex == 0)
+            if (customerPage_selectIndex == 0)
                 data[0] = 0x05;
             else
                 data[0] = 0x81;
@@ -870,7 +871,7 @@ namespace QsfpPlus40gSr4DcTest
 
             int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
 
-            if (cbCustomerPage.SelectedIndex == 0)
+            if (customerPage_selectIndex == 0)
                 data[0] = 0x05;
             else
                 data[0] = 0x81;
@@ -915,7 +916,7 @@ namespace QsfpPlus40gSr4DcTest
         {
             byte[] data = new byte[1];
 
-            if (cbCustomerPage.SelectedIndex == 0)
+            if (customerPage_selectIndex == 0)
                 data[0] = 0x20;
             else
                 data[0] = 0xAA;
@@ -1021,6 +1022,7 @@ namespace QsfpPlus40gSr4DcTest
             lResult.Text = "";
             lClassification.Text = "";
             lClassification.BackColor = System.Drawing.SystemColors.Control;
+            customerPage_selectIndex = cbCustomerPage.SelectedIndex;
 
             if (logModeSelect == "BeforeBurnIn") {
                 while (tbSerialNumber.Text[0] == ' ')
@@ -1275,7 +1277,7 @@ namespace QsfpPlus40gSr4DcTest
             if (i2cReadCB == null)
                 return -1;
 
-            if (cbCustomerPage.SelectedIndex == 0)
+            if (customerPage_selectIndex == 0)
                 data[0] = 0x04;
             else
                 data[0] = 0x80;
@@ -1423,7 +1425,7 @@ namespace QsfpPlus40gSr4DcTest
 
             int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
 
-            if (cbCustomerPage.SelectedIndex == 0)
+            if (customerPage_selectIndex == 0)
                 data[0] = 0x05;
             else
                 data[0] = 0x81;
@@ -1545,7 +1547,7 @@ namespace QsfpPlus40gSr4DcTest
                             }
 
                             bwMonitor.ReportProgress(2, null);
-                            Thread.Sleep(100); // Wait value stable
+                            Thread.Sleep(3000); // Wait value stable
 
                             bwMonitor.ReportProgress(3, null);
                             if (_GetModuleMonitorValue() < 0) {
@@ -1573,7 +1575,7 @@ namespace QsfpPlus40gSr4DcTest
                             }
 
                             bwMonitor.ReportProgress(2, null);
-                            Thread.Sleep(200); // Wait value stable
+                            Thread.Sleep(3000); // Wait value stable
 
                             bwMonitor.ReportProgress(3, null);
                             if (_GetModuleMonitorValue() < 0) {
@@ -1668,10 +1670,12 @@ namespace QsfpPlus40gSr4DcTest
         {
             byte[] data = new byte[1];
 
+            /* thread@wood_20230728: different thread object
             lAction.Text = "Sotre Rx power rate...";
             lAction.Update();
+            */
 
-            if (cbCustomerPage.SelectedIndex == 0)
+            if (customerPage_selectIndex == 0)
                 data[0] = 0x20;
             else
                 data[0] = 0xAA;
@@ -1707,7 +1711,7 @@ namespace QsfpPlus40gSr4DcTest
 
             data = new byte[4];
 
-            if (cbCustomerPage.SelectedIndex == 0)
+            if (customerPage_selectIndex == 0)
                 data[0] = 0x04;
             else
                 data[0] = 0x80;
@@ -1797,8 +1801,10 @@ namespace QsfpPlus40gSr4DcTest
             float input, rssi;
             int rate;
 
+            /* thread@wood_20230728: different thread object
             lAction.Text = "Correct Rx power rate...";
             lAction.Update();
+            */
 
             rate = 0;
 
