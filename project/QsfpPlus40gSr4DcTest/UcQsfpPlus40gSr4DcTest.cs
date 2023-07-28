@@ -67,9 +67,9 @@ namespace QsfpPlus40gSr4DcTest
             Directory.CreateDirectory(fileDirectory);
             tbLogFilePath.Text = fileDirectory + "\\";
 
-            dtValue.Columns.Add("標籤", typeof(String));
-            dtValue.Columns.Add("時間", typeof(String));
-            dtValue.Columns.Add("序號", typeof(String));
+            dtValue.Columns.Add("Lable", typeof(String));
+            dtValue.Columns.Add("Time", typeof(String));
+            dtValue.Columns.Add("SN", typeof(String));
 
             dtValue.Columns.Add("Tx1(uW)", typeof(String));
             dtValue.Columns.Add("Tx2(uW)", typeof(String));
@@ -91,9 +91,9 @@ namespace QsfpPlus40gSr4DcTest
             dtValue.Columns.Add("Bias3", typeof(String));
             dtValue.Columns.Add("Bias4", typeof(String));
 
-            dtValue.Columns.Add("溫度", typeof(String));
+            dtValue.Columns.Add("Temp", typeof(String));
 
-            dtValue.Columns.Add("操作員", typeof(String));
+            dtValue.Columns.Add("Operator", typeof(String));
             dtValue.Columns.Add("Note", typeof(String));
 
             dgvRecord.DataSource = dtValue;
@@ -139,13 +139,13 @@ namespace QsfpPlus40gSr4DcTest
         private int _CheckAfterBurnInPowerDifferent(String serialNumber, String[] txPower)
         {
             String[] oldTxPower = new String[4];
-            DataRow[] filteredRows = dtValue.Select("標籤 = 'BeforeBurnIn' AND 序號 = '" + serialNumber + "'");
+            DataRow[] filteredRows = dtValue.Select("Lable = 'BeforeBurnIn' AND SN = '" + serialNumber + "'");
             float fMin, fMax, fLimit;
             int i;
             bool bPass = true;
             
             if (filteredRows.Length == 0) {
-                MessageBox.Show("找不到序號: " + serialNumber + " burn-in 前資料!!");
+                MessageBox.Show("Cannot find: " + serialNumber + " before burn-in data!!");
                 return -1;
             }
 
@@ -171,10 +171,16 @@ namespace QsfpPlus40gSr4DcTest
             if (bPass == true) {
                 lResult.ForeColor = System.Drawing.SystemColors.ControlText;
                 lResult.Text = "OK (" + serialNumber + ")";
+                lClassification.ForeColor = System.Drawing.Color.White;
+                lClassification.BackColor = System.Drawing.Color.Green;
+                lClassification.Text = "A";
             }
             else {
                 lResult.ForeColor = System.Drawing.Color.Red;
                 lResult.Text = "NG (" + serialNumber + ")";
+                lClassification.ForeColor = System.Drawing.Color.Red;
+                lClassification.BackColor = System.Drawing.Color.White;
+                lClassification.Text = "T";
             }
 
             return 0;
@@ -425,6 +431,9 @@ namespace QsfpPlus40gSr4DcTest
             if (lClassification.Text.Equals("T"))
                 bPass = false;
 
+            if (cbIgnoreRxLos.Checked == true)
+                goto exit;
+
             if ((losStatus[0] & 0x01) != 0) {
                 bPass = false;
                 lastNote += "Rx1 LOS; ";
@@ -445,6 +454,7 @@ namespace QsfpPlus40gSr4DcTest
                 lastNote += "Rx4 LOS; ";
             }
 
+        exit:
             if (bPass == true) {
                 lResult.ForeColor = System.Drawing.SystemColors.ControlText;
                 lResult.Text = "OK (" + serialNumber + ")";
@@ -466,7 +476,7 @@ namespace QsfpPlus40gSr4DcTest
         private int _CheckLtPowerDifferent(String serialNumber, String[] txPower)
         {
             String[] ltTxPower = new String[4];
-            DataRow[] filteredRows = dtValue.Select("標籤 = '-5' AND 序號 = '" + serialNumber + "'");
+            DataRow[] filteredRows = dtValue.Select("Lable = '-5' AND SN = '" + serialNumber + "'");
             double dLtPower, dRtPower, dMinThreshold, dMaxThreshold;
             int i;
             bool bPass = true;
@@ -479,7 +489,7 @@ namespace QsfpPlus40gSr4DcTest
                 bPass = false;
 
             if (filteredRows.Length == 0) {
-                MessageBox.Show("找不到序號: " + serialNumber + " -5 度資料!!");
+                MessageBox.Show("Cannot find: " + serialNumber + " -5 DegC Data!!");
                 return -1;
             }
 
@@ -525,7 +535,7 @@ namespace QsfpPlus40gSr4DcTest
         private int _CheckHtPowerDifferent(String serialNumber, String[] txPower)
         {
             String[] htTxPower = new String[4];
-            DataRow[] filteredRows = dtValue.Select("標籤 = '70' AND 序號 = '" + serialNumber + "'");
+            DataRow[] filteredRows = dtValue.Select("Lable = '70' AND SN = '" + serialNumber + "'");
             double dHtPower, dRtPower, dMinThreshold, dMaxThreshold;
             int i;
             bool bPass = true;
@@ -538,7 +548,7 @@ namespace QsfpPlus40gSr4DcTest
                 bPass = false;
 
             if (filteredRows.Length == 0) {
-                MessageBox.Show("找不到序號: " + serialNumber + " 70 度資料!!");
+                MessageBox.Show("Cannot find: " + serialNumber + " 70 DegC data!!");
                 return -1;
             }
 
@@ -583,12 +593,12 @@ namespace QsfpPlus40gSr4DcTest
 
         private int _CheckDuplicationLog(String logLable, String serialNumber)
         {
-            DataRow[] filteredRows = dtValue.Select("標籤 = '" + logLable + "' AND 序號 = '" + serialNumber + "'");
+            DataRow[] filteredRows = dtValue.Select("Lable = '" + logLable + "' AND SN = '" + serialNumber + "'");
             
             if (filteredRows.Length == 0)
                 return 0;
 
-            drAskOverwrite = MessageBox.Show("是否覆蓋舊紀錄?", "發現重複紀錄", MessageBoxButtons.YesNo);
+            drAskOverwrite = MessageBox.Show("Overwrite record?", "Find duplicate data", MessageBoxButtons.YesNo);
             if (drAskOverwrite == DialogResult.Yes)
                 dtValue.Rows.RemoveAt(dtValue.Rows.IndexOf(filteredRows[0]));
             else
@@ -655,7 +665,12 @@ namespace QsfpPlus40gSr4DcTest
 
         private int _SetQsfpMode(byte mode)
         {
-            byte[] data = new byte[] { 32 };
+            byte[] data = new byte[1];
+
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x20;
+            else
+                data[0] = 0xAA;
 
             if (i2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
@@ -668,7 +683,7 @@ namespace QsfpPlus40gSr4DcTest
             return 0;
         }
 
-        private int _SetBias(int uA)
+        private int _SetBias(int uA, bool burnIn)
         {
             byte[] data = new byte[1];
             byte[] baWritedata = new byte[22];
@@ -687,12 +702,16 @@ namespace QsfpPlus40gSr4DcTest
             if (i2cReadCB == null)
                 return -1;
 
-            data[0] = 5;
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x05;
+            else
+                data[0] = 0x81;
+
             if (i2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
 
-            baWritedata[0] = Convert.ToByte(10.2 / 0.04); //Max
-            baWritedata[1] = Convert.ToByte(4 / 0.04); //Min
+            baWritedata[0] = Convert.ToByte(4 / 0.04); //Min
+            baWritedata[1] = Convert.ToByte(10.2 / 0.04); //Max
 
             baWritedata[2] = (byte)Convert.ToSByte(0 * 100); //Ch1 EqA
             bATmp = BitConverter.GetBytes(Convert.ToInt16(0 * 10)); //Ch1 EqA
@@ -729,12 +748,31 @@ namespace QsfpPlus40gSr4DcTest
             if (i2cWriteCB(80, 128, 22, baWritedata) < 0)
                 return -1;
 
+            //Write enable temperature compensate
+            data[0] = 1;
+            if (burnIn == true) //enable burn-in
+                data[0] |= 0x02;
+            if (i2cWriteCB(80, 252, 1, data) < 0)
+                return -1;
+
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x04;
+            else
+                data[0] = 0x80;
+
+            if (i2cWriteCB(80, 127, 1, data) < 0)
+                return -1;
+
             //Write 223 to enable temperature compensate
             data[0] = 0;
             if (i2cWriteCB(80, 223, 1, data) < 0)
                 return -1;
 
-            data[0] = 5;
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x05;
+            else
+                data[0] = 0x81;
+
             if (i2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
 
@@ -744,68 +782,68 @@ namespace QsfpPlus40gSr4DcTest
                 return -1;
 
             if (baReadData[0] != baWritedata[0])
-                MessageBox.Show("設定 Max bias 失敗!! 讀(" + baReadData[0].ToString("X2") +
-                    ") != 寫(" + baWritedata[0].ToString("X2") + ")\n!!請重新記錄!!");
+                MessageBox.Show("Set Max bias Fail!! Read(" + baReadData[0].ToString("X2") +
+                    ") != Write(" + baWritedata[0].ToString("X2") + ")\n!!Please re-log!!");
 
             if (baReadData[1] != baWritedata[1])
-                MessageBox.Show("設定 Min bias 失敗!! 讀(" + baReadData[1].ToString("X2") +
-                    ") != 寫(" + baWritedata[1].ToString("X2") + ")\n!!請重新記錄!!");
+                MessageBox.Show("Set Min bias fail!! Read(" + baReadData[1].ToString("X2") +
+                    ") != Write(" + baWritedata[1].ToString("X2") + ")\n!!Please re-log!!");
 
             if (baReadData[2] != baWritedata[2])
-                MessageBox.Show("設定 Ch1 EqA 失敗!! 讀(" + baReadData[2].ToString("X2") +
-                    ") != 寫(" + baWritedata[2].ToString("X2") + ")\n!!請重新記錄!!");
+                MessageBox.Show("Set Ch1 EqA fail!! Read(" + baReadData[2].ToString("X2") +
+                    ") != Write(" + baWritedata[2].ToString("X2") + ")\n!!Please re-log!!");
 
             if ((baReadData[3] != baWritedata[3]) || (baReadData[4] != baWritedata[4]))
-                MessageBox.Show("設定 Ch1 EqB 失敗!! 讀(" + baReadData[3].ToString("X2") +
-                    baReadData[4].ToString("X2") + ") != 寫(" + baWritedata[3].ToString("X2") +
-                    baWritedata[4].ToString("X2") + ")\n!!請重新記錄!!");
+                MessageBox.Show("Set Ch1 EqB fail!! Read(" + baReadData[3].ToString("X2") +
+                    baReadData[4].ToString("X2") + ") != Write(" + baWritedata[3].ToString("X2") +
+                    baWritedata[4].ToString("X2") + ")\n!!Please re-log!!");
 
             if ((baReadData[5] != baWritedata[5]) || (baReadData[6] != baWritedata[6]))
-                MessageBox.Show("設定 Ch1 EqC 失敗!! 讀(" + baReadData[5].ToString("X2") +
-                    baReadData[6].ToString("X2") + ") != 寫(" + baWritedata[5].ToString("X2") +
-                    baWritedata[6].ToString("X2") + ")\n!!請重新記錄!!");
+                MessageBox.Show("Set Ch1 EqC fail!! Read(" + baReadData[5].ToString("X2") +
+                    baReadData[6].ToString("X2") + ") != Write(" + baWritedata[5].ToString("X2") +
+                    baWritedata[6].ToString("X2") + ")\n!!Please re-log!!");
 
             if (baReadData[7] != baWritedata[7])
-                MessageBox.Show("設定 Ch2 EqA 失敗!! 讀(" + baReadData[7].ToString("X2") +
-                    ") != 寫(" + baWritedata[7].ToString("X2") + ")\n!!請重新記錄!!");
+                MessageBox.Show("Set Ch2 EqA fail!! Read(" + baReadData[7].ToString("X2") +
+                    ") != Write(" + baWritedata[7].ToString("X2") + ")\n!!Please re-log!!");
 
             if ((baReadData[8] != baWritedata[8]) || (baReadData[9] != baWritedata[9]))
-                MessageBox.Show("設定 Ch2 EqB 失敗!! 讀(" + baReadData[8].ToString("X2") +
-                    baReadData[9].ToString("X2") + ") != 寫(" + baWritedata[8].ToString("X2") +
-                    baWritedata[9].ToString("X2") + ")\n!!請重新記錄!!");
+                MessageBox.Show("Set Ch2 EqB fail!! Read(" + baReadData[8].ToString("X2") +
+                    baReadData[9].ToString("X2") + ") != Write(" + baWritedata[8].ToString("X2") +
+                    baWritedata[9].ToString("X2") + ")\n!!Please re-log!!");
 
             if ((baReadData[10] != baWritedata[10]) || (baReadData[11] != baWritedata[11]))
-                MessageBox.Show("設定 Ch2 EqC 失敗!! 讀(" + baReadData[10].ToString("X2") +
-                    baReadData[11].ToString("X2") + ") != 寫(" + baWritedata[10].ToString("X2") +
-                    baWritedata[11].ToString("X2") + ")\n!!請重新記錄!!");
+                MessageBox.Show("Set Ch2 EqC fail!! Read(" + baReadData[10].ToString("X2") +
+                    baReadData[11].ToString("X2") + ") != Write(" + baWritedata[10].ToString("X2") +
+                    baWritedata[11].ToString("X2") + ")\n!!Please re-log!!");
 
             if (baReadData[12] != baWritedata[12])
-                MessageBox.Show("設定 Ch3 EqA 失敗!! 讀(" + baReadData[12].ToString("X2") +
-                    ") != 寫(" + baWritedata[12].ToString("X2") + ")\n!!請重新記錄!!");
+                MessageBox.Show("Set Ch3 EqA fail!! Read(" + baReadData[12].ToString("X2") +
+                    ") != Write(" + baWritedata[12].ToString("X2") + ")\n!!Please re-log!!");
 
             if ((baReadData[13] != baWritedata[13]) || (baReadData[14] != baWritedata[14]))
-                MessageBox.Show("設定 Ch3 EqB 失敗!! 讀(" + baReadData[13].ToString("X2") +
-                    baReadData[14].ToString("X2") + ") != 寫(" + baWritedata[13].ToString("X2") +
-                    baWritedata[14].ToString("X2") + ")\n!!請重新記錄!!");
+                MessageBox.Show("Set Ch3 EqB fail!! Read(" + baReadData[13].ToString("X2") +
+                    baReadData[14].ToString("X2") + ") != Write(" + baWritedata[13].ToString("X2") +
+                    baWritedata[14].ToString("X2") + ")\n!!Please re-log!!");
 
             if ((baReadData[15] != baWritedata[15]) || (baReadData[16] != baWritedata[16]))
-                MessageBox.Show("設定 Ch3 EqC 失敗!! 讀(" + baReadData[15].ToString("X2") +
-                    baReadData[16].ToString("X2") + ") != 寫(" + baWritedata[15].ToString("X2") +
-                    baWritedata[16].ToString("X2") + ")\n!!請重新記錄!!");
+                MessageBox.Show("Set Ch3 EqC fail!! Read(" + baReadData[15].ToString("X2") +
+                    baReadData[16].ToString("X2") + ") != Write(" + baWritedata[15].ToString("X2") +
+                    baWritedata[16].ToString("X2") + ")\n!!Please re-log!!");
 
             if (baReadData[17] != baWritedata[17])
-                MessageBox.Show("設定 Ch4 EqA 失敗!! 讀(" + baReadData[7].ToString("X2") +
-                    ") != 寫(" + baWritedata[7].ToString("X2") + ")\n!!請重新記錄!!");
+                MessageBox.Show("Set Ch4 EqA fail!! Read(" + baReadData[7].ToString("X2") +
+                    ") != Write(" + baWritedata[7].ToString("X2") + ")\n!!Please re-log!!");
 
             if ((baReadData[18] != baWritedata[18]) || (baReadData[19] != baWritedata[19]))
-                MessageBox.Show("設定 Ch4 EqB 失敗!! 讀(" + baReadData[18].ToString("X2") +
-                    baReadData[19].ToString("X2") + ") != 寫(" + baWritedata[18].ToString("X2") +
-                    baWritedata[19].ToString("X2") + ")\n!!請重新記錄!!");
+                MessageBox.Show("Set Ch4 EqB fail!! Read(" + baReadData[18].ToString("X2") +
+                    baReadData[19].ToString("X2") + ") != Write(" + baWritedata[18].ToString("X2") +
+                    baWritedata[19].ToString("X2") + ")\n!!Please re-log!!");
 
             if ((baReadData[20] != baWritedata[20]) || (baReadData[21] != baWritedata[21]))
-                MessageBox.Show("設定 Ch4 EqC 失敗!! 讀(" + baReadData[20].ToString("X2") +
-                    baReadData[21].ToString("X2") + ") != 寫(" + baWritedata[20].ToString("X2") +
-                    baWritedata[21].ToString("X2") + ")\n!!請重新記錄!!");
+                MessageBox.Show("Set Ch4 EqC fail!! Read(" + baReadData[20].ToString("X2") +
+                    baReadData[21].ToString("X2") + ") != Write(" + baWritedata[20].ToString("X2") +
+                    baWritedata[21].ToString("X2") + ")\n!!Please re-log!!");
 
             return 0;
         }
@@ -832,7 +870,11 @@ namespace QsfpPlus40gSr4DcTest
 
             int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
 
-            data[0] = 5;
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x05;
+            else
+                data[0] = 0x81;
+
             if (i2cWriteCB((byte)devAddr, 127, 1, data) < 0)
                 return -1;
             tmp = System.Text.Encoding.Default.GetBytes(newSerialNumber);
@@ -859,8 +901,8 @@ namespace QsfpPlus40gSr4DcTest
                 if (baReadTmp[i] != '\0') {
                     if (data[i] != baReadTmp[i]) {
                         sRead = System.Text.Encoding.Default.GetString(baReadTmp);
-                        MessageBox.Show("設定 serial number 失敗!! 讀(" +
-                            sRead + ") != 寫(" + newSerialNumber + ")\n!!請重新記錄!!");
+                        MessageBox.Show("Set serial number fail!! Read(" +
+                            sRead + ") != Write(" + newSerialNumber + ")\n!!Please re-log!!");
                         return -1;
                     }
                 }
@@ -873,7 +915,11 @@ namespace QsfpPlus40gSr4DcTest
         {
             byte[] data = new byte[1];
 
-            data[0] = 32;
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x20;
+            else
+                data[0] = 0xAA;
+
             if (i2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
 
@@ -890,7 +936,7 @@ namespace QsfpPlus40gSr4DcTest
             int iTmp;
 
             if (tbOperator.Text.Length == 0) {
-                MessageBox.Show("請輸入工號!!");
+                MessageBox.Show("Please input operator!!");
                 return;
             }
             logModeSelect = cbLogMode.SelectedItem.ToString();
@@ -899,12 +945,12 @@ namespace QsfpPlus40gSr4DcTest
             {
                 if (lastLogFileName.Length == 0)
                 {
-                    MessageBox.Show("請輸入批號&子批號!!");
+                    MessageBox.Show("Please input lot and sub-lot!!");
                     return;
                 }
                 if (tbSerialNumber.Text.Length < 1)
                 {
-                    MessageBox.Show("請輸入序號!!");
+                    MessageBox.Show("Please input SN!!");
                     return;
                 }
                 if (tbSerialNumber.Text.Length > 4)
@@ -940,7 +986,7 @@ namespace QsfpPlus40gSr4DcTest
             else if (logModeSelect == "B-HDMI(QC)")
             {
                 if (tbSerialNumber.Text.Length < 1) {
-                    MessageBox.Show("請輸入序號!!");
+                    MessageBox.Show("Please input SN!!");
                     return;
                 }
                 if (tbSerialNumber.Text.Length == 9) {
@@ -963,7 +1009,7 @@ namespace QsfpPlus40gSr4DcTest
             if (!((tbRx1Threshold.Text.Equals("0")) && (tbRx2Threshold.Text.Equals("0")) &&
                 (tbRx3Threshold.Text.Equals("0")) && (tbRx4Threshold.Text.Equals("0")))) {
                 if ((tbRx1.Text == "0") && (tbRx2.Text == "0") && (tbRx3.Text == "0") && (tbRx4.Text == "0")) {
-                    DialogResult drRxZero = MessageBox.Show("Rx無讀值異常, 請檢查待測物!!\n(或按No忽略)", "請選擇Yes或No",
+                    DialogResult drRxZero = MessageBox.Show("Rx value wrong. Please check be measure item!!\n(or select No ignore)", "Please select Yes or No",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (drRxZero == DialogResult.Yes)
                         return;
@@ -979,11 +1025,15 @@ namespace QsfpPlus40gSr4DcTest
             if (logModeSelect == "BeforeBurnIn") {
                 while (tbSerialNumber.Text[0] == ' ')
                     tbSerialNumber.Text = tbSerialNumber.Text.Substring(1, tbSerialNumber.Text.Length - 1);
+                if (tbSerialNumber.Text.Length != 4) {
+                    int.TryParse(tbSerialNumber.Text, out iTmp);
+                    tbSerialNumber.Text = iTmp.ToString("0000");
+                }
                 if (tbLotNumber.Text.Length == 8)
                     newSerialNumber = tbLotNumber.Text + tbSubLotNumber.Text + tbSerialNumber.Text;
                 else {
                     lAction.Text = "LOT number wrong!!";
-                    MessageBox.Show("LOT編號錯誤!!");
+                    MessageBox.Show("LOT number wrong!!");
                     goto Error;
                 }
             }
@@ -1214,7 +1264,7 @@ namespace QsfpPlus40gSr4DcTest
 
         private int _ReadRxPowerValue()
         {
-            byte[] data = data = new byte[] { 4, 0, 0, 0 };
+            byte[] data = data = new byte[] { 0, 0, 0, 0 };
             byte[] reverseData;
             int tmp;
             float power;
@@ -1224,6 +1274,11 @@ namespace QsfpPlus40gSr4DcTest
 
             if (i2cReadCB == null)
                 return -1;
+
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x04;
+            else
+                data[0] = 0x80;
 
             if (i2cWriteCB(80, 127, 1, data) < 0)
                 goto clearData;
@@ -1368,7 +1423,11 @@ namespace QsfpPlus40gSr4DcTest
 
             int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
 
-            data[0] = 5;
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x05;
+            else
+                data[0] = 0x81;
+
             if (i2cWriteCB((byte)devAddr, 127, 1, data) < 0)
                 goto clearData;
 
@@ -1468,18 +1527,19 @@ namespace QsfpPlus40gSr4DcTest
         public void MonitorValueUpdateApi(object sender, DoWorkEventArgs e)
         {
             bool bGetModuleMonitorValueError;
-            int iTmp;
-            int.TryParse(tbBeforeAndAfterBurnInDcTestBiasCurrent.Text, out iTmp);
+            int iTmp, iBurnInCurrent;
 
             while (monitorStart) {
                 bGetModuleMonitorValueError = false;
 
                 if (logValue == true) {
+                    int.TryParse(tbBeforeAndAfterBurnInDcTestBiasCurrent.Text, out iTmp);
+                    int.TryParse(tbBurnInBiasCurrent.Text, out iBurnInCurrent);
                     switch (logModeSelect) {
                         case "BeforeBurnIn":
                             bwMonitor.ReportProgress(1, null);
                       
-                            if (_SetBias(iTmp) < 0) {
+                            if (_SetBias(iTmp, false) < 0) {
                                 bGetModuleMonitorValueError = true;
                                 break;
                             }
@@ -1494,7 +1554,7 @@ namespace QsfpPlus40gSr4DcTest
                             }
                             
                             bwMonitor.ReportProgress(4, null);
-                            if ((_SetModuleSerialNumber() < 0) || (_SetBias(10000) < 0) ||
+                            if ((_SetModuleSerialNumber() < 0) || (_SetBias(iBurnInCurrent, true) < 0) ||
                                 (_StoreConfigIntoFlash() < 0)) {
                                 bGetModuleMonitorValueError = true;
                                 break;
@@ -1507,13 +1567,13 @@ namespace QsfpPlus40gSr4DcTest
 
                         case "AfterBurnIn":
                             bwMonitor.ReportProgress(5, null);
-                            if ((_SetBias(iTmp) < 0) || (_StoreConfigIntoFlash() < 0)) {
+                            if ((_SetBias(iTmp, false) < 0) || (_StoreConfigIntoFlash() < 0)) {
                                 bGetModuleMonitorValueError = true;
                                 break;
                             }
 
                             bwMonitor.ReportProgress(2, null);
-                            Thread.Sleep(100); // Wait value stable
+                            Thread.Sleep(200); // Wait value stable
 
                             bwMonitor.ReportProgress(3, null);
                             if (_GetModuleMonitorValue() < 0) {
@@ -1524,6 +1584,11 @@ namespace QsfpPlus40gSr4DcTest
                             acConfigRowCount = 0;
                             bwMonitor.ReportProgress(6, null);
                             _SetAfterBurnInAcConfig();
+
+                            if (_AutoCorrectRxPowerRate() < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
 
                             bwMonitor.ReportProgress(10, null);
                             while (logValue == true) // Wait log done
@@ -1601,10 +1666,15 @@ namespace QsfpPlus40gSr4DcTest
 
         private int _StorePowerRateConfig()
         {
-            byte[] data = { 32 };
+            byte[] data = new byte[1];
 
             lAction.Text = "Sotre Rx power rate...";
             lAction.Update();
+
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x20;
+            else
+                data[0] = 0xAA;
 
             if (i2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
@@ -1635,7 +1705,13 @@ namespace QsfpPlus40gSr4DcTest
             if (i2cWriteCB == null)
                 return -1;
 
-            data = new byte[] { 4, 0, 0, 0 }; ;
+            data = new byte[4];
+
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x04;
+            else
+                data[0] = 0x80;
+
             i2cWriteCB(80, 127, 1, data);
 
             try {
@@ -2011,7 +2087,7 @@ namespace QsfpPlus40gSr4DcTest
                     break;
 
                 case 4:
-                    lAction.Text = "Set bias 10mA and store ...";
+                    lAction.Text = "Set burn-in bias and store ...";
                     lAction.Update();
                     return;
 
@@ -2107,7 +2183,7 @@ namespace QsfpPlus40gSr4DcTest
                         break;
 
                     default:
-                        lAction.Text = "溫度觸發只支援: 70, 25, -5度!!";
+                        lAction.Text = "Temperature trigger onlay support: 70, 25, -5 DegC!!";
                         cbAutoLogWithLableTemperature.Checked = false;
                         goto error_exit;
                 }
@@ -2423,6 +2499,7 @@ namespace QsfpPlus40gSr4DcTest
                 {
                     xwConfig.WriteElementString("AfterBurnInPowerDifferentPercentage", tbAfterBurnInPowerDifferentLimit.Text);
                     xwConfig.WriteElementString("BeforeAndAfterBurnInDcTestBiasCurrent", tbBeforeAndAfterBurnInDcTestBiasCurrent.Text);
+                    xwConfig.WriteElementString("BurnInBiasCurrent", tbBurnInBiasCurrent.Text);
                     xwConfig.WriteElementString("ModulePassword123", tbPassword123.Text);
                     xwConfig.WriteElementString("ModulePassword124", tbPassword124.Text);
                     xwConfig.WriteElementString("ModulePassword125", tbPassword125.Text);
@@ -2471,6 +2548,14 @@ namespace QsfpPlus40gSr4DcTest
 
                     }
                     xwConfig.WriteEndElement(); //RxPowerRateConfig
+
+                    xwConfig.WriteStartElement("MiscConfig");
+                    {
+                        xwConfig.WriteElementString("CustomerPage", cbCustomerPage.Text);
+                        xwConfig.WriteElementString("IgnoreRxLos", cbIgnoreRxLos.Checked.ToString());
+                        xwConfig.WriteElementString("IgnoreTxLos", cbIgnoreTxLos.Checked.ToString());
+                    }
+                    xwConfig.WriteEndElement(); //CustomerPageConfig
 
                     sTmp = "";
                     foreach (DataRow row in dtAfterBurnInConfig.Rows) {
@@ -2663,6 +2748,46 @@ namespace QsfpPlus40gSr4DcTest
             }
         }
 
+        private void _PaserMiscConfigXml(XmlReader reader)
+        {
+            reader.Read();
+            while (true) {
+                if (reader.IsStartElement()) {
+                    switch (reader.Name) {
+                        case "CustomerPage":
+                            if (reader.ReadElementContentAsString().Equals("Old: 4, 5, 32"))
+                                cbCustomerPage.SelectedIndex = 0;
+                            else
+                                cbCustomerPage.SelectedIndex = 1;
+                            break;
+
+                        case "IgnoreRxLos":
+                            if (reader.ReadElementContentAsString().Equals("False"))
+                                cbIgnoreRxLos.Checked = false;
+                            else
+                                cbIgnoreRxLos.Checked = true;
+                            break;
+
+                        case "IgnoreTxLos":
+                            if (reader.ReadElementContentAsString().Equals("False"))
+                                cbIgnoreTxLos.Checked = false;
+                            else
+                                cbIgnoreTxLos.Checked = true;
+                            return;
+
+                        default:
+                            return;
+                    }
+                }
+                else {
+                    reader.MoveToContent();
+                    reader.ReadEndElement();
+                    break;
+                }
+            }
+        }
+
+
         private void _PaserAfterBurnInAcConfig(string cfg)
         {
             StringReader srReader;
@@ -2701,6 +2826,10 @@ namespace QsfpPlus40gSr4DcTest
                             tbBeforeAndAfterBurnInDcTestBiasCurrent.Text = reader.ReadElementContentAsString();
                             break;
 
+                        case "BurnInBiasCurrent":
+                            tbBurnInBiasCurrent.Text = reader.ReadElementContentAsString();
+                            break;
+
                         case "ModulePassword123":
                             tbPassword123.Text = reader.ReadElementContentAsString();
                             break;
@@ -2732,6 +2861,11 @@ namespace QsfpPlus40gSr4DcTest
                             reader.Read();
                             break;
 
+                        case "MiscConfig":
+                            _PaserMiscConfigXml(reader);
+                            reader.Read();
+                            break;
+
                         case "AfterBurnInAcConfig":
                             _PaserAfterBurnInAcConfig(reader.ReadElementContentAsString());
                             break;
@@ -2752,7 +2886,7 @@ namespace QsfpPlus40gSr4DcTest
         {
             OpenFileDialog ofdSelectFile = new OpenFileDialog();
 
-            ofdSelectFile.Title = "選擇設定檔";
+            ofdSelectFile.Title = "Select config file";
             ofdSelectFile.Filter = "xml files (*.xml)|*.xml";
             if (ofdSelectFile.ShowDialog() != DialogResult.OK)
                 return;

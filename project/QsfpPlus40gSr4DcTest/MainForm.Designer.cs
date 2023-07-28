@@ -42,9 +42,9 @@
             this.cbMeasuredObjectI2cAdapterConnected.AutoSize = true;
             this.cbMeasuredObjectI2cAdapterConnected.Location = new System.Drawing.Point(462, 13);
             this.cbMeasuredObjectI2cAdapterConnected.Name = "cbMeasuredObjectI2cAdapterConnected";
-            this.cbMeasuredObjectI2cAdapterConnected.Size = new System.Drawing.Size(150, 16);
+            this.cbMeasuredObjectI2cAdapterConnected.Size = new System.Drawing.Size(155, 16);
             this.cbMeasuredObjectI2cAdapterConnected.TabIndex = 0;
-            this.cbMeasuredObjectI2cAdapterConnected.Text = "待測物I2C轉接器已連結";
+            this.cbMeasuredObjectI2cAdapterConnected.Text = "Be measured I2C connected";
             this.cbMeasuredObjectI2cAdapterConnected.UseVisualStyleBackColor = true;
             this.cbMeasuredObjectI2cAdapterConnected.CheckedChanged += new System.EventHandler(this.cbI2cAdapterConnected_CheckedChanged);
             // 
@@ -54,9 +54,9 @@
             this.cbPowerMeterConnected.BackColor = System.Drawing.SystemColors.Control;
             this.cbPowerMeterConnected.Location = new System.Drawing.Point(108, 13);
             this.cbPowerMeterConnected.Name = "cbPowerMeterConnected";
-            this.cbPowerMeterConnected.Size = new System.Drawing.Size(132, 16);
+            this.cbPowerMeterConnected.Size = new System.Drawing.Size(114, 16);
             this.cbPowerMeterConnected.TabIndex = 1;
-            this.cbPowerMeterConnected.Text = "光強度量測儀已連結";
+            this.cbPowerMeterConnected.Text = "EXFO power meter";
             this.cbPowerMeterConnected.UseVisualStyleBackColor = false;
             this.cbPowerMeterConnected.CheckedChanged += new System.EventHandler(this.cbPowerMeterConnected_CheckedChanged);
             // 
@@ -74,9 +74,9 @@
             this.lPowerMeterIpAddr.AutoSize = true;
             this.lPowerMeterIpAddr.Location = new System.Drawing.Point(246, 14);
             this.lPowerMeterIpAddr.Name = "lPowerMeterIpAddr";
-            this.lPowerMeterIpAddr.Size = new System.Drawing.Size(104, 12);
+            this.lPowerMeterIpAddr.Size = new System.Drawing.Size(93, 12);
             this.lPowerMeterIpAddr.TabIndex = 4;
-            this.lPowerMeterIpAddr.Text = "光強度量測儀位址:";
+            this.lPowerMeterIpAddr.Text = "EXFO PM IP addr:";
             // 
             // cbAutoMonitor
             // 
@@ -84,9 +84,9 @@
             this.cbAutoMonitor.BackColor = System.Drawing.SystemColors.Control;
             this.cbAutoMonitor.Location = new System.Drawing.Point(1213, 13);
             this.cbAutoMonitor.Name = "cbAutoMonitor";
-            this.cbAutoMonitor.Size = new System.Drawing.Size(72, 16);
+            this.cbAutoMonitor.Size = new System.Drawing.Size(81, 16);
             this.cbAutoMonitor.TabIndex = 5;
-            this.cbAutoMonitor.Text = "開始量測";
+            this.cbAutoMonitor.Text = "Auto update";
             this.cbAutoMonitor.UseVisualStyleBackColor = false;
             this.cbAutoMonitor.CheckedChanged += new System.EventHandler(this.cbAutoMonitor_CheckedChanged);
             // 
@@ -109,9 +109,9 @@
             this.cbPowerMeterQsfpConnected.AutoSize = true;
             this.cbPowerMeterQsfpConnected.Location = new System.Drawing.Point(108, 12);
             this.cbPowerMeterQsfpConnected.Name = "cbPowerMeterQsfpConnected";
-            this.cbPowerMeterQsfpConnected.Size = new System.Drawing.Size(146, 16);
+            this.cbPowerMeterQsfpConnected.Size = new System.Drawing.Size(111, 16);
             this.cbPowerMeterQsfpConnected.TabIndex = 7;
-            this.cbPowerMeterQsfpConnected.Text = "光強度量測QSFP已連接";
+            this.cbPowerMeterQsfpConnected.Text = "QSFP power meter";
             this.cbPowerMeterQsfpConnected.UseVisualStyleBackColor = true;
             this.cbPowerMeterQsfpConnected.Visible = false;
             this.cbPowerMeterQsfpConnected.CheckedChanged += new System.EventHandler(this.cbPowerMeterQsfpConnected_CheckedChanged);
@@ -127,7 +127,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1297, 741);
+            this.ClientSize = new System.Drawing.Size(1289, 729);
             this.Controls.Add(this.cbPowerMeterQsfpConnected);
             this.Controls.Add(this.cbPowerMeterSelect);
             this.Controls.Add(this.cbAutoMonitor);
@@ -141,7 +141,7 @@
             this.MaximumSize = new System.Drawing.Size(1305, 768);
             this.MinimumSize = new System.Drawing.Size(1305, 766);
             this.Name = "MainForm";
-            this.Text = "QSFP+ 40G SR4 DC Test 20190403";
+            this.Text = "QSFP+ 40G SR4 DC Test 20230728_1313";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.ResumeLayout(false);
