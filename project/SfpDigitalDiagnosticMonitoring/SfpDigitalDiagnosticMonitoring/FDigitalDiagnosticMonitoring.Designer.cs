@@ -32,6 +32,8 @@
             this.ucA0h = new SfpDigitalDiagnosticMonitoring.UcA0h();
             this.tpA2h = new System.Windows.Forms.TabPage();
             this.ucA2h = new SfpDigitalDiagnosticMonitoring.UcA2h();
+            this.tpMemoryDump = new System.Windows.Forms.TabPage();
+            this.ucMemoryDump = new SfpDigitalDiagnosticMonitoring.UcMemoryDump();
             this.cbConnected = new System.Windows.Forms.CheckBox();
             this.cbFirmwareVersionCheck = new System.Windows.Forms.CheckBox();
             this.tbFirmwareDateCheck = new System.Windows.Forms.TextBox();
@@ -48,12 +50,14 @@
             this.TcSelect.SuspendLayout();
             this.tpA0h.SuspendLayout();
             this.tpA2h.SuspendLayout();
+            this.tpMemoryDump.SuspendLayout();
             this.SuspendLayout();
             // 
             // TcSelect
             // 
             this.TcSelect.Controls.Add(this.tpA0h);
             this.TcSelect.Controls.Add(this.tpA2h);
+            this.TcSelect.Controls.Add(this.tpMemoryDump);
             this.TcSelect.Location = new System.Drawing.Point(12, 34);
             this.TcSelect.Name = "TcSelect";
             this.TcSelect.SelectedIndex = 0;
@@ -95,6 +99,24 @@
             this.ucA2h.Name = "ucA2h";
             this.ucA2h.Size = new System.Drawing.Size(1020, 453);
             this.ucA2h.TabIndex = 0;
+            // 
+            // tpMemoryDump
+            // 
+            this.tpMemoryDump.Controls.Add(this.ucMemoryDump);
+            this.tpMemoryDump.Location = new System.Drawing.Point(4, 22);
+            this.tpMemoryDump.Name = "tpMemoryDump";
+            this.tpMemoryDump.Padding = new System.Windows.Forms.Padding(3);
+            this.tpMemoryDump.Size = new System.Drawing.Size(1026, 459);
+            this.tpMemoryDump.TabIndex = 2;
+            this.tpMemoryDump.Text = "MemDump";
+            this.tpMemoryDump.UseVisualStyleBackColor = true;
+            // 
+            // ucMemoryDump
+            // 
+            this.ucMemoryDump.Location = new System.Drawing.Point(6, 6);
+            this.ucMemoryDump.Name = "ucMemoryDump";
+            this.ucMemoryDump.Size = new System.Drawing.Size(855, 385);
+            this.ucMemoryDump.TabIndex = 0;
             // 
             // cbConnected
             // 
@@ -230,10 +252,11 @@
             this.Controls.Add(this.cbConnected);
             this.Controls.Add(this.TcSelect);
             this.Name = "FDigitalDiagnosticMonitoring";
-            this.Text = "Digital Diagnostic Monitoring";
+            this.Text = "Digital Diagnostic Monitoring 20230927_0318";
             this.TcSelect.ResumeLayout(false);
             this.tpA0h.ResumeLayout(false);
             this.tpA2h.ResumeLayout(false);
+            this.tpMemoryDump.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -259,6 +282,8 @@
         private System.Windows.Forms.TextBox tbPasswordB1;
         private System.Windows.Forms.TextBox tbPasswordB0;
         private System.Windows.Forms.Label lPassword;
+        private System.Windows.Forms.TabPage tpMemoryDump;
+        private UcMemoryDump ucMemoryDump;
     }
 }
 

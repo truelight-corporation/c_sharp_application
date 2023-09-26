@@ -83,7 +83,8 @@ namespace SfpDigitalDiagnosticMonitoring
                 return -1;
             }
 
-            data[0] = 82;
+            //data[0] = 82;
+            data[0] = 0xA2;
             if (_I2cWrite(81, 127, 1, data) < 0)
                 return -1;
 
@@ -102,7 +103,8 @@ namespace SfpDigitalDiagnosticMonitoring
                 return -1;
             }
 
-            if (_I2cWrite(81, 158, 4, data) < 0)
+            //if (_I2cWrite(81, 158, 4, data) < 0)
+            if (_I2cWrite(81, 123, 4, data) < 0)
                 return -1;
 
             return 0;
@@ -132,6 +134,18 @@ namespace SfpDigitalDiagnosticMonitoring
 				return;
 			}
             if (ucA2h.SetI2cWritePasswordCBApi(_WritePassword) < 0) {
+                MessageBox.Show("ucA2h.SetI2cWritePasswordCBApi() faile Error!!");
+                return;
+            }
+            if (ucMemoryDump.SetI2cReadCBApi(_I2cRead) < 0) {
+                MessageBox.Show("ucA2h.SetI2cReadCBApi() faile Error!!");
+                return;
+            }
+            if (ucMemoryDump.SetI2cWriteCBApi(_I2cWrite) < 0) {
+                MessageBox.Show("ucA2h.SetI2cReadCBApi() faile Error!!");
+                return;
+            }
+            if (ucMemoryDump.SetI2cWritePasswordCBApi(_WritePassword) < 0) {
                 MessageBox.Show("ucA2h.SetI2cWritePasswordCBApi() faile Error!!");
                 return;
             }

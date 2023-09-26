@@ -70,6 +70,12 @@
     <Compile Include="UcA2h.Designer.cs">
       <DependentUpon>UcA2h.cs</DependentUpon>
     </Compile>
+    <Compile Include="UcMemoryDump.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcMemoryDump.Designer.cs">
+      <DependentUpon>UcMemoryDump.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FDigitalDiagnosticMonitoring.resx">
       <DependentUpon>FDigitalDiagnosticMonitoring.cs</DependentUpon>
     </EmbeddedResource>
@@ -87,6 +93,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UcA2h.resx">
       <DependentUpon>UcA2h.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcMemoryDump.resx">
+      <DependentUpon>UcMemoryDump.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
