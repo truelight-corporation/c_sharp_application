@@ -30,7 +30,11 @@
             this.cbConnected = new System.Windows.Forms.CheckBox();
             this.tcDdmAndInformation = new System.Windows.Forms.TabControl();
             this.tpDigitalDiagnosticMonitoring = new System.Windows.Forms.TabPage();
+            this.ucDigitalDiagnosticsMonitoring = new QsfpDigitalDiagnosticMonitoring.UCDigitalDiagnosticsMonitoring();
             this.tpInformation = new System.Windows.Forms.TabPage();
+            this.ucInformation = new QsfpDigitalDiagnosticMonitoring.UcInformation();
+            this.tpMemoryDump = new System.Windows.Forms.TabPage();
+            this.ucMemoryDump = new QsfpDigitalDiagnosticMonitoring.UCMemoryDump();
             this.lFirmwareVersion = new System.Windows.Forms.Label();
             this.tbFirmwareVersion = new System.Windows.Forms.TextBox();
             this.lFirmwareDate = new System.Windows.Forms.Label();
@@ -38,11 +42,15 @@
             this.tbFirmwareVersionCheck = new System.Windows.Forms.TextBox();
             this.tbFirmwareDateCheck = new System.Windows.Forms.TextBox();
             this.cbFirmwareVersionCheck = new System.Windows.Forms.CheckBox();
-            this.ucDigitalDiagnosticsMonitoring = new QsfpDigitalDiagnosticMonitoring.UCDigitalDiagnosticsMonitoring();
-            this.ucInformation = new QsfpDigitalDiagnosticMonitoring.UcInformation();
+            this.lPassword = new System.Windows.Forms.Label();
+            this.tbPasswordB0 = new System.Windows.Forms.TextBox();
+            this.tbPasswordB1 = new System.Windows.Forms.TextBox();
+            this.tbPasswordB2 = new System.Windows.Forms.TextBox();
+            this.tbPasswordB3 = new System.Windows.Forms.TextBox();
             this.tcDdmAndInformation.SuspendLayout();
             this.tpDigitalDiagnosticMonitoring.SuspendLayout();
             this.tpInformation.SuspendLayout();
+            this.tpMemoryDump.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbConnected
@@ -60,8 +68,10 @@
             // 
             this.tcDdmAndInformation.Controls.Add(this.tpDigitalDiagnosticMonitoring);
             this.tcDdmAndInformation.Controls.Add(this.tpInformation);
+            this.tcDdmAndInformation.Controls.Add(this.tpMemoryDump);
             this.tcDdmAndInformation.Location = new System.Drawing.Point(12, 34);
             this.tcDdmAndInformation.Name = "tcDdmAndInformation";
+            this.tcDdmAndInformation.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tcDdmAndInformation.SelectedIndex = 0;
             this.tcDdmAndInformation.Size = new System.Drawing.Size(921, 746);
             this.tcDdmAndInformation.TabIndex = 2;
@@ -77,6 +87,13 @@
             this.tpDigitalDiagnosticMonitoring.Text = "DDM";
             this.tpDigitalDiagnosticMonitoring.UseVisualStyleBackColor = true;
             // 
+            // ucDigitalDiagnosticsMonitoring
+            // 
+            this.ucDigitalDiagnosticsMonitoring.Location = new System.Drawing.Point(6, 4);
+            this.ucDigitalDiagnosticsMonitoring.Name = "ucDigitalDiagnosticsMonitoring";
+            this.ucDigitalDiagnosticsMonitoring.Size = new System.Drawing.Size(823, 659);
+            this.ucDigitalDiagnosticsMonitoring.TabIndex = 0;
+            // 
             // tpInformation
             // 
             this.tpInformation.Controls.Add(this.ucInformation);
@@ -87,6 +104,31 @@
             this.tpInformation.TabIndex = 1;
             this.tpInformation.Text = "Information";
             this.tpInformation.UseVisualStyleBackColor = true;
+            // 
+            // ucInformation
+            // 
+            this.ucInformation.Location = new System.Drawing.Point(3, 3);
+            this.ucInformation.Name = "ucInformation";
+            this.ucInformation.Size = new System.Drawing.Size(907, 714);
+            this.ucInformation.TabIndex = 0;
+            // 
+            // tpMemoryDump
+            // 
+            this.tpMemoryDump.Controls.Add(this.ucMemoryDump);
+            this.tpMemoryDump.Location = new System.Drawing.Point(4, 22);
+            this.tpMemoryDump.Name = "tpMemoryDump";
+            this.tpMemoryDump.Padding = new System.Windows.Forms.Padding(3);
+            this.tpMemoryDump.Size = new System.Drawing.Size(913, 720);
+            this.tpMemoryDump.TabIndex = 2;
+            this.tpMemoryDump.Text = "MemDump";
+            this.tpMemoryDump.UseVisualStyleBackColor = true;
+            // 
+            // ucMemoryDump
+            // 
+            this.ucMemoryDump.Location = new System.Drawing.Point(6, 6);
+            this.ucMemoryDump.Name = "ucMemoryDump";
+            this.ucMemoryDump.Size = new System.Drawing.Size(901, 708);
+            this.ucMemoryDump.TabIndex = 0;
             // 
             // lFirmwareVersion
             // 
@@ -146,19 +188,50 @@
             this.cbFirmwareVersionCheck.Text = "Firmware Version Check";
             this.cbFirmwareVersionCheck.UseVisualStyleBackColor = true;
             // 
-            // ucDigitalDiagnosticsMonitoring
+            // lPassword
             // 
-            this.ucDigitalDiagnosticsMonitoring.Location = new System.Drawing.Point(6, 4);
-            this.ucDigitalDiagnosticsMonitoring.Name = "ucDigitalDiagnosticsMonitoring";
-            this.ucDigitalDiagnosticsMonitoring.Size = new System.Drawing.Size(823, 659);
-            this.ucDigitalDiagnosticsMonitoring.TabIndex = 0;
+            this.lPassword.AutoSize = true;
+            this.lPassword.Location = new System.Drawing.Point(188, 13);
+            this.lPassword.Name = "lPassword";
+            this.lPassword.Size = new System.Drawing.Size(78, 12);
+            this.lPassword.TabIndex = 10;
+            this.lPassword.Text = "Password(Hex):";
             // 
-            // ucInformation
+            // tbPasswordB0
             // 
-            this.ucInformation.Location = new System.Drawing.Point(3, 3);
-            this.ucInformation.Name = "ucInformation";
-            this.ucInformation.Size = new System.Drawing.Size(907, 714);
-            this.ucInformation.TabIndex = 0;
+            this.tbPasswordB0.Location = new System.Drawing.Point(272, 10);
+            this.tbPasswordB0.Name = "tbPasswordB0";
+            this.tbPasswordB0.Size = new System.Drawing.Size(30, 22);
+            this.tbPasswordB0.TabIndex = 11;
+            this.tbPasswordB0.Text = "33";
+            this.tbPasswordB0.UseSystemPasswordChar = true;
+            // 
+            // tbPasswordB1
+            // 
+            this.tbPasswordB1.Location = new System.Drawing.Point(308, 10);
+            this.tbPasswordB1.Name = "tbPasswordB1";
+            this.tbPasswordB1.Size = new System.Drawing.Size(30, 22);
+            this.tbPasswordB1.TabIndex = 12;
+            this.tbPasswordB1.Text = "32";
+            this.tbPasswordB1.UseSystemPasswordChar = true;
+            // 
+            // tbPasswordB2
+            // 
+            this.tbPasswordB2.Location = new System.Drawing.Point(344, 10);
+            this.tbPasswordB2.Name = "tbPasswordB2";
+            this.tbPasswordB2.Size = new System.Drawing.Size(30, 22);
+            this.tbPasswordB2.TabIndex = 13;
+            this.tbPasswordB2.Text = "33";
+            this.tbPasswordB2.UseSystemPasswordChar = true;
+            // 
+            // tbPasswordB3
+            // 
+            this.tbPasswordB3.Location = new System.Drawing.Point(380, 10);
+            this.tbPasswordB3.Name = "tbPasswordB3";
+            this.tbPasswordB3.Size = new System.Drawing.Size(30, 22);
+            this.tbPasswordB3.TabIndex = 14;
+            this.tbPasswordB3.Text = "34";
+            this.tbPasswordB3.UseSystemPasswordChar = true;
             // 
             // FDigitalDiagnosticMonitoring
             // 
@@ -166,6 +239,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.ClientSize = new System.Drawing.Size(945, 784);
+            this.Controls.Add(this.tbPasswordB3);
+            this.Controls.Add(this.tbPasswordB2);
+            this.Controls.Add(this.tbPasswordB1);
+            this.Controls.Add(this.tbPasswordB0);
+            this.Controls.Add(this.lPassword);
             this.Controls.Add(this.cbFirmwareVersionCheck);
             this.Controls.Add(this.tbFirmwareDateCheck);
             this.Controls.Add(this.tbFirmwareVersionCheck);
@@ -178,10 +256,11 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "FDigitalDiagnosticMonitoring";
-            this.Text = "Digital Diagnostic Monitoring 20200414";
+            this.Text = "Digital Diagnostic Monitoring 20230927_0217";
             this.tcDdmAndInformation.ResumeLayout(false);
             this.tpDigitalDiagnosticMonitoring.ResumeLayout(false);
             this.tpInformation.ResumeLayout(false);
+            this.tpMemoryDump.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -202,6 +281,13 @@
         private System.Windows.Forms.TextBox tbFirmwareVersionCheck;
         private System.Windows.Forms.TextBox tbFirmwareDateCheck;
         private System.Windows.Forms.CheckBox cbFirmwareVersionCheck;
+        private System.Windows.Forms.Label lPassword;
+        private System.Windows.Forms.TextBox tbPasswordB0;
+        private System.Windows.Forms.TextBox tbPasswordB1;
+        private System.Windows.Forms.TextBox tbPasswordB2;
+        private System.Windows.Forms.TextBox tbPasswordB3;
+        private System.Windows.Forms.TabPage tpMemoryDump;
+        private UCMemoryDump ucMemoryDump;
     }
 }
 

@@ -12,11 +12,14 @@ namespace QsfpDigitalDiagnosticMonitoring
 {
     public partial class UcInformation : UserControl
     {
+        public delegate int GetPasswordCB(int length, byte[] data);
         public delegate int I2cReadCB(byte devAddr, byte regAddr, byte length, byte[] data);
         public delegate int I2cWriteCB(byte devAddr, byte regAddr, byte length, byte[] data);
 
+        private GetPasswordCB getPasswordCB = null;
         private I2cReadCB i2cReadCB = null;
         private I2cWriteCB i2cWriteCB = null;
+        
 
         public UcInformation()
         {
@@ -79,6 +82,16 @@ namespace QsfpDigitalDiagnosticMonitoring
                 return -1;
 
             i2cWriteCB = new I2cWriteCB(cb);
+
+            return 0;
+        }
+
+        public int SetGetPasswordCBApi(GetPasswordCB cb)
+        {
+            if (cb == null)
+                return -1;
+
+            getPasswordCB = new GetPasswordCB(cb);
 
             return 0;
         }
@@ -678,6 +691,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             tbDateCode.Text = Encoding.Default.GetString(bATmp);
             tbDiagnosticMonitoringType.Text = "0x" + data[28].ToString("X2");
             tbEnhancedOptions.Text = "0x" + data[29].ToString("X2");
+            tbBRNominal.Text = "0x" + data[30].ToString("X2");
             tbCcExt.Text = "0x" + data[31].ToString("X2");
 
             data[0] = 3;
@@ -1039,7 +1053,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (i2cWriteCB(80, 119, 4, data) < 0)
                 return -1;
 
-            tbPassword.Text = tbNewPassword.Text = "";
+            tbNewPassword.Text = "";
             MessageBox.Show("Password changed.");        
 
             return 1;
@@ -1047,12 +1061,16 @@ namespace QsfpDigitalDiagnosticMonitoring
 
         private int _WriteAddr123()
         {
-            byte[] data;
+            byte[] data = new byte[4];
 
             if (i2cWriteCB == null)
                 return -1;
 
-            data = Encoding.Default.GetBytes(tbPassword.Text);
+            if (getPasswordCB == null)
+                return -1;
+
+            if (getPasswordCB(4, data) != 4)
+                return -1;
 
             if (i2cWriteCB(80, 123, 4, data) < 0)
                 return -1;
@@ -1245,7 +1263,11 @@ namespace QsfpDigitalDiagnosticMonitoring
             bATmp = BitConverter.GetBytes(iTmp);
             data[62] = bATmp[0];
 
-            if (i2cWriteCB(80, 128, 63, data) < 0)
+            data[63] = 0;
+            for (i = 0; i < 63; i++)
+                data[63] += data[i];
+
+            if (i2cWriteCB(80, 128, 64, data) < 0)
                 return -1;
 
             Array.Clear(data, 0, 64);
@@ -1316,7 +1338,16 @@ namespace QsfpDigitalDiagnosticMonitoring
             iTmp = Int32.Parse(tbEnhancedOptions.Text.Substring(2), System.Globalization.NumberStyles.HexNumber);
             data[29] = Convert.ToByte(iTmp);
 
-            if (i2cWriteCB(80, 192, 30, data) < 0)
+            if (tbBRNominal.Text.Length != 4 || tbBRNominal.Text.ElementAt(1) != 'x')
+                return -1;
+            iTmp = Int32.Parse(tbBRNominal.Text.Substring(2), System.Globalization.NumberStyles.HexNumber);
+            data[30] = Convert.ToByte(iTmp);
+
+            data[31] = 0;
+            for (i = 0; i < 31; i++)
+                data[31] += data[i];
+
+            if (i2cWriteCB(80, 192, 32, data) < 0)
                 return -1;
 
             return 0;
@@ -1570,15 +1601,18 @@ namespace QsfpDigitalDiagnosticMonitoring
 
         private void _bWrite_Click(object sender, EventArgs e)
         {
+            byte[] data = new byte[4];
             int rv;
+
+            if (getPasswordCB == null) {
+                MessageBox.Show("getPasswordCB == null Error!!");
+                return;
+            }
 
             bWrite.Enabled = false;
 
-            if (tbPassword.Text.Length != 4) {
-                tbPassword.Text = "";
-                MessageBox.Show("Please input 4 char password before write!!");
+            if (getPasswordCB(4, data) != 4)
                 goto exit;
-            }
 
             if (_WriteAddr123() < 0)
                 goto exit;
@@ -1663,7 +1697,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (i2cWriteCB(80, 162, 1, data) < 0)
                 return;
 
-            tbPassword.Text = "";
             MessageBox.Show("QSFP+ password reseted");
         }
 

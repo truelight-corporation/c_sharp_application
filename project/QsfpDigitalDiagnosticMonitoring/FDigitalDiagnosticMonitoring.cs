@@ -71,6 +71,30 @@ namespace QsfpDigitalDiagnosticMonitoring
             return rv;
         }
 
+        private int _GetPassword(int length, byte[] data)
+        {
+            byte[] tmp = new byte[4];
+
+            if (length < 4)
+                return -1;
+
+            if (data == null)
+                return -1;
+
+            if ((tbPasswordB0.Text.Length != 2) || (tbPasswordB1.Text.Length != 2) ||
+                (tbPasswordB2.Text.Length != 2) || (tbPasswordB3.Text.Length != 2)) {
+                MessageBox.Show("Please inpurt password before operate!!");
+                return -1;
+            }
+
+            data[0] = Convert.ToByte(tbPasswordB0.Text, 16);
+            data[1] = Convert.ToByte(tbPasswordB1.Text, 16);
+            data[2] = Convert.ToByte(tbPasswordB2.Text, 16);
+            data[3] = Convert.ToByte(tbPasswordB3.Text, 16);
+
+            return 4;
+        }
+
         public FDigitalDiagnosticMonitoring()
         {
             InitializeComponent();
@@ -93,6 +117,23 @@ namespace QsfpDigitalDiagnosticMonitoring
             }
             if (ucInformation.SetI2cWriteCBApi(_I2cWrite) < 0) {
                 MessageBox.Show("ucInformation.SetI2cReadCBApi() faile Error!!");
+                return;
+            }
+            if (ucInformation.SetGetPasswordCBApi(_GetPassword) < 0) {
+                MessageBox.Show("ucInformation.SetGetPasswordCBApi() faile Error!!");
+                return;
+            }
+
+            if (ucMemoryDump.SetI2cReadCBApi(_I2cRead) < 0) {
+                MessageBox.Show("ucMemoryDump.SetI2cReadCBApi() faile Error!!");
+                return;
+            }
+            if (ucMemoryDump.SetI2cWriteCBApi(_I2cWrite) < 0) {
+                MessageBox.Show("ucMemoryDump.SetI2cReadCBApi() faile Error!!");
+                return;
+            }
+            if (ucMemoryDump.SetWritePasswordCBApi(ucInformation.WritePassword) < 0) {
+                MessageBox.Show("ucMemoryDump.SetWritePasswordCBApi() faile Error!!");
                 return;
             }
         }

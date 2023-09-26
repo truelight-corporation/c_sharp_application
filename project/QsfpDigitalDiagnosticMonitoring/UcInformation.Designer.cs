@@ -168,8 +168,6 @@
             this.lUpPage0Identifier = new System.Windows.Forms.Label();
             this.tbNewPassword = new System.Windows.Forms.TextBox();
             this.lNewPassword = new System.Windows.Forms.Label();
-            this.tbPassword = new System.Windows.Forms.TextBox();
-            this.lPassword = new System.Windows.Forms.Label();
             this.bPasswordReset = new System.Windows.Forms.Button();
             this.bStoreIntoFlash = new System.Windows.Forms.Button();
             this.gbFreeSideDeviceProperties = new System.Windows.Forms.GroupBox();
@@ -239,6 +237,8 @@
             this.cbInputEqualizationMagnitudeTx2 = new System.Windows.Forms.CheckBox();
             this.cbInputEqualizationMagnitudeTx1 = new System.Windows.Forms.CheckBox();
             this.gbUpPage3 = new System.Windows.Forms.GroupBox();
+            this.lBRNominal = new System.Windows.Forms.Label();
+            this.tbBRNominal = new System.Windows.Forms.TextBox();
             this.gbControlBytes.SuspendLayout();
             this.gbSpecificationCompliance.SuspendLayout();
             this.gbUpPage0.SuspendLayout();
@@ -909,6 +909,8 @@
             // 
             // gbUpPage0
             // 
+            this.gbUpPage0.Controls.Add(this.tbBRNominal);
+            this.gbUpPage0.Controls.Add(this.lBRNominal);
             this.gbUpPage0.Controls.Add(this.cbExtendedRateSelectV2);
             this.gbUpPage0.Controls.Add(this.tbLinkCodes);
             this.gbUpPage0.Controls.Add(this.lLinkCodes);
@@ -1007,7 +1009,7 @@
             // 
             // tbCcExt
             // 
-            this.tbCcExt.Location = new System.Drawing.Point(651, 388);
+            this.tbCcExt.Location = new System.Drawing.Point(771, 388);
             this.tbCcExt.Name = "tbCcExt";
             this.tbCcExt.ReadOnly = true;
             this.tbCcExt.Size = new System.Drawing.Size(40, 22);
@@ -1016,7 +1018,7 @@
             // lCcExt
             // 
             this.lCcExt.AutoSize = true;
-            this.lCcExt.Location = new System.Drawing.Point(589, 391);
+            this.lCcExt.Location = new System.Drawing.Point(709, 391);
             this.lCcExt.Name = "lCcExt";
             this.lCcExt.Size = new System.Drawing.Size(55, 12);
             this.lCcExt.TabIndex = 62;
@@ -1622,24 +1624,6 @@
             this.lNewPassword.Size = new System.Drawing.Size(78, 12);
             this.lNewPassword.TabIndex = 68;
             this.lNewPassword.Text = "New Password :";
-            // 
-            // tbPassword
-            // 
-            this.tbPassword.Location = new System.Drawing.Point(842, 447);
-            this.tbPassword.Name = "tbPassword";
-            this.tbPassword.Size = new System.Drawing.Size(60, 22);
-            this.tbPassword.TabIndex = 67;
-            this.tbPassword.Text = "3234";
-            this.tbPassword.UseSystemPasswordChar = true;
-            // 
-            // lPassword
-            // 
-            this.lPassword.AutoSize = true;
-            this.lPassword.Location = new System.Drawing.Point(827, 432);
-            this.lPassword.Name = "lPassword";
-            this.lPassword.Size = new System.Drawing.Size(54, 12);
-            this.lPassword.TabIndex = 66;
-            this.lPassword.Text = "Password :";
             // 
             // bPasswordReset
             // 
@@ -2374,6 +2358,22 @@
             this.gbUpPage3.TabStop = false;
             this.gbUpPage3.Text = "UP Page 3";
             // 
+            // lBRNominal
+            // 
+            this.lBRNominal.AutoSize = true;
+            this.lBRNominal.Location = new System.Drawing.Point(589, 391);
+            this.lBRNominal.Name = "lBRNominal";
+            this.lBRNominal.Size = new System.Drawing.Size(68, 12);
+            this.lBRNominal.TabIndex = 73;
+            this.lBRNominal.Text = "BR nominal :";
+            // 
+            // tbBRNominal
+            // 
+            this.tbBRNominal.Location = new System.Drawing.Point(663, 388);
+            this.tbBRNominal.Name = "tbBRNominal";
+            this.tbBRNominal.Size = new System.Drawing.Size(40, 22);
+            this.tbBRNominal.TabIndex = 74;
+            // 
             // UcInformation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2385,9 +2385,7 @@
             this.Controls.Add(this.bPasswordReset);
             this.Controls.Add(this.lNewPassword);
             this.Controls.Add(this.gbUpPage0);
-            this.Controls.Add(this.tbPassword);
             this.Controls.Add(this.gbControlBytes);
-            this.Controls.Add(this.lPassword);
             this.Controls.Add(this.bWrite);
             this.Controls.Add(this.bRead);
             this.Name = "UcInformation";
@@ -2505,8 +2503,6 @@
         private System.Windows.Forms.CheckBox cbTxDisableImplemented;
         private System.Windows.Forms.TextBox tbEncoding;
         private System.Windows.Forms.Label lEncoding;
-        private System.Windows.Forms.TextBox tbPassword;
-        private System.Windows.Forms.Label lPassword;
         private System.Windows.Forms.TextBox tbNewPassword;
         private System.Windows.Forms.Label lNewPassword;
         private System.Windows.Forms.Button bPasswordReset;
@@ -2625,5 +2621,7 @@
         private System.Windows.Forms.CheckBox cbAdaptiveEqualizationControlTx2;
         private System.Windows.Forms.CheckBox cbAdaptiveEqualizationControlTx1;
         private System.Windows.Forms.ComboBox cbRxOutputEmphasisType;
+        private System.Windows.Forms.TextBox tbBRNominal;
+        private System.Windows.Forms.Label lBRNominal;
     }
 }

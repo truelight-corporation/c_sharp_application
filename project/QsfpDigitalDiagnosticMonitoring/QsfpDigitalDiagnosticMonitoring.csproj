@@ -67,6 +67,12 @@
     <Compile Include="UcInformation.Designer.cs">
       <DependentUpon>UcInformation.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCMemoryDump.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCMemoryDump.Designer.cs">
+      <DependentUpon>UCMemoryDump.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FDigitalDiagnosticMonitoring.resx">
       <DependentUpon>FDigitalDiagnosticMonitoring.cs</DependentUpon>
     </EmbeddedResource>
@@ -85,6 +91,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UcInformation.resx">
       <DependentUpon>UcInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCMemoryDump.resx">
+      <DependentUpon>UCMemoryDump.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
