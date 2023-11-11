@@ -29,11 +29,8 @@
         {
             this.TcSelect = new System.Windows.Forms.TabControl();
             this.tpA0h = new System.Windows.Forms.TabPage();
-            this.ucA0h = new SfpDigitalDiagnosticMonitoring.UcA0h();
             this.tpA2h = new System.Windows.Forms.TabPage();
-            this.ucA2h = new SfpDigitalDiagnosticMonitoring.UcA2h();
             this.tpMemoryDump = new System.Windows.Forms.TabPage();
-            this.ucMemoryDump = new SfpDigitalDiagnosticMonitoring.UcMemoryDump();
             this.cbConnected = new System.Windows.Forms.CheckBox();
             this.cbFirmwareVersionCheck = new System.Windows.Forms.CheckBox();
             this.tbFirmwareDateCheck = new System.Windows.Forms.TextBox();
@@ -47,6 +44,9 @@
             this.tbPasswordB1 = new System.Windows.Forms.TextBox();
             this.tbPasswordB0 = new System.Windows.Forms.TextBox();
             this.lPassword = new System.Windows.Forms.Label();
+            this.ucA0h = new SfpDigitalDiagnosticMonitoring.UcA0h();
+            this.ucA2h = new SfpDigitalDiagnosticMonitoring.UcA2h();
+            this.ucMemoryDump = new SfpDigitalDiagnosticMonitoring.UcMemoryDump();
             this.TcSelect.SuspendLayout();
             this.tpA0h.SuspendLayout();
             this.tpA2h.SuspendLayout();
@@ -75,13 +75,6 @@
             this.tpA0h.Text = "A0h";
             this.tpA0h.UseVisualStyleBackColor = true;
             // 
-            // ucA0h
-            // 
-            this.ucA0h.Location = new System.Drawing.Point(6, 6);
-            this.ucA0h.Name = "ucA0h";
-            this.ucA0h.Size = new System.Drawing.Size(786, 385);
-            this.ucA0h.TabIndex = 0;
-            // 
             // tpA2h
             // 
             this.tpA2h.Controls.Add(this.ucA2h);
@@ -93,13 +86,6 @@
             this.tpA2h.Text = "A2h";
             this.tpA2h.UseVisualStyleBackColor = true;
             // 
-            // ucA2h
-            // 
-            this.ucA2h.Location = new System.Drawing.Point(6, 6);
-            this.ucA2h.Name = "ucA2h";
-            this.ucA2h.Size = new System.Drawing.Size(1020, 453);
-            this.ucA2h.TabIndex = 0;
-            // 
             // tpMemoryDump
             // 
             this.tpMemoryDump.Controls.Add(this.ucMemoryDump);
@@ -110,13 +96,6 @@
             this.tpMemoryDump.TabIndex = 2;
             this.tpMemoryDump.Text = "MemDump";
             this.tpMemoryDump.UseVisualStyleBackColor = true;
-            // 
-            // ucMemoryDump
-            // 
-            this.ucMemoryDump.Location = new System.Drawing.Point(6, 6);
-            this.ucMemoryDump.Name = "ucMemoryDump";
-            this.ucMemoryDump.Size = new System.Drawing.Size(855, 385);
-            this.ucMemoryDump.TabIndex = 0;
             // 
             // cbConnected
             // 
@@ -232,6 +211,27 @@
             this.lPassword.TabIndex = 17;
             this.lPassword.Text = "Password :";
             // 
+            // ucA0h
+            // 
+            this.ucA0h.Location = new System.Drawing.Point(6, 6);
+            this.ucA0h.Name = "ucA0h";
+            this.ucA0h.Size = new System.Drawing.Size(786, 385);
+            this.ucA0h.TabIndex = 0;
+            // 
+            // ucA2h
+            // 
+            this.ucA2h.Location = new System.Drawing.Point(6, 6);
+            this.ucA2h.Name = "ucA2h";
+            this.ucA2h.Size = new System.Drawing.Size(1020, 453);
+            this.ucA2h.TabIndex = 0;
+            // 
+            // ucMemoryDump
+            // 
+            this.ucMemoryDump.Location = new System.Drawing.Point(6, 6);
+            this.ucMemoryDump.Name = "ucMemoryDump";
+            this.ucMemoryDump.Size = new System.Drawing.Size(855, 385);
+            this.ucMemoryDump.TabIndex = 0;
+            // 
             // FDigitalDiagnosticMonitoring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -252,7 +252,7 @@
             this.Controls.Add(this.cbConnected);
             this.Controls.Add(this.TcSelect);
             this.Name = "FDigitalDiagnosticMonitoring";
-            this.Text = "Digital Diagnostic Monitoring 20230927_0318";
+            this.Text = "Digital Diagnostic Monitoring 20230927_0806";
             this.TcSelect.ResumeLayout(false);
             this.tpA0h.ResumeLayout(false);
             this.tpA2h.ResumeLayout(false);
