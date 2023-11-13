@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Data;
 using System.Linq;
+using System.Xml;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading;
@@ -25,6 +26,173 @@ namespace Gn1190Corrector
         public UcGn1190Corrector()
         {
             InitializeComponent();
+            //ConfigUiByXmlApi("");
+        }
+
+        private void _PaserUiConfigXml(XmlReader reader)
+        {
+            while (true) {
+                if (reader.IsStartElement()) {
+                    String attObject = reader.GetAttribute("Object");
+                    String attVisible = reader.GetAttribute("Visible");
+                    String attEnbaled = reader.GetAttribute("Enabled");
+                    String attReadOnly = reader.GetAttribute("ReadOnly");
+
+                    switch (attObject) {
+                        case "TextBox":
+                            TextBox tbTmp = (TextBox)this.Controls.Find(reader.Name, true).FirstOrDefault();
+                            if (attVisible != null) {
+                                if (attVisible.Equals("True"))
+                                    tbTmp.Visible = true;
+                                else
+                                    tbTmp.Visible = false;
+                            }
+                            if (attEnbaled != null) {
+                                if (attEnbaled.Equals("True"))
+                                    tbTmp.Enabled = true;
+                                else
+                                    tbTmp.Enabled = false;
+                            }
+                            if (attReadOnly != null) {
+                                if (attReadOnly.Equals("True"))
+                                    tbTmp.ReadOnly = true;
+                                else
+                                    tbTmp.ReadOnly = false;
+                            }
+                            reader.Read();
+                            break;
+
+                        case "Label":
+                            Label lTmp = (Label)this.Controls.Find(reader.Name, true).FirstOrDefault();
+                            if (attVisible != null) {
+                                if (attVisible.Equals("True"))
+                                    lTmp.Visible = true;
+                                else
+                                    lTmp.Visible = false;
+                            }
+                            if (attEnbaled != null) {
+                                if (attEnbaled.Equals("True"))
+                                    lTmp.Enabled = true;
+                                else
+                                    lTmp.Enabled = false;
+                            }
+                            reader.Read();
+                            break;
+
+                        case "Button":
+                            Button bTmp = (Button)this.Controls.Find(reader.Name, true).FirstOrDefault();
+                            if (attVisible != null) {
+                                if (attVisible.Equals("True"))
+                                    bTmp.Visible = true;
+                                else
+                                    bTmp.Visible = false;
+                            }
+                            if (attEnbaled != null) {
+                                if (attEnbaled.Equals("True"))
+                                    bTmp.Enabled = true;
+                                else
+                                    bTmp.Enabled = false;
+                            }
+                            reader.Read();
+                            break;
+
+                        case "GroupBox":
+                            GroupBox gbTmp = (GroupBox)this.Controls.Find(reader.Name, true).FirstOrDefault();
+                            if (attVisible != null) {
+                                if (attVisible.Equals("True"))
+                                    gbTmp.Visible = true;
+                                else
+                                    gbTmp.Visible = false;
+                            }
+                            if (attEnbaled != null) {
+                                if (attEnbaled.Equals("True"))
+                                    gbTmp.Enabled = true;
+                                else
+                                    gbTmp.Enabled = false;
+                            }
+                            reader.Read();
+                            break;
+
+                        case "CheckBox":
+                            CheckBox cbTmp = (CheckBox)this.Controls.Find(reader.Name, true).FirstOrDefault();
+                            if (attVisible != null) {
+                                if (attVisible.Equals("True"))
+                                    cbTmp.Visible = true;
+                                else
+                                    cbTmp.Visible = false;
+                            }
+                            if (attEnbaled != null) {
+                                if (attEnbaled.Equals("True"))
+                                    cbTmp.Enabled = true;
+                                else
+                                    cbTmp.Enabled = false;
+                            }
+                            reader.Read();
+                            break;
+
+                        case "ComboBox":
+                            ComboBox cobTmp = (ComboBox)this.Controls.Find(reader.Name, true).FirstOrDefault();
+                            if (attVisible != null) {
+                                if (attVisible.Equals("True"))
+                                    cobTmp.Visible = true;
+                                else
+                                    cobTmp.Visible = false;
+                            }
+                            if (attEnbaled != null) {
+                                if (attEnbaled.Equals("True"))
+                                    cobTmp.Enabled = true;
+                                else
+                                    cobTmp.Enabled = false;
+                            }
+                            reader.Read();
+                            break;
+
+                        default:
+                            reader.Read();
+                            break;
+                    }
+                }
+                else {
+                    reader.MoveToContent();
+                    reader.ReadEndElement();
+                    break;
+                }
+            }
+        }
+
+        public int ConfigUiByXmlApi(String configXml)
+        {
+            OpenFileDialog ofdSelectFile = new OpenFileDialog();
+            XmlReader xrConfig;
+
+            if (configXml.Length == 0) {
+                ofdSelectFile.Title = "Select config file";
+                ofdSelectFile.Filter = "xml files (*.xml)|*.xml";
+                if (ofdSelectFile.ShowDialog() != DialogResult.OK)
+                    return -1;
+                xrConfig = XmlReader.Create(ofdSelectFile.FileName);
+            }
+            else {
+                xrConfig = XmlReader.Create(configXml);
+            }
+
+            
+            while (xrConfig.Read()) {
+                if (xrConfig.IsStartElement()) {
+                    switch (xrConfig.Name) {
+                        case "UiConfig":
+                            xrConfig.Read();
+                            _PaserUiConfigXml(xrConfig);
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+            }
+            
+
+            return 0;
         }
 
         public int SetQsfpI2cReadCBApi(I2cReadCB cb)
