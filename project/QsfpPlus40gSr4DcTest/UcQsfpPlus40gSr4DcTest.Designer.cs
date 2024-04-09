@@ -1020,6 +1020,8 @@
             this.cbLogMode.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.cbLogMode.FormattingEnabled = true;
             this.cbLogMode.Items.AddRange(new object[] {
+            "TxOnly",
+            "RxOnly",
             "BeforeBurnIn",
             "AfterBurnIn",
             "B-HDMI(QC)",
@@ -1112,7 +1114,7 @@
             this.cbCustomerPage.Name = "cbCustomerPage";
             this.cbCustomerPage.Size = new System.Drawing.Size(152, 32);
             this.cbCustomerPage.TabIndex = 89;
-            this.cbCustomerPage.Text = "Old: 4, 5, 32";
+            this.cbCustomerPage.Text = "New: 128, 129, 252";
             // 
             // lCustomerPage
             // 

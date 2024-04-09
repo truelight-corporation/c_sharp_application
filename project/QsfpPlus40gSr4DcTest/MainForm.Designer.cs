@@ -107,7 +107,7 @@
             // cbPowerMeterQsfpConnected
             // 
             this.cbPowerMeterQsfpConnected.AutoSize = true;
-            this.cbPowerMeterQsfpConnected.Location = new System.Drawing.Point(108, 12);
+            this.cbPowerMeterQsfpConnected.Location = new System.Drawing.Point(108, 13);
             this.cbPowerMeterQsfpConnected.Name = "cbPowerMeterQsfpConnected";
             this.cbPowerMeterQsfpConnected.Size = new System.Drawing.Size(111, 16);
             this.cbPowerMeterQsfpConnected.TabIndex = 7;
@@ -141,7 +141,7 @@
             this.MaximumSize = new System.Drawing.Size(1305, 768);
             this.MinimumSize = new System.Drawing.Size(1305, 766);
             this.Name = "MainForm";
-            this.Text = "QSFP+ 40G SR4 DC Test 20230728_1625";
+            this.Text = "QSFP+ 40G SR4 DC Test 20240409_1148";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.ResumeLayout(false);

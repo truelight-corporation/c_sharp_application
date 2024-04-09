@@ -942,20 +942,19 @@ namespace QsfpPlus40gSr4DcTest
             }
             logModeSelect = cbLogMode.SelectedItem.ToString();
 
-            if ((logModeSelect == "BeforeBurnIn") || (logModeSelect == "Log"))
-            {
-                if (lastLogFileName.Length == 0)
-                {
+            if ((logModeSelect == "BeforeBurnIn") ||
+                (logModeSelect == "TxOnly") ||
+                (logModeSelect == "RxOnly") ||
+                (logModeSelect == "Log")) {
+                if (lastLogFileName.Length == 0) {
                     MessageBox.Show("Please input lot and sub-lot!!");
                     return;
                 }
-                if (tbSerialNumber.Text.Length < 1)
-                {
+                if (tbSerialNumber.Text.Length < 1) {
                     MessageBox.Show("Please input SN!!");
                     return;
                 }
-                if (tbSerialNumber.Text.Length > 4)
-                {
+                if (tbSerialNumber.Text.Length > 4) {
                     saTmp = tbSerialNumber.Text.Split('-');
 
                     if ((lastLogFileName.Length != 0) && !tbLotNumber.Text.Equals(saTmp[0]) && (dtValue.Rows.Count > 0))
@@ -964,10 +963,8 @@ namespace QsfpPlus40gSr4DcTest
                     tbLotNumber.Text = saTmp[0];
                     tbLotNumber.Update();
 
-                    if (saTmp.Length >= 2)
-                    {
-                        if (!tbSubLotNumber.Text.Equals(saTmp[1]))
-                        {
+                    if (saTmp.Length >= 2) {
+                        if (!tbSubLotNumber.Text.Equals(saTmp[1])) {
                             if (int.TryParse(saTmp[1], out iTmp))
                                 tbSubLotNumber.Text = iTmp.ToString("000");
                             else
@@ -977,8 +974,7 @@ namespace QsfpPlus40gSr4DcTest
                         _OpenLogFile();
                     }
 
-                    if (saTmp.Length >= 3)
-                    {
+                    if (saTmp.Length >= 3) {
                         int.TryParse(saTmp[2], out iTmp);
                         tbSerialNumber.Text = iTmp.ToString("0000");
                     }
@@ -1008,7 +1004,8 @@ namespace QsfpPlus40gSr4DcTest
             }
 
             if (!((tbRx1Threshold.Text.Equals("0")) && (tbRx2Threshold.Text.Equals("0")) &&
-                (tbRx3Threshold.Text.Equals("0")) && (tbRx4Threshold.Text.Equals("0")))) {
+                (tbRx3Threshold.Text.Equals("0")) && (tbRx4Threshold.Text.Equals("0"))) && 
+                ((logModeSelect != "TxOnly"))) {
                 if ((tbRx1.Text == "0") && (tbRx2.Text == "0") && (tbRx3.Text == "0") && (tbRx4.Text == "0")) {
                     DialogResult drRxZero = MessageBox.Show("Rx value wrong. Please check be measure item!!\n(or select No ignore)", "Please select Yes or No",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -1024,7 +1021,9 @@ namespace QsfpPlus40gSr4DcTest
             lClassification.BackColor = System.Drawing.SystemColors.Control;
             customerPage_selectIndex = cbCustomerPage.SelectedIndex;
 
-            if (logModeSelect == "BeforeBurnIn") {
+            if ((logModeSelect == "BeforeBurnIn") ||
+                (logModeSelect == "TxOnly") || 
+                (logModeSelect == "RxOnly")) {
                 while (tbSerialNumber.Text[0] == ' ')
                     tbSerialNumber.Text = tbSerialNumber.Text.Substring(1, tbSerialNumber.Text.Length - 1);
                 if (tbSerialNumber.Text.Length != 4) {
@@ -1474,51 +1473,174 @@ namespace QsfpPlus40gSr4DcTest
             return 0;
         }
 
+        private int _ReadRxIcRssi()
+        {
+            byte[] data = new byte[16];
+            int devAddr, delay, tmp;
+
+            delay = 100;
+
+            if (i2cWriteCB == null)
+                return -1;
+
+            if (i2cReadCB == null)
+                return -1;
+
+            int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
+
+            if (i2cReadCB((byte)devAddr, 0, 1, data) != 1)
+                goto clearData;
+
+            if (data[0] != 0x77)
+                return -1;
+
+            data[0] = 0x0F;
+            if (i2cWriteCB((byte)devAddr, 0x16, 1, data) < 0)
+                goto clearData;
+
+            data[0] = 0xF0;
+            if (i2cWriteCB((byte)devAddr, 0x40, 1, data) < 0)
+                goto clearData;
+
+            //RSSI0
+            data[0] = 0xC0;
+            if (i2cWriteCB((byte)devAddr, 0x03, 1, data) < 0)
+                goto clearData;
+
+            Thread.Sleep(delay);
+
+            if (i2cReadCB((byte)devAddr, 0x1A, 1, data) != 1)
+                goto clearData;
+
+            if (data[0] == 0)
+                rxRssiValue[0] = "0";
+            else {
+                tmp = 4 + (8 * data[0]);
+                rxRssiValue[0] = tmp.ToString();
+            }
+
+            //RSSI1
+            data[0] = 0xD0;
+            if (i2cWriteCB((byte)devAddr, 0x03, 1, data) < 0)
+                goto clearData;
+
+            Thread.Sleep(delay);
+
+            if (i2cReadCB((byte)devAddr, 0x1A, 1, data) != 1)
+                goto clearData;
+            
+            if (data[0] == 0)
+                rxRssiValue[0] = "0";
+            else {
+                tmp = 4 + (8 * data[0]);
+                rxRssiValue[1] = tmp.ToString();
+            }
+
+            //RSSI2
+            data[0] = 0xE0;
+            if (i2cWriteCB((byte)devAddr, 0x03, 1, data) < 0)
+                goto clearData;
+
+            Thread.Sleep(delay);
+
+            if (i2cReadCB((byte)devAddr, 0x1A, 1, data) != 1)
+                goto clearData;
+
+            if (data[0] == 0)
+                rxRssiValue[0] = "0";
+            else {
+                tmp = 4 + (8 * data[0]);
+                rxRssiValue[2] = tmp.ToString();
+            }
+
+            //RSSI3
+            data[0] = 0xF0;
+            if (i2cWriteCB((byte)devAddr, 0x03, 1, data) < 0)
+                goto clearData;
+
+            Thread.Sleep(delay);
+
+            if (i2cReadCB((byte)devAddr, 0x1A, 1, data) != 1)
+                goto clearData;
+
+            if (data[0] == 0)
+                rxRssiValue[0] = "0";
+            else {
+                tmp = 4 + (8 * data[0]);
+                rxRssiValue[3] = tmp.ToString();
+            }
+
+            return 0;
+
+        clearData:
+            rxRssiValue[0] = rxRssiValue[1] = rxRssiValue[2] = rxRssiValue[3] = "0";
+
+            return 0;
+        }
+
         private int _GetModuleMonitorValue()
         {
             bool rxValueReadError, txPowerReadError;
 
             rxValueReadError = txPowerReadError = false;
+            switch (logModeSelect) {
+                case "TxOnly":
+                    if (_ReadTxPower() < 0) {
+                        if (!(txPower[0].Equals("NA") &&
+                            txPower[1].Equals("NA") &&
+                            txPower[2].Equals("NA") &&
+                            txPower[3].Equals("NA")))
+                            txPowerReadError = true;
+                    }
+                    break;
 
-            if (_ReadTemperatureValue() < 0)
-                rxValueReadError = true;
+                case "RxOnly":
+                    if (_ReadRxIcRssi() < 0)
+                        rxValueReadError = true;
+                    break;
 
-            if (_ReadTxBiasValue() < 0)
-                rxValueReadError = true;
+                default:
+                    if (_ReadTemperatureValue() < 0)
+                        rxValueReadError = true;
 
-            if (_ReadRxRssiValue() < 0)
-                rxValueReadError = true;
-                
-            if (_ReadRxPowerValue() < 0)
-                rxValueReadError = true;
+                    if (_ReadTxBiasValue() < 0)
+                        rxValueReadError = true;
 
-            if (_ReadMpdValue() < 0)
-                rxValueReadError = true;
+                    if (_ReadRxRssiValue() < 0)
+                        rxValueReadError = true;
 
-            if (_ReadSerialNumberValue() < 0)
-                rxValueReadError = true;
+                    if (_ReadRxPowerValue() < 0)
+                        rxValueReadError = true;
 
-            if (_ReadLosValue() < 0)
-                rxValueReadError = true;
+                    if (_ReadMpdValue() < 0)
+                        rxValueReadError = true;
 
-            if (_ReadTxPower() < 0) {
-                if (!(txPower[0].Equals("NA") &&
-                    txPower[1].Equals("NA") &&
-                    txPower[2].Equals("NA") &&
-                    txPower[3].Equals("NA")))
-                    txPowerReadError = true;
+                    if (_ReadSerialNumberValue() < 0)
+                        rxValueReadError = true;
+
+                    if (_ReadLosValue() < 0)
+                        rxValueReadError = true;
+
+                    if ((String.Compare(rxRssiValue[0], "65535") == 0) &&
+                        (String.Compare(rxRssiValue[1], "65535") == 0) &&
+                        (String.Compare(rxRssiValue[2], "65535") == 0) &&
+                        (String.Compare(rxRssiValue[3], "65535") == 0) &&
+                        (String.Compare(mpdValue[0], "65535") == 0) &&
+                        (String.Compare(mpdValue[1], "65535") == 0) &&
+                        (String.Compare(mpdValue[2], "65535") == 0) &&
+                        (String.Compare(mpdValue[3], "65535") == 0) &&
+                        (String.Compare(temperature, "0") != 0))
+                        _WritePassword();
+
+                    if (_ReadTxPower() < 0) {
+                        if (!(txPower[0].Equals("NA") &&
+                            txPower[1].Equals("NA") &&
+                            txPower[2].Equals("NA") &&
+                            txPower[3].Equals("NA")))
+                            txPowerReadError = true;
+                    }
+                    break;
             }
-
-            if ((String.Compare(rxRssiValue[0], "65535") == 0) &&
-                (String.Compare(rxRssiValue[1], "65535") == 0) &&
-                (String.Compare(rxRssiValue[2], "65535") == 0) &&
-                (String.Compare(rxRssiValue[3], "65535") == 0) &&
-                (String.Compare(mpdValue[0], "65535") == 0) &&
-                (String.Compare(mpdValue[1], "65535") == 0) &&
-                (String.Compare(mpdValue[2], "65535") == 0) &&
-                (String.Compare(mpdValue[3], "65535") == 0) &&
-                (String.Compare(temperature, "0") != 0))
-                _WritePassword();
 
             if (rxValueReadError || txPowerReadError)
                 return -1;
@@ -1538,6 +1660,18 @@ namespace QsfpPlus40gSr4DcTest
                     int.TryParse(tbBeforeAndAfterBurnInDcTestBiasCurrent.Text, out iTmp);
                     int.TryParse(tbBurnInBiasCurrent.Text, out iBurnInCurrent);
                     switch (logModeSelect) {
+                        case "TxOnly":
+                        case "RxOnly":
+                            bwMonitor.ReportProgress(3, null);
+                            if (_GetModuleMonitorValue() < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+                            bwMonitor.ReportProgress(10, null);
+                            while (logValue == true) // Wait log done
+                                Thread.Sleep(100);
+                            break;
+
                         case "BeforeBurnIn":
                             bwMonitor.ReportProgress(1, null);
                       
@@ -2436,6 +2570,16 @@ namespace QsfpPlus40gSr4DcTest
         private void cbLogMode_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (cbLogMode.SelectedItem.ToString()) {
+                case "TxOnly":
+                    tbLogLable.Enabled = false;
+                    tbLogLable.Text = "TxOnly";
+                    break;
+
+                case "RxOnly":
+                    tbLogLable.Enabled = false;
+                    tbLogLable.Text = "RxOnly";
+                    break;
+
                 case "BeforeBurnIn":
                     tbLogLable.Enabled = false;
                     tbLogLable.Text = "BeforeBurnIn";
