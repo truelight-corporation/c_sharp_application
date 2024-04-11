@@ -27,8 +27,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lSnNumber = new System.Windows.Forms.Label();
             this.tbSerialNumber = new System.Windows.Forms.TextBox();
             this.dgvRecord = new System.Windows.Forms.DataGridView();
@@ -104,6 +104,8 @@
             this.lLogFilePath = new System.Windows.Forms.Label();
             this.lLogMode = new System.Windows.Forms.Label();
             this.tpConfig = new System.Windows.Forms.TabPage();
+            this.tbBurnInBiasCurrent = new System.Windows.Forms.TextBox();
+            this.lBurnInBiasCurrent = new System.Windows.Forms.Label();
             this.cbIgnoreTxLos = new System.Windows.Forms.CheckBox();
             this.cbIgnoreRxLos = new System.Windows.Forms.CheckBox();
             this.cbCustomerPage = new System.Windows.Forms.ComboBox();
@@ -111,7 +113,6 @@
             this.gbAfterBurnInAcConfig = new System.Windows.Forms.GroupBox();
             this.dgvAfterBurnInConfig = new System.Windows.Forms.DataGridView();
             this.tbBeforeAndAfterBurnInDcTestBiasCurrent = new System.Windows.Forms.TextBox();
-            this.lBeforeAndAfterBurnInDcTestBiasCurrent = new System.Windows.Forms.Label();
             this.bSaveConfig = new System.Windows.Forms.Button();
             this.gbMonitorThreshold = new System.Windows.Forms.GroupBox();
             this.lHtMaxThreshold = new System.Windows.Forms.Label();
@@ -187,8 +188,7 @@
             this.tbPassword124 = new System.Windows.Forms.TextBox();
             this.l = new System.Windows.Forms.Label();
             this.tbPassword123 = new System.Windows.Forms.TextBox();
-            this.tbBurnInBiasCurrent = new System.Windows.Forms.TextBox();
-            this.lBurnInBiasCurrent = new System.Windows.Forms.Label();
+            this.cbDcTestModifyBiasCurrent = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecord)).BeginInit();
             this.tcFunctionSelect.SuspendLayout();
             this.tpLog.SuspendLayout();
@@ -227,19 +227,19 @@
             // 
             this.dgvRecord.AllowUserToResizeColumns = false;
             this.dgvRecord.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.YellowGreen;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dgvRecord.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.YellowGreen;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dgvRecord.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvRecord.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvRecord.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.DarkSeaGreen;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvRecord.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.DarkSeaGreen;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvRecord.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvRecord.Location = new System.Drawing.Point(3, 340);
             this.dgvRecord.Name = "dgvRecord";
             this.dgvRecord.ReadOnly = true;
@@ -273,7 +273,7 @@
             // 
             this.tbAfterBurnInPowerDifferentLimit.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbAfterBurnInPowerDifferentLimit.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbAfterBurnInPowerDifferentLimit.Location = new System.Drawing.Point(390, 6);
+            this.tbAfterBurnInPowerDifferentLimit.Location = new System.Drawing.Point(350, 6);
             this.tbAfterBurnInPowerDifferentLimit.Name = "tbAfterBurnInPowerDifferentLimit";
             this.tbAfterBurnInPowerDifferentLimit.Size = new System.Drawing.Size(60, 36);
             this.tbAfterBurnInPowerDifferentLimit.TabIndex = 9;
@@ -1056,6 +1056,7 @@
             // 
             // tpConfig
             // 
+            this.tpConfig.Controls.Add(this.cbDcTestModifyBiasCurrent);
             this.tpConfig.Controls.Add(this.tbBurnInBiasCurrent);
             this.tpConfig.Controls.Add(this.lBurnInBiasCurrent);
             this.tpConfig.Controls.Add(this.cbIgnoreTxLos);
@@ -1064,7 +1065,6 @@
             this.tpConfig.Controls.Add(this.lCustomerPage);
             this.tpConfig.Controls.Add(this.gbAfterBurnInAcConfig);
             this.tpConfig.Controls.Add(this.tbBeforeAndAfterBurnInDcTestBiasCurrent);
-            this.tpConfig.Controls.Add(this.lBeforeAndAfterBurnInDcTestBiasCurrent);
             this.tpConfig.Controls.Add(this.bSaveConfig);
             this.tpConfig.Controls.Add(this.gbMonitorThreshold);
             this.tpConfig.Controls.Add(this.gbRxPowerRateConfig);
@@ -1083,6 +1083,26 @@
             this.tpConfig.TabIndex = 0;
             this.tpConfig.Text = "Config";
             this.tpConfig.UseVisualStyleBackColor = true;
+            // 
+            // tbBurnInBiasCurrent
+            // 
+            this.tbBurnInBiasCurrent.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbBurnInBiasCurrent.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbBurnInBiasCurrent.Location = new System.Drawing.Point(954, 6);
+            this.tbBurnInBiasCurrent.Name = "tbBurnInBiasCurrent";
+            this.tbBurnInBiasCurrent.Size = new System.Drawing.Size(65, 36);
+            this.tbBurnInBiasCurrent.TabIndex = 93;
+            this.tbBurnInBiasCurrent.Text = "10000";
+            // 
+            // lBurnInBiasCurrent
+            // 
+            this.lBurnInBiasCurrent.AutoSize = true;
+            this.lBurnInBiasCurrent.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lBurnInBiasCurrent.Location = new System.Drawing.Point(813, 9);
+            this.lBurnInBiasCurrent.Name = "lBurnInBiasCurrent";
+            this.lBurnInBiasCurrent.Size = new System.Drawing.Size(135, 24);
+            this.lBurnInBiasCurrent.TabIndex = 92;
+            this.lBurnInBiasCurrent.Text = "Burn-in (uA):";
             // 
             // cbIgnoreTxLos
             // 
@@ -1156,16 +1176,6 @@
             this.tbBeforeAndAfterBurnInDcTestBiasCurrent.Size = new System.Drawing.Size(60, 36);
             this.tbBeforeAndAfterBurnInDcTestBiasCurrent.TabIndex = 86;
             this.tbBeforeAndAfterBurnInDcTestBiasCurrent.Text = "7000";
-            // 
-            // lBeforeAndAfterBurnInDcTestBiasCurrent
-            // 
-            this.lBeforeAndAfterBurnInDcTestBiasCurrent.AutoSize = true;
-            this.lBeforeAndAfterBurnInDcTestBiasCurrent.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lBeforeAndAfterBurnInDcTestBiasCurrent.Location = new System.Drawing.Point(456, 9);
-            this.lBeforeAndAfterBurnInDcTestBiasCurrent.Name = "lBeforeAndAfterBurnInDcTestBiasCurrent";
-            this.lBeforeAndAfterBurnInDcTestBiasCurrent.Size = new System.Drawing.Size(285, 24);
-            this.lBeforeAndAfterBurnInDcTestBiasCurrent.TabIndex = 85;
-            this.lBeforeAndAfterBurnInDcTestBiasCurrent.Text = "Before and after burn-in (uA):";
             // 
             // bSaveConfig
             // 
@@ -1986,25 +1996,18 @@
             this.tbPassword123.TabIndex = 40;
             this.tbPassword123.Text = "0";
             // 
-            // tbBurnInBiasCurrent
+            // cbDcTestModifyBiasCurrent
             // 
-            this.tbBurnInBiasCurrent.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbBurnInBiasCurrent.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbBurnInBiasCurrent.Location = new System.Drawing.Point(954, 6);
-            this.tbBurnInBiasCurrent.Name = "tbBurnInBiasCurrent";
-            this.tbBurnInBiasCurrent.Size = new System.Drawing.Size(65, 36);
-            this.tbBurnInBiasCurrent.TabIndex = 93;
-            this.tbBurnInBiasCurrent.Text = "10000";
-            // 
-            // lBurnInBiasCurrent
-            // 
-            this.lBurnInBiasCurrent.AutoSize = true;
-            this.lBurnInBiasCurrent.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lBurnInBiasCurrent.Location = new System.Drawing.Point(813, 9);
-            this.lBurnInBiasCurrent.Name = "lBurnInBiasCurrent";
-            this.lBurnInBiasCurrent.Size = new System.Drawing.Size(135, 24);
-            this.lBurnInBiasCurrent.TabIndex = 92;
-            this.lBurnInBiasCurrent.Text = "Burn-in (uA):";
+            this.cbDcTestModifyBiasCurrent.AutoSize = true;
+            this.cbDcTestModifyBiasCurrent.Checked = true;
+            this.cbDcTestModifyBiasCurrent.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbDcTestModifyBiasCurrent.Location = new System.Drawing.Point(437, 8);
+            this.cbDcTestModifyBiasCurrent.Name = "cbDcTestModifyBiasCurrent";
+            this.cbDcTestModifyBiasCurrent.Size = new System.Drawing.Size(304, 28);
+            this.cbDcTestModifyBiasCurrent.TabIndex = 94;
+            this.cbDcTestModifyBiasCurrent.Text = "Before and after burn-in (uA):";
+            this.cbDcTestModifyBiasCurrent.UseVisualStyleBackColor = true;
+            this.cbDcTestModifyBiasCurrent.CheckedChanged += new System.EventHandler(this.cbDcTestModifyBiasCurrent_CheckedChanged);
             // 
             // UcQsfpPlus40gSr4DcTest
             // 
@@ -2154,7 +2157,6 @@
         private System.Windows.Forms.Label lOperator;
         private System.Windows.Forms.TextBox tbOperator;
         private System.Windows.Forms.TextBox tbBeforeAndAfterBurnInDcTestBiasCurrent;
-        private System.Windows.Forms.Label lBeforeAndAfterBurnInDcTestBiasCurrent;
         private System.Windows.Forms.Button bDelRecord;
         private System.Windows.Forms.TextBox tbTxBias1;
         private System.Windows.Forms.Label lTxBias1;
@@ -2195,5 +2197,6 @@
         private System.Windows.Forms.CheckBox cbIgnoreRxLos;
         private System.Windows.Forms.TextBox tbBurnInBiasCurrent;
         private System.Windows.Forms.Label lBurnInBiasCurrent;
+        private System.Windows.Forms.CheckBox cbDcTestModifyBiasCurrent;
     }
 }

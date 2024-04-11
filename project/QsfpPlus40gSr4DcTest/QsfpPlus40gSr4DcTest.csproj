@@ -41,6 +41,9 @@
     <Reference Include="I2cMasterInterface">
       <HintPath>..\..\dll\interface\I2cMasterInterface.dll</HintPath>
     </Reference>
+    <Reference Include="Mcp2221Adapter">
+      <HintPath>..\..\dll\device\Mcp2221Adapter.dll</HintPath>
+    </Reference>
     <Reference Include="SCPIcontrol">
       <HintPath>..\..\dll\interface\SCPIcontrol.dll</HintPath>
     </Reference>

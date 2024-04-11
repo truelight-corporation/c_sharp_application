@@ -938,7 +938,7 @@ namespace QsfpPlus40gSr4DcTest
 
             if (tbOperator.Text.Length == 0) {
                 MessageBox.Show("Please input operator!!");
-                return;
+                goto Error;
             }
             logModeSelect = cbLogMode.SelectedItem.ToString();
 
@@ -948,13 +948,13 @@ namespace QsfpPlus40gSr4DcTest
                 (logModeSelect == "Log")) {
                 if (lastLogFileName.Length == 0) {
                     MessageBox.Show("Please input lot and sub-lot!!");
-                    return;
+                    goto Error;
                 }
                 if (tbSerialNumber.Text.Length < 1) {
                     MessageBox.Show("Please input SN!!");
-                    return;
+                    goto Error;
                 }
-                if (tbSerialNumber.Text.Length > 4) {
+                if (tbSerialNumber.Text.Length == 16) {
                     saTmp = tbSerialNumber.Text.Split('-');
 
                     if ((lastLogFileName.Length != 0) && !tbLotNumber.Text.Equals(saTmp[0]) && (dtValue.Rows.Count > 0))
@@ -984,7 +984,7 @@ namespace QsfpPlus40gSr4DcTest
             {
                 if (tbSerialNumber.Text.Length < 1) {
                     MessageBox.Show("Please input SN!!");
-                    return;
+                    goto Error;
                 }
                 if (tbSerialNumber.Text.Length == 9) {
                     if ((lastLogFileName.Length != 0) &&
@@ -1026,20 +1026,16 @@ namespace QsfpPlus40gSr4DcTest
                 (logModeSelect == "RxOnly")) {
                 while (tbSerialNumber.Text[0] == ' ')
                     tbSerialNumber.Text = tbSerialNumber.Text.Substring(1, tbSerialNumber.Text.Length - 1);
-                if (tbSerialNumber.Text.Length != 4) {
-                    int.TryParse(tbSerialNumber.Text, out iTmp);
-                    tbSerialNumber.Text = iTmp.ToString("0000");
+                if (((tbLotNumber.Text[0] == 'Y') || (tbLotNumber.Text[0] == 'y')) && tbLotNumber.Text.Length == 8) {
+                    if (tbSerialNumber.Text.Length != 4) {
+                        int.TryParse(tbSerialNumber.Text, out iTmp);
+                        tbSerialNumber.Text = iTmp.ToString("0000");
+                    }   
                 }
-                if (tbLotNumber.Text.Length == 8)
-                    newSerialNumber = tbLotNumber.Text + tbSubLotNumber.Text + tbSerialNumber.Text;
-                else {
-                    lAction.Text = "LOT number wrong!!";
-                    MessageBox.Show("LOT number wrong!!");
-                    goto Error;
-                }
+                newSerialNumber = tbLotNumber.Text + tbSubLotNumber.Text + tbSerialNumber.Text;
             }
             else if (logModeSelect == "AfterBurnIn") {
-                if (tbModuleSerialNumber.Text.Length >= 15) {
+                if (tbModuleSerialNumber.Text.Length == 16) {
                     if ((tbLotNumber.Text != tbModuleSerialNumber.Text.Substring(0, 8)) ||
                         (tbSubLotNumber.Text != tbModuleSerialNumber.Text.Substring(8, 3))) {
                         if (dtValue.Rows.Count > 0)
@@ -1674,14 +1670,16 @@ namespace QsfpPlus40gSr4DcTest
 
                         case "BeforeBurnIn":
                             bwMonitor.ReportProgress(1, null);
-                      
-                            if (_SetBias(iTmp, false) < 0) {
-                                bGetModuleMonitorValueError = true;
-                                break;
-                            }
 
-                            bwMonitor.ReportProgress(2, null);
-                            Thread.Sleep(3000); // Wait value stable
+                            if (cbDcTestModifyBiasCurrent.Checked == true) {
+                                if (_SetBias(iTmp, false) < 0) {
+                                    bGetModuleMonitorValueError = true;
+                                    break;
+                                }
+
+                                bwMonitor.ReportProgress(2, null);
+                                Thread.Sleep(3000); // Wait value stable
+                            }
 
                             bwMonitor.ReportProgress(3, null);
                             if (_GetModuleMonitorValue() < 0) {
@@ -1690,7 +1688,11 @@ namespace QsfpPlus40gSr4DcTest
                             }
                             
                             bwMonitor.ReportProgress(4, null);
-                            if ((_SetModuleSerialNumber() < 0) || (_SetBias(iBurnInCurrent, true) < 0) ||
+                            if (_SetBias(iBurnInCurrent, true) < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+                            if ((_SetModuleSerialNumber() < 0) ||
                                 (_StoreConfigIntoFlash() < 0)) {
                                 bGetModuleMonitorValueError = true;
                                 break;
@@ -1703,14 +1705,15 @@ namespace QsfpPlus40gSr4DcTest
 
                         case "AfterBurnIn":
                             bwMonitor.ReportProgress(5, null);
-                            if ((_SetBias(iTmp, false) < 0) || (_StoreConfigIntoFlash() < 0)) {
-                                bGetModuleMonitorValueError = true;
-                                break;
+                            if (cbDcTestModifyBiasCurrent.Checked == true) {
+                                if ((_SetBias(iTmp, false) < 0) || (_StoreConfigIntoFlash() < 0)) {
+                                    bGetModuleMonitorValueError = true;
+                                    break;
+                                }
+
+                                bwMonitor.ReportProgress(2, null);
+                                Thread.Sleep(3000); // Wait value stable
                             }
-
-                            bwMonitor.ReportProgress(2, null);
-                            Thread.Sleep(3000); // Wait value stable
-
                             bwMonitor.ReportProgress(3, null);
                             if (_GetModuleMonitorValue() < 0) {
                                 bGetModuleMonitorValueError = true;
@@ -2508,7 +2511,7 @@ namespace QsfpPlus40gSr4DcTest
             String[] saTmp;
             int iTmp;
 
-            if (tbLotNumber.Text.Length > 8) {
+            if (tbLotNumber.Text.Length == 12) {
                 saTmp = tbLotNumber.Text.Split('-');
                 tbLotNumber.Text = saTmp[0];
                 if (saTmp.Length >= 2) {
@@ -2648,6 +2651,7 @@ namespace QsfpPlus40gSr4DcTest
                 xwConfig.WriteStartElement("DcTestConfig");
                 {
                     xwConfig.WriteElementString("AfterBurnInPowerDifferentPercentage", tbAfterBurnInPowerDifferentLimit.Text);
+                    xwConfig.WriteElementString("DcTestModifyBiasCurrent", cbDcTestModifyBiasCurrent.Checked ? "True" : "False");
                     xwConfig.WriteElementString("BeforeAndAfterBurnInDcTestBiasCurrent", tbBeforeAndAfterBurnInDcTestBiasCurrent.Text);
                     xwConfig.WriteElementString("BurnInBiasCurrent", tbBurnInBiasCurrent.Text);
                     xwConfig.WriteElementString("ModulePassword123", tbPassword123.Text);
@@ -2972,6 +2976,13 @@ namespace QsfpPlus40gSr4DcTest
                             tbAfterBurnInPowerDifferentLimit.Text = reader.ReadElementContentAsString();
                             break;
 
+                        case "DcTestModifyBiasCurrent":
+                            if (reader.ReadElementContentAsString() == "True")
+                                cbDcTestModifyBiasCurrent.Checked = true;
+                            else
+                                cbDcTestModifyBiasCurrent.Checked = false;
+                            break;
+
                         case "BeforeAndAfterBurnInDcTestBiasCurrent":
                             tbBeforeAndAfterBurnInDcTestBiasCurrent.Text = reader.ReadElementContentAsString();
                             break;
@@ -3133,7 +3144,7 @@ namespace QsfpPlus40gSr4DcTest
             String[] saTmp;
             int iTmp;
 
-            if (tbSerialNumber.Text.Length > 4) {
+            if (tbSerialNumber.Text.Length == 16) {
                 saTmp = tbSerialNumber.Text.Split('-');
 
                 if ((lastLogFileName.Length != 0) && !tbLotNumber.Text.Equals(saTmp[0]) && (dtValue.Rows.Count > 0))
@@ -3158,9 +3169,21 @@ namespace QsfpPlus40gSr4DcTest
                     tbSerialNumber.Text = iTmp.ToString("0000");
                 }
             }
-            else {
+            else if ((tbLotNumber.Text[0] == 'Y') || (tbLotNumber.Text[0] == 'y')) {
                 int.TryParse(tbSerialNumber.Text, out iTmp);
                 tbSerialNumber.Text = iTmp.ToString("0000");
+            }
+        }
+
+        private void cbDcTestModifyBiasCurrent_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbDcTestModifyBiasCurrent.Checked == true) {
+                tbBeforeAndAfterBurnInDcTestBiasCurrent.Enabled = true;
+                tbBurnInBiasCurrent.Enabled = true;
+            }
+            else {
+                tbBeforeAndAfterBurnInDcTestBiasCurrent.Enabled = false;
+                tbBurnInBiasCurrent.Enabled = false;
             }
         }
 
