@@ -1119,7 +1119,7 @@ namespace Gn1190Corrector
             sTmp = Convert.ToSingle(Convert.ToUInt32(data[0]) * 0.04);
             tbAverageCurrentMin.Text = sTmp.ToString("#0.00");
 
-            sTmp = Convert.ToSingle(Convert.ToUInt32(data[1]) * 0.04);
+            sTmp = Convert.ToSingle(Convert.ToUInt32(data[1]) * 0.1);
             tbAverageCurrentMax.Text = sTmp.ToString("#0.00");
 
             Buffer.BlockCopy(data, 2, sData, 0, 1);
@@ -1665,13 +1665,13 @@ namespace Gn1190Corrector
             }
 
             if ((Convert.ToSingle(tbAverageCurrentMax.Text) < 0) ||
-                Convert.ToSingle(tbAverageCurrentMax.Text) > 10.2) {
+                Convert.ToSingle(tbAverageCurrentMax.Text) > 25.6) {
                 MessageBox.Show("Average current max: " +
                     tbAverageCurrentMax.Text +
-                    " out of range (0 ~ 10.2)!!");
+                    " out of range (0 ~ 25.6)!!");
             }
             try {
-                data[1] = Convert.ToByte(Convert.ToSingle(tbAverageCurrentMax.Text) / 0.04);
+                data[1] = Convert.ToByte(Convert.ToSingle(tbAverageCurrentMax.Text) / 0.1);
             }
             catch (Exception eC) {
                 MessageBox.Show(eC.ToString());
