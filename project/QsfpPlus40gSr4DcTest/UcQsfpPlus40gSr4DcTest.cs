@@ -137,7 +137,7 @@ namespace QsfpPlus40gSr4DcTest
             return 0;
         }
 
-        private int _CheckAfterBurnInPowerDifferent(String serialNumber, String[] txPower)
+         private int _CheckAfterBurnInPowerDifferent(String serialNumber, String[] txPower)
         {
             String[] oldTxPower = new String[4];
             DataRow[] filteredRows = dtValue.Select("Lable = 'BeforeBurnIn' AND SN = '" + serialNumber + "'");
@@ -642,7 +642,7 @@ namespace QsfpPlus40gSr4DcTest
             saTxBiasValue[2] = tbTxBias3.Text;
             saTxBiasValue[3] = tbTxBias4.Text;
             sTemperature = tbTemperature.Text;
-     
+
             if (checkPowerDiff == true)
                 _CheckAfterBurnInPowerDifferent(tbSerialNumber.Text, saTxPower);
 
@@ -1686,16 +1686,18 @@ namespace QsfpPlus40gSr4DcTest
                                 bGetModuleMonitorValueError = true;
                                 break;
                             }
-                            
-                            bwMonitor.ReportProgress(4, null);
-                            if (_SetBias(iBurnInCurrent, true) < 0) {
-                                bGetModuleMonitorValueError = true;
-                                break;
-                            }
-                            if ((_SetModuleSerialNumber() < 0) ||
-                                (_StoreConfigIntoFlash() < 0)) {
-                                bGetModuleMonitorValueError = true;
-                                break;
+
+                            if (cbDcTestModifyBiasCurrent.Checked == true) {
+                                bwMonitor.ReportProgress(4, null);
+                                if (_SetBias(iBurnInCurrent, true) < 0) {
+                                    bGetModuleMonitorValueError = true;
+                                    break;
+                                }
+                                if ((_SetModuleSerialNumber() < 0) ||
+                                    (_StoreConfigIntoFlash() < 0)) {
+                                    bGetModuleMonitorValueError = true;
+                                    break;
+                                }
                             }
 
                             bwMonitor.ReportProgress(10, null);
@@ -1880,6 +1882,9 @@ namespace QsfpPlus40gSr4DcTest
             byte[] data = new byte[1];
             byte devAddr, regAddr;
             int delayTime;
+
+            if (dtAfterBurnInConfig.Rows.Count == 0)
+                return 0;
 
             if (_SetQsfpMode(0x4D) < 0)
                 return -1;
@@ -3192,6 +3197,22 @@ namespace QsfpPlus40gSr4DcTest
             lClassification.Text = "";
             lResult.ForeColor = System.Drawing.SystemColors.ControlText;
             lResult.Text = "";
+
+            if (bLog.Enabled == false)
+                return;
+
+            if (cbLogMode.SelectedItem.ToString().Equals("AfterBurnIn")) {
+                dgvRecord.ClearSelection();
+                foreach (DataGridViewRow row in dgvRecord.Rows) {
+                    if (row.Index > (dgvRecord.Rows.Count - 2))
+                        break;
+
+                    if (row.Cells[0].Value.ToString().Equals("BeforeBurnIn") && row.Cells[2].Value.ToString().Equals(tbSerialNumber.Text)) {
+                        dgvRecord.FirstDisplayedScrollingRowIndex = row.Index;
+                        dgvRecord.Rows[row.Index].Selected = true;
+                    }
+                }
+            }
         }
     }
 }
