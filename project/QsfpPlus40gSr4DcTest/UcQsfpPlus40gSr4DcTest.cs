@@ -655,12 +655,15 @@ namespace QsfpPlus40gSr4DcTest
                 _CheckLtPowerDifferent(tbSerialNumber.Text, saTxPower);
                 _CheckHtPowerDifferent(tbSerialNumber.Text, saTxPower);
             }
-
+            
             dtValue.Rows.Add(tbLogLable.Text, System.DateTime.Now.ToString("yy/MM/dd_HH:mm:ss"), tbSerialNumber.Text,
                 saTxPower[0], saTxPower[1], saTxPower[2], saTxPower[3], saRxValue[0], saRxValue[1], saRxValue[2],
                 saRxValue[3], saMpdValue[0], saMpdValue[1], saMpdValue[2], saMpdValue[3], saTxBiasValue[0],
                 saTxBiasValue[1], saTxBiasValue[2], saTxBiasValue[3], sTemperature, tbOperator.Text, lastNote);
-            dgvRecord.FirstDisplayedScrollingRowIndex = 0;
+            if (logModeSelect == "AfterBurnIn") {
+
+            } else
+                dgvRecord.FirstDisplayedScrollingRowIndex = 0;
             lastNote = "";
         }
 
@@ -942,7 +945,8 @@ namespace QsfpPlus40gSr4DcTest
             }
             logModeSelect = cbLogMode.SelectedItem.ToString();
 
-            if ((logModeSelect == "BeforeBurnIn") ||
+            if ((logModeSelect == "AfterBurnIn") ||
+                (logModeSelect == "BeforeBurnIn") ||
                 (logModeSelect == "TxOnly") ||
                 (logModeSelect == "RxOnly") ||
                 (logModeSelect == "Log")) {
@@ -954,7 +958,7 @@ namespace QsfpPlus40gSr4DcTest
                     MessageBox.Show("Please input SN!!");
                     goto Error;
                 }
-                if (tbSerialNumber.Text.Length == 16) {
+                if ((tbSerialNumber.Text.Length == 16) || ((tbSerialNumber.Text.Length == 17))) {
                     saTmp = tbSerialNumber.Text.Split('-');
 
                     if ((lastLogFileName.Length != 0) && !tbLotNumber.Text.Equals(saTmp[0]) && (dtValue.Rows.Count > 0))
@@ -971,7 +975,8 @@ namespace QsfpPlus40gSr4DcTest
                                 tbSubLotNumber.Text = saTmp[1];
                             tbSubLotNumber.Update();
                         }
-                        _OpenLogFile();
+                        if (lastLogFileName.Length == 0)
+                            _OpenLogFile();
                     }
 
                     if (saTmp.Length >= 3) {
@@ -997,7 +1002,8 @@ namespace QsfpPlus40gSr4DcTest
                     tbLotNumber.Update();
                     tbSubLotNumber.Text = "QC";
                     tbSubLotNumber.Update();
-                    _OpenLogFile();
+                    if (lastLogFileName.Length == 0)
+                        _OpenLogFile();
                     
                     tbSerialNumber.Text = tbSerialNumber.Text.Substring(5, 4);
                 }
@@ -1015,6 +1021,7 @@ namespace QsfpPlus40gSr4DcTest
             }
 
             bLog.Enabled = false;
+            tbSerialNumber.Enabled = false;
             lAction.Text = "Start log...";
             lResult.Text = "";
             lClassification.Text = "";
@@ -1042,7 +1049,8 @@ namespace QsfpPlus40gSr4DcTest
                             _SaveLogFile();
                         tbLotNumber.Text = tbModuleSerialNumber.Text.Substring(0, 8);
                         tbSubLotNumber.Text = tbModuleSerialNumber.Text.Substring(8, 3);
-                        _OpenLogFile();
+                        if (lastLogFileName.Length == 0)
+                            _OpenLogFile();
                     }
                     int.TryParse(tbModuleSerialNumber.Text.Substring(11, 4), out iTmp);
                     tbSerialNumber.Text = iTmp.ToString("0000");
@@ -1057,6 +1065,7 @@ namespace QsfpPlus40gSr4DcTest
 
         Error:
             bLog.Enabled = true;
+            tbSerialNumber.Enabled = true;
             lAction.Text = "";
             return;
         }
@@ -2308,6 +2317,8 @@ namespace QsfpPlus40gSr4DcTest
                 }
                 logValue = false;
                 bLog.Enabled = true;
+                tbSerialNumber.Enabled = true;
+                tbSerialNumber.Focus();
                 cbAutoLogWithLableTemperature.Enabled = true;
             }
 
@@ -2506,7 +2517,6 @@ namespace QsfpPlus40gSr4DcTest
             }
 
             srLog.Close();
-            dgvRecord.Sort(dgvRecord.Columns[1], ListSortDirection.Descending);
 
             bLog.Enabled = true;
         }
@@ -2530,7 +2540,8 @@ namespace QsfpPlus40gSr4DcTest
             if ((tbLotNumber.Text.Length < 8) || (tbSubLotNumber.Text.Length < 1))
                 return;
 
-            _OpenLogFile();
+            if (lastLogFileName.Length == 0)
+                _OpenLogFile();
         }
 
         private void tbLotNumber_Enter(object sender, EventArgs e)
@@ -2572,7 +2583,8 @@ namespace QsfpPlus40gSr4DcTest
             if (int.TryParse(tbSubLotNumber.Text, out iTmp))
                 tbSubLotNumber.Text = iTmp.ToString("000");
 
-            _OpenLogFile();
+            if (lastLogFileName.Length == 0)
+                _OpenLogFile();
         }
 
         private void cbLogMode_SelectedIndexChanged(object sender, EventArgs e)
@@ -2607,7 +2619,7 @@ namespace QsfpPlus40gSr4DcTest
 
         private void bSaveFile_Click(object sender, EventArgs e)
         {
-            if (dtValue.Rows.Count > 0)
+            if (dtValue.Rows.Count >= 0)
                 _SaveLogFile();
         }
 
@@ -3149,7 +3161,7 @@ namespace QsfpPlus40gSr4DcTest
             String[] saTmp;
             int iTmp;
 
-            if (tbSerialNumber.Text.Length == 16) {
+            if (tbSerialNumber.Text.Length == 17) {
                 saTmp = tbSerialNumber.Text.Split('-');
 
                 if ((lastLogFileName.Length != 0) && !tbLotNumber.Text.Equals(saTmp[0]) && (dtValue.Rows.Count > 0))
@@ -3166,7 +3178,8 @@ namespace QsfpPlus40gSr4DcTest
                             tbSubLotNumber.Text = saTmp[1];
                         tbSubLotNumber.Update();
                     }
-                    _OpenLogFile();
+                    if (lastLogFileName.Length == 0)
+                        _OpenLogFile();
                 }
 
                 if (saTmp.Length >= 3) {
@@ -3174,9 +3187,11 @@ namespace QsfpPlus40gSr4DcTest
                     tbSerialNumber.Text = iTmp.ToString("0000");
                 }
             }
-            else if ((tbLotNumber.Text[0] == 'Y') || (tbLotNumber.Text[0] == 'y')) {
-                int.TryParse(tbSerialNumber.Text, out iTmp);
-                tbSerialNumber.Text = iTmp.ToString("0000");
+            else if (tbLotNumber.Text.Length > 0){
+                if ((tbLotNumber.Text[0] == 'Y') || (tbLotNumber.Text[0] == 'y')) {
+                    int.TryParse(tbSerialNumber.Text, out iTmp);
+                    tbSerialNumber.Text = iTmp.ToString("0000");
+                }
             }
         }
 
@@ -3202,17 +3217,23 @@ namespace QsfpPlus40gSr4DcTest
                 return;
 
             if (cbLogMode.SelectedItem.ToString().Equals("AfterBurnIn")) {
+                dgvRecord.Sort(dgvRecord.Columns[2], ListSortDirection.Descending);
                 dgvRecord.ClearSelection();
                 foreach (DataGridViewRow row in dgvRecord.Rows) {
                     if (row.Index > (dgvRecord.Rows.Count - 2))
                         break;
 
                     if (row.Cells[0].Value.ToString().Equals("BeforeBurnIn") && row.Cells[2].Value.ToString().Equals(tbSerialNumber.Text)) {
-                        dgvRecord.FirstDisplayedScrollingRowIndex = row.Index;
+                        if (row.Index > 0)
+                            dgvRecord.FirstDisplayedScrollingRowIndex = row.Index -1;
+                        else
+                            dgvRecord.FirstDisplayedScrollingRowIndex = row.Index;
                         dgvRecord.Rows[row.Index].Selected = true;
                     }
                 }
             }
+            else 
+                dgvRecord.Sort(dgvRecord.Columns[1], ListSortDirection.Descending);    
         }
     }
 }
