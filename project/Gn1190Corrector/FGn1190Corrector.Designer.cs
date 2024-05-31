@@ -94,7 +94,7 @@
             this.Controls.Add(this.ucGn1190Corrector);
             this.Controls.Add(this.cbConnected);
             this.Name = "FGn1190Corrector";
-            this.Text = "GN1190 Corrector 20240429_1027";
+            this.Text = "GN1190 Corrector 20240530_1919";
             this.ResumeLayout(false);
             this.PerformLayout();
 

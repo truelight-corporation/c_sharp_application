@@ -50,8 +50,8 @@ namespace Gn1190Corrector
                 MessageBox.Show("QSFP+ module no response!!");
                 _I2cDisconnect();
             }
-            else if (rv != length)
-                MessageBox.Show("Only read " + rv + " not " + length + " byte Error!!");
+            //else if (rv != length)
+            //    MessageBox.Show("Only read " + rv + " not " + length + " byte Error!!");
 
             return rv;
         }

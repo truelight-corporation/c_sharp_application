@@ -18,15 +18,90 @@ namespace Gn1190Corrector
         public delegate int I2cWriteCB(byte devAddr, byte regAddr, byte length, byte[] data);
         public delegate int PowerMeterReadCB(String[] data);
 
+        private BackgroundWorker bwMonitor;
         private I2cReadCB qsfpI2cReadCB = null;
         private I2cWriteCB qsfpI2cWriteCB = null;
         private PowerMeterReadCB powerMeterReadCB = null;
         private String sAcConfig;
+        private bool bContinuousRead = false;
+        private bool bTriggerRead = false;
 
         public UcGn1190Corrector()
         {
             InitializeComponent();
             //ConfigUiByXmlApi("");
+
+            bwMonitor = new BackgroundWorker();
+            bwMonitor.WorkerReportsProgress = true;
+            bwMonitor.WorkerSupportsCancellation = false;
+            bwMonitor.DoWork += new DoWorkEventHandler(MonitorValueUpdateApi);
+            bwMonitor.ProgressChanged += new ProgressChangedEventHandler(MonitorProgressChangedApi);
+        }
+
+        public void MonitorValueUpdateApi(object sender, DoWorkEventArgs e)
+        {
+            while (cbContinuousRead.Checked == true) {
+                Thread.Sleep(100);
+                if (bTriggerRead == false) {
+                    bTriggerRead = true;
+                    bwMonitor.ReportProgress(1, null);
+                }
+            }
+
+            bwMonitor.ReportProgress(100, null);
+        }
+
+        public void MonitorProgressChangedApi(object sender, ProgressChangedEventArgs e)
+        {
+            if (e.ProgressPercentage == 1) {
+                if (_ReadVoltage() < 0) {
+                    MessageBox.Show("_ReadVoltage() Fail!!");
+                    goto error;
+                }
+
+                if (_ReadTemperature() < 0) {
+                    MessageBox.Show("_ReadTemperature() Fail!!");
+                    goto error;
+                }
+
+                if (_ReadRxPowerRate() < 0) {
+                    MessageBox.Show("_ReadRxPowerRate() Fail!!");
+                    goto error;
+                }
+
+                if (_ReadTxPowerRate() < 0) {
+                    MessageBox.Show("_ReadTxPowerRate() Fail!!");
+                    goto error;
+                }
+
+                if (_ReadAverageCurrentAndModulationCurrentCorrectData() < 0) {
+                    MessageBox.Show("_ReadAverageCurrentAndModulationCurrentCorrectData() Fail!!");
+                    goto error;
+                }
+
+                if (cbContinuousRead.Text == "連續讀取")
+                    cbContinuousRead.Text = "連續讀取 -";
+                else if (cbContinuousRead.Text == "連續讀取 -")
+                    cbContinuousRead.Text = "連續讀取 \\";
+                else if (cbContinuousRead.Text == "連續讀取 \\")
+                    cbContinuousRead.Text = "連續讀取 /";
+                else if (cbContinuousRead.Text == "連續讀取 /")
+                    cbContinuousRead.Text = "連續讀取 -";
+
+                bTriggerRead = false;
+
+                if (cbContinuousRead.Checked == false)
+                    goto error;
+
+                return;
+            }
+
+            return;
+
+        error:
+            cbContinuousRead.Text = "連續讀取";
+            bContinuousRead = false;
+            cbContinuousRead.Checked = false;
         }
 
         private void _PaserUiConfigXml(XmlReader reader)
@@ -335,14 +410,17 @@ namespace Gn1190Corrector
             if (qsfpI2cReadCB == null)
                 return -1;
 
-            if (qsfpI2cReadCB(80, 22, 2, data) != 2)
-                return -1;
+            if (qsfpI2cReadCB(80, 22, 2, data) != 2) {
+                if (bContinuousRead == false)
+                    return -1;
+            }
 
             reverseData = data.Reverse().ToArray();
             tmp = BitConverter.ToInt16(reverseData, 0);
             temperature = tmp;
             temperature = temperature / 256;
             tbTxTemperature.Text = temperature.ToString("#0.0");
+            tbTxTemperature.Update();
 
             if (qsfpI2cWriteCB == null)
                 return -1;
@@ -353,8 +431,10 @@ namespace Gn1190Corrector
                 data[0] = 0x80;
             
             qsfpI2cWriteCB(80, 127, 1, data);
-            if (qsfpI2cReadCB(80, 241, 1, data) != 1)
-                return -1;
+            if (qsfpI2cReadCB(80, 241, 1, data) != 1) {
+                if (bContinuousRead == false)
+                    return -1;
+            }
 
             try {
                 Buffer.BlockCopy(data, 0, sData, 0, 1);
@@ -369,12 +449,16 @@ namespace Gn1190Corrector
             else
                 tmp = (~data[0]) + 1;
             tbTemperatureOffset.Text = sData[0].ToString();
+            tbTemperatureOffset.Update();
 
-            if (qsfpI2cReadCB(80, 242, 2, data) != 2)
-                return -1;
+            if (qsfpI2cReadCB(80, 242, 2, data) != 2) {
+                if (bContinuousRead == false)
+                    return -1;
+            }
 
             tmp = BitConverter.ToInt16(data, 0);
             tbTemperatureSlope.Text = tmp.ToString();
+            tbTemperatureSlope.Update();
 
             return 0;
         }
@@ -467,14 +551,17 @@ namespace Gn1190Corrector
             if (qsfpI2cReadCB == null)
                 return -1;
 
-            if (qsfpI2cReadCB(80, 26, 2, data) != 2)
-                return -1;
+            if (qsfpI2cReadCB(80, 26, 2, data) != 2) {
+                if (bContinuousRead == false)
+                    return -1;
+            }
 
             reverseData = data.Reverse().ToArray();
             tmp = BitConverter.ToUInt16(reverseData, 0);
             voltage = tmp;
             voltage = voltage / 10000;
             tbTxVoltage.Text = voltage.ToString("#0.0000");
+            tbTxVoltage.Update();
 
             if (qsfpI2cWriteCB == null)
                 return -1;
@@ -485,8 +572,10 @@ namespace Gn1190Corrector
                 data[0] = 0x80;
             
             qsfpI2cWriteCB(80, 127, 1, data);
-            if (qsfpI2cReadCB(80, 240, 1, data) != 1)
-                return -1;
+            if (qsfpI2cReadCB(80, 240, 1, data) != 1) {
+                if (bContinuousRead == false)
+                    return -1;
+            }
 
             try {
                 Buffer.BlockCopy(data, 0, sData, 0, 1);
@@ -501,6 +590,7 @@ namespace Gn1190Corrector
             else
                 tmp = (~data[0]) + 1;
             tbVoltageOffset.Text = sData[0].ToString();
+            tbVoltageOffset.Update();
 
             return 0;
         }
@@ -821,37 +911,49 @@ namespace Gn1190Corrector
             if (qsfpI2cReadCB == null)
                 return -1;
 
-            if (qsfpI2cReadCB(80, 34, 2, data) != 2)
-                return -1;
+            if (qsfpI2cReadCB(80, 34, 2, data) != 2) {
+                if (bContinuousRead == false)
+                    return -1;
+            }
 
             reverseData = data.Reverse().ToArray();
             tmp = BitConverter.ToInt16(reverseData, 0);
             power = tmp / 10;
             tbRxPower1.Text = power.ToString("#0.0");
+            tbRxPower1.Update();
 
-            if (qsfpI2cReadCB(80, 36, 2, data) != 2)
-                return -1;
+            if (qsfpI2cReadCB(80, 36, 2, data) != 2) {
+                if (bContinuousRead == false)
+                    return -1;
+            }
 
             reverseData = data.Reverse().ToArray();
             tmp = BitConverter.ToInt16(reverseData, 0);
             power = tmp / 10;
             tbRxPower2.Text = power.ToString("#0.0");
+            tbRxPower2.Update();
 
-            if (qsfpI2cReadCB(80, 38, 2, data) != 2)
-                return -1;
+            if (qsfpI2cReadCB(80, 38, 2, data) != 2) {
+                if (bContinuousRead == false)
+                    return -1;
+            }
 
             reverseData = data.Reverse().ToArray();
             tmp = BitConverter.ToInt16(reverseData, 0);
             power = tmp / 10;
             tbRxPower3.Text = power.ToString("#0.0");
+            tbRxPower3.Update();
 
-            if (qsfpI2cReadCB(80, 40, 2, data) != 2)
-                return -1;
+            if (qsfpI2cReadCB(80, 40, 2, data) != 2) {
+                if (bContinuousRead == false)
+                    return -1;
+            }
 
             reverseData = data.Reverse().ToArray();
             tmp = BitConverter.ToInt16(reverseData, 0);
             power = tmp / 10;
             tbRxPower4.Text = power.ToString("#0.0");
+            tbRxPower4.Update();
 
             if (qsfpI2cWriteCB == null)
                 return -1;
@@ -862,44 +964,63 @@ namespace Gn1190Corrector
                 data[0] = 0xAA;
             
             qsfpI2cWriteCB(80, 127, 1, data);
-            if (qsfpI2cReadCB(80, 128, 2, data) != 2)
-                return -1;
+            if (qsfpI2cReadCB(80, 128, 2, data) != 2) {
+                if (bContinuousRead == false)
+                    return -1;
+            }
 
             reverseData = data.Reverse().ToArray();
             tmp = BitConverter.ToInt16(reverseData, 0);
             tbRssi1.Text = tmp.ToString();
+            tbRssi1.Update();
 
-            if (qsfpI2cReadCB(80, 130, 2, data) != 2)
-                return -1;
+            if (qsfpI2cReadCB(80, 130, 2, data) != 2) {
+                if (bContinuousRead == false)
+                    return -1;
+            }
 
             reverseData = data.Reverse().ToArray();
             tmp = BitConverter.ToInt16(reverseData, 0);
             tbRssi2.Text = tmp.ToString();
+            tbRssi2.Update();
 
-            if (qsfpI2cReadCB(80, 132, 2, data) != 2)
-                return -1;
+            if (qsfpI2cReadCB(80, 132, 2, data) != 2) {
+                if (bContinuousRead == false)
+                    return -1;
+            }
 
             reverseData = data.Reverse().ToArray();
             tmp = BitConverter.ToInt16(reverseData, 0);
             tbRssi3.Text = tmp.ToString();
+            tbRssi3.Update();
 
-            if (qsfpI2cReadCB(80, 134, 2, data) != 2)
-                return -1;
+            if (qsfpI2cReadCB(80, 134, 2, data) != 2) {
+                if (bContinuousRead == false)
+                    return -1;
+            }
 
             reverseData = data.Reverse().ToArray();
             tmp = BitConverter.ToInt16(reverseData, 0);
             tbRssi4.Text = tmp.ToString();
+            tbRssi4.Update();
 
-            if (qsfpI2cReadCB(80, 163, 1, data) != 1)
-                return -1;
+            if (qsfpI2cReadCB(80, 163, 1, data) != 1) {
+                if (bContinuousRead == false)
+                    return -1;
+            }
 
             tbRxPowerRateDefault.Text = data[0].ToString();
+            tbRxPowerRateDefault.Update();
 
-            if (tbRxPowerRateMax.Text.Length == 0)
+            if (tbRxPowerRateMax.Text.Length == 0) {
                 tbRxPowerRateMax.Text = (data[0] + 15).ToString();
+                tbRxPowerRateMax.Update();
+            }
 
-            if (tbRxPowerRateMin.Text.Length == 0)
+            if (tbRxPowerRateMin.Text.Length == 0) {
                 tbRxPowerRateMin.Text = (data[0] - 12).ToString();
+                tbRxPowerRateMin.Update();
+            }
 
             data = new byte[4];
             if (cbCustomerPage.SelectedIndex == 0)
@@ -908,13 +1029,19 @@ namespace Gn1190Corrector
                 data[0] = 0x80;
 
             qsfpI2cWriteCB(80, 127, 1, data);
-            if (qsfpI2cReadCB(80, 244, 4, data) != 4)
-                return -1;
+            if (qsfpI2cReadCB(80, 244, 4, data) != 4) {
+                if (bContinuousRead == false)
+                    return -1;
+            }
 
             tbRxPowerRate1.Text = data[0].ToString();
+            tbRxPowerRate1.Update();
             tbRxPowerRate2.Text = data[1].ToString();
+            tbRxPowerRate2.Update();
             tbRxPowerRate3.Text = data[2].ToString();
+            tbRxPowerRate3.Update();
             tbRxPowerRate4.Text = data[3].ToString();
+            tbRxPowerRate4.Update();
 
             return 0;
         }
@@ -1113,135 +1240,167 @@ namespace Gn1190Corrector
             if (qsfpI2cReadCB == null)
                 return -1;
 
-            if (qsfpI2cReadCB(80, 128, 44, data) != 44)
-                return -1;
+            if (qsfpI2cReadCB(80, 128, 44, data) != 44) {
+                if (bContinuousRead == false)
+                    return -1;
+            }
 
             sTmp = Convert.ToSingle(Convert.ToUInt32(data[0]) * 0.04);
             tbAverageCurrentMin.Text = sTmp.ToString("#0.00");
+            tbAverageCurrentMin.Update();
 
             sTmp = Convert.ToSingle(Convert.ToUInt32(data[1]) * 0.1);
             tbAverageCurrentMax.Text = sTmp.ToString("#0.00");
+            tbAverageCurrentMax.Update();
 
             Buffer.BlockCopy(data, 2, sData, 0, 1);
             sTmp = Convert.ToSingle(sData[0]) / 100;
             tbAverageCurrentEquationACh1.Text = sTmp.ToString("#0.00");
+            tbAverageCurrentEquationACh1.Update();
 
             Array.Copy(data, 3, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10;
             tbAverageCurrentEquationBCh1.Text = sTmp.ToString("#0.0");
+            tbAverageCurrentEquationBCh1.Update();
 
             Array.Copy(data, 5, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             iTmp = BitConverter.ToUInt16(reverseData, 0);
             tbAverageCurrentEquationCCh1.Text = iTmp.ToString();
+            tbAverageCurrentEquationCCh1.Update();
 
             Buffer.BlockCopy(data, 7, sData, 0, 1);
             sTmp = Convert.ToSingle(sData[0]) / 100;
             tbAverageCurrentEquationACh2.Text = sTmp.ToString("#0.00");
+            tbAverageCurrentEquationACh2.Update();
 
             Array.Copy(data, 8, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10;
             tbAverageCurrentEquationBCh2.Text = sTmp.ToString("#0.0");
+            tbAverageCurrentEquationBCh2.Update();
 
             Array.Copy(data, 10, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             iTmp = BitConverter.ToUInt16(reverseData, 0);
             tbAverageCurrentEquationCCh2.Text = iTmp.ToString();
+            tbAverageCurrentEquationCCh2.Update();
 
             Buffer.BlockCopy(data, 12, sData, 0, 1);
             sTmp = Convert.ToSingle(sData[0]) / 100;
             tbAverageCurrentEquationACh3.Text = sTmp.ToString("#0.00");
+            tbAverageCurrentEquationACh3.Update();
 
             Array.Copy(data, 13, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10;
             tbAverageCurrentEquationBCh3.Text = sTmp.ToString("#0.0");
+            tbAverageCurrentEquationBCh3.Update();
 
             Array.Copy(data, 15, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             iTmp = BitConverter.ToUInt16(reverseData, 0);
             tbAverageCurrentEquationCCh3.Text = iTmp.ToString();
+            tbAverageCurrentEquationCCh3.Update();
 
             Buffer.BlockCopy(data, 17, sData, 0, 1);
             sTmp = Convert.ToSingle(sData[0]) / 100;
             tbAverageCurrentEquationACh4.Text = sTmp.ToString("#0.00");
+            tbAverageCurrentEquationACh4.Update();
 
             Array.Copy(data, 18, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10;
             tbAverageCurrentEquationBCh4.Text = sTmp.ToString("#0.0");
+            tbAverageCurrentEquationBCh4.Update();
 
             Array.Copy(data, 20, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             iTmp = BitConverter.ToUInt16(reverseData, 0);
             tbAverageCurrentEquationCCh4.Text = iTmp.ToString();
+            tbAverageCurrentEquationCCh4.Update();
 
             sTmp = Convert.ToSingle(Convert.ToUInt32(data[22]) * 0.04);
             tbModulationCurrentMin.Text = sTmp.ToString("#0.00");
+            tbModulationCurrentMin.Update();
 
             sTmp = Convert.ToSingle(Convert.ToUInt32(data[23]) * 0.04);
             tbModulationCurrentMax.Text = sTmp.ToString("#0.00");
+            tbModulationCurrentMax.Update();
 
             Buffer.BlockCopy(data, 24, sData, 0, 1);
             sTmp = Convert.ToSingle(sData[0]) / 100;
             tbModulationCurrentEquationACh1.Text = sTmp.ToString("#0.00");
+            tbModulationCurrentEquationACh1.Update();
 
             Array.Copy(data, 25, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10;
             tbModulationCurrentEquationBCh1.Text = sTmp.ToString("#0.0");
+            tbModulationCurrentEquationBCh1.Update();
 
             Array.Copy(data, 27, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             iTmp = BitConverter.ToInt16(reverseData, 0);
             tbModulationCurrentEquationCCh1.Text = iTmp.ToString();
+            tbModulationCurrentEquationCCh1.Update();
 
             Buffer.BlockCopy(data, 29, sData, 0, 1);
             sTmp = Convert.ToSingle(sData[0]) / 100;
             tbModulationCurrentEquationACh2.Text = sTmp.ToString("#0.00");
+            tbModulationCurrentEquationACh2.Update();
 
             Array.Copy(data, 30, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10;
             tbModulationCurrentEquationBCh2.Text = sTmp.ToString("#0.0");
+            tbModulationCurrentEquationBCh2.Update();
 
             Array.Copy(data, 32, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             iTmp = BitConverter.ToInt16(reverseData, 0);
             tbModulationCurrentEquationCCh2.Text = iTmp.ToString();
+            tbModulationCurrentEquationCCh2.Update();
 
             Buffer.BlockCopy(data, 34, sData, 0, 1);
             sTmp = Convert.ToSingle(sData[0]) / 100;
             tbModulationCurrentEquationACh3.Text = sTmp.ToString("#0.00");
+            tbModulationCurrentEquationACh3.Update();
 
             Array.Copy(data, 35, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10;
             tbModulationCurrentEquationBCh3.Text = sTmp.ToString("#0.0");
+            tbModulationCurrentEquationBCh3.Update();
 
             Array.Copy(data, 37, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             iTmp = BitConverter.ToInt16(reverseData, 0);
             tbModulationCurrentEquationCCh3.Text = iTmp.ToString();
+            tbModulationCurrentEquationCCh3.Update();
 
             Buffer.BlockCopy(data, 39, sData, 0, 1);
             sTmp = Convert.ToSingle(sData[0]) / 100;
             tbModulationCurrentEquationACh4.Text = sTmp.ToString("#0.00");
+            tbModulationCurrentEquationACh4.Update();
 
             Array.Copy(data, 40, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10;
             tbModulationCurrentEquationBCh4.Text = sTmp.ToString("#0.0");
+            tbModulationCurrentEquationBCh4.Update();
 
             Array.Copy(data, 42, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             iTmp = BitConverter.ToInt16(reverseData, 0);
             tbModulationCurrentEquationCCh4.Text = iTmp.ToString();
+            tbModulationCurrentEquationCCh4.Update();
 
-            if (qsfpI2cReadCB(80, 252, 1, data) != 1)
-                return -1;
+            if (qsfpI2cReadCB(80, 252, 1, data) != 1) {
+                if (bContinuousRead == false)
+                    return -1;
+            }
 
             if ((data[0] & 0x01) != 0)
                 cbTemperatureCompensation.Checked = true;
@@ -1258,253 +1417,305 @@ namespace Gn1190Corrector
             else
                 data[0] = 0x80;
             
-            if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
-                return -1;
+            if (qsfpI2cWriteCB(80, 127, 1, data) < 0) {
+                if (bContinuousRead == false)
+                    return -1;
+            }
 
             Thread.Sleep(1);
 
-            if (qsfpI2cReadCB(80, 128, 96, data) != 96)
-                return -1;
+            if (qsfpI2cReadCB(80, 128, 96, data) != 96) {
+                if (bContinuousRead == false)
+                    return -1;
+            }
 
             Array.Copy(data, 0, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100000;
             tbVhfCompPropEquationACh1.Text = sTmp.ToString("#0.00000");
+            tbVhfCompPropEquationACh1.Update();
 
             Array.Copy(data, 2, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbVhfCompPropEquationBCh1.Text = sTmp.ToString("#0.0000");
+            tbVhfCompPropEquationBCh1.Update();
 
             Array.Copy(data, 4, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
             tbVhfCompPropEquationCCh1.Text = sTmp.ToString("#0.00");
+            tbVhfCompPropEquationCCh1.Update();
 
             Array.Copy(data, 6, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100000;
             tbVhfCompPropEquationACh2.Text = sTmp.ToString("#0.00000");
+            tbVhfCompPropEquationACh2.Update();
 
             Array.Copy(data, 8, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbVhfCompPropEquationBCh2.Text = sTmp.ToString("#0.0000");
+            tbVhfCompPropEquationBCh2.Update();
 
             Array.Copy(data, 10, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
             tbVhfCompPropEquationCCh2.Text = sTmp.ToString("#0.00");
+            tbVhfCompPropEquationCCh2.Update();
 
             Array.Copy(data, 12, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100000;
             tbVhfCompPropEquationACh3.Text = sTmp.ToString("#0.00000");
+            tbVhfCompPropEquationACh3.Update();
 
             Array.Copy(data, 14, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbVhfCompPropEquationBCh3.Text = sTmp.ToString("#0.0000");
+            tbVhfCompPropEquationBCh3.Update();
 
             Array.Copy(data, 16, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
             tbVhfCompPropEquationCCh3.Text = sTmp.ToString("#0.00");
+            tbVhfCompPropEquationCCh3.Update();
 
             Array.Copy(data, 18, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100000;
             tbVhfCompPropEquationACh4.Text = sTmp.ToString("#0.00000");
+            tbVhfCompPropEquationACh4.Update();
 
             Array.Copy(data, 20, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbVhfCompPropEquationBCh4.Text = sTmp.ToString("#0.0000");
+            tbVhfCompPropEquationBCh4.Update();
 
             Array.Copy(data, 22, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
             tbVhfCompPropEquationCCh4.Text = sTmp.ToString("#0.00");
+            tbVhfCompPropEquationCCh4.Update();
 
             Array.Copy(data, 24, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100000;
             tbVhfCompConstEquationACh1.Text = sTmp.ToString("#0.00000");
+            tbVhfCompConstEquationACh1.Update();
 
             Array.Copy(data, 26, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbVhfCompConstEquationBCh1.Text = sTmp.ToString("#0.0000");
+            tbVhfCompConstEquationBCh1.Update();
 
             Array.Copy(data, 28, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
             tbVhfCompConstEquationCCh1.Text = sTmp.ToString("#0.00");
+            tbVhfCompConstEquationCCh1.Update();
 
             Array.Copy(data, 30, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100000;
             tbVhfCompConstEquationACh2.Text = sTmp.ToString("#0.00000");
+            tbVhfCompConstEquationACh2.Update();
 
             Array.Copy(data, 32, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbVhfCompConstEquationBCh2.Text = sTmp.ToString("#0.0000");
+            tbVhfCompConstEquationBCh2.Update();
 
             Array.Copy(data, 34, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
             tbVhfCompConstEquationCCh2.Text = sTmp.ToString("#0.00");
+            tbVhfCompConstEquationCCh2.Update();
 
             Array.Copy(data, 36, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100000;
             tbVhfCompConstEquationACh3.Text = sTmp.ToString("#0.00000");
+            tbVhfCompConstEquationACh3.Update();
 
             Array.Copy(data, 38, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbVhfCompConstEquationBCh3.Text = sTmp.ToString("#0.0000");
+            tbVhfCompConstEquationBCh3.Update();
 
             Array.Copy(data, 40, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
             tbVhfCompConstEquationCCh3.Text = sTmp.ToString("#0.00");
+            tbVhfCompConstEquationCCh3.Update();
 
             Array.Copy(data, 42, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100000;
             tbVhfCompConstEquationACh4.Text = sTmp.ToString("#0.00000");
+            tbVhfCompConstEquationACh4.Update();
 
             Array.Copy(data, 44, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbVhfCompConstEquationBCh4.Text = sTmp.ToString("#0.0000");
+            tbVhfCompConstEquationBCh4.Update();
 
             Array.Copy(data, 46, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
             tbVhfCompConstEquationCCh4.Text = sTmp.ToString("#0.00");
+            tbVhfCompConstEquationCCh4.Update();
 
             Array.Copy(data, 48, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100000;
             tbPeakEnEquationACh1.Text = sTmp.ToString("#0.00000");
+            tbPeakEnEquationACh1.Update();
 
             Array.Copy(data, 50, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbPeakEnEquationBCh1.Text = sTmp.ToString("#0.0000");
+            tbPeakEnEquationBCh1.Update();
 
             Array.Copy(data, 52, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
             tbPeakEnEquationCCh1.Text = sTmp.ToString("#0.00");
+            tbPeakEnEquationCCh1.Update();
 
             Array.Copy(data, 54, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100000;
             tbPeakEnEquationACh2.Text = sTmp.ToString("#0.00000");
+            tbPeakEnEquationACh2.Update();
 
             Array.Copy(data, 56, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbPeakEnEquationBCh2.Text = sTmp.ToString("#0.0000");
+            tbPeakEnEquationBCh2.Update();
 
             Array.Copy(data, 58, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
             tbPeakEnEquationCCh2.Text = sTmp.ToString("#0.00");
+            tbPeakEnEquationCCh2.Update();
 
             Array.Copy(data, 60, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100000;
             tbPeakEnEquationACh3.Text = sTmp.ToString("#0.00000");
+            tbPeakEnEquationACh3.Update();
 
             Array.Copy(data, 62, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbPeakEnEquationBCh3.Text = sTmp.ToString("#0.0000");
+            tbPeakEnEquationBCh3.Update();
 
             Array.Copy(data, 64, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
             tbPeakEnEquationCCh3.Text = sTmp.ToString("#0.00");
+            tbPeakEnEquationCCh3.Update();
 
             Array.Copy(data, 66, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100000;
             tbPeakEnEquationACh4.Text = sTmp.ToString("#0.00000");
+            tbPeakEnEquationACh4.Update();
 
             Array.Copy(data, 68, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbPeakEnEquationBCh4.Text = sTmp.ToString("#0.0000");
+            tbPeakEnEquationBCh4.Update();
 
             Array.Copy(data, 70, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
             tbPeakEnEquationCCh4.Text = sTmp.ToString("#0.00");
+            tbPeakEnEquationCCh4.Update();
 
             Array.Copy(data, 72, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100000;
             tbPeakLenCtrlEquationACh1.Text = sTmp.ToString("#0.00000");
+            tbPeakLenCtrlEquationACh1.Update();
 
             Array.Copy(data, 74, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbPeakLenCtrlEquationBCh1.Text = sTmp.ToString("#0.0000");
+            tbPeakLenCtrlEquationBCh1.Update();
 
             Array.Copy(data, 76, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
             tbPeakLenCtrlEquationCCh1.Text = sTmp.ToString("#0.00");
+            tbPeakLenCtrlEquationCCh1.Update();
 
             Array.Copy(data, 78, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100000;
             tbPeakLenCtrlEquationACh2.Text = sTmp.ToString("#0.00000");
+            tbPeakLenCtrlEquationACh2.Update();
 
             Array.Copy(data, 80, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbPeakLenCtrlEquationBCh2.Text = sTmp.ToString("#0.0000");
+            tbPeakLenCtrlEquationBCh2.Update();
 
             Array.Copy(data, 82, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
             tbPeakLenCtrlEquationCCh2.Text = sTmp.ToString("#0.00");
+            tbPeakLenCtrlEquationCCh2.Update();
 
             Array.Copy(data, 84, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100000;
             tbPeakLenCtrlEquationACh3.Text = sTmp.ToString("#0.00000");
+            tbPeakLenCtrlEquationACh3.Update();
 
             Array.Copy(data, 86, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbPeakLenCtrlEquationBCh3.Text = sTmp.ToString("#0.0000");
+            tbPeakLenCtrlEquationBCh3.Update();
 
             Array.Copy(data, 88, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
             tbPeakLenCtrlEquationCCh3.Text = sTmp.ToString("#0.00");
+            tbPeakLenCtrlEquationCCh3.Update();
 
             Array.Copy(data, 90, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100000;
             tbPeakLenCtrlEquationACh4.Text = sTmp.ToString("#0.00000");
+            tbPeakLenCtrlEquationACh4.Update();
 
             Array.Copy(data, 92, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 10000;
             tbPeakLenCtrlEquationBCh4.Text = sTmp.ToString("#0.0000");
+            tbPeakLenCtrlEquationBCh4.Update();
 
             Array.Copy(data, 94, bATmp, 0, 2);
             reverseData = bATmp.Reverse().ToArray();
             sTmp = Convert.ToSingle(BitConverter.ToInt16(reverseData, 0)) / 100;
             tbPeakLenCtrlEquationCCh4.Text = sTmp.ToString("#0.00");
+            tbPeakLenCtrlEquationCCh4.Update();
 
             return 0;
         }
@@ -3441,44 +3652,60 @@ namespace Gn1190Corrector
             }
 
             tbTxOutputPower1.Text = txPower[0];
+            tbTxOutputPower1.Update();
             tbTxOutputPower2.Text = txPower[1];
+            tbTxOutputPower2.Update();
             tbTxOutputPower3.Text = txPower[2];
+            tbTxOutputPower3.Update();
             tbTxOutputPower4.Text = txPower[3];
+            tbTxOutputPower4.Update();
 
             if (qsfpI2cReadCB == null)
                 return -1;
 
-            if (qsfpI2cReadCB(80, 50, 2, data) != 2)
-                return -1;
+            if (qsfpI2cReadCB(80, 50, 2, data) != 2) {
+                if (bContinuousRead == false)
+                    return -1;
+            }
 
             reverseData = data.Reverse().ToArray();
             tmp = BitConverter.ToInt16(reverseData, 0);
             power = tmp / 10;
             tbTxPower1.Text = power.ToString("#0.0");
+            tbTxPower1.Update();
 
-            if (qsfpI2cReadCB(80, 52, 2, data) != 2)
-                return -1;
+            if (qsfpI2cReadCB(80, 52, 2, data) != 2) {
+                if (bContinuousRead == false)
+                    return -1;
+            }
 
             reverseData = data.Reverse().ToArray();
             tmp = BitConverter.ToInt16(reverseData, 0);
             power = tmp / 10;
             tbTxPower2.Text = power.ToString("#0.0");
+            tbTxPower2.Update();
 
-            if (qsfpI2cReadCB(80, 54, 2, data) != 2)
-                return -1;
+            if (qsfpI2cReadCB(80, 54, 2, data) != 2) {
+                if (bContinuousRead == false)
+                    return -1;
+            }
 
             reverseData = data.Reverse().ToArray();
             tmp = BitConverter.ToInt16(reverseData, 0);
             power = tmp / 10;
             tbTxPower3.Text = power.ToString("#0.0");
+            tbTxPower3.Update();
 
-            if (qsfpI2cReadCB(80, 56, 2, data) != 2)
-                return -1;
+            if (qsfpI2cReadCB(80, 56, 2, data) != 2) {
+                if (bContinuousRead == false)
+                    return -1;
+            }
 
             reverseData = data.Reverse().ToArray();
             tmp = BitConverter.ToInt16(reverseData, 0);
             power = tmp / 10;
             tbTxPower4.Text = power.ToString("#0.0");
+            tbTxPower4.Update();
 
             if (qsfpI2cWriteCB == null)
                 return -1;
@@ -3489,45 +3716,64 @@ namespace Gn1190Corrector
                 data[0] = 0xAA;
             
             qsfpI2cWriteCB(80, 127, 1, data);
-            if (qsfpI2cReadCB(80, 136, 2, data) != 2)
-                return -1;
+            if (qsfpI2cReadCB(80, 136, 2, data) != 2) {
+                if (bContinuousRead == false)
+                    return -1;
+            }
 
             reverseData = data.Reverse().ToArray();
             tmp = BitConverter.ToInt16(reverseData, 0);
             tbTxRssi1.Text = tmp.ToString();
+            tbTxRssi1.Update();
 
-            if (qsfpI2cReadCB(80, 138, 2, data) != 2)
-                return -1;
+            if (qsfpI2cReadCB(80, 138, 2, data) != 2) {
+                if (bContinuousRead == false)
+                    return -1;
+            }
 
             reverseData = data.Reverse().ToArray();
             tmp = BitConverter.ToInt16(reverseData, 0);
             tbTxRssi2.Text = tmp.ToString();
+            tbTxRssi2.Update();
 
-            if (qsfpI2cReadCB(80, 140, 2, data) != 2)
-                return -1;
+            if (qsfpI2cReadCB(80, 140, 2, data) != 2) {
+                if (bContinuousRead == false)
+                    return -1;
+            }
 
             reverseData = data.Reverse().ToArray();
             tmp = BitConverter.ToInt16(reverseData, 0);
             tbTxRssi3.Text = tmp.ToString();
+            tbTxRssi3.Update();
 
-            if (qsfpI2cReadCB(80, 142, 2, data) != 2)
-                return -1;
+            if (qsfpI2cReadCB(80, 142, 2, data) != 2) {
+                if (bContinuousRead == false)
+                    return -1;
+            }
 
             reverseData = data.Reverse().ToArray();
             tmp = BitConverter.ToInt16(reverseData, 0);
             tbTxRssi4.Text = tmp.ToString();
+            tbTxRssi4.Update();
 
-            if (qsfpI2cReadCB(80, 163, 1, data) != 1)
-                return -1;
+            if (qsfpI2cReadCB(80, 163, 1, data) != 1) {
+                if (bContinuousRead == false)
+                    return -1;
+            }
 
             tbTxPowerRateDefault.Text = data[0].ToString();
+            tbTxPowerRateDefault.Update();
 
-            if (tbTxPowerRateMax.Text.Length == 0)
+            if (tbTxPowerRateMax.Text.Length == 0) {
                 tbTxPowerRateMax.Text = (data[0] + 15).ToString();
+                tbTxPowerRateMax.Update();
+            }
 
-            if (tbTxPowerRateMin.Text.Length == 0)
+            if (tbTxPowerRateMin.Text.Length == 0) {
                 tbTxPowerRateMin.Text = (data[0] - 12).ToString();
-
+                tbTxPowerRateMin.Update();
+            }
+            
             data = new byte[4];
             if (cbCustomerPage.SelectedIndex == 0)
                 data[0] = 0x04;
@@ -3535,13 +3781,19 @@ namespace Gn1190Corrector
                 data[0] = 0x80;
             
             qsfpI2cWriteCB(80, 127, 1, data);
-            if (qsfpI2cReadCB(80, 248, 4, data) != 4)
-                return -1;
+            if (qsfpI2cReadCB(80, 248, 4, data) != 4) {
+                if (bContinuousRead == false)
+                    return -1;
+            }
 
             tbTxPowerRate1.Text = data[0].ToString();
+            tbTxPowerRate1.Update();
             tbTxPowerRate2.Text = data[1].ToString();
+            tbTxPowerRate2.Update();
             tbTxPowerRate3.Text = data[2].ToString();
+            tbTxPowerRate3.Update();
             tbTxPowerRate4.Text = data[3].ToString();
+            tbTxPowerRate4.Update();
 
             return 0;
         }
@@ -3829,6 +4081,18 @@ namespace Gn1190Corrector
             System.IO.File.WriteAllText(sfdSelectFile.FileName, sAcConfig);
         exit:
             bStoreAcConfigToFile.Enabled = true;
+        }
+
+        private void cbContinuousRead_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbContinuousRead.Checked == false)
+                return;
+
+            if (bContinuousRead == true)
+                return;
+
+            bContinuousRead = true;
+            bwMonitor.RunWorkerAsync();
         }
     }
 }

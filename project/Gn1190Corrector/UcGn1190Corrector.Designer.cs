@@ -106,6 +106,7 @@
             this.lInputPower = new System.Windows.Forms.Label();
             this.lRxCh1 = new System.Windows.Forms.Label();
             this.gbAcMcEquation = new System.Windows.Forms.GroupBox();
+            this.cbBurnIn = new System.Windows.Forms.CheckBox();
             this.bLutTemperatureUpdate = new System.Windows.Forms.Button();
             this.tbLutTemperature = new System.Windows.Forms.TextBox();
             this.lLutTemperature = new System.Windows.Forms.Label();
@@ -290,7 +291,7 @@
             this.lTxCh1 = new System.Windows.Forms.Label();
             this.cbCustomerPage = new System.Windows.Forms.ComboBox();
             this.lCustomerPage = new System.Windows.Forms.Label();
-            this.cbBurnIn = new System.Windows.Forms.CheckBox();
+            this.cbContinuousRead = new System.Windows.Forms.CheckBox();
             this.gbTemperature.SuspendLayout();
             this.gbAutoCorrect.SuspendLayout();
             this.gbRxPowerRate.SuspendLayout();
@@ -1207,6 +1208,17 @@
             this.gbAcMcEquation.TabIndex = 22;
             this.gbAcMcEquation.TabStop = false;
             this.gbAcMcEquation.Text = "Average and Modulation Current Equation, Drive Tune and Modulation Slope Table";
+            // 
+            // cbBurnIn
+            // 
+            this.cbBurnIn.AutoSize = true;
+            this.cbBurnIn.Location = new System.Drawing.Point(378, 62);
+            this.cbBurnIn.Name = "cbBurnIn";
+            this.cbBurnIn.Size = new System.Drawing.Size(58, 16);
+            this.cbBurnIn.TabIndex = 191;
+            this.cbBurnIn.Text = "BurnIn";
+            this.cbBurnIn.UseVisualStyleBackColor = true;
+            this.cbBurnIn.CheckedChanged += new System.EventHandler(this.cbBurnIn_CheckedChanged);
             // 
             // bLutTemperatureUpdate
             // 
@@ -2871,22 +2883,23 @@
             this.lCustomerPage.TabIndex = 193;
             this.lCustomerPage.Text = "Customer Page:";
             // 
-            // cbBurnIn
+            // cbContinuousRead
             // 
-            this.cbBurnIn.AutoSize = true;
-            this.cbBurnIn.Location = new System.Drawing.Point(378, 62);
-            this.cbBurnIn.Name = "cbBurnIn";
-            this.cbBurnIn.Size = new System.Drawing.Size(58, 16);
-            this.cbBurnIn.TabIndex = 191;
-            this.cbBurnIn.Text = "BurnIn";
-            this.cbBurnIn.UseVisualStyleBackColor = true;
-            this.cbBurnIn.CheckedChanged += new System.EventHandler(this.cbBurnIn_CheckedChanged);
+            this.cbContinuousRead.AutoSize = true;
+            this.cbContinuousRead.Location = new System.Drawing.Point(331, 36);
+            this.cbContinuousRead.Name = "cbContinuousRead";
+            this.cbContinuousRead.Size = new System.Drawing.Size(72, 16);
+            this.cbContinuousRead.TabIndex = 194;
+            this.cbContinuousRead.Text = "連續讀取";
+            this.cbContinuousRead.UseVisualStyleBackColor = true;
+            this.cbContinuousRead.CheckedChanged += new System.EventHandler(this.cbContinuousRead_CheckedChanged);
             // 
             // UcGn1190Corrector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.cbContinuousRead);
             this.Controls.Add(this.lCustomerPage);
             this.Controls.Add(this.cbCustomerPage);
             this.Controls.Add(this.bStoreAcConfigToFile);
@@ -3191,5 +3204,6 @@
         private System.Windows.Forms.ComboBox cbCustomerPage;
         private System.Windows.Forms.Label lCustomerPage;
         private System.Windows.Forms.CheckBox cbBurnIn;
+        private System.Windows.Forms.CheckBox cbContinuousRead;
     }
 }
