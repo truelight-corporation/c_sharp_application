@@ -73,7 +73,7 @@ namespace I2cMasterInterface
             }
         }
 
-        private int _AardvarkConnect(int port)
+        private int _AardvarkConnect(int port, byte direction)
         {
             int bitrate;
 
@@ -89,8 +89,10 @@ namespace I2cMasterInterface
                 goto Error;
             }
 
-            // Ensure that the I2C subsystem is enabled
-            AardvarkApi.aa_configure(iHandler, AardvarkConfig.AA_CONFIG_SPI_I2C);
+            // Ensure that the I2C & GPIO subsystem is enabled
+            //AardvarkApi.aa_configure(iHandler, AardvarkConfig.AA_CONFIG_SPI_I2C);
+            AardvarkApi.aa_configure(iHandler, AardvarkConfig.AA_CONFIG_GPIO_I2C);
+            AardvarkApi.aa_gpio_direction(iHandler, direction);
 
             // Enable the I2C bus pullup resistors (2.2k resistors).
             // This command is only effective on v2.0 hardware or greater.
@@ -144,7 +146,7 @@ namespace I2cMasterInterface
                     break;
 
                 case AdapterSelector.AdapterType.AS_AT_AARDVARK:
-                    if (_AardvarkConnect(port) < 0)
+                    if (_AardvarkConnect(port, 12) < 0)
                         goto Error;
                     break;
 
@@ -563,6 +565,46 @@ namespace I2cMasterInterface
             }
 
             return -1;
+        }
+
+        private int _AardvarkSetGpio(byte value)
+        {
+            int rv;
+
+            if (iHandler < 0) {
+                MessageBox.Show("iHandler < 0 Error!!");
+                return -1;
+            }
+
+            rv = AardvarkApi.aa_gpio_set(iHandler, value);
+            if (rv < 0) {
+                MessageBox.Show("AardvarkApi.aa_gpio_set(" + iHandler + ", " + value + ") Error!!");
+                return -1;
+            }
+            return 0;
+        }
+
+        public int SetGpioApi(byte value)
+        {
+            switch (as_atAdapterType) {
+                case AdapterSelector.AdapterType.AS_AT_DUMMY:
+                    break;
+
+                case AdapterSelector.AdapterType.AS_AT_AARDVARK:
+                    if (_AardvarkSetGpio(value) < 0) {
+                        MessageBox.Show("_AardvarkSetGpio() fail!!");
+                        return -1;
+                    }
+                    break;
+
+                case AdapterSelector.AdapterType.AS_AT_MCP2221:
+                    break;
+
+                default:
+                    break;
+            }
+
+            return 0;
         }
     }
 }
