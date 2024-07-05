@@ -36,9 +36,14 @@
             this.ucMald37045cConfig = new Mald37045cMata37044c.UcMald37045cConfig();
             this.tpMald37044cConfig = new System.Windows.Forms.TabPage();
             this.ucMata37044cConfig = new Mald37045cMata37044c.UcMata37044cConfig();
+            this.tpI2cActionLog = new System.Windows.Forms.TabPage();
+            this.bClearI2cActionLog = new System.Windows.Forms.Button();
+            this.tbI2cActionLog = new System.Windows.Forms.TextBox();
+            this.cbI2cActionLog = new System.Windows.Forms.CheckBox();
             this.tcMald37045cMata37044cConfig.SuspendLayout();
             this.tpMald37045cConfig.SuspendLayout();
             this.tpMald37044cConfig.SuspendLayout();
+            this.tpI2cActionLog.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbPassword
@@ -74,6 +79,7 @@
             // 
             this.tcMald37045cMata37044cConfig.Controls.Add(this.tpMald37045cConfig);
             this.tcMald37045cMata37044cConfig.Controls.Add(this.tpMald37044cConfig);
+            this.tcMald37045cMata37044cConfig.Controls.Add(this.tpI2cActionLog);
             this.tcMald37045cMata37044cConfig.Location = new System.Drawing.Point(12, 40);
             this.tcMald37045cMata37044cConfig.Name = "tcMald37045cMata37044cConfig";
             this.tcMald37045cMata37044cConfig.SelectedIndex = 0;
@@ -116,20 +122,64 @@
             this.ucMata37044cConfig.Size = new System.Drawing.Size(640, 550);
             this.ucMata37044cConfig.TabIndex = 0;
             // 
+            // tpI2cActionLog
+            // 
+            this.tpI2cActionLog.Controls.Add(this.bClearI2cActionLog);
+            this.tpI2cActionLog.Controls.Add(this.tbI2cActionLog);
+            this.tpI2cActionLog.Location = new System.Drawing.Point(4, 22);
+            this.tpI2cActionLog.Name = "tpI2cActionLog";
+            this.tpI2cActionLog.Padding = new System.Windows.Forms.Padding(3);
+            this.tpI2cActionLog.Size = new System.Drawing.Size(649, 556);
+            this.tpI2cActionLog.TabIndex = 2;
+            this.tpI2cActionLog.Text = "I2cActionLog";
+            this.tpI2cActionLog.UseVisualStyleBackColor = true;
+            // 
+            // bClearI2cActionLog
+            // 
+            this.bClearI2cActionLog.Location = new System.Drawing.Point(603, 6);
+            this.bClearI2cActionLog.Name = "bClearI2cActionLog";
+            this.bClearI2cActionLog.Size = new System.Drawing.Size(40, 544);
+            this.bClearI2cActionLog.TabIndex = 1;
+            this.bClearI2cActionLog.Text = "Clear";
+            this.bClearI2cActionLog.UseVisualStyleBackColor = true;
+            this.bClearI2cActionLog.Click += new System.EventHandler(this.bClearI2cActionLog_Click);
+            // 
+            // tbI2cActionLog
+            // 
+            this.tbI2cActionLog.Location = new System.Drawing.Point(6, 6);
+            this.tbI2cActionLog.Multiline = true;
+            this.tbI2cActionLog.Name = "tbI2cActionLog";
+            this.tbI2cActionLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.tbI2cActionLog.Size = new System.Drawing.Size(591, 544);
+            this.tbI2cActionLog.TabIndex = 0;
+            // 
+            // cbI2cActionLog
+            // 
+            this.cbI2cActionLog.AutoSize = true;
+            this.cbI2cActionLog.Location = new System.Drawing.Point(300, 11);
+            this.cbI2cActionLog.Name = "cbI2cActionLog";
+            this.cbI2cActionLog.Size = new System.Drawing.Size(91, 16);
+            this.cbI2cActionLog.TabIndex = 74;
+            this.cbI2cActionLog.Text = "I2C action log";
+            this.cbI2cActionLog.UseVisualStyleBackColor = true;
+            // 
             // FMald37045cMata37044cConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(681, 625);
+            this.Controls.Add(this.cbI2cActionLog);
             this.Controls.Add(this.tcMald37045cMata37044cConfig);
             this.Controls.Add(this.tbPassword);
             this.Controls.Add(this.lPassword);
             this.Controls.Add(this.cbConnected);
             this.Name = "FMald37045cMata37044cConfig";
-            this.Text = "MATA37045C & MATA37044C Config_20200513";
+            this.Text = "MATA37045C & MATA37044C Config_20240705";
             this.tcMald37045cMata37044cConfig.ResumeLayout(false);
             this.tpMald37045cConfig.ResumeLayout(false);
             this.tpMald37044cConfig.ResumeLayout(false);
+            this.tpI2cActionLog.ResumeLayout(false);
+            this.tpI2cActionLog.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -145,6 +195,10 @@
         private UcMald37045cConfig ucMald37045cConfig;
         private System.Windows.Forms.TabPage tpMald37044cConfig;
         private UcMata37044cConfig ucMata37044cConfig;
+        private System.Windows.Forms.TabPage tpI2cActionLog;
+        private System.Windows.Forms.Button bClearI2cActionLog;
+        private System.Windows.Forms.TextBox tbI2cActionLog;
+        private System.Windows.Forms.CheckBox cbI2cActionLog;
     }
 }
 
