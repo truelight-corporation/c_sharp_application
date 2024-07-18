@@ -44,6 +44,10 @@
             this.tbPasswordB1 = new System.Windows.Forms.TextBox();
             this.tbPasswordB2 = new System.Windows.Forms.TextBox();
             this.tbPasswordB3 = new System.Windows.Forms.TextBox();
+            this.tpI2cActionLog = new System.Windows.Forms.TabPage();
+            this.tbI2cActionLog = new System.Windows.Forms.TextBox();
+            this.bClearI2cActionLog = new System.Windows.Forms.Button();
+            this.cbI2cActionLog = new System.Windows.Forms.CheckBox();
             this.ucDigitalDiagnosticsMonitoring = new QsfpDigitalDiagnosticMonitoring.UCDigitalDiagnosticsMonitoring();
             this.ucInformation = new QsfpDigitalDiagnosticMonitoring.UcInformation();
             this.ucMemoryDump = new QsfpDigitalDiagnosticMonitoring.UCMemoryDump();
@@ -51,6 +55,7 @@
             this.tpDigitalDiagnosticMonitoring.SuspendLayout();
             this.tpInformation.SuspendLayout();
             this.tpMemoryDump.SuspendLayout();
+            this.tpI2cActionLog.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbConnected
@@ -69,11 +74,12 @@
             this.tcDdmAndInformation.Controls.Add(this.tpDigitalDiagnosticMonitoring);
             this.tcDdmAndInformation.Controls.Add(this.tpInformation);
             this.tcDdmAndInformation.Controls.Add(this.tpMemoryDump);
-            this.tcDdmAndInformation.Location = new System.Drawing.Point(12, 34);
+            this.tcDdmAndInformation.Controls.Add(this.tpI2cActionLog);
+            this.tcDdmAndInformation.Location = new System.Drawing.Point(12, 38);
             this.tcDdmAndInformation.Name = "tcDdmAndInformation";
             this.tcDdmAndInformation.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tcDdmAndInformation.SelectedIndex = 0;
-            this.tcDdmAndInformation.Size = new System.Drawing.Size(921, 746);
+            this.tcDdmAndInformation.Size = new System.Drawing.Size(921, 745);
             this.tcDdmAndInformation.TabIndex = 2;
             // 
             // tpDigitalDiagnosticMonitoring
@@ -82,7 +88,7 @@
             this.tpDigitalDiagnosticMonitoring.Location = new System.Drawing.Point(4, 22);
             this.tpDigitalDiagnosticMonitoring.Name = "tpDigitalDiagnosticMonitoring";
             this.tpDigitalDiagnosticMonitoring.Padding = new System.Windows.Forms.Padding(3);
-            this.tpDigitalDiagnosticMonitoring.Size = new System.Drawing.Size(913, 720);
+            this.tpDigitalDiagnosticMonitoring.Size = new System.Drawing.Size(913, 719);
             this.tpDigitalDiagnosticMonitoring.TabIndex = 0;
             this.tpDigitalDiagnosticMonitoring.Text = "DDM";
             this.tpDigitalDiagnosticMonitoring.UseVisualStyleBackColor = true;
@@ -93,7 +99,7 @@
             this.tpInformation.Location = new System.Drawing.Point(4, 22);
             this.tpInformation.Name = "tpInformation";
             this.tpInformation.Padding = new System.Windows.Forms.Padding(3);
-            this.tpInformation.Size = new System.Drawing.Size(913, 720);
+            this.tpInformation.Size = new System.Drawing.Size(913, 719);
             this.tpInformation.TabIndex = 1;
             this.tpInformation.Text = "Information";
             this.tpInformation.UseVisualStyleBackColor = true;
@@ -104,7 +110,7 @@
             this.tpMemoryDump.Location = new System.Drawing.Point(4, 22);
             this.tpMemoryDump.Name = "tpMemoryDump";
             this.tpMemoryDump.Padding = new System.Windows.Forms.Padding(3);
-            this.tpMemoryDump.Size = new System.Drawing.Size(913, 720);
+            this.tpMemoryDump.Size = new System.Drawing.Size(913, 719);
             this.tpMemoryDump.TabIndex = 2;
             this.tpMemoryDump.Text = "MemDump";
             this.tpMemoryDump.UseVisualStyleBackColor = true;
@@ -212,6 +218,47 @@
             this.tbPasswordB3.Text = "34";
             this.tbPasswordB3.UseSystemPasswordChar = true;
             // 
+            // tpI2cActionLog
+            // 
+            this.tpI2cActionLog.Controls.Add(this.bClearI2cActionLog);
+            this.tpI2cActionLog.Controls.Add(this.tbI2cActionLog);
+            this.tpI2cActionLog.Location = new System.Drawing.Point(4, 22);
+            this.tpI2cActionLog.Name = "tpI2cActionLog";
+            this.tpI2cActionLog.Padding = new System.Windows.Forms.Padding(3);
+            this.tpI2cActionLog.Size = new System.Drawing.Size(913, 719);
+            this.tpI2cActionLog.TabIndex = 3;
+            this.tpI2cActionLog.Text = "I2cActionLog";
+            this.tpI2cActionLog.UseVisualStyleBackColor = true;
+            // 
+            // tbI2cActionLog
+            // 
+            this.tbI2cActionLog.Location = new System.Drawing.Point(6, 6);
+            this.tbI2cActionLog.Multiline = true;
+            this.tbI2cActionLog.Name = "tbI2cActionLog";
+            this.tbI2cActionLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.tbI2cActionLog.Size = new System.Drawing.Size(820, 675);
+            this.tbI2cActionLog.TabIndex = 0;
+            // 
+            // bClearI2cActionLog
+            // 
+            this.bClearI2cActionLog.Location = new System.Drawing.Point(832, 6);
+            this.bClearI2cActionLog.Name = "bClearI2cActionLog";
+            this.bClearI2cActionLog.Size = new System.Drawing.Size(75, 685);
+            this.bClearI2cActionLog.TabIndex = 1;
+            this.bClearI2cActionLog.Text = "Clear";
+            this.bClearI2cActionLog.UseVisualStyleBackColor = true;
+            this.bClearI2cActionLog.Click += new System.EventHandler(this.bClearI2cActionLog_Click);
+            // 
+            // cbI2cActionLog
+            // 
+            this.cbI2cActionLog.AutoSize = true;
+            this.cbI2cActionLog.Location = new System.Drawing.Point(12, 12);
+            this.cbI2cActionLog.Name = "cbI2cActionLog";
+            this.cbI2cActionLog.Size = new System.Drawing.Size(91, 16);
+            this.cbI2cActionLog.TabIndex = 15;
+            this.cbI2cActionLog.Text = "I2C action log";
+            this.cbI2cActionLog.UseVisualStyleBackColor = true;
+            // 
             // ucDigitalDiagnosticsMonitoring
             // 
             this.ucDigitalDiagnosticsMonitoring.Location = new System.Drawing.Point(6, 4);
@@ -238,7 +285,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ClientSize = new System.Drawing.Size(945, 749);
+            this.ClientSize = new System.Drawing.Size(945, 786);
+            this.Controls.Add(this.cbI2cActionLog);
             this.Controls.Add(this.tbPasswordB3);
             this.Controls.Add(this.tbPasswordB2);
             this.Controls.Add(this.tbPasswordB1);
@@ -256,11 +304,13 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "FDigitalDiagnosticMonitoring";
-            this.Text = "Digital Diagnostic Monitoring 20230927_1654";
+            this.Text = "Digital Diagnostic Monitoring 20240708_1953";
             this.tcDdmAndInformation.ResumeLayout(false);
             this.tpDigitalDiagnosticMonitoring.ResumeLayout(false);
             this.tpInformation.ResumeLayout(false);
             this.tpMemoryDump.ResumeLayout(false);
+            this.tpI2cActionLog.ResumeLayout(false);
+            this.tpI2cActionLog.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -288,6 +338,10 @@
         private System.Windows.Forms.TextBox tbPasswordB3;
         private System.Windows.Forms.TabPage tpMemoryDump;
         private UCMemoryDump ucMemoryDump;
+        private System.Windows.Forms.TabPage tpI2cActionLog;
+        private System.Windows.Forms.Button bClearI2cActionLog;
+        private System.Windows.Forms.TextBox tbI2cActionLog;
+        private System.Windows.Forms.CheckBox cbI2cActionLog;
     }
 }
 

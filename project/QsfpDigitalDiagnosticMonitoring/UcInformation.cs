@@ -1353,7 +1353,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             return 0;
         }
 
-        private int _WirteUpPage3Addr224()
+        private int _ChangeToUpPage3()
         {
             byte[] data = new byte[1];
 
@@ -1362,6 +1362,16 @@ namespace QsfpDigitalDiagnosticMonitoring
 
             data[0] = 3;
             if (i2cWriteCB(80, 127, 1, data) < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _WirteUpPage3Addr224()
+        {
+            byte[] data = new byte[1];
+
+            if (i2cWriteCB == null)
                 return -1;
 
             data[0] = 0;
@@ -1395,10 +1405,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (i2cWriteCB == null)
                 return -1;
 
-            data[0] = 3;
-            if (i2cWriteCB(80, 127, 1, data) < 0)
-                return -1;
-
             data[0] = 0;
             data[0] |= (byte)cbInputEqualizationTx2.SelectedIndex;
             data[0] |= (byte)(cbInputEqualizationTx1.SelectedIndex << 4);
@@ -1414,10 +1420,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             byte[] data = new byte[1];
 
             if (i2cWriteCB == null)
-                return -1;
-
-            data[0] = 3;
-            if (i2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
 
             data[0] = 0;
@@ -1437,10 +1439,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (i2cWriteCB == null)
                 return -1;
 
-            data[0] = 3;
-            if (i2cWriteCB(80, 127, 1, data) < 0)
-                return -1;
-
             data[0] = 0;
             data[0] |= (byte)cbRxOutputEmphasisRx2.SelectedIndex;
             data[0] |= (byte)(cbRxOutputEmphasisRx1.SelectedIndex << 4);
@@ -1456,10 +1454,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             byte[] data = new byte[1];
 
             if (i2cWriteCB == null)
-                return -1;
-
-            data[0] = 3;
-            if (i2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
 
             data[0] = 0;
@@ -1479,10 +1473,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (i2cWriteCB == null)
                 return -1;
 
-            data[0] = 3;
-            if (i2cWriteCB(80, 127, 1, data) < 0)
-                return -1;
-
             data[0] = 0;
             data[0] |= (byte)cbOutputAmplitudeRx2.SelectedIndex;
             data[0] |= (byte)(cbOutputAmplitudeRx1.SelectedIndex << 4);
@@ -1500,10 +1490,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (i2cWriteCB == null)
                 return -1;
 
-            data[0] = 3;
-            if (i2cWriteCB(80, 127, 1, data) < 0)
-                return -1;
-
             data[0] = 0;
             data[0] |= (byte)cbOutputAmplitudeRx4.SelectedIndex;
             data[0] |= (byte)(cbOutputAmplitudeRx3.SelectedIndex << 4);
@@ -1519,10 +1505,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             byte[] data = new byte[1];
 
             if (i2cWriteCB == null)
-                return -1;
-
-            data[0] = 3;
-            if (i2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
 
             data[0] = 0;
@@ -1556,10 +1538,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (i2cWriteCB == null)
                 return -1;
 
-            data[0] = 3;
-            if (i2cWriteCB(80, 127, 1, data) < 0)
-                return -1;
-
             data[0] = 0;
             if (cbOutputDisableRx4.Checked == true)
                 data[0] |= 0x80;
@@ -1587,6 +1565,7 @@ namespace QsfpDigitalDiagnosticMonitoring
 
         private int _WriteUpPage3()
         {
+            _ChangeToUpPage3();
             _WirteUpPage3Addr234();
             _WirteUpPage3Addr235();
             _WirteUpPage3Addr236();
@@ -1865,6 +1844,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr224();
         }
 
@@ -1873,6 +1853,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr224();
         }
 
@@ -1881,6 +1862,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr224();
         }
 
@@ -1889,6 +1871,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr224();
         }
 
@@ -1897,6 +1880,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr224();
         }
 
@@ -1905,6 +1889,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr224();
         }
 
@@ -1913,6 +1898,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr224();
         }
 
@@ -1921,6 +1907,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr224();
         }
         
@@ -1929,6 +1916,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr234();
         }
 
@@ -1937,6 +1925,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr234();
         }
 
@@ -1945,6 +1934,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr235();
         }
 
@@ -1953,6 +1943,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr235();
         }
 
@@ -1961,6 +1952,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr236();
         }
 
@@ -1969,6 +1961,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr236();
         }
 
@@ -1977,6 +1970,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr237();
         }
 
@@ -1985,6 +1979,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr237();
         }
 
@@ -1993,6 +1988,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr238();
         }
 
@@ -2001,6 +1997,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr238();
         }
 
@@ -2009,6 +2006,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr239();
         }
 
@@ -2017,6 +2015,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr239();
         }
 
@@ -2025,6 +2024,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr240();
         }
 
@@ -2033,6 +2033,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr240();
         }
 
@@ -2041,6 +2042,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr240();
         }
 
@@ -2049,6 +2051,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr240();
         }
 
@@ -2057,6 +2060,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr240();
         }
 
@@ -2065,6 +2069,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr240();
         }
 
@@ -2073,6 +2078,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr240();
         }
 
@@ -2081,6 +2087,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr240();
         }
 
@@ -2089,6 +2096,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr241();
         }
 
@@ -2097,6 +2105,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr241();
         }
 
@@ -2105,6 +2114,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr241();
         }
 
@@ -2113,6 +2123,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr241();
         }
 
@@ -2121,6 +2132,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr241();
         }
 
@@ -2129,6 +2141,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr241();
         }
 
@@ -2137,6 +2150,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr241();
         }
 
@@ -2145,6 +2159,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
+            _ChangeToUpPage3();
             _WirteUpPage3Addr241();
         }
     }

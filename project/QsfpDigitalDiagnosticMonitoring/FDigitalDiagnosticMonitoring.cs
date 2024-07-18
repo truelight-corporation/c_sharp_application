@@ -37,6 +37,7 @@ namespace QsfpDigitalDiagnosticMonitoring
         private int _I2cRead(byte devAddr, byte regAddr, byte length, byte[] data)
         {
             int rv;
+
             if (i2cMaster.connected == false) {
                 if (_I2cMasterConnect() < 0)
                     return -1;
@@ -55,17 +56,31 @@ namespace QsfpDigitalDiagnosticMonitoring
 
         private int _I2cWrite(byte devAddr, byte regAddr, byte length, byte[] data)
         {
-            int rv;
+            int i, rv = 0;
 
             if (i2cMaster.connected == false) {
                 if (_I2cMasterConnect() < 0)
                     return -1;
             }
 
-            rv = i2cMaster.WriteApi(devAddr, regAddr, length, data);
-            if (rv < 0) {
-                MessageBox.Show("QSFP+ module no response!!");
-                _I2cMasterDisconnect();
+            if (cbI2cActionLog.Checked == false) {
+                rv = i2cMaster.WriteApi(devAddr, regAddr, length, data);
+                if (rv < 0) {
+                    MessageBox.Show("QSFP+ module no response!!");
+                    _I2cMasterDisconnect();
+                }
+            }
+            else {
+                if (length == 1) {
+                    tbI2cActionLog.AppendText("Write,0x" + devAddr.ToString("X2") + ",0x" + regAddr.ToString("X2") + ",0x" + data[0].ToString("X2"));
+                    tbI2cActionLog.AppendText(Environment.NewLine);
+                }
+                else {
+                    tbI2cActionLog.AppendText("WriteMulti,0x" + devAddr.ToString("X2") + ",0x" + regAddr.ToString("X2") + ",0x" + length.ToString("X2"));
+                    for (i = 0; i < length; i++)
+                        tbI2cActionLog.AppendText(",0x" + data[i].ToString("X2"));
+                    tbI2cActionLog.AppendText(Environment.NewLine);
+                }
             }
 
             return rv;
@@ -205,6 +220,11 @@ namespace QsfpDigitalDiagnosticMonitoring
             }
             else
                 i2cMaster.DisconnectApi();
+        }
+
+        private void bClearI2cActionLog_Click(object sender, EventArgs e)
+        {
+            tbI2cActionLog.Text = "";
         }
     }
 }
