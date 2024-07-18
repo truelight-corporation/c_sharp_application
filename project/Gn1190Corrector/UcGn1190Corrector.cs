@@ -643,7 +643,7 @@ namespace Gn1190Corrector
             }
             if (bStoreAcConfigToFile.Enabled == false) {
                 _I2cWriteToString(80, 240, 1, data, ref sAcConfig);
-                sAcConfig += "Delay10mSec,0x1\n";
+                sAcConfig += "Delay10mSec,0x0A\n";
                 _I2cReadToString(80, 240, 1, data, ref sAcConfig);
             }
             else
@@ -791,7 +791,7 @@ namespace Gn1190Corrector
 
             if (bStoreAcConfigToFile.Enabled == false) {
                 _I2cWriteToString(80, 241, 1, data, ref sAcConfig);
-                sAcConfig += "Delay10mSec,0x1\n";
+                sAcConfig += "Delay10mSec,0x0A\n";
                 _I2cReadToString(80, 241, 1, data, ref sAcConfig);
             }
             else
@@ -803,7 +803,7 @@ namespace Gn1190Corrector
 
             if (bStoreAcConfigToFile.Enabled == false) {
                 _I2cWriteToString(80, 242, 2, data, ref sAcConfig);
-                sAcConfig += "Delay10mSec,0x1\n";
+                sAcConfig += "Delay10mSec,0x0A\n";
                 _I2cReadToString(80, 242, 2, data, ref sAcConfig);
             }
             else
@@ -1731,9 +1731,15 @@ namespace Gn1190Corrector
         {
             int i;
 
-            for (i = 0; i < length; i++) {
-                sTmp += "Write,0x" + devAddr.ToString("X2") + ",0x" + (regAddr + i).ToString("X2") + ",0x" +
-                    data[i].ToString("X2") + "\n";
+            if (length == 1)
+                sTmp += "Write,0x" + devAddr.ToString("X2") + ",0x" + regAddr.ToString("X2") + ",0x" +
+                    data[0].ToString("X2") + "\n";
+            else {
+                sTmp += "WriteMulti,0x" + devAddr.ToString("X2") + ",0x" + regAddr.ToString("X2") + ",0x" + length.ToString("X2");
+                for (i = 0; i < length; i++) {
+                    sTmp += ",0x" + data[i].ToString("X2");
+                }
+                sTmp += "\n";
             }
 
             return 0;
@@ -1743,9 +1749,16 @@ namespace Gn1190Corrector
         {
             int i;
 
-            for (i = 0; i < length; i++) {
-                sTmp += "Read,0x" + devAddr.ToString("X2") + ",0x" + (regAddr + i).ToString("X2") + ",0x" +
-                    data[i].ToString("X2") + "\n";
+            if (length == 1) {
+                sTmp += "Read,0x" + devAddr.ToString("X2") + ",0x" + regAddr.ToString("X2") + ",0x" +
+                    data[0].ToString("X2") + "\n";
+            }
+            else {
+                sTmp += "ReadMulti,0x" + devAddr.ToString("X2") + ",0x" + regAddr.ToString("X2") + ",0x" +
+                    length.ToString("X2");
+                for (i = 0; i < length; i++)
+                    sTmp += ",0x" + data[i].ToString("X2");
+                sTmp += "\n";
             }
 
             return 0;
@@ -1840,11 +1853,13 @@ namespace Gn1190Corrector
                 return -1;
             }
 
-            if (_WritePassword() < 0)
-                return -1;
+            if (bStoreAcConfigToFile.Enabled == true) {
+                if (_WritePassword() < 0)
+                    return -1;
 
-            if (_SetQsfpMode(0x4D) < 0)
-                return -1;
+                if (_SetQsfpMode(0x4D) < 0)
+                    return -1;
+            }
 
             if (qsfpI2cWriteCB == null)
                 return -1;
@@ -2263,7 +2278,7 @@ namespace Gn1190Corrector
 
             if (bStoreAcConfigToFile.Enabled == false) {
                 _I2cWriteToString(80, 128, 44, data, ref sAcConfig);
-                sAcConfig += "Delay10mSec,0x14\n";
+                sAcConfig += "Delay10mSec,0x0A\n";
                 _I2cReadToString(80, 128, 44, data, ref sAcConfig);
             }
             else
@@ -3152,7 +3167,7 @@ namespace Gn1190Corrector
 
             if (bStoreAcConfigToFile.Enabled == false) {
                 _I2cWriteToString(80, 128, 96, data, ref sAcConfig);
-                sAcConfig += "Delay10mSec,0x14\n";
+                sAcConfig += "Delay10mSec,0x0A\n";
                 _I2cReadToString(80, 128, 96, data, ref sAcConfig);
             }
             else
@@ -3185,7 +3200,7 @@ namespace Gn1190Corrector
 
             if (bStoreAcConfigToFile.Enabled == false) {
                 _I2cWriteToString(80, 252, 1, data, ref sAcConfig);
-                sAcConfig += "Delay10mSec,0x1\n";
+                sAcConfig += "Delay10mSec,0x0A\n";
                 _I2cReadToString(80, 252, 1, data, ref sAcConfig);
             }
             else
@@ -3201,11 +3216,13 @@ namespace Gn1190Corrector
         {
             byte[] data = new byte[2];
 
-            if (_WritePassword() < 0)
-                return -1;
+            if (bStoreAcConfigToFile.Enabled == true) {
+                if (_WritePassword() < 0)
+                    return -1;
 
-            if (_SetQsfpMode(0x4D) < 0)
-                return -1;
+                if (_SetQsfpMode(0x4D) < 0)
+                    return -1;
+            }
 
             if (qsfpI2cWriteCB == null)
                 return -1;
@@ -3224,7 +3241,7 @@ namespace Gn1190Corrector
             data[1] = 0x3A;
             if (bStoreAcConfigToFile.Enabled == false) {
                 _I2cWriteToString(80, 253, 2, data, ref sAcConfig);
-                sAcConfig += "Delay10mSec,0x1\n";
+                sAcConfig += "Delay10mSec,0x0A\n";
                 _I2cReadToString(80, 253, 2, data, ref sAcConfig);
             }
             else
@@ -3553,11 +3570,13 @@ namespace Gn1190Corrector
         {
             byte[] data = new byte[1];
 
-            if (_WritePassword() < 0)
-                goto exit;
+            if (bStoreAcConfigToFile.Enabled == true) {
+                if (_WritePassword() < 0)
+                    goto exit;
 
-            if (_SetQsfpMode(0x4D) < 0)
-                goto exit;
+                if (_SetQsfpMode(0x4D) < 0)
+                    goto exit;
+            }
 
             if (qsfpI2cWriteCB == null)
                 goto exit;
@@ -4068,12 +4087,14 @@ namespace Gn1190Corrector
             
             bStoreAcConfigToFile.Enabled = false;
             sAcConfig = "//Write,DevAddr,RegAddr,Value\n" + "//Read,DevAddr,RegAddr,Value\n" + 
+                "//WriteMulti,DevAddr,RegAddr,Length,Value0,Value1...\n" +
+                "//ReadMulti,DevAddr,RegAddr,Length,Value0,Value1...\n" +
                 "//Delay10mSec,Time\n";
-            _WriteVoltageCorrector();
-            _WriteTemperatureCorrector();
+            //_WriteVoltageCorrector();
+            //_WriteTemperatureCorrector();
             _WriteAcMcCorrectData();
             _WriteBootLoaderIdentify();
-            _SaveIntoFlash();
+            //_SaveIntoFlash();
 
             sfdSelectFile.Filter = "cfg files (*.cfg)|*.cfg";
             if (sfdSelectFile.ShowDialog() != DialogResult.OK)
