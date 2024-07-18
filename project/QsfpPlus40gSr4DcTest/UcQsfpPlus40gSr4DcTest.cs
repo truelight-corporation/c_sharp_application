@@ -16,18 +16,23 @@ namespace QsfpPlus40gSr4DcTest
     public partial class UcQsfpPlus40gSr4DcTest : UserControl
     {
         private DataTable dtValue = new DataTable();
-        private DataTable dtAfterBurnInConfig = new DataTable();
-        private String fileDirectory = "d:\\DcTestLog";
+        private DataTable dtBeforeTestConfig = new DataTable();
+        private DataTable dtAfterTestConfig = new DataTable();
+        //private String fileDirectory = "d:\\DcTestLog";
+        private String fileDirectory = "D:\\DcTestLog";
         private String lastLogFileName = "";
+        private uint fileRecordNumber = 0;
 
         public delegate int I2cReadCB(byte devAddr, byte regAddr, byte length, byte[] data);
         public delegate int I2cWriteCB(byte devAddr, byte regAddr, byte length, byte[] data);
         public delegate int PowerMeterReadCB(String[] data);
         public delegate int WritePasswordCB();
+        public delegate int SetPowerSupplyCB(Boolean powerOn);
 
         private I2cReadCB i2cReadCB = null;
         private I2cWriteCB i2cWriteCB = null;
         private PowerMeterReadCB powerMeterReadCB = null;
+        private SetPowerSupplyCB setPowerSupplyCB = null;
 
         private BackgroundWorker bwMonitor;
         private DialogResult drAskOverwrite;
@@ -38,17 +43,22 @@ namespace QsfpPlus40gSr4DcTest
         private volatile String[] rxPowerValue = new String[4];
         private volatile String[] txBiasValue = new String[4];
         private volatile String temperature;
+        private volatile String voltage;
         private volatile String logModeSelect;
-        private volatile String serialNumber, newSerialNumber;
+        private volatile String moduleSerialNumber, newModuleSerialNumber, customerSerialNumber;
         private volatile String lastNote;
-        private volatile int acConfigRowCount;
+        private volatile String messageBoxError = "";
+        private volatile int statusNotifyCount;
         private volatile bool monitorStart = false;
         private volatile bool logValue = false;
         private volatile byte[] losStatus = new byte[1];
         private volatile int customerPage_selectIndex = 0;
+        
 
         public UcQsfpPlus40gSr4DcTest()
         {
+            int i;
+
             InitializeComponent();
 
             txPower[0] = txPower[1] = txPower[2] = txPower[3] = "0";
@@ -57,7 +67,8 @@ namespace QsfpPlus40gSr4DcTest
             txBiasValue[0] = txBiasValue[1] = txBiasValue[2] = txBiasValue[3] = "0";
             losStatus[0] = 0;
             temperature = "0";
-            lastNote = serialNumber= "";
+            voltage = "0";
+            lastNote = moduleSerialNumber= "";
 
             bwMonitor = new BackgroundWorker();
             bwMonitor.WorkerReportsProgress = true;
@@ -71,11 +82,12 @@ namespace QsfpPlus40gSr4DcTest
             dtValue.Columns.Add("Lable", typeof(String));
             dtValue.Columns.Add("Time", typeof(String));
             dtValue.Columns.Add("SN", typeof(String));
+            dtValue.Columns.Add("CSN", typeof(String));
 
-            dtValue.Columns.Add("Tx1(uW)", typeof(String));
-            dtValue.Columns.Add("Tx2(uW)", typeof(String));
-            dtValue.Columns.Add("Tx3(uW)", typeof(String));
-            dtValue.Columns.Add("Tx4(uW)", typeof(String));
+            dtValue.Columns.Add("Tx1", typeof(String));
+            dtValue.Columns.Add("Tx2", typeof(String));
+            dtValue.Columns.Add("Tx3", typeof(String));
+            dtValue.Columns.Add("Tx4", typeof(String));
 
             dtValue.Columns.Add("Rx1", typeof(String));
             dtValue.Columns.Add("Rx2", typeof(String));
@@ -93,18 +105,30 @@ namespace QsfpPlus40gSr4DcTest
             dtValue.Columns.Add("Bias4", typeof(String));
 
             dtValue.Columns.Add("Temp", typeof(String));
+            dtValue.Columns.Add("Vcc", typeof(String));
 
             dtValue.Columns.Add("Operator", typeof(String));
             dtValue.Columns.Add("Note", typeof(String));
 
             dgvRecord.DataSource = dtValue;
 
-            dtAfterBurnInConfig.Columns.Add("Command", typeof(String));
-            dtAfterBurnInConfig.Columns.Add("Parameter1", typeof(String));
-            dtAfterBurnInConfig.Columns.Add("Parameter2", typeof(String));
-            dtAfterBurnInConfig.Columns.Add("Parameter3", typeof(String));
+            dtBeforeTestConfig.Columns.Add("Command", typeof(String));
+            dtBeforeTestConfig.Columns.Add("P001", typeof(String));
+            dtBeforeTestConfig.Columns.Add("P002", typeof(String));
+            dtBeforeTestConfig.Columns.Add("P003", typeof(String));
+            for (i = 0; i < 128; i++)
+                dtBeforeTestConfig.Columns.Add("P" + (i + 4).ToString("D3"), typeof(String));
 
-            dgvAfterBurnInConfig.DataSource = dtAfterBurnInConfig;
+            dgvBeforeTestConfig.DataSource = dtBeforeTestConfig;
+
+            dtAfterTestConfig.Columns.Add("Command", typeof(String));
+            dtAfterTestConfig.Columns.Add("P001", typeof(String));
+            dtAfterTestConfig.Columns.Add("P002", typeof(String));
+            dtAfterTestConfig.Columns.Add("P003", typeof(String));
+            for (i = 0; i < 128; i++)
+                dtAfterTestConfig.Columns.Add("P" + (i + 4).ToString("D3"), typeof(String));
+
+            dgvAfterTestConfig.DataSource = dtAfterTestConfig;
         }
 
         public int SetI2cReadCBApi(I2cReadCB cb)
@@ -137,48 +161,137 @@ namespace QsfpPlus40gSr4DcTest
             return 0;
         }
 
-         private int _CheckAfterBurnInPowerDifferent(String serialNumber, String[] txPower)
+        public int SetPowerSupplyCBApi(SetPowerSupplyCB cb)
         {
-            String[] oldTxPower = new String[4];
-            DataRow[] filteredRows = dtValue.Select("Lable = 'BeforeBurnIn' AND SN = '" + serialNumber + "'");
-            float fMin, fMax, fLimit;
-            int i;
-            bool bPass = true;
-            
-            if (filteredRows.Length == 0) {
-                MessageBox.Show("Cannot find: " + serialNumber + " before burn-in data!!");
+            if (cb == null)
                 return -1;
-            }
 
-            oldTxPower[0] = filteredRows.ElementAt(0)["Tx1(uW)"].ToString();
-            oldTxPower[1] = filteredRows.ElementAt(0)["Tx2(uW)"].ToString();
-            oldTxPower[2] = filteredRows.ElementAt(0)["Tx3(uW)"].ToString();
-            oldTxPower[3] = filteredRows.ElementAt(0)["Tx4(uW)"].ToString();
+            setPowerSupplyCB = new SetPowerSupplyCB(cb);
 
-            if (oldTxPower[0].Equals("NA"))
-                return 0;
+            return 0;
+        }
 
-            fLimit = float.Parse(tbAfterBurnInPowerDifferentLimit.Text) / 100;
+        public Boolean GetPowerSupplyControlReverseApi()
+        {
+            return cbPowerSupplyControlReverse.Checked;
+        }
         
-            for (i = 0; i < 4; i++) {
-                fMin = (float)(float.Parse(oldTxPower[i]) * (1 - fLimit));
-                fMax = (float)(float.Parse(oldTxPower[i]) * (1 + fLimit));
-                if ((float.Parse(txPower[i]) < fMin) || (float.Parse(txPower[i]) > fMax)) {
-                    bPass = false;
-                    lastNote += "Tx" + (i + 1).ToString() + "(B:" + oldTxPower[i] + " A:" + txPower[i] + "); ";
-                }
-            }
+
+        private int _CheckVoltageThreshold(String voltage)
+        {
+            float fMin, fMax, fVoltage;
+            bool bPass = true;
+
+            fMin = float.Parse(tbVoltageMinThreshold.Text);
+            fMax = float.Parse(tbVoltageMaxThreshold.Text);
+            fVoltage = float.Parse(voltage);
+
+            if ((fVoltage > fMax) || (fVoltage < fMin))
+                bPass = false;
 
             if (bPass == true) {
                 lResult.ForeColor = System.Drawing.SystemColors.ControlText;
-                lResult.Text = "OK (" + serialNumber + ")";
+                lResult.Text = "OK (" + moduleSerialNumber + ")";
                 lClassification.ForeColor = System.Drawing.Color.White;
                 lClassification.BackColor = System.Drawing.Color.Green;
                 lClassification.Text = "A";
             }
             else {
                 lResult.ForeColor = System.Drawing.Color.Red;
-                lResult.Text = "NG (" + serialNumber + ")";
+                lResult.Text = "NG (" + moduleSerialNumber + ")";
+                lClassification.ForeColor = System.Drawing.Color.Red;
+                lClassification.BackColor = System.Drawing.Color.White;
+                lClassification.Text = "T";
+            }
+
+            return 0;
+        }
+
+        private int _CheckAfterBurnInPowerDifferent(String serialNumber, String[] txPower)
+        {
+            String[] oldTxPower = new String[4];
+            DataRow[] filteredRows;
+            float fMin, fMax, fLimit;
+            int i;
+            bool bPass = true;
+
+            switch (logModeSelect) {
+                case "AfterBurnIn1":
+                    filteredRows = dtValue.Select("Lable = 'BeforeBurnIn' AND SN = '" + serialNumber + "'");
+                    break;
+
+                case "AfterBurnIn2":
+                    filteredRows = dtValue.Select("Lable = 'AfterBurnIn1' AND SN = '" + serialNumber + "'");
+                    break;
+
+                case "AfterBurnIn3":
+                    filteredRows = dtValue.Select("Lable = 'AfterBurnIn2' AND SN = '" + serialNumber + "'");
+                    break;
+
+                case "AfterBurnIn4":
+                    filteredRows = dtValue.Select("Lable = 'AfterBurnIn3' AND SN = '" + serialNumber + "'");
+                    break;
+
+                case "AfterBurnIn5":
+                    filteredRows = dtValue.Select("Lable = 'AfterBurnIn4' AND SN = '" + serialNumber + "'");
+                    break;
+
+                case "AocAfterGlue":
+                    filteredRows = dtValue.Select("Lable = 'AocBeforeGlue' AND CSN = '" + serialNumber + "'");
+                    break;
+
+                default:
+                    MessageBox.Show("Cannot find relation logModeSelect: " + logModeSelect + " !!");
+                    return -1;
+            }
+
+            if (filteredRows.Length == 0) {
+                MessageBox.Show("Cannot find: " + serialNumber + " before burn-in data!!");
+                return -1;
+            }
+
+            oldTxPower[0] = filteredRows.ElementAt(0)["Tx1"].ToString();
+            oldTxPower[1] = filteredRows.ElementAt(0)["Tx2"].ToString();
+            oldTxPower[2] = filteredRows.ElementAt(0)["Tx3"].ToString();
+            oldTxPower[3] = filteredRows.ElementAt(0)["Tx4"].ToString();
+
+            
+
+            fLimit = float.Parse(tbAfterBurnInPowerDifferentLimit.Text) / 100;
+
+            if (oldTxPower[0].Equals("NA") || oldTxPower[1].Equals("NA") || oldTxPower[2].Equals("NA") ||
+                oldTxPower[3].Equals("NA")) {
+                bPass = false;
+                for (i = 0; i < 4; i++)
+                    lastNote += "Tx" + (i + 1).ToString() + "(B:" + oldTxPower[i] + " A:" + txPower[i] + "); ";
+            }
+            else {
+                for (i = 0; i < 4; i++) {
+                    fMin = (float)(float.Parse(oldTxPower[i]) * (1 - fLimit));
+                    fMax = (float)(float.Parse(oldTxPower[i]) * (1 + fLimit));
+                    if ((float.Parse(txPower[i]) < fMin) || (float.Parse(txPower[i]) > fMax)) {
+                        bPass = false;
+                        lastNote += "Tx" + (i + 1).ToString() + "(B:" + oldTxPower[i] + " A:" + txPower[i] + "); ";
+                    }
+                }
+            }
+
+            if (bPass == true) {
+                lResult.ForeColor = System.Drawing.SystemColors.ControlText;
+                if (logModeSelect == "AocAfterGlue")
+                    lResult.Text = "OK (" + tbSerialNumber.Text + ")";
+                else
+                    lResult.Text = "OK (" + serialNumber + ")";
+                lClassification.ForeColor = System.Drawing.Color.White;
+                lClassification.BackColor = System.Drawing.Color.Green;
+                lClassification.Text = "A";
+            }
+            else {
+                lResult.ForeColor = System.Drawing.Color.Red;
+                if ((logModeSelect == "AocBeforeGlue") || (logModeSelect == "AocAfterGlue"))
+                    lResult.Text = "NG (" + tbSerialNumber.Text + ")";
+                else
+                    lResult.Text = "NG (" + serialNumber + ")";
                 lClassification.ForeColor = System.Drawing.Color.Red;
                 lClassification.BackColor = System.Drawing.Color.White;
                 lClassification.Text = "T";
@@ -245,14 +358,20 @@ namespace QsfpPlus40gSr4DcTest
 
             if (bPass == true) {
                 lResult.ForeColor = System.Drawing.SystemColors.ControlText;
-                lResult.Text = "OK (" + serialNumber + ")";
+                if ((logModeSelect == "AocBeforeGlue")  || (logModeSelect == "AocAfterGlue"))
+                    lResult.Text = "OK (" + tbSerialNumber.Text + ")";
+                else
+                    lResult.Text = "OK (" + moduleSerialNumber + ")";
                 lClassification.ForeColor = System.Drawing.Color.White;
                 lClassification.BackColor = System.Drawing.Color.Green;
                 lClassification.Text = "A";
             }
             else {
                 lResult.ForeColor = System.Drawing.Color.Red;
-                lResult.Text = "NG (" + serialNumber + ")";
+                if ((logModeSelect == "AocBeforeGlue") || (logModeSelect == "AocAfterGlue"))
+                    lResult.Text = "NG (" + tbSerialNumber.Text + ")";
+                else
+                    lResult.Text = "NG (" + moduleSerialNumber + ")";
                 lClassification.ForeColor = System.Drawing.Color.Red;
                 lClassification.BackColor = System.Drawing.Color.White;
                 lClassification.Text = "T";
@@ -327,14 +446,20 @@ namespace QsfpPlus40gSr4DcTest
 
             if (bPass == true) {
                 lResult.ForeColor = System.Drawing.SystemColors.ControlText;
-                lResult.Text = "OK (" + serialNumber + ")";
+                if ((logModeSelect == "AocBeforeGlue") || (logModeSelect == "AocAfterGlue"))
+                    lResult.Text = "OK (" + tbSerialNumber.Text + ")";
+                else
+                    lResult.Text = "OK (" + moduleSerialNumber + ")";
                 lClassification.ForeColor = System.Drawing.Color.White;
                 lClassification.BackColor = System.Drawing.Color.Green;
                 lClassification.Text = "A";
             }
             else {
                 lResult.ForeColor = System.Drawing.Color.Red;
-                lResult.Text = "NG (" + serialNumber + ")";
+                if ((logModeSelect == "AocBeforeGlue") || (logModeSelect == "AocAfterGlue"))
+                    lResult.Text = "NG (" + tbSerialNumber.Text + ")";
+                else
+                    lResult.Text = "NG (" + moduleSerialNumber + ")";
                 lClassification.ForeColor = System.Drawing.Color.Red;
                 lClassification.BackColor = System.Drawing.Color.White;
                 lClassification.Text = "T";
@@ -409,14 +534,20 @@ namespace QsfpPlus40gSr4DcTest
 
             if (bPass == true) {
                 lResult.ForeColor = System.Drawing.SystemColors.ControlText;
-                lResult.Text = "OK (" + serialNumber + ")";
+                if ((logModeSelect == "AocBeforeGlue") || (logModeSelect == "AocAfterGlue"))
+                    lResult.Text = "OK (" + tbSerialNumber.Text + ")";
+                else
+                    lResult.Text = "OK (" + moduleSerialNumber + ")";
                 lClassification.ForeColor = System.Drawing.Color.White;
                 lClassification.BackColor = System.Drawing.Color.Green;
                 lClassification.Text = "A";
             }
             else {
                 lResult.ForeColor = System.Drawing.Color.Red;
-                lResult.Text = "NG (" + serialNumber + ")";
+                if ((logModeSelect == "AocBeforeGlue") || (logModeSelect == "AocAfterGlue"))
+                    lResult.Text = "NG (" + tbSerialNumber.Text + ")";
+                else
+                    lResult.Text = "NG (" + moduleSerialNumber + ")";
                 lClassification.ForeColor = System.Drawing.Color.Red;
                 lClassification.BackColor = System.Drawing.Color.White;
                 lClassification.Text = "T";
@@ -458,14 +589,20 @@ namespace QsfpPlus40gSr4DcTest
         exit:
             if (bPass == true) {
                 lResult.ForeColor = System.Drawing.SystemColors.ControlText;
-                lResult.Text = "OK (" + serialNumber + ")";
+                if ((logModeSelect == "AocBeforeGlue") || (logModeSelect == "AocAfterGlue"))
+                    lResult.Text = "OK (" + tbSerialNumber.Text + ")";
+                else
+                    lResult.Text = "OK (" + moduleSerialNumber + ")";
                 lClassification.ForeColor = System.Drawing.Color.White;
                 lClassification.BackColor = System.Drawing.Color.Green;
                 lClassification.Text = "A";
             }
             else {
                 lResult.ForeColor = System.Drawing.Color.Red;
-                lResult.Text = "NG (" + serialNumber + ")";
+                if ((logModeSelect == "AocBeforeGlue") || (logModeSelect == "AocAfterGlue"))
+                    lResult.Text = "NG (" + tbSerialNumber.Text + ")";
+                else
+                    lResult.Text = "NG (" + moduleSerialNumber + ")";
                 lClassification.ForeColor = System.Drawing.Color.Red;
                 lClassification.BackColor = System.Drawing.Color.White;
                 lClassification.Text = "T";
@@ -517,14 +654,20 @@ namespace QsfpPlus40gSr4DcTest
 
             if (bPass == true) {
                 lResult.ForeColor = System.Drawing.SystemColors.ControlText;
-                lResult.Text = "OK (" + serialNumber + ")";
+                if ((logModeSelect == "AocBeforeGlue") || (logModeSelect == "AocAfterGlue"))
+                    lResult.Text = "OK (" + tbSerialNumber.Text + ")";
+                else
+                    lResult.Text = "OK (" + serialNumber + ")";
                 lClassification.ForeColor = System.Drawing.Color.White;
                 lClassification.BackColor = System.Drawing.Color.Green;
                 lClassification.Text = "A";
             }
             else {
                 lResult.ForeColor = System.Drawing.Color.Red;
-                lResult.Text = "NG (" + serialNumber + ")";
+                if ((logModeSelect == "AocBeforeGlue") || (logModeSelect == "AocAfterGlue"))
+                    lResult.Text = "NG (" + tbSerialNumber.Text + ")";
+                else
+                    lResult.Text = "NG (" + serialNumber + ")";
                 lClassification.ForeColor = System.Drawing.Color.Red;
                 lClassification.BackColor = System.Drawing.Color.White;
                 lClassification.Text = "T";
@@ -576,14 +719,20 @@ namespace QsfpPlus40gSr4DcTest
 
             if (bPass == true) {
                 lResult.ForeColor = System.Drawing.SystemColors.ControlText;
-                lResult.Text = "OK (" + serialNumber + ")";
+                if ((logModeSelect == "AocBeforeGlue") || (logModeSelect == "AocAfterGlue"))
+                    lResult.Text = "OK (" + tbSerialNumber.Text + ")";
+                else
+                    lResult.Text = "OK (" + serialNumber + ")";
                 lClassification.ForeColor = System.Drawing.Color.White;
                 lClassification.BackColor = System.Drawing.Color.Green;
                 lClassification.Text = "A";
             }
             else {
                 lResult.ForeColor = System.Drawing.Color.Red;
-                lResult.Text = "NG (" + serialNumber + ")";
+                if ((logModeSelect == "AocBeforeGlue") || (logModeSelect == "AocAfterGlue"))
+                    lResult.Text = "NG (" + tbSerialNumber.Text + ")";
+                else
+                    lResult.Text = "NG (" + serialNumber + ")";
                 lClassification.ForeColor = System.Drawing.Color.Red;
                 lClassification.BackColor = System.Drawing.Color.White;
                 lClassification.Text = "T";
@@ -594,8 +743,15 @@ namespace QsfpPlus40gSr4DcTest
 
         private int _CheckDuplicationLog(String logLable, String serialNumber)
         {
-            DataRow[] filteredRows = dtValue.Select("Lable = '" + logLable + "' AND SN = '" + serialNumber + "'");
-            
+            DataRow[] filteredRows;
+
+            if ((logLable == "AocBeforeGlue") || (logLable == "AocAfterGlue")) {
+                filteredRows = dtValue.Select("Lable = '" + logLable + "' AND CSN = '" + serialNumber + "'");
+            }
+            else {
+                filteredRows = dtValue.Select("Lable = '" + logLable + "' AND SN = '" + serialNumber + "'");
+            }
+
             if (filteredRows.Length == 0)
                 return 0;
 
@@ -614,7 +770,7 @@ namespace QsfpPlus40gSr4DcTest
             String[] saRxValue = new String[4];
             String[] saMpdValue = new String[4];
             String[] saTxBiasValue = new String[4];
-            String sTemperature;
+            String sTemperature, sVoltage;
 
             while (tbSerialNumber.Text[0] == ' ')
                 tbSerialNumber.Text = tbSerialNumber.Text.Substring(1, tbSerialNumber.Text.Length - 1);
@@ -625,14 +781,14 @@ namespace QsfpPlus40gSr4DcTest
             if (_CheckDuplicationLog(tbLogLable.Text, tbSerialNumber.Text) < 0)
                 return;
 
-            saTxPower[0] = tbTx1Power.Text;
-            saTxPower[1] = tbTx2Power.Text;
-            saTxPower[2] = tbTx3Power.Text;
-            saTxPower[3] = tbTx4Power.Text;
-            saRxValue[0] = tbRx1.Text;
-            saRxValue[1] = tbRx2.Text;
-            saRxValue[2] = tbRx3.Text;
-            saRxValue[3] = tbRx4.Text;
+            saTxPower[0] = tbTx1PowerLog.Text;
+            saTxPower[1] = tbTx2PowerLog.Text;
+            saTxPower[2] = tbTx3PowerLog.Text;
+            saTxPower[3] = tbTx4PowerLog.Text;
+            saRxValue[0] = tbRx1Log.Text;
+            saRxValue[1] = tbRx2Log.Text;
+            saRxValue[2] = tbRx3Log.Text;
+            saRxValue[3] = tbRx4Log.Text;
             saMpdValue[0] = tbMpd1Value.Text;
             saMpdValue[1] = tbMpd2Value.Text;
             saMpdValue[2] = tbMpd3Value.Text;
@@ -642,9 +798,12 @@ namespace QsfpPlus40gSr4DcTest
             saTxBiasValue[2] = tbTxBias3.Text;
             saTxBiasValue[3] = tbTxBias4.Text;
             sTemperature = tbTemperature.Text;
+            sVoltage = tbVoltage.Text;
 
-            if (checkPowerDiff == true)
+            if (checkPowerDiff == true) {
+                _CheckVoltageThreshold(sVoltage);
                 _CheckAfterBurnInPowerDifferent(tbSerialNumber.Text, saTxPower);
+            }
 
             _CheckTxPowerThreshold(saTxPower);
             _CheckRxValueThreshold(saRxValue);
@@ -655,15 +814,30 @@ namespace QsfpPlus40gSr4DcTest
                 _CheckLtPowerDifferent(tbSerialNumber.Text, saTxPower);
                 _CheckHtPowerDifferent(tbSerialNumber.Text, saTxPower);
             }
-            
-            dtValue.Rows.Add(tbLogLable.Text, System.DateTime.Now.ToString("yy/MM/dd_HH:mm:ss"), tbSerialNumber.Text,
-                saTxPower[0], saTxPower[1], saTxPower[2], saTxPower[3], saRxValue[0], saRxValue[1], saRxValue[2],
-                saRxValue[3], saMpdValue[0], saMpdValue[1], saMpdValue[2], saMpdValue[3], saTxBiasValue[0],
-                saTxBiasValue[1], saTxBiasValue[2], saTxBiasValue[3], sTemperature, tbOperator.Text, lastNote);
-            if (logModeSelect == "AfterBurnIn") {
 
-            } else
+
+            if ((cbLogMode.SelectedItem.ToString() == "AocBeforeGlue") || (cbLogMode.SelectedItem.ToString() == "AocAfterGlue")) {
+                dtValue.Rows.Add(tbLogLable.Text, System.DateTime.Now.ToString("yy/MM/dd_HH:mm:ss"), tbModuleSerialNumber.Text,
+                    tbCableSerialNumber.Text, saTxPower[0], saTxPower[1], saTxPower[2], saTxPower[3], saRxValue[0],
+                    saRxValue[1], saRxValue[2], saRxValue[3], saMpdValue[0], saMpdValue[1], saMpdValue[2], saMpdValue[3],
+                    saTxBiasValue[0], saTxBiasValue[1], saTxBiasValue[2], saTxBiasValue[3], sTemperature, sVoltage,
+                    tbOperator.Text, lastNote);
+            }
+            else {
+                dtValue.Rows.Add(tbLogLable.Text, System.DateTime.Now.ToString("yy/MM/dd_HH:mm:ss"), tbSerialNumber.Text,
+                    tbCableSerialNumber.Text, saTxPower[0], saTxPower[1], saTxPower[2], saTxPower[3], saRxValue[0],
+                    saRxValue[1], saRxValue[2], saRxValue[3], saMpdValue[0], saMpdValue[1], saMpdValue[2], saMpdValue[3],
+                    saTxBiasValue[0], saTxBiasValue[1], saTxBiasValue[2], saTxBiasValue[3], sTemperature, sVoltage,
+                    tbOperator.Text, lastNote);
+            }
+            if ((logModeSelect != "AfterBurnIn1") &&
+                (logModeSelect != "AfterBurnIn2") &&
+                (logModeSelect != "AfterBurnIn3") &&
+                (logModeSelect != "AfterBurnIn4") &&
+                (logModeSelect != "AfterBurnIn5"))
                 dgvRecord.FirstDisplayedScrollingRowIndex = 0;
+
+            lClassification.Update();
             lastNote = "";
         }
 
@@ -881,9 +1055,9 @@ namespace QsfpPlus40gSr4DcTest
 
             if (i2cWriteCB((byte)devAddr, 127, 1, data) < 0)
                 return -1;
-            tmp = System.Text.Encoding.Default.GetBytes(newSerialNumber);
+            tmp = System.Text.Encoding.Default.GetBytes(newModuleSerialNumber);
             if (tmp.Length > 16) {
-                MessageBox.Show("newSerialNumber length:" + data.Length + " > 16 Error!!");
+                MessageBox.Show("newSerialNumber length:" + tmp.Length + " > 16 Error!!");
                 return -1;
             }
             for (i = 0; i < data.Length; i++) {
@@ -900,13 +1074,76 @@ namespace QsfpPlus40gSr4DcTest
 
             if (i2cReadCB((byte)devAddr, 220, 16, baReadTmp) != 16)
                 return -1;
-            data = System.Text.Encoding.Default.GetBytes(newSerialNumber);
+            data = System.Text.Encoding.Default.GetBytes(newModuleSerialNumber);
             for (i = 0; i < 16; i++) {
                 if (baReadTmp[i] != '\0') {
                     if (data[i] != baReadTmp[i]) {
                         sRead = System.Text.Encoding.Default.GetString(baReadTmp);
                         MessageBox.Show("Set serial number fail!! Read(" +
-                            sRead + ") != Write(" + newSerialNumber + ")\n!!Please re-log!!");
+                            sRead + ") != Write(" + newModuleSerialNumber + ")\n!!Please re-log!!");
+                        return -1;
+                    }
+                }
+            }
+
+            return 0;
+        }
+
+        private int _SetCustomerSerialNumber()
+        {
+            String sRead;
+            byte[] tmp;
+            byte[] data = new byte[16];
+            byte[] baReadTmp = new byte[16];
+            int devAddr, i;
+
+            if (_WritePassword() < 0)
+                return -1;
+
+            if (_SetQsfpMode(0x4D) < 0)
+                return -1;
+
+            if (i2cWriteCB == null)
+                return -1;
+
+            if (i2cReadCB == null)
+                return -1;
+
+            int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
+
+            if (customerPage_selectIndex == 0)
+                data[0] = 0x05;
+            else
+                data[0] = 0x81;
+
+            if (i2cWriteCB((byte)devAddr, 127, 1, data) < 0)
+                return -1;
+            tmp = System.Text.Encoding.Default.GetBytes(tbSerialNumber.Text);
+            if (tmp.Length > 16) {
+                MessageBox.Show("Serial Number length:" + tmp.Length + " > 16 Error!!");
+                return -1;
+            }
+            for (i = 0; i < data.Length; i++) {
+                if (i < tmp.Length)
+                    data[i] = tmp[i];
+                else
+                    data[i] = 0;
+            }
+
+            if (i2cWriteCB((byte)devAddr, 236, 16, data) < 0)
+                return -1;
+
+            Thread.Sleep(100); // Wait command proecss
+
+            if (i2cReadCB((byte)devAddr, 236, 16, baReadTmp) != 16)
+                return -1;
+            data = System.Text.Encoding.Default.GetBytes(tbSerialNumber.Text);
+            for (i = 0; i < 16; i++) {
+                if (baReadTmp[i] != '\0') {
+                    if (data[i] != baReadTmp[i]) {
+                        sRead = System.Text.Encoding.Default.GetString(baReadTmp);
+                        MessageBox.Show("Set serial number fail!! Read(" +
+                            sRead + ") != Write(" + tbSerialNumber.Text + ")\n!!Please re-log!!");
                         return -1;
                     }
                 }
@@ -934,31 +1171,74 @@ namespace QsfpPlus40gSr4DcTest
             return 0;
         }
 
+        private int _LogCheckInput()
+        {
+            if (tbOperator.Text.Length == 0) {
+                MessageBox.Show("Please input operator!!");
+                return -1;
+            }
+
+            switch (cbLogMode.SelectedItem.ToString()) {
+                case "AfterBurnIn1":
+                case "AfterBurnIn2":
+                case "AfterBurnIn3":
+                case "AfterBurnIn4":
+                case "AfterBurnIn5":
+                case "BeforeBurnIn":
+                case "AocBeforeGlue":
+                case "AocAfterGlue":
+                case "TxOnly":
+                case "RxOnly":
+                case "Log(w/o Config)":
+                case "ConfigOnly":
+                case "BeforeTestConfig":
+                case "AfterTestConfig":
+                    if (lastLogFileName.Length == 0) {
+                        MessageBox.Show("Please input lot and sub-lot!!");
+                        return -1;
+                    }
+                    if (tbSerialNumber.Text.Length < 1) {
+                        MessageBox.Show("Please input SN!!");
+                        return -1;
+                    }
+                    break;
+
+                case "B-HDMI(QC)":
+                    if (tbSerialNumber.Text.Length < 1) {
+                        MessageBox.Show("Please input SN!!");
+                        return -1;
+                    }
+                    break;
+
+                default:
+                    return -1;
+            }
+
+            return 0;
+        }
+
         private void bLog_Click(object sender, EventArgs e)
         {
             String[] saTmp;
             int iTmp;
 
-            if (tbOperator.Text.Length == 0) {
-                MessageBox.Show("Please input operator!!");
-                goto Error;
-            }
             logModeSelect = cbLogMode.SelectedItem.ToString();
 
-            if ((logModeSelect == "AfterBurnIn") ||
+            if (_LogCheckInput() < 0)    
+                goto Error;
+            
+            if ((logModeSelect == "AfterBurnIn1") ||
+                (logModeSelect == "AfterBurnIn2") ||
+                (logModeSelect == "AfterBurnIn3") ||
+                (logModeSelect == "AfterBurnIn4") ||
+                (logModeSelect == "AfterBurnIn5") ||
                 (logModeSelect == "BeforeBurnIn") ||
+                (logModeSelect == "AocBeforeGlue") ||
+                (logModeSelect == "AocAfterGlue") || 
                 (logModeSelect == "TxOnly") ||
                 (logModeSelect == "RxOnly") ||
-                (logModeSelect == "Log")) {
-                if (lastLogFileName.Length == 0) {
-                    MessageBox.Show("Please input lot and sub-lot!!");
-                    goto Error;
-                }
-                if (tbSerialNumber.Text.Length < 1) {
-                    MessageBox.Show("Please input SN!!");
-                    goto Error;
-                }
-                if ((tbSerialNumber.Text.Length == 16) || ((tbSerialNumber.Text.Length == 17))) {
+                (logModeSelect == "Log(w/o Config)")) {
+                if ((tbSerialNumber.Text.Length == 16) || (tbSerialNumber.Text.Length == 17)) {
                     saTmp = tbSerialNumber.Text.Split('-');
 
                     if ((lastLogFileName.Length != 0) && !tbLotNumber.Text.Equals(saTmp[0]) && (dtValue.Rows.Count > 0))
@@ -985,12 +1265,7 @@ namespace QsfpPlus40gSr4DcTest
                     }
                 }
             }
-            else if (logModeSelect == "B-HDMI(QC)")
-            {
-                if (tbSerialNumber.Text.Length < 1) {
-                    MessageBox.Show("Please input SN!!");
-                    goto Error;
-                }
+            else if (logModeSelect == "B-HDMI(QC)") {
                 if (tbSerialNumber.Text.Length == 9) {
                     if ((lastLogFileName.Length != 0) &&
                         (!tbLotNumber.Text.Substring(2, 2).Equals(tbSerialNumber.Text.Substring(0, 2)) ||
@@ -1039,9 +1314,13 @@ namespace QsfpPlus40gSr4DcTest
                         tbSerialNumber.Text = iTmp.ToString("0000");
                     }   
                 }
-                newSerialNumber = tbLotNumber.Text + tbSubLotNumber.Text + tbSerialNumber.Text;
+                newModuleSerialNumber = tbLotNumber.Text + tbSubLotNumber.Text + tbSerialNumber.Text;
             }
-            else if (logModeSelect == "AfterBurnIn") {
+            else if ((logModeSelect == "AfterBurnIn1") ||
+                (logModeSelect == "AfterBurnIn2") ||
+                (logModeSelect == "AfterBurnIn3") ||
+                (logModeSelect == "AfterBurnIn4") ||
+                (logModeSelect == "AfterBurnIn5")) {
                 if (tbModuleSerialNumber.Text.Length == 16) {
                     if ((tbLotNumber.Text != tbModuleSerialNumber.Text.Substring(0, 8)) ||
                         (tbSubLotNumber.Text != tbModuleSerialNumber.Text.Substring(8, 3))) {
@@ -1100,12 +1379,52 @@ namespace QsfpPlus40gSr4DcTest
             reverseData = bATmp.Reverse().ToArray();
             fTmp = BitConverter.ToInt16(reverseData, 0);
             fTmp = fTmp / 256;
-            temperature = fTmp.ToString();
+            temperature = fTmp.ToString("#0.00");
 
             return 0;
 
         clearData:
             temperature = "0";
+
+            return 0;
+        }
+        
+        private int _ReadVoltageValue()
+        {
+            byte[] data = new byte[8];
+            byte[] bATmp = new byte[2];
+            byte[] reverseData;
+            float fTmp;
+            int devAddr;
+
+            if (i2cWriteCB == null)
+                return -1;
+
+            if (i2cReadCB == null)
+                return -1;
+
+            int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
+
+            if (i2cReadCB((byte)devAddr, 26, 2, data) != 2)
+                goto clearData;
+
+            try {
+                Buffer.BlockCopy(data, 0, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+
+            reverseData = bATmp.Reverse().ToArray();
+            fTmp = BitConverter.ToUInt16(reverseData, 0);
+            fTmp = fTmp / 10000;
+            voltage = fTmp.ToString("#0.000");
+
+            return 0;
+
+        clearData:
+            voltage = "0";
 
             return 0;
         }
@@ -1420,6 +1739,7 @@ namespace QsfpPlus40gSr4DcTest
         {
             byte[] data = new byte[16];
             int devAddr;
+            String sTmp;
 
             if (i2cWriteCB == null)
                 return -1;
@@ -1440,13 +1760,27 @@ namespace QsfpPlus40gSr4DcTest
             if (i2cReadCB((byte)devAddr, 220, 16, data) != 16)
                 goto clearData;
 
-            serialNumber = System.Text.Encoding.Default.GetString(data);
+            sTmp = System.Text.Encoding.Default.GetString(data);
+            if (sTmp.IndexOf('\0') >= 0)
+                moduleSerialNumber = sTmp.Substring(0, sTmp.IndexOf('\0'));
+            else
+                moduleSerialNumber = sTmp;
+
+            if (i2cReadCB((byte)devAddr, 236, 16, data) != 16)
+                goto clearData;
+
+            sTmp = System.Text.Encoding.Default.GetString(data);
+            if (sTmp.IndexOf('\0') >= 0)
+                customerSerialNumber = sTmp.Substring(0, sTmp.IndexOf('\0'));
+            else
+                customerSerialNumber = sTmp;
+
 
             return 0;
 
         clearData:
-            serialNumber = "";
-
+            moduleSerialNumber = "";
+            customerSerialNumber = "";
             return 0;
         }
 
@@ -1608,6 +1942,9 @@ namespace QsfpPlus40gSr4DcTest
                     if (_ReadTemperatureValue() < 0)
                         rxValueReadError = true;
 
+                    if (_ReadVoltageValue() < 0)
+                        rxValueReadError = true;
+
                     if (_ReadTxBiasValue() < 0)
                         rxValueReadError = true;
 
@@ -1634,7 +1971,8 @@ namespace QsfpPlus40gSr4DcTest
                         (String.Compare(mpdValue[1], "65535") == 0) &&
                         (String.Compare(mpdValue[2], "65535") == 0) &&
                         (String.Compare(mpdValue[3], "65535") == 0) &&
-                        (String.Compare(temperature, "0") != 0))
+                        (String.Compare(temperature, "0") != 0) &&
+                        (String.Compare(voltage, "0") != 0))
                         _WritePassword();
 
                     if (_ReadTxPower() < 0) {
@@ -1656,14 +1994,11 @@ namespace QsfpPlus40gSr4DcTest
         public void MonitorValueUpdateApi(object sender, DoWorkEventArgs e)
         {
             bool bGetModuleMonitorValueError;
-            int iTmp, iBurnInCurrent;
 
             while (monitorStart) {
                 bGetModuleMonitorValueError = false;
 
                 if (logValue == true) {
-                    int.TryParse(tbBeforeAndAfterBurnInDcTestBiasCurrent.Text, out iTmp);
-                    int.TryParse(tbBurnInBiasCurrent.Text, out iBurnInCurrent);
                     switch (logModeSelect) {
                         case "TxOnly":
                         case "RxOnly":
@@ -1678,35 +2013,145 @@ namespace QsfpPlus40gSr4DcTest
                             break;
 
                         case "BeforeBurnIn":
-                            bwMonitor.ReportProgress(1, null);
-
-                            if (cbDcTestModifyBiasCurrent.Checked == true) {
-                                if (_SetBias(iTmp, false) < 0) {
-                                    bGetModuleMonitorValueError = true;
-                                    break;
-                                }
-
-                                bwMonitor.ReportProgress(2, null);
-                                Thread.Sleep(3000); // Wait value stable
+                            _WritePassword();
+                            _SetQsfpMode(0x4D);
+                            statusNotifyCount = 0;
+                            bwMonitor.ReportProgress(5, null);
+                            _SetBeforeTestConfig();
+                            bwMonitor.ReportProgress(4, null);
+                            if (_SetModuleSerialNumber() < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
                             }
+                            statusNotifyCount = 1;
+                            bwMonitor.ReportProgress(1, null);
+                            if (_StoreConfigIntoFlash() < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+                            Thread.Sleep(1000); // Wait value stable
+
+                            if (setPowerSupplyCB(false) < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+                            statusNotifyCount = 1;
+                            bwMonitor.ReportProgress(7, null);
+                            Thread.Sleep(1000);
+                            if (setPowerSupplyCB(true) < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+                            statusNotifyCount = 3;
+                            bwMonitor.ReportProgress(2, null);
+                            Thread.Sleep(1000); // Wait value stable
+                            statusNotifyCount = 2;
+                            bwMonitor.ReportProgress(2, null);
+                            Thread.Sleep(1000); // Wait value stable
+                            statusNotifyCount = 1;
+                            bwMonitor.ReportProgress(2, null);
+                            Thread.Sleep(1000); // Wait value stable
 
                             bwMonitor.ReportProgress(3, null);
                             if (_GetModuleMonitorValue() < 0) {
                                 bGetModuleMonitorValueError = true;
                                 break;
                             }
+                            bwMonitor.ReportProgress(9, null);
 
-                            if (cbDcTestModifyBiasCurrent.Checked == true) {
-                                bwMonitor.ReportProgress(4, null);
-                                if (_SetBias(iBurnInCurrent, true) < 0) {
-                                    bGetModuleMonitorValueError = true;
-                                    break;
-                                }
-                                if ((_SetModuleSerialNumber() < 0) ||
-                                    (_StoreConfigIntoFlash() < 0)) {
-                                    bGetModuleMonitorValueError = true;
-                                    break;
-                                }
+                            statusNotifyCount = 0;
+                            bwMonitor.ReportProgress(6, null);
+                            _SetAfterTestConfig();
+                            statusNotifyCount = 1;
+                            bwMonitor.ReportProgress(2, null);
+                            Thread.Sleep(1000); // Wait value stable
+
+                            if (setPowerSupplyCB(false) < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+                            statusNotifyCount = 1;
+                            bwMonitor.ReportProgress(7, null);
+                            Thread.Sleep(1000);
+                            if (setPowerSupplyCB(true) < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+                            statusNotifyCount = 2;
+                            bwMonitor.ReportProgress(8, null);
+                            Thread.Sleep(1000); // Wait value stable
+                            statusNotifyCount = 1;
+                            bwMonitor.ReportProgress(8, null);
+                            Thread.Sleep(1000); // Wait value stable
+
+                            bwMonitor.ReportProgress(10, null);
+                            while (logValue == true) // Wait log done
+                                Thread.Sleep(100);
+                            break;
+
+                        case "AocBeforeGlue":
+                            _WritePassword();
+                            _SetQsfpMode(0x4D);
+                            statusNotifyCount = 0;
+                            bwMonitor.ReportProgress(5, null);
+                            _SetBeforeTestConfig();
+                            bwMonitor.ReportProgress(4, null);
+                            if (_SetCustomerSerialNumber() < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+
+                            statusNotifyCount = 2;
+                            bwMonitor.ReportProgress(2, null);
+                            Thread.Sleep(1000); // Wait value stable
+                            statusNotifyCount = 1;
+                            bwMonitor.ReportProgress(2, null);
+                            Thread.Sleep(1000); // Wait value stable
+
+                            bwMonitor.ReportProgress(3, null);
+                            if (_GetModuleMonitorValue() < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+                            bwMonitor.ReportProgress(9, null);
+
+                            statusNotifyCount = 0;
+                            bwMonitor.ReportProgress(6, null);
+                            _SetAfterTestConfig();
+                            
+                            statusNotifyCount = 1;
+                            bwMonitor.ReportProgress(1, null);
+                            if (_StoreConfigIntoFlash() < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+                            Thread.Sleep(1000); // Wait value stable
+
+                            if (setPowerSupplyCB(false) < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+                            statusNotifyCount = 1;
+                            bwMonitor.ReportProgress(7, null);
+                            Thread.Sleep(1000);
+                            if (setPowerSupplyCB(true) < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+                            statusNotifyCount = 3;
+                            bwMonitor.ReportProgress(2, null);
+                            Thread.Sleep(1000); // Wait value stable
+                            statusNotifyCount = 2;
+                            bwMonitor.ReportProgress(2, null);
+                            Thread.Sleep(1000); // Wait value stable
+                            statusNotifyCount = 1;
+                            bwMonitor.ReportProgress(2, null);
+                            Thread.Sleep(1000); // Wait value stable
+
+                            bwMonitor.ReportProgress(3, null);
+                            if (_ReadSerialNumberValue() < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
                             }
 
                             bwMonitor.ReportProgress(10, null);
@@ -1714,41 +2159,233 @@ namespace QsfpPlus40gSr4DcTest
                                 Thread.Sleep(100);
                             break;
 
-                        case "AfterBurnIn":
-                            bwMonitor.ReportProgress(5, null);
-                            if (cbDcTestModifyBiasCurrent.Checked == true) {
-                                if ((_SetBias(iTmp, false) < 0) || (_StoreConfigIntoFlash() < 0)) {
-                                    bGetModuleMonitorValueError = true;
-                                    break;
-                                }
-
-                                bwMonitor.ReportProgress(2, null);
-                                Thread.Sleep(3000); // Wait value stable
-                            }
-                            bwMonitor.ReportProgress(3, null);
-                            if (_GetModuleMonitorValue() < 0) {
+                        case "AfterBurnIn1":
+                        case "AfterBurnIn2":
+                        case "AfterBurnIn3":
+                        case "AfterBurnIn4":
+                        case "AfterBurnIn5":
+                            _WritePassword();
+                            _SetQsfpMode(0x4D);
+                            bwMonitor.ReportProgress(11, null);
+                            if (_AutoCorrectTemperature() < 0) {
                                 bGetModuleMonitorValueError = true;
                                 break;
                             }
 
-                            acConfigRowCount = 0;
-                            bwMonitor.ReportProgress(6, null);
-                            _SetAfterBurnInAcConfig();
+                            statusNotifyCount = 0;
+                            bwMonitor.ReportProgress(5, null);
+                            _SetBeforeTestConfig();
 
+                            bwMonitor.ReportProgress(13, null);
                             if (_AutoCorrectRxPowerRate() < 0) {
                                 bGetModuleMonitorValueError = true;
                                 break;
                             }
 
+                            bwMonitor.ReportProgress(12, null);
+                            if (_AutoCorrectVoltage() < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+                            statusNotifyCount = 1;
+                            bwMonitor.ReportProgress(1, null);
+                            if (_StoreConfigIntoFlash() < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+                            Thread.Sleep(1000); // Wait value stable
+
+                            if (setPowerSupplyCB(false) < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+                            statusNotifyCount = 1;
+                            bwMonitor.ReportProgress(7, null);
+                            Thread.Sleep(1000);
+                            if (setPowerSupplyCB(true) < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+                            statusNotifyCount = 3;
+                            bwMonitor.ReportProgress(2, null);
+                            Thread.Sleep(1000); // Wait value stable
+                            statusNotifyCount = 2;
+                            bwMonitor.ReportProgress(2, null);
+                            Thread.Sleep(1000); // Wait value stable
+                            statusNotifyCount = 1;
+                            bwMonitor.ReportProgress(2, null);
+                            Thread.Sleep(1000); // Wait value stable
+
+                            bwMonitor.ReportProgress(3, null);
+                            if (_GetModuleMonitorValue() < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+                            bwMonitor.ReportProgress(9, null);
+
+                            statusNotifyCount = 0;
+                            bwMonitor.ReportProgress(6, null);
+                            _SetAfterTestConfig();
+
+                            statusNotifyCount = 1;
+                            bwMonitor.ReportProgress(1, null);
+                            if (_StoreConfigIntoFlash() < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+                            Thread.Sleep(1000); // Wait value stable
+
+                            if (setPowerSupplyCB(false) < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+                            statusNotifyCount = 1;
+                            bwMonitor.ReportProgress(7, null);
+                            Thread.Sleep(1000);
+                            if (setPowerSupplyCB(true) < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+                            statusNotifyCount = 2;
+                            bwMonitor.ReportProgress(8, null);
+                            Thread.Sleep(1000); // Wait value stable
+                            statusNotifyCount = 1;
+                            bwMonitor.ReportProgress(8, null);
+                            Thread.Sleep(1000); // Wait value stable
+
+                            bwMonitor.ReportProgress(3, null);
+                            if (_ReadVoltageValue() < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+
                             bwMonitor.ReportProgress(10, null);
                             while (logValue == true) // Wait log done
                                 Thread.Sleep(100);
                             break;
 
-                        case "AcConfig":
-                            acConfigRowCount = 0;
+                        case "AocAfterGlue":
+                            _WritePassword();
+                            _SetQsfpMode(0x4D);
+                            bwMonitor.ReportProgress(11, null);
+                            if (_AutoCorrectTemperature() < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+
+                            statusNotifyCount = 0;
+                            bwMonitor.ReportProgress(5, null);
+                            _SetBeforeTestConfig();
+                            
+                            statusNotifyCount = 2;
+                            bwMonitor.ReportProgress(2, null);
+                            Thread.Sleep(1000); // Wait value stable
+                            statusNotifyCount = 1;
+                            bwMonitor.ReportProgress(2, null);
+                            Thread.Sleep(1000); // Wait value stable
+
+                            bwMonitor.ReportProgress(3, null);
+                            if (_GetModuleMonitorValue() < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+                            bwMonitor.ReportProgress(9, null);
+
+                            statusNotifyCount = 0;
                             bwMonitor.ReportProgress(6, null);
-                            _SetAfterBurnInAcConfig();
+                            _SetAfterTestConfig();
+
+                            statusNotifyCount = 1;
+                            bwMonitor.ReportProgress(1, null);
+                            if (_StoreConfigIntoFlash() < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+                            Thread.Sleep(1000); // Wait value stable
+
+                            bwMonitor.ReportProgress(10, null);
+                            while (logValue == true) // Wait log done
+                                Thread.Sleep(100);
+                            break;
+
+                        case "ConfigOnly":
+                            _WritePassword();
+                            _SetQsfpMode(0x4D);
+                            statusNotifyCount = 0;
+                            bwMonitor.ReportProgress(5, null);
+                            _SetBeforeTestConfig();
+                            statusNotifyCount = 0;
+                            bwMonitor.ReportProgress(6, null);
+                            _SetAfterTestConfig();
+
+                            statusNotifyCount = 1;
+                            bwMonitor.ReportProgress(1, null);
+                            if (_StoreConfigIntoFlash() < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+                            Thread.Sleep(1000); // Wait value stable
+
+                            bwMonitor.ReportProgress(3, null);
+                            if (_GetModuleMonitorValue() < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+                            bwMonitor.ReportProgress(9, null);
+
+                            bwMonitor.ReportProgress(10, null);
+                            while (logValue == true) // Wait log done
+                                Thread.Sleep(100);
+                            break;
+
+                        case "BeforeTestConfig":
+                            _WritePassword();
+                            _SetQsfpMode(0x4D);
+                            statusNotifyCount = 0;
+                            bwMonitor.ReportProgress(5, null);
+                            _SetBeforeTestConfig();
+
+                            statusNotifyCount = 1;
+                            bwMonitor.ReportProgress(1, null);
+                            if (_StoreConfigIntoFlash() < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+                            Thread.Sleep(1000); // Wait value stable
+
+                            bwMonitor.ReportProgress(3, null);
+                            if (_GetModuleMonitorValue() < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+                            bwMonitor.ReportProgress(9, null);
+
+                            bwMonitor.ReportProgress(10, null);
+                            while (logValue == true) // Wait log done
+                                Thread.Sleep(100);
+                            break;
+
+                        case "AfterTestConfig":
+                            _WritePassword();
+                            _SetQsfpMode(0x4D);
+                            statusNotifyCount = 0;
+                            bwMonitor.ReportProgress(6, null);
+                            _SetAfterTestConfig();
+
+                            statusNotifyCount = 1;
+                            bwMonitor.ReportProgress(1, null);
+                            if (_StoreConfigIntoFlash() < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+                            Thread.Sleep(1000); // Wait value stable
+
+                            bwMonitor.ReportProgress(3, null);
+                            if (_GetModuleMonitorValue() < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+                            bwMonitor.ReportProgress(9, null);
 
                             bwMonitor.ReportProgress(10, null);
                             while (logValue == true) // Wait log done
@@ -1756,10 +2393,12 @@ namespace QsfpPlus40gSr4DcTest
                             break;
 
                         default:
+                            bwMonitor.ReportProgress(3, null);
                             if (_GetModuleMonitorValue() < 0) {
                                 bGetModuleMonitorValueError = true;
                                 break;
                             }
+                            bwMonitor.ReportProgress(9, null);
 
                             bwMonitor.ReportProgress(10, null);
 
@@ -1777,8 +2416,10 @@ namespace QsfpPlus40gSr4DcTest
 
                 if (bGetModuleMonitorValueError == false)
                     Thread.Sleep(100);
-                else
+                else {
+
                     Thread.Sleep(500);
+                }
             }
 
             bwMonitor.ReportProgress(100, null);
@@ -1886,26 +2527,122 @@ namespace QsfpPlus40gSr4DcTest
             return 0;
         }
 
-        private int _SetAfterBurnInAcConfig()
+        private int _SetBeforeTestConfig()
         {
-            byte[] data = new byte[1];
-            byte devAddr, regAddr;
-            int delayTime;
+            byte[] data;
+            byte devAddr, regAddr, length;
+            int delayTime, i;
 
-            if (dtAfterBurnInConfig.Rows.Count == 0)
+            if (dtBeforeTestConfig.Rows.Count == 0)
                 return 0;
 
-            if (_SetQsfpMode(0x4D) < 0)
+            if (_WritePassword() < 0)
                 return -1;
 
-            if (_WritePassword() < 0)
+            if (_SetQsfpMode(0x4D) < 0)
                 return -1;
 
             if (i2cWriteCB == null)
                 return -1;
 
-            foreach (DataRow row in dtAfterBurnInConfig.Rows) {
-                acConfigRowCount++;
+            foreach (DataRow row in dtBeforeTestConfig.Rows)
+            {
+                statusNotifyCount++;
+                switch (row[0].ToString())
+                {
+                    case "Delay10mSec":
+                        delayTime = int.Parse(row[1].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
+                        bwMonitor.ReportProgress(6, null);
+                        Thread.Sleep(delayTime);
+                        break;
+
+                    case "Write":
+                        data = new byte[1];
+                        devAddr = byte.Parse(row[1].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
+                        regAddr = byte.Parse(row[2].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
+                        data[0] = byte.Parse(row[3].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
+                        i2cWriteCB(devAddr, regAddr, 1, data);
+                        break;
+
+                    case "WriteMulti":
+                        devAddr = byte.Parse(row[1].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
+                        regAddr = byte.Parse(row[2].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
+                        length = byte.Parse(row[3].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
+                        data = new byte[length];
+                        for (i = 0; i < length; i++) 
+                            data[i] = byte.Parse(row[4 + i].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
+
+                        i2cWriteCB(devAddr, regAddr, length, data);
+                        break;
+
+                    case "Read":
+                        data = new byte[1];
+                        devAddr = byte.Parse(row[1].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
+                        regAddr = byte.Parse(row[2].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
+                        while (i2cReadCB(devAddr, regAddr, 1, data) != 1) {
+                            MessageBox.Show("i2cReadCB() fail!!");
+                            Thread.Sleep(100);
+                        }
+                        if (data[0] != byte.Parse(row[3].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber)) {
+                            MessageBox.Show("DevAddr:0x" + devAddr.ToString("X2") + "RegAddr:0x" + regAddr.ToString("X2") +
+                                "Value:0x" + data[0].ToString("X2") + " != " + row[3].ToString());
+                            return -1;
+                        }
+                        break;
+
+                    case "ReadMulti":
+                        devAddr = byte.Parse(row[1].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
+                        regAddr = byte.Parse(row[2].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
+                        length = byte.Parse(row[3].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
+                        data = new byte[length];
+                        while (i2cReadCB(devAddr, regAddr, length, data) != length) {
+                            MessageBox.Show("i2cReadCB() fail!!");
+                            Thread.Sleep(100);
+                        }
+                        for (i = 0; i < length; i++) {
+                            if (data[i] != byte.Parse(row[4 + i].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber)) {
+                                MessageBox.Show("DevAddr:0x" + devAddr.ToString("X2") + "RegAddr:0x" + regAddr.ToString("X2") +
+                                    "Value:0x" + data[i].ToString("X2") + " != " + row[4 + i].ToString());
+                                return -1;
+                            }
+                        }
+                        break;
+
+
+                    default:
+                        break;
+                }
+
+                if (statusNotifyCount % 5 == 0)
+                {
+                    bwMonitor.ReportProgress(5, null);
+                    Thread.Sleep(1);
+                }
+            }
+
+            return 0;
+        }
+
+        private int _SetAfterTestConfig()
+        {
+            byte[] data = new byte[1];
+            byte devAddr, regAddr, length;
+            int delayTime, i;
+
+            if (dtAfterTestConfig.Rows.Count == 0)
+                return 0;
+
+            if (_WritePassword() < 0)
+                return -1;
+
+            if (_SetQsfpMode(0x4D) < 0)
+                return -1;
+
+            if (i2cWriteCB == null)
+                return -1;
+
+            foreach (DataRow row in dtAfterTestConfig.Rows) {
+                statusNotifyCount++;
                 switch (row[0].ToString()) {
                     case "Delay10mSec":
                         delayTime = int.Parse(row[1].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
@@ -1918,6 +2655,17 @@ namespace QsfpPlus40gSr4DcTest
                         regAddr = byte.Parse(row[2].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
                         data[0] = byte.Parse(row[3].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
                         i2cWriteCB(devAddr, regAddr, 1, data);
+                        break;
+
+                    case "WriteMulti":
+                        devAddr = byte.Parse(row[1].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
+                        regAddr = byte.Parse(row[2].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
+                        length = byte.Parse(row[3].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
+                        data = new byte[length];
+                        for (i = 0; i < length; i++)
+                            data[i] = byte.Parse(row[4 + i].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
+
+                        i2cWriteCB(devAddr, regAddr, length, data);
                         break;
 
                     case "Read":
@@ -1934,11 +2682,29 @@ namespace QsfpPlus40gSr4DcTest
                         }
                         break;
 
+                    case "ReadMulti":
+                        devAddr = byte.Parse(row[1].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
+                        regAddr = byte.Parse(row[2].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
+                        length = byte.Parse(row[3].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
+                        data = new byte[length];
+                        while (i2cReadCB(devAddr, regAddr, length, data) != length) {
+                            MessageBox.Show("i2cReadCB() fail!!");
+                            Thread.Sleep(100);
+                        }
+                        for (i = 0; i < length; i++) {
+                            if (data[i] != byte.Parse(row[4 + i].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber)) {
+                                MessageBox.Show("DevAddr:0x" + devAddr.ToString("X2") + "RegAddr:0x" + regAddr.ToString("X2") +
+                                    "Value:0x" + data[i].ToString("X2") + " != " + row[4 + i].ToString());
+                                return -1;
+                            }
+                        }
+                        break;
+
                     default:
                         break;
                 }
 
-                if (acConfigRowCount % 5 == 0) {
+                if (statusNotifyCount % 5 == 0) {
                     bwMonitor.ReportProgress(6, null);
                     Thread.Sleep(1);
                 }
@@ -2011,6 +2777,242 @@ namespace QsfpPlus40gSr4DcTest
             return 0;
         }
 
+        private int _AutoCorrectTemperature()
+        {
+            byte[] data = new byte[8];
+            byte[] bATmp = new byte[2];
+            byte[] reverseData;
+            sbyte[] sData = new sbyte[1];
+            float fTemperature, fOffset, fTarget;
+            int devAddr, oldOffset;
+
+            if (i2cWriteCB == null)
+                return -1;
+
+            if (i2cReadCB == null)
+                return -1;
+
+            int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
+
+            if (i2cReadCB((byte)devAddr, 22, 2, data) != 2)
+                return -1;
+
+            try {
+                Buffer.BlockCopy(data, 0, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                messageBoxError = eBC.ToString();
+                return -1;
+            }
+
+            reverseData = bATmp.Reverse().ToArray();
+            fTemperature = BitConverter.ToUInt16(reverseData, 0);
+            fTemperature = fTemperature / 256;
+
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x04;
+            else
+                data[0] = 0x80;
+
+            i2cWriteCB(80, 127, 1, data);
+            if (i2cReadCB(80, 241, 1, data) != 1)
+                return -1;
+
+            try {
+                Buffer.BlockCopy(data, 0, sData, 0, 1);
+            }
+            catch (Exception eBC) {
+                messageBoxError = eBC.ToString();
+                return -1;
+            }
+
+            oldOffset = sData[0];
+
+            try {
+                fTarget = Convert.ToSingle(tbTemperatureSet.Text);
+            }
+            catch (Exception eTSTemperature) {
+                messageBoxError = eTSTemperature.ToString();
+                return -1;
+            }
+
+            fOffset = (float)(((fTarget - fTemperature) * 2) + oldOffset);
+
+            if ((fOffset > 127) || (fOffset < -128)) {
+                messageBoxError = "Voltage offset out of range: " + fOffset + " (-128 ~ 127)!!";
+                return -1;
+            }
+
+            try {
+                sData[0] = Convert.ToSByte(fOffset);
+            }
+            catch (Exception eTSB) {
+                messageBoxError = eTSB.ToString();
+                return -1;
+            }
+
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x04;
+            else
+                data[0] = 0x80;
+
+            i2cWriteCB(80, 127, 1, data);
+            try {
+                Buffer.BlockCopy(sData, 0, data, 0, 1);
+            }
+            catch (Exception e2) {
+                messageBoxError = e2.ToString();
+                return -1;
+            }
+            i2cWriteCB(80, 241, 1, data);
+
+            return 0;
+        }
+
+        private int _AutoCorrectVoltage()
+        {
+            byte[] data = new byte[8];
+            byte[] bATmp = new byte[2];
+            byte[] reverseData;
+            sbyte[] sData = new sbyte[1];
+            float fVoltage, fOffset, fTarget;
+            int devAddr, oldOffset;
+
+            if (i2cWriteCB == null)
+                return -1;
+
+            if (i2cReadCB == null)
+                return -1;
+
+            int.TryParse(tbI2cRxDevAddr.Text, out devAddr);
+
+            if (i2cReadCB((byte)devAddr, 26, 2, data) != 2)
+                return -1;
+
+            try {
+                Buffer.BlockCopy(data, 0, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                messageBoxError = eBC.ToString();
+                return -1;
+            }
+
+            reverseData = bATmp.Reverse().ToArray();
+            fVoltage = BitConverter.ToUInt16(reverseData, 0);
+            fVoltage = fVoltage / 10000;
+
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x04;
+            else
+                data[0] = 0x80;
+
+            i2cWriteCB(80, 127, 1, data);
+            if (i2cReadCB(80, 240, 1, data) != 1)
+                return -1;
+            
+            try {
+                Buffer.BlockCopy(data, 0, sData, 0, 1);
+            }
+            catch (Exception eBC) {
+                messageBoxError = eBC.ToString();
+                return -1;
+            }
+
+            oldOffset = sData[0];
+
+            try {
+                fTarget = Convert.ToSingle(tbVoltageSet.Text);
+            }
+            catch (Exception eTSVoltage) {
+                messageBoxError = eTSVoltage.ToString();
+                return -1;
+            }
+
+            fOffset = ((fTarget - fVoltage) * 1000 / 25) + oldOffset;
+
+            if ((fOffset > 127) || (fOffset < -128)) {
+                messageBoxError = "Voltage offset out of range: " + fOffset + " (-128 ~ 127)!!";
+                return -1;
+            }
+
+            try {
+                sData[0] = Convert.ToSByte(fOffset);
+            }
+            catch (Exception eTSB) {
+                messageBoxError = eTSB.ToString();
+                return -1;
+            }
+
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x04;
+            else
+                data[0] = 0x80;
+
+            i2cWriteCB(80, 127, 1, data);
+            try {
+                Buffer.BlockCopy(sData, 0, data, 0, 1);
+            }
+            catch (Exception e2) {
+                messageBoxError = e2.ToString();
+                return -1;
+            }
+            i2cWriteCB(80, 240, 1, data);
+
+            return 0;
+        }
+
+        private int _UpdateTxPowerLogGui()
+        {
+            float fTmp, fThreshold;
+
+            fTmp = fThreshold = 0;
+            if (!txPower[0].Equals("NA")) {
+                float.TryParse(tbTx1Threshold.Text, out fThreshold);
+                float.TryParse(txPower[0], out fTmp);
+                if (fTmp < fThreshold)
+                    tbTx1PowerLog.ForeColor = System.Drawing.Color.Red;
+                else
+                    tbTx1PowerLog.ForeColor = SystemColors.ControlText;
+            }
+            tbTx1PowerLog.Text = txPower[0];
+            tbTx1PowerLog.Update();
+
+            if (!txPower[1].Equals("NA")) {
+                float.TryParse(tbTx2Threshold.Text, out fThreshold);
+                float.TryParse(txPower[1], out fTmp);
+                if (fTmp < fThreshold)
+                    tbTx2PowerLog.ForeColor = System.Drawing.Color.Red;
+                else
+                    tbTx2PowerLog.ForeColor = SystemColors.ControlText;
+            }
+            tbTx2PowerLog.Text = txPower[1];
+            tbTx2PowerLog.Update();
+
+            if (!txPower[2].Equals("NA")) {
+                float.TryParse(tbTx3Threshold.Text, out fThreshold);
+                float.TryParse(txPower[2], out fTmp);
+                if (fTmp < fThreshold)
+                    tbTx3PowerLog.ForeColor = System.Drawing.Color.Red;
+                else
+                    tbTx3PowerLog.ForeColor = SystemColors.ControlText;
+            }
+            tbTx3PowerLog.Text = txPower[2];
+            tbTx3PowerLog.Update();
+
+            if (!txPower[2].Equals("NA")) {
+                float.TryParse(tbTx4Threshold.Text, out fThreshold);
+                float.TryParse(txPower[3], out fTmp);
+                if (fTmp < fThreshold)
+                    tbTx4PowerLog.ForeColor = System.Drawing.Color.Red;
+                else
+                    tbTx4PowerLog.ForeColor = SystemColors.ControlText;
+            }
+            tbTx4PowerLog.Text = txPower[3];
+            tbTx4PowerLog.Update();
+
+            return 0;
+        }
+
         private int _UpdateTxPowerGui()
         {
             float fTmp, fThreshold;
@@ -2076,6 +3078,49 @@ namespace QsfpPlus40gSr4DcTest
 
             tbTxBias4.Text = txBiasValue[3];
             tbTxBias4.Update();
+
+            return 0;
+        }
+
+        private int _UpdateRxRssiValueLogGui()
+        {
+            float fTmp, fThreshold;
+
+            fThreshold = float.Parse(tbRx1Threshold.Text);
+            fTmp = float.Parse(rxRssiValue[0]);
+            if (fTmp < fThreshold)
+                tbRx1Log.ForeColor = System.Drawing.Color.Red;
+            else
+                tbRx1Log.ForeColor = SystemColors.ControlText;
+            tbRx1Log.Text = rxRssiValue[0];
+            tbRx1Log.Update();
+
+            fThreshold = float.Parse(tbRx2Threshold.Text);
+            fTmp = float.Parse(rxRssiValue[1]);
+            if (fTmp < fThreshold)
+                tbRx2Log.ForeColor = System.Drawing.Color.Red;
+            else
+                tbRx2Log.ForeColor = SystemColors.ControlText;
+            tbRx2Log.Text = rxRssiValue[1];
+            tbRx2Log.Update();
+
+            fThreshold = float.Parse(tbRx3Threshold.Text);
+            fTmp = float.Parse(rxRssiValue[2]);
+            if (fTmp < fThreshold)
+                tbRx3Log.ForeColor = System.Drawing.Color.Red;
+            else
+                tbRx3Log.ForeColor = SystemColors.ControlText;
+            tbRx3Log.Text = rxRssiValue[2];
+            tbRx3Log.Update();
+
+            fThreshold = float.Parse(tbRx4Threshold.Text);
+            fTmp = float.Parse(rxRssiValue[3]);
+            if (fTmp < fThreshold)
+                tbRx4Log.ForeColor = System.Drawing.Color.Red;
+            else
+                tbRx4Log.ForeColor = SystemColors.ControlText;
+            tbRx4Log.Text = rxRssiValue[3];
+            tbRx4Log.Update();
 
             return 0;
         }
@@ -2168,8 +3213,28 @@ namespace QsfpPlus40gSr4DcTest
 
         private int _UpdateModuleSerailNumberValueGui()
         {
-            tbModuleSerialNumber.Text = serialNumber;
+            tbModuleSerialNumber.Text = moduleSerialNumber;
             tbModuleSerialNumber.Update();
+
+            if (tbLogLable.Text.IndexOf("AfterBurnIn") == 0) {
+                if ((moduleSerialNumber.Length == 15) && (moduleSerialNumber.IndexOf("YC") == 0))
+                    if (tbSerialNumber.Text != moduleSerialNumber.Substring(11))
+                        tbSerialNumber.Text = moduleSerialNumber.Substring(11);
+            }
+
+            return 0;
+        }
+
+        private int _UpdateCableSerailNumberValueGui()
+        {
+            tbCableSerialNumber.Text = customerSerialNumber;
+            tbCableSerialNumber.Update();
+
+            if (tbLogLable.Text.IndexOf("AocAfterGlue") == 0) {
+                if ((tbLotNumber.Text.IndexOf("XA") == 0) || tbLotNumber.Text.IndexOf("xa") == 0)
+                    if ((customerSerialNumber.Length > 0) && (tbSerialNumber.Text != customerSerialNumber))
+                        tbSerialNumber.Text = customerSerialNumber;
+            }
 
             return 0;
         }
@@ -2221,20 +3286,16 @@ namespace QsfpPlus40gSr4DcTest
 
         public void MonitorProgressChangedApi(object sender, ProgressChangedEventArgs e)
         {
-            float fTmp;
             float fTemperatureRead;
-
-            float.TryParse(tbBeforeAndAfterBurnInDcTestBiasCurrent.Text, out fTmp);
-            fTmp /= 1000;
 
             switch (e.ProgressPercentage) {
                 case 1:
-                    lAction.Text = "Set bias " + fTmp.ToString() + "mA ...";
+                    lAction.Text = "Store into flash ... " + statusNotifyCount;
                     lAction.Update();
                     return;
 
                 case 2:
-                    lAction.Text = "Wait value stable ...";
+                    lAction.Text = "Wait value stable ... " + statusNotifyCount;
                     lAction.Update();
                     return;
 
@@ -2244,36 +3305,80 @@ namespace QsfpPlus40gSr4DcTest
                     break;
 
                 case 4:
-                    lAction.Text = "Set burn-in bias and store ...";
+                    lAction.Text = "Set SN ...";
                     lAction.Update();
                     return;
 
                 case 5:
-                    lAction.Text = "Set bias " + fTmp.ToString() + "mA and store ...";
+                    lAction.Text = "Set before test config " + statusNotifyCount + "/" + dtBeforeTestConfig.Rows.Count + " ...";
                     lAction.Update();
                     return;
 
                 case 6:
-                    lAction.Text = "Set AC Config " + acConfigRowCount + "/" + dtAfterBurnInConfig.Rows.Count + " ...";
+                    lAction.Text = "Set after test config " + statusNotifyCount + "/" + dtAfterTestConfig.Rows.Count + " ...";
                     lAction.Update();
                     return;
 
-                case 10:
+                case 7:
+                    lAction.Text = "Module power OFF ...";
+                    lAction.Update();
+                    return;
+
+                case 8:
+                    lAction.Text = "Module power ON ...";
+                    lAction.Update();
+                    return;
+
+                case 9:
+                    lAction.Text = "Get value done.";
+                    lAction.Update();
+                    _UpdateTxPowerLogGui();
+                    _UpdateRxRssiValueLogGui();
+                    return;
+
+                case 11:
+                    lAction.Text = "Temperature correct ...";
+                    lAction.Update();
+                    return;
+
+                case 12:
+                    lAction.Text = "Voltage correct ...";
+                    lAction.Update();
+                    return;
+
+                case 13:
+                    lAction.Text = "Rx correct ...";
+                    lAction.Update();
+                    return;
+
+                case 99:
                     lAction.Text = "Wait log ...";
                     lAction.Update();
                     break;
 
+                case 100:
+                    lAction.Text = "bwMonitor STOP ERROR!!";
+                    lAction.Update();
+                    break;
+
                 default:
+                    if (messageBoxError.Length != 0) {
+                        MessageBox.Show(messageBoxError);
+                        messageBoxError = "";
+                    }
                     break;
             }
             
             _UpdateTxPowerGui();
             tbTemperature.Text = temperature;
             tbTemperature.Update();
+            tbVoltage.Text = voltage;
+            tbVoltage.Update();
             _UpdateTxBiasValueGui();
             _UpdateRxRssiValueGui();
             _UpdateMpdValueGui();
             _UpdateModuleSerailNumberValueGui();
+            _UpdateCableSerailNumberValueGui();
             _UpdateLosStatusGui();
 
             tbRx1Power.Text = rxPowerValue[0];
@@ -2296,23 +3401,40 @@ namespace QsfpPlus40gSr4DcTest
 
             if ((logValue == true) && (e.ProgressPercentage == 10)) {
                 switch (cbLogMode.SelectedItem.ToString()) {
-                    case "AfterBurnIn":
+                    case "AfterBurnIn1":
+                    case "AfterBurnIn2":
+                    case "AfterBurnIn3":
+                    case "AfterBurnIn4":
+                    case "AfterBurnIn5":
+                    case "AocAfterGlue":
                         _AddLogValue(true);
                         lAction.Text = "Log Added.";
                         lAction.Update();
+                        tbSerialNumber.SelectAll();
+                        tbTx1PowerLog.Text = tbTx2PowerLog.Text = tbTx3PowerLog.Text = tbTx4PowerLog.Text =
+                            tbRx1Log.Text = tbRx2Log.Text = tbRx3Log.Text = tbRx4Log.Text = "";
+                        tbTx1PowerLog.ForeColor = tbTx2PowerLog.ForeColor = tbTx3PowerLog.ForeColor = tbTx4PowerLog.ForeColor =
+                            tbRx1Log.ForeColor = tbRx2Log.ForeColor = tbRx3Log.ForeColor = tbRx4Log.ForeColor =
+                            SystemColors.ControlText;
                         break;
 
-                    case "AcConfig":
+                    case "ConfigOnly":
                         lAction.Text = "AC Config Done.";
                         lAction.Update();
                         break;
 
                     case "BeforeBurnIn":
+                    case "AocBeforeGlue":
                     default:
                         _AddLogValue(false);
                         lAction.Text = "Log Added.";
                         lAction.Update();
                         tbSerialNumber.SelectAll();
+                        tbTx1PowerLog.Text = tbTx2PowerLog.Text = tbTx3PowerLog.Text = tbTx4PowerLog.Text =
+                            tbRx1Log.Text = tbRx2Log.Text = tbRx3Log.Text = tbRx4Log.Text = "";
+                        tbTx1PowerLog.ForeColor = tbTx2PowerLog.ForeColor = tbTx3PowerLog.ForeColor = tbTx4PowerLog.ForeColor =
+                            tbRx1Log.ForeColor = tbRx2Log.ForeColor = tbRx3Log.ForeColor = tbRx4Log.ForeColor =
+                            SystemColors.ControlText;
                         break;
                 }
                 logValue = false;
@@ -2357,13 +3479,21 @@ namespace QsfpPlus40gSr4DcTest
 
         private void _SaveLogFile()
         {
+            SaveFileDialog sfdSelectFile;
             StreamWriter swLog;
-
-            if (lastLogFileName == "")
-                return;
+            
+            if ((lastLogFileName == "") || fileRecordNumber > dtValue.Rows.Count) {
+                sfdSelectFile = new SaveFileDialog();
+                sfdSelectFile.Filter = "csv files (*.csv)|*.csv";
+                sfdSelectFile.InitialDirectory = fileDirectory;
+                if (sfdSelectFile.ShowDialog() != DialogResult.OK)
+                    return;
+                tbLogFilePath.Text = sfdSelectFile.FileName;
+                tbLogFilePath.Update();
+            }
 
             swLog = new StreamWriter(tbLogFilePath.Text);
-            swLog.WriteLine("Lable,Time,SN,Tx1(uW),Tx2(uW),Tx3(uW),Tx4(uW),Rx1,Rx2,Rx3,Rx4,MPD1,MPD2,MPD3,MPD4,Bias1,Bias2,Bias3,Bias4,Temperature,Operator,Note");
+            swLog.WriteLine("Lable,Time,SN,CSN,Tx1(uW),Tx2(uW),Tx3(uW),Tx4(uW),Rx1,Rx2,Rx3,Rx4,MPD1,MPD2,MPD3,MPD4,Bias1,Bias2,Bias3,Bias4,Temperature,Voltage,Operator,Note");
             foreach (DataRow row in dtValue.Rows) {
                 swLog.WriteLine(row[0].ToString() + "," + row[1].ToString() + "," + row[2].ToString() + "," +
                     row[3].ToString() + "," + row[4].ToString() + "," + row[5].ToString() + "," +
@@ -2372,7 +3502,7 @@ namespace QsfpPlus40gSr4DcTest
                     row[12].ToString() + "," + row[13].ToString() + "," + row[14].ToString() + "," +
                     row[15].ToString() + "," + row[16].ToString() + "," + row[17].ToString() + "," +
                     row[18].ToString() + "," + row[19].ToString() + "," + row[20].ToString() + "," +
-                    row[21].ToString());
+                    row[21].ToString() + "," + row[22].ToString() + "," + row[23].ToString());
             }
             swLog.Close();
             tbLotNumber.Text = "";
@@ -2485,6 +3615,7 @@ namespace QsfpPlus40gSr4DcTest
             lastLogFileName = tbLotNumber.Text + "-" + tbSubLotNumber.Text + ".csv";
             tbLogFilePath.Text = fileDirectory + "\\" + lastLogFileName;
             tbLogFilePath.Update();
+            fileRecordNumber = 0;
 
             try {
                 srLog = new StreamReader(tbLogFilePath.Text);
@@ -2504,16 +3635,34 @@ namespace QsfpPlus40gSr4DcTest
                     continue;
 
                 if (saItems.Length == 17) { //Old version log
-                    dtValue.Rows.Add(saItems[0], saItems[1], saItems[2], saItems[3], saItems[4],
+                    dtValue.Rows.Add(saItems[0], saItems[1], saItems[2], "", saItems[3], saItems[4],
                         saItems[5], saItems[6], saItems[7], saItems[8], saItems[9], saItems[10],
-                        saItems[11], saItems[12], saItems[13], saItems[14], "", "", "", "", "", saItems[15], saItems[16]);
+                        saItems[11], saItems[12], saItems[13], saItems[14], "", "", "", "", "", "", "",saItems[15],
+                        saItems[16]);
+                    fileRecordNumber++;
                 }
-                else if (saItems.Length == 22) {
+                else if (saItems.Length == 22) { //Old version log
+                    dtValue.Rows.Add(saItems[0], saItems[1], saItems[2], "", saItems[3], saItems[4],
+                        saItems[5], saItems[6], saItems[7], saItems[8], saItems[9], saItems[10],
+                        saItems[11], saItems[12], saItems[13], saItems[14], saItems[15], saItems[16], saItems[17],
+                        saItems[18], saItems[19], "", saItems[20], saItems[21]);
+                    fileRecordNumber++;
+                }
+                else if (saItems.Length == 23) { //Old version log
+                    dtValue.Rows.Add(saItems[0], saItems[1], saItems[2], "", saItems[3], saItems[4],
+                        saItems[5], saItems[6], saItems[7], saItems[8], saItems[9], saItems[10],
+                        saItems[11], saItems[12], saItems[13], saItems[14], saItems[15], saItems[16], saItems[17],
+                        saItems[18], saItems[19], saItems[20], saItems[21], saItems[22]);
+                    fileRecordNumber++;
+                }
+                else if (saItems.Length == 24) {
                     dtValue.Rows.Add(saItems[0], saItems[1], saItems[2], saItems[3], saItems[4],
                         saItems[5], saItems[6], saItems[7], saItems[8], saItems[9], saItems[10],
                         saItems[11], saItems[12], saItems[13], saItems[14], saItems[15], saItems[16], saItems[17],
-                        saItems[18], saItems[19], saItems[20], saItems[21]);
+                        saItems[18], saItems[19], saItems[20], saItems[21], saItems[22], saItems[23]);
+                    fileRecordNumber++;
                 }
+
             }
 
             srLog.Close();
@@ -2560,8 +3709,9 @@ namespace QsfpPlus40gSr4DcTest
             if (lastLogFileName.Length == 0)
                 return;
 
-            if (dtValue.Rows.Count > 0)
+            if (dtValue.Rows.Count > 0)    
                 bSaveFile_Click(sender, e);
+            
         }
 
         private void tbSubLotNumber_Enter(object sender, EventArgs e)
@@ -2569,7 +3719,7 @@ namespace QsfpPlus40gSr4DcTest
             if (lastLogFileName.Length == 0)
                 return;
 
-            if (dtValue.Rows.Count > 0)
+            if (dtValue.Rows.Count > 0) 
                 bSaveFile_Click(sender, e);
         }
 
@@ -2605,11 +3755,56 @@ namespace QsfpPlus40gSr4DcTest
                     tbLogLable.Text = "BeforeBurnIn";
                     break;
 
-                case "AfterBurnIn":
+                case "AfterBurnIn1":
                     tbLogLable.Enabled = false;
-                    tbLogLable.Text = "AfterBurnIn";
+                    tbLogLable.Text = "AfterBurnIn1";
                     break;
 
+                case "AfterBurnIn2":
+                    tbLogLable.Enabled = false;
+                    tbLogLable.Text = "AfterBurnIn2";
+                    break;
+
+                case "AfterBurnIn3":
+                    tbLogLable.Enabled = false;
+                    tbLogLable.Text = "AfterBurnIn3";
+                    break;
+
+                case "AfterBurnIn4":
+                    tbLogLable.Enabled = false;
+                    tbLogLable.Text = "AfterBurnIn4";
+                    break;
+
+                case "AfterBurnIn5":
+                    tbLogLable.Enabled = false;
+                    tbLogLable.Text = "AfterBurnIn5";
+                    break;
+
+                case "AocBeforeGlue":
+                    tbLogLable.Enabled = false;
+                    tbLogLable.Text = "AocBeforeGlue";
+                    break;
+
+                case "AocAfterGlue":
+                    tbLogLable.Enabled = false;
+                    tbLogLable.Text = "AocAfterGlue";
+                    break;
+
+                case "ConfigOnly":
+                    tbLogLable.Enabled = false;
+                    tbLogLable.Text = "ConfigOnly";
+                    break;
+
+                case "BeforeTestConfig":
+                    tbLogLable.Enabled = false;
+                    tbLogLable.Text = "BeforeTestConfig";
+                    break;
+
+                case "AfterTestConfig":
+                    tbLogLable.Enabled = false;
+                    tbLogLable.Text = "AfterTestConfig";
+                    break;
+                    
                 default:
                     tbLogLable.Text = "";
                     tbLogLable.Enabled = true;
@@ -2619,7 +3814,7 @@ namespace QsfpPlus40gSr4DcTest
 
         private void bSaveFile_Click(object sender, EventArgs e)
         {
-            if (dtValue.Rows.Count >= 0)
+            if (dtValue.Rows.Count > 0)
                 _SaveLogFile();
         }
 
@@ -2658,6 +3853,7 @@ namespace QsfpPlus40gSr4DcTest
         {
             SaveFileDialog sfdSelectFile = new SaveFileDialog();
             string sTmp;
+            int rowIndex, i, length;
 
             sfdSelectFile.Filter = "xml files (*.xml)|*.xml";
             if (sfdSelectFile.ShowDialog() != DialogResult.OK)
@@ -2668,9 +3864,6 @@ namespace QsfpPlus40gSr4DcTest
                 xwConfig.WriteStartElement("DcTestConfig");
                 {
                     xwConfig.WriteElementString("AfterBurnInPowerDifferentPercentage", tbAfterBurnInPowerDifferentLimit.Text);
-                    xwConfig.WriteElementString("DcTestModifyBiasCurrent", cbDcTestModifyBiasCurrent.Checked ? "True" : "False");
-                    xwConfig.WriteElementString("BeforeAndAfterBurnInDcTestBiasCurrent", tbBeforeAndAfterBurnInDcTestBiasCurrent.Text);
-                    xwConfig.WriteElementString("BurnInBiasCurrent", tbBurnInBiasCurrent.Text);
                     xwConfig.WriteElementString("ModulePassword123", tbPassword123.Text);
                     xwConfig.WriteElementString("ModulePassword124", tbPassword124.Text);
                     xwConfig.WriteElementString("ModulePassword125", tbPassword125.Text);
@@ -2686,6 +3879,22 @@ namespace QsfpPlus40gSr4DcTest
                         xwConfig.WriteElementString("I2cMpdRegisterAddr", tbI2cMpdRegisterAddr.Text);
                     }
                     xwConfig.WriteEndElement(); //I2cConfig
+
+                    xwConfig.WriteStartElement("TemperatureCorrectAndThresholdConfig");
+                    {
+                        xwConfig.WriteElementString("TemperatureSet", tbTemperatureSet.Text);
+                        xwConfig.WriteElementString("TemperatureMaxThreshold", tbTemperatureMaxThreshold.Text);
+                        xwConfig.WriteElementString("TemperatureMinThreshold", tbTemperatureMinThreshold.Text);
+                    }
+                    xwConfig.WriteEndElement(); //VoltageCorrectAndThresholdConfig
+
+                    xwConfig.WriteStartElement("VoltageCorrectAndThresholdConfig");
+                    {
+                        xwConfig.WriteElementString("VoltageSet", tbVoltageSet.Text);
+                        xwConfig.WriteElementString("VoltageMaxThreshold", tbVoltageMaxThreshold.Text);
+                        xwConfig.WriteElementString("VoltageMinThreshold", tbVoltageMinThreshold.Text);
+                    }
+                    xwConfig.WriteEndElement(); //VoltageCorrectAndThresholdConfig
 
                     xwConfig.WriteStartElement("MonitorThresholdConfig");
                     {
@@ -2725,11 +3934,52 @@ namespace QsfpPlus40gSr4DcTest
                         xwConfig.WriteElementString("CustomerPage", cbCustomerPage.Text);
                         xwConfig.WriteElementString("IgnoreRxLos", cbIgnoreRxLos.Checked.ToString());
                         xwConfig.WriteElementString("IgnoreTxLos", cbIgnoreTxLos.Checked.ToString());
+                        xwConfig.WriteElementString("PowerSupplyControlReverse", cbPowerSupplyControlReverse.Checked.ToString());
                     }
                     xwConfig.WriteEndElement(); //CustomerPageConfig
 
                     sTmp = "";
-                    foreach (DataRow row in dtAfterBurnInConfig.Rows) {
+                    rowIndex = 0;
+                    foreach (DataRow row in dtBeforeTestConfig.Rows)
+                    {
+                        switch (row[0].ToString())
+                        {
+                            case "Delay10mSec":
+                                sTmp += (row[0].ToString() + "," + row[1].ToString() + "\n");
+                                break;
+
+                            case "Write":
+                            case "Read":
+                                sTmp += (row[0].ToString() + "," + row[1].ToString() + "," + row[2].ToString() + "," +
+                                    row[3].ToString() + "\n");
+                                break;
+
+                            case "WriteMulti":
+                            case "ReadMulti":
+                                sTmp += (row[0].ToString() + "," + row[1].ToString() + "," + row[2].ToString() + "," +
+                                    row[3].ToString());
+                                length = byte.Parse(row[3].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
+                                for (i = 0; i < length; i++) {
+                                    if (row[i + 4].ToString().Length == 0) {
+                                        MessageBox.Show("row[" + rowIndex + "]:" + row[0].ToString() + " length:" + length + " but data[" + i + "](P" + (i + 4).ToString("D3") + ") Empty!!");
+                                        i = length;
+                                    }
+                                    else
+                                        sTmp += "," + row[i + 4].ToString();
+                                }
+                                sTmp += "\n";
+                                break;
+
+                            default:
+                                break;
+                        }
+                        rowIndex++;
+                    }
+                    xwConfig.WriteElementString("BeforeTestConfig", sTmp);
+
+                    sTmp = "";
+                    rowIndex = 0;
+                    foreach (DataRow row in dtAfterTestConfig.Rows) {
                         switch (row[0].ToString()) {
                             case "Delay10mSec":
                                 sTmp += (row[0].ToString() + "," + row[1].ToString() + "\n");
@@ -2741,12 +3991,28 @@ namespace QsfpPlus40gSr4DcTest
                                     row[3].ToString() + "\n");
                                 break;
 
+                            case "WriteMulti":
+                            case "ReadMulti":
+                                sTmp += (row[0].ToString() + "," + row[1].ToString() + "," + row[2].ToString() + "," +
+                                    row[3].ToString());
+                                length = byte.Parse(row[3].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber);
+                                for (i = 0; i < byte.Parse(row[3].ToString().Substring(2), System.Globalization.NumberStyles.HexNumber); i++) {
+                                    if (row[i + 4].ToString().Length == 0) {
+                                        MessageBox.Show("row[" + rowIndex + "]:" + row[0].ToString() + " length:" + length + " but data[" + i + "](P" + (i + 4).ToString("D3") + ") Empty!!");
+                                        i = length;
+                                    }
+                                    else
+                                        sTmp += "," + row[i + 4].ToString();
+                                }
+                                sTmp += "\n";
+                                break;
+
                             default:
                                 break;
                         }
-                        
+                        rowIndex++;
                     }
-                    xwConfig.WriteElementString("AfterBurnInAcConfig", sTmp);
+                    xwConfig.WriteElementString("AfterTestConfig", sTmp);
                 }
                 xwConfig.WriteEndElement(); //DcTestConfig
                 xwConfig.WriteEndDocument();
@@ -2788,6 +4054,71 @@ namespace QsfpPlus40gSr4DcTest
                     }
                 }
                 else {
+                    reader.MoveToContent();
+                    reader.ReadEndElement();
+                    break;
+                }
+            }
+        }
+
+        
+        private void _PaserTemperatureCorrectAndThresholdConfigXml(XmlReader reader)
+        {
+            reader.Read();
+            while (true) {
+                if (reader.IsStartElement()) {
+                    switch (reader.Name) {
+                        case "TemperatureSet":
+                            tbTemperatureSet.Text = reader.ReadElementContentAsString();
+                            break;
+
+                        case "TemperatureMaxThreshold":
+                            tbTemperatureMaxThreshold.Text = reader.ReadElementContentAsString();
+                            break;
+
+                        case "TemperatureMinThreshold":
+                            tbTemperatureMinThreshold.Text = reader.ReadElementContentAsString();
+                            return;
+
+                        default:
+                            return;
+                    }
+                }
+                else {
+                    reader.MoveToContent();
+                    reader.ReadEndElement();
+                    break;
+                }
+            }
+        }
+
+        private void _PaserVoltageCorrectAndThresholdConfigXml(XmlReader reader)
+        {
+            reader.Read();
+            while (true)
+            {
+                if (reader.IsStartElement())
+                {
+                    switch (reader.Name)
+                    {
+                        case "VoltageSet":
+                            tbVoltageSet.Text = reader.ReadElementContentAsString();
+                            break;
+
+                        case "VoltageMaxThreshold":
+                            tbVoltageMaxThreshold.Text = reader.ReadElementContentAsString();
+                            break;
+
+                        case "VoltageMinThreshold":
+                            tbVoltageMinThreshold.Text = reader.ReadElementContentAsString();
+                            return;
+
+                        default:
+                            return;
+                    }
+                }
+                else
+                {
                     reader.MoveToContent();
                     reader.ReadEndElement();
                     break;
@@ -2944,6 +4275,13 @@ namespace QsfpPlus40gSr4DcTest
                                 cbIgnoreTxLos.Checked = false;
                             else
                                 cbIgnoreTxLos.Checked = true;
+                            break;
+
+                        case "PowerSupplyControlReverse":
+                            if (reader.ReadElementContentAsString().Equals("False"))
+                                cbPowerSupplyControlReverse.Checked = false;
+                            else
+                                cbPowerSupplyControlReverse.Checked = true;
                             return;
 
                         default:
@@ -2958,8 +4296,25 @@ namespace QsfpPlus40gSr4DcTest
             }
         }
 
+        private void _PaserBeforeTestConfig(string cfg)
+        {
+            StringReader srReader;
+            String[] saItems;
+            string line;
 
-        private void _PaserAfterBurnInAcConfig(string cfg)
+            srReader = new StringReader(cfg);
+            while ((line = srReader.ReadLine()) != null)
+            {
+                saItems = line.Split(',');
+                if (saItems.Length > 131) {
+                    MessageBox.Show("saItems.Length:" + saItems.Length + " > 131 Error!!");
+                    return;
+                }
+                dtBeforeTestConfig.Rows.Add(saItems);
+            }
+        }
+
+        private void _PaserAfterTestConfig(string cfg)
         {
             StringReader srReader;
             String[] saItems;
@@ -2968,19 +4323,11 @@ namespace QsfpPlus40gSr4DcTest
             srReader = new StringReader(cfg);
             while ((line = srReader.ReadLine()) != null) {
                 saItems = line.Split(',');
-                switch (saItems[0]) {
-                    case "Delay10mSec":
-                        dtAfterBurnInConfig.Rows.Add(saItems[0], saItems[1]);
-                        break;
-
-                    case "Write":
-                    case "Read":
-                        dtAfterBurnInConfig.Rows.Add(saItems[0], saItems[1], saItems[2], saItems[3]);
-                        break;
-
-                    default:
-                        break;
+                if (saItems.Length > 131) {
+                    MessageBox.Show("saItems.Length:" + saItems.Length + " > 131 Error!!");
+                    return;
                 }
+                dtAfterTestConfig.Rows.Add(saItems);
             }
         }
 
@@ -2993,6 +4340,7 @@ namespace QsfpPlus40gSr4DcTest
                             tbAfterBurnInPowerDifferentLimit.Text = reader.ReadElementContentAsString();
                             break;
 
+#if false //wood@20240627: Replace by before test config */
                         case "DcTestModifyBiasCurrent":
                             if (reader.ReadElementContentAsString() == "True")
                                 cbDcTestModifyBiasCurrent.Checked = true;
@@ -3006,7 +4354,15 @@ namespace QsfpPlus40gSr4DcTest
 
                         case "BurnInBiasCurrent":
                             tbBurnInBiasCurrent.Text = reader.ReadElementContentAsString();
+
                             break;
+#else
+                        case "DcTestModifyBiasCurrent":
+                        case "BeforeAndAfterBurnInDcTestBiasCurrent":
+                        case "BurnInBiasCurrent":
+                            reader.ReadElementContentAsString();
+                            break;
+#endif
 
                         case "ModulePassword123":
                             tbPassword123.Text = reader.ReadElementContentAsString();
@@ -3029,6 +4385,16 @@ namespace QsfpPlus40gSr4DcTest
                             reader.Read();
                             break;
 
+                        case "TemperatureCorrectAndThresholdConfig":
+                            _PaserTemperatureCorrectAndThresholdConfigXml(reader);
+                            reader.Read();
+                            break;
+
+                        case "VoltageCorrectAndThresholdConfig":
+                            _PaserVoltageCorrectAndThresholdConfigXml(reader);
+                            reader.Read();
+                            break;
+
                         case "MonitorThresholdConfig":
                             _PaserMonitorThresholdConfigXml(reader);
                             reader.Read();
@@ -3044,11 +4410,16 @@ namespace QsfpPlus40gSr4DcTest
                             reader.Read();
                             break;
 
-                        case "AfterBurnInAcConfig":
-                            _PaserAfterBurnInAcConfig(reader.ReadElementContentAsString());
+                        case "BeforeTestConfig":
+                            _PaserBeforeTestConfig(reader.ReadElementContentAsString());
+                            break;
+
+                        case "AfterTestConfig":
+                            _PaserAfterTestConfig(reader.ReadElementContentAsString());
                             break;
 
                         default:
+                            reader.Read();
                             break;
                     }
                 }
@@ -3072,7 +4443,8 @@ namespace QsfpPlus40gSr4DcTest
             tbConfigFilePath.Text = ofdSelectFile.FileName;
             tbConfigFilePath.SelectionStart = tbConfigFilePath.Text.Length;
             tbConfigFilePath.ScrollToCaret();
-            dtAfterBurnInConfig.Clear();
+            dtBeforeTestConfig.Clear();
+            dtAfterTestConfig.Clear();
 
             using (XmlReader xrConfig = XmlReader.Create(ofdSelectFile.FileName)) {
                 while (xrConfig.Read()) {
@@ -3113,10 +4485,12 @@ namespace QsfpPlus40gSr4DcTest
             if (bLog.Enabled == false)
                 return 0;
 
-            int.TryParse(tbSerialNumber.Text, out iSerialNumber);
-            if (iSerialNumber + 1 < 10000)
-                tbSerialNumber.Text = (++iSerialNumber).ToString("0000");
-            tbSerialNumber.Select(tbSerialNumber.Text.Length - 1, tbSerialNumber.Text.Length - 1);
+            if (cbLogMode.Text.IndexOf("Aoc") < 0) {
+                int.TryParse(tbSerialNumber.Text, out iSerialNumber);
+                if (iSerialNumber + 1 < 10000)
+                    tbSerialNumber.Text = (++iSerialNumber).ToString("0000");
+                tbSerialNumber.Select(tbSerialNumber.Text.Length - 1, tbSerialNumber.Text.Length - 1);
+            }
 
             return 0;
         }
@@ -3127,11 +4501,13 @@ namespace QsfpPlus40gSr4DcTest
 
             if (bLog.Enabled == false)
                 return 0;
-
-            int.TryParse(tbSerialNumber.Text, out iSerialNumber);
-            if (iSerialNumber - 1 >= 0)
-                tbSerialNumber.Text = (--iSerialNumber).ToString("0000");
-            tbSerialNumber.Select(0, 0);
+            
+            if (cbLogMode.Text.IndexOf("Aoc") < 0) {
+                int.TryParse(tbSerialNumber.Text, out iSerialNumber);
+                if (iSerialNumber - 1 >= 0)
+                    tbSerialNumber.Text = (--iSerialNumber).ToString("0000");
+                tbSerialNumber.Select(0, 0);
+            }
 
             return 0;
         }
@@ -3147,13 +4523,6 @@ namespace QsfpPlus40gSr4DcTest
             foreach (DataGridViewRow item in dgvRecord.SelectedRows) {
                 dgvRecord.Rows.RemoveAt(item.Index);
             }
-        }
-
-        private void tbSerialNumber_Enter(object sender, EventArgs e)
-        {
-            lClassification.Text = "";
-            lResult.ForeColor = System.Drawing.SystemColors.ControlText;
-            lResult.Text = "";
         }
 
         private void tbSerialNumberNumber_Leave(object sender, EventArgs e)
@@ -3195,6 +4564,7 @@ namespace QsfpPlus40gSr4DcTest
             }
         }
 
+#if false //wood@20240627: Replace by before test config
         private void cbDcTestModifyBiasCurrent_CheckedChanged(object sender, EventArgs e)
         {
             if (cbDcTestModifyBiasCurrent.Checked == true) {
@@ -3206,6 +4576,7 @@ namespace QsfpPlus40gSr4DcTest
                 tbBurnInBiasCurrent.Enabled = false;
             }
         }
+#endif
 
         private void tbSerialNumber_TextChanged(object sender, EventArgs e)
         {
@@ -3216,7 +4587,12 @@ namespace QsfpPlus40gSr4DcTest
             if (bLog.Enabled == false)
                 return;
 
-            if (cbLogMode.SelectedItem.ToString().Equals("AfterBurnIn")) {
+            if (cbLogMode.SelectedItem.ToString().Equals("AfterBurnIn1") ||
+                cbLogMode.SelectedItem.ToString().Equals("AfterBurnIn2") ||
+                cbLogMode.SelectedItem.ToString().Equals("AfterBurnIn3") ||
+                cbLogMode.SelectedItem.ToString().Equals("AfterBurnIn4") ||
+                cbLogMode.SelectedItem.ToString().Equals("AfterBurnIn5") ||
+                cbLogMode.SelectedItem.ToString().Equals("AocAfterGlue")) {
                 dgvRecord.Sort(dgvRecord.Columns[2], ListSortDirection.Descending);
                 dgvRecord.ClearSelection();
                 foreach (DataGridViewRow row in dgvRecord.Rows) {

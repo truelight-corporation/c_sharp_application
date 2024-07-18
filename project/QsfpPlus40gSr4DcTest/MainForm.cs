@@ -20,6 +20,34 @@ namespace QsfpPlus40gSr4DcTest
         private ExfoIqs1600Scpi powerMeter = new ExfoIqs1600Scpi();
         private String powerMeterSelect = "Power Meter";
 
+        private int _MeasuredObjectSetPowerSupply(Boolean powerOn)
+        {
+            int rv;
+
+            if (measuredObjectI2cAdapter.connected == false)
+                return 0;
+
+            if (powerOn == true) {
+                if (ucQsfpPlus40gSr4DcTest.GetPowerSupplyControlReverseApi() == true)
+                    rv = measuredObjectI2cAdapter.SetGpioApi(0);
+                else
+                    rv = measuredObjectI2cAdapter.SetGpioApi(4);
+            }
+            else {
+                if (ucQsfpPlus40gSr4DcTest.GetPowerSupplyControlReverseApi() == true)
+                    rv = measuredObjectI2cAdapter.SetGpioApi(4);
+                else
+                    rv = measuredObjectI2cAdapter.SetGpioApi(0);
+            }
+
+            if (rv < 0) {
+                MessageBox.Show("measuredObjectI2cAdapter.SetGpioApi(" + powerOn + ")!!");
+                return -1;
+            }
+
+            return rv;
+        }
+
         private int _MeasuredObjectI2cConnect()
         {
             if (measuredObjectI2cAdapter.ConnectApi(100) < 0)    
@@ -28,6 +56,7 @@ namespace QsfpPlus40gSr4DcTest
             if (measuredObjectI2cAdapter.connected == true) {
                 measuredObjectI2cAdapter.SetTimeoutApi(50);
                 cbMeasuredObjectI2cAdapterConnected.Checked = true;
+                _MeasuredObjectSetPowerSupply(true);
             }
             else
                 cbMeasuredObjectI2cAdapterConnected.Checked = false;
@@ -248,6 +277,10 @@ namespace QsfpPlus40gSr4DcTest
             }
             if (ucQsfpPlus40gSr4DcTest.SetI2cWriteCBApi(_MeasuredObjectI2cWrite) < 0) {
                 MessageBox.Show("ucQsfpPlus40gSr4DcTest.SetI2cWriteCBApi() faile Error!!");
+                return;
+            }
+            if (ucQsfpPlus40gSr4DcTest.SetPowerSupplyCBApi(_MeasuredObjectSetPowerSupply) < 0) {
+                MessageBox.Show("ucQsfpPlus40gSr4DcTest.SetPowerSupplyCBApi() faile Error!!");
                 return;
             }
             if (ucQsfpPlus40gSr4DcTest.SetPowerMeterReadCBApi(_PowerMeterReadCb) < 0) {

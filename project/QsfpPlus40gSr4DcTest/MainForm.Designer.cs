@@ -82,7 +82,7 @@
             // 
             this.cbAutoMonitor.AutoSize = true;
             this.cbAutoMonitor.BackColor = System.Drawing.SystemColors.Control;
-            this.cbAutoMonitor.Location = new System.Drawing.Point(1213, 13);
+            this.cbAutoMonitor.Location = new System.Drawing.Point(1196, 12);
             this.cbAutoMonitor.Name = "cbAutoMonitor";
             this.cbAutoMonitor.Size = new System.Drawing.Size(81, 16);
             this.cbAutoMonitor.TabIndex = 5;
@@ -128,20 +128,20 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1289, 729);
-            this.Controls.Add(this.cbPowerMeterQsfpConnected);
             this.Controls.Add(this.cbPowerMeterSelect);
-            this.Controls.Add(this.cbAutoMonitor);
-            this.Controls.Add(this.cbMeasuredObjectI2cAdapterConnected);
+            this.Controls.Add(this.cbPowerMeterQsfpConnected);
             this.Controls.Add(this.cbPowerMeterConnected);
             this.Controls.Add(this.tbPowerMeterIpAddr);
+            this.Controls.Add(this.cbMeasuredObjectI2cAdapterConnected);
+            this.Controls.Add(this.cbAutoMonitor);
             this.Controls.Add(this.lPowerMeterIpAddr);
             this.Controls.Add(this.ucQsfpPlus40gSr4DcTest);
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1305, 768);
-            this.MinimumSize = new System.Drawing.Size(1305, 766);
+            this.MinimumSize = new System.Drawing.Size(1305, 768);
             this.Name = "MainForm";
-            this.Text = "QSFP+ 40G SR4 DC Test 20240503_1439";
+            this.Text = "DC Test 20240716_2037";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.ResumeLayout(false);
