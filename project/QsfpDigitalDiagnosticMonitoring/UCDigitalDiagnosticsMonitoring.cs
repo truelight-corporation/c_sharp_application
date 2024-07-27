@@ -423,6 +423,14 @@ namespace QsfpDigitalDiagnosticMonitoring
             else
                 cbInitComplete.Checked = false;
 
+            if (i2cReadCB(80, 2, 1, data) != 1)
+                return -1;
+
+            if ((data[0] & 0x01) != 0)
+                cbDataNotReady.Checked = true;
+            else
+                cbDataNotReady.Checked = false;
+
             if ((data[0] & 0x02) != 0)
                 cbIntLState.Checked = true;
             else
@@ -433,53 +441,12 @@ namespace QsfpDigitalDiagnosticMonitoring
             else
                 cbFlatMem.Checked = false;
 
-            if (i2cReadCB(80, 103, 1, data) != 1)
-                return -1;
-
-            if ((data[0] & 0x01) != 0)
-                cbInitCompleteMask.Checked = true;
-            else
-                cbInitCompleteMask.Checked = false;
-
             return 0;
         }
 
         private void _bMiscRead_Click(object sender, EventArgs e)
         {
             if (_MiscRead() < 0)
-                return;
-        }
-
-        private int _MiscWrite()
-        {
-            byte[] data = new byte[1];
-
-            if (_SetQsfpMode(0x4D) < 0)
-                return -1;
-
-            if (i2cReadCB == null)
-                return -1;
-
-            if (i2cReadCB(80, 103, 1, data) != 1)
-                return -1;
-
-            if (i2cWriteCB == null)
-                return -1;
-
-            data[0] &= 0xF0;
-
-            if (cbInitCompleteMask.Checked == true)
-                data[0] |= 0x01;
-
-            if (i2cWriteCB(80, 103, 1, data) < 0)
-                return -1;
-
-            return 0;
-        }
-
-        private void _bMiscWrite_Click(object sender, EventArgs e)
-        {
-            if (_MiscWrite() < 0)
                 return;
         }
 
@@ -2002,9 +1969,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             bWrite.Enabled = false;
 
             if (_LosAndFaultWrite() < 0)
-                goto exit;
-
-            if (_MiscWrite() < 0)
                 goto exit;
 
             if (_TemperatureWrite() < 0)

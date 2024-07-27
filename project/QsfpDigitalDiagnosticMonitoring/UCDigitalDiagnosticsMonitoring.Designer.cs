@@ -168,6 +168,30 @@
             this.lTxBiasHighWarning = new System.Windows.Forms.Label();
             this.lTxBiasHighAlarm = new System.Windows.Forms.Label();
             this.gbLosFault = new System.Windows.Forms.GroupBox();
+            this.cbLolRx4Mask = new System.Windows.Forms.CheckBox();
+            this.cbLolRx3Mask = new System.Windows.Forms.CheckBox();
+            this.cbLolRx2Mask = new System.Windows.Forms.CheckBox();
+            this.cbLolRx1Mask = new System.Windows.Forms.CheckBox();
+            this.cbLolRx4 = new System.Windows.Forms.CheckBox();
+            this.cbLolRx3 = new System.Windows.Forms.CheckBox();
+            this.cbLolRx2 = new System.Windows.Forms.CheckBox();
+            this.cbLolRx1 = new System.Windows.Forms.CheckBox();
+            this.cbLolTx4Mask = new System.Windows.Forms.CheckBox();
+            this.cbLolTx3Mask = new System.Windows.Forms.CheckBox();
+            this.cbLolTx2Mask = new System.Windows.Forms.CheckBox();
+            this.cbLolTx1Mask = new System.Windows.Forms.CheckBox();
+            this.cbLolTx4 = new System.Windows.Forms.CheckBox();
+            this.cbLolTx3 = new System.Windows.Forms.CheckBox();
+            this.cbLolTx2 = new System.Windows.Forms.CheckBox();
+            this.cbLolTx1 = new System.Windows.Forms.CheckBox();
+            this.cbAdaptEqFaultTx4Mask = new System.Windows.Forms.CheckBox();
+            this.cbAdaptEqFaultTx3Mask = new System.Windows.Forms.CheckBox();
+            this.cbAdaptEqFaultTx2Mask = new System.Windows.Forms.CheckBox();
+            this.cbAdaptEqFaultTx1Mask = new System.Windows.Forms.CheckBox();
+            this.cbAdaptEqFaultTx4 = new System.Windows.Forms.CheckBox();
+            this.cbAdaptEqFaultTx3 = new System.Windows.Forms.CheckBox();
+            this.cbAdaptEqFaultTx2 = new System.Windows.Forms.CheckBox();
+            this.cbAdaptEqFaultTx1 = new System.Windows.Forms.CheckBox();
             this.bLosAndFaultWrite = new System.Windows.Forms.Button();
             this.cbLosRx4Mask = new System.Windows.Forms.CheckBox();
             this.bLosAndFaultRead = new System.Windows.Forms.Button();
@@ -203,9 +227,10 @@
             this.cbLosTx1 = new System.Windows.Forms.CheckBox();
             this.lLosAndFaultTx1 = new System.Windows.Forms.Label();
             this.gbMisc = new System.Windows.Forms.GroupBox();
-            this.bMiscWrite = new System.Windows.Forms.Button();
+            this.cbDataNotReady = new System.Windows.Forms.CheckBox();
+            this.cbFlatMem = new System.Windows.Forms.CheckBox();
+            this.cbIntLState = new System.Windows.Forms.CheckBox();
             this.bMiscRead = new System.Windows.Forms.Button();
-            this.cbInitCompleteMask = new System.Windows.Forms.CheckBox();
             this.cbInitComplete = new System.Windows.Forms.CheckBox();
             this.bStoreIntoFlash = new System.Windows.Forms.Button();
             this.gbMpdPower = new System.Windows.Forms.GroupBox();
@@ -260,32 +285,6 @@
             this.lMpdPowerLowWarning = new System.Windows.Forms.Label();
             this.lMpdPowerHighWarning = new System.Windows.Forms.Label();
             this.lMpdPowerHighAlarm = new System.Windows.Forms.Label();
-            this.cbIntLState = new System.Windows.Forms.CheckBox();
-            this.cbFlatMem = new System.Windows.Forms.CheckBox();
-            this.cbAdaptEqFaultTx4Mask = new System.Windows.Forms.CheckBox();
-            this.cbAdaptEqFaultTx3Mask = new System.Windows.Forms.CheckBox();
-            this.cbAdaptEqFaultTx2Mask = new System.Windows.Forms.CheckBox();
-            this.cbAdaptEqFaultTx1Mask = new System.Windows.Forms.CheckBox();
-            this.cbAdaptEqFaultTx4 = new System.Windows.Forms.CheckBox();
-            this.cbAdaptEqFaultTx3 = new System.Windows.Forms.CheckBox();
-            this.cbAdaptEqFaultTx2 = new System.Windows.Forms.CheckBox();
-            this.cbAdaptEqFaultTx1 = new System.Windows.Forms.CheckBox();
-            this.cbLolTx4Mask = new System.Windows.Forms.CheckBox();
-            this.cbLolTx3Mask = new System.Windows.Forms.CheckBox();
-            this.cbLolTx2Mask = new System.Windows.Forms.CheckBox();
-            this.cbLolTx1Mask = new System.Windows.Forms.CheckBox();
-            this.cbLolTx4 = new System.Windows.Forms.CheckBox();
-            this.cbLolTx3 = new System.Windows.Forms.CheckBox();
-            this.cbLolTx2 = new System.Windows.Forms.CheckBox();
-            this.cbLolTx1 = new System.Windows.Forms.CheckBox();
-            this.cbLolRx4Mask = new System.Windows.Forms.CheckBox();
-            this.cbLolRx3Mask = new System.Windows.Forms.CheckBox();
-            this.cbLolRx2Mask = new System.Windows.Forms.CheckBox();
-            this.cbLolRx1Mask = new System.Windows.Forms.CheckBox();
-            this.cbLolRx4 = new System.Windows.Forms.CheckBox();
-            this.cbLolRx3 = new System.Windows.Forms.CheckBox();
-            this.cbLolRx2 = new System.Windows.Forms.CheckBox();
-            this.cbLolRx1 = new System.Windows.Forms.CheckBox();
             this.gbTemperature.SuspendLayout();
             this.gbVcc.SuspendLayout();
             this.gbRxPower.SuspendLayout();
@@ -1844,6 +1843,258 @@
             this.gbLosFault.TabStop = false;
             this.gbLosFault.Text = "Los and Fault";
             // 
+            // cbLolRx4Mask
+            // 
+            this.cbLolRx4Mask.AutoSize = true;
+            this.cbLolRx4Mask.Location = new System.Drawing.Point(610, 87);
+            this.cbLolRx4Mask.Name = "cbLolRx4Mask";
+            this.cbLolRx4Mask.Size = new System.Drawing.Size(34, 16);
+            this.cbLolRx4Mask.TabIndex = 89;
+            this.cbLolRx4Mask.Text = "M";
+            this.cbLolRx4Mask.UseVisualStyleBackColor = true;
+            // 
+            // cbLolRx3Mask
+            // 
+            this.cbLolRx3Mask.AutoSize = true;
+            this.cbLolRx3Mask.Location = new System.Drawing.Point(610, 65);
+            this.cbLolRx3Mask.Name = "cbLolRx3Mask";
+            this.cbLolRx3Mask.Size = new System.Drawing.Size(34, 16);
+            this.cbLolRx3Mask.TabIndex = 88;
+            this.cbLolRx3Mask.Text = "M";
+            this.cbLolRx3Mask.UseVisualStyleBackColor = true;
+            // 
+            // cbLolRx2Mask
+            // 
+            this.cbLolRx2Mask.AutoSize = true;
+            this.cbLolRx2Mask.Location = new System.Drawing.Point(610, 43);
+            this.cbLolRx2Mask.Name = "cbLolRx2Mask";
+            this.cbLolRx2Mask.Size = new System.Drawing.Size(34, 16);
+            this.cbLolRx2Mask.TabIndex = 87;
+            this.cbLolRx2Mask.Text = "M";
+            this.cbLolRx2Mask.UseVisualStyleBackColor = true;
+            // 
+            // cbLolRx1Mask
+            // 
+            this.cbLolRx1Mask.AutoSize = true;
+            this.cbLolRx1Mask.Location = new System.Drawing.Point(610, 21);
+            this.cbLolRx1Mask.Name = "cbLolRx1Mask";
+            this.cbLolRx1Mask.Size = new System.Drawing.Size(34, 16);
+            this.cbLolRx1Mask.TabIndex = 86;
+            this.cbLolRx1Mask.Text = "M";
+            this.cbLolRx1Mask.UseVisualStyleBackColor = true;
+            // 
+            // cbLolRx4
+            // 
+            this.cbLolRx4.AutoSize = true;
+            this.cbLolRx4.Enabled = false;
+            this.cbLolRx4.Location = new System.Drawing.Point(559, 87);
+            this.cbLolRx4.Name = "cbLolRx4";
+            this.cbLolRx4.Size = new System.Drawing.Size(46, 16);
+            this.cbLolRx4.TabIndex = 85;
+            this.cbLolRx4.Text = "LOL";
+            this.cbLolRx4.UseVisualStyleBackColor = true;
+            // 
+            // cbLolRx3
+            // 
+            this.cbLolRx3.AutoSize = true;
+            this.cbLolRx3.Enabled = false;
+            this.cbLolRx3.Location = new System.Drawing.Point(559, 65);
+            this.cbLolRx3.Name = "cbLolRx3";
+            this.cbLolRx3.Size = new System.Drawing.Size(46, 16);
+            this.cbLolRx3.TabIndex = 84;
+            this.cbLolRx3.Text = "LOL";
+            this.cbLolRx3.UseVisualStyleBackColor = true;
+            // 
+            // cbLolRx2
+            // 
+            this.cbLolRx2.AutoSize = true;
+            this.cbLolRx2.Enabled = false;
+            this.cbLolRx2.Location = new System.Drawing.Point(559, 43);
+            this.cbLolRx2.Name = "cbLolRx2";
+            this.cbLolRx2.Size = new System.Drawing.Size(46, 16);
+            this.cbLolRx2.TabIndex = 83;
+            this.cbLolRx2.Text = "LOL";
+            this.cbLolRx2.UseVisualStyleBackColor = true;
+            // 
+            // cbLolRx1
+            // 
+            this.cbLolRx1.AutoSize = true;
+            this.cbLolRx1.Enabled = false;
+            this.cbLolRx1.Location = new System.Drawing.Point(559, 21);
+            this.cbLolRx1.Name = "cbLolRx1";
+            this.cbLolRx1.Size = new System.Drawing.Size(46, 16);
+            this.cbLolRx1.TabIndex = 82;
+            this.cbLolRx1.Text = "LOL";
+            this.cbLolRx1.UseVisualStyleBackColor = true;
+            // 
+            // cbLolTx4Mask
+            // 
+            this.cbLolTx4Mask.AutoSize = true;
+            this.cbLolTx4Mask.Location = new System.Drawing.Point(391, 87);
+            this.cbLolTx4Mask.Name = "cbLolTx4Mask";
+            this.cbLolTx4Mask.Size = new System.Drawing.Size(34, 16);
+            this.cbLolTx4Mask.TabIndex = 81;
+            this.cbLolTx4Mask.Text = "M";
+            this.cbLolTx4Mask.UseVisualStyleBackColor = true;
+            // 
+            // cbLolTx3Mask
+            // 
+            this.cbLolTx3Mask.AutoSize = true;
+            this.cbLolTx3Mask.Location = new System.Drawing.Point(391, 65);
+            this.cbLolTx3Mask.Name = "cbLolTx3Mask";
+            this.cbLolTx3Mask.Size = new System.Drawing.Size(34, 16);
+            this.cbLolTx3Mask.TabIndex = 80;
+            this.cbLolTx3Mask.Text = "M";
+            this.cbLolTx3Mask.UseVisualStyleBackColor = true;
+            // 
+            // cbLolTx2Mask
+            // 
+            this.cbLolTx2Mask.AutoSize = true;
+            this.cbLolTx2Mask.Location = new System.Drawing.Point(391, 43);
+            this.cbLolTx2Mask.Name = "cbLolTx2Mask";
+            this.cbLolTx2Mask.Size = new System.Drawing.Size(34, 16);
+            this.cbLolTx2Mask.TabIndex = 79;
+            this.cbLolTx2Mask.Text = "M";
+            this.cbLolTx2Mask.UseVisualStyleBackColor = true;
+            // 
+            // cbLolTx1Mask
+            // 
+            this.cbLolTx1Mask.AutoSize = true;
+            this.cbLolTx1Mask.Location = new System.Drawing.Point(391, 21);
+            this.cbLolTx1Mask.Name = "cbLolTx1Mask";
+            this.cbLolTx1Mask.Size = new System.Drawing.Size(34, 16);
+            this.cbLolTx1Mask.TabIndex = 78;
+            this.cbLolTx1Mask.Text = "M";
+            this.cbLolTx1Mask.UseVisualStyleBackColor = true;
+            // 
+            // cbLolTx4
+            // 
+            this.cbLolTx4.AutoSize = true;
+            this.cbLolTx4.Enabled = false;
+            this.cbLolTx4.Location = new System.Drawing.Point(340, 87);
+            this.cbLolTx4.Name = "cbLolTx4";
+            this.cbLolTx4.Size = new System.Drawing.Size(46, 16);
+            this.cbLolTx4.TabIndex = 77;
+            this.cbLolTx4.Text = "LOL";
+            this.cbLolTx4.UseVisualStyleBackColor = true;
+            // 
+            // cbLolTx3
+            // 
+            this.cbLolTx3.AutoSize = true;
+            this.cbLolTx3.Enabled = false;
+            this.cbLolTx3.Location = new System.Drawing.Point(340, 65);
+            this.cbLolTx3.Name = "cbLolTx3";
+            this.cbLolTx3.Size = new System.Drawing.Size(46, 16);
+            this.cbLolTx3.TabIndex = 76;
+            this.cbLolTx3.Text = "LOL";
+            this.cbLolTx3.UseVisualStyleBackColor = true;
+            // 
+            // cbLolTx2
+            // 
+            this.cbLolTx2.AutoSize = true;
+            this.cbLolTx2.Enabled = false;
+            this.cbLolTx2.Location = new System.Drawing.Point(340, 43);
+            this.cbLolTx2.Name = "cbLolTx2";
+            this.cbLolTx2.Size = new System.Drawing.Size(46, 16);
+            this.cbLolTx2.TabIndex = 75;
+            this.cbLolTx2.Text = "LOL";
+            this.cbLolTx2.UseVisualStyleBackColor = true;
+            // 
+            // cbLolTx1
+            // 
+            this.cbLolTx1.AutoSize = true;
+            this.cbLolTx1.Enabled = false;
+            this.cbLolTx1.Location = new System.Drawing.Point(340, 21);
+            this.cbLolTx1.Name = "cbLolTx1";
+            this.cbLolTx1.Size = new System.Drawing.Size(46, 16);
+            this.cbLolTx1.TabIndex = 74;
+            this.cbLolTx1.Text = "LOL";
+            this.cbLolTx1.UseVisualStyleBackColor = true;
+            // 
+            // cbAdaptEqFaultTx4Mask
+            // 
+            this.cbAdaptEqFaultTx4Mask.AutoSize = true;
+            this.cbAdaptEqFaultTx4Mask.Location = new System.Drawing.Point(300, 87);
+            this.cbAdaptEqFaultTx4Mask.Name = "cbAdaptEqFaultTx4Mask";
+            this.cbAdaptEqFaultTx4Mask.Size = new System.Drawing.Size(34, 16);
+            this.cbAdaptEqFaultTx4Mask.TabIndex = 73;
+            this.cbAdaptEqFaultTx4Mask.Text = "M";
+            this.cbAdaptEqFaultTx4Mask.UseVisualStyleBackColor = true;
+            // 
+            // cbAdaptEqFaultTx3Mask
+            // 
+            this.cbAdaptEqFaultTx3Mask.AutoSize = true;
+            this.cbAdaptEqFaultTx3Mask.Location = new System.Drawing.Point(300, 65);
+            this.cbAdaptEqFaultTx3Mask.Name = "cbAdaptEqFaultTx3Mask";
+            this.cbAdaptEqFaultTx3Mask.Size = new System.Drawing.Size(34, 16);
+            this.cbAdaptEqFaultTx3Mask.TabIndex = 72;
+            this.cbAdaptEqFaultTx3Mask.Text = "M";
+            this.cbAdaptEqFaultTx3Mask.UseVisualStyleBackColor = true;
+            // 
+            // cbAdaptEqFaultTx2Mask
+            // 
+            this.cbAdaptEqFaultTx2Mask.AutoSize = true;
+            this.cbAdaptEqFaultTx2Mask.Location = new System.Drawing.Point(300, 43);
+            this.cbAdaptEqFaultTx2Mask.Name = "cbAdaptEqFaultTx2Mask";
+            this.cbAdaptEqFaultTx2Mask.Size = new System.Drawing.Size(34, 16);
+            this.cbAdaptEqFaultTx2Mask.TabIndex = 71;
+            this.cbAdaptEqFaultTx2Mask.Text = "M";
+            this.cbAdaptEqFaultTx2Mask.UseVisualStyleBackColor = true;
+            // 
+            // cbAdaptEqFaultTx1Mask
+            // 
+            this.cbAdaptEqFaultTx1Mask.AutoSize = true;
+            this.cbAdaptEqFaultTx1Mask.Location = new System.Drawing.Point(300, 21);
+            this.cbAdaptEqFaultTx1Mask.Name = "cbAdaptEqFaultTx1Mask";
+            this.cbAdaptEqFaultTx1Mask.Size = new System.Drawing.Size(34, 16);
+            this.cbAdaptEqFaultTx1Mask.TabIndex = 70;
+            this.cbAdaptEqFaultTx1Mask.Text = "M";
+            this.cbAdaptEqFaultTx1Mask.UseVisualStyleBackColor = true;
+            // 
+            // cbAdaptEqFaultTx4
+            // 
+            this.cbAdaptEqFaultTx4.AutoSize = true;
+            this.cbAdaptEqFaultTx4.Enabled = false;
+            this.cbAdaptEqFaultTx4.Location = new System.Drawing.Point(224, 87);
+            this.cbAdaptEqFaultTx4.Name = "cbAdaptEqFaultTx4";
+            this.cbAdaptEqFaultTx4.Size = new System.Drawing.Size(70, 16);
+            this.cbAdaptEqFaultTx4.TabIndex = 69;
+            this.cbAdaptEqFaultTx4.Text = "EQ Adapt";
+            this.cbAdaptEqFaultTx4.UseVisualStyleBackColor = true;
+            // 
+            // cbAdaptEqFaultTx3
+            // 
+            this.cbAdaptEqFaultTx3.AutoSize = true;
+            this.cbAdaptEqFaultTx3.Enabled = false;
+            this.cbAdaptEqFaultTx3.Location = new System.Drawing.Point(224, 65);
+            this.cbAdaptEqFaultTx3.Name = "cbAdaptEqFaultTx3";
+            this.cbAdaptEqFaultTx3.Size = new System.Drawing.Size(70, 16);
+            this.cbAdaptEqFaultTx3.TabIndex = 68;
+            this.cbAdaptEqFaultTx3.Text = "EQ Adapt";
+            this.cbAdaptEqFaultTx3.UseVisualStyleBackColor = true;
+            // 
+            // cbAdaptEqFaultTx2
+            // 
+            this.cbAdaptEqFaultTx2.AutoSize = true;
+            this.cbAdaptEqFaultTx2.Enabled = false;
+            this.cbAdaptEqFaultTx2.Location = new System.Drawing.Point(224, 43);
+            this.cbAdaptEqFaultTx2.Name = "cbAdaptEqFaultTx2";
+            this.cbAdaptEqFaultTx2.Size = new System.Drawing.Size(70, 16);
+            this.cbAdaptEqFaultTx2.TabIndex = 67;
+            this.cbAdaptEqFaultTx2.Text = "EQ Adapt";
+            this.cbAdaptEqFaultTx2.UseVisualStyleBackColor = true;
+            // 
+            // cbAdaptEqFaultTx1
+            // 
+            this.cbAdaptEqFaultTx1.AutoSize = true;
+            this.cbAdaptEqFaultTx1.Enabled = false;
+            this.cbAdaptEqFaultTx1.Location = new System.Drawing.Point(224, 21);
+            this.cbAdaptEqFaultTx1.Name = "cbAdaptEqFaultTx1";
+            this.cbAdaptEqFaultTx1.Size = new System.Drawing.Size(70, 16);
+            this.cbAdaptEqFaultTx1.TabIndex = 66;
+            this.cbAdaptEqFaultTx1.Text = "EQ Adapt";
+            this.cbAdaptEqFaultTx1.UseVisualStyleBackColor = true;
+            // 
             // bLosAndFaultWrite
             // 
             this.bLosAndFaultWrite.Location = new System.Drawing.Point(650, 48);
@@ -2190,11 +2441,10 @@
             // 
             // gbMisc
             // 
+            this.gbMisc.Controls.Add(this.cbDataNotReady);
             this.gbMisc.Controls.Add(this.cbFlatMem);
             this.gbMisc.Controls.Add(this.cbIntLState);
-            this.gbMisc.Controls.Add(this.bMiscWrite);
             this.gbMisc.Controls.Add(this.bMiscRead);
-            this.gbMisc.Controls.Add(this.cbInitCompleteMask);
             this.gbMisc.Controls.Add(this.cbInitComplete);
             this.gbMisc.Location = new System.Drawing.Point(565, 121);
             this.gbMisc.Name = "gbMisc";
@@ -2203,15 +2453,38 @@
             this.gbMisc.TabStop = false;
             this.gbMisc.Text = "Misc";
             // 
-            // bMiscWrite
+            // cbDataNotReady
             // 
-            this.bMiscWrite.Location = new System.Drawing.Point(214, 49);
-            this.bMiscWrite.Name = "bMiscWrite";
-            this.bMiscWrite.Size = new System.Drawing.Size(30, 23);
-            this.bMiscWrite.TabIndex = 67;
-            this.bMiscWrite.Text = "W";
-            this.bMiscWrite.UseVisualStyleBackColor = true;
-            this.bMiscWrite.Click += new System.EventHandler(this._bMiscWrite_Click);
+            this.cbDataNotReady.AutoSize = true;
+            this.cbDataNotReady.Enabled = false;
+            this.cbDataNotReady.Location = new System.Drawing.Point(6, 16);
+            this.cbDataNotReady.Name = "cbDataNotReady";
+            this.cbDataNotReady.Size = new System.Drawing.Size(98, 16);
+            this.cbDataNotReady.TabIndex = 70;
+            this.cbDataNotReady.Text = "Data Not Ready";
+            this.cbDataNotReady.UseVisualStyleBackColor = true;
+            // 
+            // cbFlatMem
+            // 
+            this.cbFlatMem.AutoSize = true;
+            this.cbFlatMem.Enabled = false;
+            this.cbFlatMem.Location = new System.Drawing.Point(6, 60);
+            this.cbFlatMem.Name = "cbFlatMem";
+            this.cbFlatMem.Size = new System.Drawing.Size(70, 16);
+            this.cbFlatMem.TabIndex = 69;
+            this.cbFlatMem.Text = "Flat_mem";
+            this.cbFlatMem.UseVisualStyleBackColor = true;
+            // 
+            // cbIntLState
+            // 
+            this.cbIntLState.AutoSize = true;
+            this.cbIntLState.Enabled = false;
+            this.cbIntLState.Location = new System.Drawing.Point(6, 38);
+            this.cbIntLState.Name = "cbIntLState";
+            this.cbIntLState.Size = new System.Drawing.Size(44, 16);
+            this.cbIntLState.TabIndex = 68;
+            this.cbIntLState.Text = "IntL";
+            this.cbIntLState.UseVisualStyleBackColor = true;
             // 
             // bMiscRead
             // 
@@ -2223,21 +2496,11 @@
             this.bMiscRead.UseVisualStyleBackColor = true;
             this.bMiscRead.Click += new System.EventHandler(this._bMiscRead_Click);
             // 
-            // cbInitCompleteMask
-            // 
-            this.cbInitCompleteMask.AutoSize = true;
-            this.cbInitCompleteMask.Location = new System.Drawing.Point(100, 16);
-            this.cbInitCompleteMask.Name = "cbInitCompleteMask";
-            this.cbInitCompleteMask.Size = new System.Drawing.Size(49, 16);
-            this.cbInitCompleteMask.TabIndex = 16;
-            this.cbInitCompleteMask.Text = "Mask";
-            this.cbInitCompleteMask.UseVisualStyleBackColor = true;
-            // 
             // cbInitComplete
             // 
             this.cbInitComplete.AutoSize = true;
             this.cbInitComplete.Enabled = false;
-            this.cbInitComplete.Location = new System.Drawing.Point(6, 16);
+            this.cbInitComplete.Location = new System.Drawing.Point(110, 16);
             this.cbInitComplete.Name = "cbInitComplete";
             this.cbInitComplete.Size = new System.Drawing.Size(88, 16);
             this.cbInitComplete.TabIndex = 16;
@@ -2811,280 +3074,6 @@
             this.lMpdPowerHighAlarm.TabIndex = 0;
             this.lMpdPowerHighAlarm.Text = "High Alarm (uW) :";
             // 
-            // cbIntLState
-            // 
-            this.cbIntLState.AutoSize = true;
-            this.cbIntLState.Enabled = false;
-            this.cbIntLState.Location = new System.Drawing.Point(6, 38);
-            this.cbIntLState.Name = "cbIntLState";
-            this.cbIntLState.Size = new System.Drawing.Size(44, 16);
-            this.cbIntLState.TabIndex = 68;
-            this.cbIntLState.Text = "IntL";
-            this.cbIntLState.UseVisualStyleBackColor = true;
-            // 
-            // cbFlatMem
-            // 
-            this.cbFlatMem.AutoSize = true;
-            this.cbFlatMem.Enabled = false;
-            this.cbFlatMem.Location = new System.Drawing.Point(6, 60);
-            this.cbFlatMem.Name = "cbFlatMem";
-            this.cbFlatMem.Size = new System.Drawing.Size(70, 16);
-            this.cbFlatMem.TabIndex = 69;
-            this.cbFlatMem.Text = "Flat_mem";
-            this.cbFlatMem.UseVisualStyleBackColor = true;
-            // 
-            // cbAdaptEqFaultTx4Mask
-            // 
-            this.cbAdaptEqFaultTx4Mask.AutoSize = true;
-            this.cbAdaptEqFaultTx4Mask.Location = new System.Drawing.Point(300, 87);
-            this.cbAdaptEqFaultTx4Mask.Name = "cbAdaptEqFaultTx4Mask";
-            this.cbAdaptEqFaultTx4Mask.Size = new System.Drawing.Size(34, 16);
-            this.cbAdaptEqFaultTx4Mask.TabIndex = 73;
-            this.cbAdaptEqFaultTx4Mask.Text = "M";
-            this.cbAdaptEqFaultTx4Mask.UseVisualStyleBackColor = true;
-            // 
-            // cbAdaptEqFaultTx3Mask
-            // 
-            this.cbAdaptEqFaultTx3Mask.AutoSize = true;
-            this.cbAdaptEqFaultTx3Mask.Location = new System.Drawing.Point(300, 65);
-            this.cbAdaptEqFaultTx3Mask.Name = "cbAdaptEqFaultTx3Mask";
-            this.cbAdaptEqFaultTx3Mask.Size = new System.Drawing.Size(34, 16);
-            this.cbAdaptEqFaultTx3Mask.TabIndex = 72;
-            this.cbAdaptEqFaultTx3Mask.Text = "M";
-            this.cbAdaptEqFaultTx3Mask.UseVisualStyleBackColor = true;
-            // 
-            // cbAdaptEqFaultTx2Mask
-            // 
-            this.cbAdaptEqFaultTx2Mask.AutoSize = true;
-            this.cbAdaptEqFaultTx2Mask.Location = new System.Drawing.Point(300, 43);
-            this.cbAdaptEqFaultTx2Mask.Name = "cbAdaptEqFaultTx2Mask";
-            this.cbAdaptEqFaultTx2Mask.Size = new System.Drawing.Size(34, 16);
-            this.cbAdaptEqFaultTx2Mask.TabIndex = 71;
-            this.cbAdaptEqFaultTx2Mask.Text = "M";
-            this.cbAdaptEqFaultTx2Mask.UseVisualStyleBackColor = true;
-            // 
-            // cbAdaptEqFaultTx1Mask
-            // 
-            this.cbAdaptEqFaultTx1Mask.AutoSize = true;
-            this.cbAdaptEqFaultTx1Mask.Location = new System.Drawing.Point(300, 21);
-            this.cbAdaptEqFaultTx1Mask.Name = "cbAdaptEqFaultTx1Mask";
-            this.cbAdaptEqFaultTx1Mask.Size = new System.Drawing.Size(34, 16);
-            this.cbAdaptEqFaultTx1Mask.TabIndex = 70;
-            this.cbAdaptEqFaultTx1Mask.Text = "M";
-            this.cbAdaptEqFaultTx1Mask.UseVisualStyleBackColor = true;
-            // 
-            // cbAdaptEqFaultTx4
-            // 
-            this.cbAdaptEqFaultTx4.AutoSize = true;
-            this.cbAdaptEqFaultTx4.Enabled = false;
-            this.cbAdaptEqFaultTx4.Location = new System.Drawing.Point(224, 87);
-            this.cbAdaptEqFaultTx4.Name = "cbAdaptEqFaultTx4";
-            this.cbAdaptEqFaultTx4.Size = new System.Drawing.Size(70, 16);
-            this.cbAdaptEqFaultTx4.TabIndex = 69;
-            this.cbAdaptEqFaultTx4.Text = "EQ Adapt";
-            this.cbAdaptEqFaultTx4.UseVisualStyleBackColor = true;
-            // 
-            // cbAdaptEqFaultTx3
-            // 
-            this.cbAdaptEqFaultTx3.AutoSize = true;
-            this.cbAdaptEqFaultTx3.Enabled = false;
-            this.cbAdaptEqFaultTx3.Location = new System.Drawing.Point(224, 65);
-            this.cbAdaptEqFaultTx3.Name = "cbAdaptEqFaultTx3";
-            this.cbAdaptEqFaultTx3.Size = new System.Drawing.Size(70, 16);
-            this.cbAdaptEqFaultTx3.TabIndex = 68;
-            this.cbAdaptEqFaultTx3.Text = "EQ Adapt";
-            this.cbAdaptEqFaultTx3.UseVisualStyleBackColor = true;
-            // 
-            // cbAdaptEqFaultTx2
-            // 
-            this.cbAdaptEqFaultTx2.AutoSize = true;
-            this.cbAdaptEqFaultTx2.Enabled = false;
-            this.cbAdaptEqFaultTx2.Location = new System.Drawing.Point(224, 43);
-            this.cbAdaptEqFaultTx2.Name = "cbAdaptEqFaultTx2";
-            this.cbAdaptEqFaultTx2.Size = new System.Drawing.Size(70, 16);
-            this.cbAdaptEqFaultTx2.TabIndex = 67;
-            this.cbAdaptEqFaultTx2.Text = "EQ Adapt";
-            this.cbAdaptEqFaultTx2.UseVisualStyleBackColor = true;
-            // 
-            // cbAdaptEqFaultTx1
-            // 
-            this.cbAdaptEqFaultTx1.AutoSize = true;
-            this.cbAdaptEqFaultTx1.Enabled = false;
-            this.cbAdaptEqFaultTx1.Location = new System.Drawing.Point(224, 21);
-            this.cbAdaptEqFaultTx1.Name = "cbAdaptEqFaultTx1";
-            this.cbAdaptEqFaultTx1.Size = new System.Drawing.Size(70, 16);
-            this.cbAdaptEqFaultTx1.TabIndex = 66;
-            this.cbAdaptEqFaultTx1.Text = "EQ Adapt";
-            this.cbAdaptEqFaultTx1.UseVisualStyleBackColor = true;
-            // 
-            // cbLolTx4Mask
-            // 
-            this.cbLolTx4Mask.AutoSize = true;
-            this.cbLolTx4Mask.Location = new System.Drawing.Point(391, 87);
-            this.cbLolTx4Mask.Name = "cbLolTx4Mask";
-            this.cbLolTx4Mask.Size = new System.Drawing.Size(34, 16);
-            this.cbLolTx4Mask.TabIndex = 81;
-            this.cbLolTx4Mask.Text = "M";
-            this.cbLolTx4Mask.UseVisualStyleBackColor = true;
-            // 
-            // cbLolTx3Mask
-            // 
-            this.cbLolTx3Mask.AutoSize = true;
-            this.cbLolTx3Mask.Location = new System.Drawing.Point(391, 65);
-            this.cbLolTx3Mask.Name = "cbLolTx3Mask";
-            this.cbLolTx3Mask.Size = new System.Drawing.Size(34, 16);
-            this.cbLolTx3Mask.TabIndex = 80;
-            this.cbLolTx3Mask.Text = "M";
-            this.cbLolTx3Mask.UseVisualStyleBackColor = true;
-            // 
-            // cbLolTx2Mask
-            // 
-            this.cbLolTx2Mask.AutoSize = true;
-            this.cbLolTx2Mask.Location = new System.Drawing.Point(391, 43);
-            this.cbLolTx2Mask.Name = "cbLolTx2Mask";
-            this.cbLolTx2Mask.Size = new System.Drawing.Size(34, 16);
-            this.cbLolTx2Mask.TabIndex = 79;
-            this.cbLolTx2Mask.Text = "M";
-            this.cbLolTx2Mask.UseVisualStyleBackColor = true;
-            // 
-            // cbLolTx1Mask
-            // 
-            this.cbLolTx1Mask.AutoSize = true;
-            this.cbLolTx1Mask.Location = new System.Drawing.Point(391, 21);
-            this.cbLolTx1Mask.Name = "cbLolTx1Mask";
-            this.cbLolTx1Mask.Size = new System.Drawing.Size(34, 16);
-            this.cbLolTx1Mask.TabIndex = 78;
-            this.cbLolTx1Mask.Text = "M";
-            this.cbLolTx1Mask.UseVisualStyleBackColor = true;
-            // 
-            // cbLolTx4
-            // 
-            this.cbLolTx4.AutoSize = true;
-            this.cbLolTx4.Enabled = false;
-            this.cbLolTx4.Location = new System.Drawing.Point(340, 87);
-            this.cbLolTx4.Name = "cbLolTx4";
-            this.cbLolTx4.Size = new System.Drawing.Size(46, 16);
-            this.cbLolTx4.TabIndex = 77;
-            this.cbLolTx4.Text = "LOL";
-            this.cbLolTx4.UseVisualStyleBackColor = true;
-            // 
-            // cbLolTx3
-            // 
-            this.cbLolTx3.AutoSize = true;
-            this.cbLolTx3.Enabled = false;
-            this.cbLolTx3.Location = new System.Drawing.Point(340, 65);
-            this.cbLolTx3.Name = "cbLolTx3";
-            this.cbLolTx3.Size = new System.Drawing.Size(46, 16);
-            this.cbLolTx3.TabIndex = 76;
-            this.cbLolTx3.Text = "LOL";
-            this.cbLolTx3.UseVisualStyleBackColor = true;
-            // 
-            // cbLolTx2
-            // 
-            this.cbLolTx2.AutoSize = true;
-            this.cbLolTx2.Enabled = false;
-            this.cbLolTx2.Location = new System.Drawing.Point(340, 43);
-            this.cbLolTx2.Name = "cbLolTx2";
-            this.cbLolTx2.Size = new System.Drawing.Size(46, 16);
-            this.cbLolTx2.TabIndex = 75;
-            this.cbLolTx2.Text = "LOL";
-            this.cbLolTx2.UseVisualStyleBackColor = true;
-            // 
-            // cbLolTx1
-            // 
-            this.cbLolTx1.AutoSize = true;
-            this.cbLolTx1.Enabled = false;
-            this.cbLolTx1.Location = new System.Drawing.Point(340, 21);
-            this.cbLolTx1.Name = "cbLolTx1";
-            this.cbLolTx1.Size = new System.Drawing.Size(46, 16);
-            this.cbLolTx1.TabIndex = 74;
-            this.cbLolTx1.Text = "LOL";
-            this.cbLolTx1.UseVisualStyleBackColor = true;
-            // 
-            // cbLolRx4Mask
-            // 
-            this.cbLolRx4Mask.AutoSize = true;
-            this.cbLolRx4Mask.Location = new System.Drawing.Point(610, 87);
-            this.cbLolRx4Mask.Name = "cbLolRx4Mask";
-            this.cbLolRx4Mask.Size = new System.Drawing.Size(34, 16);
-            this.cbLolRx4Mask.TabIndex = 89;
-            this.cbLolRx4Mask.Text = "M";
-            this.cbLolRx4Mask.UseVisualStyleBackColor = true;
-            // 
-            // cbLolRx3Mask
-            // 
-            this.cbLolRx3Mask.AutoSize = true;
-            this.cbLolRx3Mask.Location = new System.Drawing.Point(610, 65);
-            this.cbLolRx3Mask.Name = "cbLolRx3Mask";
-            this.cbLolRx3Mask.Size = new System.Drawing.Size(34, 16);
-            this.cbLolRx3Mask.TabIndex = 88;
-            this.cbLolRx3Mask.Text = "M";
-            this.cbLolRx3Mask.UseVisualStyleBackColor = true;
-            // 
-            // cbLolRx2Mask
-            // 
-            this.cbLolRx2Mask.AutoSize = true;
-            this.cbLolRx2Mask.Location = new System.Drawing.Point(610, 43);
-            this.cbLolRx2Mask.Name = "cbLolRx2Mask";
-            this.cbLolRx2Mask.Size = new System.Drawing.Size(34, 16);
-            this.cbLolRx2Mask.TabIndex = 87;
-            this.cbLolRx2Mask.Text = "M";
-            this.cbLolRx2Mask.UseVisualStyleBackColor = true;
-            // 
-            // cbLolRx1Mask
-            // 
-            this.cbLolRx1Mask.AutoSize = true;
-            this.cbLolRx1Mask.Location = new System.Drawing.Point(610, 21);
-            this.cbLolRx1Mask.Name = "cbLolRx1Mask";
-            this.cbLolRx1Mask.Size = new System.Drawing.Size(34, 16);
-            this.cbLolRx1Mask.TabIndex = 86;
-            this.cbLolRx1Mask.Text = "M";
-            this.cbLolRx1Mask.UseVisualStyleBackColor = true;
-            // 
-            // cbLolRx4
-            // 
-            this.cbLolRx4.AutoSize = true;
-            this.cbLolRx4.Enabled = false;
-            this.cbLolRx4.Location = new System.Drawing.Point(559, 87);
-            this.cbLolRx4.Name = "cbLolRx4";
-            this.cbLolRx4.Size = new System.Drawing.Size(46, 16);
-            this.cbLolRx4.TabIndex = 85;
-            this.cbLolRx4.Text = "LOL";
-            this.cbLolRx4.UseVisualStyleBackColor = true;
-            // 
-            // cbLolRx3
-            // 
-            this.cbLolRx3.AutoSize = true;
-            this.cbLolRx3.Enabled = false;
-            this.cbLolRx3.Location = new System.Drawing.Point(559, 65);
-            this.cbLolRx3.Name = "cbLolRx3";
-            this.cbLolRx3.Size = new System.Drawing.Size(46, 16);
-            this.cbLolRx3.TabIndex = 84;
-            this.cbLolRx3.Text = "LOL";
-            this.cbLolRx3.UseVisualStyleBackColor = true;
-            // 
-            // cbLolRx2
-            // 
-            this.cbLolRx2.AutoSize = true;
-            this.cbLolRx2.Enabled = false;
-            this.cbLolRx2.Location = new System.Drawing.Point(559, 43);
-            this.cbLolRx2.Name = "cbLolRx2";
-            this.cbLolRx2.Size = new System.Drawing.Size(46, 16);
-            this.cbLolRx2.TabIndex = 83;
-            this.cbLolRx2.Text = "LOL";
-            this.cbLolRx2.UseVisualStyleBackColor = true;
-            // 
-            // cbLolRx1
-            // 
-            this.cbLolRx1.AutoSize = true;
-            this.cbLolRx1.Enabled = false;
-            this.cbLolRx1.Location = new System.Drawing.Point(559, 21);
-            this.cbLolRx1.Name = "cbLolRx1";
-            this.cbLolRx1.Size = new System.Drawing.Size(46, 16);
-            this.cbLolRx1.TabIndex = 82;
-            this.cbLolRx1.Text = "LOL";
-            this.cbLolRx1.UseVisualStyleBackColor = true;
-            // 
             // UCDigitalDiagnosticsMonitoring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -3297,9 +3286,7 @@
         private System.Windows.Forms.CheckBox cbVccHighWarningMask;
         private System.Windows.Forms.CheckBox cbVccHighAlarmMask;
         private System.Windows.Forms.GroupBox gbMisc;
-        private System.Windows.Forms.Button bMiscWrite;
         private System.Windows.Forms.Button bMiscRead;
-        private System.Windows.Forms.CheckBox cbInitCompleteMask;
         private System.Windows.Forms.CheckBox cbInitComplete;
         private System.Windows.Forms.Button bStoreIntoFlash;
         private System.Windows.Forms.GroupBox gbMpdPower;
@@ -3380,5 +3367,6 @@
         private System.Windows.Forms.CheckBox cbLolRx3;
         private System.Windows.Forms.CheckBox cbLolRx2;
         private System.Windows.Forms.CheckBox cbLolRx1;
+        private System.Windows.Forms.CheckBox cbDataNotReady;
     }
 }

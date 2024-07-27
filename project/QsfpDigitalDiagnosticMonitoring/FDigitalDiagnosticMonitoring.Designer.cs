@@ -32,6 +32,9 @@
             this.tpDigitalDiagnosticMonitoring = new System.Windows.Forms.TabPage();
             this.tpInformation = new System.Windows.Forms.TabPage();
             this.tpMemoryDump = new System.Windows.Forms.TabPage();
+            this.tpI2cActionLog = new System.Windows.Forms.TabPage();
+            this.bClearI2cActionLog = new System.Windows.Forms.Button();
+            this.tbI2cActionLog = new System.Windows.Forms.TextBox();
             this.lFirmwareVersion = new System.Windows.Forms.Label();
             this.tbFirmwareVersion = new System.Windows.Forms.TextBox();
             this.lFirmwareDate = new System.Windows.Forms.Label();
@@ -44,9 +47,6 @@
             this.tbPasswordB1 = new System.Windows.Forms.TextBox();
             this.tbPasswordB2 = new System.Windows.Forms.TextBox();
             this.tbPasswordB3 = new System.Windows.Forms.TextBox();
-            this.tpI2cActionLog = new System.Windows.Forms.TabPage();
-            this.tbI2cActionLog = new System.Windows.Forms.TextBox();
-            this.bClearI2cActionLog = new System.Windows.Forms.Button();
             this.cbI2cActionLog = new System.Windows.Forms.CheckBox();
             this.ucDigitalDiagnosticsMonitoring = new QsfpDigitalDiagnosticMonitoring.UCDigitalDiagnosticsMonitoring();
             this.ucInformation = new QsfpDigitalDiagnosticMonitoring.UcInformation();
@@ -114,6 +114,37 @@
             this.tpMemoryDump.TabIndex = 2;
             this.tpMemoryDump.Text = "MemDump";
             this.tpMemoryDump.UseVisualStyleBackColor = true;
+            // 
+            // tpI2cActionLog
+            // 
+            this.tpI2cActionLog.Controls.Add(this.bClearI2cActionLog);
+            this.tpI2cActionLog.Controls.Add(this.tbI2cActionLog);
+            this.tpI2cActionLog.Location = new System.Drawing.Point(4, 22);
+            this.tpI2cActionLog.Name = "tpI2cActionLog";
+            this.tpI2cActionLog.Padding = new System.Windows.Forms.Padding(3);
+            this.tpI2cActionLog.Size = new System.Drawing.Size(913, 719);
+            this.tpI2cActionLog.TabIndex = 3;
+            this.tpI2cActionLog.Text = "I2cActionLog";
+            this.tpI2cActionLog.UseVisualStyleBackColor = true;
+            // 
+            // bClearI2cActionLog
+            // 
+            this.bClearI2cActionLog.Location = new System.Drawing.Point(832, 6);
+            this.bClearI2cActionLog.Name = "bClearI2cActionLog";
+            this.bClearI2cActionLog.Size = new System.Drawing.Size(75, 685);
+            this.bClearI2cActionLog.TabIndex = 1;
+            this.bClearI2cActionLog.Text = "Clear";
+            this.bClearI2cActionLog.UseVisualStyleBackColor = true;
+            this.bClearI2cActionLog.Click += new System.EventHandler(this.bClearI2cActionLog_Click);
+            // 
+            // tbI2cActionLog
+            // 
+            this.tbI2cActionLog.Location = new System.Drawing.Point(6, 6);
+            this.tbI2cActionLog.Multiline = true;
+            this.tbI2cActionLog.Name = "tbI2cActionLog";
+            this.tbI2cActionLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.tbI2cActionLog.Size = new System.Drawing.Size(820, 675);
+            this.tbI2cActionLog.TabIndex = 0;
             // 
             // lFirmwareVersion
             // 
@@ -218,37 +249,6 @@
             this.tbPasswordB3.Text = "34";
             this.tbPasswordB3.UseSystemPasswordChar = true;
             // 
-            // tpI2cActionLog
-            // 
-            this.tpI2cActionLog.Controls.Add(this.bClearI2cActionLog);
-            this.tpI2cActionLog.Controls.Add(this.tbI2cActionLog);
-            this.tpI2cActionLog.Location = new System.Drawing.Point(4, 22);
-            this.tpI2cActionLog.Name = "tpI2cActionLog";
-            this.tpI2cActionLog.Padding = new System.Windows.Forms.Padding(3);
-            this.tpI2cActionLog.Size = new System.Drawing.Size(913, 719);
-            this.tpI2cActionLog.TabIndex = 3;
-            this.tpI2cActionLog.Text = "I2cActionLog";
-            this.tpI2cActionLog.UseVisualStyleBackColor = true;
-            // 
-            // tbI2cActionLog
-            // 
-            this.tbI2cActionLog.Location = new System.Drawing.Point(6, 6);
-            this.tbI2cActionLog.Multiline = true;
-            this.tbI2cActionLog.Name = "tbI2cActionLog";
-            this.tbI2cActionLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbI2cActionLog.Size = new System.Drawing.Size(820, 675);
-            this.tbI2cActionLog.TabIndex = 0;
-            // 
-            // bClearI2cActionLog
-            // 
-            this.bClearI2cActionLog.Location = new System.Drawing.Point(832, 6);
-            this.bClearI2cActionLog.Name = "bClearI2cActionLog";
-            this.bClearI2cActionLog.Size = new System.Drawing.Size(75, 685);
-            this.bClearI2cActionLog.TabIndex = 1;
-            this.bClearI2cActionLog.Text = "Clear";
-            this.bClearI2cActionLog.UseVisualStyleBackColor = true;
-            this.bClearI2cActionLog.Click += new System.EventHandler(this.bClearI2cActionLog_Click);
-            // 
             // cbI2cActionLog
             // 
             this.cbI2cActionLog.AutoSize = true;
@@ -304,7 +304,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "FDigitalDiagnosticMonitoring";
-            this.Text = "Digital Diagnostic Monitoring 20240708_1953";
+            this.Text = "Digital Diagnostic Monitoring 20240728_0039";
             this.tcDdmAndInformation.ResumeLayout(false);
             this.tpDigitalDiagnosticMonitoring.ResumeLayout(false);
             this.tpInformation.ResumeLayout(false);
