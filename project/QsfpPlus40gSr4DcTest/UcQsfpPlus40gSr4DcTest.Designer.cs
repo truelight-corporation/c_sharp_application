@@ -38,8 +38,12 @@
             this.lResult = new System.Windows.Forms.Label();
             this.tcFunctionSelect = new System.Windows.Forms.TabControl();
             this.tpLog = new System.Windows.Forms.TabPage();
-            this.lCableSerialNumber = new System.Windows.Forms.Label();
+            this.cbTx4Fault = new System.Windows.Forms.CheckBox();
+            this.cbTx3Fault = new System.Windows.Forms.CheckBox();
             this.tbCableSerialNumber = new System.Windows.Forms.TextBox();
+            this.lCableSerialNumber = new System.Windows.Forms.Label();
+            this.cbTx2Fault = new System.Windows.Forms.CheckBox();
+            this.cbTx1Fault = new System.Windows.Forms.CheckBox();
             this.bOpenConfigFile = new System.Windows.Forms.Button();
             this.cbLogMode = new System.Windows.Forms.ComboBox();
             this.tbOperator = new System.Windows.Forms.TextBox();
@@ -116,6 +120,9 @@
             this.lLogFilePath = new System.Windows.Forms.Label();
             this.lLogMode = new System.Windows.Forms.Label();
             this.tpConfig = new System.Windows.Forms.TabPage();
+            this.tbAfterBurnInReBIPowerDifferentLimit = new System.Windows.Forms.TextBox();
+            this.lAfterBurnInReBIPowerDifferentLimit = new System.Windows.Forms.Label();
+            this.cbIgnoreTxFault = new System.Windows.Forms.CheckBox();
             this.cbPowerSupplyControlReverse = new System.Windows.Forms.CheckBox();
             this.gbTemperatureCorrectAndThreshold = new System.Windows.Forms.GroupBox();
             this.tbTemperatureMinThreshold = new System.Windows.Forms.TextBox();
@@ -154,11 +161,11 @@
             this.tbMpd1Threshold = new System.Windows.Forms.TextBox();
             this.tbMpd2Threshold = new System.Windows.Forms.TextBox();
             this.tbMpd3Threshold = new System.Windows.Forms.TextBox();
-            this.lRxThreshold = new System.Windows.Forms.Label();
-            this.tbRx4Threshold = new System.Windows.Forms.TextBox();
-            this.tbRx1Threshold = new System.Windows.Forms.TextBox();
-            this.tbRx2Threshold = new System.Windows.Forms.TextBox();
-            this.tbRx3Threshold = new System.Windows.Forms.TextBox();
+            this.lRxThresholdMin = new System.Windows.Forms.Label();
+            this.tbRx4ThresholdMin = new System.Windows.Forms.TextBox();
+            this.tbRx1ThresholdMin = new System.Windows.Forms.TextBox();
+            this.tbRx2ThresholdMin = new System.Windows.Forms.TextBox();
+            this.tbRx3ThresholdMin = new System.Windows.Forms.TextBox();
             this.lTxThreshold = new System.Windows.Forms.Label();
             this.tbTx4Threshold = new System.Windows.Forms.TextBox();
             this.tbTx1Threshold = new System.Windows.Forms.TextBox();
@@ -198,6 +205,15 @@
             this.lRxRateNumerator = new System.Windows.Forms.Label();
             this.tbRxRssiRateDenominator = new System.Windows.Forms.TextBox();
             this.gbI2cConfig = new System.Windows.Forms.GroupBox();
+            this.lTxFaultBit = new System.Windows.Forms.Label();
+            this.cbTxFaultBit = new System.Windows.Forms.ComboBox();
+            this.lTxFaultReg = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tbI2cTxFaultDevAddr = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tbI2cTxFaultRegisterPage = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tbI2cTxFaultRegisterAddr = new System.Windows.Forms.TextBox();
             this.lRxI2cConfig = new System.Windows.Forms.Label();
             this.tbI2cMpdRegisterAddr = new System.Windows.Forms.TextBox();
             this.lBeTestDevAddr = new System.Windows.Forms.Label();
@@ -214,6 +230,11 @@
             this.tbPassword124 = new System.Windows.Forms.TextBox();
             this.l = new System.Windows.Forms.Label();
             this.tbPassword123 = new System.Windows.Forms.TextBox();
+            this.tbRx4ThresholdMax = new System.Windows.Forms.TextBox();
+            this.tbRx1ThresholdMax = new System.Windows.Forms.TextBox();
+            this.tbRx2ThresholdMax = new System.Windows.Forms.TextBox();
+            this.tbRx3ThresholdMax = new System.Windows.Forms.TextBox();
+            this.lRxThresholdMax = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecord)).BeginInit();
             this.tcFunctionSelect.SuspendLayout();
             this.tpLog.SuspendLayout();
@@ -234,7 +255,7 @@
             // 
             this.lSnNumber.AutoSize = true;
             this.lSnNumber.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lSnNumber.Location = new System.Drawing.Point(491, 93);
+            this.lSnNumber.Location = new System.Drawing.Point(491, 51);
             this.lSnNumber.Name = "lSnNumber";
             this.lSnNumber.Size = new System.Drawing.Size(53, 24);
             this.lSnNumber.TabIndex = 2;
@@ -244,7 +265,7 @@
             // 
             this.tbSerialNumber.BackColor = System.Drawing.Color.YellowGreen;
             this.tbSerialNumber.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbSerialNumber.Location = new System.Drawing.Point(548, 90);
+            this.tbSerialNumber.Location = new System.Drawing.Point(548, 48);
             this.tbSerialNumber.Name = "tbSerialNumber";
             this.tbSerialNumber.Size = new System.Drawing.Size(300, 36);
             this.tbSerialNumber.TabIndex = 5;
@@ -268,11 +289,11 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvRecord.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvRecord.Location = new System.Drawing.Point(3, 382);
+            this.dgvRecord.Location = new System.Drawing.Point(3, 369);
             this.dgvRecord.Name = "dgvRecord";
             this.dgvRecord.ReadOnly = true;
             this.dgvRecord.RowTemplate.Height = 24;
-            this.dgvRecord.Size = new System.Drawing.Size(1257, 223);
+            this.dgvRecord.Size = new System.Drawing.Size(1257, 236);
             this.dgvRecord.TabIndex = 400;
             // 
             // bLog
@@ -281,7 +302,7 @@
             this.bLog.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.bLog.Location = new System.Drawing.Point(854, 179);
             this.bLog.Name = "bLog";
-            this.bLog.Size = new System.Drawing.Size(182, 197);
+            this.bLog.Size = new System.Drawing.Size(199, 184);
             this.bLog.TabIndex = 6;
             this.bLog.Text = "Log";
             this.bLog.UseVisualStyleBackColor = true;
@@ -291,7 +312,7 @@
             // 
             this.lAfterBurnInPowerDifferentLimit.AutoSize = true;
             this.lAfterBurnInPowerDifferentLimit.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lAfterBurnInPowerDifferentLimit.Location = new System.Drawing.Point(266, 10);
+            this.lAfterBurnInPowerDifferentLimit.Location = new System.Drawing.Point(535, 10);
             this.lAfterBurnInPowerDifferentLimit.Name = "lAfterBurnInPowerDifferentLimit";
             this.lAfterBurnInPowerDifferentLimit.Size = new System.Drawing.Size(232, 16);
             this.lAfterBurnInPowerDifferentLimit.TabIndex = 8;
@@ -301,7 +322,7 @@
             // 
             this.tbAfterBurnInPowerDifferentLimit.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbAfterBurnInPowerDifferentLimit.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbAfterBurnInPowerDifferentLimit.Location = new System.Drawing.Point(503, 7);
+            this.tbAfterBurnInPowerDifferentLimit.Location = new System.Drawing.Point(772, 7);
             this.tbAfterBurnInPowerDifferentLimit.Name = "tbAfterBurnInPowerDifferentLimit";
             this.tbAfterBurnInPowerDifferentLimit.Size = new System.Drawing.Size(40, 27);
             this.tbAfterBurnInPowerDifferentLimit.TabIndex = 105;
@@ -330,8 +351,12 @@
             // 
             // tpLog
             // 
-            this.tpLog.Controls.Add(this.lCableSerialNumber);
+            this.tpLog.Controls.Add(this.cbTx4Fault);
+            this.tpLog.Controls.Add(this.cbTx3Fault);
             this.tpLog.Controls.Add(this.tbCableSerialNumber);
+            this.tpLog.Controls.Add(this.lCableSerialNumber);
+            this.tpLog.Controls.Add(this.cbTx2Fault);
+            this.tpLog.Controls.Add(this.cbTx1Fault);
             this.tpLog.Controls.Add(this.bOpenConfigFile);
             this.tpLog.Controls.Add(this.cbLogMode);
             this.tpLog.Controls.Add(this.tbOperator);
@@ -419,30 +444,76 @@
             this.tpLog.Text = "Record";
             this.tpLog.UseVisualStyleBackColor = true;
             // 
-            // lCableSerialNumber
+            // cbTx4Fault
             // 
-            this.lCableSerialNumber.AutoSize = true;
-            this.lCableSerialNumber.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lCableSerialNumber.Location = new System.Drawing.Point(854, 140);
-            this.lCableSerialNumber.Name = "lCableSerialNumber";
-            this.lCableSerialNumber.Size = new System.Drawing.Size(60, 24);
-            this.lCableSerialNumber.TabIndex = 402;
-            this.lCableSerialNumber.Text = "CSN:";
+            this.cbTx4Fault.AutoSize = true;
+            this.cbTx4Fault.Enabled = false;
+            this.cbTx4Fault.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cbTx4Fault.Location = new System.Drawing.Point(748, 340);
+            this.cbTx4Fault.Name = "cbTx4Fault";
+            this.cbTx4Fault.Size = new System.Drawing.Size(99, 23);
+            this.cbTx4Fault.TabIndex = 406;
+            this.cbTx4Fault.Text = "Tx4 Fault";
+            this.cbTx4Fault.UseVisualStyleBackColor = true;
+            // 
+            // cbTx3Fault
+            // 
+            this.cbTx3Fault.AutoSize = true;
+            this.cbTx3Fault.Enabled = false;
+            this.cbTx3Fault.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cbTx3Fault.Location = new System.Drawing.Point(642, 340);
+            this.cbTx3Fault.Name = "cbTx3Fault";
+            this.cbTx3Fault.Size = new System.Drawing.Size(99, 23);
+            this.cbTx3Fault.TabIndex = 405;
+            this.cbTx3Fault.Text = "Tx3 Fault";
+            this.cbTx3Fault.UseVisualStyleBackColor = true;
             // 
             // tbCableSerialNumber
             // 
             this.tbCableSerialNumber.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbCableSerialNumber.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbCableSerialNumber.Location = new System.Drawing.Point(920, 137);
+            this.tbCableSerialNumber.Location = new System.Drawing.Point(920, 48);
             this.tbCableSerialNumber.Name = "tbCableSerialNumber";
             this.tbCableSerialNumber.ReadOnly = true;
-            this.tbCableSerialNumber.Size = new System.Drawing.Size(300, 36);
+            this.tbCableSerialNumber.Size = new System.Drawing.Size(339, 36);
             this.tbCableSerialNumber.TabIndex = 401;
+            // 
+            // lCableSerialNumber
+            // 
+            this.lCableSerialNumber.AutoSize = true;
+            this.lCableSerialNumber.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lCableSerialNumber.Location = new System.Drawing.Point(854, 51);
+            this.lCableSerialNumber.Name = "lCableSerialNumber";
+            this.lCableSerialNumber.Size = new System.Drawing.Size(60, 24);
+            this.lCableSerialNumber.TabIndex = 402;
+            this.lCableSerialNumber.Text = "CSN:";
+            // 
+            // cbTx2Fault
+            // 
+            this.cbTx2Fault.AutoSize = true;
+            this.cbTx2Fault.Enabled = false;
+            this.cbTx2Fault.Location = new System.Drawing.Point(536, 340);
+            this.cbTx2Fault.Name = "cbTx2Fault";
+            this.cbTx2Fault.Size = new System.Drawing.Size(99, 23);
+            this.cbTx2Fault.TabIndex = 404;
+            this.cbTx2Fault.Text = "Tx2 Fault";
+            this.cbTx2Fault.UseVisualStyleBackColor = true;
+            // 
+            // cbTx1Fault
+            // 
+            this.cbTx1Fault.AutoSize = true;
+            this.cbTx1Fault.Enabled = false;
+            this.cbTx1Fault.Location = new System.Drawing.Point(430, 340);
+            this.cbTx1Fault.Name = "cbTx1Fault";
+            this.cbTx1Fault.Size = new System.Drawing.Size(99, 23);
+            this.cbTx1Fault.TabIndex = 403;
+            this.cbTx1Fault.Text = "Tx1 Fault";
+            this.cbTx1Fault.UseVisualStyleBackColor = true;
             // 
             // bOpenConfigFile
             // 
             this.bOpenConfigFile.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.bOpenConfigFile.Location = new System.Drawing.Point(728, 6);
+            this.bOpenConfigFile.Location = new System.Drawing.Point(590, 6);
             this.bOpenConfigFile.Name = "bOpenConfigFile";
             this.bOpenConfigFile.Size = new System.Drawing.Size(120, 36);
             this.bOpenConfigFile.TabIndex = 0;
@@ -459,19 +530,17 @@
             "TxOnly",
             "RxOnly",
             "BeforeBurnIn",
-            "AfterBurnIn1",
-            "AfterBurnIn2",
-            "AfterBurnIn3",
-            "AfterBurnIn4",
-            "AfterBurnIn5",
+            "AfterBurnIn",
+            "AfterBurnIn(QC)",
             "AocBeforeGlue",
             "AocAfterGlue",
+            "AocAfterGlue(QC)",
             "B-HDMI(QC)",
             "Log(w/o Config)",
             "ConfigOnly",
             "BeforeTestConfig",
             "AfterTestConfig"});
-            this.cbLogMode.Location = new System.Drawing.Point(80, 48);
+            this.cbLogMode.Location = new System.Drawing.Point(790, 9);
             this.cbLogMode.Name = "cbLogMode";
             this.cbLogMode.Size = new System.Drawing.Size(200, 32);
             this.cbLogMode.TabIndex = 1;
@@ -482,7 +551,7 @@
             // 
             this.tbOperator.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbOperator.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbOperator.Location = new System.Drawing.Point(57, 90);
+            this.tbOperator.Location = new System.Drawing.Point(57, 48);
             this.tbOperator.Name = "tbOperator";
             this.tbOperator.Size = new System.Drawing.Size(60, 36);
             this.tbOperator.TabIndex = 2;
@@ -493,7 +562,7 @@
             this.tbLotNumber.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.tbLotNumber.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbLotNumber.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbLotNumber.Location = new System.Drawing.Point(189, 90);
+            this.tbLotNumber.Location = new System.Drawing.Point(189, 48);
             this.tbLotNumber.Name = "tbLotNumber";
             this.tbLotNumber.Size = new System.Drawing.Size(175, 36);
             this.tbLotNumber.TabIndex = 3;
@@ -504,7 +573,7 @@
             // 
             this.tbSubLotNumber.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbSubLotNumber.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbSubLotNumber.Location = new System.Drawing.Point(425, 90);
+            this.tbSubLotNumber.Location = new System.Drawing.Point(425, 48);
             this.tbSubLotNumber.Name = "tbSubLotNumber";
             this.tbSubLotNumber.Size = new System.Drawing.Size(60, 36);
             this.tbSubLotNumber.TabIndex = 40;
@@ -540,7 +609,7 @@
             this.tbConfigFilePath.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tbConfigFilePath.Location = new System.Drawing.Point(103, 6);
             this.tbConfigFilePath.Name = "tbConfigFilePath";
-            this.tbConfigFilePath.Size = new System.Drawing.Size(619, 36);
+            this.tbConfigFilePath.Size = new System.Drawing.Size(481, 36);
             this.tbConfigFilePath.TabIndex = 78;
             // 
             // tbRx1Log
@@ -548,7 +617,7 @@
             this.tbRx1Log.BackColor = System.Drawing.Color.DarkOliveGreen;
             this.tbRx1Log.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tbRx1Log.ForeColor = System.Drawing.Color.LightGreen;
-            this.tbRx1Log.Location = new System.Drawing.Point(6, 311);
+            this.tbRx1Log.Location = new System.Drawing.Point(6, 269);
             this.tbRx1Log.Name = "tbRx1Log";
             this.tbRx1Log.ReadOnly = true;
             this.tbRx1Log.Size = new System.Drawing.Size(100, 36);
@@ -559,7 +628,7 @@
             this.tbRx2Log.BackColor = System.Drawing.Color.DarkOliveGreen;
             this.tbRx2Log.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tbRx2Log.ForeColor = System.Drawing.Color.LightGreen;
-            this.tbRx2Log.Location = new System.Drawing.Point(112, 311);
+            this.tbRx2Log.Location = new System.Drawing.Point(112, 269);
             this.tbRx2Log.Name = "tbRx2Log";
             this.tbRx2Log.ReadOnly = true;
             this.tbRx2Log.Size = new System.Drawing.Size(100, 36);
@@ -570,7 +639,7 @@
             this.tbRx3Log.BackColor = System.Drawing.Color.DarkOliveGreen;
             this.tbRx3Log.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tbRx3Log.ForeColor = System.Drawing.Color.LightGreen;
-            this.tbRx3Log.Location = new System.Drawing.Point(218, 311);
+            this.tbRx3Log.Location = new System.Drawing.Point(218, 269);
             this.tbRx3Log.Name = "tbRx3Log";
             this.tbRx3Log.ReadOnly = true;
             this.tbRx3Log.Size = new System.Drawing.Size(100, 36);
@@ -581,7 +650,7 @@
             this.tbRx4Log.BackColor = System.Drawing.Color.DarkOliveGreen;
             this.tbRx4Log.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tbRx4Log.ForeColor = System.Drawing.Color.LightGreen;
-            this.tbRx4Log.Location = new System.Drawing.Point(324, 311);
+            this.tbRx4Log.Location = new System.Drawing.Point(324, 269);
             this.tbRx4Log.Name = "tbRx4Log";
             this.tbRx4Log.ReadOnly = true;
             this.tbRx4Log.Size = new System.Drawing.Size(100, 36);
@@ -592,7 +661,7 @@
             this.tbTx4PowerLog.BackColor = System.Drawing.Color.DarkOliveGreen;
             this.tbTx4PowerLog.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tbTx4PowerLog.ForeColor = System.Drawing.Color.LightGreen;
-            this.tbTx4PowerLog.Location = new System.Drawing.Point(430, 311);
+            this.tbTx4PowerLog.Location = new System.Drawing.Point(430, 269);
             this.tbTx4PowerLog.Name = "tbTx4PowerLog";
             this.tbTx4PowerLog.ReadOnly = true;
             this.tbTx4PowerLog.Size = new System.Drawing.Size(100, 36);
@@ -603,7 +672,7 @@
             this.tbTx1PowerLog.BackColor = System.Drawing.Color.DarkOliveGreen;
             this.tbTx1PowerLog.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tbTx1PowerLog.ForeColor = System.Drawing.Color.LightGreen;
-            this.tbTx1PowerLog.Location = new System.Drawing.Point(748, 311);
+            this.tbTx1PowerLog.Location = new System.Drawing.Point(748, 269);
             this.tbTx1PowerLog.Name = "tbTx1PowerLog";
             this.tbTx1PowerLog.ReadOnly = true;
             this.tbTx1PowerLog.Size = new System.Drawing.Size(100, 36);
@@ -614,7 +683,7 @@
             this.tbTx2PowerLog.BackColor = System.Drawing.Color.DarkOliveGreen;
             this.tbTx2PowerLog.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tbTx2PowerLog.ForeColor = System.Drawing.Color.LightGreen;
-            this.tbTx2PowerLog.Location = new System.Drawing.Point(642, 311);
+            this.tbTx2PowerLog.Location = new System.Drawing.Point(642, 269);
             this.tbTx2PowerLog.Name = "tbTx2PowerLog";
             this.tbTx2PowerLog.ReadOnly = true;
             this.tbTx2PowerLog.Size = new System.Drawing.Size(100, 36);
@@ -625,7 +694,7 @@
             this.tbTx3PowerLog.BackColor = System.Drawing.Color.DarkOliveGreen;
             this.tbTx3PowerLog.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tbTx3PowerLog.ForeColor = System.Drawing.Color.LightGreen;
-            this.tbTx3PowerLog.Location = new System.Drawing.Point(536, 311);
+            this.tbTx3PowerLog.Location = new System.Drawing.Point(536, 269);
             this.tbTx3PowerLog.Name = "tbTx3PowerLog";
             this.tbTx3PowerLog.ReadOnly = true;
             this.tbTx3PowerLog.Size = new System.Drawing.Size(100, 36);
@@ -635,7 +704,7 @@
             // 
             this.tbVoltage.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbVoltage.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbVoltage.Location = new System.Drawing.Point(372, 137);
+            this.tbVoltage.Location = new System.Drawing.Point(372, 95);
             this.tbVoltage.Name = "tbVoltage";
             this.tbVoltage.ReadOnly = true;
             this.tbVoltage.Size = new System.Drawing.Size(113, 36);
@@ -645,7 +714,7 @@
             // 
             this.lVoltage.AutoSize = true;
             this.lVoltage.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lVoltage.Location = new System.Drawing.Point(312, 140);
+            this.lVoltage.Location = new System.Drawing.Point(312, 98);
             this.lVoltage.Name = "lVoltage";
             this.lVoltage.Size = new System.Drawing.Size(52, 24);
             this.lVoltage.TabIndex = 116;
@@ -655,7 +724,7 @@
             // 
             this.lCobSerialNumber.AutoSize = true;
             this.lCobSerialNumber.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lCobSerialNumber.Location = new System.Drawing.Point(497, 140);
+            this.lCobSerialNumber.Location = new System.Drawing.Point(497, 98);
             this.lCobSerialNumber.Name = "lCobSerialNumber";
             this.lCobSerialNumber.Size = new System.Drawing.Size(45, 24);
             this.lCobSerialNumber.TabIndex = 115;
@@ -665,7 +734,7 @@
             // 
             this.cbTx4Los.AutoSize = true;
             this.cbTx4Los.Enabled = false;
-            this.cbTx4Los.Location = new System.Drawing.Point(748, 353);
+            this.cbTx4Los.Location = new System.Drawing.Point(748, 311);
             this.cbTx4Los.Name = "cbTx4Los";
             this.cbTx4Los.Size = new System.Drawing.Size(96, 23);
             this.cbTx4Los.TabIndex = 114;
@@ -676,7 +745,7 @@
             // 
             this.cbTx3Los.AutoSize = true;
             this.cbTx3Los.Enabled = false;
-            this.cbTx3Los.Location = new System.Drawing.Point(642, 353);
+            this.cbTx3Los.Location = new System.Drawing.Point(642, 311);
             this.cbTx3Los.Name = "cbTx3Los";
             this.cbTx3Los.Size = new System.Drawing.Size(96, 23);
             this.cbTx3Los.TabIndex = 113;
@@ -687,7 +756,7 @@
             // 
             this.cbTx2Los.AutoSize = true;
             this.cbTx2Los.Enabled = false;
-            this.cbTx2Los.Location = new System.Drawing.Point(536, 353);
+            this.cbTx2Los.Location = new System.Drawing.Point(536, 311);
             this.cbTx2Los.Name = "cbTx2Los";
             this.cbTx2Los.Size = new System.Drawing.Size(96, 23);
             this.cbTx2Los.TabIndex = 112;
@@ -698,7 +767,7 @@
             // 
             this.cbTx1Los.AutoSize = true;
             this.cbTx1Los.Enabled = false;
-            this.cbTx1Los.Location = new System.Drawing.Point(430, 353);
+            this.cbTx1Los.Location = new System.Drawing.Point(430, 311);
             this.cbTx1Los.Name = "cbTx1Los";
             this.cbTx1Los.Size = new System.Drawing.Size(96, 23);
             this.cbTx1Los.TabIndex = 111;
@@ -709,7 +778,7 @@
             // 
             this.cbRx4Los.AutoSize = true;
             this.cbRx4Los.Enabled = false;
-            this.cbRx4Los.Location = new System.Drawing.Point(324, 353);
+            this.cbRx4Los.Location = new System.Drawing.Point(324, 311);
             this.cbRx4Los.Name = "cbRx4Los";
             this.cbRx4Los.Size = new System.Drawing.Size(97, 23);
             this.cbRx4Los.TabIndex = 110;
@@ -720,7 +789,7 @@
             // 
             this.cbRx3Los.AutoSize = true;
             this.cbRx3Los.Enabled = false;
-            this.cbRx3Los.Location = new System.Drawing.Point(218, 353);
+            this.cbRx3Los.Location = new System.Drawing.Point(218, 311);
             this.cbRx3Los.Name = "cbRx3Los";
             this.cbRx3Los.Size = new System.Drawing.Size(97, 23);
             this.cbRx3Los.TabIndex = 109;
@@ -731,7 +800,7 @@
             // 
             this.cbRx2Los.AutoSize = true;
             this.cbRx2Los.Enabled = false;
-            this.cbRx2Los.Location = new System.Drawing.Point(112, 353);
+            this.cbRx2Los.Location = new System.Drawing.Point(112, 311);
             this.cbRx2Los.Name = "cbRx2Los";
             this.cbRx2Los.Size = new System.Drawing.Size(97, 23);
             this.cbRx2Los.TabIndex = 108;
@@ -742,7 +811,7 @@
             // 
             this.cbRx1Los.AutoSize = true;
             this.cbRx1Los.Enabled = false;
-            this.cbRx1Los.Location = new System.Drawing.Point(6, 353);
+            this.cbRx1Los.Location = new System.Drawing.Point(6, 311);
             this.cbRx1Los.Name = "cbRx1Los";
             this.cbRx1Los.Size = new System.Drawing.Size(97, 23);
             this.cbRx1Los.TabIndex = 107;
@@ -752,19 +821,19 @@
             // lClassification
             // 
             this.lClassification.AutoSize = true;
-            this.lClassification.BackColor = System.Drawing.Color.Green;
-            this.lClassification.Font = new System.Drawing.Font("新細明體", 147.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lClassification.ForeColor = System.Drawing.Color.White;
-            this.lClassification.Location = new System.Drawing.Point(1042, 179);
+            this.lClassification.BackColor = System.Drawing.Color.Yellow;
+            this.lClassification.Font = new System.Drawing.Font("新細明體", 135.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lClassification.ForeColor = System.Drawing.Color.OrangeRed;
+            this.lClassification.Location = new System.Drawing.Point(1059, 182);
             this.lClassification.Name = "lClassification";
-            this.lClassification.Size = new System.Drawing.Size(0, 197);
+            this.lClassification.Size = new System.Drawing.Size(0, 181);
             this.lClassification.TabIndex = 106;
             // 
             // cbAutoLogWithLableTemperature
             // 
             this.cbAutoLogWithLableTemperature.AutoSize = true;
             this.cbAutoLogWithLableTemperature.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.cbAutoLogWithLableTemperature.Location = new System.Drawing.Point(10, 139);
+            this.cbAutoLogWithLableTemperature.Location = new System.Drawing.Point(10, 97);
             this.cbAutoLogWithLableTemperature.Name = "cbAutoLogWithLableTemperature";
             this.cbAutoLogWithLableTemperature.Size = new System.Drawing.Size(117, 28);
             this.cbAutoLogWithLableTemperature.TabIndex = 105;
@@ -775,7 +844,7 @@
             // 
             this.tbModuleSerialNumber.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbModuleSerialNumber.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbModuleSerialNumber.Location = new System.Drawing.Point(548, 137);
+            this.tbModuleSerialNumber.Location = new System.Drawing.Point(548, 95);
             this.tbModuleSerialNumber.Name = "tbModuleSerialNumber";
             this.tbModuleSerialNumber.ReadOnly = true;
             this.tbModuleSerialNumber.Size = new System.Drawing.Size(300, 36);
@@ -785,7 +854,7 @@
             // 
             this.tbTxBias1.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbTxBias1.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbTxBias1.Location = new System.Drawing.Point(6, 203);
+            this.tbTxBias1.Location = new System.Drawing.Point(6, 161);
             this.tbTxBias1.Name = "tbTxBias1";
             this.tbTxBias1.ReadOnly = true;
             this.tbTxBias1.Size = new System.Drawing.Size(100, 36);
@@ -795,7 +864,7 @@
             // 
             this.lTxBias1.AutoSize = true;
             this.lTxBias1.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lTxBias1.Location = new System.Drawing.Point(26, 176);
+            this.lTxBias1.Location = new System.Drawing.Point(26, 134);
             this.lTxBias1.Name = "lTxBias1";
             this.lTxBias1.Size = new System.Drawing.Size(61, 24);
             this.lTxBias1.TabIndex = 102;
@@ -805,7 +874,7 @@
             // 
             this.tbTxBias2.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbTxBias2.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbTxBias2.Location = new System.Drawing.Point(112, 203);
+            this.tbTxBias2.Location = new System.Drawing.Point(112, 161);
             this.tbTxBias2.Name = "tbTxBias2";
             this.tbTxBias2.ReadOnly = true;
             this.tbTxBias2.Size = new System.Drawing.Size(100, 36);
@@ -815,7 +884,7 @@
             // 
             this.lTxBias2.AutoSize = true;
             this.lTxBias2.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lTxBias2.Location = new System.Drawing.Point(132, 176);
+            this.lTxBias2.Location = new System.Drawing.Point(132, 134);
             this.lTxBias2.Name = "lTxBias2";
             this.lTxBias2.Size = new System.Drawing.Size(61, 24);
             this.lTxBias2.TabIndex = 100;
@@ -825,7 +894,7 @@
             // 
             this.tbTxBias3.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbTxBias3.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbTxBias3.Location = new System.Drawing.Point(218, 203);
+            this.tbTxBias3.Location = new System.Drawing.Point(218, 161);
             this.tbTxBias3.Name = "tbTxBias3";
             this.tbTxBias3.ReadOnly = true;
             this.tbTxBias3.Size = new System.Drawing.Size(100, 36);
@@ -835,7 +904,7 @@
             // 
             this.lTxBias3.AutoSize = true;
             this.lTxBias3.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lTxBias3.Location = new System.Drawing.Point(238, 176);
+            this.lTxBias3.Location = new System.Drawing.Point(238, 134);
             this.lTxBias3.Name = "lTxBias3";
             this.lTxBias3.Size = new System.Drawing.Size(61, 24);
             this.lTxBias3.TabIndex = 98;
@@ -845,7 +914,7 @@
             // 
             this.tbTxBias4.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbTxBias4.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbTxBias4.Location = new System.Drawing.Point(324, 203);
+            this.tbTxBias4.Location = new System.Drawing.Point(324, 161);
             this.tbTxBias4.Name = "tbTxBias4";
             this.tbTxBias4.ReadOnly = true;
             this.tbTxBias4.Size = new System.Drawing.Size(100, 36);
@@ -855,7 +924,7 @@
             // 
             this.lTxBias4.AutoSize = true;
             this.lTxBias4.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lTxBias4.Location = new System.Drawing.Point(344, 176);
+            this.lTxBias4.Location = new System.Drawing.Point(344, 134);
             this.lTxBias4.Name = "lTxBias4";
             this.lTxBias4.Size = new System.Drawing.Size(61, 24);
             this.lTxBias4.TabIndex = 96;
@@ -865,7 +934,7 @@
             // 
             this.gbStatus.Controls.Add(this.lAction);
             this.gbStatus.Controls.Add(this.lResult);
-            this.gbStatus.Location = new System.Drawing.Point(854, 6);
+            this.gbStatus.Location = new System.Drawing.Point(854, 95);
             this.gbStatus.Name = "gbStatus";
             this.gbStatus.Size = new System.Drawing.Size(406, 78);
             this.gbStatus.TabIndex = 95;
@@ -885,7 +954,7 @@
             // 
             this.tbTemperature.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbTemperature.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbTemperature.Location = new System.Drawing.Point(208, 137);
+            this.tbTemperature.Location = new System.Drawing.Point(208, 95);
             this.tbTemperature.Name = "tbTemperature";
             this.tbTemperature.ReadOnly = true;
             this.tbTemperature.Size = new System.Drawing.Size(95, 36);
@@ -895,7 +964,7 @@
             // 
             this.lTemperature.AutoSize = true;
             this.lTemperature.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lTemperature.Location = new System.Drawing.Point(133, 140);
+            this.lTemperature.Location = new System.Drawing.Point(133, 98);
             this.lTemperature.Name = "lTemperature";
             this.lTemperature.Size = new System.Drawing.Size(69, 24);
             this.lTemperature.TabIndex = 93;
@@ -905,7 +974,7 @@
             // 
             this.lOperator.AutoSize = true;
             this.lOperator.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lOperator.Location = new System.Drawing.Point(6, 93);
+            this.lOperator.Location = new System.Drawing.Point(6, 51);
             this.lOperator.Name = "lOperator";
             this.lOperator.Size = new System.Drawing.Size(45, 24);
             this.lOperator.TabIndex = 90;
@@ -915,7 +984,7 @@
             // 
             this.tbRx1.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbRx1.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbRx1.Location = new System.Drawing.Point(6, 269);
+            this.tbRx1.Location = new System.Drawing.Point(6, 227);
             this.tbRx1.Name = "tbRx1";
             this.tbRx1.ReadOnly = true;
             this.tbRx1.Size = new System.Drawing.Size(100, 36);
@@ -925,7 +994,7 @@
             // 
             this.tbMpd4Value.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbMpd4Value.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbMpd4Value.Location = new System.Drawing.Point(430, 203);
+            this.tbMpd4Value.Location = new System.Drawing.Point(430, 161);
             this.tbMpd4Value.Name = "tbMpd4Value";
             this.tbMpd4Value.ReadOnly = true;
             this.tbMpd4Value.Size = new System.Drawing.Size(100, 36);
@@ -935,7 +1004,7 @@
             // 
             this.lRx1.AutoSize = true;
             this.lRx1.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lRx1.Location = new System.Drawing.Point(33, 242);
+            this.lRx1.Location = new System.Drawing.Point(33, 200);
             this.lRx1.Name = "lRx1";
             this.lRx1.Size = new System.Drawing.Size(47, 24);
             this.lRx1.TabIndex = 26;
@@ -945,7 +1014,7 @@
             // 
             this.lRx2.AutoSize = true;
             this.lRx2.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lRx2.Location = new System.Drawing.Point(139, 242);
+            this.lRx2.Location = new System.Drawing.Point(139, 200);
             this.lRx2.Name = "lRx2";
             this.lRx2.Size = new System.Drawing.Size(47, 24);
             this.lRx2.TabIndex = 28;
@@ -955,7 +1024,7 @@
             // 
             this.tbRx2.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbRx2.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbRx2.Location = new System.Drawing.Point(112, 269);
+            this.tbRx2.Location = new System.Drawing.Point(112, 227);
             this.tbRx2.Name = "tbRx2";
             this.tbRx2.ReadOnly = true;
             this.tbRx2.Size = new System.Drawing.Size(100, 36);
@@ -965,7 +1034,7 @@
             // 
             this.lRx3.AutoSize = true;
             this.lRx3.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lRx3.Location = new System.Drawing.Point(245, 242);
+            this.lRx3.Location = new System.Drawing.Point(245, 200);
             this.lRx3.Name = "lRx3";
             this.lRx3.Size = new System.Drawing.Size(47, 24);
             this.lRx3.TabIndex = 30;
@@ -975,7 +1044,7 @@
             // 
             this.lMpd4.AutoSize = true;
             this.lMpd4.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lMpd4.Location = new System.Drawing.Point(445, 176);
+            this.lMpd4.Location = new System.Drawing.Point(445, 134);
             this.lMpd4.Name = "lMpd4";
             this.lMpd4.Size = new System.Drawing.Size(70, 24);
             this.lMpd4.TabIndex = 88;
@@ -985,7 +1054,7 @@
             // 
             this.tbRx3.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbRx3.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbRx3.Location = new System.Drawing.Point(218, 269);
+            this.tbRx3.Location = new System.Drawing.Point(218, 227);
             this.tbRx3.Name = "tbRx3";
             this.tbRx3.ReadOnly = true;
             this.tbRx3.Size = new System.Drawing.Size(100, 36);
@@ -995,7 +1064,7 @@
             // 
             this.lRx4.AutoSize = true;
             this.lRx4.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lRx4.Location = new System.Drawing.Point(351, 242);
+            this.lRx4.Location = new System.Drawing.Point(351, 200);
             this.lRx4.Name = "lRx4";
             this.lRx4.Size = new System.Drawing.Size(47, 24);
             this.lRx4.TabIndex = 32;
@@ -1005,7 +1074,7 @@
             // 
             this.tbMpd3Value.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbMpd3Value.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbMpd3Value.Location = new System.Drawing.Point(536, 203);
+            this.tbMpd3Value.Location = new System.Drawing.Point(536, 161);
             this.tbMpd3Value.Name = "tbMpd3Value";
             this.tbMpd3Value.ReadOnly = true;
             this.tbMpd3Value.Size = new System.Drawing.Size(100, 36);
@@ -1015,7 +1084,7 @@
             // 
             this.tbRx4.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbRx4.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbRx4.Location = new System.Drawing.Point(324, 269);
+            this.tbRx4.Location = new System.Drawing.Point(324, 227);
             this.tbRx4.Name = "tbRx4";
             this.tbRx4.ReadOnly = true;
             this.tbRx4.Size = new System.Drawing.Size(100, 36);
@@ -1025,7 +1094,7 @@
             // 
             this.lMpd3.AutoSize = true;
             this.lMpd3.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lMpd3.Location = new System.Drawing.Point(551, 176);
+            this.lMpd3.Location = new System.Drawing.Point(551, 134);
             this.lMpd3.Name = "lMpd3";
             this.lMpd3.Size = new System.Drawing.Size(70, 24);
             this.lMpd3.TabIndex = 86;
@@ -1035,7 +1104,7 @@
             // 
             this.tbTx4Power.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbTx4Power.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbTx4Power.Location = new System.Drawing.Point(430, 269);
+            this.tbTx4Power.Location = new System.Drawing.Point(430, 227);
             this.tbTx4Power.Name = "tbTx4Power";
             this.tbTx4Power.ReadOnly = true;
             this.tbTx4Power.Size = new System.Drawing.Size(100, 36);
@@ -1045,7 +1114,7 @@
             // 
             this.tbMpd2Value.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbMpd2Value.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbMpd2Value.Location = new System.Drawing.Point(642, 203);
+            this.tbMpd2Value.Location = new System.Drawing.Point(642, 161);
             this.tbMpd2Value.Name = "tbMpd2Value";
             this.tbMpd2Value.ReadOnly = true;
             this.tbMpd2Value.Size = new System.Drawing.Size(100, 36);
@@ -1055,7 +1124,7 @@
             // 
             this.lTx1Power.AutoSize = true;
             this.lTx1Power.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lTx1Power.Location = new System.Drawing.Point(751, 242);
+            this.lTx1Power.Location = new System.Drawing.Point(751, 200);
             this.lTx1Power.Name = "lTx1Power";
             this.lTx1Power.Size = new System.Drawing.Size(94, 24);
             this.lTx1Power.TabIndex = 18;
@@ -1065,7 +1134,7 @@
             // 
             this.lMpd2.AutoSize = true;
             this.lMpd2.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lMpd2.Location = new System.Drawing.Point(657, 176);
+            this.lMpd2.Location = new System.Drawing.Point(657, 134);
             this.lMpd2.Name = "lMpd2";
             this.lMpd2.Size = new System.Drawing.Size(70, 24);
             this.lMpd2.TabIndex = 84;
@@ -1075,7 +1144,7 @@
             // 
             this.tbTx1Power.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbTx1Power.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbTx1Power.Location = new System.Drawing.Point(748, 269);
+            this.tbTx1Power.Location = new System.Drawing.Point(748, 227);
             this.tbTx1Power.Name = "tbTx1Power";
             this.tbTx1Power.ReadOnly = true;
             this.tbTx1Power.Size = new System.Drawing.Size(100, 36);
@@ -1085,7 +1154,7 @@
             // 
             this.lTx2Power.AutoSize = true;
             this.lTx2Power.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lTx2Power.Location = new System.Drawing.Point(645, 242);
+            this.lTx2Power.Location = new System.Drawing.Point(645, 200);
             this.lTx2Power.Name = "lTx2Power";
             this.lTx2Power.Size = new System.Drawing.Size(94, 24);
             this.lTx2Power.TabIndex = 20;
@@ -1095,7 +1164,7 @@
             // 
             this.tbMpd1Value.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbMpd1Value.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbMpd1Value.Location = new System.Drawing.Point(748, 203);
+            this.tbMpd1Value.Location = new System.Drawing.Point(748, 161);
             this.tbMpd1Value.Name = "tbMpd1Value";
             this.tbMpd1Value.ReadOnly = true;
             this.tbMpd1Value.Size = new System.Drawing.Size(100, 36);
@@ -1105,7 +1174,7 @@
             // 
             this.tbTx2Power.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbTx2Power.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbTx2Power.Location = new System.Drawing.Point(642, 269);
+            this.tbTx2Power.Location = new System.Drawing.Point(642, 227);
             this.tbTx2Power.Name = "tbTx2Power";
             this.tbTx2Power.ReadOnly = true;
             this.tbTx2Power.Size = new System.Drawing.Size(100, 36);
@@ -1115,7 +1184,7 @@
             // 
             this.lMpd1.AutoSize = true;
             this.lMpd1.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lMpd1.Location = new System.Drawing.Point(763, 176);
+            this.lMpd1.Location = new System.Drawing.Point(763, 134);
             this.lMpd1.Name = "lMpd1";
             this.lMpd1.Size = new System.Drawing.Size(70, 24);
             this.lMpd1.TabIndex = 82;
@@ -1125,7 +1194,7 @@
             // 
             this.lTx3Power.AutoSize = true;
             this.lTx3Power.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lTx3Power.Location = new System.Drawing.Point(539, 242);
+            this.lTx3Power.Location = new System.Drawing.Point(539, 200);
             this.lTx3Power.Name = "lTx3Power";
             this.lTx3Power.Size = new System.Drawing.Size(94, 24);
             this.lTx3Power.TabIndex = 22;
@@ -1135,7 +1204,7 @@
             // 
             this.lSubLotNumber.AutoSize = true;
             this.lSubLotNumber.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lSubLotNumber.Location = new System.Drawing.Point(368, 93);
+            this.lSubLotNumber.Location = new System.Drawing.Point(368, 51);
             this.lSubLotNumber.Name = "lSubLotNumber";
             this.lSubLotNumber.Size = new System.Drawing.Size(51, 24);
             this.lSubLotNumber.TabIndex = 80;
@@ -1145,7 +1214,7 @@
             // 
             this.tbTx3Power.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbTx3Power.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbTx3Power.Location = new System.Drawing.Point(536, 269);
+            this.tbTx3Power.Location = new System.Drawing.Point(536, 227);
             this.tbTx3Power.Name = "tbTx3Power";
             this.tbTx3Power.ReadOnly = true;
             this.tbTx3Power.Size = new System.Drawing.Size(100, 36);
@@ -1155,7 +1224,7 @@
             // 
             this.lTx4Power.AutoSize = true;
             this.lTx4Power.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lTx4Power.Location = new System.Drawing.Point(433, 242);
+            this.lTx4Power.Location = new System.Drawing.Point(433, 200);
             this.lTx4Power.Name = "lTx4Power";
             this.lTx4Power.Size = new System.Drawing.Size(94, 24);
             this.lTx4Power.TabIndex = 24;
@@ -1185,7 +1254,7 @@
             // 
             this.lLotNumber.AutoSize = true;
             this.lLotNumber.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lLotNumber.Location = new System.Drawing.Point(123, 93);
+            this.lLotNumber.Location = new System.Drawing.Point(123, 51);
             this.lLotNumber.Name = "lLotNumber";
             this.lLotNumber.Size = new System.Drawing.Size(60, 24);
             this.lLotNumber.TabIndex = 19;
@@ -1195,7 +1264,7 @@
             // 
             this.lLogLable.AutoSize = true;
             this.lLogLable.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lLogLable.Location = new System.Drawing.Point(299, 51);
+            this.lLogLable.Location = new System.Drawing.Point(996, 12);
             this.lLogLable.Name = "lLogLable";
             this.lLogLable.Size = new System.Drawing.Size(67, 24);
             this.lLogLable.TabIndex = 25;
@@ -1205,7 +1274,7 @@
             // 
             this.tbLogLable.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbLogLable.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbLogLable.Location = new System.Drawing.Point(372, 48);
+            this.tbLogLable.Location = new System.Drawing.Point(1069, 9);
             this.tbLogLable.Name = "tbLogLable";
             this.tbLogLable.Size = new System.Drawing.Size(190, 36);
             this.tbLogLable.TabIndex = 26;
@@ -1224,7 +1293,7 @@
             // 
             this.lLogMode.AutoSize = true;
             this.lLogMode.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lLogMode.Location = new System.Drawing.Point(6, 51);
+            this.lLogMode.Location = new System.Drawing.Point(716, 12);
             this.lLogMode.Name = "lLogMode";
             this.lLogMode.Size = new System.Drawing.Size(68, 24);
             this.lLogMode.TabIndex = 22;
@@ -1232,6 +1301,9 @@
             // 
             // tpConfig
             // 
+            this.tpConfig.Controls.Add(this.tbAfterBurnInReBIPowerDifferentLimit);
+            this.tpConfig.Controls.Add(this.lAfterBurnInReBIPowerDifferentLimit);
+            this.tpConfig.Controls.Add(this.cbIgnoreTxFault);
             this.tpConfig.Controls.Add(this.cbPowerSupplyControlReverse);
             this.tpConfig.Controls.Add(this.gbTemperatureCorrectAndThreshold);
             this.tpConfig.Controls.Add(this.gbVoltageCorrectAndThreshold);
@@ -1260,11 +1332,43 @@
             this.tpConfig.Text = "Config";
             this.tpConfig.UseVisualStyleBackColor = true;
             // 
+            // tbAfterBurnInReBIPowerDifferentLimit
+            // 
+            this.tbAfterBurnInReBIPowerDifferentLimit.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbAfterBurnInReBIPowerDifferentLimit.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbAfterBurnInReBIPowerDifferentLimit.Location = new System.Drawing.Point(936, 6);
+            this.tbAfterBurnInReBIPowerDifferentLimit.Name = "tbAfterBurnInReBIPowerDifferentLimit";
+            this.tbAfterBurnInReBIPowerDifferentLimit.Size = new System.Drawing.Size(40, 27);
+            this.tbAfterBurnInReBIPowerDifferentLimit.TabIndex = 118;
+            this.tbAfterBurnInReBIPowerDifferentLimit.Text = "15";
+            // 
+            // lAfterBurnInReBIPowerDifferentLimit
+            // 
+            this.lAfterBurnInReBIPowerDifferentLimit.AutoSize = true;
+            this.lAfterBurnInReBIPowerDifferentLimit.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lAfterBurnInReBIPowerDifferentLimit.Location = new System.Drawing.Point(818, 10);
+            this.lAfterBurnInReBIPowerDifferentLimit.Name = "lAfterBurnInReBIPowerDifferentLimit";
+            this.lAfterBurnInReBIPowerDifferentLimit.Size = new System.Drawing.Size(112, 16);
+            this.lAfterBurnInReBIPowerDifferentLimit.TabIndex = 117;
+            this.lAfterBurnInReBIPowerDifferentLimit.Text = "Re burn-In limit:";
+            // 
+            // cbIgnoreTxFault
+            // 
+            this.cbIgnoreTxFault.AutoSize = true;
+            this.cbIgnoreTxFault.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.cbIgnoreTxFault.Location = new System.Drawing.Point(973, 40);
+            this.cbIgnoreTxFault.Name = "cbIgnoreTxFault";
+            this.cbIgnoreTxFault.Size = new System.Drawing.Size(124, 20);
+            this.cbIgnoreTxFault.TabIndex = 116;
+            this.cbIgnoreTxFault.Text = "Ignore Tx Fault";
+            this.cbIgnoreTxFault.UseVisualStyleBackColor = true;
+            this.cbIgnoreTxFault.CheckedChanged += new System.EventHandler(this.cbIgnoreTxFault_CheckedChanged);
+            // 
             // cbPowerSupplyControlReverse
             // 
             this.cbPowerSupplyControlReverse.AutoSize = true;
             this.cbPowerSupplyControlReverse.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.cbPowerSupplyControlReverse.Location = new System.Drawing.Point(211, 122);
+            this.cbPowerSupplyControlReverse.Location = new System.Drawing.Point(503, 40);
             this.cbPowerSupplyControlReverse.Name = "cbPowerSupplyControlReverse";
             this.cbPowerSupplyControlReverse.Size = new System.Drawing.Size(209, 20);
             this.cbPowerSupplyControlReverse.TabIndex = 115;
@@ -1421,9 +1525,9 @@
             // 
             this.gbBeforeTestConfig.Controls.Add(this.dgvBeforeTestConfig);
             this.gbBeforeTestConfig.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.gbBeforeTestConfig.Location = new System.Drawing.Point(503, 40);
+            this.gbBeforeTestConfig.Location = new System.Drawing.Point(503, 289);
             this.gbBeforeTestConfig.Name = "gbBeforeTestConfig";
-            this.gbBeforeTestConfig.Size = new System.Drawing.Size(760, 300);
+            this.gbBeforeTestConfig.Size = new System.Drawing.Size(760, 160);
             this.gbBeforeTestConfig.TabIndex = 95;
             this.gbBeforeTestConfig.TabStop = false;
             this.gbBeforeTestConfig.Text = "Before Test Config";
@@ -1437,30 +1541,34 @@
             this.dgvBeforeTestConfig.Location = new System.Drawing.Point(6, 26);
             this.dgvBeforeTestConfig.Name = "dgvBeforeTestConfig";
             this.dgvBeforeTestConfig.RowTemplate.Height = 24;
-            this.dgvBeforeTestConfig.Size = new System.Drawing.Size(748, 268);
+            this.dgvBeforeTestConfig.Size = new System.Drawing.Size(748, 128);
             this.dgvBeforeTestConfig.TabIndex = 155;
             // 
             // cbIgnoreTxLos
             // 
             this.cbIgnoreTxLos.AutoSize = true;
+            this.cbIgnoreTxLos.Checked = true;
+            this.cbIgnoreTxLos.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbIgnoreTxLos.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.cbIgnoreTxLos.Location = new System.Drawing.Point(211, 96);
+            this.cbIgnoreTxLos.Location = new System.Drawing.Point(846, 40);
             this.cbIgnoreTxLos.Name = "cbIgnoreTxLos";
             this.cbIgnoreTxLos.Size = new System.Drawing.Size(121, 20);
             this.cbIgnoreTxLos.TabIndex = 114;
             this.cbIgnoreTxLos.Text = "Ignore Tx LOS";
             this.cbIgnoreTxLos.UseVisualStyleBackColor = true;
+            this.cbIgnoreTxLos.CheckedChanged += new System.EventHandler(this.cbIgnoreTxLos_CheckedChanged);
             // 
             // cbIgnoreRxLos
             // 
             this.cbIgnoreRxLos.AutoSize = true;
             this.cbIgnoreRxLos.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.cbIgnoreRxLos.Location = new System.Drawing.Point(211, 70);
+            this.cbIgnoreRxLos.Location = new System.Drawing.Point(718, 40);
             this.cbIgnoreRxLos.Name = "cbIgnoreRxLos";
             this.cbIgnoreRxLos.Size = new System.Drawing.Size(122, 20);
             this.cbIgnoreRxLos.TabIndex = 113;
             this.cbIgnoreRxLos.Text = "Ignore Rx LOS";
             this.cbIgnoreRxLos.UseVisualStyleBackColor = true;
+            this.cbIgnoreRxLos.CheckedChanged += new System.EventHandler(this.cbIgnoreRxLos_CheckedChanged);
             // 
             // cbCustomerPage
             // 
@@ -1469,7 +1577,7 @@
             this.cbCustomerPage.Items.AddRange(new object[] {
             "Old: 4, 5, 32",
             "New: 128, 129, 252"});
-            this.cbCustomerPage.Location = new System.Drawing.Point(322, 40);
+            this.cbCustomerPage.Location = new System.Drawing.Point(377, 7);
             this.cbCustomerPage.Name = "cbCustomerPage";
             this.cbCustomerPage.Size = new System.Drawing.Size(152, 24);
             this.cbCustomerPage.TabIndex = 112;
@@ -1479,7 +1587,7 @@
             // 
             this.lCustomerPage.AutoSize = true;
             this.lCustomerPage.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lCustomerPage.Location = new System.Drawing.Point(211, 43);
+            this.lCustomerPage.Location = new System.Drawing.Point(266, 10);
             this.lCustomerPage.Name = "lCustomerPage";
             this.lCustomerPage.Size = new System.Drawing.Size(106, 16);
             this.lCustomerPage.TabIndex = 88;
@@ -1489,9 +1597,9 @@
             // 
             this.gbAfterTestConfig.Controls.Add(this.dgvAfterTestConfig);
             this.gbAfterTestConfig.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.gbAfterTestConfig.Location = new System.Drawing.Point(503, 346);
+            this.gbAfterTestConfig.Location = new System.Drawing.Point(503, 455);
             this.gbAfterTestConfig.Name = "gbAfterTestConfig";
-            this.gbAfterTestConfig.Size = new System.Drawing.Size(760, 300);
+            this.gbAfterTestConfig.Size = new System.Drawing.Size(760, 160);
             this.gbAfterTestConfig.TabIndex = 87;
             this.gbAfterTestConfig.TabStop = false;
             this.gbAfterTestConfig.Text = "After Test Config";
@@ -1502,10 +1610,10 @@
             this.dgvAfterTestConfig.AllowUserToResizeRows = false;
             this.dgvAfterTestConfig.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvAfterTestConfig.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAfterTestConfig.Location = new System.Drawing.Point(6, 29);
+            this.dgvAfterTestConfig.Location = new System.Drawing.Point(6, 26);
             this.dgvAfterTestConfig.Name = "dgvAfterTestConfig";
             this.dgvAfterTestConfig.RowTemplate.Height = 24;
-            this.dgvAfterTestConfig.Size = new System.Drawing.Size(748, 265);
+            this.dgvAfterTestConfig.Size = new System.Drawing.Size(748, 128);
             this.dgvAfterTestConfig.TabIndex = 156;
             // 
             // bSaveConfig
@@ -1521,6 +1629,11 @@
             // 
             // gbMonitorThreshold
             // 
+            this.gbMonitorThreshold.Controls.Add(this.lRxThresholdMax);
+            this.gbMonitorThreshold.Controls.Add(this.tbRx4ThresholdMax);
+            this.gbMonitorThreshold.Controls.Add(this.tbRx1ThresholdMax);
+            this.gbMonitorThreshold.Controls.Add(this.tbRx2ThresholdMax);
+            this.gbMonitorThreshold.Controls.Add(this.tbRx3ThresholdMax);
             this.gbMonitorThreshold.Controls.Add(this.lHtMaxThreshold);
             this.gbMonitorThreshold.Controls.Add(this.tbHtMaxThreshold);
             this.gbMonitorThreshold.Controls.Add(this.lLtMaxThreshold);
@@ -1534,11 +1647,11 @@
             this.gbMonitorThreshold.Controls.Add(this.tbMpd1Threshold);
             this.gbMonitorThreshold.Controls.Add(this.tbMpd2Threshold);
             this.gbMonitorThreshold.Controls.Add(this.tbMpd3Threshold);
-            this.gbMonitorThreshold.Controls.Add(this.lRxThreshold);
-            this.gbMonitorThreshold.Controls.Add(this.tbRx4Threshold);
-            this.gbMonitorThreshold.Controls.Add(this.tbRx1Threshold);
-            this.gbMonitorThreshold.Controls.Add(this.tbRx2Threshold);
-            this.gbMonitorThreshold.Controls.Add(this.tbRx3Threshold);
+            this.gbMonitorThreshold.Controls.Add(this.lRxThresholdMin);
+            this.gbMonitorThreshold.Controls.Add(this.tbRx4ThresholdMin);
+            this.gbMonitorThreshold.Controls.Add(this.tbRx1ThresholdMin);
+            this.gbMonitorThreshold.Controls.Add(this.tbRx2ThresholdMin);
+            this.gbMonitorThreshold.Controls.Add(this.tbRx3ThresholdMin);
             this.gbMonitorThreshold.Controls.Add(this.lTxThreshold);
             this.gbMonitorThreshold.Controls.Add(this.tbTx4Threshold);
             this.gbMonitorThreshold.Controls.Add(this.tbTx1Threshold);
@@ -1549,9 +1662,9 @@
             this.gbMonitorThreshold.Controls.Add(this.lCh3Threshold);
             this.gbMonitorThreshold.Controls.Add(this.lCh4Threshold);
             this.gbMonitorThreshold.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.gbMonitorThreshold.Location = new System.Drawing.Point(6, 320);
+            this.gbMonitorThreshold.Location = new System.Drawing.Point(509, 66);
             this.gbMonitorThreshold.Name = "gbMonitorThreshold";
-            this.gbMonitorThreshold.Size = new System.Drawing.Size(423, 144);
+            this.gbMonitorThreshold.Size = new System.Drawing.Size(458, 181);
             this.gbMonitorThreshold.TabIndex = 83;
             this.gbMonitorThreshold.TabStop = false;
             this.gbMonitorThreshold.Text = "Threshold Config";
@@ -1560,7 +1673,7 @@
             // 
             this.lHtMaxThreshold.AutoSize = true;
             this.lHtMaxThreshold.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lHtMaxThreshold.Location = new System.Drawing.Point(380, 24);
+            this.lHtMaxThreshold.Location = new System.Drawing.Point(395, 24);
             this.lHtMaxThreshold.Name = "lHtMaxThreshold";
             this.lHtMaxThreshold.Size = new System.Drawing.Size(36, 16);
             this.lHtMaxThreshold.TabIndex = 99;
@@ -1570,7 +1683,7 @@
             // 
             this.tbHtMaxThreshold.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbHtMaxThreshold.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbHtMaxThreshold.Location = new System.Drawing.Point(375, 43);
+            this.tbHtMaxThreshold.Location = new System.Drawing.Point(390, 43);
             this.tbHtMaxThreshold.Name = "tbHtMaxThreshold";
             this.tbHtMaxThreshold.Size = new System.Drawing.Size(40, 27);
             this.tbHtMaxThreshold.TabIndex = 128;
@@ -1579,7 +1692,7 @@
             // 
             this.lLtMaxThreshold.AutoSize = true;
             this.lLtMaxThreshold.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lLtMaxThreshold.Location = new System.Drawing.Point(289, 24);
+            this.lLtMaxThreshold.Location = new System.Drawing.Point(304, 24);
             this.lLtMaxThreshold.Name = "lLtMaxThreshold";
             this.lLtMaxThreshold.Size = new System.Drawing.Size(34, 16);
             this.lLtMaxThreshold.TabIndex = 97;
@@ -1589,7 +1702,7 @@
             // 
             this.tbLtMaxThreshold.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbLtMaxThreshold.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbLtMaxThreshold.Location = new System.Drawing.Point(285, 43);
+            this.tbLtMaxThreshold.Location = new System.Drawing.Point(300, 43);
             this.tbLtMaxThreshold.Name = "tbLtMaxThreshold";
             this.tbLtMaxThreshold.Size = new System.Drawing.Size(40, 27);
             this.tbLtMaxThreshold.TabIndex = 126;
@@ -1598,7 +1711,7 @@
             // 
             this.lHtMinThreshold.AutoSize = true;
             this.lHtMinThreshold.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lHtMinThreshold.Location = new System.Drawing.Point(335, 24);
+            this.lHtMinThreshold.Location = new System.Drawing.Point(350, 24);
             this.lHtMinThreshold.Name = "lHtMinThreshold";
             this.lHtMinThreshold.Size = new System.Drawing.Size(33, 16);
             this.lHtMinThreshold.TabIndex = 95;
@@ -1608,7 +1721,7 @@
             // 
             this.tbHtMinThreshold.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbHtMinThreshold.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbHtMinThreshold.Location = new System.Drawing.Point(331, 43);
+            this.tbHtMinThreshold.Location = new System.Drawing.Point(346, 43);
             this.tbHtMinThreshold.Name = "tbHtMinThreshold";
             this.tbHtMinThreshold.Size = new System.Drawing.Size(40, 27);
             this.tbHtMinThreshold.TabIndex = 127;
@@ -1617,7 +1730,7 @@
             // 
             this.lLtMinThreshold.AutoSize = true;
             this.lLtMinThreshold.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lLtMinThreshold.Location = new System.Drawing.Point(244, 24);
+            this.lLtMinThreshold.Location = new System.Drawing.Point(259, 24);
             this.lLtMinThreshold.Name = "lLtMinThreshold";
             this.lLtMinThreshold.Size = new System.Drawing.Size(31, 16);
             this.lLtMinThreshold.TabIndex = 93;
@@ -1627,7 +1740,7 @@
             // 
             this.tbLtMinThreshold.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbLtMinThreshold.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbLtMinThreshold.Location = new System.Drawing.Point(239, 43);
+            this.tbLtMinThreshold.Location = new System.Drawing.Point(254, 43);
             this.tbLtMinThreshold.Name = "tbLtMinThreshold";
             this.tbLtMinThreshold.Size = new System.Drawing.Size(40, 27);
             this.tbLtMinThreshold.TabIndex = 125;
@@ -1636,7 +1749,7 @@
             // 
             this.lMpdThreshold.AutoSize = true;
             this.lMpdThreshold.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lMpdThreshold.Location = new System.Drawing.Point(6, 112);
+            this.lMpdThreshold.Location = new System.Drawing.Point(6, 145);
             this.lMpdThreshold.Name = "lMpdThreshold";
             this.lMpdThreshold.Size = new System.Drawing.Size(44, 16);
             this.lMpdThreshold.TabIndex = 91;
@@ -1646,7 +1759,7 @@
             // 
             this.tbMpd4Threshold.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbMpd4Threshold.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbMpd4Threshold.Location = new System.Drawing.Point(193, 109);
+            this.tbMpd4Threshold.Location = new System.Drawing.Point(208, 142);
             this.tbMpd4Threshold.Name = "tbMpd4Threshold";
             this.tbMpd4Threshold.Size = new System.Drawing.Size(40, 27);
             this.tbMpd4Threshold.TabIndex = 136;
@@ -1656,7 +1769,7 @@
             // 
             this.tbMpd1Threshold.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbMpd1Threshold.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbMpd1Threshold.Location = new System.Drawing.Point(55, 109);
+            this.tbMpd1Threshold.Location = new System.Drawing.Point(70, 142);
             this.tbMpd1Threshold.Name = "tbMpd1Threshold";
             this.tbMpd1Threshold.Size = new System.Drawing.Size(40, 27);
             this.tbMpd1Threshold.TabIndex = 133;
@@ -1666,7 +1779,7 @@
             // 
             this.tbMpd2Threshold.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbMpd2Threshold.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbMpd2Threshold.Location = new System.Drawing.Point(101, 109);
+            this.tbMpd2Threshold.Location = new System.Drawing.Point(116, 142);
             this.tbMpd2Threshold.Name = "tbMpd2Threshold";
             this.tbMpd2Threshold.Size = new System.Drawing.Size(40, 27);
             this.tbMpd2Threshold.TabIndex = 134;
@@ -1676,61 +1789,61 @@
             // 
             this.tbMpd3Threshold.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbMpd3Threshold.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbMpd3Threshold.Location = new System.Drawing.Point(147, 109);
+            this.tbMpd3Threshold.Location = new System.Drawing.Point(162, 142);
             this.tbMpd3Threshold.Name = "tbMpd3Threshold";
             this.tbMpd3Threshold.Size = new System.Drawing.Size(40, 27);
             this.tbMpd3Threshold.TabIndex = 135;
             this.tbMpd3Threshold.Text = "0";
             // 
-            // lRxThreshold
+            // lRxThresholdMin
             // 
-            this.lRxThreshold.AutoSize = true;
-            this.lRxThreshold.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lRxThreshold.Location = new System.Drawing.Point(5, 79);
-            this.lRxThreshold.Name = "lRxThreshold";
-            this.lRxThreshold.Size = new System.Drawing.Size(30, 16);
-            this.lRxThreshold.TabIndex = 86;
-            this.lRxThreshold.Text = "Rx:";
+            this.lRxThresholdMin.AutoSize = true;
+            this.lRxThresholdMin.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lRxThresholdMin.Location = new System.Drawing.Point(5, 79);
+            this.lRxThresholdMin.Name = "lRxThresholdMin";
+            this.lRxThresholdMin.Size = new System.Drawing.Size(59, 16);
+            this.lRxThresholdMin.TabIndex = 86;
+            this.lRxThresholdMin.Text = "Rx Min:";
             // 
-            // tbRx4Threshold
+            // tbRx4ThresholdMin
             // 
-            this.tbRx4Threshold.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRx4Threshold.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbRx4Threshold.Location = new System.Drawing.Point(193, 76);
-            this.tbRx4Threshold.Name = "tbRx4Threshold";
-            this.tbRx4Threshold.Size = new System.Drawing.Size(40, 27);
-            this.tbRx4Threshold.TabIndex = 132;
-            this.tbRx4Threshold.Text = "5000";
+            this.tbRx4ThresholdMin.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbRx4ThresholdMin.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRx4ThresholdMin.Location = new System.Drawing.Point(208, 76);
+            this.tbRx4ThresholdMin.Name = "tbRx4ThresholdMin";
+            this.tbRx4ThresholdMin.Size = new System.Drawing.Size(40, 27);
+            this.tbRx4ThresholdMin.TabIndex = 132;
+            this.tbRx4ThresholdMin.Text = "500";
             // 
-            // tbRx1Threshold
+            // tbRx1ThresholdMin
             // 
-            this.tbRx1Threshold.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRx1Threshold.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbRx1Threshold.Location = new System.Drawing.Point(55, 76);
-            this.tbRx1Threshold.Name = "tbRx1Threshold";
-            this.tbRx1Threshold.Size = new System.Drawing.Size(40, 27);
-            this.tbRx1Threshold.TabIndex = 129;
-            this.tbRx1Threshold.Text = "5000";
+            this.tbRx1ThresholdMin.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbRx1ThresholdMin.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRx1ThresholdMin.Location = new System.Drawing.Point(70, 76);
+            this.tbRx1ThresholdMin.Name = "tbRx1ThresholdMin";
+            this.tbRx1ThresholdMin.Size = new System.Drawing.Size(40, 27);
+            this.tbRx1ThresholdMin.TabIndex = 129;
+            this.tbRx1ThresholdMin.Text = "500";
             // 
-            // tbRx2Threshold
+            // tbRx2ThresholdMin
             // 
-            this.tbRx2Threshold.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRx2Threshold.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbRx2Threshold.Location = new System.Drawing.Point(101, 76);
-            this.tbRx2Threshold.Name = "tbRx2Threshold";
-            this.tbRx2Threshold.Size = new System.Drawing.Size(40, 27);
-            this.tbRx2Threshold.TabIndex = 130;
-            this.tbRx2Threshold.Text = "5000";
+            this.tbRx2ThresholdMin.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbRx2ThresholdMin.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRx2ThresholdMin.Location = new System.Drawing.Point(116, 76);
+            this.tbRx2ThresholdMin.Name = "tbRx2ThresholdMin";
+            this.tbRx2ThresholdMin.Size = new System.Drawing.Size(40, 27);
+            this.tbRx2ThresholdMin.TabIndex = 130;
+            this.tbRx2ThresholdMin.Text = "500";
             // 
-            // tbRx3Threshold
+            // tbRx3ThresholdMin
             // 
-            this.tbRx3Threshold.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRx3Threshold.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbRx3Threshold.Location = new System.Drawing.Point(147, 76);
-            this.tbRx3Threshold.Name = "tbRx3Threshold";
-            this.tbRx3Threshold.Size = new System.Drawing.Size(40, 27);
-            this.tbRx3Threshold.TabIndex = 131;
-            this.tbRx3Threshold.Text = "5000";
+            this.tbRx3ThresholdMin.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbRx3ThresholdMin.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRx3ThresholdMin.Location = new System.Drawing.Point(162, 76);
+            this.tbRx3ThresholdMin.Name = "tbRx3ThresholdMin";
+            this.tbRx3ThresholdMin.Size = new System.Drawing.Size(40, 27);
+            this.tbRx3ThresholdMin.TabIndex = 131;
+            this.tbRx3ThresholdMin.Text = "500";
             // 
             // lTxThreshold
             // 
@@ -1746,7 +1859,7 @@
             // 
             this.tbTx4Threshold.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbTx4Threshold.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbTx4Threshold.Location = new System.Drawing.Point(193, 43);
+            this.tbTx4Threshold.Location = new System.Drawing.Point(208, 43);
             this.tbTx4Threshold.Name = "tbTx4Threshold";
             this.tbTx4Threshold.Size = new System.Drawing.Size(40, 27);
             this.tbTx4Threshold.TabIndex = 124;
@@ -1756,7 +1869,7 @@
             // 
             this.tbTx1Threshold.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbTx1Threshold.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbTx1Threshold.Location = new System.Drawing.Point(55, 43);
+            this.tbTx1Threshold.Location = new System.Drawing.Point(70, 43);
             this.tbTx1Threshold.Name = "tbTx1Threshold";
             this.tbTx1Threshold.Size = new System.Drawing.Size(40, 27);
             this.tbTx1Threshold.TabIndex = 121;
@@ -1766,7 +1879,7 @@
             // 
             this.tbTx2Threshold.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbTx2Threshold.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbTx2Threshold.Location = new System.Drawing.Point(101, 43);
+            this.tbTx2Threshold.Location = new System.Drawing.Point(116, 43);
             this.tbTx2Threshold.Name = "tbTx2Threshold";
             this.tbTx2Threshold.Size = new System.Drawing.Size(40, 27);
             this.tbTx2Threshold.TabIndex = 122;
@@ -1776,7 +1889,7 @@
             // 
             this.tbTx3Threshold.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.tbTx3Threshold.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbTx3Threshold.Location = new System.Drawing.Point(147, 43);
+            this.tbTx3Threshold.Location = new System.Drawing.Point(162, 43);
             this.tbTx3Threshold.Name = "tbTx3Threshold";
             this.tbTx3Threshold.Size = new System.Drawing.Size(40, 27);
             this.tbTx3Threshold.TabIndex = 123;
@@ -1786,7 +1899,7 @@
             // 
             this.lCh1Threshold.AutoSize = true;
             this.lCh1Threshold.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lCh1Threshold.Location = new System.Drawing.Point(59, 24);
+            this.lCh1Threshold.Location = new System.Drawing.Point(74, 24);
             this.lCh1Threshold.Name = "lCh1Threshold";
             this.lCh1Threshold.Size = new System.Drawing.Size(34, 16);
             this.lCh1Threshold.TabIndex = 25;
@@ -1796,7 +1909,7 @@
             // 
             this.lCh2Threshold.AutoSize = true;
             this.lCh2Threshold.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lCh2Threshold.Location = new System.Drawing.Point(104, 24);
+            this.lCh2Threshold.Location = new System.Drawing.Point(119, 24);
             this.lCh2Threshold.Name = "lCh2Threshold";
             this.lCh2Threshold.Size = new System.Drawing.Size(34, 16);
             this.lCh2Threshold.TabIndex = 26;
@@ -1806,7 +1919,7 @@
             // 
             this.lCh3Threshold.AutoSize = true;
             this.lCh3Threshold.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lCh3Threshold.Location = new System.Drawing.Point(151, 24);
+            this.lCh3Threshold.Location = new System.Drawing.Point(166, 24);
             this.lCh3Threshold.Name = "lCh3Threshold";
             this.lCh3Threshold.Size = new System.Drawing.Size(34, 16);
             this.lCh3Threshold.TabIndex = 27;
@@ -1816,7 +1929,7 @@
             // 
             this.lCh4Threshold.AutoSize = true;
             this.lCh4Threshold.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lCh4Threshold.Location = new System.Drawing.Point(197, 24);
+            this.lCh4Threshold.Location = new System.Drawing.Point(212, 24);
             this.lCh4Threshold.Name = "lCh4Threshold";
             this.lCh4Threshold.Size = new System.Drawing.Size(34, 16);
             this.lCh4Threshold.TabIndex = 28;
@@ -1853,7 +1966,7 @@
             this.gbRxPowerRateConfig.Controls.Add(this.lRxRateNumerator);
             this.gbRxPowerRateConfig.Controls.Add(this.tbRxRssiRateDenominator);
             this.gbRxPowerRateConfig.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.gbRxPowerRateConfig.Location = new System.Drawing.Point(6, 470);
+            this.gbRxPowerRateConfig.Location = new System.Drawing.Point(6, 289);
             this.gbRxPowerRateConfig.Name = "gbRxPowerRateConfig";
             this.gbRxPowerRateConfig.Size = new System.Drawing.Size(491, 176);
             this.gbRxPowerRateConfig.TabIndex = 82;
@@ -2152,6 +2265,15 @@
             // 
             // gbI2cConfig
             // 
+            this.gbI2cConfig.Controls.Add(this.lTxFaultBit);
+            this.gbI2cConfig.Controls.Add(this.cbTxFaultBit);
+            this.gbI2cConfig.Controls.Add(this.lTxFaultReg);
+            this.gbI2cConfig.Controls.Add(this.label2);
+            this.gbI2cConfig.Controls.Add(this.tbI2cTxFaultDevAddr);
+            this.gbI2cConfig.Controls.Add(this.label3);
+            this.gbI2cConfig.Controls.Add(this.tbI2cTxFaultRegisterPage);
+            this.gbI2cConfig.Controls.Add(this.label5);
+            this.gbI2cConfig.Controls.Add(this.tbI2cTxFaultRegisterAddr);
             this.gbI2cConfig.Controls.Add(this.lRxI2cConfig);
             this.gbI2cConfig.Controls.Add(this.tbI2cMpdRegisterAddr);
             this.gbI2cConfig.Controls.Add(this.lBeTestDevAddr);
@@ -2166,10 +2288,103 @@
             this.gbI2cConfig.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.gbI2cConfig.Location = new System.Drawing.Point(6, 39);
             this.gbI2cConfig.Name = "gbI2cConfig";
-            this.gbI2cConfig.Size = new System.Drawing.Size(199, 110);
+            this.gbI2cConfig.Size = new System.Drawing.Size(491, 110);
             this.gbI2cConfig.TabIndex = 81;
             this.gbI2cConfig.TabStop = false;
             this.gbI2cConfig.Text = "I2C Config";
+            // 
+            // lTxFaultBit
+            // 
+            this.lTxFaultBit.AutoSize = true;
+            this.lTxFaultBit.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lTxFaultBit.Location = new System.Drawing.Point(193, 78);
+            this.lTxFaultBit.Name = "lTxFaultBit";
+            this.lTxFaultBit.Size = new System.Drawing.Size(59, 16);
+            this.lTxFaultBit.TabIndex = 120;
+            this.lTxFaultBit.Text = "TxF Bit:";
+            // 
+            // cbTxFaultBit
+            // 
+            this.cbTxFaultBit.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.cbTxFaultBit.FormattingEnabled = true;
+            this.cbTxFaultBit.Items.AddRange(new object[] {
+            "N,N,N,N,4,3,2,1",
+            "4,3,2,1,N,N,N,N"});
+            this.cbTxFaultBit.Location = new System.Drawing.Point(263, 75);
+            this.cbTxFaultBit.Name = "cbTxFaultBit";
+            this.cbTxFaultBit.Size = new System.Drawing.Size(132, 24);
+            this.cbTxFaultBit.TabIndex = 116;
+            this.cbTxFaultBit.Text = "N,N,N,N,4,3,2,1";
+            // 
+            // lTxFaultReg
+            // 
+            this.lTxFaultReg.AutoSize = true;
+            this.lTxFaultReg.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lTxFaultReg.Location = new System.Drawing.Point(193, 45);
+            this.lTxFaultReg.Name = "lTxFaultReg";
+            this.lTxFaultReg.Size = new System.Drawing.Size(64, 16);
+            this.lTxFaultReg.TabIndex = 112;
+            this.lTxFaultReg.Text = "Tx Fault:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("新細明體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label2.Location = new System.Drawing.Point(256, 23);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(55, 13);
+            this.label2.TabIndex = 113;
+            this.label2.Text = "Dev Addr";
+            // 
+            // tbI2cTxFaultDevAddr
+            // 
+            this.tbI2cTxFaultDevAddr.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbI2cTxFaultDevAddr.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbI2cTxFaultDevAddr.Location = new System.Drawing.Point(263, 42);
+            this.tbI2cTxFaultDevAddr.Name = "tbI2cTxFaultDevAddr";
+            this.tbI2cTxFaultDevAddr.Size = new System.Drawing.Size(40, 27);
+            this.tbI2cTxFaultDevAddr.TabIndex = 117;
+            this.tbI2cTxFaultDevAddr.Text = "12";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("新細明體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label3.Location = new System.Drawing.Point(311, 23);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(30, 13);
+            this.label3.TabIndex = 114;
+            this.label3.Text = "Page";
+            // 
+            // tbI2cTxFaultRegisterPage
+            // 
+            this.tbI2cTxFaultRegisterPage.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbI2cTxFaultRegisterPage.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbI2cTxFaultRegisterPage.Location = new System.Drawing.Point(309, 42);
+            this.tbI2cTxFaultRegisterPage.Name = "tbI2cTxFaultRegisterPage";
+            this.tbI2cTxFaultRegisterPage.Size = new System.Drawing.Size(40, 27);
+            this.tbI2cTxFaultRegisterPage.TabIndex = 118;
+            this.tbI2cTxFaultRegisterPage.Text = "-1";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("新細明體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label5.Location = new System.Drawing.Point(348, 23);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(54, 13);
+            this.label5.TabIndex = 115;
+            this.label5.Text = "Reg Addr";
+            // 
+            // tbI2cTxFaultRegisterAddr
+            // 
+            this.tbI2cTxFaultRegisterAddr.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbI2cTxFaultRegisterAddr.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbI2cTxFaultRegisterAddr.Location = new System.Drawing.Point(355, 42);
+            this.tbI2cTxFaultRegisterAddr.Name = "tbI2cTxFaultRegisterAddr";
+            this.tbI2cTxFaultRegisterAddr.Size = new System.Drawing.Size(40, 27);
+            this.tbI2cTxFaultRegisterAddr.TabIndex = 119;
+            this.tbI2cTxFaultRegisterAddr.Text = "24";
             // 
             // lRxI2cConfig
             // 
@@ -2331,6 +2546,56 @@
             this.tbPassword123.TabIndex = 101;
             this.tbPassword123.Text = "0";
             // 
+            // tbRx4ThresholdMax
+            // 
+            this.tbRx4ThresholdMax.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbRx4ThresholdMax.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRx4ThresholdMax.Location = new System.Drawing.Point(208, 109);
+            this.tbRx4ThresholdMax.Name = "tbRx4ThresholdMax";
+            this.tbRx4ThresholdMax.Size = new System.Drawing.Size(40, 27);
+            this.tbRx4ThresholdMax.TabIndex = 140;
+            this.tbRx4ThresholdMax.Text = "5000";
+            // 
+            // tbRx1ThresholdMax
+            // 
+            this.tbRx1ThresholdMax.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbRx1ThresholdMax.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRx1ThresholdMax.Location = new System.Drawing.Point(70, 109);
+            this.tbRx1ThresholdMax.Name = "tbRx1ThresholdMax";
+            this.tbRx1ThresholdMax.Size = new System.Drawing.Size(40, 27);
+            this.tbRx1ThresholdMax.TabIndex = 137;
+            this.tbRx1ThresholdMax.Text = "5000";
+            // 
+            // tbRx2ThresholdMax
+            // 
+            this.tbRx2ThresholdMax.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbRx2ThresholdMax.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRx2ThresholdMax.Location = new System.Drawing.Point(116, 109);
+            this.tbRx2ThresholdMax.Name = "tbRx2ThresholdMax";
+            this.tbRx2ThresholdMax.Size = new System.Drawing.Size(40, 27);
+            this.tbRx2ThresholdMax.TabIndex = 138;
+            this.tbRx2ThresholdMax.Text = "5000";
+            // 
+            // tbRx3ThresholdMax
+            // 
+            this.tbRx3ThresholdMax.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbRx3ThresholdMax.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRx3ThresholdMax.Location = new System.Drawing.Point(162, 109);
+            this.tbRx3ThresholdMax.Name = "tbRx3ThresholdMax";
+            this.tbRx3ThresholdMax.Size = new System.Drawing.Size(40, 27);
+            this.tbRx3ThresholdMax.TabIndex = 139;
+            this.tbRx3ThresholdMax.Text = "5000";
+            // 
+            // lRxThresholdMax
+            // 
+            this.lRxThresholdMax.AutoSize = true;
+            this.lRxThresholdMax.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lRxThresholdMax.Location = new System.Drawing.Point(6, 113);
+            this.lRxThresholdMax.Name = "lRxThresholdMax";
+            this.lRxThresholdMax.Size = new System.Drawing.Size(62, 16);
+            this.lRxThresholdMax.TabIndex = 142;
+            this.lRxThresholdMax.Text = "Rx Max:";
+            // 
             // UcQsfpPlus40gSr4DcTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2465,11 +2730,11 @@
         private System.Windows.Forms.TextBox tbMpd1Threshold;
         private System.Windows.Forms.TextBox tbMpd2Threshold;
         private System.Windows.Forms.TextBox tbMpd3Threshold;
-        private System.Windows.Forms.Label lRxThreshold;
-        private System.Windows.Forms.TextBox tbRx4Threshold;
-        private System.Windows.Forms.TextBox tbRx1Threshold;
-        private System.Windows.Forms.TextBox tbRx2Threshold;
-        private System.Windows.Forms.TextBox tbRx3Threshold;
+        private System.Windows.Forms.Label lRxThresholdMin;
+        private System.Windows.Forms.TextBox tbRx4ThresholdMin;
+        private System.Windows.Forms.TextBox tbRx1ThresholdMin;
+        private System.Windows.Forms.TextBox tbRx2ThresholdMin;
+        private System.Windows.Forms.TextBox tbRx3ThresholdMin;
         private System.Windows.Forms.Label lTxThreshold;
         private System.Windows.Forms.TextBox tbTx4Threshold;
         private System.Windows.Forms.TextBox tbTx1Threshold;
@@ -2551,5 +2816,26 @@
         private System.Windows.Forms.CheckBox cbPowerSupplyControlReverse;
         private System.Windows.Forms.Label lCableSerialNumber;
         private System.Windows.Forms.TextBox tbCableSerialNumber;
+        private System.Windows.Forms.CheckBox cbTx4Fault;
+        private System.Windows.Forms.CheckBox cbTx3Fault;
+        private System.Windows.Forms.CheckBox cbTx2Fault;
+        private System.Windows.Forms.CheckBox cbTx1Fault;
+        private System.Windows.Forms.Label lTxFaultReg;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox tbI2cTxFaultDevAddr;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox tbI2cTxFaultRegisterPage;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox tbI2cTxFaultRegisterAddr;
+        private System.Windows.Forms.Label lTxFaultBit;
+        private System.Windows.Forms.ComboBox cbTxFaultBit;
+        private System.Windows.Forms.CheckBox cbIgnoreTxFault;
+        private System.Windows.Forms.TextBox tbAfterBurnInReBIPowerDifferentLimit;
+        private System.Windows.Forms.Label lAfterBurnInReBIPowerDifferentLimit;
+        private System.Windows.Forms.TextBox tbRx4ThresholdMax;
+        private System.Windows.Forms.TextBox tbRx1ThresholdMax;
+        private System.Windows.Forms.TextBox tbRx2ThresholdMax;
+        private System.Windows.Forms.TextBox tbRx3ThresholdMax;
+        private System.Windows.Forms.Label lRxThresholdMax;
     }
 }

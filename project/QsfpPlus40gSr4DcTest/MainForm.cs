@@ -350,9 +350,12 @@ namespace QsfpPlus40gSr4DcTest
         {
             switch (e.KeyCode) {
                 case Keys.Space:
-                case Keys.Enter:
-                    ucQsfpPlus40gSr4DcTest.SetFocusOnLogFilePathApi();
                     ucQsfpPlus40gSr4DcTest.SpaceKeyDownApi(sender, e);
+                    break;
+
+                case Keys.Enter:
+                    ucQsfpPlus40gSr4DcTest.EnterKeyDownApi(sender, e);
+                    ucQsfpPlus40gSr4DcTest.SetFocusOnLogFilePathApi();
                     break;
                 
                 case Keys.Right:

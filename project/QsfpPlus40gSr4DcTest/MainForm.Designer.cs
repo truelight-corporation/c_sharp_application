@@ -141,7 +141,7 @@
             this.MaximumSize = new System.Drawing.Size(1305, 768);
             this.MinimumSize = new System.Drawing.Size(1305, 768);
             this.Name = "MainForm";
-            this.Text = "DC Test 20240716_2037";
+            this.Text = "DC Test 20240930_0821";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.ResumeLayout(false);
