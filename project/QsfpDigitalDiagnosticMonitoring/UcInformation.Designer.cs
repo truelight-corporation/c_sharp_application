@@ -257,7 +257,7 @@
             this.bRead.TabIndex = 5;
             this.bRead.Text = "Read All";
             this.bRead.UseVisualStyleBackColor = true;
-            this.bRead.Click += new System.EventHandler(this._bRead_Click);
+            this.bRead.Click += new System.EventHandler(this.bRead_Click);
             // 
             // bWrite
             // 
@@ -1633,7 +1633,7 @@
             this.bPasswordReset.TabIndex = 28;
             this.bPasswordReset.Text = "Password Reset";
             this.bPasswordReset.UseVisualStyleBackColor = true;
-            this.bPasswordReset.Click += new System.EventHandler(this._bPasswordReset_Click);
+            this.bPasswordReset.Click += new System.EventHandler(this.bPasswordReset_Click);
             // 
             // bStoreIntoFlash
             // 

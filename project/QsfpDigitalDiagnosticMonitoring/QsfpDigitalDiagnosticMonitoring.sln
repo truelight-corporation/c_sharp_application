@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QsfpDigitalDiagnosticMonitoring", "QsfpDigitalDiagnosticMonitoring.csproj", "{33FE37E0-F889-4AA8-AE79-457E4FA42F90}"
 EndProject

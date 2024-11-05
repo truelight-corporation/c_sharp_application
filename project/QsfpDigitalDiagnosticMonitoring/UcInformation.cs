@@ -10,22 +10,47 @@ using System.Threading;
 
 namespace QsfpDigitalDiagnosticMonitoring
 {
-    public partial class UcInformation : UserControl
+    public partial class UcInformation: UserControl
     {
         public delegate int GetPasswordCB(int length, byte[] data);
         public delegate int I2cReadCB(byte devAddr, byte regAddr, byte length, byte[] data);
         public delegate int I2cWriteCB(byte devAddr, byte regAddr, byte length, byte[] data);
-
         private GetPasswordCB getPasswordCB = null;
         private I2cReadCB i2cReadCB = null;
         private I2cWriteCB i2cWriteCB = null;
-        
 
         public UcInformation()
         {
-            int i;
-
             InitializeComponent();
+            _InitialSelectBox();
+        }
+
+        public void SetVendorSnApi(string text) { tbVendorSn.Text = text; }
+        public void SetDateCodeApi(string text) { tbDateCode.Text = text; }
+        public string GetVendorSnApi() { return tbVendorSn.Text; }
+        public string GetDateCodeApi() { return tbDateCode.Text; }
+
+        public string GetVendorInfo()
+        {
+            //_InitialSelectBox();
+            ReadAllApi();
+            Thread.Sleep(10);
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"Vendor Part Number                : {tbVendorPn.Text}");
+            sb.AppendLine($"Vendor Name                       : {tbVendorName.Text}");
+            sb.AppendLine($"Vendor Serial Number              : {tbVendorSn.Text}");
+            sb.AppendLine($"Vendor Revision                   : {tbVendorRev.Text}");
+            sb.AppendLine($"Vendor Date Code                  : {tbDateCode.Text}");
+            sb.AppendLine($"PCI-SIG Vendor ID                 : {tbVendorOui.Text}");
+            sb.AppendLine($"Propagation Delay                 : {tbPropagationDelay.Text}");
+            sb.AppendLine($"PCI Express                       : {tbPciExpress.Text}");
+            return sb.ToString();
+        }
+
+        private void _InitialSelectBox()
+        {
+            int i;
 
             for (i = 0; i < 4; i++) {
                 cbRx4RateSelect.Items.Add(i);
@@ -94,6 +119,58 @@ namespace QsfpDigitalDiagnosticMonitoring
             getPasswordCB = new GetPasswordCB(cb);
 
             return 0;
+        }
+
+        public string GetTextBoxText(string textBoxId)
+        {
+            System.Windows.Forms.TextBox textBox = this.Controls.Find(textBoxId, true).FirstOrDefault() as System.Windows.Forms.TextBox;
+
+            if (textBox != null)
+                return textBox.Text;
+            else
+                throw new ArgumentException("Invalid TextBox ID");
+        }
+
+        public void SetTextBoxText(string textBoxId, string newText)
+        {
+            System.Windows.Forms.TextBox textBox = this.Controls.Find(textBoxId, true).FirstOrDefault() as System.Windows.Forms.TextBox;
+
+            if (textBox != null)
+                textBox.Text = newText;
+            else
+                throw new ArgumentException("Invalid TextBox ID");
+        }
+
+        public int WriteAllApi()
+        {
+            if (this.InvokeRequired)
+                return (int)this.Invoke(new Action(() => _WriteAll()));
+            else
+                return _WriteAll();
+        }
+
+        public int ReadAllApi()
+        {
+            if (this.InvokeRequired)
+                return (int)this.Invoke(new Action(() => _ReadAll()));
+            else
+                return _ReadAll();
+        }
+
+        public int StoreIntoFlashApi()
+        {
+            if (this.InvokeRequired)
+                return (int)this.Invoke(new Action(() => _StoreIntoFlash()));
+            else
+                return _StoreIntoFlash();
+        }
+
+        public int WriteVendorSerialNumberApi(string vendorSn, string dateCode)
+        {
+            if (this.InvokeRequired)
+                return (int)this.Invoke(new Action(() => _WriteSnDatecode(vendorSn, dateCode)));
+            else
+                return _WriteSnDatecode(vendorSn, dateCode);
         }
 
         private int _SetQsfpMode(byte mode)
@@ -579,14 +656,26 @@ namespace QsfpDigitalDiagnosticMonitoring
                 cbOutputDisableRx4.Checked = true;
         }
 
-        private void _bRead_Click(object sender, EventArgs e)
+        private void bRead_Click(object sender, EventArgs e)
+        {
+            bRead.Enabled = false;
+
+            if (_ReadAll() < 0) {
+                bRead.Enabled = true;
+                return;
+            }
+            else {
+                bRead.Enabled = true;
+                return;
+            }
+        }
+
+        private int _ReadAll()
         {
             byte[] data = new byte[64];
             byte[] bATmp = new byte[16];
             byte[] reverseData;
             UInt16 u16Tmp;
-
-            bRead.Enabled = false;
 
             if (i2cReadCB == null)
                 goto exit;
@@ -716,8 +805,9 @@ namespace QsfpDigitalDiagnosticMonitoring
             _ParserPage3Addr240(data[6]);
             _ParserPage3Addr241(data[7]);
 
-            exit:
-            bRead.Enabled = true;
+            return 0;
+        exit:
+            return -1;
         }
 
         private int _WriteAddr86()
@@ -978,8 +1068,7 @@ namespace QsfpDigitalDiagnosticMonitoring
                 sTmp = tbPropagationDelay.Text.Substring(2);
             else
                 sTmp = tbPropagationDelay.Text;
-            for (i = 0; i < sTmp.Length / 2; i++)
-            {
+            for (i = 0; i < sTmp.Length / 2; i++) {
                 data[i] = Convert.ToByte(sTmp.Substring(i * 2, 2), 16);
             }
 
@@ -1054,7 +1143,7 @@ namespace QsfpDigitalDiagnosticMonitoring
                 return -1;
 
             tbNewPassword.Text = "";
-            MessageBox.Show("Password changed.");        
+            MessageBox.Show("Password changed.");
 
             return 1;
         }
@@ -1081,6 +1170,72 @@ namespace QsfpDigitalDiagnosticMonitoring
         public int WritePassword()
         {
             return _WriteAddr123();
+        }
+
+        private int _WriteSnDatecode(string vendorSn, string dateCode)
+        {
+            byte[] data = new byte[24];
+            byte[] bATmp;
+            int i = 0;
+
+            if (i2cWriteCB == null)
+                return -1;
+
+            data[0] = 0;
+
+            if (i2cWriteCB(80, 127, 1, data) < 0)
+                return -1;
+
+            if (_WriteAddr123() < 0)
+                return -1;
+
+            Array.Clear(data, 0, 16);
+
+            for (i = 0; i < 24; i++)
+                data[i] = 0x20;
+
+            bATmp = Encoding.ASCII.GetBytes(vendorSn);
+            System.Buffer.BlockCopy(bATmp, 0, data, 0, bATmp.Length > 16 ? 16 : bATmp.Length);
+            bATmp = Encoding.ASCII.GetBytes(dateCode);
+            System.Buffer.BlockCopy(bATmp, 0, data, 16, bATmp.Length > 8 ? 8 : bATmp.Length);
+
+            if (i2cWriteCB(80, 196, 24, data) < 0)
+                return -1;
+
+            Thread.Sleep(200);
+            return 0;
+        }
+
+        private int _WriteAddr196()
+        {
+            byte[] data = new byte[16];
+            byte[] bATmp;
+            int i = 0;
+
+            if (i2cWriteCB == null)
+                return -1;
+
+            data[0] = 0;
+
+            if (i2cWriteCB(80, 127, 1, data) < 0)
+                return -1;
+
+            if (_WriteAddr123() < 0)
+                return -1;
+
+            Array.Clear(data, 0, 16);
+
+            for (i = 0; i < 16; i++)
+                data[i] = 0x20;
+            bATmp = Encoding.ASCII.GetBytes(tbVendorSn.Text);
+            System.Buffer.BlockCopy(bATmp, 0, data, 0, bATmp.Length > 16 ? 16 : bATmp.Length);
+
+            if (i2cWriteCB(80, 196, 16, data) < 0)
+                return -1;
+
+            Thread.Sleep(200);
+
+            return 0;
         }
 
         private int _WriteUpPage0()
@@ -1374,7 +1529,9 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (i2cWriteCB == null)
                 return -1;
 
+            _ChangeToUpPage3();
             data[0] = 0;
+
             if (cbInputEqualizationMagnitudeTx4.Checked == true)
                 data[0] |= 0x80;
             if (cbInputEqualizationMagnitudeTx3.Checked == true)
@@ -1405,6 +1562,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (i2cWriteCB == null)
                 return -1;
 
+            _ChangeToUpPage3();
             data[0] = 0;
             data[0] |= (byte)cbInputEqualizationTx2.SelectedIndex;
             data[0] |= (byte)(cbInputEqualizationTx1.SelectedIndex << 4);
@@ -1422,6 +1580,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (i2cWriteCB == null)
                 return -1;
 
+            _ChangeToUpPage3();
             data[0] = 0;
             data[0] |= (byte)cbInputEqualizationTx4.SelectedIndex;
             data[0] |= (byte)(cbInputEqualizationTx3.SelectedIndex << 4);
@@ -1439,6 +1598,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (i2cWriteCB == null)
                 return -1;
 
+            _ChangeToUpPage3();
             data[0] = 0;
             data[0] |= (byte)cbRxOutputEmphasisRx2.SelectedIndex;
             data[0] |= (byte)(cbRxOutputEmphasisRx1.SelectedIndex << 4);
@@ -1456,6 +1616,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (i2cWriteCB == null)
                 return -1;
 
+            _ChangeToUpPage3();
             data[0] = 0;
             data[0] |= (byte)cbRxOutputEmphasisRx4.SelectedIndex;
             data[0] |= (byte)(cbRxOutputEmphasisRx3.SelectedIndex << 4);
@@ -1473,6 +1634,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (i2cWriteCB == null)
                 return -1;
 
+            _ChangeToUpPage3();
             data[0] = 0;
             data[0] |= (byte)cbOutputAmplitudeRx2.SelectedIndex;
             data[0] |= (byte)(cbOutputAmplitudeRx1.SelectedIndex << 4);
@@ -1490,6 +1652,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (i2cWriteCB == null)
                 return -1;
 
+            _ChangeToUpPage3();
             data[0] = 0;
             data[0] |= (byte)cbOutputAmplitudeRx4.SelectedIndex;
             data[0] |= (byte)(cbOutputAmplitudeRx3.SelectedIndex << 4);
@@ -1507,7 +1670,9 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (i2cWriteCB == null)
                 return -1;
 
+            _ChangeToUpPage3();
             data[0] = 0;
+
             if (cbSqDisableRx4.Checked == true)
                 data[0] |= 0x80;
             if (cbSqDisableRx3.Checked == true)
@@ -1538,7 +1703,9 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (i2cWriteCB == null)
                 return -1;
 
+            _ChangeToUpPage3();
             data[0] = 0;
+
             if (cbOutputDisableRx4.Checked == true)
                 data[0] |= 0x80;
             if (cbOutputDisableRx3.Checked == true)
@@ -1562,10 +1729,8 @@ namespace QsfpDigitalDiagnosticMonitoring
             return 0;
         }
 
-
         private int _WriteUpPage3()
         {
-            _ChangeToUpPage3();
             _WirteUpPage3Addr234();
             _WirteUpPage3Addr235();
             _WirteUpPage3Addr236();
@@ -1581,7 +1746,7 @@ namespace QsfpDigitalDiagnosticMonitoring
         private void _bWrite_Click(object sender, EventArgs e)
         {
             byte[] data = new byte[4];
-            int rv;
+
 
             if (getPasswordCB == null) {
                 MessageBox.Show("getPasswordCB == null Error!!");
@@ -1593,74 +1758,106 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (getPasswordCB(4, data) != 4)
                 goto exit;
 
-            if (_WriteAddr123() < 0)
+            if (_WriteAll() < 0)
                 goto exit;
 
-            rv = _WriteAddr119();
-            if (rv < 0)
-                goto exit;
-            else if (rv == 1)
-                goto exit;
-
-            if (_WriteAddr86() < 0)
-                goto exit;
-
-            if (_WriteAddr87() < 0)
-                goto exit;
-
-            if (_WriteAddr88() < 0)
-                goto exit;
-
-            if (_WriteAddr89() < 0)
-                goto exit;
-
-            if (_WriteAddr90() < 0)
-                goto exit;
-
-            if (_WriteAddr91() < 0)
-                goto exit;
-
-            if (_WriteAddr92() < 0)
-                goto exit;
-
-            if (_WriteAddr93() < 0)
-                goto exit;
-
-            if (_WriteAddr94() < 0)
-                goto exit;
-
-            if (_WriteAddr95() < 0)
-                goto exit;
-
-            if (_WriteAddr96() < 0)
-                goto exit;
-
-            if (_WriteAddr97() < 0)
-                goto exit;
-
-            if (_WriteAddr98() < 0)
-                goto exit;
-
-            if (_WriteAddr108() < 0)
-                goto exit;
-
-            if (_WriteAddr111() < 0)
-                goto exit;
-
-            if (_WriteAddr113() < 0)
-                goto exit;
-
-            if (_WriteUpPage0() < 0)
-                goto exit;
-
-            if (_WriteUpPage3() < 0)
-                goto exit;
-
-        exit:
+            exit:
             bWrite.Enabled = true;
         }
 
-        private void _bPasswordReset_Click(object sender, EventArgs e)
+        /*
+        private int _WriteSnDateCode()
+        {
+            byte[] data = new byte[4];
+
+            if (getPasswordCB(4, data) != 4)
+                return -1;
+
+            if (_WriteAddr123() < 0)
+                return -1;
+
+            if (_WriteUpPage0() < 0)
+                return -1;
+
+            if (_WriteUpPage3() < 0)
+                return -1;
+
+            return 0;
+        }
+        */
+
+        private int _WriteAll()
+        {
+            int rv;
+
+            if (_WriteAddr123() < 0)
+                return -1;
+
+            rv = _WriteAddr119();
+
+            if (rv < 0)
+                return -1;
+            else if (rv == 1)
+                return -1;
+
+            if (_WriteAddr86() < 0)
+                return -1;
+
+            if (_WriteAddr87() < 0)
+                return -1;
+
+            if (_WriteAddr88() < 0)
+                return -1;
+
+            if (_WriteAddr89() < 0)
+                return -1;
+
+            if (_WriteAddr90() < 0)
+                return -1;
+
+            if (_WriteAddr91() < 0)
+                return -1;
+
+            if (_WriteAddr92() < 0)
+                return -1;
+
+            if (_WriteAddr93() < 0)
+                return -1;
+
+            if (_WriteAddr94() < 0)
+                return -1;
+
+            if (_WriteAddr95() < 0)
+                return -1;
+
+            if (_WriteAddr96() < 0)
+                return -1;
+
+            if (_WriteAddr97() < 0)
+                return -1;
+
+            if (_WriteAddr98() < 0)
+                return -1;
+
+            if (_WriteAddr108() < 0)
+                return -1;
+
+            if (_WriteAddr111() < 0)
+                return -1;
+
+            if (_WriteAddr113() < 0)
+                return -1;
+
+            if (_WriteUpPage0() < 0)
+                return -1;
+
+            if (_WriteUpPage3() < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private void bPasswordReset_Click(object sender, EventArgs e)
         {
             byte[] data = new byte[1];
 
@@ -1679,43 +1876,50 @@ namespace QsfpDigitalDiagnosticMonitoring
             MessageBox.Show("QSFP+ password reseted");
         }
 
-        private void bStoreIntoFlash_Click(object sender, EventArgs e)
+        private int _StoreIntoFlash()
         {
             byte[] data = new byte[1];
 
             bStoreIntoFlash.Enabled = false;
 
             if (_WriteAddr123() < 0)
-                goto exit;
+                return -1;
 
             if (_SetQsfpMode(0x4D) < 0)
-                goto exit;
+                return -1;
 
             if (i2cWriteCB == null)
-                goto exit;
+                return -1;
 
             /* old version */
             data[0] = 0x32;
             if (i2cWriteCB(80, 127, 1, data) < 0)
-                goto exit;
+                return -1;
 
             data[0] = 0xAA;
             if (i2cWriteCB(80, 162, 1, data) < 0)
-                goto exit;
+                return -1;
 
             /* new firmware */
             data[0] = 0xAA;
             if (i2cWriteCB(80, 127, 1, data) < 0)
-                goto exit;
+                return -1;
 
             data[0] = 0xAA;
             if (i2cWriteCB(80, 162, 1, data) < 0)
-                goto exit;
+                return -1;
 
             Thread.Sleep(1000);
+            return 0;
+        }
 
-        exit:
-            _SetQsfpMode(0);
+        private void bStoreIntoFlash_Click(object sender, EventArgs e)
+        {
+            bStoreIntoFlash.Enabled = false;
+
+            if (_StoreIntoFlash() < 0)
+                _SetQsfpMode(0);
+
             bStoreIntoFlash.Enabled = true;
         }
 
@@ -1844,7 +2048,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr224();
         }
 
@@ -1853,7 +2056,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr224();
         }
 
@@ -1862,7 +2064,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr224();
         }
 
@@ -1871,7 +2072,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr224();
         }
 
@@ -1880,7 +2080,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr224();
         }
 
@@ -1889,7 +2088,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr224();
         }
 
@@ -1898,7 +2096,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr224();
         }
 
@@ -1907,16 +2104,14 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr224();
         }
-        
+
         private void cbInputEqualizationTx1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr234();
         }
 
@@ -1925,7 +2120,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr234();
         }
 
@@ -1934,7 +2128,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr235();
         }
 
@@ -1943,7 +2136,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr235();
         }
 
@@ -1952,7 +2144,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr236();
         }
 
@@ -1961,7 +2152,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr236();
         }
 
@@ -1970,7 +2160,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr237();
         }
 
@@ -1979,7 +2168,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr237();
         }
 
@@ -1988,7 +2176,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr238();
         }
 
@@ -1997,7 +2184,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr238();
         }
 
@@ -2006,7 +2192,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr239();
         }
 
@@ -2015,7 +2200,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr239();
         }
 
@@ -2024,7 +2208,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr240();
         }
 
@@ -2033,7 +2216,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr240();
         }
 
@@ -2042,7 +2224,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr240();
         }
 
@@ -2051,7 +2232,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr240();
         }
 
@@ -2060,7 +2240,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr240();
         }
 
@@ -2069,7 +2248,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr240();
         }
 
@@ -2078,7 +2256,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr240();
         }
 
@@ -2087,7 +2264,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr240();
         }
 
@@ -2096,7 +2272,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr241();
         }
 
@@ -2105,7 +2280,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr241();
         }
 
@@ -2114,7 +2288,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr241();
         }
 
@@ -2123,7 +2296,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr241();
         }
 
@@ -2132,7 +2304,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr241();
         }
 
@@ -2141,7 +2312,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr241();
         }
 
@@ -2150,7 +2320,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr241();
         }
 
@@ -2159,7 +2328,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (bRead.Enabled == false)
                 return;
 
-            _ChangeToUpPage3();
             _WirteUpPage3Addr241();
         }
     }

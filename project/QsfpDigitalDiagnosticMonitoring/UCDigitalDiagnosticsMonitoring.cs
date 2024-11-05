@@ -8,22 +8,28 @@ using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 using I2cMasterInterface;
+using System.Reflection;
 
 namespace QsfpDigitalDiagnosticMonitoring
 {
-    public partial class UCDigitalDiagnosticsMonitoring : UserControl
+    public partial class UCDigitalDiagnosticsMonitoring: UserControl
     {
         public delegate int I2cReadCB(byte devAddr, byte regAddr, byte length, byte[] data);
         public delegate int I2cWriteCB(byte devAddr, byte regAddr, byte length, byte[] data);
         public delegate int WritePasswordCB();
-
-        private I2cReadCB i2cReadCB = null;
-        private I2cWriteCB i2cWriteCB = null;
+        public event EventHandler<TextBoxTextEventArgs> TextBoxTextChanged;
+        public I2cReadCB i2cReadCB = null;
+        public I2cWriteCB i2cWriteCB = null;
         private WritePasswordCB writePasswordCB = null;
 
         public UCDigitalDiagnosticsMonitoring()
         {
             InitializeComponent();
+        }
+
+        protected virtual void OnTextBoxTextChanged(TextBoxTextEventArgs e)
+        {
+            TextBoxTextChanged?.Invoke(this, e);
         }
 
         public int SetI2cReadCBApi(I2cReadCB cb)
@@ -54,6 +60,76 @@ namespace QsfpDigitalDiagnosticMonitoring
             writePasswordCB = new WritePasswordCB(cb);
 
             return 0;
+        }
+
+        public string GetTextBoxText(string textBoxId)
+        {
+            System.Windows.Forms.TextBox textBox = this.Controls.Find(textBoxId, true).FirstOrDefault() as System.Windows.Forms.TextBox;
+
+            if (textBox != null)
+                return textBox.Text;
+            else
+                throw new ArgumentException("Invalid TextBox ID");
+        }
+
+        public int RxPowerReadApi()
+        {
+            if (this.InvokeRequired)
+                return (int)this.Invoke(new Action(() => _RxPowerRead()));
+            else
+                return _RxPowerRead();
+        }
+
+        public bool GetVarBoolState(string varName)
+        {
+            Type type = this.GetType();
+
+            FieldInfo field = type.GetField(varName, BindingFlags.NonPublic | BindingFlags.Instance);
+
+            if (field != null && field.FieldType == typeof(bool))
+                return (bool)field.GetValue(this);
+            else
+                throw new ArgumentException("Invalid Var Name or Var is not a bool type");
+        }
+
+        public void SetVarBoolState(string varName, bool value)
+        {
+            Type type = this.GetType();
+            FieldInfo field = type.GetField(varName, BindingFlags.NonPublic | BindingFlags.Instance);
+
+            if (field != null && field.FieldType == typeof(bool))
+                field.SetValue(this, value);
+            else
+                throw new ArgumentException("Invalid Var Name or Var is not a bool type");
+        }
+
+        public int ReadAllApi()
+        {
+            if (this.InvokeRequired)
+                return (int)this.Invoke(new Action(() => _ReadAll()));
+            else
+                return _ReadAll();
+        }
+
+        public int WriteAllApi()
+        {
+            if (this.InvokeRequired)
+                return (int)this.Invoke(new Action(() => _WriteAll()));
+            else
+                return _WriteAll();
+        }
+
+        public string GetMoreInfo()
+        {
+            _RxPowerRead();
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"Temperature                       : {tbTemperature.Text}");
+            sb.AppendLine($"Voltage                           : {tbVcc.Text}");
+            sb.AppendLine($"RxRSSI                            : {tbRxPower1.Text} / " +
+                                                              $"{tbRxPower2.Text} / " +
+                                                              $"{tbRxPower3.Text} / " +
+                                                              $"{tbRxPower4.Text}");
+            return sb.ToString();
         }
 
         private int _SetQsfpMode(byte mode)
@@ -287,7 +363,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             else
                 cbFaultTx1Mask.Checked = false;
 
-             if ((data[2] & 0x80) != 0)
+            if ((data[2] & 0x80) != 0)
                 cbLolTx4Mask.Checked = true;
             else
                 cbLolTx4Mask.Checked = false;
@@ -426,11 +502,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (i2cReadCB(80, 2, 1, data) != 1)
                 return -1;
 
-            if ((data[0] & 0x01) != 0)
-                cbDataNotReady.Checked = true;
-            else
-                cbDataNotReady.Checked = false;
-
             if ((data[0] & 0x02) != 0)
                 cbIntLState.Checked = true;
             else
@@ -441,12 +512,50 @@ namespace QsfpDigitalDiagnosticMonitoring
             else
                 cbFlatMem.Checked = false;
 
+            if (i2cReadCB(80, 103, 1, data) != 1)
+                return -1;
+
+            if ((data[0] & 0x01) != 0)
+                cbInitCompleteMask.Checked = true;
+            else
+                cbInitCompleteMask.Checked = false;
+
             return 0;
         }
 
         private void _bMiscRead_Click(object sender, EventArgs e)
         {
             if (_MiscRead() < 0)
+                return;
+        }
+
+        private int _MiscWrite()
+        {
+            byte[] data = new byte[1];
+
+            if (_SetQsfpMode(0x4D) < 0)
+                return -1;
+
+            if (i2cReadCB == null)
+                return -1;
+
+            if (i2cWriteCB == null)
+                return -1;
+
+            data[0] &= 0xF0;
+
+            if (cbInitCompleteMask.Checked == true)
+                data[0] |= 0x01;
+
+            if (i2cWriteCB(80, 103, 1, data) < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private void _bMiscWrite_Click(object sender, EventArgs e)
+        {
+            if (_MiscWrite() < 0)
                 return;
         }
 
@@ -602,8 +711,10 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (i2cReadCB == null)
                 return -1;
 
+            /*
             if (i2cReadCB(80, 103, 1, data) != 1)
                 return -1;
+            */
 
             data[0] &= 0x0F;
             if (cbTemperatureHighAlarmMask.Checked == true)
@@ -1336,7 +1447,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             data[0] = 3;
             if (i2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
-            
+
             try {
                 power = Convert.ToSingle(tbRxPowerHighAlarmThreshold.Text);
             }
@@ -1357,7 +1468,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             bATmp = BitConverter.GetBytes(uSTmp);
             data[0] = bATmp[1];
             data[1] = bATmp[0];
-            
+
             try {
                 power = Convert.ToSingle(tbRxPowerLowAlarmThreshold.Text);
             }
@@ -1378,7 +1489,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             bATmp = BitConverter.GetBytes(uSTmp);
             data[2] = bATmp[1];
             data[3] = bATmp[0];
-            
+
             try {
                 power = Convert.ToSingle(tbRxPowerHighWarningThreshold.Text);
             }
@@ -1399,7 +1510,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             bATmp = BitConverter.GetBytes(uSTmp);
             data[4] = bATmp[1];
             data[5] = bATmp[0];
-            
+
             try {
                 power = Convert.ToSingle(tbRxPowerLowWarningThreshold.Text);
             }
@@ -1486,7 +1597,7 @@ namespace QsfpDigitalDiagnosticMonitoring
 
             if (i2cReadCB(80, 11, 2, data) != 2)
                 return -1;
-            
+
             if ((data[0] & 0x80) != 0)
                 cbTxBias1HighAlarm.Checked = true;
             else
@@ -1939,55 +2050,80 @@ namespace QsfpDigitalDiagnosticMonitoring
         private void bRead_Click(object sender, EventArgs e)
         {
             bRead.Enabled = false;
+            if (_ReadAll() < 0) {
+                bRead.Enabled = true;
+                return;
+            }
+            else {
+                bRead.Enabled = true;
+                return;
+            }
+        }
+
+        private int _ReadAll()
+        {
             if (_LosAndFaultRead() < 0)
-                goto exit;
-
-            if (_MiscRead() < 0)
-                goto exit;
-
-            if (_TemperatureRead() < 0)
-                goto exit;
-
-            if (_VccRead() < 0)
-                goto exit;
+                return -1;
 
             if (_RxPowerRead() < 0)
-                goto exit;
+                return -2;
 
             if (_TxBiasRead() < 0)
-                goto exit;
+                return -3;
 
             if (_MpdPowerRead() < 0)
-                goto exit;
+                return -4;
 
-            exit:
-            bRead.Enabled = true;
+            if (_MiscRead() < 0)
+                return -5;
+
+            if (_TemperatureRead() < 0)
+                return -6;
+
+            if (_VccRead() < 0)
+                return -7;
+
+            return 0;
         }
 
         private void bWrite_Click(object sender, EventArgs e)
         {
             bWrite.Enabled = false;
 
+            if (_WriteAll() < 0) {
+                bWrite.Enabled = true;
+                return;
+            }
+            else {
+                bWrite.Enabled = true;
+                return;
+            }
+        }
+
+        private int _WriteAll()
+        {
             if (_LosAndFaultWrite() < 0)
-                goto exit;
+                return -1;
+
+            if (_MiscWrite() < 0)
+                return -2;
 
             if (_TemperatureWrite() < 0)
-                goto exit;
+                return -3;
 
             if (_VccWrite() < 0)
-                goto exit;
+                return -4;
 
             if (_RxPowerWrite() < 0)
-                goto exit;
+                return -5;
 
             if (_TxBiasWrite() < 0)
-                goto exit;
+                return -6;
 
             if (_MpdPowerWrite() < 0)
-                goto exit;
+                return -7;
 
-            exit:
-            bWrite.Enabled = true;
+            return 0;
         }
 
         private void bStoreIntoFlash_Click(object sender, EventArgs e)
@@ -2007,7 +2143,6 @@ namespace QsfpDigitalDiagnosticMonitoring
 
             if (i2cWriteCB == null)
                 goto exit;
-
 
             /* old version */
             data[0] = 0x32;
@@ -2135,12 +2270,10 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (i2cReadCB(80, 50, 8, data) != 8)
                 return -1;
 
-            try
-            {
+            try {
                 Buffer.BlockCopy(data, 0, bATmp, 0, 2);
             }
-            catch (Exception eBC)
-            {
+            catch (Exception eBC) {
                 MessageBox.Show(eBC.ToString());
                 return -1;
             }
@@ -2151,12 +2284,10 @@ namespace QsfpDigitalDiagnosticMonitoring
             power = power / 10;
             tbMpdPower1.Text = power.ToString("#0.0");
 
-            try
-            {
+            try {
                 Buffer.BlockCopy(data, 2, bATmp, 0, 2);
             }
-            catch (Exception eBC)
-            {
+            catch (Exception eBC) {
                 MessageBox.Show(eBC.ToString());
                 return -1;
             }
@@ -2167,12 +2298,10 @@ namespace QsfpDigitalDiagnosticMonitoring
             power = power / 10;
             tbMpdPower2.Text = power.ToString("#0.0");
 
-            try
-            {
+            try {
                 Buffer.BlockCopy(data, 4, bATmp, 0, 2);
             }
-            catch (Exception eBC)
-            {
+            catch (Exception eBC) {
                 MessageBox.Show(eBC.ToString());
                 return -1;
             }
@@ -2183,12 +2312,10 @@ namespace QsfpDigitalDiagnosticMonitoring
             power = power / 10;
             tbMpdPower3.Text = power.ToString("#0.0");
 
-            try
-            {
+            try {
                 Buffer.BlockCopy(data, 6, bATmp, 0, 2);
             }
-            catch (Exception eBC)
-            {
+            catch (Exception eBC) {
                 MessageBox.Show(eBC.ToString());
                 return -1;
             }
@@ -2207,12 +2334,10 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (i2cReadCB(80, 192, 8, data) != 8)
                 return -1;
 
-            try
-            {
+            try {
                 Buffer.BlockCopy(data, 0, bATmp, 0, 2);
             }
-            catch (Exception eBC)
-            {
+            catch (Exception eBC) {
                 MessageBox.Show(eBC.ToString());
                 return -1;
             }
@@ -2222,12 +2347,10 @@ namespace QsfpDigitalDiagnosticMonitoring
             power = power / 10;
             tbMpdPowerHighAlarmThreshold.Text = power.ToString("#0.0");
 
-            try
-            {
+            try {
                 Buffer.BlockCopy(data, 2, bATmp, 0, 2);
             }
-            catch (Exception eBC)
-            {
+            catch (Exception eBC) {
                 MessageBox.Show(eBC.ToString());
                 return -1;
             }
@@ -2237,12 +2360,10 @@ namespace QsfpDigitalDiagnosticMonitoring
             power = power / 10;
             tbMpdPowerLowAlarmThreshold.Text = power.ToString("#0.0");
 
-            try
-            {
+            try {
                 Buffer.BlockCopy(data, 4, bATmp, 0, 2);
             }
-            catch (Exception eBC)
-            {
+            catch (Exception eBC) {
                 MessageBox.Show(eBC.ToString());
                 return -1;
             }
@@ -2252,12 +2373,10 @@ namespace QsfpDigitalDiagnosticMonitoring
             power = power / 10;
             tbMpdPowerHighWarningThreshold.Text = power.ToString("#0.0");
 
-            try
-            {
+            try {
                 Buffer.BlockCopy(data, 6, bATmp, 0, 2);
             }
-            catch (Exception eBC)
-            {
+            catch (Exception eBC) {
                 MessageBox.Show(eBC.ToString());
                 return -1;
             }
@@ -2384,23 +2503,19 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (i2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
 
-            try
-            {
+            try {
                 power = Convert.ToSingle(tbMpdPowerHighAlarmThreshold.Text);
             }
-            catch (Exception eTS)
-            {
+            catch (Exception eTS) {
                 MessageBox.Show(eTS.ToString());
                 return -1;
             }
 
             power *= 10;
-            try
-            {
+            try {
                 uSTmp = Convert.ToUInt16(power);
             }
-            catch (Exception eTI)
-            {
+            catch (Exception eTI) {
                 MessageBox.Show(eTI.ToString());
                 return -1;
             }
@@ -2409,23 +2524,19 @@ namespace QsfpDigitalDiagnosticMonitoring
             data[0] = bATmp[1];
             data[1] = bATmp[0];
 
-            try
-            {
+            try {
                 power = Convert.ToSingle(tbMpdPowerLowAlarmThreshold.Text);
             }
-            catch (Exception eTS)
-            {
+            catch (Exception eTS) {
                 MessageBox.Show(eTS.ToString());
                 return -1;
             }
 
             power *= 10;
-            try
-            {
+            try {
                 uSTmp = Convert.ToUInt16(power);
             }
-            catch (Exception eTI)
-            {
+            catch (Exception eTI) {
                 MessageBox.Show(eTI.ToString());
                 return -1;
             }
@@ -2434,23 +2545,19 @@ namespace QsfpDigitalDiagnosticMonitoring
             data[2] = bATmp[1];
             data[3] = bATmp[0];
 
-            try
-            {
+            try {
                 power = Convert.ToSingle(tbMpdPowerHighWarningThreshold.Text);
             }
-            catch (Exception eTS)
-            {
+            catch (Exception eTS) {
                 MessageBox.Show(eTS.ToString());
                 return -1;
             }
 
             power *= 10;
-            try
-            {
+            try {
                 uSTmp = Convert.ToUInt16(power);
             }
-            catch (Exception eTI)
-            {
+            catch (Exception eTI) {
                 MessageBox.Show(eTI.ToString());
                 return -1;
             }
@@ -2459,23 +2566,19 @@ namespace QsfpDigitalDiagnosticMonitoring
             data[4] = bATmp[1];
             data[5] = bATmp[0];
 
-            try
-            {
+            try {
                 power = Convert.ToSingle(tbMpdPowerLowWarningThreshold.Text);
             }
-            catch (Exception eTS)
-            {
+            catch (Exception eTS) {
                 MessageBox.Show(eTS.ToString());
                 return -1;
             }
 
             power *= 10;
-            try
-            {
+            try {
                 uSTmp = Convert.ToUInt16(power);
             }
-            catch (Exception eTI)
-            {
+            catch (Exception eTI) {
                 MessageBox.Show(eTI.ToString());
                 return -1;
             }

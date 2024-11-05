@@ -39,7 +39,8 @@
     <Reference Include="AardvarkAdapter">
       <HintPath>..\..\..\c_sharp_application\dll\device\AardvarkAdapter.dll</HintPath>
     </Reference>
-    <Reference Include="I2cMasterInterface">
+    <Reference Include="I2cMasterInterface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\dll\interface\I2cMasterInterface.dll</HintPath>
     </Reference>
     <Reference Include="Mcp2221Adapter">

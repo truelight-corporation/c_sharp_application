@@ -227,7 +227,6 @@
             this.cbLosTx1 = new System.Windows.Forms.CheckBox();
             this.lLosAndFaultTx1 = new System.Windows.Forms.Label();
             this.gbMisc = new System.Windows.Forms.GroupBox();
-            this.cbDataNotReady = new System.Windows.Forms.CheckBox();
             this.cbFlatMem = new System.Windows.Forms.CheckBox();
             this.cbIntLState = new System.Windows.Forms.CheckBox();
             this.bMiscRead = new System.Windows.Forms.Button();
@@ -285,6 +284,8 @@
             this.lMpdPowerLowWarning = new System.Windows.Forms.Label();
             this.lMpdPowerHighWarning = new System.Windows.Forms.Label();
             this.lMpdPowerHighAlarm = new System.Windows.Forms.Label();
+            this.cbInitCompleteMask = new System.Windows.Forms.CheckBox();
+            this.bMiscWrite = new System.Windows.Forms.Button();
             this.gbTemperature.SuspendLayout();
             this.gbVcc.SuspendLayout();
             this.gbRxPower.SuspendLayout();
@@ -2441,7 +2442,8 @@
             // 
             // gbMisc
             // 
-            this.gbMisc.Controls.Add(this.cbDataNotReady);
+            this.gbMisc.Controls.Add(this.bMiscWrite);
+            this.gbMisc.Controls.Add(this.cbInitCompleteMask);
             this.gbMisc.Controls.Add(this.cbFlatMem);
             this.gbMisc.Controls.Add(this.cbIntLState);
             this.gbMisc.Controls.Add(this.bMiscRead);
@@ -2452,17 +2454,6 @@
             this.gbMisc.TabIndex = 66;
             this.gbMisc.TabStop = false;
             this.gbMisc.Text = "Misc";
-            // 
-            // cbDataNotReady
-            // 
-            this.cbDataNotReady.AutoSize = true;
-            this.cbDataNotReady.Enabled = false;
-            this.cbDataNotReady.Location = new System.Drawing.Point(6, 16);
-            this.cbDataNotReady.Name = "cbDataNotReady";
-            this.cbDataNotReady.Size = new System.Drawing.Size(98, 16);
-            this.cbDataNotReady.TabIndex = 70;
-            this.cbDataNotReady.Text = "Data Not Ready";
-            this.cbDataNotReady.UseVisualStyleBackColor = true;
             // 
             // cbFlatMem
             // 
@@ -2500,7 +2491,7 @@
             // 
             this.cbInitComplete.AutoSize = true;
             this.cbInitComplete.Enabled = false;
-            this.cbInitComplete.Location = new System.Drawing.Point(110, 16);
+            this.cbInitComplete.Location = new System.Drawing.Point(6, 16);
             this.cbInitComplete.Name = "cbInitComplete";
             this.cbInitComplete.Size = new System.Drawing.Size(88, 16);
             this.cbInitComplete.TabIndex = 16;
@@ -3074,6 +3065,26 @@
             this.lMpdPowerHighAlarm.TabIndex = 0;
             this.lMpdPowerHighAlarm.Text = "High Alarm (uW) :";
             // 
+            // cbInitCompleteMask
+            // 
+            this.cbInitCompleteMask.AutoSize = true;
+            this.cbInitCompleteMask.Enabled = false;
+            this.cbInitCompleteMask.Location = new System.Drawing.Point(97, 16);
+            this.cbInitCompleteMask.Name = "cbInitCompleteMask";
+            this.cbInitCompleteMask.Size = new System.Drawing.Size(116, 16);
+            this.cbInitCompleteMask.TabIndex = 70;
+            this.cbInitCompleteMask.Text = "Init Complete Mask";
+            this.cbInitCompleteMask.UseVisualStyleBackColor = true;
+            // 
+            // bMiscWrite
+            // 
+            this.bMiscWrite.Location = new System.Drawing.Point(214, 49);
+            this.bMiscWrite.Name = "bMiscWrite";
+            this.bMiscWrite.Size = new System.Drawing.Size(30, 23);
+            this.bMiscWrite.TabIndex = 71;
+            this.bMiscWrite.Text = "W";
+            this.bMiscWrite.UseVisualStyleBackColor = true;
+            // 
             // UCDigitalDiagnosticsMonitoring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -3367,6 +3378,7 @@
         private System.Windows.Forms.CheckBox cbLolRx3;
         private System.Windows.Forms.CheckBox cbLolRx2;
         private System.Windows.Forms.CheckBox cbLolRx1;
-        private System.Windows.Forms.CheckBox cbDataNotReady;
+        private System.Windows.Forms.CheckBox cbInitCompleteMask;
+        private System.Windows.Forms.Button bMiscWrite;
     }
 }
