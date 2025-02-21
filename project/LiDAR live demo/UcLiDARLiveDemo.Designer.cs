@@ -110,13 +110,13 @@
             this.cbTn581ChenPinStandbyEn = new System.Windows.Forms.CheckBox();
             this.cbTn581Standby = new System.Windows.Forms.CheckBox();
             this.tpConsoleTest = new System.Windows.Forms.TabPage();
+            this.bConsoleLogClear = new System.Windows.Forms.Button();
             this.bConsoleTx = new System.Windows.Forms.Button();
             this.tbConsoleTx = new System.Windows.Forms.TextBox();
             this.tbConsoleRx = new System.Windows.Forms.TextBox();
             this.cbSerialPortConnected = new System.Windows.Forms.CheckBox();
             this.bSerialPortReflash = new System.Windows.Forms.Button();
             this.cbSerialPorts = new System.Windows.Forms.ComboBox();
-            this.bConsoleLogClear = new System.Windows.Forms.Button();
             this.tcFunctionSelect.SuspendLayout();
             this.tpLiveDemo.SuspendLayout();
             this.gbTiaRssi.SuspendLayout();
@@ -592,6 +592,7 @@
             this.bTn581Write.TabIndex = 38;
             this.bTn581Write.Text = "Write";
             this.bTn581Write.UseVisualStyleBackColor = true;
+            this.bTn581Write.Click += new System.EventHandler(this.bTn581Write_Click);
             // 
             // bTn581Read
             // 
@@ -612,6 +613,7 @@
             this.cbTn581I2cSlaRstMstNack.TabIndex = 36;
             this.cbTn581I2cSlaRstMstNack.Text = "I2c sla rst mst nack";
             this.cbTn581I2cSlaRstMstNack.UseVisualStyleBackColor = true;
+            this.cbTn581I2cSlaRstMstNack.CheckedChanged += new System.EventHandler(this.cbTn581I2cSlaRstMstNack_CheckedChanged);
             // 
             // tbTn581ChipRevision
             // 
@@ -656,6 +658,7 @@
             this.cbTn581DpolCh3.TabIndex = 31;
             this.cbTn581DpolCh3.Text = "Ch3";
             this.cbTn581DpolCh3.UseVisualStyleBackColor = true;
+            this.cbTn581DpolCh3.CheckedChanged += new System.EventHandler(this.cbTn581DpolCh3_CheckedChanged);
             // 
             // cbTn581DpolCh2
             // 
@@ -666,6 +669,7 @@
             this.cbTn581DpolCh2.TabIndex = 30;
             this.cbTn581DpolCh2.Text = "Ch2";
             this.cbTn581DpolCh2.UseVisualStyleBackColor = true;
+            this.cbTn581DpolCh2.CheckedChanged += new System.EventHandler(this.cbTn581DpolCh2_CheckedChanged);
             // 
             // cbTn581DpolCh1
             // 
@@ -676,6 +680,7 @@
             this.cbTn581DpolCh1.TabIndex = 29;
             this.cbTn581DpolCh1.Text = "Ch1";
             this.cbTn581DpolCh1.UseVisualStyleBackColor = true;
+            this.cbTn581DpolCh1.CheckedChanged += new System.EventHandler(this.cbTn581DpolCh1_CheckedChanged);
             // 
             // lTn581Dpol
             // 
@@ -695,6 +700,7 @@
             this.cbTn581DpolCh0.TabIndex = 27;
             this.cbTn581DpolCh0.Text = "Ch0";
             this.cbTn581DpolCh0.UseVisualStyleBackColor = true;
+            this.cbTn581DpolCh0.CheckedChanged += new System.EventHandler(this.cbTn581DpolCh0_CheckedChanged);
             // 
             // cbTn581RssiEnable
             // 
@@ -705,6 +711,7 @@
             this.cbTn581RssiEnable.TabIndex = 26;
             this.cbTn581RssiEnable.Text = "RSSI En";
             this.cbTn581RssiEnable.UseVisualStyleBackColor = true;
+            this.cbTn581RssiEnable.CheckedChanged += new System.EventHandler(this.cbTn581RssiEnable_CheckedChanged);
             // 
             // cbTn581RssiSel
             // 
@@ -713,6 +720,7 @@
             this.cbTn581RssiSel.Name = "cbTn581RssiSel";
             this.cbTn581RssiSel.Size = new System.Drawing.Size(85, 20);
             this.cbTn581RssiSel.TabIndex = 25;
+            this.cbTn581RssiSel.SelectedIndexChanged += new System.EventHandler(this.cbTn581RssiSel_SelectedIndexChanged);
             // 
             // lTn581RssiSelect
             // 
@@ -730,6 +738,7 @@
             this.cbTn581LfcCh3.Name = "cbTn581LfcCh3";
             this.cbTn581LfcCh3.Size = new System.Drawing.Size(85, 20);
             this.cbTn581LfcCh3.TabIndex = 23;
+            this.cbTn581LfcCh3.SelectedIndexChanged += new System.EventHandler(this.cbTn581LfcCh3_SelectedIndexChanged);
             // 
             // lTn581LfcCh3
             // 
@@ -747,6 +756,7 @@
             this.cbTn581LfcCh2.Name = "cbTn581LfcCh2";
             this.cbTn581LfcCh2.Size = new System.Drawing.Size(85, 20);
             this.cbTn581LfcCh2.TabIndex = 21;
+            this.cbTn581LfcCh2.SelectedIndexChanged += new System.EventHandler(this.cbTn581LfcCh2_SelectedIndexChanged);
             // 
             // lTn581LfcCh2
             // 
@@ -764,6 +774,7 @@
             this.cbTn581LfcCh1.Name = "cbTn581LfcCh1";
             this.cbTn581LfcCh1.Size = new System.Drawing.Size(85, 20);
             this.cbTn581LfcCh1.TabIndex = 19;
+            this.cbTn581LfcCh1.SelectedIndexChanged += new System.EventHandler(this.cbTn581LfcCh1_SelectedIndexChanged);
             // 
             // lTn581LfcCh1
             // 
@@ -781,6 +792,7 @@
             this.cbTn581LfcCh0.Name = "cbTn581LfcCh0";
             this.cbTn581LfcCh0.Size = new System.Drawing.Size(85, 20);
             this.cbTn581LfcCh0.TabIndex = 17;
+            this.cbTn581LfcCh0.SelectedIndexChanged += new System.EventHandler(this.cbTn581LfcCh0_SelectedIndexChanged);
             // 
             // lTn581LfcCh0
             // 
@@ -798,6 +810,7 @@
             this.cbTn581GainCh3.Name = "cbTn581GainCh3";
             this.cbTn581GainCh3.Size = new System.Drawing.Size(85, 20);
             this.cbTn581GainCh3.TabIndex = 15;
+            this.cbTn581GainCh3.SelectedIndexChanged += new System.EventHandler(this.cbTn581GainCh3_SelectedIndexChanged);
             // 
             // lTn581GainCh3
             // 
@@ -815,6 +828,7 @@
             this.cbTn581GainCh2.Name = "cbTn581GainCh2";
             this.cbTn581GainCh2.Size = new System.Drawing.Size(85, 20);
             this.cbTn581GainCh2.TabIndex = 13;
+            this.cbTn581GainCh2.SelectedIndexChanged += new System.EventHandler(this.cbTn581GainCh2_SelectedIndexChanged);
             // 
             // lTn581GainCh2
             // 
@@ -832,6 +846,7 @@
             this.cbTn581GainCh1.Name = "cbTn581GainCh1";
             this.cbTn581GainCh1.Size = new System.Drawing.Size(85, 20);
             this.cbTn581GainCh1.TabIndex = 11;
+            this.cbTn581GainCh1.SelectedIndexChanged += new System.EventHandler(this.cbTn581GainCh1_SelectedIndexChanged);
             // 
             // lTn581GainCh1
             // 
@@ -849,6 +864,7 @@
             this.cbTn581GainCh0.Name = "cbTn581GainCh0";
             this.cbTn581GainCh0.Size = new System.Drawing.Size(85, 20);
             this.cbTn581GainCh0.TabIndex = 9;
+            this.cbTn581GainCh0.SelectedIndexChanged += new System.EventHandler(this.cbTn581GainCh0_SelectedIndexChanged);
             // 
             // lTn581GainCh0
             // 
@@ -868,6 +884,7 @@
             this.cbTn581RxEnCh3.TabIndex = 7;
             this.cbTn581RxEnCh3.Text = "Ch3";
             this.cbTn581RxEnCh3.UseVisualStyleBackColor = true;
+            this.cbTn581RxEnCh3.CheckedChanged += new System.EventHandler(this.cbTn581RxEnCh3_CheckedChanged);
             // 
             // cbTn581RxEnCh2
             // 
@@ -878,6 +895,7 @@
             this.cbTn581RxEnCh2.TabIndex = 6;
             this.cbTn581RxEnCh2.Text = "Ch2";
             this.cbTn581RxEnCh2.UseVisualStyleBackColor = true;
+            this.cbTn581RxEnCh2.CheckedChanged += new System.EventHandler(this.cbTn581RxEnCh2_CheckedChanged);
             // 
             // cbTn581RxEnCh1
             // 
@@ -888,6 +906,7 @@
             this.cbTn581RxEnCh1.TabIndex = 5;
             this.cbTn581RxEnCh1.Text = "Ch1";
             this.cbTn581RxEnCh1.UseVisualStyleBackColor = true;
+            this.cbTn581RxEnCh1.CheckedChanged += new System.EventHandler(this.cbTn581RxEnCh1_CheckedChanged);
             // 
             // lTn581RxEnable
             // 
@@ -907,6 +926,7 @@
             this.cbTn581RxEnCh0.TabIndex = 3;
             this.cbTn581RxEnCh0.Text = "Ch0";
             this.cbTn581RxEnCh0.UseVisualStyleBackColor = true;
+            this.cbTn581RxEnCh0.CheckedChanged += new System.EventHandler(this.cbTn581RxEnCh0_CheckedChanged);
             // 
             // cbTn581ChenPinStatus
             // 
@@ -928,6 +948,7 @@
             this.cbTn581ChenPinStandbyEn.TabIndex = 1;
             this.cbTn581ChenPinStandbyEn.Text = "Chen pin standby en";
             this.cbTn581ChenPinStandbyEn.UseVisualStyleBackColor = true;
+            this.cbTn581ChenPinStandbyEn.CheckedChanged += new System.EventHandler(this.cbTn581ChenPinStandbyEn_CheckedChanged);
             // 
             // cbTn581Standby
             // 
@@ -938,6 +959,7 @@
             this.cbTn581Standby.TabIndex = 0;
             this.cbTn581Standby.Text = "Standby";
             this.cbTn581Standby.UseVisualStyleBackColor = true;
+            this.cbTn581Standby.CheckedChanged += new System.EventHandler(this.cbTn581Standby_CheckedChanged);
             // 
             // tpConsoleTest
             // 
@@ -952,6 +974,16 @@
             this.tpConsoleTest.TabIndex = 1;
             this.tpConsoleTest.Text = "Console Test";
             this.tpConsoleTest.UseVisualStyleBackColor = true;
+            // 
+            // bConsoleLogClear
+            // 
+            this.bConsoleLogClear.Location = new System.Drawing.Point(3, 328);
+            this.bConsoleLogClear.Name = "bConsoleLogClear";
+            this.bConsoleLogClear.Size = new System.Drawing.Size(50, 23);
+            this.bConsoleLogClear.TabIndex = 3;
+            this.bConsoleLogClear.Text = "Clear";
+            this.bConsoleLogClear.UseVisualStyleBackColor = true;
+            this.bConsoleLogClear.Click += new System.EventHandler(this.bConsoleLogClear_Click);
             // 
             // bConsoleTx
             // 
@@ -1009,16 +1041,6 @@
             this.cbSerialPorts.Name = "cbSerialPorts";
             this.cbSerialPorts.Size = new System.Drawing.Size(121, 20);
             this.cbSerialPorts.TabIndex = 4;
-            // 
-            // bConsoleLogClear
-            // 
-            this.bConsoleLogClear.Location = new System.Drawing.Point(3, 328);
-            this.bConsoleLogClear.Name = "bConsoleLogClear";
-            this.bConsoleLogClear.Size = new System.Drawing.Size(50, 23);
-            this.bConsoleLogClear.TabIndex = 3;
-            this.bConsoleLogClear.Text = "Clear";
-            this.bConsoleLogClear.UseVisualStyleBackColor = true;
-            this.bConsoleLogClear.Click += new System.EventHandler(this.bConsoleLogClear_Click);
             // 
             // UcLiDARLiveDemo
             // 

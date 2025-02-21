@@ -29,6 +29,8 @@ namespace LiDAR_live_demo
         private volatile UInt16[] tiaRssi = new UInt16[1];
         private volatile byte[] ntcTemperatureOffset = new byte[3];
         private volatile bool monitorStart = false;
+        private volatile bool tn581Reading = false;
+        private volatile bool tn581Writing = false;
 
         private SeriesCollection scNtc1Temperature { get; set; }
         private SeriesCollection scNtc2Temperature { get; set; }
@@ -1122,25 +1124,25 @@ namespace LiDAR_live_demo
         private void TiaTn581ParserAddr0x14(byte value)
         {
             foreach (ComboboxItem item in cbTn581GainCh3.Items) {
-                if (item.Value == (value & 0xC0) >> 6) {
+                if (item.Value == ((value & 0xC0) >> 6)) {
                     cbTn581GainCh3.SelectedItem = item;
                 }
             }
 
             foreach (ComboboxItem item in cbTn581GainCh2.Items) {
-                if (item.Value == (value & 0x30) >> 4) {
+                if (item.Value == ((value & 0x30) >> 4)) {
                     cbTn581GainCh2.SelectedItem = item;
                 }
             }
 
             foreach (ComboboxItem item in cbTn581GainCh1.Items) {
-                if (item.Value == (value & 0x0C) >> 2) {
+                if (item.Value == ((value & 0x0C) >> 2)) {
                     cbTn581GainCh1.SelectedItem = item;
                 }
             }
 
             foreach (ComboboxItem item in cbTn581GainCh0.Items) {
-                if (item.Value == (value & 0xC0)) {
+                if (item.Value == (value & 0x03)) {
                     cbTn581GainCh0.SelectedItem = item;
                 }
             }
@@ -1167,7 +1169,7 @@ namespace LiDAR_live_demo
             }
 
             foreach (ComboboxItem item in cbTn581LfcCh0.Items) {
-                if (item.Value == (value & 0xC0)) {
+                if (item.Value == (value & 0x03)) {
                     cbTn581LfcCh0.SelectedItem = item;
                 }
             }
@@ -1450,6 +1452,604 @@ namespace LiDAR_live_demo
             tbConsoleRx.Text = "";
         }
 
+        private int _Tn581WriteAddr0x00()
+        {
+            byte[] data = new byte[1];
+            String buf;
+
+            if (cbSerialPortConnected.Checked == false) {
+                MessageBox.Show("Please connect serial port first!!");
+                return -1;
+            }
+
+            try {
+                buf = "w 0x7F 0x04\r";
+                serialPort.Write(buf);
+                Thread.Sleep(monitorCommandDelay);
+                buf = "w 0x7B 0x33\r";
+                serialPort.Write(buf);
+                Thread.Sleep(monitorCommandDelay);
+                buf = "w 0x7C 0x32\r";
+                serialPort.Write(buf);
+                Thread.Sleep(monitorCommandDelay);
+                buf = "w 0x7D 0x33\r";
+                serialPort.Write(buf);
+                Thread.Sleep(monitorCommandDelay);
+                buf = "w 0x7E 0x34\r";
+                serialPort.Write(buf);
+                Thread.Sleep(monitorCommandDelay);
+
+                data[0] = 0;
+
+                if (cbTn581ChenPinStandbyEn.Checked == true)
+                    data[0] |= 0x80;
+
+                if (cbTn581Standby.Checked == true)
+                    data[0] |= 0x02;
+
+
+                buf = "w 0x80 0x" + data[0].ToString("X2") + "\r";
+                serialPort.Write(buf);
+                Thread.Sleep(monitorCommandDelay);
+            }
+            catch (IOException ioE) {
+                MessageBox.Show(ioE.ToString());
+            }
+
+            return 0;
+        }
+
+        private int _Tn581WriteAddr0x11()
+        {
+            byte[] data = new byte[1];
+            String buf;
+
+            if (cbSerialPortConnected.Checked == false) {
+                MessageBox.Show("Please connect serial port first!!");
+                return -1;
+            }
+
+            try {
+                buf = "w 0x7F 0x04\r";
+                serialPort.Write(buf);
+                if (tn581Writing == true)
+                    Thread.Sleep(monitorCommandChangePageDelay);
+                else {
+                    Thread.Sleep(monitorCommandDelay);
+                    buf = "w 0x7B 0x33\r";
+                    serialPort.Write(buf);
+                    Thread.Sleep(monitorCommandDelay);
+                    buf = "w 0x7C 0x32\r";
+                    serialPort.Write(buf);
+                    Thread.Sleep(monitorCommandDelay);
+                    buf = "w 0x7D 0x33\r";
+                    serialPort.Write(buf);
+                    Thread.Sleep(monitorCommandDelay);
+                    buf = "w 0x7E 0x34\r";
+                    serialPort.Write(buf);
+                    Thread.Sleep(monitorCommandDelay);
+                }
+
+                data[0] = 0;
+
+                if (cbTn581RxEnCh3.Checked == true)
+                    data[0] |= 0x08;
+
+                if (cbTn581RxEnCh2.Checked == true)
+                    data[0] |= 0x04;
+
+                if (cbTn581RxEnCh1.Checked == true)
+                    data[0] |= 0x02;
+
+                if (cbTn581RxEnCh0.Checked == true)
+                    data[0] |= 0x01;
+
+                buf = "w 0x91 0x" + data[0].ToString("X2") + "\r";
+                serialPort.Write(buf);
+                Thread.Sleep(monitorCommandDelay);
+            }
+            catch (IOException ioE) {
+                MessageBox.Show(ioE.ToString());
+            }
+
+            return 0;
+        }
+
+        private int _Tn581WriteAddr0x14()
+        {
+            byte[] data = new byte[1];
+            String buf;
+            byte bTmp;
+
+            if (cbSerialPortConnected.Checked == false) {
+                MessageBox.Show("Please connect serial port first!!");
+                return -1;
+            }
+
+            try {
+                buf = "w 0x7F 0x04\r";
+                serialPort.Write(buf);
+                if (tn581Writing == true)
+                    Thread.Sleep(monitorCommandChangePageDelay);
+                else {
+                    Thread.Sleep(monitorCommandDelay);
+                    buf = "w 0x7B 0x33\r";
+                    serialPort.Write(buf);
+                    Thread.Sleep(monitorCommandDelay);
+                    buf = "w 0x7C 0x32\r";
+                    serialPort.Write(buf);
+                    Thread.Sleep(monitorCommandDelay);
+                    buf = "w 0x7D 0x33\r";
+                    serialPort.Write(buf);
+                    Thread.Sleep(monitorCommandDelay);
+                    buf = "w 0x7E 0x34\r";
+                    serialPort.Write(buf);
+                    Thread.Sleep(monitorCommandDelay);
+                }
+
+                data[0] = 0;
+
+                bTmp = Convert.ToByte((byte)(cbTn581GainCh3.SelectedIndex));
+                bTmp <<= 6;
+                data[0] |= bTmp;
+
+                bTmp = Convert.ToByte((byte)(cbTn581GainCh2.SelectedIndex));
+                bTmp <<= 4;
+                data[0] |= bTmp;
+
+                bTmp = Convert.ToByte((byte)(cbTn581GainCh1.SelectedIndex));
+                bTmp <<= 2;
+                data[0] |= bTmp;
+
+                bTmp = Convert.ToByte((byte)(cbTn581GainCh0.SelectedIndex));
+                data[0] |= bTmp;
+
+                buf = "w 0x94 0x" + data[0].ToString("X2") + "\r";
+                serialPort.Write(buf);
+                Thread.Sleep(monitorCommandDelay);
+            }
+            catch (IOException ioE) {
+                MessageBox.Show(ioE.ToString());
+            }
+
+            return 0;
+        }
+
+        private int _Tn581WriteAddr0x17()
+        {
+            byte[] data = new byte[1];
+            String buf;
+            byte bTmp;
+
+            if (cbSerialPortConnected.Checked == false) {
+                MessageBox.Show("Please connect serial port first!!");
+                return -1;
+            }
+
+            try {
+                buf = "w 0x7F 0x04\r";
+                serialPort.Write(buf);
+                if (tn581Writing == true)
+                    Thread.Sleep(monitorCommandChangePageDelay);
+                else {
+                    Thread.Sleep(monitorCommandDelay);
+                    buf = "w 0x7B 0x33\r";
+                    serialPort.Write(buf);
+                    Thread.Sleep(monitorCommandDelay);
+                    buf = "w 0x7C 0x32\r";
+                    serialPort.Write(buf);
+                    Thread.Sleep(monitorCommandDelay);
+                    buf = "w 0x7D 0x33\r";
+                    serialPort.Write(buf);
+                    Thread.Sleep(monitorCommandDelay);
+                    buf = "w 0x7E 0x34\r";
+                    serialPort.Write(buf);
+                    Thread.Sleep(monitorCommandDelay);
+                }
+
+                data[0] = 0;
+
+                bTmp = Convert.ToByte((byte)(cbTn581LfcCh3.SelectedIndex));
+                bTmp <<= 6;
+                data[0] |= bTmp;
+
+                bTmp = Convert.ToByte((byte)(cbTn581LfcCh2.SelectedIndex));
+                bTmp <<= 4;
+                data[0] |= bTmp;
+
+                bTmp = Convert.ToByte((byte)(cbTn581LfcCh1.SelectedIndex));
+                bTmp <<= 2;
+                data[0] |= bTmp;
+
+                bTmp = Convert.ToByte((byte)(cbTn581LfcCh0.SelectedIndex));
+                data[0] |= bTmp;
+
+                buf = "w 0x97 0x" + data[0].ToString("X2") + "\r";
+                serialPort.Write(buf);
+                Thread.Sleep(monitorCommandDelay);
+            }
+            catch (IOException ioE) {
+                MessageBox.Show(ioE.ToString());
+            }
+
+            return 0;
+        }
+
+        private int _Tn581WriteAddr0x19()
+        {
+            byte[] data = new byte[1];
+            String buf;
+            byte bTmp;
+
+            if (cbSerialPortConnected.Checked == false) {
+                MessageBox.Show("Please connect serial port first!!");
+                return -1;
+            }
+
+            try {
+                buf = "w 0x7F 0x04\r";
+                serialPort.Write(buf);
+                if (tn581Writing == true)
+                    Thread.Sleep(monitorCommandChangePageDelay);
+                else {
+                    Thread.Sleep(monitorCommandDelay);
+                    buf = "w 0x7B 0x33\r";
+                    serialPort.Write(buf);
+                    Thread.Sleep(monitorCommandDelay);
+                    buf = "w 0x7C 0x32\r";
+                    serialPort.Write(buf);
+                    Thread.Sleep(monitorCommandDelay);
+                    buf = "w 0x7D 0x33\r";
+                    serialPort.Write(buf);
+                    Thread.Sleep(monitorCommandDelay);
+                    buf = "w 0x7E 0x34\r";
+                    serialPort.Write(buf);
+                    Thread.Sleep(monitorCommandDelay);
+                }
+
+                data[0] = 0;
+
+                bTmp = Convert.ToByte(cbTn581RssiSel.SelectedIndex);
+                bTmp <<= 4;
+                data[0] |= bTmp;
+
+                if (cbTn581RssiEnable.Checked == true)
+                data[0] |= 0x01;
+
+                buf = "w 0x99 0x" + data[0].ToString("X2") + "\r";
+                serialPort.Write(buf);
+                Thread.Sleep(monitorCommandDelay);
+            }
+            catch (IOException ioE) {
+                MessageBox.Show(ioE.ToString());
+            }
+
+            return 0;
+        }
+
+        private int _Tn581WriteAddr0x1B()
+        {
+            byte[] data = new byte[1];
+            String buf;
+
+            if (cbSerialPortConnected.Checked == false) {
+                MessageBox.Show("Please connect serial port first!!");
+                return -1;
+            }
+
+            try {
+                buf = "w 0x7F 0x04\r";
+                serialPort.Write(buf);
+                if (tn581Writing == true)
+                    Thread.Sleep(monitorCommandChangePageDelay);
+                else {
+                    Thread.Sleep(monitorCommandDelay);
+                    buf = "w 0x7B 0x33\r";
+                    serialPort.Write(buf);
+                    Thread.Sleep(monitorCommandDelay);
+                    buf = "w 0x7C 0x32\r";
+                    serialPort.Write(buf);
+                    Thread.Sleep(monitorCommandDelay);
+                    buf = "w 0x7D 0x33\r";
+                    serialPort.Write(buf);
+                    Thread.Sleep(monitorCommandDelay);
+                    buf = "w 0x7E 0x34\r";
+                    serialPort.Write(buf);
+                    Thread.Sleep(monitorCommandDelay);
+                }
+
+                data[0] = 0;
+
+                if (cbTn581DpolCh3.Checked == true)
+                    data[0] |= 0x08;
+
+                if (cbTn581DpolCh2.Checked == true)
+                    data[0] |= 0x04;
+
+                if (cbTn581DpolCh1.Checked == true)
+                    data[0] |= 0x02;
+
+                if (cbTn581DpolCh0.Checked == true)
+                    data[0] |= 0x01;
+
+                buf = "w 0x9B 0x" + data[0].ToString("X2") + "\r";
+                serialPort.Write(buf);
+                Thread.Sleep(monitorCommandDelay);
+            }
+            catch (IOException ioE) {
+                MessageBox.Show(ioE.ToString());
+            }
+
+            return 0;
+        }
+
+        private int _Tn581WriteAddr0x24()
+        {
+            byte[] data = new byte[1];
+            String buf;
+
+            if (cbSerialPortConnected.Checked == false) {
+                MessageBox.Show("Please connect serial port first!!");
+                return -1;
+            }
+
+            try {
+                buf = "w 0x7F 0x04\r";
+                serialPort.Write(buf);
+                if (tn581Writing == true)
+                    Thread.Sleep(monitorCommandChangePageDelay);
+                else {
+                    Thread.Sleep(monitorCommandDelay);
+                    buf = "w 0x7B 0x33\r";
+                    serialPort.Write(buf);
+                    Thread.Sleep(monitorCommandDelay);
+                    buf = "w 0x7C 0x32\r";
+                    serialPort.Write(buf);
+                    Thread.Sleep(monitorCommandDelay);
+                    buf = "w 0x7D 0x33\r";
+                    serialPort.Write(buf);
+                    Thread.Sleep(monitorCommandDelay);
+                    buf = "w 0x7E 0x34\r";
+                    serialPort.Write(buf);
+                    Thread.Sleep(monitorCommandDelay);
+                }
+
+                data[0] = 0;
+
+                if (cbTn581I2cSlaRstMstNack.Checked == true)
+                    data[0] |= 0x01;
+
+                buf = "w 0xA4 0x" + data[0].ToString("X2") + "\r";
+                serialPort.Write(buf);
+                Thread.Sleep(monitorCommandDelay);
+            }
+            catch (IOException ioE) {
+                MessageBox.Show(ioE.ToString());
+            }
+
+            return 0;
+        }
+
+        private void cbTn581Standby_CheckedChanged(object sender, EventArgs e)
+        {
+            if (tn581Reading == true)
+                return;
+
+            if (_Tn581WriteAddr0x00() < 0)
+                return;
+        }
+
+        private void cbTn581ChenPinStandbyEn_CheckedChanged(object sender, EventArgs e)
+        {
+            if (tn581Reading == true)
+                return;
+
+            if (_Tn581WriteAddr0x00() < 0)
+                return;
+        }
+
+        private void cbTn581RxEnCh0_CheckedChanged(object sender, EventArgs e)
+        {
+            if (tn581Reading == true)
+                return;
+
+            if (_Tn581WriteAddr0x11() < 0)
+                return;
+        }
+
+        private void cbTn581RxEnCh1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (tn581Reading == true)
+                return;
+
+            if (_Tn581WriteAddr0x11() < 0)
+                return;
+        }
+
+        private void cbTn581RxEnCh2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (tn581Reading == true)
+                return;
+
+            if (_Tn581WriteAddr0x11() < 0)
+                return;
+        }
+
+        private void cbTn581RxEnCh3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (tn581Reading == true)
+                return;
+
+            if (_Tn581WriteAddr0x11() < 0)
+                return;
+        }
+
+        private void cbTn581GainCh0_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tn581Reading == true)
+                return;
+
+            if (_Tn581WriteAddr0x14() < 0)
+                return;
+        }
+
+        private void cbTn581GainCh1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tn581Reading == true)
+                return;
+
+            if (_Tn581WriteAddr0x14() < 0)
+                return;
+        }
+
+        private void cbTn581GainCh2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tn581Reading == true)
+                return;
+
+            if (_Tn581WriteAddr0x14() < 0)
+                return;
+        }
+
+        private void cbTn581GainCh3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tn581Reading == true)
+                return;
+
+            if (_Tn581WriteAddr0x14() < 0)
+                return;
+        }
+
+        private void cbTn581LfcCh0_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tn581Reading == true)
+                return;
+
+            if (_Tn581WriteAddr0x17() < 0)
+                return;
+        }
+
+        private void cbTn581LfcCh1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tn581Reading == true)
+                return;
+
+            if (_Tn581WriteAddr0x17() < 0)
+                return;
+        }
+
+        private void cbTn581LfcCh2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tn581Reading == true)
+                return;
+
+            if (_Tn581WriteAddr0x17() < 0)
+                return;
+        }
+
+        private void cbTn581LfcCh3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tn581Reading == true)
+                return;
+
+            if (_Tn581WriteAddr0x17() < 0)
+                return;
+        }
+
+        private void cbTn581RssiEnable_CheckedChanged(object sender, EventArgs e)
+        {
+            if (tn581Reading == true)
+                return;
+
+            if (_Tn581WriteAddr0x19() < 0)
+                return;
+        }
+
+        private void cbTn581RssiSel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tn581Reading == true)
+                return;
+
+            if (_Tn581WriteAddr0x19() < 0)
+                return;
+        }
+
+        private void cbTn581DpolCh0_CheckedChanged(object sender, EventArgs e)
+        {
+            if (tn581Reading == true)
+                return;
+
+            if (_Tn581WriteAddr0x1B() < 0)
+                return;
+        }
+
+        private void cbTn581DpolCh1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (tn581Reading == true)
+                return;
+
+            if (_Tn581WriteAddr0x1B() < 0)
+                return;
+        }
+
+        private void cbTn581DpolCh2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (tn581Reading == true)
+                return;
+
+            if (_Tn581WriteAddr0x1B() < 0)
+                return;
+        }
+
+        private void cbTn581DpolCh3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (tn581Reading == true)
+                return;
+
+            if (_Tn581WriteAddr0x1B() < 0)
+                return;
+        }
+
+        private void cbTn581I2cSlaRstMstNack_CheckedChanged(object sender, EventArgs e)
+        {
+            if (tn581Reading == true)
+                return;
+
+            if (_Tn581WriteAddr0x24() < 0)
+                return;
+        }
+
+        private void bTn581Write_Click(object sender, EventArgs e)
+        {
+            if (cbSerialPortConnected.Checked == false) {
+                MessageBox.Show("Please connect serial port first!!");
+                return;
+            }
+
+            bTn581Write.Enabled = false;
+            tn581Writing = true;
+
+            if (_Tn581WriteAddr0x00() < 0)
+                goto exit;
+            if (_Tn581WriteAddr0x11() < 0)
+                goto exit;
+            if (_Tn581WriteAddr0x14() < 0)
+                goto exit;
+            if (_Tn581WriteAddr0x17() < 0)
+                goto exit;
+            if (_Tn581WriteAddr0x19() < 0)
+                goto exit;
+            if (_Tn581WriteAddr0x1B() < 0)
+                goto exit;
+            if (_Tn581WriteAddr0x24() < 0)
+                goto exit;
+
+        exit:
+            tn581Writing = false;
+            bTn581Write.Enabled = true;
+            
+        }
+
         private void TiaTn581ParserAddr0x21(byte value)
         {
             tbTn581ChipNameB0.Text = "0x" + value.ToString("X2");
@@ -1470,6 +2070,11 @@ namespace LiDAR_live_demo
                 cbTn581I2cSlaRstMstNack.Checked = true;
             else
                 cbTn581I2cSlaRstMstNack.Checked = false;
+
+            if (tn581Reading == true) {
+                bTn581Read.Enabled = true;
+                tn581Reading = false;
+            }
         }
 
         private void TiaTn581HandleRxData(string rxData)
@@ -1582,6 +2187,7 @@ namespace LiDAR_live_demo
             }
 
             bTn581Read.Enabled = false;
+            tn581Reading = true;
 
             try {
                 buf = "w 0x7F 0x04\r";
@@ -1624,8 +2230,6 @@ namespace LiDAR_live_demo
             catch (IOException ioE) {
                 MessageBox.Show(ioE.ToString());
             }
-
-            bTn581Read.Enabled = true;
         }
 
         private void bTn581Save_Click(object sender, EventArgs e)
@@ -1642,7 +2246,20 @@ namespace LiDAR_live_demo
             try {
                 buf = "w 0x7F 0x04\r";
                 serialPort.Write(buf);
-                Thread.Sleep(monitorCommandChangePageDelay);
+                Thread.Sleep(monitorCommandDelay);
+                buf = "w 0x7B 0x33\r";
+                serialPort.Write(buf);
+                Thread.Sleep(monitorCommandDelay);
+                buf = "w 0x7C 0x32\r";
+                serialPort.Write(buf);
+                Thread.Sleep(monitorCommandDelay);
+                buf = "w 0x7D 0x33\r";
+                serialPort.Write(buf);
+                Thread.Sleep(monitorCommandDelay);
+                buf = "w 0x7E 0x34\r";
+                serialPort.Write(buf);
+                Thread.Sleep(monitorCommandDelay);
+
                 buf = "w 0xFF 0x55\r";
                 serialPort.Write(buf);
                 Thread.Sleep(1000);
@@ -1652,6 +2269,17 @@ namespace LiDAR_live_demo
             }
 
             bTn581Save.Enabled = true;
+        }
+    }
+
+    public class ComboboxItem
+    {
+        public string Text { get; set; }
+        public int Value { get; set; }
+
+        public override string ToString()
+        {
+            return Text;
         }
     }
 }
