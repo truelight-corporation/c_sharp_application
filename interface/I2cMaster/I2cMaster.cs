@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 using AardvarkAdapter;
@@ -146,7 +147,7 @@ namespace I2cMasterInterface
                     break;
 
                 case AdapterSelector.AdapterType.AS_AT_AARDVARK:
-                    if (_AardvarkConnect(port, 12) < 0)
+                    if (_AardvarkConnect(port, 0x1E) < 0) // 0x02(PIN3), 0x04(PIN5), 0x08(PIN7), 0x10(PIN8) = 0x1E
                         goto Error;
                     break;
 
@@ -217,12 +218,21 @@ namespace I2cMasterInterface
         {
             if (fASelect == null) {
                 fASelect = new FAdapterSelect();
-                fASelect.adapterSelector.AdapterSelectorSetAdapterSelectedCBApi(SelectAdapterCB);
+                if (fASelect.adapterSelector.AdapterSelectorSetAdapterSelectedCBApi(SelectAdapterCB) < 0)
+                    return -1;
             }
 
-            fASelect.adapterSelector.UpdateAardvarkAdapterApi();
+            if (fASelect.adapterSelector.UpdateAardvarkAdapterApi() < 0)
+                return -1;
+
             fASelect.adapterSelector.UpdateMcp2221AdapterApi();
-            fASelect.ShowDialog();
+            
+            if (fASelect.adapterSelector.CheckAardvarkAdapterCountApi() == 1) {
+                if (fASelect.adapterSelector.ConnectFirstAardvarkAdapter() < 0)
+                    return -1;
+            }
+            else
+                fASelect.ShowDialog();
 
             return 0;
         }
@@ -237,6 +247,67 @@ namespace I2cMasterInterface
 
             if (ConnectApi() < 0)
                 return -1;
+
+            return 0;
+        }
+
+        public int ChannelSetApi(int channelControl)
+        {
+            //int port;
+            int bitrate;
+            //byte bTmp;
+
+            bitrate = iBitrate;
+            //AardvarkApi.AardvarkExt aaExt = new AardvarkApi.AardvarkExt();
+
+            if (iHandler <= 0)
+            {
+                MessageBox.Show("Unable to open Aardvark device on port 0"
+                                + "\nPlease confirm the connection status of I2c"
+                                );
+                return -1;
+            }
+
+            //AardvarkApi.aa_configure(iHandler, AardvarkConfig.AA_CONFIG_GPIO_I2C);
+            //AardvarkApi.aa_i2c_pullup(iHandle, AardvarkApi.AA_I2C_PULLUP_NONE);
+            
+            switch (channelControl)
+            {
+                case 0:
+                    AardvarkApi.aa_gpio_set(iHandler, 0x00); // colse
+                    Thread.Sleep(10);
+                    break;
+                case 1:
+                    AardvarkApi.aa_gpio_set(iHandler, 0x04); // switch to Ch1 (PIN_5)
+                    Thread.Sleep(10);
+                    break;
+                case 2:
+                    AardvarkApi.aa_gpio_set(iHandler, 0x08);// switch to Ch2 (PIN_7)
+                    Thread.Sleep(10);
+                    break;
+                case 3:
+                    AardvarkApi.aa_gpio_set(iHandler, 0x10); // switch to LinkState (PIN_8)
+                    Thread.Sleep(10);
+                    break;
+                case 13:
+                    AardvarkApi.aa_gpio_set(iHandler, 0x14); // switch to Ch1 + LinkState  (PIN_5) + (PIN_8)
+                    Thread.Sleep(10);
+                    break;
+                case 23:
+                    AardvarkApi.aa_gpio_set(iHandler, 0x18); // switch to Ch2 + LinkState  (PIN_7) + (PIN_8)
+                    Thread.Sleep(10);
+                    break;
+            }
+            /*
+            do
+            {
+                bTmp = (byte)AardvarkApi.aa_gpio_get(iHandler);
+            } while (bTmp != 3);
+            */
+
+            //AardvarkApi.aa_i2c_pullup(iHandler, AardvarkApi.AA_I2C_PULLUP_BOTH);
+            bitrate = AardvarkApi.aa_i2c_bitrate(iHandler, bitrate);
+            System.Threading.Thread.Sleep(100);
 
             return 0;
         }

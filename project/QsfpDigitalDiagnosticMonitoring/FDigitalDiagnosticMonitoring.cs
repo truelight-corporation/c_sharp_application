@@ -110,6 +110,14 @@ namespace QsfpDigitalDiagnosticMonitoring
             return 4;
         }
 
+        public int StoreIntoFlashApi()
+        {
+            if (this.InvokeRequired)
+                return (int)this.Invoke(new Action(() => ucInformation.StoreIntoFlashApi()));
+            else
+                return ucInformation.StoreIntoFlashApi();
+        }
+
         public FDigitalDiagnosticMonitoring()
         {
             InitializeComponent();
@@ -121,7 +129,7 @@ namespace QsfpDigitalDiagnosticMonitoring
                 MessageBox.Show("ucDigitalDiagnosticsMonitoring.SetI2cReadCBApi() faile Error!!");
                 return;
             }
-            if (ucDigitalDiagnosticsMonitoring.SetWritePasswordCBApi(ucInformation.WritePassword) < 0) {
+            if (ucDigitalDiagnosticsMonitoring.SetWritePasswordCBApi(ucInformation.SetPasswordApi) < 0) {
                 MessageBox.Show("ucDigitalDiagnosticsMonitoring.SetWritePasswordCBApi() faile Error!!");
                 return;
             }
@@ -147,7 +155,7 @@ namespace QsfpDigitalDiagnosticMonitoring
                 MessageBox.Show("ucMemoryDump.SetI2cReadCBApi() faile Error!!");
                 return;
             }
-            if (ucMemoryDump.SetWritePasswordCBApi(ucInformation.WritePassword) < 0) {
+            if (ucMemoryDump.SetWritePasswordCBApi(ucInformation.SetPasswordApi) < 0) {
                 MessageBox.Show("ucMemoryDump.SetWritePasswordCBApi() faile Error!!");
                 return;
             }

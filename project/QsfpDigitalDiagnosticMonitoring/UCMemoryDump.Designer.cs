@@ -33,6 +33,7 @@
             this.bRead = new System.Windows.Forms.Button();
             this.bWrite = new System.Windows.Forms.Button();
             this.bWriteLowPage = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMemory)).BeginInit();
             this.SuspendLayout();
             // 
@@ -99,10 +100,22 @@
             this.bWriteLowPage.UseVisualStyleBackColor = true;
             this.bWriteLowPage.Click += new System.EventHandler(this.bWriteLowPage_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(823, 189);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Test";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // UCMemoryDump
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.bWriteLowPage);
             this.Controls.Add(this.bWrite);
             this.Controls.Add(this.bRead);
@@ -125,5 +138,6 @@
         private System.Windows.Forms.Button bRead;
         private System.Windows.Forms.Button bWrite;
         private System.Windows.Forms.Button bWriteLowPage;
+        private System.Windows.Forms.Button button1;
     }
 }

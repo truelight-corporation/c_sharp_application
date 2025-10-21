@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 using AardvarkAdapter;
 using Mcp2221Adapter;
+using System.Runtime.Remoting.Channels;
 
 namespace I2cMasterInterface
 {
@@ -77,6 +78,13 @@ namespace I2cMasterInterface
                 lAardvarkAdapter.Add(tmp);
             }
 
+            if (lAardvarkAdapter.Count == 1)
+            {
+                lbAardvark.SelectedIndex = 0; // 自動選擇唯一的一筆
+                if (adapterSelectedCB(AdapterType.AS_AT_AARDVARK, aardvarkPorts[0]) < 0)
+                    return -1;
+            }
+
             return 0;
         }
 
@@ -123,6 +131,25 @@ namespace I2cMasterInterface
         private void lbMcp2221_DoubleClick(object sender, EventArgs e)
         {
             adapterSelectedCB(AdapterType.AS_AT_MCP2221, lbMcp2221.SelectedIndex);
+        }
+
+        public int CheckAardvarkAdapterCountApi()
+        {
+            return lbAardvark.Items.Count;
+        }
+
+        public int ConnectFirstAardvarkAdapter()
+        {
+            if (adapterSelectedCB == null)
+                goto error;
+
+            if (adapterSelectedCB(AdapterSelector.AdapterType.AS_AT_AARDVARK, aardvarkPorts[0]) < 0)
+                goto error;
+
+            return 0;
+
+        error:
+            return -1;
         }
     }
 }

@@ -10,7 +10,7 @@ using System.Threading;
 
 namespace QsfpDigitalDiagnosticMonitoring
 {
-    public partial class UcInformation: UserControl
+    public partial class UcInformation : UserControl
     {
         public delegate int GetPasswordCB(int length, byte[] data);
         public delegate int I2cReadCB(byte devAddr, byte regAddr, byte length, byte[] data);
@@ -29,6 +29,8 @@ namespace QsfpDigitalDiagnosticMonitoring
         public void SetDateCodeApi(string text) { tbDateCode.Text = text; }
         public string GetVendorSnApi() { return tbVendorSn.Text; }
         public string GetDateCodeApi() { return tbDateCode.Text; }
+        public string GetVenderPnApi() { return tbVendorPn.Text; }
+        public string GetPropagationDelayApi() { return tbPropagationDelay.Text; }
 
         public string GetVendorInfo()
         {
@@ -165,12 +167,36 @@ namespace QsfpDigitalDiagnosticMonitoring
                 return _StoreIntoFlash();
         }
 
+        public int SetPasswordApi()
+        {
+            if (this.InvokeRequired)
+                return (int)this.Invoke(new Action(() => _GetAndSetPassword()));
+            else
+                return _GetAndSetPassword();
+        }
+
+        public int SetQsfpModeApi()
+        {
+            if (this.InvokeRequired)
+                return (int)this.Invoke(new Action(() => _SetQsfpMode(0x4D)));
+            else
+                return _SetQsfpMode(0x4D);
+        }
+
         public int WriteVendorSerialNumberApi(string vendorSn, string dateCode)
         {
             if (this.InvokeRequired)
                 return (int)this.Invoke(new Action(() => _WriteSnDatecode(vendorSn, dateCode)));
             else
                 return _WriteSnDatecode(vendorSn, dateCode);
+        }
+
+        private int _GetAndSetPassword()
+        {
+            if (_WriteAddr123() <0)
+                return -1;
+
+            return 0;
         }
 
         private int _SetQsfpMode(byte mode)
@@ -1167,11 +1193,6 @@ namespace QsfpDigitalDiagnosticMonitoring
             return 0;
         }
 
-        public int WritePassword()
-        {
-            return _WriteAddr123();
-        }
-
         private int _WriteSnDatecode(string vendorSn, string dateCode)
         {
             byte[] data = new byte[24];
@@ -1185,6 +1206,8 @@ namespace QsfpDigitalDiagnosticMonitoring
 
             if (i2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
+
+            Thread.Sleep(100);
 
             if (_WriteAddr123() < 0)
                 return -1;
@@ -1202,7 +1225,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (i2cWriteCB(80, 196, 24, data) < 0)
                 return -1;
 
-            Thread.Sleep(200);
+            Thread.Sleep(400);
             return 0;
         }
 
@@ -1891,7 +1914,8 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (i2cWriteCB == null)
                 return -1;
 
-            /* old version */
+            /*
+            //old version 
             data[0] = 0x32;
             if (i2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
@@ -1899,17 +1923,19 @@ namespace QsfpDigitalDiagnosticMonitoring
             data[0] = 0xAA;
             if (i2cWriteCB(80, 162, 1, data) < 0)
                 return -1;
-
-            /* new firmware */
+            */
+            //new firmware
             data[0] = 0xAA;
             if (i2cWriteCB(80, 127, 1, data) < 0)
                 return -1;
+            Thread.Sleep(100);
 
             data[0] = 0xAA;
             if (i2cWriteCB(80, 162, 1, data) < 0)
                 return -1;
 
-            Thread.Sleep(1000);
+            Thread.Sleep(100);
+            bStoreIntoFlash.Enabled = true;
             return 0;
         }
 
@@ -1918,7 +1944,7 @@ namespace QsfpDigitalDiagnosticMonitoring
             bStoreIntoFlash.Enabled = false;
 
             if (_StoreIntoFlash() < 0)
-                _SetQsfpMode(0);
+                MessageBox.Show("Something went wrong!!");
 
             bStoreIntoFlash.Enabled = true;
         }

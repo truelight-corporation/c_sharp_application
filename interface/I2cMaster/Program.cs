@@ -25,7 +25,7 @@ namespace I2cMasterInterface
             //Application.Run(new fAdapterSelect());
 
             i2cMaster.SetBitRateApi(100);
-            i2cMaster.ConnectApi();
+            i2cMaster.ConnectApi(400);
 
             Application.Run(i2cMaster.GetAdapterSelectFormApi());
         }

@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{F5DEB573-5174-4AA2-8C7F-9A18BA4836FB}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>Rt145Rt146Config</RootNamespace>
     <AssemblyName>Rt145Rt146Config</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
@@ -67,15 +67,18 @@
   <PropertyGroup>
     <SignManifests>false</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AardvarkAdapter">
-      <HintPath>..\..\..\..\Users\domin\Downloads\c_sharp_application-master\c_sharp_application-master\dll\device\AardvarkAdapter.dll</HintPath>
+      <HintPath>..\..\hardware\usb\AardvarkAdapter\bin\Debug\AardvarkAdapter.dll</HintPath>
     </Reference>
     <Reference Include="I2cMasterInterface">
-      <HintPath>..\..\..\..\Users\domin\Downloads\c_sharp_application-master\c_sharp_application-master\dll\interface\I2cMasterInterface.dll</HintPath>
+      <HintPath>..\..\dll\interface\I2cMasterInterface.dll</HintPath>
     </Reference>
     <Reference Include="Mcp2221Adapter">
-      <HintPath>..\..\..\..\Users\domin\Downloads\c_sharp_application-master\c_sharp_application-master\dll\device\Mcp2221Adapter.dll</HintPath>
+      <HintPath>..\..\dll\device\Mcp2221Adapter.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -123,7 +126,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -142,4 +144,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if exist "$(TargetDir)$(ProjectName).dll" (
+xcopy /Y $(TargetDir)$(ProjectName).dll $(ProjectDir)..\..\dll\project\
+)</PostBuildEvent>
+  </PropertyGroup>
 </Project>

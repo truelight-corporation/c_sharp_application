@@ -30,6 +30,7 @@ namespace Gn1190Corrector
         {
             InitializeComponent();
             //ConfigUiByXmlApi("");
+            cbCustomerPage.SelectedIndex = 1;
 
             bwMonitor = new BackgroundWorker();
             bwMonitor.WorkerReportsProgress = true;
@@ -397,6 +398,36 @@ namespace Gn1190Corrector
             swConfig.Close();
         }
 
+        private int _ReadLutTemperature()
+        {
+            byte[] data = new byte[2];
+            byte[] reverseData;
+            int tmp;
+
+            bLutTemperatureUpdate.Enabled = false;
+
+            if (cbCustomerPage.SelectedIndex == 0)
+                data[0] = 0x20;
+            else
+                data[0] = 0xAA;
+
+            if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
+                goto exit;
+
+            Thread.Sleep(1);
+
+            if (qsfpI2cReadCB(80, 175, 2, data) != 2)
+                goto exit;
+
+            reverseData = data.Reverse().ToArray();
+            tmp = BitConverter.ToInt16(reverseData, 0);
+            tbLutTemperature.Text = tmp.ToString("#0");
+            return 0;
+        exit:
+            bLutTemperatureUpdate.Enabled = true;
+            return -1;
+        }
+
         private int _ReadTemperature()
         {
             byte[] data = new byte[2];
@@ -643,7 +674,7 @@ namespace Gn1190Corrector
             }
             if (bStoreAcConfigToFile.Enabled == false) {
                 _I2cWriteToString(80, 240, 1, data, ref sAcConfig);
-                sAcConfig += "Delay10mSec,0x0A\n";
+                sAcConfig += "Delay10mSec,0x1\n";
                 _I2cReadToString(80, 240, 1, data, ref sAcConfig);
             }
             else
@@ -791,7 +822,7 @@ namespace Gn1190Corrector
 
             if (bStoreAcConfigToFile.Enabled == false) {
                 _I2cWriteToString(80, 241, 1, data, ref sAcConfig);
-                sAcConfig += "Delay10mSec,0x0A\n";
+                sAcConfig += "Delay10mSec,0x1\n";
                 _I2cReadToString(80, 241, 1, data, ref sAcConfig);
             }
             else
@@ -803,7 +834,7 @@ namespace Gn1190Corrector
 
             if (bStoreAcConfigToFile.Enabled == false) {
                 _I2cWriteToString(80, 242, 2, data, ref sAcConfig);
-                sAcConfig += "Delay10mSec,0x0A\n";
+                sAcConfig += "Delay10mSec,0x1\n";
                 _I2cReadToString(80, 242, 2, data, ref sAcConfig);
             }
             else
@@ -2278,7 +2309,7 @@ namespace Gn1190Corrector
 
             if (bStoreAcConfigToFile.Enabled == false) {
                 _I2cWriteToString(80, 128, 44, data, ref sAcConfig);
-                sAcConfig += "Delay10mSec,0x0A\n";
+                sAcConfig += "Delay10mSec,0x14\n";
                 _I2cReadToString(80, 128, 44, data, ref sAcConfig);
             }
             else
@@ -3167,7 +3198,7 @@ namespace Gn1190Corrector
 
             if (bStoreAcConfigToFile.Enabled == false) {
                 _I2cWriteToString(80, 128, 96, data, ref sAcConfig);
-                sAcConfig += "Delay10mSec,0x0A\n";
+                sAcConfig += "Delay10mSec,0x14\n";
                 _I2cReadToString(80, 128, 96, data, ref sAcConfig);
             }
             else
@@ -3200,7 +3231,7 @@ namespace Gn1190Corrector
 
             if (bStoreAcConfigToFile.Enabled == false) {
                 _I2cWriteToString(80, 252, 1, data, ref sAcConfig);
-                sAcConfig += "Delay10mSec,0x0A\n";
+                sAcConfig += "Delay10mSec,0x1\n";
                 _I2cReadToString(80, 252, 1, data, ref sAcConfig);
             }
             else
@@ -3241,7 +3272,7 @@ namespace Gn1190Corrector
             data[1] = 0x3A;
             if (bStoreAcConfigToFile.Enabled == false) {
                 _I2cWriteToString(80, 253, 2, data, ref sAcConfig);
-                sAcConfig += "Delay10mSec,0x0A\n";
+                sAcConfig += "Delay10mSec,0x1\n";
                 _I2cReadToString(80, 253, 2, data, ref sAcConfig);
             }
             else
@@ -3617,30 +3648,7 @@ namespace Gn1190Corrector
 
         private void bLutTemperatureUpdate_Click(object sender, EventArgs e)
         {
-            byte[] data = new byte[2];
-            byte[] reverseData;
-            int tmp;
-
-            bLutTemperatureUpdate.Enabled = false;
-
-            if (cbCustomerPage.SelectedIndex == 0)
-                data[0] = 0x20;
-            else
-                data[0] = 0xAA;
-            
-            if (qsfpI2cWriteCB(80, 127, 1, data) < 0)
-                goto exit;
-
-            Thread.Sleep(1);
-
-            if (qsfpI2cReadCB(80, 175, 2, data) != 2)
-                goto exit;
-
-            reverseData = data.Reverse().ToArray();
-            tmp = BitConverter.ToInt16(reverseData, 0);
-            tbLutTemperature.Text = tmp.ToString("#0");
-        exit:
-            bLutTemperatureUpdate.Enabled = true;
+            _ReadLutTemperature();
         }
 
         private int _ReadTxPowerRate()
@@ -4090,11 +4098,11 @@ namespace Gn1190Corrector
                 "//WriteMulti,DevAddr,RegAddr,Length,Value0,Value1...\n" +
                 "//ReadMulti,DevAddr,RegAddr,Length,Value0,Value1...\n" +
                 "//Delay10mSec,Time\n";
-            //_WriteVoltageCorrector();
-            //_WriteTemperatureCorrector();
+            _WriteVoltageCorrector();
+            _WriteTemperatureCorrector();
             _WriteAcMcCorrectData();
             _WriteBootLoaderIdentify();
-            //_SaveIntoFlash();
+            _SaveIntoFlash();
 
             sfdSelectFile.Filter = "cfg files (*.cfg)|*.cfg";
             if (sfdSelectFile.ShowDialog() != DialogResult.OK)
@@ -4114,6 +4122,42 @@ namespace Gn1190Corrector
 
             bContinuousRead = true;
             bwMonitor.RunWorkerAsync();
+        }
+        
+		public int ReadAll()
+        {
+            bLutTemperatureUpdate.Enabled = false;
+            bAcMcRead.Enabled = false;
+            bVoltageRead.Enabled = false;
+            bTemperatureRead.Enabled = false;
+
+
+            if (_ReadLutTemperature() < 0)
+                goto exit;
+
+            if (_ReadAverageCurrentAndModulationCurrentCorrectData() < 0)
+                goto exit;
+
+            if (_ReadVoltage() < 0)
+                goto exit;
+
+            if (_ReadTemperature() < 0)
+                goto exit;
+
+
+        
+            bLutTemperatureUpdate.Enabled = true;
+            bAcMcRead.Enabled = true;
+            bVoltageRead.Enabled = true;
+            bTemperatureRead.Enabled = true;
+            return 0;
+
+        exit:
+            bLutTemperatureUpdate.Enabled = true;
+            bAcMcRead.Enabled = true;
+            bVoltageRead.Enabled = true;
+            bTemperatureRead.Enabled = true;
+            return -1;
         }
     }
 }

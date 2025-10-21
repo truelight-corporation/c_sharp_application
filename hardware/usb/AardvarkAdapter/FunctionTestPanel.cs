@@ -331,9 +331,22 @@ namespace AardvarkAdapter
 
             AardvarkApi.aa_configure(iHandle, AardvarkConfig.AA_CONFIG_GPIO_ONLY);
 
-            AardvarkApi.aa_i2c_pullup(iHandle, AardvarkApi.AA_I2C_PULLUP_NONE);
+            //AardvarkApi.aa_i2c_pullup(iHandle, AardvarkApi.AA_I2C_PULLUP_NONE);
+            AardvarkApi.aa_i2c_pullup(iHandle, AardvarkApi.AA_I2C_PULLUP_BOTH);
 
+            AardvarkApi.aa_gpio_direction(iHandle, 0x1E);
             AardvarkApi.aa_gpio_set(iHandle, 0x00);
+
+            for (int CountI = 0; CountI < 3 ; CountI++) {
+                AardvarkApi.aa_gpio_set(iHandle, 0x04);
+                System.Threading.Thread.Sleep(100);
+                AardvarkApi.aa_gpio_set(iHandle, 0x00);
+                System.Threading.Thread.Sleep(100);
+                AardvarkApi.aa_gpio_set(iHandle, 0x04);
+                System.Threading.Thread.Sleep(500);
+                AardvarkApi.aa_gpio_set(iHandle, 0x08);
+                System.Threading.Thread.Sleep(3000);
+            }
 
             do {
                 bTmp = (byte)AardvarkApi.aa_gpio_get(iHandle);

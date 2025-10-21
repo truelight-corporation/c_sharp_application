@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{0A9CE4FE-05BF-44A6-A46F-A1B733433A12}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>Mald37045cMata37044cConfig</RootNamespace>
     <AssemblyName>Mald37045cMata37044cConfig</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
@@ -30,6 +30,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AardvarkAdapter">
@@ -102,4 +105,9 @@
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if exist "$(TargetDir)$(ProjectName).dll" (
+xcopy /Y $(TargetDir)$(ProjectName).dll $(ProjectDir)..\..\dll\project\
+)</PostBuildEvent>
+  </PropertyGroup>
 </Project>

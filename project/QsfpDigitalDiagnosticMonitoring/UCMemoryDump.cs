@@ -11,7 +11,7 @@ using System.Threading;
 
 namespace QsfpDigitalDiagnosticMonitoring
 {
-    public partial class UCMemoryDump: UserControl
+    public partial class UCMemoryDump : UserControl
     {
         public delegate int I2cReadCB(byte devAddr, byte regAddr, byte length, byte[] data);
         public delegate int I2cWriteCB(byte devAddr, byte regAddr, byte length, byte[] data);
@@ -45,6 +45,8 @@ namespace QsfpDigitalDiagnosticMonitoring
             cbPageSelect.Items.Add("Up 01h");
             cbPageSelect.Items.Add("Up 02h");
             cbPageSelect.Items.Add("Up 03h");
+            cbPageSelect.Items.Add("80h");
+            cbPageSelect.Items.Add("81h");
             // For SAS3.0
             cbPageSelect.Items.Add("Page 00");
             cbPageSelect.Items.Add("Page 03");
@@ -102,6 +104,30 @@ namespace QsfpDigitalDiagnosticMonitoring
                 return _ReadAll(currentPage);
         }
 
+        public string GetSerialNumberApi()
+        {
+            if (this.InvokeRequired)
+                return (string)this.Invoke(new Action(() => _GetSerialNumber()));
+            else
+                return _GetSerialNumber();
+        }
+        
+        public string GetHiddenPasswordApi()
+        {
+            if (this.InvokeRequired)
+                return (string)this.Invoke(new Action(() => _GetHiddenPassword()));
+            else
+                return _GetHiddenPassword();
+        }
+
+        public int SetSerialNumberApi(string serialNumber)
+        {
+            if (this.InvokeRequired)
+                return (int)this.Invoke(new Action(() => _SetSerialNumber(serialNumber)));
+            else
+                return _SetSerialNumber(serialNumber);
+        }
+
         public int ExportAllPagesDataApi(string exportFilePath)
         {
             if (this.InvokeRequired)
@@ -125,13 +151,63 @@ namespace QsfpDigitalDiagnosticMonitoring
             else
                 return _WriteAllRegister(targetPage, delayTime, registerFilePath);
         }
-
-        public int WriteRegisterPageForSas3Api(string targetPage, int delayTime, string registerFilePath)
+        
+        public int WriteLowPagePartRegisterApi(int delayTime, string registerFilePath)
         {
             if (this.InvokeRequired)
-                return (int)this.Invoke(new Action(() => _WriteAllRegisterForSas3(targetPage, delayTime, registerFilePath)));
+                return (int)this.Invoke(new Action(() => _WriteLowPagePartRegister(delayTime, registerFilePath)));
             else
-                return _WriteAllRegisterForSas3(targetPage, delayTime, registerFilePath);
+                return _WriteLowPagePartRegister(delayTime, registerFilePath);
+        }
+
+        public int WriteRegisterPageForSas3Api(string targetPage, int delayTime, byte startAddr, int numberOfBytes, string registerFilePath)
+        {
+            if (this.InvokeRequired)
+                return (int)this.Invoke(new Action(() => _WriteAllRegisterForSas3(targetPage, delayTime, startAddr, numberOfBytes, registerFilePath)));
+            else
+                return _WriteAllRegisterForSas3(targetPage, delayTime, startAddr, numberOfBytes, registerFilePath);
+        }
+
+        private int _SetQsfpMode(byte mode)
+        {
+            byte[] data = new byte[] { 32 };
+
+            if (i2cWriteCB == null)
+                return -1;
+
+            data[0] = 0xAA;
+
+            if (i2cWriteCB(80, 127, 1, data) < 0)
+                return -1;
+			
+			/* sync_dominic@wood_251021: why need write 2 time? 
+            if (i2cWriteCB(80, 127, 1, data) < 0)
+                return -1;
+			*/
+			
+            data[0] = mode;
+
+            if (i2cWriteCB(80, 164, 1, data) < 0)
+                return -1;
+
+            return 0;
+        }
+
+        private int _GetQsfpMode()
+        {
+            byte[] data = new byte[] { 32 };
+            string dataS;
+
+            if (i2cReadCB == null)
+                return -1;
+
+            if (i2cReadCB(80, 164, 1, data) < 0)
+                return -1;
+
+            dataS = Encoding.Default.GetString(data);
+            MessageBox.Show("QsfpMode: " + dataS);
+
+            return 0;
         }
 
         private int _ChangePage(string selectedPage)
@@ -150,21 +226,26 @@ namespace QsfpDigitalDiagnosticMonitoring
 
             switch (selectedPage) {
                 case "Low Page":
+                case "Lower":
                     return 0;
 
                 case "Up 00h":
+                case "Page 00":
                     pageData[0] = 0x00;
                     break;
 
                 case "Up 01h":
+                case "Page 01":
                     pageData[0] = 0x01;
                     break;
 
                 case "Up 02h":
+                case "Page 02":
                     pageData[0] = 0x02;
                     break;
 
                 case "Up 03h":
+                case "Page 03":
                     pageData[0] = 0x03;
                     break;
 
@@ -175,26 +256,8 @@ namespace QsfpDigitalDiagnosticMonitoring
                 case "81h":
                     pageData[0] = 0x81;
                     break;
+
                 // For SAS3.0 module
-                case "Lower":
-                    return 0;
-
-                case "Page 00":
-                    pageData[0] = 0x00;
-                    break;
-
-                case "Page 01":
-                    pageData[0] = 0x01;
-                    break;
-
-                case "Page 02":
-                    pageData[0] = 0x02;
-                    break;
-
-                case "Page 03":
-                    pageData[0] = 0x03;
-                    break;
-
                 case "Page 3A":
                     pageData[0] = 0x3A;
                     break;
@@ -235,6 +298,107 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (i2cWriteCB(80, 127, 1, pageData) < 0)
                 return -1;
 
+            Thread.Sleep(200);
+
+            if (selectedPage == "81h") {
+                if (DebugMode)
+                    MessageBox.Show("pageData: \n" + pageData[0].ToString());
+            }
+
+            return 0;
+        }
+
+        private string _GetHiddenPassword()
+        {
+            byte[] data = new byte[4];
+            byte[] pageData = new byte[1];
+            byte starAddr;
+
+            if (i2cWriteCB == null)
+                return null;
+
+            if (i2cReadCB == null)
+                return null;
+
+            pageData[0] = 0x80;
+
+            if (i2cWriteCB(80, 127, 1, pageData) < 0)
+                return null;
+
+            starAddr = 252;
+
+            if (i2cReadCB(80, starAddr, 4, data) != 4)
+                return null;
+
+            string result = Encoding.ASCII.GetString(data);
+
+            if (DebugMode)
+                MessageBox.Show("results: " + result);
+
+            return result;
+        }
+
+        private string _GetSerialNumber()
+        {
+            byte[] data = new byte[16];
+            byte[] pageData = new byte[1];
+            byte starAddr;
+
+            if (i2cWriteCB == null)
+                return null;
+
+            if (i2cReadCB == null)
+                return null;
+
+            pageData[0] = 0x81;
+
+            if (i2cWriteCB(80, 127, 1, pageData) < 0)
+                return null;
+
+            starAddr = 220;
+
+            if (i2cReadCB(80, starAddr, 16, data) != 16)
+                return null;
+
+            string result = System.Text.Encoding.ASCII.GetString(data);
+
+            if (DebugMode)
+                MessageBox.Show("results: " + result);
+
+            return result;
+        }
+
+        private int _SetSerialNumber(string serialNumber)
+        {
+            byte[] data = new byte[16];
+            byte[] pageData = new byte[1];
+            byte starAddr = 220;
+
+            if (i2cWriteCB == null) {
+                MessageBox.Show("i2cWriteCB failed");
+                return -9;
+            }
+
+            byte[] serialBytes = System.Text.Encoding.ASCII.GetBytes(serialNumber);
+
+            if (serialBytes.Length > 16)
+                return -2;
+
+            Array.Clear(data, 0, 16);
+            Array.Copy(serialBytes, data, serialBytes.Length);
+            pageData[0] = 0x81;
+
+
+            if (i2cWriteCB(80, 127, 1, pageData) < 0)
+                return -3;
+
+            Thread.Sleep(100);
+
+            if (i2cWriteCB(80, starAddr, 16, data) < 0)
+                return -4;
+
+            Thread.Sleep(100);
+
             return 0;
         }
 
@@ -271,6 +435,12 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (i2cReadCB(80, starAddr, 128, data) != 128)
                 goto exit;
 
+            if (selectedPage == "80h" || selectedPage == "81h")
+                Thread.Sleep(200);
+            else
+                Thread.Sleep(100);
+
+
             for (i = 0; i < 128; i++)
                 dtMemory.Rows[i / 16].SetField(i % 16, data[i].ToString("X2"));
 
@@ -289,15 +459,14 @@ namespace QsfpDigitalDiagnosticMonitoring
             bWrite.Enabled = false;
 
             if (_WriteAll() < 0)
-                bWrite.Enabled = true;
-            else
-                bWrite.Enabled = true;
+                MessageBox.Show("_WriteAll < 0");
+
+            bWrite.Enabled = true;
         }
 
         private int _WriteAll()
         {
             byte[] data = new byte[128];
-            int i;
             byte starAddr;
             string selectedPage = cbPageSelect.SelectedItem.ToString();
 
@@ -310,6 +479,9 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (writePasswordCB() < 0)
                 goto exit;
 
+            _SetQsfpMode(0x4D);
+            //_GetQsfpMode();
+
             if (selectedPage == "Low Page")
                 starAddr = 0;
             else {
@@ -318,11 +490,28 @@ namespace QsfpDigitalDiagnosticMonitoring
                 starAddr = 128;
             }
 
-            for (i = 0; i < 128; i++)
-                data[i] = Convert.ToByte(dtMemory.Rows[i / 16].ItemArray[i % 16].ToString(), 16);
+            for (int j = 0; j < 128; j++)
+                data[j] = Convert.ToByte(dtMemory.Rows[j / 16].ItemArray[j % 16].ToString(), 16);
+
+            if (DebugMode) {
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine("Data:");
+                for (int i = 0; i < data.Length; i++) {
+                    sb.Append(data[i].ToString("X2")); // Convert byte to hex string representation
+                    sb.Append(" ");
+                    if ((i + 1) % 16 == 0)
+                        sb.AppendLine(); // New line every 16 bytes
+                }
+
+                MessageBox.Show("81h_data: \n" + sb.ToString());
+            }
 
             if (i2cWriteCB(80, starAddr, 128, data) < 0)
                 goto exit;
+
+            Thread.Sleep(1000);
+
+            //ucInformation.StoreIntoFlashApi();
 
             return 0;
 
@@ -345,44 +534,92 @@ namespace QsfpDigitalDiagnosticMonitoring
                 return -1;
             }
 
-            //待補，檢查檔案存在與否...
             rowsToRead = bytesToRead / bytesPerRow;
-            dataToWrite = ReadCsvData(filePath, targetPage, rowsToRead);
+            dataToWrite = ExtractCsvDataByPage(filePath, targetPage, rowsToRead);
 
             if (DebugMode) {
                 MessageBox.Show("filePath: \n" + filePath +
-                            "\n\ndataToWrite: \n" + FormatDataToWrite(dataToWrite));
+                            "\n\ndataToWrite: \n" + GenerateDisplayMessageFromData(dataToWrite));
             }
 
             if (dataToWrite == null)
                 return -1;
 
             // Prepare data to be written as byte array
-            byte[] data = FormatDataForWrite(dataToWrite, bytesToRead);
+            byte[] data = FormatHexValuesForOutput(dataToWrite, bytesToRead);
 
-            if (DebugMode) {
-                StringBuilder sb = new StringBuilder();
-                sb.AppendLine("Data:");
-                for (int i = 0; i < data.Length; i++) {
-                    sb.Append(data[i].ToString("X2")); // Convert byte to hex string representation
-                    sb.Append(" ");
-                    if ((i + 1) % 16 == 0)
-                        sb.AppendLine(); // New line every 16 bytes
+            if (targetPage == "81h" || targetPage == "80h") {
+                if (DebugMode) {
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine(targetPage + "_Data:");
+                    for (int i = 0; i < data.Length; i++) {
+                        sb.Append(data[i].ToString("X2")); // Convert byte to hex string representation
+                        sb.Append(" ");
+                        if ((i + 1) % 16 == 0)
+                            sb.AppendLine(); // New line every 16 bytes
+                    }
+
+                    MessageBox.Show("filePath: \n" + filePath +
+                                    "\n\ndata: \n" + sb.ToString());
+
                 }
-
-                MessageBox.Show(sb.ToString());
             }
 
             return PerformWriteOperation(data, targetPage, delayTime);
         }
 
-        private int _WriteAllRegisterForSas3(string targetPage, int delayTime, string registerFilePath)
+        private int _WriteLowPagePartRegister(int delayTime, string registerFilePath)
         {
-            string filePath;
-            int bytesToRead = 128; // 128 or 256 bytes
-            int bytesPerRow = 16; // 16 bytes per row
-            int rowsToRead;
+            string targetPage = "Low Page";
+            int startByte = 108;
+            int endByte = 112;
+
+            if (string.IsNullOrEmpty(registerFilePath)) {
+                MessageBox.Show("The file path for the write operation is incorrect or empty.", "Error", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+
+            string filePath = registerFilePath;
+
+            if (!File.Exists(filePath)) {
+                MessageBox.Show($"The specified file does not exist: {filePath}", "Error", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+
+            List<string> dataToWrite = ExtractCsvDataByPagePart(filePath, targetPage, startByte, endByte);
+
+            if (dataToWrite == null)
+                return -1;
+
+            // Prepare data to be written as byte array
+            byte[] data = FormatHexValuesForOutput(dataToWrite);
+
+                if (DebugMode) {
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine(targetPage + "_Data:");
+                    for (int i = 0; i < data.Length; i++) {
+                        sb.Append(data[i].ToString("X2")); // Convert byte to hex string representation
+                        sb.Append(" ");
+                        if ((i + 1) % 16 == 0)
+                            sb.AppendLine(); // New line every 16 bytes
+                    }
+
+                    MessageBox.Show("filePath: \n" + filePath +
+                                    "\n\ndata: \n" + sb.ToString());
+
+                }
+
+            return PerformWriteOperation(data, targetPage, delayTime);
+        }
+
+        private int _WriteAllRegisterForSas3(string targetPage, int delayTime, byte startAddr, int numberOfBytes, string registerFilePath)
+        {
             List<string[]> dataToWrite;
+            string filePath;
+            byte[] data;
+            int rowsToRead;
 
             if (!string.IsNullOrEmpty(registerFilePath))
                 filePath = registerFilePath;
@@ -391,19 +628,19 @@ namespace QsfpDigitalDiagnosticMonitoring
                 return -1;
             }
 
-            rowsToRead = bytesToRead / bytesPerRow;
-            dataToWrite = ReadCsvData(filePath, targetPage, rowsToRead);
+            rowsToRead = (int)Math.Ceiling(numberOfBytes / 16.0);
+            dataToWrite = ExtractCsvDataByPageForSas3(filePath, targetPage, startAddr, numberOfBytes);
 
             if (DebugMode) {
                 MessageBox.Show("filePath: \n" + filePath +
-                            "\n\ndataToWrite: \n" + FormatDataToWrite(dataToWrite));
+                            "\n\ndataToWrite: \n" + GenerateDisplayMessageFromData(dataToWrite));
             }
 
             if (dataToWrite == null)
                 return -1;
 
             // Prepare data to be written as byte array
-            byte[] data = FormatDataForWrite(dataToWrite, bytesToRead);
+            data = FormatHexValuesForOutput(dataToWrite, numberOfBytes);
 
             if (DebugMode) {
                 StringBuilder sb = new StringBuilder();
@@ -418,21 +655,87 @@ namespace QsfpDigitalDiagnosticMonitoring
                 MessageBox.Show(sb.ToString());
             }
 
-            return PerformWriteOperationForSas3(data, targetPage, delayTime);
+            return PerformWriteOperationForSas3(data, targetPage, delayTime, startAddr);
         }
 
-        private string FormatDataToWrite(List<string[]> dataToWrite)
+        private string GenerateDisplayMessageFromDataPart(string[] dataToWrite)
+        {
+            return string.Join(Environment.NewLine, dataToWrite);
+        }
+
+
+        // Original：List<string[]>
+        private string GenerateDisplayMessageFromData(List<string[]> dataToWrite)
         {
             StringBuilder sb = new StringBuilder();
 
             foreach (var row in dataToWrite) {
-                sb.AppendLine(string.Join(", ", row)); // 將每行陣列轉為逗號分隔的字串
+                sb.AppendLine(string.Join(", ", row));
             }
 
             return sb.ToString();
         }
 
-        private List<string[]> ReadCsvData(string filePath, string targetPage, int rowsToRead)
+        private byte[] FormatHexValuesForOutput(List<string> dataToWrite)
+        {
+            byte[] data = new byte[dataToWrite.Count];
+
+            try {
+                for (int i = 0; i < dataToWrite.Count; i++) {
+                    if (byte.TryParse(dataToWrite[i].Trim('"'), System.Globalization.NumberStyles.HexNumber, null, out byte result)) {
+                        data[i] = result;
+                    }
+                    else {
+                        MessageBox.Show($"Invalid hex value: {dataToWrite[i]}. Skipping.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+            catch (Exception ex) {
+                MessageBox.Show($"Error formatting data for write: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+
+            return data;
+        }
+
+        private byte[] FormatHexValuesForOutput(List<string[]> dataToWrite, int totalBytes)
+        {
+            byte[] data = new byte[totalBytes];
+
+            try {
+                int index = 0;
+
+                foreach (var row in dataToWrite) {
+                    foreach (var value in row) {
+                        if (index >= totalBytes) {
+                            // 已經填滿所需的位元組數，提前結束
+                            break;
+                        }
+
+                        if (byte.TryParse(value.Trim('"'), System.Globalization.NumberStyles.HexNumber, null, out byte result)) {
+                            data[index++] = result;
+                        }
+                        else {
+                            MessageBox.Show($"Invalid hex value: {value}. Skipping.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+
+                    if (index >= totalBytes) {
+                        // 確保外層循環也能提前結束
+                        break;
+                    }
+                }
+            }
+            catch (Exception ex) {
+                MessageBox.Show($"Error formatting data for write: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+
+            return data;
+        }
+
+
+        private List<string[]> ExtractCsvDataByPage(string filePath, string targetPage, int rowsToRead)
         {
             List<string[]> dataToWrite = new List<string[]>();
 
@@ -483,25 +786,132 @@ namespace QsfpDigitalDiagnosticMonitoring
             return dataToWrite;
         }
 
-        private byte[] FormatDataForWrite(List<string[]> dataToWrite, int totalBytes)
+        private List<string[]> ExtractCsvDataByPageForSas3(string filePath, string targetPage, byte startAddr, int numberOfBytes)
         {
-            byte[] data = new byte[totalBytes]; // Dynamic range for byte array
+            List<string[]> dataToWrite = new List<string[]>();
 
             try {
-                int index = 0;
+                using (var reader = new StreamReader(filePath)) {
+                    bool foundHeader = false;
+                    bool foundTargetPage = false;
+                    int totalBytesRead = 0;
+                    int rowsSkipped = (startAddr / 16) - 1; // 正確計算需要跳過的完整行數
+                    int byteOffset = startAddr % 16; // 行內的偏移量
+                    string line;
 
-                foreach (var row in dataToWrite) {
-                    foreach (var value in row) {
-                        data[index++] = Convert.ToByte(value.Trim('"'), 16);
+                    while ((line = reader.ReadLine()) != null) {
+                        if (!foundHeader) {
+                            if (line.StartsWith("Page,Row")) {
+                                foundHeader = true;
+                            }
+                            continue;
+                        }
+
+                        string[] parts = line.Split(',');
+                        if (parts.Length >= 18) {
+                            if (foundTargetPage) {
+                                if (rowsSkipped > 0) {
+                                    rowsSkipped--; // 跳過不需要的行
+                                    continue;
+                                }
+
+                                // 提取當前行的資料，考慮行內偏移和剩餘的需要提取位元組數
+                                int availableBytes = Math.Min(16 - byteOffset, numberOfBytes - totalBytesRead);
+                                if (availableBytes > 0) {
+                                    string[] rowData = new string[availableBytes];
+                                    Array.Copy(parts, 2 + byteOffset, rowData, 0, availableBytes);
+
+                                    dataToWrite.Add(rowData);
+                                    totalBytesRead += rowData.Length;
+                                    byteOffset = 0; // 之後的行無需偏移
+
+                                    if (totalBytesRead >= numberOfBytes) {
+                                        break; // 已提取足夠資料
+                                    }
+                                }
+                            }
+                            else if (parts[0].Trim('"') == targetPage) {
+                                foundTargetPage = true; // 找到目標頁
+                                if (rowsSkipped == -1 && byteOffset == 0) {
+                                    // 如果偏移量不為0，處理當前行資料
+                                    int availableBytes = Math.Min(16 - byteOffset, numberOfBytes - totalBytesRead);
+                                    string[] rowData = new string[availableBytes];
+                                    Array.Copy(parts, 2 + byteOffset, rowData, 0, availableBytes);
+
+                                    dataToWrite.Add(rowData);
+                                    totalBytesRead += rowData.Length;
+                                    byteOffset = 0;
+
+                                    if (totalBytesRead >= numberOfBytes) {
+                                        break; // 已提取足夠資料
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
             catch (Exception ex) {
-                MessageBox.Show($"Error formatting data for write: {ex.Message}");
+                MessageBox.Show($"Error reading CSV file: {ex.Message}");
                 return null;
             }
 
-            return data;
+            return dataToWrite;
+        }
+
+        private List<string> ExtractCsvDataByPagePart(string filePath, string targetPage, int startByte, int endByte)
+        {
+            List<string> extractedData = new List<string>();
+
+            try {
+                using (var reader = new StreamReader(filePath)) {
+                    bool foundHeader = false;
+                    bool foundTargetPage = false;
+                    string line;
+                    int currentByteIndex = 0;
+
+                    while ((line = reader.ReadLine()) != null) {
+                        if (!foundHeader) {
+                            if (line.StartsWith("Page,Row")) {
+                                foundHeader = true;
+                            }
+                            continue;
+                        }
+
+                        string[] parts = line.Split(',');
+                        if (parts.Length >= 18 && parts[0].Trim('"') == targetPage) {
+                            foundTargetPage = true;
+                            int rowStartByte = currentByteIndex;
+                            int rowEndByte = currentByteIndex + 16 - 1;
+
+                            // 如果行範圍和目標範圍有交集
+                            if (startByte <= rowEndByte && endByte >= rowStartByte) {
+                                int startColumn = Math.Max(2, startByte - rowStartByte + 2);
+                                int endColumn = Math.Min(17, endByte - rowStartByte + 2);
+
+                                for (int col = startColumn; col <= endColumn; col++) {
+                                    extractedData.Add(parts[col]);
+                                }
+                            }
+
+                            currentByteIndex += 16;
+
+                            if (currentByteIndex > endByte) {
+                                break;
+                            }
+                        }
+                        else if (foundTargetPage && currentByteIndex > endByte) {
+                            break;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex) {
+                MessageBox.Show($"Error reading CSV file: {ex.Message}");
+                return null;
+            }
+
+            return extractedData;
         }
 
         private byte[] FormatDataForSas3Write(List<string[]> dataToWrite, int totalBytes, byte starAddr, int numberOfBytes)
@@ -551,11 +961,82 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (writePasswordCB() < 0)
                 goto exit;
 
+            _SetQsfpMode(0x4D);
+            //_GetQsfpMode();
+
             if (_ChangePage(targetPage) < 0)
                 goto exit;
 
-            starAddr = 128;
-            if (i2cWriteCB(80, starAddr, 128, data) < 0)
+            if (targetPage == "81h" || targetPage == "Low Page") {
+                if (DebugMode) {
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine("Data:");
+                    for (int i = 0; i < data.Length; i++) {
+                        sb.Append(data[i].ToString("X2")); // Convert byte to hex string representation
+                        sb.Append(" ");
+                        if ((i + 1) % 16 == 0)
+                            sb.AppendLine(); // New line every 16 bytes
+                    }
+
+                    MessageBox.Show(targetPage + "_data: \n" + sb.ToString());
+                }
+            }
+
+            //_GetQsfpMode();
+
+            if (targetPage == "Low Page") {
+                starAddr = 108;
+                if (i2cWriteCB(80, starAddr, 5, data) < 0)
+                    goto exit;
+            }
+            else {
+                starAddr = 128;
+                if (i2cWriteCB(80, starAddr, 128, data) < 0)
+                    goto exit;
+            }
+
+            Thread.Sleep(delayTime);
+
+            bWrite.Enabled = true;
+            return 0;
+
+        exit:
+            bWrite.Enabled = true;
+            return -1;
+        }
+
+        private int MultiByteWriteOperation(string targetPage, byte regAddr, byte length, byte[] data, int delayTime)
+        {
+            if (writePasswordCB == null)
+                goto exit;
+
+            if (i2cWriteCB == null)
+                goto exit;
+
+            bWrite.Enabled = false;
+
+            if (writePasswordCB() < 0)
+                goto exit;
+
+            _SetQsfpMode(0x4D);
+
+            if (_ChangePage(targetPage) < 0)
+                goto exit;
+
+            if (DebugMode) {
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine("Data:");
+                for (int i = 0; i < data.Length; i++) {
+                    sb.Append(data[i].ToString("X2")); // Convert byte to hex string representation
+                    sb.Append(" ");
+                    if ((i + 1) % 16 == 0)
+                        sb.AppendLine(); // New line every 16 bytes
+                }
+
+                MessageBox.Show(targetPage + "_data: \n" + sb.ToString());
+            }
+
+            if (i2cWriteCB(80, regAddr, length, data) < 0)
                 goto exit;
 
             Thread.Sleep(delayTime);
@@ -568,8 +1049,17 @@ namespace QsfpDigitalDiagnosticMonitoring
             return -1;
         }
 
-        private int PerformWriteOperationForSas3(byte[] data, string targetPage, int delayTime)
+        private int PerformWriteOperationForSas3(byte[] data, string targetPage, int delayTime, byte startAddr)
         {
+            byte dataLength;
+
+            if (data.Length > 128) {
+                MessageBox.Show("Data length exceeds byte limit (128).");
+                return -1;
+            }
+            else
+                dataLength = (byte)data.Length;
+
             if (writePasswordCB == null)
                 goto exit;
 
@@ -582,8 +1072,21 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (_ChangePage(targetPage) < 0)
                 goto exit;
 
-            byte starAddr = 128;
-            if (i2cWriteCB(80, starAddr, 128, data) < 0)
+            if (DebugMode) {
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine("Data:");
+                for (int i = 0; i < data.Length; i++) {
+                    sb.Append(data[i].ToString("X2")); // Convert byte to hex string representation
+                    sb.Append(" ");
+                    if ((i + 1) % 16 == 0)
+                        sb.AppendLine(); // New line every 16 bytes
+                }
+
+                MessageBox.Show(targetPage + "_data: \n" + sb.ToString());
+            }
+            startAddr = (byte)(startAddr + 128);
+
+            if (i2cWriteCB(80, startAddr, dataLength, data) < 0)
                 goto exit;
 
             Thread.Sleep(delayTime);
@@ -744,5 +1247,9 @@ namespace QsfpDigitalDiagnosticMonitoring
             return sb.ToString();
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            _GetSerialNumber();
+        }
     }
 }

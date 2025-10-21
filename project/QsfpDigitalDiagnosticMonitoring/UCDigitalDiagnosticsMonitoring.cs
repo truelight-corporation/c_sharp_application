@@ -12,15 +12,17 @@ using System.Reflection;
 
 namespace QsfpDigitalDiagnosticMonitoring
 {
-    public partial class UCDigitalDiagnosticsMonitoring: UserControl
+    public partial class UCDigitalDiagnosticsMonitoring : UserControl
     {
         public delegate int I2cReadCB(byte devAddr, byte regAddr, byte length, byte[] data);
         public delegate int I2cWriteCB(byte devAddr, byte regAddr, byte length, byte[] data);
         public delegate int WritePasswordCB();
         public event EventHandler<TextBoxTextEventArgs> TextBoxTextChanged;
-        public I2cReadCB i2cReadCB = null;
-        public I2cWriteCB i2cWriteCB = null;
+        private I2cReadCB i2cReadCB = null;
+        private I2cWriteCB i2cWriteCB = null;
         private WritePasswordCB writePasswordCB = null;
+
+
 
         public UCDigitalDiagnosticsMonitoring()
         {
@@ -52,6 +54,38 @@ namespace QsfpDigitalDiagnosticMonitoring
             return 0;
         }
 
+        public int CheckI2cReadCbApi()
+        {
+            if (i2cReadCB == null)
+                return -1;
+
+            return 0;
+        }
+
+        public int I2cReadApi(byte devAddr, byte regAddr, byte length, byte[] data)
+        {
+            if (i2cReadCB == null)
+                return -1;
+
+            return i2cReadCB(devAddr, regAddr, length, data);
+        }
+
+        public int CheckI2cWriteCbApi()
+        {
+            if (i2cWriteCB == null)
+                return -1;
+
+            return 0;
+        }
+
+        public int I2cWriteApi(byte devAddr, byte regAddr, byte length, byte[] data)
+        {
+            if (i2cWriteCB == null)
+                return -1;
+
+            return i2cWriteCB(devAddr, regAddr, length, data);
+        }
+
         public int SetWritePasswordCBApi(WritePasswordCB cb)
         {
             if (cb == null)
@@ -75,9 +109,9 @@ namespace QsfpDigitalDiagnosticMonitoring
         public int RxPowerReadApi()
         {
             if (this.InvokeRequired)
-                return (int)this.Invoke(new Action(() => _RxPowerRead()));
+                return (int)this.Invoke(new Action(() => _RxPowerOnlyRead()));
             else
-                return _RxPowerRead();
+                return _RxPowerOnlyRead();
         }
 
         public bool GetVarBoolState(string varName)
@@ -121,7 +155,7 @@ namespace QsfpDigitalDiagnosticMonitoring
 
         public string GetMoreInfo()
         {
-            _RxPowerRead();
+            _RxPowerOnlyRead();
             StringBuilder sb = new StringBuilder();
             sb.AppendLine($"Temperature                       : {tbTemperature.Text}");
             sb.AppendLine($"Voltage                           : {tbVcc.Text}");
@@ -1112,6 +1146,82 @@ namespace QsfpDigitalDiagnosticMonitoring
         {
             if (_VccWrite() < 0)
                 return;
+        }
+
+        private int _RxPowerOnlyRead()
+        {
+            byte[] data = new byte[8];
+            byte[] bATmp = new byte[2];
+            byte[] reverseData;
+            float power;
+            int tmp;
+
+            tbRxPower1.Text = tbRxPower2.Text = tbRxPower3.Text =
+                tbRxPower4.Text = "";
+
+            if (i2cReadCB == null)
+                return -1;
+
+            if (i2cReadCB(80, 34, 8, data) != 8)
+                return -1;
+
+            try {
+                Buffer.BlockCopy(data, 0, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+
+            reverseData = bATmp.Reverse().ToArray();
+            tmp = BitConverter.ToUInt16(reverseData, 0);
+            power = tmp;
+            power = power / 10;
+            tbRxPower1.Text = power.ToString("#0.0");
+
+            try {
+                Buffer.BlockCopy(data, 2, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+
+            reverseData = bATmp.Reverse().ToArray();
+            tmp = BitConverter.ToUInt16(reverseData, 0);
+            power = tmp;
+            power = power / 10;
+            tbRxPower2.Text = power.ToString("#0.0");
+
+            try {
+                Buffer.BlockCopy(data, 4, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+
+            reverseData = bATmp.Reverse().ToArray();
+            tmp = BitConverter.ToUInt16(reverseData, 0);
+            power = tmp;
+            power = power / 10;
+            tbRxPower3.Text = power.ToString("#0.0");
+
+            try {
+                Buffer.BlockCopy(data, 6, bATmp, 0, 2);
+            }
+            catch (Exception eBC) {
+                MessageBox.Show(eBC.ToString());
+                return -1;
+            }
+
+            reverseData = bATmp.Reverse().ToArray();
+            tmp = BitConverter.ToUInt16(reverseData, 0);
+            power = tmp;
+            power = power / 10;
+            tbRxPower4.Text = power.ToString("#0.0");
+
+            return 0;
         }
 
         private int _RxPowerRead()

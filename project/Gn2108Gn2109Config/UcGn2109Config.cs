@@ -2183,6 +2183,198 @@ namespace Gn2108Gn2109Config
             reading = false;
         }
 
+        public int WriteAllApi()
+        {
+            if (_WriteAddr000() < 0) return -1;
+            if (_WriteAddr003() < 0) return -1;
+            if (_WriteAddr004() < 0) return -1;
+            if (_WriteAddr005() < 0) return -1;
+            if (_WriteAddr009() < 0) return -1;
+            if (_WriteAddr00B() < 0) return -1;
+            if (_WriteAddr017() < 0) return -1;
+            if (_WriteAddr018() < 0) return -1;
+            if (_WriteAddr019() < 0) return -1;
+            if (_WriteAddr01A() < 0) return -1;
+            if (_WriteAddr01B() < 0) return -1;
+            if (_WriteAddr01D() < 0) return -1;
+            if (_WriteAddr020() < 0) return -1;
+            if (_WriteAddr022() < 0) return -1;
+            if (_WriteAddr025() < 0) return -1;
+            if (_WriteAddr026() < 0) return -1;
+            if (_WriteAddr029() < 0) return -1;
+            if (_WriteAddr02A() < 0) return -1;
+            if (_WriteAddr02B() < 0) return -1;
+            if (_WriteAddr100() < 0) return -1;
+            if (_WriteAddr103() < 0) return -1;
+            if (_WriteAddr104() < 0) return -1;
+            if (_WriteAddr105() < 0) return -1;
+            if (_WriteAddr109() < 0) return -1;
+            if (_WriteAddr10B() < 0) return -1;
+            if (_WriteAddr117() < 0) return -1;
+            if (_WriteAddr118() < 0) return -1;
+            if (_WriteAddr119() < 0) return -1;
+            if (_WriteAddr11A() < 0) return -1;
+            if (_WriteAddr11B() < 0) return -1;
+            if (_WriteAddr11D() < 0) return -1;
+            if (_WriteAddr120() < 0) return -1;
+            if (_WriteAddr122() < 0) return -1;
+            if (_WriteAddr125() < 0) return -1;
+            if (_WriteAddr126() < 0) return -1;
+            if (_WriteAddr129() < 0) return -1;
+            if (_WriteAddr12A() < 0) return -1;
+            if (_WriteAddr12B() < 0) return -1;
+            if (_WriteAddr200() < 0) return -1;
+            if (_WriteAddr203() < 0) return -1;
+            if (_WriteAddr204() < 0) return -1;
+            if (_WriteAddr205() < 0) return -1;
+            if (_WriteAddr209() < 0) return -1;
+            if (_WriteAddr20B() < 0) return -1;
+            if (_WriteAddr217() < 0) return -1;
+            if (_WriteAddr218() < 0) return -1;
+            if (_WriteAddr219() < 0) return -1;
+            if (_WriteAddr21A() < 0) return -1;
+            if (_WriteAddr21B() < 0) return -1;
+            if (_WriteAddr21D() < 0) return -1;
+            if (_WriteAddr220() < 0) return -1;
+            if (_WriteAddr222() < 0) return -1;
+            if (_WriteAddr225() < 0) return -1;
+            if (_WriteAddr226() < 0) return -1;
+            if (_WriteAddr229() < 0) return -1;
+            if (_WriteAddr22A() < 0) return -1;
+            if (_WriteAddr22B() < 0) return -1;
+            if (_WriteAddr300() < 0) return -1;
+            if (_WriteAddr303() < 0) return -1;
+            if (_WriteAddr304() < 0) return -1;
+            if (_WriteAddr305() < 0) return -1;
+            if (_WriteAddr309() < 0) return -1;
+            if (_WriteAddr30B() < 0) return -1;
+            if (_WriteAddr317() < 0) return -1;
+            if (_WriteAddr318() < 0) return -1;
+            if (_WriteAddr319() < 0) return -1;
+            if (_WriteAddr31A() < 0) return -1;
+            if (_WriteAddr31B() < 0) return -1;
+            if (_WriteAddr31D() < 0) return -1;
+            if (_WriteAddr320() < 0) return -1;
+            if (_WriteAddr322() < 0) return -1;
+            if (_WriteAddr325() < 0) return -1;
+            if (_WriteAddr326() < 0) return -1;
+            if (_WriteAddr329() < 0) return -1;
+            if (_WriteAddr32A() < 0) return -1;
+            if (_WriteAddr32B() < 0) return -1;
+            if (_WriteAddr400() < 0) return -1;
+            if (_WriteAddr406() < 0) return -1;
+            if (_WriteAddr407() < 0) return -1;
+            if (_WriteAddr408() < 0) return -1;
+            if (_WriteAddr40A() < 0) return -1;
+            if (_WriteAddr40C() < 0) return -1;
+            if (_WriteAddr410() < 0) return -1;
+            if (_WriteAddr412() < 0) return -1;
+            if (_WriteAddr414() < 0) return -1;
+            if (_WriteAddr415() < 0) return -1;
+            if (_WriteAddr416() < 0) return -1;
+            if (_WriteAddr417() < 0) return -1;
+            if (_WriteAddr427() < 0) return -1;
+            if (_WriteAddr43B() < 0) return -1;
+            if (_WriteAddr43C() < 0) return -1;
+            if (_WriteAddr43D() < 0) return -1;
+            if (_WriteAddr43E() < 0) return -1;
+            if (_WriteAddr443() < 0) return -1;
+            if (_WriteAddr445() < 0) return -1;
+            if (_WriteAddr449() < 0) return -1;
+            if (_WriteAddr44A_44D() < 0) return -1;
+            if (_WriteAddr44E() < 0) return -1;
+            if (_WriteAddr44F() < 0) return -1;
+            if (_WriteAddr463() < 0) return -1;
+            if (_WriteAddr466() < 0) return -1;
+            if (_WriteAddr469() < 0) return -1;
+            if (_WriteAddr46A() < 0) return -1;
+            if (_WriteAddr46D() < 0) return -1;
+            if (_WriteAddr46F() < 0) return -1;
+            if (_WriteAddr470_471() < 0) return -1;
+            if (_WriteAddr472() < 0) return -1;
+            if (_WriteAddr47F() < 0) return -1;
+            if (_WriteAddr483() < 0) return -1;
+            if (_WriteAddr484() < 0) return -1;
+            if (_WriteAddr485() < 0) return -1;
+            if (_WriteAddr486() < 0) return -1;
+            if (_WriteAddr487() < 0) return -1;
+            if (_WriteAddr500() < 0) return -1;
+            if (_WriteAddr501() < 0) return -1;
+            if (_WriteAddr502() < 0) return -1;
+            if (_WriteAddr503() < 0) return -1;
+            if (_WriteAddr504() < 0) return -1;
+            if (_WriteAddr505() < 0) return -1;
+            if (_WriteAddr506() < 0) return -1;
+            if (_WriteAddr507() < 0) return -1;
+            if (_WriteAddr508() < 0) return -1;
+            if (_WriteAddr509() < 0) return -1;
+            if (_WriteAddr510() < 0) return -1;
+            if (_WriteAddr511() < 0) return -1;
+            if (_WriteAddr512() < 0) return -1;
+            if (_WriteAddr513() < 0) return -1;
+            if (_WriteAddr514() < 0) return -1;
+            if (_WriteAddr515() < 0) return -1;
+            if (_WriteAddr516() < 0) return -1;
+            if (_WriteAddr517() < 0) return -1;
+            if (_WriteAddr518() < 0) return -1;
+            if (_WriteAddr519() < 0) return -1;
+            if (_WriteAddr520() < 0) return -1;
+            if (_WriteAddr521() < 0) return -1;
+            if (_WriteAddr522() < 0) return -1;
+            if (_WriteAddr523() < 0) return -1;
+            if (_WriteAddr524() < 0) return -1;
+            if (_WriteAddr525() < 0) return -1;
+            if (_WriteAddr526() < 0) return -1;
+            if (_WriteAddr527() < 0) return -1;
+            if (_WriteAddr528() < 0) return -1;
+            if (_WriteAddr529() < 0) return -1;
+            if (_WriteAddr530() < 0) return -1;
+            if (_WriteAddr531() < 0) return -1;
+            if (_WriteAddr532() < 0) return -1;
+            if (_WriteAddr533() < 0) return -1;
+            if (_WriteAddr534() < 0) return -1;
+            if (_WriteAddr535() < 0) return -1;
+            if (_WriteAddr536() < 0) return -1;
+            if (_WriteAddr537() < 0) return -1;
+            if (_WriteAddr538() < 0) return -1;
+            if (_WriteAddr539() < 0) return -1;
+            if (_WriteAddr540() < 0) return -1;
+            if (_WriteAddr541() < 0) return -1;
+            if (_WriteAddr542() < 0) return -1;
+            if (_WriteAddr543() < 0) return -1;
+            if (_WriteAddr544() < 0) return -1;
+            if (_WriteAddr545() < 0) return -1;
+            if (_WriteAddr546() < 0) return -1;
+            if (_WriteAddr547() < 0) return -1;
+            if (_WriteAddr548() < 0) return -1;
+            if (_WriteAddr549() < 0) return -1;
+            if (_WriteAddr550() < 0) return -1;
+            if (_WriteAddr551() < 0) return -1;
+            if (_WriteAddr552() < 0) return -1;
+            if (_WriteAddr553() < 0) return -1;
+            if (_WriteAddr554() < 0) return -1;
+            if (_WriteAddr555() < 0) return -1;
+            if (_WriteAddr556() < 0) return -1;
+            if (_WriteAddr557() < 0) return -1;
+            if (_WriteAddr558() < 0) return -1;
+            if (_WriteAddr559() < 0) return -1;
+            if (_WriteAddr560() < 0) return -1;
+            if (_WriteAddr561() < 0) return -1;
+            if (_WriteAddr562() < 0) return -1;
+            if (_WriteAddr563() < 0) return -1;
+            if (_WriteAddr564() < 0) return -1;
+            if (_WriteAddr565() < 0) return -1;
+            if (_WriteAddr566() < 0) return -1;
+            if (_WriteAddr567() < 0) return -1;
+            if (_WriteAddr568() < 0) return -1;
+            if (_WriteAddr569() < 0) return -1;
+            if (_WriteAddr570() < 0) return -1;
+            if (_WriteAddr571() < 0) return -1;
+
+
+            return 0;
+        }
+
         private int _WriteAddr000()
         {
             byte[] data = new byte[1];
@@ -6359,6 +6551,24 @@ namespace Gn2108Gn2109Config
             bReadAll.Enabled = true;
         }
 
+        public int ReadAllApi()
+        {
+            try {
+                bL0Read_Click(null, null);
+                bL1Read_Click(null, null);
+                bL2Read_Click(null, null);
+                bL3Read_Click(null, null);
+                bReadControl_Click(null, null);
+                bReadCustomer_Click(null, null);
+
+                return 0;
+            }
+            catch { 
+            	return -1;
+            }
+
+        }
+
         private void bStoreIntoFlash_Click(object sender, EventArgs e)
         {
             byte[] data = new byte[1] { 0xA0 };
@@ -8691,7 +8901,8 @@ namespace Gn2108Gn2109Config
 
         private void cbL3OutputAmplitudeReserved3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            return;
+            if (reading == true)
+                return;
 
             if (_WriteAddr561() < 0)
                 return;
@@ -8699,7 +8910,8 @@ namespace Gn2108Gn2109Config
 
         private void cbL3OutputAmplitudeReserved4_SelectedIndexChanged(object sender, EventArgs e)
         {
-            return;
+            if (reading == true)
+                return;
 
             if (_WriteAddr562() < 0)
                 return;
@@ -8707,7 +8919,8 @@ namespace Gn2108Gn2109Config
 
         private void cbL3OutputEmphasis0Db_SelectedIndexChanged(object sender, EventArgs e)
         {
-            return;
+            if (reading == true)
+                return;
 
             if (_WriteAddr563() < 0)
                 return;
@@ -8715,7 +8928,8 @@ namespace Gn2108Gn2109Config
 
         private void cbL3OutputEmphasis1Db_SelectedIndexChanged(object sender, EventArgs e)
         {
-            return;
+            if (reading == true)
+                return;
 
             if (_WriteAddr564() < 0)
                 return;
@@ -8723,7 +8937,8 @@ namespace Gn2108Gn2109Config
 
         private void cbL3OutputEmphasis2Db_SelectedIndexChanged(object sender, EventArgs e)
         {
-            return;
+            if (reading == true)
+                return;
 
             if (_WriteAddr565() < 0)
                 return;
@@ -8731,7 +8946,8 @@ namespace Gn2108Gn2109Config
 
         private void cbL3OutputEmphasis3Db_SelectedIndexChanged(object sender, EventArgs e)
         {
-            return;
+            if (reading == true)
+                return;
 
             if (_WriteAddr566() < 0)
                 return;
@@ -8739,7 +8955,8 @@ namespace Gn2108Gn2109Config
 
         private void cbL3OutputEmphasis4Db_SelectedIndexChanged(object sender, EventArgs e)
         {
-            return;
+            if (reading == true)
+                return;
 
             if (_WriteAddr567() < 0)
                 return;
@@ -8747,7 +8964,8 @@ namespace Gn2108Gn2109Config
 
         private void cbL3OutputEmphasis5Db_SelectedIndexChanged(object sender, EventArgs e)
         {
-            return;
+            if (reading == true)
+                return;
 
             if (_WriteAddr568() < 0)
                 return;
@@ -8755,7 +8973,8 @@ namespace Gn2108Gn2109Config
 
         private void cbL3OutputEmphasis6Db_SelectedIndexChanged(object sender, EventArgs e)
         {
-            return;
+            if (reading == true)
+                return;
 
             if (_WriteAddr569() < 0)
                 return;
@@ -8763,7 +8982,8 @@ namespace Gn2108Gn2109Config
 
         private void cbL3OutputEmphasis7Db_SelectedIndexChanged(object sender, EventArgs e)
         {
-            return;
+            if (reading == true)
+                return;
 
             if (_WriteAddr570() < 0)
                 return;
@@ -8771,7 +8991,8 @@ namespace Gn2108Gn2109Config
 
         private void cbL3OutputEmphasisReserved0_SelectedIndexChanged(object sender, EventArgs e)
         {
-            return;
+            if (reading == true)
+                return;
 
             if (_WriteAddr571() < 0)
                 return;

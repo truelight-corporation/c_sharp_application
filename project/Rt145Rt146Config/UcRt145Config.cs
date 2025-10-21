@@ -19,6 +19,15 @@ namespace Rt145Rt146Config
         private I2cWriteCB i2cWriteCB = null;
         private bool reading = false;
 
+        public string GetComboBoxSelectedValue(string comboBoxId)
+        {
+            ComboBox comboBox = this.Controls.Find(comboBoxId, true).FirstOrDefault() as ComboBox;
+            if (comboBox != null)
+                return comboBox.SelectedItem?.ToString();
+            else
+                throw new ArgumentException("Invalid ComboBox ID");
+        }
+
         public UcRt145Config()
         {
             InitializeComponent();
@@ -3923,7 +3932,39 @@ namespace Rt145Rt146Config
             i2cWriteCB = new I2cWriteCB(cb);
 
             return 0;
-        }        
+        }
+
+        public int ReadAllApi()
+        {
+            if (this.InvokeRequired)
+                return (int)this.Invoke(new Action(() => _ReadAll()));
+            else
+                return _ReadAll();
+        }
+
+        public int WriteAllApi()
+        {
+            if (this.InvokeRequired)
+                return (int)this.Invoke(new Action(() => _WriteAll()));
+            else
+                return _WriteAll();
+        }
+
+        public string ReadAllRegisterApi()
+        {
+            if (this.InvokeRequired)
+                return (string)this.Invoke(new Action(() => _ReadAllRegister()));
+            else
+                return _ReadAllRegister();
+        }
+
+        public string GetChipId()
+        {
+            if (this.InvokeRequired)
+                return (string)this.Invoke(new Action(() => _GetChipId()));
+            else
+                return _GetChipId();
+        }
 
         private byte _ReverseBit(byte data)
         {
@@ -3938,6 +3979,31 @@ namespace Rt145Rt146Config
             //data = _ReverseBit(data);
 
             tbChipId.Text = "0x" + data.ToString("X2");
+        }
+
+        private string _GetChipId()
+        {
+            byte[] data = new byte[1];
+            int rv;
+
+            if (reading == true)
+                return "";
+
+            reading = true;
+
+            try {
+                if (i2cReadCB == null)
+                    return "";
+
+                rv = i2cReadCB(devAddr, 0x00, 1, data);
+                if (rv != 1)
+                    return "";
+            }
+            finally {
+                reading = false;
+            }
+
+            return "0x" + data[0].ToString("X2");
         }
 
         private void _ParseAddr01(byte data)
@@ -5815,17 +5881,71 @@ namespace Rt145Rt146Config
             }
         }
 
+        private string _ReadAllRegister()
+        {
+            byte[] data1 = new byte[128];
+            byte[] data2 = new byte[128];
+            byte[] data = new byte[256];
+            int rv;
+
+            if (reading == true)
+                return "";
+
+            reading = true;
+
+            try {
+                if (i2cReadCB == null)
+                    return "";
+
+                rv = i2cReadCB(devAddr, 0x00, 128, data1);
+                if (rv != 128)
+                    return "";
+
+                rv = i2cReadCB(devAddr, 0x80, 128, data2);
+                if (rv != 128)
+                    return "";
+
+                Buffer.BlockCopy(data1, 0, data, 0, data1.Length);
+                Buffer.BlockCopy(data2, 0, data, data1.Length, data2.Length);
+            }
+            finally {
+                reading = false;
+            }
+
+            return _FormatData(data);
+        }
+
+        private string _FormatData(byte[] data)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < data.Length; i += 16) {
+                sb.Append($"\"Rx\",\"{i:X2}\"");
+                for (int j = 0; j < 16; j++) {
+                    if (i + j < data.Length) {
+                        sb.Append($",\"{data[i + j]:X2}\"");
+                    }
+                }
+                sb.AppendLine();
+            }
+            return sb.ToString();
+        }
+
         private void bReadAll_Click(object sender, EventArgs e)
         {
+            bReadAll.Enabled = false;
+            _ReadAll();
+            bReadAll.Enabled = true;
+        }
 
+        private int _ReadAll()
+        {
             byte[] data = new byte[72];
             int rv;
 
             if (reading == true)
-                return;
+                return 0;
 
             reading = true;
-            bReadAll.Enabled = false;
 
             if (i2cReadCB == null)
                 goto exit;
@@ -5839,7 +5959,7 @@ namespace Rt145Rt146Config
             _ParseAddr02(data[2]);
             _ParseAddr03(data[3]);
             _ParseAddr04_05(data[4], data[5]);
-            
+
             rv = i2cReadCB(devAddr, 0x08, 27, data);
             if (rv != 27)
                 goto exit;
@@ -5865,7 +5985,7 @@ namespace Rt145Rt146Config
             _ParseAddr1A(data[18]);
             _ParseAddr1B(data[19]);
             _ParseAddr1C(data[20]);
-            _ParseAddr1D_1E_1F(data[21],data[22],data[23]);
+            _ParseAddr1D_1E_1F(data[21], data[22], data[23]);
             _ParseAddr20(data[24]);
             _ParseAddr21(data[25]);
             _ParseAddr22(data[26]);
@@ -6022,11 +6142,128 @@ namespace Rt145Rt146Config
             _ParseAddrF4(data[12]);
             _ParseAddrF5(data[13]);
             _ParseAddrF6(data[14]);
-            _ParseAddrF7(data[15]);            
+            _ParseAddrF7(data[15]);
+            reading = false;
+            return 0;
 
         exit:
             reading = false;
-            bReadAll.Enabled = true;
+            return -1;
+        }
+
+        private int _WriteAll()
+        {
+            if (_WriteAddr08() < 0) return -1;
+            if (_WriteAddr09() < 0) return -1;
+            if (_WriteAddr0A() < 0) return -1;
+            if (_WriteAddr0B() < 0) return -1;
+            if (_WriteAddr0C() < 0) return -1;
+            if (_WriteAddr0D() < 0) return -1;
+            if (_WriteAddr0E() < 0) return -1;
+            if (_WriteAddr0F() < 0) return -1;
+            if (_WriteAddr10() < 0) return -1;
+            if (_WriteAddr11() < 0) return -1;
+            if (_WriteAddr12() < 0) return -1;
+            if (_WriteAddr13() < 0) return -1;
+            if (_WriteAddr14() < 0) return -1;
+            if (_WriteAddr15() < 0) return -1;
+            if (_WriteAddr16() < 0) return -1;
+            if (_WriteAddr17() < 0) return -1;
+            if (_WriteAddr18() < 0) return -1;
+            if (_WriteAddr19() < 0) return -1;
+            if (_WriteAddr1A() < 0) return -1;
+            if (_WriteAddr1B() < 0) return -1;
+            if (_WriteAddr1C() < 0) return -1;
+            if (_WriteAddr1D_1E_1F() < 0) return -1;
+            if (_WriteAddr20() < 0) return -1;
+            if (_WriteAddr21() < 0) return -1;
+            if (_WriteAddr22() < 0) return -1;
+            if (_WriteAddr34() < 0) return -1;
+            if (_WriteAddr42() < 0) return -1;
+            if (_WriteAddr48() < 0) return -1;
+            if (_WriteAddr54() < 0) return -1;
+            if (_WriteAddr62() < 0) return -1;
+            if (_WriteAddr68() < 0) return -1;
+            if (_WriteAddr74() < 0) return -1;
+            if (_WriteAddr82() < 0) return -1;
+            if (_WriteAddr88() < 0) return -1;
+            if (_WriteAddr94() < 0) return -1;
+            if (_WriteAddrA2() < 0) return -1;
+            if (_WriteAddrA8() < 0) return -1;
+            if (_WriteAddrB0() < 0) return -1;
+            if (_WriteAddrB1() < 0) return -1;
+            if (_WriteAddrB2() < 0) return -1;
+            if (_WriteAddrB3() < 0) return -1;
+            if (_WriteAddrB4() < 0) return -1;
+            if (_WriteAddrB5() < 0) return -1;
+            if (_WriteAddrB6() < 0) return -1;
+            if (_WriteAddrB7() < 0) return -1;
+            if (_WriteAddrB8() < 0) return -1;
+            if (_WriteAddrB9() < 0) return -1;
+            if (_WriteAddrBA() < 0) return -1;
+            if (_WriteAddrBB() < 0) return -1;
+            if (_WriteAddrBC() < 0) return -1;
+            if (_WriteAddrBD() < 0) return -1;
+            if (_WriteAddrBE() < 0) return -1;
+            if (_WriteAddrBF() < 0) return -1;
+            if (_WriteAddrC0() < 0) return -1;
+            if (_WriteAddrC1() < 0) return -1;
+            if (_WriteAddrC2() < 0) return -1;
+            if (_WriteAddrC3() < 0) return -1;
+            if (_WriteAddrC4() < 0) return -1;
+            if (_WriteAddrC5() < 0) return -1;
+            if (_WriteAddrC6() < 0) return -1;
+            if (_WriteAddrC7() < 0) return -1;
+            if (_WriteAddrC8() < 0) return -1;
+            if (_WriteAddrC9() < 0) return -1;
+            if (_WriteAddrCA() < 0) return -1;
+            if (_WriteAddrCB() < 0) return -1;
+            if (_WriteAddrCC() < 0) return -1;
+            if (_WriteAddrCD() < 0) return -1;
+            if (_WriteAddrCE() < 0) return -1;
+            if (_WriteAddrCF() < 0) return -1;
+            if (_WriteAddrD0() < 0) return -1;
+            if (_WriteAddrD1() < 0) return -1;
+            if (_WriteAddrD2() < 0) return -1;
+            if (_WriteAddrD3() < 0) return -1;
+            if (_WriteAddrD4() < 0) return -1;
+            if (_WriteAddrD5() < 0) return -1;
+            if (_WriteAddrD6() < 0) return -1;
+            if (_WriteAddrD7() < 0) return -1;
+            if (_WriteAddrD8() < 0) return -1;
+            if (_WriteAddrD9() < 0) return -1;
+            if (_WriteAddrDA() < 0) return -1;
+            if (_WriteAddrDB() < 0) return -1;
+            if (_WriteAddrDC() < 0) return -1;
+            if (_WriteAddrDD() < 0) return -1;
+            if (_WriteAddrDE() < 0) return -1;
+            if (_WriteAddrDF() < 0) return -1;
+            if (_WriteAddrE0() < 0) return -1;
+            if (_WriteAddrE1() < 0) return -1;
+            if (_WriteAddrE2() < 0) return -1;
+            if (_WriteAddrE3() < 0) return -1;
+            if (_WriteAddrE4() < 0) return -1;
+            if (_WriteAddrE5() < 0) return -1;
+            if (_WriteAddrE6() < 0) return -1;
+            if (_WriteAddrE7() < 0) return -1;
+            if (_WriteAddrE8() < 0) return -1;
+            if (_WriteAddrE9() < 0) return -1;
+            if (_WriteAddrEA() < 0) return -1;
+            if (_WriteAddrEB() < 0) return -1;
+            if (_WriteAddrEC() < 0) return -1;
+            if (_WriteAddrED() < 0) return -1;
+            if (_WriteAddrEE() < 0) return -1;
+            if (_WriteAddrEF() < 0) return -1;
+            if (_WriteAddrF0() < 0) return -1;
+            if (_WriteAddrF1() < 0) return -1;
+            if (_WriteAddrF2() < 0) return -1;
+            if (_WriteAddrF3() < 0) return -1;
+            if (_WriteAddrF4() < 0) return -1;
+            if (_WriteAddrF5() < 0) return -1;
+            if (_WriteAddrF6() < 0) return -1;
+            if (_WriteAddrF7() < 0) return -1;
+
+            return 0;
         }
 
         private int _WriteAddr07()
@@ -10175,7 +10412,6 @@ namespace Rt145Rt146Config
             if (_WriteAddrF7() < 0)
                 return;
         }
-
         
     }
 }

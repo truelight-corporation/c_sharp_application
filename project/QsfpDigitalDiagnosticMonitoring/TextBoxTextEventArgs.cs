@@ -5,7 +5,7 @@ using System.Text;
 
 namespace QsfpDigitalDiagnosticMonitoring
 {
-    public class TextBoxTextEventArgs: EventArgs
+    public class TextBoxTextEventArgs : EventArgs
     {
         public string Text1 { get; private set; }
         public string Text2 { get; private set; }

@@ -1978,6 +1978,8 @@
             // cbTemperatureCompensation
             // 
             this.cbTemperatureCompensation.AutoSize = true;
+            this.cbTemperatureCompensation.Checked = true;
+            this.cbTemperatureCompensation.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbTemperatureCompensation.Location = new System.Drawing.Point(378, 34);
             this.cbTemperatureCompensation.Name = "cbTemperatureCompensation";
             this.cbTemperatureCompensation.Size = new System.Drawing.Size(56, 16);
@@ -2265,7 +2267,7 @@
             // 
             // bStoreIntoFlash
             // 
-            this.bStoreIntoFlash.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.bStoreIntoFlash.Font = new System.Drawing.Font("PMingLiU", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.bStoreIntoFlash.Location = new System.Drawing.Point(363, 104);
             this.bStoreIntoFlash.Name = "bStoreIntoFlash";
             this.bStoreIntoFlash.Size = new System.Drawing.Size(247, 67);

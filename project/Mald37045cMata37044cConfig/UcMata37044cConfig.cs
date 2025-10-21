@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Mald37045cMata37044c
 {
@@ -19,6 +20,7 @@ namespace Mald37045cMata37044c
         private I2cReadCB i2cReadCB = null;
         private I2cWriteCB i2cWriteCB = null;
         private bool reading = false;
+        private bool debugMode = false;
 
         public UcMata37044cConfig()
         {
@@ -3852,9 +3854,74 @@ namespace Mald37045cMata37044c
             return 0;
         }
 
+        public int ReadAllApi()
+        {
+            if (this.InvokeRequired)
+                return (int)this.Invoke(new Action(() => _ReadAll()));
+            else
+                return _ReadAll();
+        }
+
+        public int WriteAllApi()
+        {
+            if (this.InvokeRequired)
+                return (int)this.Invoke(new Action(() => _WriteAll()));
+            else
+                return _WriteAll();
+        }
+
+        public string ReadAllRegisterApi()
+        {
+            if (this.InvokeRequired)
+                return (string)this.Invoke(new Action(() => _ReadAllRegister()));
+            else
+                return _ReadAllRegister();
+        }
+
+        public int WriteAllRegisterApi(string targetPage, int delayTime, string registerFilePath)
+        {
+            if (this.InvokeRequired)
+                return (int)this.Invoke(new Action(() => _WriteAllRegister(targetPage, delayTime, registerFilePath)));
+            else
+                return _WriteAllRegister(targetPage, delayTime, registerFilePath);
+        }
+
+        public string GetChipId()
+        {
+            if (this.InvokeRequired)
+                return (string)this.Invoke(new Action(() => _GetChipId()));
+            else
+                return _GetChipId();
+        }
+
         private void _ParseAddr00(byte data)
         {
             tbChipId.Text = "0x" + data.ToString("X2");
+        }
+
+        private string _GetChipId()
+        {
+            byte[] data = new byte[1];
+            int rv;
+
+            if (reading == true)
+                return "";
+
+            reading = true;
+
+            try {
+                if (i2cReadCB == null)
+                    return "";
+
+                rv = i2cReadCB(devAddr, 0x00, 1, data);
+                if (rv != 1)
+                    return "";
+            }
+            finally {
+                reading = false;
+            }
+
+            return "0x" + data[0].ToString("X2");
         }
 
         private void _ParseAddr01(byte data)
@@ -5170,17 +5237,115 @@ namespace Mald37045cMata37044c
             }
         }
 
-        private void bReadAll_Click(object sender, EventArgs e)
+        private string _ReadAllRegister()
         {
-            byte[] data = new byte[72];
+            byte[] data1 = new byte[128];
+            byte[] data2 = new byte[128];
+            byte[] data = new byte[256];
             int rv;
 
+            if (reading == true)
+                return "";
+
+            reading = true;
+
+            try {
+                if (i2cReadCB == null)
+                    return "";
+
+                rv = i2cReadCB(devAddr, 0x00, 128, data1);
+                if (rv != 128)
+                    return "";
+
+                rv = i2cReadCB(devAddr, 0x80, 128, data2);
+                if (rv != 128)
+                    return "";
+
+                Buffer.BlockCopy(data1, 0, data, 0, data1.Length);
+                Buffer.BlockCopy(data2, 0, data, data1.Length, data2.Length);
+            }
+            finally {
+                reading = false;
+            }
+
+            return _FormatData(data);
+        }
+
+        private string _FormatData(byte[] data)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < data.Length; i += 16) {
+                sb.Append($"\"Rx\",\"{i:X2}\"");
+                for (int j = 0; j < 16; j++) {
+                    if (i + j < data.Length) {
+                        sb.Append($",\"{data[i + j]:X2}\"");
+                    }
+                }
+                sb.AppendLine();
+            }
+            return sb.ToString();
+        }
+
+        private string _FormatData1(byte[] data)
+        {
+            HashSet<int> RxRegMap = new HashSet<int> {
+                0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x10, 0x11, 0x16, 0x17,
+                0x18, 0x19, 0x1A, 0x1B, 0x20, 0x21, 0x22, 0x23, 0x24, 0x25,
+                0x26, 0x27, 0x28, 0x2D, 0x40, 0x41, 0x42, 0x43, 0x44, 0x45,
+                0x46, 0x47, 0x82
+                };
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < data.Length; i += 16) {
+                sb.Append($"\"Rx\",\"{i:X2}\"");
+                for (int j = 0; j < 16; j++) {
+                    if (i + j < data.Length) {
+                        if (RxRegMap.Contains(i + j)) {
+                            sb.Append($",\"{data[i + j]:X2}\"");
+                        }
+                        else {
+                            sb.Append(",\"xx\"");
+                        }
+                    }
+                }
+                sb.AppendLine();
+            }
+
+            return sb.ToString();
+        }
+
+        private void bReadAll_Click(object sender, EventArgs e)
+        {
             if (reading == true)
                 return;
 
             reading = true;
             bReadAll.Enabled = false;
+            _ReadMultipleAddresses();
+            reading = false;
+            bReadAll.Enabled = true;
+        }
 
+        private int _ReadAll()
+        {
+            int result;
+
+            if (reading == true)
+                return -1;
+
+            reading = true;
+            bReadAll.Enabled = false;
+            result = _ReadMultipleAddresses();
+            reading = false;
+            bReadAll.Enabled = true;
+            return result;
+        }
+
+        private int _ReadMultipleAddresses()
+        {
+            byte[] data = new byte[72];
+            int rv;
+            
             if (i2cReadCB == null)
                 goto exit;
 
@@ -5332,10 +5497,365 @@ namespace Mald37045cMata37044c
             _ParseAddrE5(data[69]);
             _ParseAddrE6(data[70]);
             _ParseAddrE7(data[71]);
+            return 0;
 
         exit:
+            return -1;
+        }
+
+        private int _WriteAllRegister(string targetPage, int delayTime, string registerFilePath)
+        {
+            string filePath;
+            int bytesToRead = 256; // 128 or 256 bytes
+            int bytesPerRow = 16; // 16 bytes per row
+            int rowsToRead;
+            List<string[]> dataToWrite;
+
+            if (!string.IsNullOrEmpty(registerFilePath))
+                filePath = registerFilePath;
+            else {
+                MessageBox.Show("The file path for the write operation is incorrect or empty.");
+                return -1;
+            }
+
+            rowsToRead = bytesToRead / bytesPerRow;
+            dataToWrite = ReadCsvData(filePath, targetPage, rowsToRead);
+
+            if (debugMode) {
+                MessageBox.Show("filePath: \n" + filePath +
+                            "\n\ndataToWrite: \n" + FormatDataToWrite(dataToWrite));
+            }
+
+            if (dataToWrite == null)
+                return -1;
+
+            byte[] data = FormatDataForWrite(dataToWrite, bytesToRead); // Prepare data to be written as byte array
+
+            if (debugMode) {
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine("Data:");
+                for (int i = 0; i < data.Length; i++) {
+                    sb.Append(data[i].ToString("X2")); // Convert byte to hex string representation
+                    sb.Append(" ");
+                    if ((i + 1) % 16 == 0)
+                        sb.AppendLine(); // New line every 16 bytes
+                }
+
+                MessageBox.Show(sb.ToString());
+            }
+
+            return PerformWriteOperation(data, delayTime);
+        }
+
+        private string FormatDataToWrite(List<string[]> dataToWrite)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var row in dataToWrite) {
+                sb.AppendLine(string.Join(", ", row)); // 將每行陣列轉為逗號分隔的字串
+            }
+
+            return sb.ToString();
+        }
+
+        private List<string[]> ReadCsvData(string filePath, string targetPage, int rowsToRead)
+        {
+            List<string[]> dataToWrite = new List<string[]>();
+
+            try {
+                using (var reader = new StreamReader(filePath)) {
+                    bool foundHeader = false;
+                    bool foundTargetPage = false;
+                    int rowsRead = 0;
+                    string line;
+
+                    while ((line = reader.ReadLine()) != null) {
+                        if (!foundHeader) {
+                            if (line.StartsWith("Page,Row")) {
+                                foundHeader = true;
+                            }
+                            continue;
+                        }
+
+                        string[] parts = line.Split(',');
+                        if (parts.Length >= 18) {
+                            if (foundTargetPage) {
+                                if (rowsRead < rowsToRead) {
+                                    string[] rowData = new string[16];
+                                    Array.Copy(parts, 2, rowData, 0, 16); // Copy only the data columns
+                                    dataToWrite.Add(rowData);
+                                    rowsRead++;
+                                }
+                                else {
+                                    break; // Read enough rows
+                                }
+                            }
+                            else if (parts[0].Trim('"') == targetPage) {
+                                foundTargetPage = true;
+                                string[] rowData = new string[16];
+                                Array.Copy(parts, 2, rowData, 0, 16); // Copy only the data columns
+                                dataToWrite.Add(rowData);
+                                rowsRead++;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex) {
+                MessageBox.Show($"Error reading CSV file: {ex.Message}");
+                return null;
+            }
+
+            return dataToWrite;
+        }
+
+        private byte[] FormatDataForWrite(List<string[]> dataToWrite, int totalBytes)
+        {
+            byte[] data = new byte[totalBytes]; // Dynamic range for byte array
+
+            try {
+                int index = 0;
+
+                foreach (var row in dataToWrite) {
+                    foreach (var value in row) {
+                        data[index++] = Convert.ToByte(value.Trim('"'), 16);
+                    }
+                }
+            }
+            catch (Exception ex) {
+                MessageBox.Show($"Error formatting data for write: {ex.Message}");
+                return null;
+            }
+
+            return data;
+        }
+
+        private int PerformWriteOperation(byte[] data, int delayTime)
+        {
+            byte[] key = new byte[1] { 0xA0 };
+
+            if (i2cWriteCB == null)
+                return -1;
+
+            if (i2cWriteCB(devAddr, 0x00, 128, data.Take(128).ToArray()) < 0)
+                return -1;
+
+            Thread.Sleep(delayTime);
+
+            if (i2cWriteCB(devAddr, 0x80, 128, data.Skip(128).Take(128).ToArray()) < 0)
+                return -1;
+            /*
+            //bStoreIntoFlash_Click
+            reading = true;
+            i2cWriteCB(devAddr, 0xFA, 1, key);
+            Thread.Sleep(1000);
             reading = false;
-            bReadAll.Enabled = true;
+            */
+            return 0;
+        }
+
+        private int _WriteAll()
+        {
+            if (_WriteAddr03() < 0)
+                return -1;
+            if (_WriteAddr04() < 0)
+                return -1;
+            if (_WriteAddr05() < 0)
+                return -1;
+            if (_WriteAddr10() < 0)
+                return -1;
+            if (_WriteAddr11() < 0)
+                return -1;
+            if (_WriteAddr16() < 0)
+                return -1;
+            if (_WriteAddr19() < 0)
+                return -1;
+            if (_WriteAddr1B() < 0)
+                return -1;
+            if (_WriteAddr20() < 0)
+                return -1;
+            if (_WriteAddr21() < 0)
+                return -1;
+            if (_WriteAddr22() < 0)
+                return -1;
+            if (_WriteAddr23() < 0)
+                return -1;
+            if (_WriteAddr24() < 0)
+                return -1;
+            if (_WriteAddr25() < 0)
+                return -1;
+            if (_WriteAddr26() < 0)
+                return -1;
+            if (_WriteAddr27() < 0)
+                return -1;
+            if (_WriteAddr28() < 0)
+                return -1;
+            if (_WriteAddr2D() < 0)
+                return -1;
+            if (_WriteAddr40() < 0)
+                return -1;
+            if (_WriteAddr41() < 0)
+                return -1;
+            if (_WriteAddr42() < 0)
+                return -1;
+            if (_WriteAddr43() < 0)
+                return -1;
+            if (_WriteAddr44() < 0)
+                return -1;
+            if (_WriteAddr45() < 0)
+                return -1;
+            if (_WriteAddr46() < 0)
+                return -1;
+            if (_WriteAddr47() < 0)
+                return -1;
+            if (_WriteAddr82() < 0)
+                return -1;
+            if (_WriteAddrA0() < 0)
+                return -1;
+            if (_WriteAddrA1() < 0)
+                return -1;
+            if (_WriteAddrA2() < 0)
+                return -1;
+            if (_WriteAddrA3() < 0)
+                return -1;
+            if (_WriteAddrA4() < 0)
+                return -1;
+            if (_WriteAddrA5() < 0)
+                return -1;
+            if (_WriteAddrA6() < 0)
+                return -1;
+            if (_WriteAddrA7() < 0)
+                return -1;
+            if (_WriteAddrA8() < 0)
+                return -1;
+            if (_WriteAddrA9() < 0)
+                return -1;
+            if (_WriteAddrAA() < 0)
+                return -1;
+            if (_WriteAddrAB() < 0)
+                return -1;
+            if (_WriteAddrAC() < 0)
+                return -1;
+            if (_WriteAddrAD() < 0)
+                return -1;
+            if (_WriteAddrAE() < 0)
+                return -1;
+            if (_WriteAddrAF() < 0)
+                return -1;
+            if (_WriteAddrB0() < 0)
+                return -1;
+            if (_WriteAddrB1() < 0)
+                return -1;
+            if (_WriteAddrB2() < 0)
+                return -1;
+            if (_WriteAddrB3() < 0)
+                return -1;
+            if (_WriteAddrB4() < 0)
+                return -1;
+            if (_WriteAddrB5() < 0)
+                return -1;
+            if (_WriteAddrB6() < 0)
+                return -1;
+            if (_WriteAddrB7() < 0)
+                return -1;
+            if (_WriteAddrB8() < 0)
+                return -1;
+            if (_WriteAddrB9() < 0)
+                return -1;
+            if (_WriteAddrBA() < 0)
+                return -1;
+            if (_WriteAddrBB() < 0)
+                return -1;
+            if (_WriteAddrBC() < 0)
+                return -1;
+            if (_WriteAddrBD() < 0)
+                return -1;
+            if (_WriteAddrBE() < 0)
+                return -1;
+            if (_WriteAddrBF() < 0)
+                return -1;
+            if (_WriteAddrC0() < 0)
+                return -1;
+            if (_WriteAddrC1() < 0)
+                return -1;
+            if (_WriteAddrC2() < 0)
+                return -1;
+            if (_WriteAddrC3() < 0)
+                return -1;
+            if (_WriteAddrC4() < 0)
+                return -1;
+            if (_WriteAddrC5() < 0)
+                return -1;
+            if (_WriteAddrC6() < 0)
+                return -1;
+            if (_WriteAddrC7() < 0)
+                return -1;
+            if (_WriteAddrC8() < 0)
+                return -1;
+            if (_WriteAddrC9() < 0)
+                return -1;
+            if (_WriteAddrCA() < 0)
+                return -1;
+            if (_WriteAddrCB() < 0)
+                return -1;
+            if (_WriteAddrCC() < 0)
+                return -1;
+            if (_WriteAddrCD() < 0)
+                return -1;
+            if (_WriteAddrCE() < 0)
+                return -1;
+            if (_WriteAddrCF() < 0)
+                return -1;
+            if (_WriteAddrD0() < 0)
+                return -1;
+            if (_WriteAddrD1() < 0)
+                return -1;
+            if (_WriteAddrD2() < 0)
+                return -1;
+            if (_WriteAddrD3() < 0)
+                return -1;
+            if (_WriteAddrD4() < 0)
+                return -1;
+            if (_WriteAddrD5() < 0)
+                return -1;
+            if (_WriteAddrD6() < 0)
+                return -1;
+            if (_WriteAddrD7() < 0)
+                return -1;
+            if (_WriteAddrD8() < 0)
+                return -1;
+            if (_WriteAddrD9() < 0)
+                return -1;
+            if (_WriteAddrDA() < 0)
+                return -1;
+            if (_WriteAddrDB() < 0)
+                return -1;
+            if (_WriteAddrDC() < 0)
+                return -1;
+            if (_WriteAddrDD() < 0)
+                return -1;
+            if (_WriteAddrDE() < 0)
+                return -1;
+            if (_WriteAddrDF() < 0)
+                return -1;
+            if (_WriteAddrE0() < 0)
+                return -1;
+            if (_WriteAddrE1() < 0)
+                return -1;
+            if (_WriteAddrE2() < 0)
+                return -1;
+            if (_WriteAddrE3() < 0)
+                return -1;
+            if (_WriteAddrE4() < 0)
+                return -1;
+            if (_WriteAddrE5() < 0)
+                return -1;
+            if (_WriteAddrE6() < 0)
+                return -1;
+            if (_WriteAddrE7() < 0)
+                return -1;
+
+            return 0;
         }
 
         private int _WriteAddr02()

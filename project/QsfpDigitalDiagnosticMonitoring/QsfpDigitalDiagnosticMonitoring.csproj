@@ -39,8 +39,7 @@
     <Reference Include="AardvarkAdapter">
       <HintPath>..\..\..\c_sharp_application\dll\device\AardvarkAdapter.dll</HintPath>
     </Reference>
-    <Reference Include="I2cMasterInterface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="I2cMasterInterface">
       <HintPath>..\..\dll\interface\I2cMasterInterface.dll</HintPath>
     </Reference>
     <Reference Include="Mcp2221Adapter">
@@ -120,6 +119,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if exist "$(TargetDir)$(ProjectName).dll" (
+xcopy /Y $(TargetDir)$(ProjectName).dll $(ProjectDir)..\..\dll\project\
+)</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

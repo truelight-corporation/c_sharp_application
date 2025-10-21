@@ -117,24 +117,20 @@ namespace Rt145Rt146Config
         public FRt145Rt146Config()
         {
             InitializeComponent();
-            if (ucRt145Config.SetI2cReadCBApi(_I2cRead) < 0)
-            {
+            if (ucRt145Config.SetI2cReadCBApi(_I2cRead) < 0) {
                 MessageBox.Show("ucRt145Config.SetI2cReadCBApi() faile Error!!");
                 return;
             }
-            if (ucRt145Config.SetI2cWriteCBApi(_I2cWrite) < 0)
-            {
+            if (ucRt145Config.SetI2cWriteCBApi(_I2cWrite) < 0) {
                 MessageBox.Show("ucRt145Config.SetI2cWriteCBApi() faile Error!!");
                 return;
             }
 
-            if (ucRt146Config.SetI2cReadCBApi(_I2cRead) < 0)
-            {
+            if (ucRt146Config.SetI2cReadCBApi(_I2cRead) < 0) {
                 MessageBox.Show("ucRt145Config.SetI2cReadCBApi() faile Error!!");
                 return;
             }
-            if (ucRt146Config.SetI2cWriteCBApi(_I2cWrite) < 0)
-            {
+            if (ucRt146Config.SetI2cWriteCBApi(_I2cWrite) < 0) {
                 MessageBox.Show("ucRt145Config.SetI2cWriteCBApi() faile Error!!");
                 return;
             }
