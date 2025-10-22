@@ -3703,9 +3703,11 @@ namespace IntegratedGuiV2
 
             if (products == "SAS3" && comparisonObject == "CfgFile") {
                 return new List<(string page, int row, int[] columns)> {
+                    ("Page 00", 30, new[] {15}),
                     ("Page 00", 40, new[] {4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
                     ("Page 00", 50, new[] {0, 1, 2, 3, 4, 5, 6, 7 ,8 ,9 ,10 ,11, 15}),
-                    ("Page 00", 70, new[] {15})
+                    ("Page 00", 70, new[] {15}),
+                    ("Page 6C", 00, new[] {0, 1, 2, 3, 4, 5, 6, 7 ,8 ,9 ,10 ,11, 12, 13, 14, 15})
                 };
             }
             else if (products == "SAS3" && comparisonObject == "LogFile") {

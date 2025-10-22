@@ -280,6 +280,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\CP.ico" />
+    <Content Include="XmlFolder\Settings.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\label2.Image3.gif" />
     <None Include="Resources\label2.Image2.gif" />
     <None Include="Resources\label2.Image.gif" />
