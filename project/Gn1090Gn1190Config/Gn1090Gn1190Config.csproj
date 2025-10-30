@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A2286016-925F-4A12-B3F6-F1868F9BDE1F}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Gn1090Gn1190Config</RootNamespace>
     <AssemblyName>Gn1090Gn1190Config</AssemblyName>
@@ -36,7 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="I2cMasterInterface">
-      <HintPath>..\..\interface\I2cMaster\bin\Release\I2cMasterInterface.dll</HintPath>
+      <HintPath>..\..\..\..\Users\LukeZhuo\source\repos\c_sharp_application\dll\interface\I2cMasterInterface.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
