@@ -424,6 +424,11 @@ namespace QsfpDigitalDiagnosticMonitoring
             if (i2cReadCB == null)
                 goto exit;
 
+            if (writePasswordCB == null)
+                goto exit;
+
+            writePasswordCB();
+
             if (selectedPage == "Low Page")
                 starAddr = 0;
             else {
