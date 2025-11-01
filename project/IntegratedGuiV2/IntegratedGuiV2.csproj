@@ -276,7 +276,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="dbUsers.accdb">
+    <Content Include="dbUsers.accdb" />
+    <Content Include="dbUsers.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\CP.ico" />
@@ -300,4 +301,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>echo "" &gt; $(TargetDir)aardvark.dll
+xcopy /Y $(ProjectDir)..\..\dll\device\aardvark_x64.dll $(TargetDir)aardvark.dll
+echo "" &gt; $(TargetDir)mcp2221_dll_um.dll
+xcopy /Y $(ProjectDir)..\..\dll\device\mcp2221_dll_um_x64.dll $(TargetDir)mcp2221_dll_um.dll</PostBuildEvent>
+  </PropertyGroup>
 </Project>
