@@ -976,12 +976,26 @@ namespace IntegratedGuiV2
         } 
         private int _WriteModulePassword()
         {
-            byte[] data;
-            string dataS;
+            byte[] data = new byte[4];
 
-            data = Encoding.Default.GetBytes(tbPassword.Text);
-            dataS = Encoding.Default.GetString(data);
-            //MessageBox.Show ("_WirteModulePassword parse： " + dataS);
+            if (tbPasswordB0 == null || tbPasswordB1 == null ||
+         tbPasswordB2 == null || tbPasswordB3 == null)
+            {
+                MessageBox.Show("Password input boxes not found!");
+                return -1;
+            }
+            try
+            {
+                data[0] = Convert.ToByte(tbPasswordB0.Text, 16);
+                data[1] = Convert.ToByte(tbPasswordB1.Text, 16);
+                data[2] = Convert.ToByte(tbPasswordB2.Text, 16);
+                data[3] = Convert.ToByte(tbPasswordB3.Text, 16);
+            }
+            catch
+            {
+                MessageBox.Show("Invalid Password Format! Please enter Hex values (e.g., 1A).");
+                return -1;
+            }
 
             if (i2cMaster.WriteApi(80, 123, 4, data) < 0)
                 return -1;
@@ -1003,27 +1017,28 @@ namespace IntegratedGuiV2
 
         private int _GetPassword(int length, byte[] data)
         {
-            string dataS;
+            if (length < 4 || data == null) return -1;
 
-            if (length < 4)
-                return -1;
-
-            if (data == null)
-                return -1;
-
-            if (tbPassword.Text.Length != 4)
+            if (string.IsNullOrEmpty(tbPasswordB0.Text) || string.IsNullOrEmpty(tbPasswordB1.Text) ||
+                string.IsNullOrEmpty(tbPasswordB2.Text) || string.IsNullOrEmpty(tbPasswordB3.Text))
             {
-                MessageBox.Show("Please inpurt password before operate!!");
+                MessageBox.Show("Please input password (4 bytes Hex) before operate!!");
                 return -1;
             }
-
-            data[0] = (byte)tbPassword.Text[0];
-            data[1] = (byte)tbPassword.Text[1];
-            data[2] = (byte)tbPassword.Text[2];
-            data[3] = (byte)tbPassword.Text[3];
-            dataS = Encoding.Default.GetString(data);
-            //MessageBox.Show("_GetPassword parse： " + dataS);
-
+            try
+            {
+                data[0] = Convert.ToByte(tbPasswordB0.Text, 16);
+                data[1] = Convert.ToByte(tbPasswordB1.Text, 16);
+                data[2] = Convert.ToByte(tbPasswordB2.Text, 16);
+                data[3] = Convert.ToByte(tbPasswordB3.Text, 16);
+                // string dataS = Encoding.Default.GetString(data); 
+            }
+            catch
+            {
+                MessageBox.Show("Invalid Password Format! Please enter valid Hex values (e.g., 1A).",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
             return 4;
         }
 
@@ -2097,6 +2112,12 @@ namespace IntegratedGuiV2
             if (rbCustomerMode.Checked) {
                 permissionsNode.SetAttribute("role", "Customer");
             }
+
+            else if (rbCustomerCheckMode.Checked)
+            {
+                permissionsNode.SetAttribute("role", "Customer_Check");
+            }
+
             else if (rbMpMode.Checked) {
                 permissionsNode.SetAttribute("role", "MP");
             }
@@ -2195,6 +2216,9 @@ namespace IntegratedGuiV2
             }
             else if (rbSas3MpMode.Checked) {
                 permissionsNode.SetAttribute("role", "MP");
+            }
+            else {
+                permissionsNode.SetAttribute("role", "Customer Check");
             }
 
             root.AppendChild(permissionsNode);
@@ -2362,21 +2386,32 @@ namespace IntegratedGuiV2
         private bool VerifyMini58Module(bool messageMode)
         {
             string hiddenPassword = GetHiddenPasswordApi();
+            string hexString = "1A, 58, 1A, 58";
+            string[] hexValues = hexString.Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            byte[] bytes = new byte[hexValues.Length];
+            for (int i = 0; i < hexValues.Length; i++)
+            {
+                bytes[i] = Convert.ToByte(hexValues[i], 16);
+            }
+            String targetPassword = Encoding.Default.GetString(bytes);
 
-            if (messageMode) {
-                if (hiddenPassword == "3234") {
-                    MessageBox.Show("Verification PASS!!\nHiddenPassword: " + hiddenPassword, "Hidden password check",
+            if (messageMode)
+            {
+                if (hiddenPassword == targetPassword)
+                {
+                    MessageBox.Show("Verification PASS!!\nHiddenPassword (Hex): " + hexString, "Hidden password check",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return true;
                 }
-                else {
+                else
+                {
                     MessageBox.Show("Please confirm whether the plug-in module is Mini58 MCU", "Error!!",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
             }
             else
-                return hiddenPassword == "3234" ? true:false;
+                return (hiddenPassword == targetPassword) ? true : false;
         }
 
         private void CompressAndDeleteFolder(string folderPath)
@@ -3447,7 +3482,7 @@ namespace IntegratedGuiV2
             string fileName1 = "UpdatedModuleRegisterFile"; // Module cfg file
             string filePath1;
             string executableFileFolderPath = Path.Combine(Application.StartupPath, "RegisterFiles");
-            var masks = _GetMasks("SAS4", null);
+            var masks = _GetMasks(modelType, null);
 
             StateUpdated("Current module:\nPreparing register contents...", null);
 
@@ -3478,7 +3513,7 @@ namespace IntegratedGuiV2
             string filePath1;
             string filePath2 = RegisterFilePath; // Reference cfg file
             string executableFileFolderPath = Path.Combine(Application.StartupPath, "RegisterFiles");
-            var masks = _GetMasks("SAS4", comparisonObject);
+            var masks = _GetMasks(modelType, comparisonObject);
 
             if (!onlyVerifyMode) {
                 if (comparisonObject == "CfgFile")
@@ -3505,6 +3540,8 @@ namespace IntegratedGuiV2
             DataTable dt1 = _ReadCsvToDataTable(filePath1);
             DataTable dt2 = _ReadCsvToDataTable(filePath2);
 
+
+
             _RemoveDoubleQuotes(dt1);//Module
             _RemoveDoubleQuotes(dt2);//Cfg
             //ApplyMask(dt1, dt2, masks);
@@ -3513,7 +3550,8 @@ namespace IntegratedGuiV2
 
             // Error alarm, if there are differences
             if (!_CompareDataTables(dt1, dt2)) {
-                if (engineerMode)
+                //MessageBox.Show("Verify Failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (engineerMode|| onlyVerifyMode)
                     _DisplayDifferencesInGrid(dt1, dt2, masks); // EngineerCheck from DataGridView
                 else
                 MessageBox.Show("There are differences between the module CfgFile and the target CfgFile.",
@@ -3579,22 +3617,38 @@ namespace IntegratedGuiV2
             DataTable dt1 = _ReadCsvToDataTable(filePath1);
             DataTable dt2 = _ReadCsvToDataTable(filePath2);
 
+
             _RemoveDoubleQuotes(dt1);
             _RemoveDoubleQuotes(dt2);
             _ApplyMask(new List<DataTable> { dt1, dt2 }, masks);
 
 
             // Error alarm, if there are differences
-            if (!_CompareDataTables(dt1, dt2)) {
-                if (engineerMode)
+            if (!_CompareDataTables(dt1, dt2))
+            {
+                //MessageBox.Show("Verify Failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (engineerMode || onlyVerifyMode)
                     _DisplayDifferencesInGrid(dt1, dt2, masks); // EngineerCheck from DataGridView
                 else
-                MessageBox.Show("There are differences between the module CfgFile and the target CfgFile.",
-                                "Error alarm", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("There are differences between the module CfgFile and the target CfgFile.",
+                                    "Error alarm", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 StateUpdated("Verify State:\nVerify failed", null);
                 return 1;
             }
+            if (!_CompareDataTables(dt1, dt2))
+            {
+                if (engineerMode || onlyVerifyMode)
+                    _DisplayDifferencesInGrid(dt1, dt2, masks);
+                else
+                    MessageBox.Show("There are differences...");
+                return 1;
+            }
 
+            if (onlyVerifyMode)
+            {
+                _DisplayDifferencesInGrid(dt1, dt2, masks);
+            }
+            //MessageBox.Show("Verify Failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             if (File.Exists(filePath1))
                 File.Delete(filePath1);
 
@@ -3640,12 +3694,14 @@ namespace IntegratedGuiV2
             DataTable dt1 = _ReadCsvToDataTable(filePath1);
             DataTable dt2 = _ReadCsvToDataTable(filePath2);
 
+
             _RemoveDoubleQuotes(dt1);//Module
             _RemoveDoubleQuotes(dt2);//Cfg
             _ApplyMask(new List<DataTable> { dt1, dt2 }, masks);
 
             // Error alarm, if there are differences
             if (!_CompareDataTables(dt1, dt2)) {
+                //MessageBox.Show("Verify Failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 if (engineerMode)
                     _DisplayDifferencesInGrid(dt1, dt2, masks); // EngineerCheck from DataGridView
                 else
@@ -3670,6 +3726,7 @@ namespace IntegratedGuiV2
 
         private List<(string page, int row, int[] columns)> _GetMasks (string products, string comparisonObject)
         {
+            if (string.IsNullOrEmpty(comparisonObject)) comparisonObject = "CfgFile";
             if (products == "SAS4" && comparisonObject == "CfgFile") {
                 return new List <(string page, int row, int[] columns)> {
                     ("Low Page", 00, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
@@ -3700,14 +3757,15 @@ namespace IntegratedGuiV2
                     ("81h", 70, new[] {15})
                 };
             }
-
-            if (products == "SAS3" && comparisonObject == "CfgFile") {
+            if (products.Contains("SAS3") && comparisonObject == "CfgFile")
+            {
                 return new List<(string page, int row, int[] columns)> {
-                    ("Page 00", 30, new[] {15}),
+                    ("Page 00", 30, new[] {15}), //Checksum (Address 63)
+                    // Vendor SN & Name
                     ("Page 00", 40, new[] {4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
                     ("Page 00", 50, new[] {0, 1, 2, 3, 4, 5, 6, 7 ,8 ,9 ,10 ,11, 15}),
-                    ("Page 00", 70, new[] {15}),
-                    ("Page 6C", 00, new[] {0, 1, 2, 3, 4, 5, 6, 7 ,8 ,9 ,10 ,11, 12, 13, 14, 15})
+                    ("Page 00", 70, new[] {15}), //Extended Checksum (Address 127)
+                    ("Page 6C", 00, new[] {0, 1, 2, 3, 4, 5, 6, 7 ,8 ,9 ,10 ,11, 12, 13, 14, 15}) // Eye Mask / Calibration
                 };
             }
             else if (products == "SAS3" && comparisonObject == "LogFile") {
@@ -3715,7 +3773,6 @@ namespace IntegratedGuiV2
                     ("Page 00", 70, new[] {15})
                 };
             }
-
             if (products == "FQC") {
                 if (comparisonObject == "Low Page") {
                     return new List<(string page, int row, int[] columns)> {
@@ -4210,15 +4267,34 @@ namespace IntegratedGuiV2
         private DataTable _ReadCsvToDataTable(string filePath)
         {
             DataTable dt = new DataTable();
+            if (!File.Exists(filePath)) return dt;
             using (StreamReader sr = new StreamReader(filePath)) {
-                string[] headers = sr.ReadLine().Split(',');
-                foreach (string header in headers) {
-                    dt.Columns.Add(header);
+                string headerLine = sr.ReadLine();
+                if (string.IsNullOrEmpty(headerLine)) return dt;
+                string[] headers = headerLine.Split(',');
+                var columnCounts = new Dictionary<string, int>();
+
+                foreach (string header in headers)
+                {
+                    string columnName = header.Trim();
+                    if (columnCounts.ContainsKey(columnName))
+                    {
+                        columnCounts[columnName]++;
+                        columnName = columnName + "_" + columnCounts[columnName];
+                    }
+                    else
+                    {
+                        columnCounts[columnName] = 1;
+                    }
+                    dt.Columns.Add(columnName);
                 }
                 while (!sr.EndOfStream) {
-                    string[] rows = sr.ReadLine().Split(',');
+                    string line = sr.ReadLine();
+                    if (string.IsNullOrEmpty(line)) continue;
+                    string[] rows = line.Split(',');
                     DataRow dr = dt.NewRow();
-                    for (int i = 0; i < headers.Length; i++) {
+                    for (int i = 0; i < headers.Length && i < rows.Length; i++)
+                    {
                         dr[i] = rows[i];
                     }
                     dt.Rows.Add(dr);
@@ -4523,27 +4599,36 @@ namespace IntegratedGuiV2
 
         public void _SetSas3Password()
         {
-            string hexString = "1A, 58, 1A, 58";
-            string[] hexValues = hexString.Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            byte[] bytes = new byte[hexValues.Length];
-
-            for (int i = 0; i < hexValues.Length; i++) {
-                bytes[i] = Convert.ToByte(hexValues[i], 16);
-            }
-
-            string result = Encoding.Default.GetString(bytes);
-            tbPassword.Text = result;
+            if (tbPasswordB0 != null) tbPasswordB0.Text = "1A";
+            if (tbPasswordB1 != null) tbPasswordB1.Text = "58";
+            if (tbPasswordB2 != null) tbPasswordB2.Text = "1A";
+            if (tbPasswordB3 != null) tbPasswordB3.Text = "58";
         }
 
         private void bMini58Password_Click(object sender, EventArgs e)
         {
-            tbPassword.Text = "3234";
+            _SetSas3Password();
         }
 
         private void cbBothSupplyMode_CheckedChanged(object sender, EventArgs e)
         {
             BothSupplyMode = cbBothSupplyMode.Checked;
             _ChannelSet(GetChannelControl(ProcessingChannel));
+        }
+
+        private void rbSas3CustomerMode_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rbSas3CustomerCheckMode_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbPassword_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void cbCh1_CheckedChanged(object sender, EventArgs e)

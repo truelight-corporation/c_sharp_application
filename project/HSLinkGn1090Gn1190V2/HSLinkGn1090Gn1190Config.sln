@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36301.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HSLinkGn1090Gn1190Config", "HSLinkGn1090Gn1190Config.csproj", "{B3D752A9-22B7-48A6-B532-09B7CB4B8B07}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B3D752A9-22B7-48A6-B532-09B7CB4B8B07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3D752A9-22B7-48A6-B532-09B7CB4B8B07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3D752A9-22B7-48A6-B532-09B7CB4B8B07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3D752A9-22B7-48A6-B532-09B7CB4B8B07}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {03C207FA-9021-4D6B-A257-6562BA30BD99}
+	EndGlobalSection
+EndGlobal
