@@ -135,6 +135,7 @@ namespace IntegratedGuiV2
             this.ucMemoryDump = new QsfpDigitalDiagnosticMonitoring.UCMemoryDump();
             this.tcMain = new System.Windows.Forms.TabControl();
             this.cbBothSupplyMode = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
+            this.rbSas3CustomerCheckMode = new System.Windows.Forms.RadioButton();
             this.gbChannelSwitcher.SuspendLayout();
             this.gbGlobalControl.SuspendLayout();
             this.gbPermissions.SuspendLayout();
@@ -224,7 +225,7 @@ namespace IntegratedGuiV2
             // 
             // tbPassword
             // 
-            this.tbPassword.Font = new System.Drawing.Font("PMingLiU", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbPassword.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tbPassword.Location = new System.Drawing.Point(67, 0);
             this.tbPassword.Margin = new System.Windows.Forms.Padding(2);
             this.tbPassword.Name = "tbPassword";
@@ -253,7 +254,7 @@ namespace IntegratedGuiV2
             this.gbChannelSwitcher.Controls.Add(this.bOutterSwitch);
             this.gbChannelSwitcher.Controls.Add(this.rbCh1);
             this.gbChannelSwitcher.Enabled = false;
-            this.gbChannelSwitcher.Font = new System.Drawing.Font("PMingLiU", 6F);
+            this.gbChannelSwitcher.Font = new System.Drawing.Font("新細明體", 6F);
             this.gbChannelSwitcher.Location = new System.Drawing.Point(832, 3);
             this.gbChannelSwitcher.Margin = new System.Windows.Forms.Padding(1);
             this.gbChannelSwitcher.Name = "gbChannelSwitcher";
@@ -305,7 +306,7 @@ namespace IntegratedGuiV2
             // tbInformationReadState
             // 
             this.tbInformationReadState.Enabled = false;
-            this.tbInformationReadState.Font = new System.Drawing.Font("PMingLiU", 0.1F);
+            this.tbInformationReadState.Font = new System.Drawing.Font("新細明體", 0.1F);
             this.tbInformationReadState.Location = new System.Drawing.Point(20, 35);
             this.tbInformationReadState.Margin = new System.Windows.Forms.Padding(2);
             this.tbInformationReadState.Name = "tbInformationReadState";
@@ -316,7 +317,7 @@ namespace IntegratedGuiV2
             // tbDdmReadState
             // 
             this.tbDdmReadState.Enabled = false;
-            this.tbDdmReadState.Font = new System.Drawing.Font("PMingLiU", 0.1F);
+            this.tbDdmReadState.Font = new System.Drawing.Font("新細明體", 0.1F);
             this.tbDdmReadState.Location = new System.Drawing.Point(20, 62);
             this.tbDdmReadState.Margin = new System.Windows.Forms.Padding(2);
             this.tbDdmReadState.Name = "tbDdmReadState";
@@ -327,7 +328,7 @@ namespace IntegratedGuiV2
             // tbMemDumpReadState
             // 
             this.tbMemDumpReadState.Enabled = false;
-            this.tbMemDumpReadState.Font = new System.Drawing.Font("PMingLiU", 0.1F);
+            this.tbMemDumpReadState.Font = new System.Drawing.Font("新細明體", 0.1F);
             this.tbMemDumpReadState.Location = new System.Drawing.Point(20, 88);
             this.tbMemDumpReadState.Margin = new System.Windows.Forms.Padding(2);
             this.tbMemDumpReadState.Name = "tbMemDumpReadState";
@@ -338,7 +339,7 @@ namespace IntegratedGuiV2
             // tbCorrectorReadState
             // 
             this.tbCorrectorReadState.Enabled = false;
-            this.tbCorrectorReadState.Font = new System.Drawing.Font("PMingLiU", 0.1F);
+            this.tbCorrectorReadState.Font = new System.Drawing.Font("新細明體", 0.1F);
             this.tbCorrectorReadState.Location = new System.Drawing.Point(20, 114);
             this.tbCorrectorReadState.Margin = new System.Windows.Forms.Padding(2);
             this.tbCorrectorReadState.Name = "tbCorrectorReadState";
@@ -349,7 +350,7 @@ namespace IntegratedGuiV2
             // tbTxConfigReadState
             // 
             this.tbTxConfigReadState.Enabled = false;
-            this.tbTxConfigReadState.Font = new System.Drawing.Font("PMingLiU", 0.1F);
+            this.tbTxConfigReadState.Font = new System.Drawing.Font("新細明體", 0.1F);
             this.tbTxConfigReadState.Location = new System.Drawing.Point(20, 142);
             this.tbTxConfigReadState.Margin = new System.Windows.Forms.Padding(2);
             this.tbTxConfigReadState.Name = "tbTxConfigReadState";
@@ -360,7 +361,7 @@ namespace IntegratedGuiV2
             // tbRxConfigReadState
             // 
             this.tbRxConfigReadState.Enabled = false;
-            this.tbRxConfigReadState.Font = new System.Drawing.Font("PMingLiU", 0.1F);
+            this.tbRxConfigReadState.Font = new System.Drawing.Font("新細明體", 0.1F);
             this.tbRxConfigReadState.Location = new System.Drawing.Point(20, 169);
             this.tbRxConfigReadState.Margin = new System.Windows.Forms.Padding(2);
             this.tbRxConfigReadState.Name = "tbRxConfigReadState";
@@ -771,6 +772,7 @@ namespace IntegratedGuiV2
             // 
             // gbSas3Module
             // 
+            this.gbSas3Module.Controls.Add(this.rbSas3CustomerCheckMode);
             this.gbSas3Module.Controls.Add(this.cbBSidePath);
             this.gbSas3Module.Controls.Add(this.bSas3GenerateCfg);
             this.gbSas3Module.Controls.Add(this.rbSas3MpMode);
@@ -804,7 +806,7 @@ namespace IntegratedGuiV2
             // 
             this.bSas3GenerateCfg.Enabled = false;
             this.bSas3GenerateCfg.Font = new System.Drawing.Font("Times New Roman", 12F);
-            this.bSas3GenerateCfg.Location = new System.Drawing.Point(7, 100);
+            this.bSas3GenerateCfg.Location = new System.Drawing.Point(4, 118);
             this.bSas3GenerateCfg.Margin = new System.Windows.Forms.Padding(2);
             this.bSas3GenerateCfg.Name = "bSas3GenerateCfg";
             this.bSas3GenerateCfg.Size = new System.Drawing.Size(103, 28);
@@ -817,7 +819,7 @@ namespace IntegratedGuiV2
             // 
             this.rbSas3MpMode.AutoSize = true;
             this.rbSas3MpMode.Checked = true;
-            this.rbSas3MpMode.Location = new System.Drawing.Point(6, 75);
+            this.rbSas3MpMode.Location = new System.Drawing.Point(6, 96);
             this.rbSas3MpMode.Margin = new System.Windows.Forms.Padding(2);
             this.rbSas3MpMode.Name = "rbSas3MpMode";
             this.rbSas3MpMode.Size = new System.Drawing.Size(79, 20);
@@ -836,6 +838,7 @@ namespace IntegratedGuiV2
             this.rbSas3CustomerMode.TabIndex = 1035;
             this.rbSas3CustomerMode.Text = "Customer mode";
             this.rbSas3CustomerMode.UseVisualStyleBackColor = true;
+            this.rbSas3CustomerMode.CheckedChanged += new System.EventHandler(this.rbSas3CustomerMode_CheckedChanged);
             // 
             // cbASidePath
             // 
@@ -958,7 +961,7 @@ namespace IntegratedGuiV2
             // 
             // bBypassEraseAllStateCheck
             // 
-            this.bBypassEraseAllStateCheck.Font = new System.Drawing.Font("PMingLiU", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.bBypassEraseAllStateCheck.Font = new System.Drawing.Font("新細明體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.bBypassEraseAllStateCheck.Location = new System.Drawing.Point(284, 28);
             this.bBypassEraseAllStateCheck.Margin = new System.Windows.Forms.Padding(2);
             this.bBypassEraseAllStateCheck.Name = "bBypassEraseAllStateCheck";
@@ -972,7 +975,7 @@ namespace IntegratedGuiV2
             // cbBypassEraseAllCheck
             // 
             this.cbBypassEraseAllCheck.AutoSize = true;
-            this.cbBypassEraseAllCheck.Font = new System.Drawing.Font("PMingLiU", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.cbBypassEraseAllCheck.Font = new System.Drawing.Font("新細明體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.cbBypassEraseAllCheck.Location = new System.Drawing.Point(22, 31);
             this.cbBypassEraseAllCheck.Name = "cbBypassEraseAllCheck";
             this.cbBypassEraseAllCheck.Size = new System.Drawing.Size(259, 17);
@@ -983,7 +986,7 @@ namespace IntegratedGuiV2
             // 
             // bAutoReconnectStateCheck
             // 
-            this.bAutoReconnectStateCheck.Font = new System.Drawing.Font("PMingLiU", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.bAutoReconnectStateCheck.Font = new System.Drawing.Font("新細明體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.bAutoReconnectStateCheck.Location = new System.Drawing.Point(284, 9);
             this.bAutoReconnectStateCheck.Margin = new System.Windows.Forms.Padding(2);
             this.bAutoReconnectStateCheck.Name = "bAutoReconnectStateCheck";
@@ -997,7 +1000,7 @@ namespace IntegratedGuiV2
             // cbAutoReconnect
             // 
             this.cbAutoReconnect.AutoSize = true;
-            this.cbAutoReconnect.Font = new System.Drawing.Font("PMingLiU", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.cbAutoReconnect.Font = new System.Drawing.Font("新細明體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.cbAutoReconnect.Location = new System.Drawing.Point(22, 12);
             this.cbAutoReconnect.Name = "cbAutoReconnect";
             this.cbAutoReconnect.Size = new System.Drawing.Size(130, 17);
@@ -1008,7 +1011,7 @@ namespace IntegratedGuiV2
             // 
             // bIcpConnect
             // 
-            this.bIcpConnect.Font = new System.Drawing.Font("PMingLiU", 16F);
+            this.bIcpConnect.Font = new System.Drawing.Font("新細明體", 16F);
             this.bIcpConnect.Location = new System.Drawing.Point(22, 74);
             this.bIcpConnect.Margin = new System.Windows.Forms.Padding(2);
             this.bIcpConnect.Name = "bIcpConnect";
@@ -1040,7 +1043,7 @@ namespace IntegratedGuiV2
             // cbContinuousMode
             // 
             this.cbContinuousMode.AutoSize = true;
-            this.cbContinuousMode.Font = new System.Drawing.Font("PMingLiU", 16F);
+            this.cbContinuousMode.Font = new System.Drawing.Font("新細明體", 16F);
             this.cbContinuousMode.Location = new System.Drawing.Point(502, 153);
             this.cbContinuousMode.Name = "cbContinuousMode";
             this.cbContinuousMode.Size = new System.Drawing.Size(174, 26);
@@ -1054,7 +1057,7 @@ namespace IntegratedGuiV2
             // 
             this.lCh2.AutoSize = true;
             this.lCh2.Enabled = false;
-            this.lCh2.Font = new System.Drawing.Font("PMingLiU", 16F);
+            this.lCh2.Font = new System.Drawing.Font("新細明體", 16F);
             this.lCh2.Location = new System.Drawing.Point(676, 79);
             this.lCh2.Name = "lCh2";
             this.lCh2.Size = new System.Drawing.Size(44, 22);
@@ -1065,7 +1068,7 @@ namespace IntegratedGuiV2
             // 
             this.lCh1.AutoSize = true;
             this.lCh1.Enabled = false;
-            this.lCh1.Font = new System.Drawing.Font("PMingLiU", 16F);
+            this.lCh1.Font = new System.Drawing.Font("新細明體", 16F);
             this.lCh1.Location = new System.Drawing.Point(622, 79);
             this.lCh1.Name = "lCh1";
             this.lCh1.Size = new System.Drawing.Size(44, 22);
@@ -1076,7 +1079,7 @@ namespace IntegratedGuiV2
             // 
             this.tbInnerStateCh2.BackColor = System.Drawing.Color.White;
             this.tbInnerStateCh2.Enabled = false;
-            this.tbInnerStateCh2.Font = new System.Drawing.Font("PMingLiU", 1F);
+            this.tbInnerStateCh2.Font = new System.Drawing.Font("新細明體", 1F);
             this.tbInnerStateCh2.Location = new System.Drawing.Point(672, 103);
             this.tbInnerStateCh2.Name = "tbInnerStateCh2";
             this.tbInnerStateCh2.Size = new System.Drawing.Size(50, 9);
@@ -1086,7 +1089,7 @@ namespace IntegratedGuiV2
             // 
             this.tbInnerStateCh1.BackColor = System.Drawing.Color.White;
             this.tbInnerStateCh1.Enabled = false;
-            this.tbInnerStateCh1.Font = new System.Drawing.Font("PMingLiU", 1F);
+            this.tbInnerStateCh1.Font = new System.Drawing.Font("新細明體", 1F);
             this.tbInnerStateCh1.Location = new System.Drawing.Point(616, 103);
             this.tbInnerStateCh1.Name = "tbInnerStateCh1";
             this.tbInnerStateCh1.Size = new System.Drawing.Size(50, 9);
@@ -1094,7 +1097,7 @@ namespace IntegratedGuiV2
             // 
             // bInnerSwitch
             // 
-            this.bInnerSwitch.Font = new System.Drawing.Font("PMingLiU", 16F);
+            this.bInnerSwitch.Font = new System.Drawing.Font("新細明體", 16F);
             this.bInnerSwitch.Location = new System.Drawing.Point(502, 74);
             this.bInnerSwitch.Margin = new System.Windows.Forms.Padding(2);
             this.bInnerSwitch.Name = "bInnerSwitch";
@@ -1448,7 +1451,19 @@ namespace IntegratedGuiV2
             this.cbBothSupplyMode.Values.Text = "Both supply mode";
             this.cbBothSupplyMode.CheckedChanged += new System.EventHandler(this.cbBothSupplyMode_CheckedChanged);
             // 
-            // MainForm
+            // rbSas3CustomerCheckMode
+            // 
+            this.rbSas3CustomerCheckMode.AutoSize = true;
+            this.rbSas3CustomerCheckMode.Location = new System.Drawing.Point(6, 75);
+            this.rbSas3CustomerCheckMode.Margin = new System.Windows.Forms.Padding(2);
+            this.rbSas3CustomerCheckMode.Name = "rbSas3CustomerCheckMode";
+            this.rbSas3CustomerCheckMode.Size = new System.Drawing.Size(155, 20);
+            this.rbSas3CustomerCheckMode.TabIndex = 1038;
+            this.rbSas3CustomerCheckMode.Text = "Customer Check mode";
+            this.rbSas3CustomerCheckMode.UseVisualStyleBackColor = true;
+            this.rbSas3CustomerCheckMode.CheckedChanged += new System.EventHandler(this.rbSas3CustomerCheckMode_CheckedChanged);
+            // 
+            // EngineerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1476,7 +1491,7 @@ namespace IntegratedGuiV2
             this.Controls.Add(this.cbConnect);
             this.Controls.Add(this.tcMain);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "MainForm";
+            this.Name = "EngineerForm";
             this.Palette = this.kryptonPalette1;
             this.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
             this.ShowIcon = false;
@@ -1581,6 +1596,7 @@ namespace IntegratedGuiV2
         private System.Windows.Forms.Button bGenerateCfg;
         private System.Windows.Forms.RadioButton rbMpMode;
         private System.Windows.Forms.RadioButton rbCustomerMode;
+        private System.Windows.Forms.RadioButton rbCustomerCheckMode;
         public System.Windows.Forms.CheckBox cbAPPath;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Button bBypassEraseAllStateCheck;
@@ -1628,6 +1644,7 @@ namespace IntegratedGuiV2
         private QsfpDigitalDiagnosticMonitoring.UCMemoryDump ucMemoryDump;
         private System.Windows.Forms.TabControl tcMain;
         private ComponentFactory.Krypton.Toolkit.KryptonCheckBox cbBothSupplyMode;
+        private System.Windows.Forms.RadioButton rbSas3CustomerCheckMode;
     }
 }
 

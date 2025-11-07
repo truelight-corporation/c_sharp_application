@@ -2097,6 +2097,12 @@ namespace IntegratedGuiV2
             if (rbCustomerMode.Checked) {
                 permissionsNode.SetAttribute("role", "Customer");
             }
+
+            else if (rbCustomerCheckMode.Checked)
+            {
+                permissionsNode.SetAttribute("role", "Customer_Check");
+            }
+
             else if (rbMpMode.Checked) {
                 permissionsNode.SetAttribute("role", "MP");
             }
@@ -2195,6 +2201,9 @@ namespace IntegratedGuiV2
             }
             else if (rbSas3MpMode.Checked) {
                 permissionsNode.SetAttribute("role", "MP");
+            }
+            else {
+                permissionsNode.SetAttribute("role", "Customer Check");
             }
 
             root.AppendChild(permissionsNode);
@@ -4544,6 +4553,16 @@ namespace IntegratedGuiV2
         {
             BothSupplyMode = cbBothSupplyMode.Checked;
             _ChannelSet(GetChannelControl(ProcessingChannel));
+        }
+
+        private void rbSas3CustomerMode_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rbSas3CustomerCheckMode_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void cbCh1_CheckedChanged(object sender, EventArgs e)

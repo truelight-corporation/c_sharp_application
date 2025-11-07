@@ -165,6 +165,7 @@ namespace IntegratedGuiV2
             this.cbCfgCheckAfterFw = new System.Windows.Forms.CheckBox();
             this.bHardwareValidation = new System.Windows.Forms.Button();
             this.bCurrentRegister = new System.Windows.Forms.Button();
+            this.cbSkipFlashingVerifyOnly = new System.Windows.Forms.CheckBox();
             this.gbOperatorMode.SuspendLayout();
             this.gbCodeEditor.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -217,6 +218,7 @@ namespace IntegratedGuiV2
             this.tbFilePath.TabIndex = 43;
             this.tbFilePath.Text = "Please click here, to import the Config file...";
             this.tbFilePath.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tbFilePath_MouseClick);
+            this.tbFilePath.TextChanged += new System.EventHandler(this.tbFilePath_TextChanged);
             this.tbFilePath.Enter += new System.EventHandler(this.tbFilePath_Leave);
             this.tbFilePath.Leave += new System.EventHandler(this.tbFilePath_Leave);
             // 
@@ -260,7 +262,7 @@ namespace IntegratedGuiV2
             this.cProgressBar1.OuterWidth = 26;
             this.cProgressBar1.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(213)))), ((int)(((byte)(219)))));
             this.cProgressBar1.ProgressWidth = 3;
-            this.cProgressBar1.SecondaryFont = new System.Drawing.Font("PMingLiU", 36F);
+            this.cProgressBar1.SecondaryFont = new System.Drawing.Font("新細明體", 36F);
             this.cProgressBar1.Size = new System.Drawing.Size(100, 100);
             this.cProgressBar1.StartAngle = 270;
             this.cProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
@@ -280,7 +282,7 @@ namespace IntegratedGuiV2
             this.rbSingle.AutoSize = true;
             this.rbSingle.Checked = true;
             this.rbSingle.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.rbSingle.Location = new System.Drawing.Point(102, 76);
+            this.rbSingle.Location = new System.Drawing.Point(102, 78);
             this.rbSingle.Name = "rbSingle";
             this.rbSingle.Size = new System.Drawing.Size(68, 23);
             this.rbSingle.TabIndex = 49;
@@ -293,7 +295,7 @@ namespace IntegratedGuiV2
             // 
             this.rbBoth.AutoSize = true;
             this.rbBoth.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.rbBoth.Location = new System.Drawing.Point(102, 99);
+            this.rbBoth.Location = new System.Drawing.Point(102, 101);
             this.rbBoth.Name = "rbBoth";
             this.rbBoth.Size = new System.Drawing.Size(89, 23);
             this.rbBoth.TabIndex = 50;
@@ -319,7 +321,7 @@ namespace IntegratedGuiV2
             this.cProgressBar2.OuterWidth = 26;
             this.cProgressBar2.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(213)))), ((int)(((byte)(219)))));
             this.cProgressBar2.ProgressWidth = 3;
-            this.cProgressBar2.SecondaryFont = new System.Drawing.Font("PMingLiU", 36F);
+            this.cProgressBar2.SecondaryFont = new System.Drawing.Font("新細明體", 36F);
             this.cProgressBar2.Size = new System.Drawing.Size(100, 100);
             this.cProgressBar2.StartAngle = 270;
             this.cProgressBar2.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
@@ -394,6 +396,7 @@ namespace IntegratedGuiV2
             this.lProduct.Size = new System.Drawing.Size(12, 13);
             this.lProduct.TabIndex = 56;
             this.lProduct.Text = "_";
+            this.lProduct.Click += new System.EventHandler(this.lProduct_Click);
             // 
             // lMode
             // 
@@ -405,6 +408,7 @@ namespace IntegratedGuiV2
             this.lMode.Size = new System.Drawing.Size(12, 13);
             this.lMode.TabIndex = 57;
             this.lMode.Text = "_";
+            this.lMode.Click += new System.EventHandler(this.lMode_Click);
             // 
             // lModeT
             // 
@@ -427,6 +431,7 @@ namespace IntegratedGuiV2
             this.lProductT.Size = new System.Drawing.Size(51, 13);
             this.lProductT.TabIndex = 58;
             this.lProductT.Text = "Product:";
+            this.lProductT.Click += new System.EventHandler(this.lProductT_Click);
             // 
             // lPathAP
             // 
@@ -1446,7 +1451,7 @@ namespace IntegratedGuiV2
             this.gbPrompt.Controls.Add(this.lStatus);
             this.gbPrompt.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.gbPrompt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(72)))), ((int)(((byte)(91)))));
-            this.gbPrompt.Location = new System.Drawing.Point(192, 73);
+            this.gbPrompt.Location = new System.Drawing.Point(186, 71);
             this.gbPrompt.Name = "gbPrompt";
             this.gbPrompt.Size = new System.Drawing.Size(128, 73);
             this.gbPrompt.TabIndex = 104;
@@ -1810,6 +1815,7 @@ namespace IntegratedGuiV2
             this.cbCfgCheckAfterFw.Text = "CfgCheck after FW flashing";
             this.cbCfgCheckAfterFw.UseVisualStyleBackColor = true;
             this.cbCfgCheckAfterFw.Visible = false;
+            this.cbCfgCheckAfterFw.CheckedChanged += new System.EventHandler(this.cbCfgCheckAfterFw_CheckedChanged);
             // 
             // bHardwareValidation
             // 
@@ -1842,12 +1848,30 @@ namespace IntegratedGuiV2
             this.bCurrentRegister.UseVisualStyleBackColor = false;
             this.bCurrentRegister.Click += new System.EventHandler(this.bCurrentRegister_Click);
             // 
+            // cbSkipFlashingVerifyOnly
+            // 
+            this.cbSkipFlashingVerifyOnly.AutoSize = true;
+            this.cbSkipFlashingVerifyOnly.Checked = true;
+            this.cbSkipFlashingVerifyOnly.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbSkipFlashingVerifyOnly.Enabled = false;
+            this.cbSkipFlashingVerifyOnly.Font = new System.Drawing.Font("Nirmala UI", 6F, System.Drawing.FontStyle.Bold);
+            this.cbSkipFlashingVerifyOnly.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(72)))), ((int)(((byte)(91)))));
+            this.cbSkipFlashingVerifyOnly.Location = new System.Drawing.Point(20, 147);
+            this.cbSkipFlashingVerifyOnly.Name = "cbSkipFlashingVerifyOnly";
+            this.cbSkipFlashingVerifyOnly.Size = new System.Drawing.Size(117, 15);
+            this.cbSkipFlashingVerifyOnly.TabIndex = 124;
+            this.cbSkipFlashingVerifyOnly.Text = "Skip flashing (Verify only)";
+            this.cbSkipFlashingVerifyOnly.UseVisualStyleBackColor = true;
+            this.cbSkipFlashingVerifyOnly.Visible = false;
+            this.cbSkipFlashingVerifyOnly.CheckedChanged += new System.EventHandler(this.cbSkipFlashingVerifyOnly_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(145)))), ((int)(((byte)(168)))));
             this.ClientSize = new System.Drawing.Size(684, 511);
+            this.Controls.Add(this.cbSkipFlashingVerifyOnly);
             this.Controls.Add(this.bCurrentRegister);
             this.Controls.Add(this.bHardwareValidation);
             this.Controls.Add(this.button1);
@@ -2065,5 +2089,6 @@ namespace IntegratedGuiV2
         private Button bHardwareValidation;
         private Button bCurrentRegister;
         private Button bOpenLogFileFolder;
+        private CheckBox cbSkipFlashingVerifyOnly;
     }
 }
