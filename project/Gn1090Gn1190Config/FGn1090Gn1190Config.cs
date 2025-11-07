@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 using I2cMasterInterface;
 
+
 namespace Gn1090Gn1190Config
 {
     public partial class FGn1090Gn1190Config : Form

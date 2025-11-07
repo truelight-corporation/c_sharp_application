@@ -885,7 +885,10 @@ namespace IntegratedGuiV2
                 bLogFileComparison.Visible = false;
                 bRenewRssi.Visible = false;
                 cbCfgCheckAfterFw.Visible = false;
-                cbSkipFlashingVerifyOnly.Visible = false;
+                cbCfgCheckAfterFw.Enabled = false;
+                cbSkipFlashingVerifyOnly.Visible = true;
+                cbSkipFlashingVerifyOnly.Enabled = false;
+                cbSkipFlashingVerifyOnly.Checked = true;
             }
             else if (lMode.Text == "Customer_Check")
             {
@@ -904,11 +907,12 @@ namespace IntegratedGuiV2
                 bCfgFileComparison.Visible = false;
                 bLogFileComparison.Visible = false;
                 bRenewRssi.Visible = false;
-
                 cbCfgCheckAfterFw.Visible = false;
-                cbCfgCheckAfterFw.Checked = false;  
-                cbSkipFlashingVerifyOnly.Visible = false;
-                cbSkipFlashingVerifyOnly.Checked = true;  
+                cbCfgCheckAfterFw.Enabled = false;
+                cbCfgCheckAfterFw.Checked = false;
+                cbSkipFlashingVerifyOnly.Visible = true;
+                cbSkipFlashingVerifyOnly.Enabled = false;
+                cbSkipFlashingVerifyOnly.Checked = true;
             }
 
             else if (lMode.Text == "MP") {
@@ -929,7 +933,11 @@ namespace IntegratedGuiV2
                 bLogFileComparison.Visible = true;
                 bRenewRssi.Visible = true;
                 cbCfgCheckAfterFw.Visible = true;
-                cbSkipFlashingVerifyOnly.Visible = true;
+                cbCfgCheckAfterFw.Enabled = true;
+                cbCfgCheckAfterFw.Enabled = false;
+                cbSkipFlashingVerifyOnly.Visible = true;       
+                cbSkipFlashingVerifyOnly.Enabled = true;       
+                cbSkipFlashingVerifyOnly.Checked = false;
 
                 if (rbBoth.Checked) {
                     tbOrignalSNCh2.Visible = true;
@@ -1698,6 +1706,8 @@ namespace IntegratedGuiV2
                 cbCfgCheckAfterFw.Visible = false;
                 cbCfgCheckAfterFw.Enabled = false;
                 cbSkipFlashingVerifyOnly.Visible = true;
+                cbSkipFlashingVerifyOnly.Enabled = false;
+                cbSkipFlashingVerifyOnly.Checked = true;
             }
 
             else if (lMode.Text == "Customer_Check")
@@ -1747,8 +1757,10 @@ namespace IntegratedGuiV2
                 bRenewRssi.Visible = true;
                 cbCfgCheckAfterFw.Visible = true;
                 cbCfgCheckAfterFw.Enabled = true;
+                cbCfgCheckAfterFw.Checked = true;
                 cbSkipFlashingVerifyOnly.Visible = true;
                 cbSkipFlashingVerifyOnly.Enabled = true;
+                cbSkipFlashingVerifyOnly.Checked = false;
 
                 if (rbBoth.Checked) {
                     tbOrignalSNCh2.Visible = true;
@@ -2583,50 +2595,42 @@ namespace IntegratedGuiV2
 
         private void bStart_Click(object sender, EventArgs e)
         {
+
             int tmp;
             bool isCustomerMode = (lMode.Text == "Customer" || lMode.Text == "");
             bool isVerifyOnlyMode = cbSkipFlashingVerifyOnly.Checked; //Status read from checkbox
             bool performCfgCheck = cbCfgCheckAfterFw.Checked;
 
             if (isCustomerMode || lMode.Text == "MP" || isVerifyOnlyMode)
-            {
+            {             
+                _DisableButtons();
+                _InitialUi();
+
                 if (isVerifyOnlyMode)
                 {
-                    DialogResult confirm = MessageBox.Show(
-                        "Skip flashing mode is enabled.\n" +
-                        "The device will be verified without flashing.\n\n" +
-                        $"Configuration check: {(performCfgCheck ? "Enabled" : "Disabled")}\n\n" +
-                        "Continue?",
-                        "Verify Only Mode",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question
-                    );
-
-                    if (confirm == DialogResult.No)
-                        return;
-                    _DisableButtons();
-                    _InitialUi();
-
-                    if (isVerifyOnlyMode)
-                    {
-                        tmp = _ProcessorVerifyOnly();
-                    }
-                    else
-                    {
-                        tmp = _Processor(isCustomerMode);
-                    }
-                    if (tmp == -2)
-                        return;
-                    else if (tmp < 0)
-                    {
-                        MessageBox.Show("There are some problems", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                        return;
-                    }
-                    else if (isVerifyOnlyMode)
-                    {
-                        MessageBox.Show("Verification completed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                    tmp = _ProcessorVerifyOnly();
                 }
+                else
+                {
+                    tmp = _Processor(isCustomerMode);
+                }
+
+                if (tmp == -2)
+                {
+                    _EnableButtons();
+                    return;
+                }
+                else if (tmp < 0)
+                {
+                    _EnableButtons();
+                    MessageBox.Show("There are some problems", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
+                }
+                else if (isVerifyOnlyMode)
+                {
+                    MessageBox.Show("Verification completed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
                 _EnableButtons();
                 bStart.Select();
             }
@@ -3754,6 +3758,16 @@ namespace IntegratedGuiV2
         }
 
         private void tbFilePath_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lCh1Message_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MainForm_Load_1(object sender, EventArgs e)
         {
 
         }

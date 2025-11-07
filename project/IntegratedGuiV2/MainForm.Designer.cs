@@ -347,6 +347,7 @@ namespace IntegratedGuiV2
             this.lCh1Message.Size = new System.Drawing.Size(14, 12);
             this.lCh1Message.TabIndex = 52;
             this.lCh1Message.Text = "...";
+            this.lCh1Message.Click += new System.EventHandler(this.lCh1Message_Click);
             // 
             // lCh2Message
             // 
@@ -1932,6 +1933,7 @@ namespace IntegratedGuiV2
             this.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.MainForm_Load_1);
             this.gbOperatorMode.ResumeLayout(false);
             this.gbOperatorMode.PerformLayout();
             this.gbCodeEditor.ResumeLayout(false);
