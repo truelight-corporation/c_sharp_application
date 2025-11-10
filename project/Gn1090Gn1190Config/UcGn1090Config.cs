@@ -18,8 +18,7 @@ namespace Gn1090Gn1190Config
         private I2cReadCB i2cReadCB = null;
         private I2cWriteCB i2cWriteCB = null;
         private bool reading = false;
-        private byte icI2cAddr = 92;
-
+        //private byte icI2cAddr = 92
 
         public UcGn1090Config()
         {
@@ -123,11 +122,11 @@ namespace Gn1090Gn1190Config
             return 0;
         }
 
-        public int SetIcI2cAddrApi(byte addr)  //add by Wood
-        {
-            icI2cAddr = addr;
-            return 0;
-        }
+        /*public int SetIcI2cAddrApi(byte addr)  //add by Wood
+       {
+           icI2cAddr = addr;
+           return 0;
+       }*/
 
         private void _ParseAddr0(byte data)
         {
@@ -654,21 +653,21 @@ namespace Gn1090Gn1190Config
             if (i2cReadCB == null)
                 goto exit;
 
-            rv = i2cReadCB(this.icI2cAddr, 0, 2, data);
+            rv = i2cReadCB(92, 0, 2, data);
             if (rv != 2)
                 goto exit;
 
             _ParseAddr0(data[0]);
             _ParseAddr1(data[1]);
 
-            rv = i2cReadCB(this.icI2cAddr, 5, 3, data);
+            rv = i2cReadCB(92, 5, 3, data);
             if (rv != 3)
                 goto exit;
 
             tbSupplyVoltage.Text = data[0].ToString();
             _ParseAddr6_7(data[1], data[2]);
 
-            rv = i2cReadCB(this.icI2cAddr, 16, 8, data);
+            rv = i2cReadCB(92, 16, 8, data);
             if (rv != 8)
                 goto exit;
 
@@ -677,7 +676,7 @@ namespace Gn1090Gn1190Config
             _ParseAddr20_21(data[4], data[5]);
             _ParseAddr22_23(data[6], data[7]);
 
-            rv = i2cReadCB(this.icI2cAddr, 52, 4, data);
+            rv = i2cReadCB(92, 52, 4, data);
             if (rv != 4)
                 goto exit;
 
@@ -686,7 +685,7 @@ namespace Gn1090Gn1190Config
             _ParseAddr54(data[2]);
             _ParseAddr55(data[3]);
 
-            rv = i2cReadCB(this.icI2cAddr, 59, 5, data);
+            rv = i2cReadCB(92, 59, 5, data);
             if (rv != 5)
                 goto exit;
 
@@ -694,7 +693,7 @@ namespace Gn1090Gn1190Config
             _ParseAddr60_61(data[1], data[2]);
             _ParseAddr62_63(data[3], data[4]);
 
-            rv = i2cReadCB(this.icI2cAddr, 64, 5, data);
+            rv = i2cReadCB(92, 64, 5, data);
             if (rv != 5)
                 goto exit;
 
@@ -704,7 +703,7 @@ namespace Gn1090Gn1190Config
             _ParseAddr67(data[3]);
             _ParseAddr68(data[4]);
 
-            rv = i2cReadCB(this.icI2cAddr, 80, 5, data);
+            rv = i2cReadCB(92, 80, 5, data);
             if (rv != 5)
                 goto exit;
 
@@ -714,7 +713,7 @@ namespace Gn1090Gn1190Config
             _ParseAddr83(data[3]);
             _ParseAddr84(data[4]);
 
-            rv = i2cReadCB(this.icI2cAddr, 96, 5, data);
+            rv = i2cReadCB(92, 96, 5, data);
             if (rv != 5)
                 goto exit;
 
@@ -724,7 +723,7 @@ namespace Gn1090Gn1190Config
             _ParseAddr99(data[3]);
             _ParseAddr100(data[4]);
 
-            rv = i2cReadCB(this.icI2cAddr, 112, 5, data);
+            rv = i2cReadCB(92, 112, 5, data);
             if (rv != 5)
                 goto exit;
 
@@ -752,7 +751,7 @@ namespace Gn1090Gn1190Config
             if (cbRssi2Enable.Checked == true)
                 data[0] |= 0x80;
 
-            rv = i2cWriteCB(this.icI2cAddr, 52, 1, data);
+            rv = i2cWriteCB(92, 52, 1, data);
             if (rv < 0)
                 return -1;
 
@@ -790,7 +789,7 @@ namespace Gn1090Gn1190Config
             if (cbRssi1Enable.Checked == true)
                 data[0] |= 0x80;
 
-            rv = i2cWriteCB(this.icI2cAddr, 53, 1, data);
+            rv = i2cWriteCB(92, 53, 1, data);
             if (rv < 0)
                 return -1;
 
@@ -842,7 +841,7 @@ namespace Gn1090Gn1190Config
             if (cbCsReset.Checked == true)
                 data[0] |= 0x40;
 
-            rv = i2cWriteCB(this.icI2cAddr, 54, 1, data);
+            rv = i2cWriteCB(92, 54, 1, data);
             if (rv < 0)
                 return -1;
 
@@ -927,7 +926,7 @@ namespace Gn1090Gn1190Config
             if (cbI2cAddrPadEnable.Checked == true)
                 data[0] |= 0x80;
 
-            rv = i2cWriteCB(this.icI2cAddr, 55, 1, data);
+            rv = i2cWriteCB(92, 55, 1, data);
             if (rv < 0)
                 return -1;
 
@@ -973,7 +972,7 @@ namespace Gn1090Gn1190Config
             if (cbSoftResetFull.Checked == true)
                 data[0] |= 0x02;
 
-            rv = i2cWriteCB(this.icI2cAddr, 59, 1, data);
+            rv = i2cWriteCB(92, 59, 1, data);
             if (rv < 0)
                 return -1;
 
@@ -1014,7 +1013,7 @@ namespace Gn1090Gn1190Config
             for (i = 0; i < 4; i += 2)
                 data[i / 2] = Convert.ToByte(tbPassword0.Text.Substring(i, 2), 16);
 
-            rv = i2cWriteCB(this.icI2cAddr, 60, 2, data);
+            rv = i2cWriteCB(92, 60, 2, data);
             if (rv < 0)
                 return -1;
 
@@ -1046,7 +1045,7 @@ namespace Gn1090Gn1190Config
             for (i = 0; i < 4; i += 2)
                 data[i / 2] = Convert.ToByte(tbPassword1.Text.Substring(i, 2), 16);
 
-            rv = i2cWriteCB(this.icI2cAddr, 62, 2, data);
+            rv = i2cWriteCB(92, 62, 2, data);
             if (rv < 0)
                 return -1;
 
@@ -1086,7 +1085,7 @@ namespace Gn1090Gn1190Config
             if (cbRx1LosDisable.Checked == true)
                 data[0] |= 0x20;
 
-            rv = i2cWriteCB(this.icI2cAddr, 64, 1, data);
+            rv = i2cWriteCB(92, 64, 1, data);
             if (rv < 0)
                 return -1;
 
@@ -1153,7 +1152,7 @@ namespace Gn1090Gn1190Config
             bTmp <<= 5;
             data[0] |= bTmp;
 
-            rv = i2cWriteCB(this.icI2cAddr, 65, 1, data);
+            rv = i2cWriteCB(92, 65, 1, data);
             if (rv < 0)
                 return -1;
 
@@ -1193,7 +1192,7 @@ namespace Gn1090Gn1190Config
             bTmp <<= 5;
             data[0] |= bTmp;
 
-            rv = i2cWriteCB(this.icI2cAddr, 66, 1, data);
+            rv = i2cWriteCB(92, 66, 1, data);
             if (rv < 0)
                 return -1;
 
@@ -1236,7 +1235,7 @@ namespace Gn1090Gn1190Config
             if (cbRx1ForceSquelch.Checked == true)
                 data[0] |= 0x10;
 
-            rv = i2cWriteCB(this.icI2cAddr, 67, 1, data);
+            rv = i2cWriteCB(92, 67, 1, data);
             if (rv < 0)
                 return -1;
 
@@ -1280,7 +1279,7 @@ namespace Gn1090Gn1190Config
             bTmp |= Convert.ToByte(cbRx1LosThreshold.SelectedIndex);
             data[0] |= bTmp;
 
-            rv = i2cWriteCB(this.icI2cAddr, 68, 1, data);
+            rv = i2cWriteCB(92, 68, 1, data);
             if (rv < 0)
                 return -1;
 
@@ -1320,7 +1319,7 @@ namespace Gn1090Gn1190Config
             if (cbRx2LosDisable.Checked == true)
                 data[0] |= 0x20;
 
-            rv = i2cWriteCB(this.icI2cAddr, 80, 1, data);
+            rv = i2cWriteCB(92, 80, 1, data);
             if (rv < 0)
                 return -1;
 
@@ -1387,7 +1386,7 @@ namespace Gn1090Gn1190Config
             bTmp <<= 5;
             data[0] |= bTmp;
 
-            rv = i2cWriteCB(this.icI2cAddr, 81, 1, data);
+            rv = i2cWriteCB(92, 81, 1, data);
             if (rv < 0)
                 return -1;
 
@@ -1427,7 +1426,7 @@ namespace Gn1090Gn1190Config
             bTmp <<= 5;
             data[0] |= bTmp;
 
-            rv = i2cWriteCB(this.icI2cAddr, 82, 1, data);
+            rv = i2cWriteCB(92, 82, 1, data);
             if (rv < 0)
                 return -1;
 
@@ -1470,7 +1469,7 @@ namespace Gn1090Gn1190Config
             if (cbRx2ForceSquelch.Checked == true)
                 data[0] |= 0x10;
 
-            rv = i2cWriteCB(this.icI2cAddr, 83, 1, data);
+            rv = i2cWriteCB(92, 83, 1, data);
             if (rv < 0)
                 return -1;
 
@@ -1514,7 +1513,7 @@ namespace Gn1090Gn1190Config
             bTmp |= Convert.ToByte(cbRx2LosThreshold.SelectedIndex);
             data[0] |= bTmp;
 
-            rv = i2cWriteCB(this.icI2cAddr, 84, 1, data);
+            rv = i2cWriteCB(92, 84, 1, data);
             if (rv < 0)
                 return -1;
 
@@ -1554,7 +1553,7 @@ namespace Gn1090Gn1190Config
             if (cbRx3LosDisable.Checked == true)
                 data[0] |= 0x20;
 
-            rv = i2cWriteCB(this.icI2cAddr, 96, 1, data);
+            rv = i2cWriteCB(92, 96, 1, data);
             if (rv < 0)
                 return -1;
 
@@ -1621,7 +1620,7 @@ namespace Gn1090Gn1190Config
             bTmp <<= 5;
             data[0] |= bTmp;
 
-            rv = i2cWriteCB(this.icI2cAddr, 97, 1, data);
+            rv = i2cWriteCB(92, 97, 1, data);
             if (rv < 0)
                 return -1;
 
@@ -1661,7 +1660,7 @@ namespace Gn1090Gn1190Config
             bTmp <<= 5;
             data[0] |= bTmp;
 
-            rv = i2cWriteCB(this.icI2cAddr, 98, 1, data);
+            rv = i2cWriteCB(92, 98, 1, data);
             if (rv < 0)
                 return -1;
 
@@ -1704,7 +1703,7 @@ namespace Gn1090Gn1190Config
             if (cbRx3ForceSquelch.Checked == true)
                 data[0] |= 0x10;
 
-            rv = i2cWriteCB(this.icI2cAddr, 99, 1, data);
+            rv = i2cWriteCB(92, 99, 1, data);
             if (rv < 0)
                 return -1;
 
@@ -1748,7 +1747,7 @@ namespace Gn1090Gn1190Config
             bTmp |= Convert.ToByte(cbRx3LosThreshold.SelectedIndex);
             data[0] |= bTmp;
 
-            rv = i2cWriteCB(this.icI2cAddr, 100, 1, data);
+            rv = i2cWriteCB(92, 100, 1, data);
             if (rv < 0)
                 return -1;
 
@@ -1788,7 +1787,7 @@ namespace Gn1090Gn1190Config
             if (cbRx4LosDisable.Checked == true)
                 data[0] |= 0x20;
 
-            rv = i2cWriteCB(this.icI2cAddr, 112, 1, data);
+            rv = i2cWriteCB(92, 112, 1, data);
             if (rv < 0)
                 return -1;
 
@@ -1855,7 +1854,7 @@ namespace Gn1090Gn1190Config
             bTmp <<= 5;
             data[0] |= bTmp;
 
-            rv = i2cWriteCB(this.icI2cAddr, 113, 1, data);
+            rv = i2cWriteCB(92, 113, 1, data);
             if (rv < 0)
                 return -1;
 
@@ -1895,7 +1894,7 @@ namespace Gn1090Gn1190Config
             bTmp <<= 5;
             data[0] |= bTmp;
 
-            rv = i2cWriteCB(this.icI2cAddr, 114, 1, data);
+            rv = i2cWriteCB(92, 114, 1, data);
             if (rv < 0)
                 return -1;
 
@@ -1938,7 +1937,7 @@ namespace Gn1090Gn1190Config
             if (cbRx4ForceSquelch.Checked == true)
                 data[0] |= 0x10;
 
-            rv = i2cWriteCB(this.icI2cAddr, 115, 1, data);
+            rv = i2cWriteCB(92, 115, 1, data);
             if (rv < 0)
                 return -1;
 
@@ -1982,7 +1981,7 @@ namespace Gn1090Gn1190Config
             bTmp |= Convert.ToByte(cbRx4LosThreshold.SelectedIndex);
             data[0] |= bTmp;
 
-            rv = i2cWriteCB(this.icI2cAddr, 116, 1, data);
+            rv = i2cWriteCB(92, 116, 1, data);
             if (rv < 0)
                 return -1;
 
@@ -2022,19 +2021,19 @@ namespace Gn1090Gn1190Config
             if (cbAllLosDisable.Checked == true)
                 data[0] |= 0x20;
 
-            rv = i2cWriteCB(this.icI2cAddr, 64, 1, data);
+            rv = i2cWriteCB(92, 64, 1, data);
             if (rv < 0)
                 return -1;
 
-            rv = i2cWriteCB(this.icI2cAddr, 80, 1, data);
+            rv = i2cWriteCB(92, 80, 1, data);
             if (rv < 0)
                 return -1;
 
-            rv = i2cWriteCB(this.icI2cAddr, 96, 1, data);
+            rv = i2cWriteCB(92, 96, 1, data);
             if (rv < 0)
                 return -1;
 
-            rv = i2cWriteCB(this.icI2cAddr, 112, 1, data);
+            rv = i2cWriteCB(92, 112, 1, data);
             if (rv < 0)
                 return -1;
 
@@ -2101,19 +2100,19 @@ namespace Gn1090Gn1190Config
             bTmp <<= 5;
             data[0] |= bTmp;
 
-            rv = i2cWriteCB(this.icI2cAddr, 65, 1, data);
+            rv = i2cWriteCB(92, 65, 1, data);
             if (rv < 0)
                 return -1;
 
-            rv = i2cWriteCB(this.icI2cAddr, 81, 1, data);
+            rv = i2cWriteCB(92, 81, 1, data);
             if (rv < 0)
                 return -1;
 
-            rv = i2cWriteCB(this.icI2cAddr, 97, 1, data);
+            rv = i2cWriteCB(92, 97, 1, data);
             if (rv < 0)
                 return -1;
 
-            rv = i2cWriteCB(this.icI2cAddr, 113, 1, data);
+            rv = i2cWriteCB(92, 113, 1, data);
             if (rv < 0)
                 return -1;
 
@@ -2153,19 +2152,19 @@ namespace Gn1090Gn1190Config
             bTmp <<= 5;
             data[0] |= bTmp;
 
-            rv = i2cWriteCB(this.icI2cAddr, 66, 1, data);
+            rv = i2cWriteCB(92, 66, 1, data);
             if (rv < 0)
                 return -1;
 
-            rv = i2cWriteCB(this.icI2cAddr, 82, 1, data);
+            rv = i2cWriteCB(92, 82, 1, data);
             if (rv < 0)
                 return -1;
 
-            rv = i2cWriteCB(this.icI2cAddr, 98, 1, data);
+            rv = i2cWriteCB(92, 98, 1, data);
             if (rv < 0)
                 return -1;
 
-            rv = i2cWriteCB(this.icI2cAddr, 114, 1, data);
+            rv = i2cWriteCB(92, 114, 1, data);
             if (rv < 0)
                 return -1;
 
@@ -2209,19 +2208,19 @@ namespace Gn1090Gn1190Config
             if (cbAllForceSquelch.Checked == true)
                 data[0] |= 0x10;
 
-            rv = i2cWriteCB(this.icI2cAddr, 67, 1, data);
+            rv = i2cWriteCB(92, 67, 1, data);
             if (rv < 0)
                 return -1;
 
-            rv = i2cWriteCB(this.icI2cAddr, 83, 1, data);
+            rv = i2cWriteCB(92, 83, 1, data);
             if (rv < 0)
                 return -1;
 
-            rv = i2cWriteCB(this.icI2cAddr, 99, 1, data);
+            rv = i2cWriteCB(92, 99, 1, data);
             if (rv < 0)
                 return -1;
 
-            rv = i2cWriteCB(this.icI2cAddr, 115, 1, data);
+            rv = i2cWriteCB(92, 115, 1, data);
             if (rv < 0)
                 return -1;
 
@@ -2265,19 +2264,19 @@ namespace Gn1090Gn1190Config
             bTmp |= Convert.ToByte(cbAllLosThreshold.SelectedIndex);
             data[0] |= bTmp;
 
-            rv = i2cWriteCB(this.icI2cAddr, 68, 1, data);
+            rv = i2cWriteCB(92, 68, 1, data);
             if (rv < 0)
                 return -1;
 
-            rv = i2cWriteCB(this.icI2cAddr, 84, 1, data);
+            rv = i2cWriteCB(92, 84, 1, data);
             if (rv < 0)
                 return -1;
 
-            rv = i2cWriteCB(this.icI2cAddr, 100, 1, data);
+            rv = i2cWriteCB(92, 100, 1, data);
             if (rv < 0)
                 return -1;
 
-            rv = i2cWriteCB(this.icI2cAddr, 116, 1, data);
+            rv = i2cWriteCB(92, 116, 1, data);
             if (rv < 0)
                 return -1;
 
@@ -2302,7 +2301,7 @@ namespace Gn1090Gn1190Config
                 return;
 
             bStoreIntoFlash.Enabled = false;
-            rv = i2cWriteCB(this.icI2cAddr, 170, 1, data);
+            rv = i2cWriteCB(92, 170, 1, data);
 
             Thread.Sleep(1000);
             bStoreIntoFlash.Enabled = true;
