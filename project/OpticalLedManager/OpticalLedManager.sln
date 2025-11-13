@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36301.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpticalLedManager", "OpticalLedManager.csproj", "{42754197-AA22-4852-8B2F-A3D9A1AC28FC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{42754197-AA22-4852-8B2F-A3D9A1AC28FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42754197-AA22-4852-8B2F-A3D9A1AC28FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42754197-AA22-4852-8B2F-A3D9A1AC28FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42754197-AA22-4852-8B2F-A3D9A1AC28FC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2DE500BA-D6D1-4175-9E62-F61C371B4127}
+	EndGlobalSection
+EndGlobal
