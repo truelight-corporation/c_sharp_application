@@ -3456,7 +3456,7 @@ namespace IntegratedGuiV2
             string fileName1 = "UpdatedModuleRegisterFile"; // Module cfg file
             string filePath1;
             string executableFileFolderPath = Path.Combine(Application.StartupPath, "RegisterFiles");
-            var masks = _GetMasks("SAS4", null);
+            var masks = _GetMasks(modelType, null);
 
             StateUpdated("Current module:\nPreparing register contents...", null);
 
@@ -3487,7 +3487,7 @@ namespace IntegratedGuiV2
             string filePath1;
             string filePath2 = RegisterFilePath; // Reference cfg file
             string executableFileFolderPath = Path.Combine(Application.StartupPath, "RegisterFiles");
-            var masks = _GetMasks("SAS4", comparisonObject);
+            var masks = _GetMasks(modelType, comparisonObject);
 
             if (!onlyVerifyMode) {
                 if (comparisonObject == "CfgFile")
@@ -3514,6 +3514,8 @@ namespace IntegratedGuiV2
             DataTable dt1 = _ReadCsvToDataTable(filePath1);
             DataTable dt2 = _ReadCsvToDataTable(filePath2);
 
+
+
             _RemoveDoubleQuotes(dt1);//Module
             _RemoveDoubleQuotes(dt2);//Cfg
             //ApplyMask(dt1, dt2, masks);
@@ -3522,7 +3524,8 @@ namespace IntegratedGuiV2
 
             // Error alarm, if there are differences
             if (!_CompareDataTables(dt1, dt2)) {
-                if (engineerMode)
+                //MessageBox.Show("Verify Failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (engineerMode|| onlyVerifyMode)
                     _DisplayDifferencesInGrid(dt1, dt2, masks); // EngineerCheck from DataGridView
                 else
                 MessageBox.Show("There are differences between the module CfgFile and the target CfgFile.",
@@ -3588,22 +3591,38 @@ namespace IntegratedGuiV2
             DataTable dt1 = _ReadCsvToDataTable(filePath1);
             DataTable dt2 = _ReadCsvToDataTable(filePath2);
 
+
             _RemoveDoubleQuotes(dt1);
             _RemoveDoubleQuotes(dt2);
             _ApplyMask(new List<DataTable> { dt1, dt2 }, masks);
 
 
             // Error alarm, if there are differences
-            if (!_CompareDataTables(dt1, dt2)) {
-                if (engineerMode)
+            if (!_CompareDataTables(dt1, dt2))
+            {
+                //MessageBox.Show("Verify Failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (engineerMode || onlyVerifyMode)
                     _DisplayDifferencesInGrid(dt1, dt2, masks); // EngineerCheck from DataGridView
                 else
-                MessageBox.Show("There are differences between the module CfgFile and the target CfgFile.",
-                                "Error alarm", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("There are differences between the module CfgFile and the target CfgFile.",
+                                    "Error alarm", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 StateUpdated("Verify State:\nVerify failed", null);
                 return 1;
             }
+            if (!_CompareDataTables(dt1, dt2))
+            {
+                if (engineerMode || onlyVerifyMode)
+                    _DisplayDifferencesInGrid(dt1, dt2, masks);
+                else
+                    MessageBox.Show("There are differences...");
+                return 1;
+            }
 
+            if (onlyVerifyMode)
+            {
+                _DisplayDifferencesInGrid(dt1, dt2, masks);
+            }
+            //MessageBox.Show("Verify Failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             if (File.Exists(filePath1))
                 File.Delete(filePath1);
 
@@ -3649,12 +3668,14 @@ namespace IntegratedGuiV2
             DataTable dt1 = _ReadCsvToDataTable(filePath1);
             DataTable dt2 = _ReadCsvToDataTable(filePath2);
 
+
             _RemoveDoubleQuotes(dt1);//Module
             _RemoveDoubleQuotes(dt2);//Cfg
             _ApplyMask(new List<DataTable> { dt1, dt2 }, masks);
 
             // Error alarm, if there are differences
             if (!_CompareDataTables(dt1, dt2)) {
+                //MessageBox.Show("Verify Failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 if (engineerMode)
                     _DisplayDifferencesInGrid(dt1, dt2, masks); // EngineerCheck from DataGridView
                 else
@@ -3679,6 +3700,7 @@ namespace IntegratedGuiV2
 
         private List<(string page, int row, int[] columns)> _GetMasks (string products, string comparisonObject)
         {
+            if (string.IsNullOrEmpty(comparisonObject)) comparisonObject = "CfgFile";
             if (products == "SAS4" && comparisonObject == "CfgFile") {
                 return new List <(string page, int row, int[] columns)> {
                     ("Low Page", 00, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
@@ -3709,14 +3731,15 @@ namespace IntegratedGuiV2
                     ("81h", 70, new[] {15})
                 };
             }
-
-            if (products == "SAS3" && comparisonObject == "CfgFile") {
+            if (products.Contains("SAS3") && comparisonObject == "CfgFile")
+            {
                 return new List<(string page, int row, int[] columns)> {
-                    ("Page 00", 30, new[] {15}),
+                    ("Page 00", 30, new[] {15}), //Checksum (Address 63)
+                    // Vendor SN & Name
                     ("Page 00", 40, new[] {4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
                     ("Page 00", 50, new[] {0, 1, 2, 3, 4, 5, 6, 7 ,8 ,9 ,10 ,11, 15}),
-                    ("Page 00", 70, new[] {15}),
-                    ("Page 6C", 00, new[] {0, 1, 2, 3, 4, 5, 6, 7 ,8 ,9 ,10 ,11, 12, 13, 14, 15})
+                    ("Page 00", 70, new[] {15}), //Extended Checksum (Address 127)
+                    ("Page 6C", 00, new[] {0, 1, 2, 3, 4, 5, 6, 7 ,8 ,9 ,10 ,11, 12, 13, 14, 15}) // Eye Mask / Calibration
                 };
             }
             else if (products == "SAS3" && comparisonObject == "LogFile") {
@@ -3724,7 +3747,6 @@ namespace IntegratedGuiV2
                     ("Page 00", 70, new[] {15})
                 };
             }
-
             if (products == "FQC") {
                 if (comparisonObject == "Low Page") {
                     return new List<(string page, int row, int[] columns)> {
@@ -4219,15 +4241,34 @@ namespace IntegratedGuiV2
         private DataTable _ReadCsvToDataTable(string filePath)
         {
             DataTable dt = new DataTable();
+            if (!File.Exists(filePath)) return dt;
             using (StreamReader sr = new StreamReader(filePath)) {
-                string[] headers = sr.ReadLine().Split(',');
-                foreach (string header in headers) {
-                    dt.Columns.Add(header);
+                string headerLine = sr.ReadLine();
+                if (string.IsNullOrEmpty(headerLine)) return dt;
+                string[] headers = headerLine.Split(',');
+                var columnCounts = new Dictionary<string, int>();
+
+                foreach (string header in headers)
+                {
+                    string columnName = header.Trim();
+                    if (columnCounts.ContainsKey(columnName))
+                    {
+                        columnCounts[columnName]++;
+                        columnName = columnName + "_" + columnCounts[columnName];
+                    }
+                    else
+                    {
+                        columnCounts[columnName] = 1;
+                    }
+                    dt.Columns.Add(columnName);
                 }
                 while (!sr.EndOfStream) {
-                    string[] rows = sr.ReadLine().Split(',');
+                    string line = sr.ReadLine();
+                    if (string.IsNullOrEmpty(line)) continue;
+                    string[] rows = line.Split(',');
                     DataRow dr = dt.NewRow();
-                    for (int i = 0; i < headers.Length; i++) {
+                    for (int i = 0; i < headers.Length && i < rows.Length; i++)
+                    {
                         dr[i] = rows[i];
                     }
                     dt.Rows.Add(dr);
@@ -4561,6 +4602,11 @@ namespace IntegratedGuiV2
         }
 
         private void rbSas3CustomerCheckMode_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbPassword_TextChanged(object sender, EventArgs e)
         {
 
         }

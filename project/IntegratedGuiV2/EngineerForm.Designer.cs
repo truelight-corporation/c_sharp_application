@@ -78,6 +78,7 @@ namespace IntegratedGuiV2
             this.bLoadAllFromCfgFile = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.gbSas3Module = new System.Windows.Forms.GroupBox();
+            this.rbSas3CustomerCheckMode = new System.Windows.Forms.RadioButton();
             this.cbBSidePath = new System.Windows.Forms.CheckBox();
             this.bSas3GenerateCfg = new System.Windows.Forms.Button();
             this.rbSas3MpMode = new System.Windows.Forms.RadioButton();
@@ -135,7 +136,6 @@ namespace IntegratedGuiV2
             this.ucMemoryDump = new QsfpDigitalDiagnosticMonitoring.UCMemoryDump();
             this.tcMain = new System.Windows.Forms.TabControl();
             this.cbBothSupplyMode = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
-            this.rbSas3CustomerCheckMode = new System.Windows.Forms.RadioButton();
             this.gbChannelSwitcher.SuspendLayout();
             this.gbGlobalControl.SuspendLayout();
             this.gbPermissions.SuspendLayout();
@@ -235,6 +235,7 @@ namespace IntegratedGuiV2
             this.tbPassword.Text = "3234";
             this.tbPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbPassword.UseSystemPasswordChar = true;
+            this.tbPassword.TextChanged += new System.EventHandler(this.tbPassword_TextChanged);
             // 
             // bGlobalRead
             // 
@@ -787,6 +788,18 @@ namespace IntegratedGuiV2
             this.gbSas3Module.TabIndex = 1034;
             this.gbSas3Module.TabStop = false;
             this.gbSas3Module.Text = "SAS3.0 module";
+            // 
+            // rbSas3CustomerCheckMode
+            // 
+            this.rbSas3CustomerCheckMode.AutoSize = true;
+            this.rbSas3CustomerCheckMode.Location = new System.Drawing.Point(6, 75);
+            this.rbSas3CustomerCheckMode.Margin = new System.Windows.Forms.Padding(2);
+            this.rbSas3CustomerCheckMode.Name = "rbSas3CustomerCheckMode";
+            this.rbSas3CustomerCheckMode.Size = new System.Drawing.Size(155, 20);
+            this.rbSas3CustomerCheckMode.TabIndex = 1038;
+            this.rbSas3CustomerCheckMode.Text = "Customer Check mode";
+            this.rbSas3CustomerCheckMode.UseVisualStyleBackColor = true;
+            this.rbSas3CustomerCheckMode.CheckedChanged += new System.EventHandler(this.rbSas3CustomerCheckMode_CheckedChanged);
             // 
             // cbBSidePath
             // 
@@ -1450,18 +1463,6 @@ namespace IntegratedGuiV2
             this.cbBothSupplyMode.TabIndex = 1042;
             this.cbBothSupplyMode.Values.Text = "Both supply mode";
             this.cbBothSupplyMode.CheckedChanged += new System.EventHandler(this.cbBothSupplyMode_CheckedChanged);
-            // 
-            // rbSas3CustomerCheckMode
-            // 
-            this.rbSas3CustomerCheckMode.AutoSize = true;
-            this.rbSas3CustomerCheckMode.Location = new System.Drawing.Point(6, 75);
-            this.rbSas3CustomerCheckMode.Margin = new System.Windows.Forms.Padding(2);
-            this.rbSas3CustomerCheckMode.Name = "rbSas3CustomerCheckMode";
-            this.rbSas3CustomerCheckMode.Size = new System.Drawing.Size(155, 20);
-            this.rbSas3CustomerCheckMode.TabIndex = 1038;
-            this.rbSas3CustomerCheckMode.Text = "Customer Check mode";
-            this.rbSas3CustomerCheckMode.UseVisualStyleBackColor = true;
-            this.rbSas3CustomerCheckMode.CheckedChanged += new System.EventHandler(this.rbSas3CustomerCheckMode_CheckedChanged);
             // 
             // EngineerForm
             // 
