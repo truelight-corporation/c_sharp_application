@@ -976,12 +976,26 @@ namespace IntegratedGuiV2
         } 
         private int _WriteModulePassword()
         {
-            byte[] data;
-            string dataS;
+            byte[] data = new byte[4];
 
-            data = Encoding.Default.GetBytes(tbPassword.Text);
-            dataS = Encoding.Default.GetString(data);
-            //MessageBox.Show ("_WirteModulePassword parse： " + dataS);
+            if (tbPasswordB0 == null || tbPasswordB1 == null ||
+         tbPasswordB2 == null || tbPasswordB3 == null)
+            {
+                MessageBox.Show("Password input boxes not found!");
+                return -1;
+            }
+            try
+            {
+                data[0] = Convert.ToByte(tbPasswordB0.Text, 16);
+                data[1] = Convert.ToByte(tbPasswordB1.Text, 16);
+                data[2] = Convert.ToByte(tbPasswordB2.Text, 16);
+                data[3] = Convert.ToByte(tbPasswordB3.Text, 16);
+            }
+            catch
+            {
+                MessageBox.Show("Invalid Password Format! Please enter Hex values (e.g., 1A).");
+                return -1;
+            }
 
             if (i2cMaster.WriteApi(80, 123, 4, data) < 0)
                 return -1;
@@ -1003,27 +1017,28 @@ namespace IntegratedGuiV2
 
         private int _GetPassword(int length, byte[] data)
         {
-            string dataS;
+            if (length < 4 || data == null) return -1;
 
-            if (length < 4)
-                return -1;
-
-            if (data == null)
-                return -1;
-
-            if (tbPassword.Text.Length != 4)
+            if (string.IsNullOrEmpty(tbPasswordB0.Text) || string.IsNullOrEmpty(tbPasswordB1.Text) ||
+                string.IsNullOrEmpty(tbPasswordB2.Text) || string.IsNullOrEmpty(tbPasswordB3.Text))
             {
-                MessageBox.Show("Please inpurt password before operate!!");
+                MessageBox.Show("Please input password (4 bytes Hex) before operate!!");
                 return -1;
             }
-
-            data[0] = (byte)tbPassword.Text[0];
-            data[1] = (byte)tbPassword.Text[1];
-            data[2] = (byte)tbPassword.Text[2];
-            data[3] = (byte)tbPassword.Text[3];
-            dataS = Encoding.Default.GetString(data);
-            //MessageBox.Show("_GetPassword parse： " + dataS);
-
+            try
+            {
+                data[0] = Convert.ToByte(tbPasswordB0.Text, 16);
+                data[1] = Convert.ToByte(tbPasswordB1.Text, 16);
+                data[2] = Convert.ToByte(tbPasswordB2.Text, 16);
+                data[3] = Convert.ToByte(tbPasswordB3.Text, 16);
+                // string dataS = Encoding.Default.GetString(data); 
+            }
+            catch
+            {
+                MessageBox.Show("Invalid Password Format! Please enter valid Hex values (e.g., 1A).",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
             return 4;
         }
 
@@ -2371,21 +2386,32 @@ namespace IntegratedGuiV2
         private bool VerifyMini58Module(bool messageMode)
         {
             string hiddenPassword = GetHiddenPasswordApi();
+            string hexString = "1A, 58, 1A, 58";
+            string[] hexValues = hexString.Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            byte[] bytes = new byte[hexValues.Length];
+            for (int i = 0; i < hexValues.Length; i++)
+            {
+                bytes[i] = Convert.ToByte(hexValues[i], 16);
+            }
+            String targetPassword = Encoding.Default.GetString(bytes);
 
-            if (messageMode) {
-                if (hiddenPassword == "3234") {
-                    MessageBox.Show("Verification PASS!!\nHiddenPassword: " + hiddenPassword, "Hidden password check",
+            if (messageMode)
+            {
+                if (hiddenPassword == targetPassword)
+                {
+                    MessageBox.Show("Verification PASS!!\nHiddenPassword (Hex): " + hexString, "Hidden password check",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return true;
                 }
-                else {
+                else
+                {
                     MessageBox.Show("Please confirm whether the plug-in module is Mini58 MCU", "Error!!",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
             }
             else
-                return hiddenPassword == "3234" ? true:false;
+                return (hiddenPassword == targetPassword) ? true : false;
         }
 
         private void CompressAndDeleteFolder(string folderPath)
@@ -4573,21 +4599,15 @@ namespace IntegratedGuiV2
 
         public void _SetSas3Password()
         {
-            string hexString = "1A, 58, 1A, 58";
-            string[] hexValues = hexString.Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            byte[] bytes = new byte[hexValues.Length];
-
-            for (int i = 0; i < hexValues.Length; i++) {
-                bytes[i] = Convert.ToByte(hexValues[i], 16);
-            }
-
-            string result = Encoding.Default.GetString(bytes);
-            tbPassword.Text = result;
+            if (tbPasswordB0 != null) tbPasswordB0.Text = "1A";
+            if (tbPasswordB1 != null) tbPasswordB1.Text = "58";
+            if (tbPasswordB2 != null) tbPasswordB2.Text = "1A";
+            if (tbPasswordB3 != null) tbPasswordB3.Text = "58";
         }
 
         private void bMini58Password_Click(object sender, EventArgs e)
         {
-            tbPassword.Text = "3234";
+            _SetSas3Password();
         }
 
         private void cbBothSupplyMode_CheckedChanged(object sender, EventArgs e)

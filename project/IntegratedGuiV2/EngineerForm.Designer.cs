@@ -35,7 +35,6 @@ namespace IntegratedGuiV2
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.cbConnect = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
             this.lPassword = new System.Windows.Forms.Label();
-            this.tbPassword = new System.Windows.Forms.TextBox();
             this.bGlobalRead = new System.Windows.Forms.Button();
             this.gbChannelSwitcher = new System.Windows.Forms.GroupBox();
             this.rbCh2 = new System.Windows.Forms.RadioButton();
@@ -136,6 +135,10 @@ namespace IntegratedGuiV2
             this.ucMemoryDump = new QsfpDigitalDiagnosticMonitoring.UCMemoryDump();
             this.tcMain = new System.Windows.Forms.TabControl();
             this.cbBothSupplyMode = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
+            this.tbPasswordB3 = new System.Windows.Forms.TextBox();
+            this.tbPasswordB2 = new System.Windows.Forms.TextBox();
+            this.tbPasswordB1 = new System.Windows.Forms.TextBox();
+            this.tbPasswordB0 = new System.Windows.Forms.TextBox();
             this.gbChannelSwitcher.SuspendLayout();
             this.gbGlobalControl.SuspendLayout();
             this.gbPermissions.SuspendLayout();
@@ -219,23 +222,9 @@ namespace IntegratedGuiV2
             this.lPassword.Location = new System.Drawing.Point(4, 3);
             this.lPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lPassword.Name = "lPassword";
-            this.lPassword.Size = new System.Drawing.Size(66, 15);
+            this.lPassword.Size = new System.Drawing.Size(93, 15);
             this.lPassword.TabIndex = 6;
-            this.lPassword.Text = "Password：";
-            // 
-            // tbPassword
-            // 
-            this.tbPassword.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbPassword.Location = new System.Drawing.Point(67, 0);
-            this.tbPassword.Margin = new System.Windows.Forms.Padding(2);
-            this.tbPassword.Name = "tbPassword";
-            this.tbPassword.ShortcutsEnabled = false;
-            this.tbPassword.Size = new System.Drawing.Size(72, 22);
-            this.tbPassword.TabIndex = 7;
-            this.tbPassword.Text = "3234";
-            this.tbPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbPassword.UseSystemPasswordChar = true;
-            this.tbPassword.TextChanged += new System.EventHandler(this.tbPassword_TextChanged);
+            this.lPassword.Text = "Password(Hex)：";
             // 
             // bGlobalRead
             // 
@@ -1464,12 +1453,52 @@ namespace IntegratedGuiV2
             this.cbBothSupplyMode.Values.Text = "Both supply mode";
             this.cbBothSupplyMode.CheckedChanged += new System.EventHandler(this.cbBothSupplyMode_CheckedChanged);
             // 
+            // tbPasswordB3
+            // 
+            this.tbPasswordB3.Location = new System.Drawing.Point(200, 1);
+            this.tbPasswordB3.Name = "tbPasswordB3";
+            this.tbPasswordB3.Size = new System.Drawing.Size(30, 22);
+            this.tbPasswordB3.TabIndex = 1047;
+            this.tbPasswordB3.Text = "34";
+            this.tbPasswordB3.UseSystemPasswordChar = true;
+            // 
+            // tbPasswordB2
+            // 
+            this.tbPasswordB2.Location = new System.Drawing.Point(164, 1);
+            this.tbPasswordB2.Name = "tbPasswordB2";
+            this.tbPasswordB2.Size = new System.Drawing.Size(30, 22);
+            this.tbPasswordB2.TabIndex = 1046;
+            this.tbPasswordB2.Text = "33";
+            this.tbPasswordB2.UseSystemPasswordChar = true;
+            // 
+            // tbPasswordB1
+            // 
+            this.tbPasswordB1.Location = new System.Drawing.Point(128, 1);
+            this.tbPasswordB1.Name = "tbPasswordB1";
+            this.tbPasswordB1.Size = new System.Drawing.Size(30, 22);
+            this.tbPasswordB1.TabIndex = 1045;
+            this.tbPasswordB1.Text = "32";
+            this.tbPasswordB1.UseSystemPasswordChar = true;
+            // 
+            // tbPasswordB0
+            // 
+            this.tbPasswordB0.Location = new System.Drawing.Point(92, 1);
+            this.tbPasswordB0.Name = "tbPasswordB0";
+            this.tbPasswordB0.Size = new System.Drawing.Size(30, 22);
+            this.tbPasswordB0.TabIndex = 1044;
+            this.tbPasswordB0.Text = "33";
+            this.tbPasswordB0.UseSystemPasswordChar = true;
+            // 
             // EngineerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
             this.ClientSize = new System.Drawing.Size(1184, 845);
+            this.Controls.Add(this.tbPasswordB3);
+            this.Controls.Add(this.tbPasswordB2);
+            this.Controls.Add(this.tbPasswordB1);
+            this.Controls.Add(this.tbPasswordB0);
             this.Controls.Add(this.cbBothSupplyMode);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.bSas3Passwrod);
@@ -1487,7 +1516,6 @@ namespace IntegratedGuiV2
             this.Controls.Add(this.gbGlobalControl);
             this.Controls.Add(this.gbChannelSwitcher);
             this.Controls.Add(this.bGlobalRead);
-            this.Controls.Add(this.tbPassword);
             this.Controls.Add(this.lPassword);
             this.Controls.Add(this.cbConnect);
             this.Controls.Add(this.tcMain);
@@ -1542,7 +1570,6 @@ namespace IntegratedGuiV2
 
         #endregion
         private System.Windows.Forms.Label lPassword;
-        protected internal System.Windows.Forms.TextBox tbPassword;
         private System.Windows.Forms.GroupBox gbGlobalControl;
         private System.Windows.Forms.GroupBox gbChannelSwitcher;
         private System.Windows.Forms.TextBox tbInformationReadState;
@@ -1646,6 +1673,10 @@ namespace IntegratedGuiV2
         private System.Windows.Forms.TabControl tcMain;
         private ComponentFactory.Krypton.Toolkit.KryptonCheckBox cbBothSupplyMode;
         private System.Windows.Forms.RadioButton rbSas3CustomerCheckMode;
+        private System.Windows.Forms.TextBox tbPasswordB3;
+        private System.Windows.Forms.TextBox tbPasswordB2;
+        private System.Windows.Forms.TextBox tbPasswordB1;
+        private System.Windows.Forms.TextBox tbPasswordB0;
     }
 }
 

@@ -663,7 +663,7 @@ namespace IntegratedGuiV2
                     }
                 }
                 else {
-                    _ResetSequence();
+                    sequenceIndices[i] = 0;
                 }
             }
 
@@ -3821,10 +3821,10 @@ namespace IntegratedGuiV2
 
         }
 
-        private void tbHideKey_TextChanged(object sender, EventArgs e)
+        /*private void tbHideKey_TextChanged(object sender, EventArgs e)
         {
 
-        }
+        }*/
 
         private void tbVersionCodeCh1_TextChanged(object sender, EventArgs e)
         {

@@ -1569,7 +1569,7 @@ namespace IntegratedGuiV2
             this.tbHideKey.Size = new System.Drawing.Size(13, 13);
             this.tbHideKey.TabIndex = 110;
             this.tbHideKey.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbHideKey.TextChanged += new System.EventHandler(this.tbHideKey_TextChanged);
+            //this.tbHideKey.TextChanged += new System.EventHandler(this.tbHideKey_TextChanged);
             this.tbHideKey.Enter += new System.EventHandler(this.tbHideKey_MouseEnter);
             this.tbHideKey.Leave += new System.EventHandler(this.tbHideKey_MouseLeave);
             // 
