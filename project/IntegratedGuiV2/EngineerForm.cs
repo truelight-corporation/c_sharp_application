@@ -4626,11 +4626,14 @@ namespace IntegratedGuiV2
 
         }
 
+<<<<<<< HEAD
         private void tbPassword_TextChanged(object sender, EventArgs e)
         {
 
         }
 
+=======
+>>>>>>> 09f2c072019af8783cdd157c9996867da41095f3
         private void cbCh1_CheckedChanged(object sender, EventArgs e)
         {
             if (cbCh1.Checked)
