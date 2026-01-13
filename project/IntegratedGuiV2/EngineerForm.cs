@@ -96,6 +96,8 @@ namespace IntegratedGuiV2
                 this.bIcpConnect.Text = text;
         }
 
+
+
         public string GetValueFromUcRt146Config(string comboBoxId)
         {
             return ucRt146Config.GetComboBoxSelectedValue(comboBoxId);
@@ -198,8 +200,42 @@ namespace IntegratedGuiV2
                 throw new ArgumentException("Invalid Var Name or Var is not a bool type");
             }
         }
+        public class SasConfigLoader
+        {
+            private const string ConfigFileName = "config.csv";
+            private const string TargetKey = "UnlockPassword";
+            public string LoadPasswordFromConfig()
+            {
+                string appPath = AppDomain.CurrentDomain.BaseDirectory;
+                string fullPath = Path.Combine(appPath, ConfigFileName);
 
-        
+                if (!File.Exists(fullPath))
+                {
+                    throw new FileNotFoundException($"Configuration file not found: {fullPath}");
+                }
+                string[] lines = File.ReadAllLines(fullPath);
+
+                foreach (string line in lines)
+                {
+                    if (string.IsNullOrWhiteSpace(line) || line.Trim().StartsWith("#"))
+                        continue;
+                    string[] parts = line.Split(',');
+
+                    if (parts.Length >= 2)
+                    {
+                        string key = parts[0].Trim();
+                        string value = parts[1].Trim();
+
+                        if (key.Equals(TargetKey, StringComparison.OrdinalIgnoreCase))
+                        {
+                            return value;
+                        }
+                    }
+                }
+                return string.Empty;
+            }
+        }
+
         public bool GetChipIdApi(string modelType)
         {
             if (this.InvokeRequired)
@@ -1275,7 +1311,7 @@ namespace IntegratedGuiV2
             AppendMoreInfo(exportFilePath);
 
             if (!writeSnMode)
-                StateUpdated("Read State:\nInformation...Done", 5);
+                StateUpdated("Read State:\nInformation...Done", 5); //!!!!!
 
             if (ucMemoryDump.ExportAllPagesDataApi(tempExportFilePath) < 0)
                 return -1;
@@ -3477,7 +3513,7 @@ namespace IntegratedGuiV2
             return errorCount;
         }
 
-        internal int _CurrentRegisters(string modelType)
+        internal int _CurrentRegisters(string modelType) // check
         {
             string fileName1 = "UpdatedModuleRegisterFile"; // Module cfg file
             string filePath1;
@@ -3729,28 +3765,28 @@ namespace IntegratedGuiV2
             if (string.IsNullOrEmpty(comparisonObject)) comparisonObject = "CfgFile";
             if (products == "SAS4" && comparisonObject == "CfgFile") {
                 return new List <(string page, int row, int[] columns)> {
-                    ("Low Page", 00, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
-                    ("Low Page", 10, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
-                    ("Low Page", 20, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
+                    ("Low Page", 00, new[] {0, 1, 2, 3, 4, 5, 8, 11, 12, 13, 14, 15}),//byte0x06, byte0x07, byte0x09, byte0x0A (Temp. high low alaram warning, Vcc high low alaram warning)
+                    ("Low Page", 10, new[] {0, 1, 2, 3, 4, 5, 8, 9, 10, 13, 14, 15}),//byte0x16, byte0x17, byte0x1A, byte0x1B (Temp. monotoring values, Vcc monotoring values)
+                    ("Low Page", 20, new[] {0, 1, 10, 11, 12, 13, 14, 15}),//byte0x22, byte0x23, byte0x24, byte0x25, byte0x26, byte0x27, byte0x28, byte0x29 (RX power monotoring values, Vcc monotoring values)
                     ("Low Page", 30, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
                     ("Low Page", 40, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
                     ("Low Page", 50, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
                     ("Low Page", 60, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 15}),
-                    ("Low Page", 70, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
+                    ("Low Page", 70, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14}),//byte0x7F (page select)
                     ("Up 00h", 40, new[] {4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
                     ("Up 00h", 50, new[] {0, 1, 2, 3, 4, 5, 6, 7 ,8 ,9 ,10 ,11, 15})
                 };
             }
             else if (products == "SAS4" && comparisonObject == "LogFile") {
                 return new List<(string page, int row, int[] columns)> {
-                    ("Low Page", 00, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
-                    ("Low Page", 10, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
-                    ("Low Page", 20, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
+                    ("Low Page", 00, new[] {0, 1, 2, 3, 4, 5, 8, 11, 12, 13, 14, 15}),//byte0x06, byte0x07, byte0x09, byte0x0A (Temp. high low alaram warning, Vcc high low alaram warning)
+                    ("Low Page", 10, new[] {0, 1, 2, 3, 4, 5, 8, 9, 10, 13, 14, 15}),//byte0x16, byte0x17, byte0x1A, byte0x1B (Temp. monotoring values, Vcc monotoring values)
+                    ("Low Page", 20, new[] {0, 1, 10, 11, 12, 13, 14, 15}),//byte0x22, byte0x23, byte0x24, byte0x25, byte0x26, byte0x27, byte0x28, byte0x29 (RX power monotoring values, Vcc monotoring values)
                     ("Low Page", 30, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
                     ("Low Page", 40, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
                     ("Low Page", 50, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
                     ("Low Page", 60, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 15}),
-                    ("Low Page", 70, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
+                    ("Low Page", 70, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14}),//byte0x7F (page select)
                     ("Up 00h", 40, new[] {4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
                     ("Up 00h", 50, new[] {0, 1, 2, 3, 4, 5, 6, 7 ,8 ,9 ,10 ,11, 15}),
                     ("80h", 70, new[] {12, 13, 14, 15}),
@@ -4594,7 +4630,11 @@ namespace IntegratedGuiV2
 
         private void bSas3Password_Click(object sender, EventArgs e)
         {
-            _SetSas3Password();
+            _LoadAndSetPassword();
+        }
+        private void bSas4Password_Click(object sender, EventArgs e)
+        {
+            _LoadAndSetPassword();
         }
 
         public void _SetSas3Password()
@@ -4604,7 +4644,40 @@ namespace IntegratedGuiV2
             if (tbPasswordB2 != null) tbPasswordB2.Text = "1A";
             if (tbPasswordB3 != null) tbPasswordB3.Text = "58";
         }
+        private void _LoadAndSetPassword()
+        {
+            try
+            {
+                var configLoader = new SasConfigLoader();
+                string rawPassword = configLoader.LoadPasswordFromConfig();
+                if (string.IsNullOrEmpty(rawPassword))
+                {
+                    MessageBox.Show("Config read was empty，please check config.csv");
+                    return;
+                }
+                string[] parts = rawPassword.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                if (parts.Length == 4)
+                {
+                    if (tbPasswordB0 != null) tbPasswordB0.Text = parts[0];
+                    if (tbPasswordB1 != null) tbPasswordB1.Text = parts[1];
+                    if (tbPasswordB2 != null) tbPasswordB2.Text = parts[2];
+                    if (tbPasswordB3 != null) tbPasswordB3.Text = parts[3];
 
+                    byte b0 = Convert.ToByte(parts[0], 16);
+                    byte b1 = Convert.ToByte(parts[1], 16);
+                    byte b2 = Convert.ToByte(parts[2], 16);
+                    byte b3 = Convert.ToByte(parts[3], 16);
+                }
+                else
+                {
+                    MessageBox.Show($"Config,requires 4 Bytes，but the value read is: {rawPassword}");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"error: {ex.Message}");
+            }
+        }
         private void bMini58Password_Click(object sender, EventArgs e)
         {
             _SetSas3Password();
@@ -4625,15 +4698,11 @@ namespace IntegratedGuiV2
         {
 
         }
-
-<<<<<<< HEAD
         private void tbPassword_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-=======
->>>>>>> 09f2c072019af8783cdd157c9996867da41095f3
         private void cbCh1_CheckedChanged(object sender, EventArgs e)
         {
             if (cbCh1.Checked)
