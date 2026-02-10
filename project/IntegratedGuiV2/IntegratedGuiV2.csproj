@@ -50,37 +50,74 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>CP.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <WarningLevel>3</WarningLevel>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <WarningLevel>3</WarningLevel>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AardvarkAdapter, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\dll\device\AardvarkAdapter.dll</HintPath>
+      <HintPath>..\..\..\..\c_sharp_application_server\project\QsfpDigitalDiagnosticMonitoring\bin\Debug\AardvarkAdapter.dll</HintPath>
     </Reference>
     <Reference Include="CircularProgressBar, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\CircularProgressBar.2.2.0.0\lib\net35-Client\CircularProgressBar.dll</HintPath>
     </Reference>
     <Reference Include="ComponentFactory.Krypton.Docking, Version=4.6.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\dll\ComponentFactory\ComponentFactory.Krypton.Docking.dll</HintPath>
+      <HintPath>..\..\..\..\20260127\c_sharp_application\project\IntegratedGuiV2\bin\Debug\ComponentFactory.Krypton.Docking.dll</HintPath>
     </Reference>
     <Reference Include="ComponentFactory.Krypton.Navigator, Version=4.6.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\dll\ComponentFactory\ComponentFactory.Krypton.Navigator.dll</HintPath>
+      <HintPath>..\..\..\..\20260127\c_sharp_application\project\IntegratedGuiV2\bin\Debug\ComponentFactory.Krypton.Navigator.dll</HintPath>
     </Reference>
     <Reference Include="ComponentFactory.Krypton.Ribbon, Version=4.6.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\dll\ComponentFactory\ComponentFactory.Krypton.Ribbon.dll</HintPath>
+      <HintPath>..\..\..\..\20260127\c_sharp_application\project\IntegratedGuiV2\bin\Debug\ComponentFactory.Krypton.Ribbon.dll</HintPath>
     </Reference>
     <Reference Include="ComponentFactory.Krypton.Toolkit, Version=4.6.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\dll\ComponentFactory\ComponentFactory.Krypton.Toolkit.dll</HintPath>
+      <HintPath>..\..\..\..\20260127\c_sharp_application\project\IntegratedGuiV2\bin\Debug\ComponentFactory.Krypton.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="ComponentFactory.Krypton.Workspace, Version=4.6.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\dll\ComponentFactory\ComponentFactory.Krypton.Workspace.dll</HintPath>
+      <HintPath>..\..\..\..\20260127\c_sharp_application\project\IntegratedGuiV2\bin\Debug\ComponentFactory.Krypton.Workspace.dll</HintPath>
     </Reference>
     <Reference Include="CsvHelper, Version=33.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
       <HintPath>packages\CsvHelper.33.0.1\lib\net47\CsvHelper.dll</HintPath>
@@ -90,26 +127,26 @@
     </Reference>
     <Reference Include="ExfoIqs1600ScpiInterface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\dll\interface\EXFO\ExfoIqs1600ScpiInterface.dll</HintPath>
+      <HintPath>bin\Debug\ExfoIqs1600ScpiInterface.dll</HintPath>
     </Reference>
     <Reference Include="Gn1190Corrector, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\dll\project\Gn1190Corrector.dll</HintPath>
+      <HintPath>..\..\..\..\20260127\c_sharp_application\project\IntegratedGuiV2\bin\Debug\Gn1190Corrector.dll</HintPath>
     </Reference>
     <Reference Include="Gn2108Gn2109Config, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\dll\project\Gn2108Gn2109Config.dll</HintPath>
+      <HintPath>bin\Debug\Gn2108Gn2109Config.dll</HintPath>
     </Reference>
     <Reference Include="I2cMasterInterface">
-      <HintPath>..\..\dll\interface\I2cMasterInterface.dll</HintPath>
+      <HintPath>..\..\..\..\20260127\c_sharp_application\project\IntegratedGuiV2\bin\Debug\I2cMasterInterface.dll</HintPath>
     </Reference>
     <Reference Include="Mald37045cMata37044cConfig, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\dll\project\Mald37045cMata37044cConfig.dll</HintPath>
+      <HintPath>bin\Debug\Mald37045cMata37044cConfig.dll</HintPath>
     </Reference>
     <Reference Include="Mcp2221Adapter, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\dll\device\Mcp2221Adapter.dll</HintPath>
+      <HintPath>..\..\..\..\SourceCode by project\c_sharp_application_server\dll\device\Mcp2221Adapter.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
@@ -120,17 +157,19 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="NuvotonIcpTool, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\dll\project\NuvotonIcpTool.dll</HintPath>
+      <HintPath>bin\Debug\NuvotonIcpTool.dll</HintPath>
     </Reference>
     <Reference Include="QsfpDigitalDiagnosticMonitoring, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\dll\project\QsfpDigitalDiagnosticMonitoring.dll</HintPath>
+      <HintPath>..\..\..\..\20260127\c_sharp_application\project\IntegratedGuiV2\bin\Debug\QsfpDigitalDiagnosticMonitoring.dll</HintPath>
     </Reference>
     <Reference Include="Rt145Rt146Config, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\dll\project\Rt145Rt146Config.dll</HintPath>
+      <HintPath>bin\Debug\Rt145Rt146Config.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
     </Reference>
@@ -276,13 +315,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="dbUsers.accdb" />
-    <Content Include="dbUsers.mdb">
+    <Content Include="CP.ico" />
+    <Content Include="dbUsers.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\CP.ico" />
-    <Content Include="XmlFolder\Settings.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\label2.Image3.gif" />
     <None Include="Resources\label2.Image2.gif" />
@@ -301,10 +336,4 @@
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>echo "" &gt; "$(TargetDir)aardvark.dll"
-xcopy /Y "$(ProjectDir)..\..\dll\device\aardvark_x64.dll" "$(TargetDir)aardvark.dll"
-echo "" &gt; "$(TargetDir)mcp2221_dll_um.dll"
-xcopy /Y "$(ProjectDir)..\..\dll\device\mcp2221_dll_um_x64.dll" "$(TargetDir)mcp2221_dll_um.dll"</PostBuildEvent>
-  </PropertyGroup>
 </Project>

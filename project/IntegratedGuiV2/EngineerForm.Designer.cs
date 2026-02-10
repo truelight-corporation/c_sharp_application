@@ -135,14 +135,11 @@ namespace IntegratedGuiV2
             this.ucMemoryDump = new QsfpDigitalDiagnosticMonitoring.UCMemoryDump();
             this.tcMain = new System.Windows.Forms.TabControl();
             this.cbBothSupplyMode = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
-<<<<<<< HEAD
             this.tbPasswordB3 = new System.Windows.Forms.TextBox();
             this.tbPasswordB2 = new System.Windows.Forms.TextBox();
             this.tbPasswordB1 = new System.Windows.Forms.TextBox();
             this.tbPasswordB0 = new System.Windows.Forms.TextBox();
-=======
-            this.rbSas3CustomerCheckMode = new System.Windows.Forms.RadioButton();
->>>>>>> 09f2c072019af8783cdd157c9996867da41095f3
+            //this.rbSas3CustomerCheckMode = new System.Windows.Forms.RadioButton();
             this.gbChannelSwitcher.SuspendLayout();
             this.gbGlobalControl.SuspendLayout();
             this.gbPermissions.SuspendLayout();
@@ -228,13 +225,11 @@ namespace IntegratedGuiV2
             this.lPassword.Name = "lPassword";
             this.lPassword.Size = new System.Drawing.Size(93, 15);
             this.lPassword.TabIndex = 6;
-<<<<<<< HEAD
             this.lPassword.Text = "Password(Hex)：";
-=======
             this.lPassword.Text = "Password：";
             // 
             // tbPassword
-            // 
+            /* 
             this.tbPassword.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tbPassword.Location = new System.Drawing.Point(67, 0);
             this.tbPassword.Margin = new System.Windows.Forms.Padding(2);
@@ -245,8 +240,7 @@ namespace IntegratedGuiV2
             this.tbPassword.Text = "3234";
             this.tbPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbPassword.UseSystemPasswordChar = true;
->>>>>>> 09f2c072019af8783cdd157c9996867da41095f3
-            // 
+            */ 
             // bGlobalRead
             // 
             this.bGlobalRead.Font = new System.Drawing.Font("Times New Roman", 12F);
@@ -850,19 +844,6 @@ namespace IntegratedGuiV2
             this.rbSas3MpMode.TabStop = true;
             this.rbSas3MpMode.Text = "MP mode";
             this.rbSas3MpMode.UseVisualStyleBackColor = true;
-            // 
-            // rbSas3CustomerMode
-            // 
-            this.rbSas3CustomerMode.AutoSize = true;
-            this.rbSas3CustomerMode.Location = new System.Drawing.Point(6, 57);
-            this.rbSas3CustomerMode.Margin = new System.Windows.Forms.Padding(2);
-            this.rbSas3CustomerMode.Name = "rbSas3CustomerMode";
-            this.rbSas3CustomerMode.Size = new System.Drawing.Size(115, 20);
-            this.rbSas3CustomerMode.TabIndex = 1035;
-            this.rbSas3CustomerMode.Text = "Customer mode";
-            this.rbSas3CustomerMode.UseVisualStyleBackColor = true;
-            this.rbSas3CustomerMode.CheckedChanged += new System.EventHandler(this.rbSas3CustomerMode_CheckedChanged);
-            // 
             // cbASidePath
             // 
             this.cbASidePath.AutoSize = true;
@@ -1474,7 +1455,6 @@ namespace IntegratedGuiV2
             this.cbBothSupplyMode.Values.Text = "Both supply mode";
             this.cbBothSupplyMode.CheckedChanged += new System.EventHandler(this.cbBothSupplyMode_CheckedChanged);
             // 
-<<<<<<< HEAD
             // tbPasswordB3
             // 
             this.tbPasswordB3.Location = new System.Drawing.Point(200, 1);
@@ -1510,7 +1490,6 @@ namespace IntegratedGuiV2
             this.tbPasswordB0.TabIndex = 1044;
             this.tbPasswordB0.Text = "33";
             this.tbPasswordB0.UseSystemPasswordChar = true;
-=======
             // rbSas3CustomerCheckMode
             // 
             this.rbSas3CustomerCheckMode.AutoSize = true;
@@ -1522,7 +1501,6 @@ namespace IntegratedGuiV2
             this.rbSas3CustomerCheckMode.Text = "Customer Check mode";
             this.rbSas3CustomerCheckMode.UseVisualStyleBackColor = true;
             this.rbSas3CustomerCheckMode.CheckedChanged += new System.EventHandler(this.rbSas3CustomerCheckMode_CheckedChanged);
->>>>>>> 09f2c072019af8783cdd157c9996867da41095f3
             // 
             // EngineerForm
             // 
@@ -1708,13 +1686,10 @@ namespace IntegratedGuiV2
         private System.Windows.Forms.TabControl tcMain;
         private ComponentFactory.Krypton.Toolkit.KryptonCheckBox cbBothSupplyMode;
         private System.Windows.Forms.RadioButton rbSas3CustomerCheckMode;
-<<<<<<< HEAD
         private System.Windows.Forms.TextBox tbPasswordB3;
         private System.Windows.Forms.TextBox tbPasswordB2;
         private System.Windows.Forms.TextBox tbPasswordB1;
         private System.Windows.Forms.TextBox tbPasswordB0;
-=======
->>>>>>> 09f2c072019af8783cdd157c9996867da41095f3
     }
 }
 

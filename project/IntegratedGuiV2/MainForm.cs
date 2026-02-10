@@ -63,7 +63,7 @@ namespace IntegratedGuiV2
         private List<NamingRuleModel> namingRules;
         private Dictionary<string, DomainUpDown> fieldControls;
         private Dictionary<string, Label> lables;
-
+    
         public class NamingRuleModel
         {
             public string RuleName { get; set; }

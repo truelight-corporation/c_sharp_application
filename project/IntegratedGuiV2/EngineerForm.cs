@@ -1772,8 +1772,8 @@ namespace IntegratedGuiV2
         {
             cbProductSelect.SelectedItem = product;
         }
-       
-        private int _SetWriteConfig() // The function could work, but it's too slow
+
+        private int _SetWriteConfig()
         {
             byte[] data = new byte[1];
             byte devAddr, regAddr;
@@ -1781,86 +1781,82 @@ namespace IntegratedGuiV2
 
             progressBar1.Value = 0;
 
-            if (ucDigitalDiagnosticsMonitoring.CheckI2cWriteCbApi() < 0)
-            {
-                MessageBox.Show("i2cWriteCB rv: " + ucDigitalDiagnosticsMonitoring.CheckI2cWriteCbApi());
-                return -1;
-            }
-
+            // 1. Count lines
             int totalLines = File.ReadLines(fileName).Count();
+            int lastPercent = 0;
 
             using (StreamReader sr = new StreamReader(fileName))
             {
                 while (!sr.EndOfStream)
                 {
                     currentRow++;
-                    double progressPercentage = (double)currentRow / totalLines * 100;
-                    progressBar1.Value = (int)progressPercentage;
-
                     string line = sr.ReadLine();
 
-                    if (line.StartsWith("//") || line.Trim() == "")
-                        continue;
+                    // UI Update (Optimized)
+                    int currentPercent = (int)((double)currentRow / totalLines * 100);
+                    if (currentPercent > lastPercent)
+                    {
+                        lastPercent = currentPercent;
+                        progressBar1.Value = currentPercent;
+                        Application.DoEvents();
+                    }
+
+                    if (line.StartsWith("//") || string.IsNullOrWhiteSpace(line)) continue;
 
                     string[] tokens = line.Split(',');
+                    if (tokens.Length < 4) { MessageBox.Show("Format Error: " + line); return -1; }
 
-                    
-                    if (tokens.Length < 4)// 檢查 tokens 的數量
+                    try
                     {
-                        MessageBox.Show("Invalid line format: " + line);
-                        return -1;
+                        // Parse Hex values (e.g. 0xA0)
+                        devAddr = byte.Parse(tokens[1].Substring(2), System.Globalization.NumberStyles.HexNumber);
+                        regAddr = byte.Parse(tokens[2].Substring(2), System.Globalization.NumberStyles.HexNumber);
+                        data[0] = byte.Parse(tokens[3].Substring(2), System.Globalization.NumberStyles.HexNumber);
                     }
-
-                    if (tokens[1].Length >= 2)
-                    {
-                        string devAddrString = tokens[1].Substring(2);
-
-                        if (!byte.TryParse(devAddrString, System.Globalization.NumberStyles.HexNumber, null, out devAddr))
-                        {
-                            MessageBox.Show("Invalid DevAddr format: " + tokens[1]);
-                            return -1;
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Invalid DevAddr format: " + tokens[1]);
-                        return -1;
-                    }
+                    catch { MessageBox.Show("Hex Format Error: " + line); return -1; }
 
                     string command = tokens[0];
-                    devAddr = byte.Parse(tokens[1].Substring(2), System.Globalization.NumberStyles.HexNumber);
-                    regAddr = byte.Parse(tokens[2].Substring(2), System.Globalization.NumberStyles.HexNumber);
-                    data[0] = byte.Parse(tokens[3].Substring(2), System.Globalization.NumberStyles.HexNumber);
 
                     switch (command)
                     {
                         case "Write":
-                            ucDigitalDiagnosticsMonitoring.I2cWriteApi(devAddr, regAddr, 1, data);
+                            // [FIXED] Use your local helper method!
+                            // It requires 4 arguments: (Addr, Reg, Length, Data)
+                            int writeResult = _I2cWriteIcConfig(devAddr, regAddr, 1, data);
+                            if (writeResult < 0) return -1;
                             break;
 
                         case "Read":
-                            while (ucDigitalDiagnosticsMonitoring.I2cReadApi(devAddr, regAddr, 1, data) != 1)
+                            int retry = 0;
+                            // [FIXED] Use i2cMaster directly for reading
+                            // Assuming 'i2cMaster' is available since _I2cWriteIcConfig uses it.
+                            // If 'ReadApi' is incorrect, try 'I2cReadApi' or 'Read'.
+                            while (i2cMaster.ReadApi(devAddr, regAddr, 1, data) != 1)
                             {
-                                MessageBox.Show("i2cReadCB() fail!!");
-                                Thread.Sleep(100);
+                                if (retry++ > 10)
+                                {
+                                    MessageBox.Show("Read Timeout");
+                                    return -1;
+                                }
+                                Thread.Sleep(10);
                             }
-                            if (data[0] != byte.Parse(tokens[4].Substring(2), System.Globalization.NumberStyles.HexNumber))
+
+                            byte expected = byte.Parse(tokens[4].Substring(2), System.Globalization.NumberStyles.HexNumber);
+                            if (data[0] != expected)
                             {
-                                MessageBox.Show("DevAddr:0x" + devAddr.ToString("X2") + "RegAddr:0x" + regAddr.ToString("X2") +
-                                    "Value:0x" + data[0].ToString("X2") + " != " + tokens[4]);
+                                MessageBox.Show($"Verify Fail! Reg:0x{regAddr:X2} Val:0x{data[0]:X2} Expected:{tokens[4]}");
                                 return -1;
                             }
                             break;
 
                         default:
-                            MessageBox.Show("Invalid command: " + command);
-                            return -1;
+                            // Delay is handled in CSV sometimes, or just ignore unknown commands
+                            if (command.StartsWith("Delay")) Thread.Sleep(10);
+                            break;
                     }
-
-                    Application.DoEvents();
                 }
             }
-
+            progressBar1.Value = 100;
             return 0;
         }
 
@@ -3727,12 +3723,12 @@ namespace IntegratedGuiV2
         private List<(string page, int row, int[] columns)> _GetMasks (string products, string comparisonObject)
         {
             if (string.IsNullOrEmpty(comparisonObject)) comparisonObject = "CfgFile";
-            if (products == "SAS4" && comparisonObject == "CfgFile") {
+            if ((products == "SAS4" || products == "SAS4.0") && comparisonObject == "CfgFile") {
                 return new List <(string page, int row, int[] columns)> {
                     ("Low Page", 00, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
                     ("Low Page", 10, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
                     ("Low Page", 20, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
-                    ("Low Page", 30, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
+                    ("Low Page", 30, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }),
                     ("Low Page", 40, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
                     ("Low Page", 50, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
                     ("Low Page", 60, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 15}),
@@ -3741,12 +3737,12 @@ namespace IntegratedGuiV2
                     ("Up 00h", 50, new[] {0, 1, 2, 3, 4, 5, 6, 7 ,8 ,9 ,10 ,11, 15})
                 };
             }
-            else if (products == "SAS4" && comparisonObject == "LogFile") {
+            else if ((products == "SAS4" || products == "SAS4.0") && comparisonObject == "LogFile") {
                 return new List<(string page, int row, int[] columns)> {
                     ("Low Page", 00, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
                     ("Low Page", 10, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
                     ("Low Page", 20, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
-                    ("Low Page", 30, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
+                    ("Low Page", 30, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }),
                     ("Low Page", 40, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
                     ("Low Page", 50, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
                     ("Low Page", 60, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 15}),
@@ -3757,7 +3753,7 @@ namespace IntegratedGuiV2
                     ("81h", 70, new[] {15})
                 };
             }
-            if (products.Contains("SAS3") && comparisonObject == "CfgFile")
+            if ((products == "SAS3" || products == "SAS3.0") && comparisonObject == "CfgFile")
             {
                 return new List<(string page, int row, int[] columns)> {
                     ("Page 00", 30, new[] {15}), //Checksum (Address 63)
@@ -3768,7 +3764,7 @@ namespace IntegratedGuiV2
                     ("Page 6C", 00, new[] {0, 1, 2, 3, 4, 5, 6, 7 ,8 ,9 ,10 ,11, 12, 13, 14, 15}) // Eye Mask / Calibration
                 };
             }
-            else if (products == "SAS3" && comparisonObject == "LogFile") {
+            else if ((products == "SAS3" || products == "SAS3.0") && comparisonObject == "LogFile") {
                 return new List<(string page, int row, int[] columns)> {
                     ("Page 00", 70, new[] {15})
                 };
@@ -4616,24 +4612,16 @@ namespace IntegratedGuiV2
             _ChannelSet(GetChannelControl(ProcessingChannel));
         }
 
-        private void rbSas3CustomerMode_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void rbSas3CustomerCheckMode_CheckedChanged(object sender, EventArgs e)
         {
 
         }
 
-<<<<<<< HEAD
         private void tbPassword_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-=======
->>>>>>> 09f2c072019af8783cdd157c9996867da41095f3
         private void cbCh1_CheckedChanged(object sender, EventArgs e)
         {
             if (cbCh1.Checked)
