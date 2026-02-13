@@ -37,7 +37,7 @@ namespace IntegratedGuiV2
         private int SequenceIndexA = 0, SequenceIndexB = 0;
         private int SequenceIndexDirectionA = 0, SequenceIndexDirectionB = 0;
         private int ForceOpenSas4 = 0, ForceOpenPcie4 = 0, ForceOpenQsfp28 = 0;
-        private int ForceControl1 = 0, ForceControl2 = 0, ForceControl3 = 0;
+        private int ForceControl1 = 0, ForceControl2 = 0, ForceControl3 = 0, ForceQCModeSas4 = 0,ForceQCModePcie4 = 0, ForceQCModeQsfp28 = 0; // QC Mode
         private bool DoubleSideMode = false;
         private int ProcessingChannel = 1;
         private int SerialNumber = 1;
@@ -52,6 +52,7 @@ namespace IntegratedGuiV2
         private bool Sas3Module = false;
         private bool IsListeningForHideKeys = false;
         private bool IsSwitching = false;
+        private bool _isQCMode = false;
         private string CurrentDate = DateTime.Now.ToString("yyMMdd");
         private int Revision = 1;
         private string TempFolderPath = string.Empty;
@@ -630,7 +631,8 @@ namespace IntegratedGuiV2
                 new Keys[] { Keys.D,Keys.NumPad3, Keys.NumPad3, Keys.NumPad3, Keys.Down},
                 new Keys[] { Keys.T, Keys.I, Keys.M, Keys.E},
                 new Keys[] { Keys.D, Keys.NumPad3, Keys.NumPad2, Keys.NumPad3, Keys.NumPad4},
-                new Keys[] { Keys.D, Keys.NumPad0, Keys.NumPad0, Keys.NumPad8, Keys.NumPad0}
+                new Keys[] { Keys.D, Keys.NumPad0, Keys.NumPad0, Keys.NumPad8, Keys.NumPad0},
+                new Keys[] { Keys.Q, Keys.C, Keys.M, Keys.O, Keys.D, Keys.E } // NEW: QC Mode
                 };
 
             Action[] actions = {
@@ -644,12 +646,15 @@ namespace IntegratedGuiV2
                 () => _DisplayRelinkControlUi(),
                 () => _DirectDriveMpMode(),
                 () => _EnableHiddenEngineerMode(),
+                () => _SelectModelBeforeActivateQCMode(0), // QC Mode SAS4
+                () => _SelectModelBeforeActivateQCMode(1), // QC Mode PCIe4
+                () => _SelectModelBeforeActivateQCMode(2)  // QC Mode QSFP28
             };
 
             int[] sequenceIndices = {   SequenceIndexA, SequenceIndexB,
                                         SequenceIndexDirectionA, SequenceIndexDirectionB,
                                         ForceOpenSas4, ForceOpenPcie4, ForceOpenQsfp28,
-                                        ForceControl1, ForceControl2 ,ForceControl3};
+                                        ForceControl1, ForceControl2 ,ForceControl3,ForceQCModeSas4,ForceQCModePcie4,ForceQCModeQsfp28};
 
             for (int i = 0; i < expectedKeys.Length; i++) {
                 if (sequenceIndices[i] < expectedKeys[i].Length &&
@@ -677,6 +682,9 @@ namespace IntegratedGuiV2
             ForceControl1 = sequenceIndices[7];
             ForceControl2 = sequenceIndices[8];
             ForceControl3 = sequenceIndices[9];
+            ForceQCModeSas4 = sequenceIndices[10]; // QC ModeSas4
+            ForceQCModePcie4 = sequenceIndices[11]; // QC Mode
+            ForceQCModeQsfp28 = sequenceIndices[12]; // QC Mode   
         }
 
         private void _ResetSequence()
@@ -691,6 +699,9 @@ namespace IntegratedGuiV2
             ForceControl1 = 0;
             ForceControl2 = 0;
             ForceControl3 = 0;
+            ForceQCModeSas4 = 0; // QC ModeSas4
+            ForceQCModePcie4 = 0; // QC ModePcie4
+            ForceQCModeQsfp28 = 0; // QC ModeQsfp28
         }
 
         private bool CheckSequenceComplete(int currentIndex, Keys[] expectedKeys)
@@ -961,6 +972,30 @@ namespace IntegratedGuiV2
             mainForm.SetPermissions("Administrator");
 
             switch (productType) {
+                case 0:
+                    mainForm.SetProduct("SAS4.0");
+                    break;
+                case 1:
+                    mainForm.SetProduct("PCIe4.0");
+                    break;
+                case 2:
+                    mainForm.SetProduct("QSFP28");
+                    break;
+            }
+
+            mainForm.Show();
+            loadingForm.Close();
+            this.Hide();
+        }
+
+        private void _SelectModelBeforeActivateQCMode(int productType) // QC_MODE,
+        {
+            EngineerForm mainForm = new EngineerForm(true);
+            loadingForm.Show(this);
+            mainForm.SetPermissions("QC");
+
+            switch (productType)
+            {
                 case 0:
                     mainForm.SetProduct("SAS4.0");
                     break;

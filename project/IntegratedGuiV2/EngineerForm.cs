@@ -51,6 +51,7 @@ namespace IntegratedGuiV2
         private bool BypassWriteIcConfig = false;
         private bool FirstRound = true;
         private bool FlagFwUpdated = false;
+        private bool _isQCMode = false;
         private string userRole = "";
         private string lastUsedDirectory;
         private bool SetQsfpMode = false;
@@ -1765,7 +1766,17 @@ namespace IntegratedGuiV2
 
         public void SetPermissions(string permissions)
         {
+            
             cbPermission.SelectedItem = permissions;
+
+            if (permissions == "QC")
+            {
+                _EnableQCMode(); // Enable QC mode for QC users
+            }
+            else
+            {
+                    //_DisableQCMode(); // Disable QC mode for non-QC users
+            }
         }
 
         public void SetProduct(string product)
@@ -1955,8 +1966,11 @@ namespace IntegratedGuiV2
 
             //_GenerateCfgButtonState(1);
             //_GenerateCfgButtonState(2);
-
-            if (FirstRead)
+            if (_isQCMode)
+            {
+                _EnableQCMode();
+            }
+            else if (FirstRead)
             {
                 bGlobalWrite.Enabled = true;
                 bStoreIntoFlash.Enabled = true;
@@ -4644,6 +4658,74 @@ namespace IntegratedGuiV2
                 ChannelSetApi(13);
             else
                 ChannelSetApi(0);
+        }
+        private void _EnableQCMode()
+        {
+            if (!this.Text.Contains("[QC MODE]"))
+            {
+                this.Text += " [QC MODE]";
+            }
+            _isQCMode = true;
+
+            SetInnerControlStatus("bWrite", false);
+            SetInnerControlStatus("bStoreIntoFlash", false);
+            SetInnerControlStatus("bPasswordReset", false);
+            SetInnerControlStatus("gbControlBytes", false);
+            SetInnerControlStatus("gbUpPage3", false);
+
+            if (bGlobalWrite != null)
+            {
+                bGlobalWrite.Enabled = false;
+                bGlobalWrite.BackColor = Color.LightGray;
+            }
+            if (cbInfomation != null) cbInfomation.Checked = true;
+            if (cbMemDump != null) cbMemDump.Checked = true;
+            if (cbTxIcConfig != null) cbTxIcConfig.Checked = true;
+            if (cbRxIcConfig != null) cbRxIcConfig.Checked = true;
+
+            if (cbDdm != null)
+            {
+                cbDdm.Checked = false;
+                cbDdm.Enabled = false;
+                cbDdm.BackColor = Color.LightGray;
+            }
+            if (cbCorrector != null)
+            {
+                cbCorrector.Checked = false;
+                cbCorrector.Enabled = false;
+                cbCorrector.BackColor = Color.LightGray;
+            }
+
+            if (tcMain.TabPages.Contains(tabPage2))
+            {
+                tcMain.TabPages.Remove(tabPage2);
+            }
+            if (tcMain.TabPages.Contains(tabPage4))
+            {
+                tcMain.TabPages.Remove(tabPage4);
+            }
+            if (tcMain.TabPages.Contains(tabPage5))
+            {
+                tcMain.TabPages.Remove(tabPage5);
+            }      
+        }
+        private void SetInnerControlStatus(string controlName, bool isEnabled)
+        {
+            // Find controls even if they are inside DLLs or Panels
+            Control[] foundControls = this.Controls.Find(controlName, true);
+
+            if (foundControls.Length > 0)
+            {
+                foreach (Control c in foundControls)
+                {
+                    c.Enabled = isEnabled;
+                    // Change color for visual feedback
+                    if (c is Button)
+                    {
+                        c.BackColor = isEnabled ? Color.White : Color.LightGray;
+                    }
+                }
+            }
         }
     }
 

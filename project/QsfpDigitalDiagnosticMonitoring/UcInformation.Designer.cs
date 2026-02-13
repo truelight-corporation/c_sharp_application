@@ -95,6 +95,8 @@
             this.tbGigabitEthernetCompliant = new System.Windows.Forms.TextBox();
             this.lGigabitEthernetCompliant = new System.Windows.Forms.Label();
             this.gbUpPage0 = new System.Windows.Forms.GroupBox();
+            this.tbBRNominal = new System.Windows.Forms.TextBox();
+            this.lBRNominal = new System.Windows.Forms.Label();
             this.cbExtendedRateSelectV2 = new System.Windows.Forms.CheckBox();
             this.tbLinkCodes = new System.Windows.Forms.TextBox();
             this.lLinkCodes = new System.Windows.Forms.Label();
@@ -237,8 +239,6 @@
             this.cbInputEqualizationMagnitudeTx2 = new System.Windows.Forms.CheckBox();
             this.cbInputEqualizationMagnitudeTx1 = new System.Windows.Forms.CheckBox();
             this.gbUpPage3 = new System.Windows.Forms.GroupBox();
-            this.lBRNominal = new System.Windows.Forms.Label();
-            this.tbBRNominal = new System.Windows.Forms.TextBox();
             this.gbControlBytes.SuspendLayout();
             this.gbSpecificationCompliance.SuspendLayout();
             this.gbUpPage0.SuspendLayout();
@@ -964,6 +964,22 @@
             this.gbUpPage0.TabIndex = 27;
             this.gbUpPage0.TabStop = false;
             this.gbUpPage0.Text = "UP Page 0";
+            // 
+            // tbBRNominal
+            // 
+            this.tbBRNominal.Location = new System.Drawing.Point(663, 388);
+            this.tbBRNominal.Name = "tbBRNominal";
+            this.tbBRNominal.Size = new System.Drawing.Size(40, 22);
+            this.tbBRNominal.TabIndex = 74;
+            // 
+            // lBRNominal
+            // 
+            this.lBRNominal.AutoSize = true;
+            this.lBRNominal.Location = new System.Drawing.Point(589, 391);
+            this.lBRNominal.Name = "lBRNominal";
+            this.lBRNominal.Size = new System.Drawing.Size(68, 12);
+            this.lBRNominal.TabIndex = 73;
+            this.lBRNominal.Text = "BR nominal :";
             // 
             // cbExtendedRateSelectV2
             // 
@@ -2357,22 +2373,6 @@
             this.gbUpPage3.TabIndex = 70;
             this.gbUpPage3.TabStop = false;
             this.gbUpPage3.Text = "UP Page 3";
-            // 
-            // lBRNominal
-            // 
-            this.lBRNominal.AutoSize = true;
-            this.lBRNominal.Location = new System.Drawing.Point(589, 391);
-            this.lBRNominal.Name = "lBRNominal";
-            this.lBRNominal.Size = new System.Drawing.Size(68, 12);
-            this.lBRNominal.TabIndex = 73;
-            this.lBRNominal.Text = "BR nominal :";
-            // 
-            // tbBRNominal
-            // 
-            this.tbBRNominal.Location = new System.Drawing.Point(663, 388);
-            this.tbBRNominal.Name = "tbBRNominal";
-            this.tbBRNominal.Size = new System.Drawing.Size(40, 22);
-            this.tbBRNominal.TabIndex = 74;
             // 
             // UcInformation
             // 

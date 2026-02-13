@@ -153,7 +153,8 @@
             this.cbPermissions.Items.AddRange(new object[] {
             "MP Manager",
             "Engineer",
-            "Administrator"});
+            "Administrator",
+            "QC"});
             this.cbPermissions.Location = new System.Drawing.Point(17, 182);
             this.cbPermissions.Name = "cbPermissions";
             this.cbPermissions.Size = new System.Drawing.Size(200, 29);
