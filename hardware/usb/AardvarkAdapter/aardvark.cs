@@ -1,105 +1,101 @@
 /*=========================================================================
 | Aardvark Interface Library
 |--------------------------------------------------------------------------
-| Copyright (c) 2002-2008 Total Phase, Inc.
+| Copyright (c) 2003-2024 Total Phase, Inc.
 | All rights reserved.
 | www.totalphase.com
 |
-| Redistribution and use in source and binary forms, with or without
-| modification, are permitted provided that the following conditions
-| are met:
+| Redistribution and use of this file in source and binary forms, with
+| or without modification, are permitted provided that the following
+| conditions are met:
 |
 | - Redistributions of source code must retain the above copyright
-|   notice, this list of conditions and the following disclaimer.
+|   notice, this list of conditions, and the following disclaimer.
 |
 | - Redistributions in binary form must reproduce the above copyright
-|   notice, this list of conditions and the following disclaimer in the
-|   documentation and/or other materials provided with the distribution.
+|   notice, this list of conditions, and the following disclaimer in the
+|   documentation or other materials provided with the distribution.
 |
-| - Neither the name of Total Phase, Inc. nor the names of its
-|   contributors may be used to endorse or promote products derived from
-|   this software without specific prior written permission.
+| - This file must only be used to interface with Total Phase products.
+|   The names of Total Phase and its contributors must not be used to
+|   endorse or promote products derived from this software.
 |
 | THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-| "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-| LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
-| FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE
+| "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING BUT NOT
+| LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+| FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.  IN NO EVENT WILL THE
 | COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-| INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
-| BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+| INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING
+| BUT NOT LIMITED TO PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
 | LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
 | CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
 | LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
 | ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 | POSSIBILITY OF SUCH DAMAGE.
 |--------------------------------------------------------------------------
-| To access Aardvark devices through the API:
+| To access Total Phase Aardvark devices through the API:
 |
 | 1) Use one of the following shared objects:
-|      aardvark.so      --  Linux shared object
-|      aardvark.dll     --  Windows dynamic link library
+|      aardvark.so       --  Linux or macOS shared object
+|      aardvark.dll      --  Windows dynamic link library
 |
 | 2) Along with one of the following language modules:
-|      aardvark.c/h     --  C/C++ API header file and interface module
-|      aardvark_py.py   --  Python API
-|      aardvark.bas     --  Visual Basic 6 API
-|      aardvark.cs      --  C# .NET source
-|      aardvark_net.dll --  Compiled .NET binding
+|      aardvark.c/h      --  C/C++ API header file and interface module
+|      aardvark_py.py    --  Python API
+|      aardvark.cs       --  C# .NET source
+|      aardvark_net.dll  --  Compiled .NET binding
+|      aardvark.bas      --  Visual Basic 6 API
  ========================================================================*/
 
 using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-#if false // Build@20150421: Avoid build error
+#if false //Avoid dulpicate definitions when compiling with the .NET binding
 [assembly: AssemblyTitleAttribute("Aardvark .NET binding")]
 [assembly: AssemblyDescriptionAttribute(".NET binding for Aardvark")]
 [assembly: AssemblyCompanyAttribute("Total Phase, Inc.")]
 [assembly: AssemblyProductAttribute("Aardvark")]
-[assembly: AssemblyCopyrightAttribute("Total Phase, Inc. 2014")]
+[assembly: AssemblyCopyrightAttribute("Total Phase, Inc. 2024")]
 #endif
 
 namespace AardvarkAdapter {
 
 public enum AardvarkStatus : int {
     /* General codes (0 to -99) */
-    AA_OK                        =    0,
-    AA_UNABLE_TO_LOAD_LIBRARY    =   -1,
-    AA_UNABLE_TO_LOAD_DRIVER     =   -2,
-    AA_UNABLE_TO_LOAD_FUNCTION   =   -3,
-    AA_INCOMPATIBLE_LIBRARY      =   -4,
-    AA_INCOMPATIBLE_DEVICE       =   -5,
-    AA_COMMUNICATION_ERROR       =   -6,
-    AA_UNABLE_TO_OPEN            =   -7,
-    AA_UNABLE_TO_CLOSE           =   -8,
-    AA_INVALID_HANDLE            =   -9,
-    AA_CONFIG_ERROR              =  -10,
+    AA_OK                       =    0,
+    AA_UNABLE_TO_LOAD_LIBRARY   =   -1,
+    AA_UNABLE_TO_LOAD_DRIVER    =   -2,
+    AA_UNABLE_TO_LOAD_FUNCTION  =   -3,
+    AA_INCOMPATIBLE_LIBRARY     =   -4,
+    AA_INCOMPATIBLE_DEVICE      =   -5,
+    AA_COMMUNICATION_ERROR      =   -6,
+    AA_UNABLE_TO_OPEN           =   -7,
+    AA_UNABLE_TO_CLOSE          =   -8,
+    AA_INVALID_HANDLE           =   -9,
+    AA_CONFIG_ERROR             =  -10,
 
     /* I2C codes (-100 to -199) */
-    AA_I2C_NOT_AVAILABLE         = -100,
-    AA_I2C_NOT_ENABLED           = -101,
-    AA_I2C_READ_ERROR            = -102,
-    AA_I2C_WRITE_ERROR           = -103,
-    AA_I2C_SLAVE_BAD_CONFIG      = -104,
-    AA_I2C_SLAVE_READ_ERROR      = -105,
-    AA_I2C_SLAVE_TIMEOUT         = -106,
-    AA_I2C_DROPPED_EXCESS_BYTES  = -107,
-    AA_I2C_BUS_ALREADY_FREE      = -108,
+    AA_I2C_NOT_AVAILABLE        = -100,
+    AA_I2C_NOT_ENABLED          = -101,
+    AA_I2C_READ_ERROR           = -102,
+    AA_I2C_WRITE_ERROR          = -103,
+    AA_I2C_SLAVE_BAD_CONFIG     = -104,
+    AA_I2C_SLAVE_READ_ERROR     = -105,
+    AA_I2C_SLAVE_TIMEOUT        = -106,
+    AA_I2C_DROPPED_EXCESS_BYTES = -107,
+    AA_I2C_BUS_ALREADY_FREE     = -108,
 
     /* SPI codes (-200 to -299) */
-    AA_SPI_NOT_AVAILABLE         = -200,
-    AA_SPI_NOT_ENABLED           = -201,
-    AA_SPI_WRITE_ERROR           = -202,
-    AA_SPI_SLAVE_READ_ERROR      = -203,
-    AA_SPI_SLAVE_TIMEOUT         = -204,
-    AA_SPI_DROPPED_EXCESS_BYTES  = -205,
+    AA_SPI_NOT_AVAILABLE        = -200,
+    AA_SPI_NOT_ENABLED          = -201,
+    AA_SPI_WRITE_ERROR          = -202,
+    AA_SPI_SLAVE_READ_ERROR     = -203,
+    AA_SPI_SLAVE_TIMEOUT        = -204,
+    AA_SPI_DROPPED_EXCESS_BYTES = -205,
 
     /* GPIO codes (-400 to -499) */
-    AA_GPIO_NOT_AVAILABLE        = -400,
-
-    /* I2C bus monitor codes (-500 to -599) */
-    AA_I2C_MONITOR_NOT_AVAILABLE = -500,
-    AA_I2C_MONITOR_NOT_ENABLED   = -501
+    AA_GPIO_NOT_AVAILABLE       = -400
 }
 
 public enum AardvarkConfig : int {
@@ -192,7 +188,7 @@ private class GCContext {
 [DllImport ("aardvark")]
 private static extern int aa_c_version ();
 
-public const int AA_API_VERSION    = 0x050a;   // v5.10
+public const int AA_API_VERSION    = 0x0600;   // v6.00
 public const int AA_REQ_SW_VERSION = 0x050a;   // v5.10
 
 private static short AA_SW_VERSION;
@@ -216,35 +212,33 @@ static AardvarkApi () {
  * defined as follows:
  */
 // enum AardvarkStatus  (from declaration above)
-//     AA_OK                        =    0
-//     AA_UNABLE_TO_LOAD_LIBRARY    =   -1
-//     AA_UNABLE_TO_LOAD_DRIVER     =   -2
-//     AA_UNABLE_TO_LOAD_FUNCTION   =   -3
-//     AA_INCOMPATIBLE_LIBRARY      =   -4
-//     AA_INCOMPATIBLE_DEVICE       =   -5
-//     AA_COMMUNICATION_ERROR       =   -6
-//     AA_UNABLE_TO_OPEN            =   -7
-//     AA_UNABLE_TO_CLOSE           =   -8
-//     AA_INVALID_HANDLE            =   -9
-//     AA_CONFIG_ERROR              =  -10
-//     AA_I2C_NOT_AVAILABLE         = -100
-//     AA_I2C_NOT_ENABLED           = -101
-//     AA_I2C_READ_ERROR            = -102
-//     AA_I2C_WRITE_ERROR           = -103
-//     AA_I2C_SLAVE_BAD_CONFIG      = -104
-//     AA_I2C_SLAVE_READ_ERROR      = -105
-//     AA_I2C_SLAVE_TIMEOUT         = -106
-//     AA_I2C_DROPPED_EXCESS_BYTES  = -107
-//     AA_I2C_BUS_ALREADY_FREE      = -108
-//     AA_SPI_NOT_AVAILABLE         = -200
-//     AA_SPI_NOT_ENABLED           = -201
-//     AA_SPI_WRITE_ERROR           = -202
-//     AA_SPI_SLAVE_READ_ERROR      = -203
-//     AA_SPI_SLAVE_TIMEOUT         = -204
-//     AA_SPI_DROPPED_EXCESS_BYTES  = -205
-//     AA_GPIO_NOT_AVAILABLE        = -400
-//     AA_I2C_MONITOR_NOT_AVAILABLE = -500
-//     AA_I2C_MONITOR_NOT_ENABLED   = -501
+//     AA_OK                       =    0
+//     AA_UNABLE_TO_LOAD_LIBRARY   =   -1
+//     AA_UNABLE_TO_LOAD_DRIVER    =   -2
+//     AA_UNABLE_TO_LOAD_FUNCTION  =   -3
+//     AA_INCOMPATIBLE_LIBRARY     =   -4
+//     AA_INCOMPATIBLE_DEVICE      =   -5
+//     AA_COMMUNICATION_ERROR      =   -6
+//     AA_UNABLE_TO_OPEN           =   -7
+//     AA_UNABLE_TO_CLOSE          =   -8
+//     AA_INVALID_HANDLE           =   -9
+//     AA_CONFIG_ERROR             =  -10
+//     AA_I2C_NOT_AVAILABLE        = -100
+//     AA_I2C_NOT_ENABLED          = -101
+//     AA_I2C_READ_ERROR           = -102
+//     AA_I2C_WRITE_ERROR          = -103
+//     AA_I2C_SLAVE_BAD_CONFIG     = -104
+//     AA_I2C_SLAVE_READ_ERROR     = -105
+//     AA_I2C_SLAVE_TIMEOUT        = -106
+//     AA_I2C_DROPPED_EXCESS_BYTES = -107
+//     AA_I2C_BUS_ALREADY_FREE     = -108
+//     AA_SPI_NOT_AVAILABLE        = -200
+//     AA_SPI_NOT_ENABLED          = -201
+//     AA_SPI_WRITE_ERROR          = -202
+//     AA_SPI_SLAVE_READ_ERROR     = -203
+//     AA_SPI_SLAVE_TIMEOUT        = -204
+//     AA_SPI_DROPPED_EXCESS_BYTES = -205
+//     AA_GPIO_NOT_AVAILABLE       = -400
 
 
 /*=========================================================================
@@ -444,7 +438,6 @@ public static int aa_port (
 public const int AA_FEATURE_SPI = 0x00000001;
 public const int AA_FEATURE_I2C = 0x00000002;
 public const int AA_FEATURE_GPIO = 0x00000008;
-public const int AA_FEATURE_I2C_MONITOR = 0x00000010;
 public static int aa_features (
     int  aardvark
 )
@@ -580,7 +573,6 @@ public const int AA_ASYNC_NO_DATA = 0x00000000;
 public const int AA_ASYNC_I2C_READ = 0x00000001;
 public const int AA_ASYNC_I2C_WRITE = 0x00000002;
 public const int AA_ASYNC_SPI = 0x00000004;
-public const int AA_ASYNC_I2C_MONITOR = 0x00000008;
 public static int aa_async_poll (
     int  aardvark,
     int  timeout
@@ -827,43 +819,6 @@ public static int aa_i2c_slave_read_ext (
     if (!AA_LIBRARY_LOADED) return (int)AardvarkStatus.AA_INCOMPATIBLE_LIBRARY;
     ushort data_in_num_bytes = (ushort)tp_min(num_bytes, data_in.Length);
     return net_aa_i2c_slave_read_ext(aardvark, ref addr, data_in_num_bytes, data_in, ref num_read);
-}
-
-/*
- * Enable the I2C bus monitor
- * This disables all other functions on the Aardvark adapter
- */
-public static int aa_i2c_monitor_enable (
-    int  aardvark
-)
-{
-    if (!AA_LIBRARY_LOADED) return (int)AardvarkStatus.AA_INCOMPATIBLE_LIBRARY;
-    return net_aa_i2c_monitor_enable(aardvark);
-}
-
-/* Disable the I2C bus monitor */
-public static int aa_i2c_monitor_disable (
-    int  aardvark
-)
-{
-    if (!AA_LIBRARY_LOADED) return (int)AardvarkStatus.AA_INCOMPATIBLE_LIBRARY;
-    return net_aa_i2c_monitor_disable(aardvark);
-}
-
-/* Read the data collected by the bus monitor */
-public const ushort AA_I2C_MONITOR_DATA = 0x00ff;
-public const ushort AA_I2C_MONITOR_NACK = 0x0100;
-public const ushort AA_I2C_MONITOR_CMD_START = 0xff00;
-public const ushort AA_I2C_MONITOR_CMD_STOP = 0xff01;
-public static int aa_i2c_monitor_read (
-    int       aardvark,
-    ushort    num_bytes,
-    ushort[]  data
-)
-{
-    if (!AA_LIBRARY_LOADED) return (int)AardvarkStatus.AA_INCOMPATIBLE_LIBRARY;
-    ushort data_num_bytes = (ushort)tp_min(num_bytes, data.Length);
-    return net_aa_i2c_monitor_read(aardvark, data_num_bytes, data);
 }
 
 /*
@@ -1246,15 +1201,6 @@ private static extern int net_aa_i2c_slave_write_stats_ext (int aardvark, ref us
 
 [DllImport ("aardvark")]
 private static extern int net_aa_i2c_slave_read_ext (int aardvark, ref byte addr, ushort num_bytes, [Out] byte[] data_in, ref ushort num_read);
-
-[DllImport ("aardvark")]
-private static extern int net_aa_i2c_monitor_enable (int aardvark);
-
-[DllImport ("aardvark")]
-private static extern int net_aa_i2c_monitor_disable (int aardvark);
-
-[DllImport ("aardvark")]
-private static extern int net_aa_i2c_monitor_read (int aardvark, ushort num_bytes, [Out] ushort[] data);
 
 [DllImport ("aardvark")]
 private static extern int net_aa_i2c_pullup (int aardvark, byte pullup_mask);

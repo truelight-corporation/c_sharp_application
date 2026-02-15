@@ -70,7 +70,7 @@ namespace AardvarkAdapter
                 goto Error;
             }
 
-            // Ensure that the I2C subsystem is enabled
+            // Ensure that the I2C subsystem is enabled 
             AardvarkApi.aa_configure(iHandle, AardvarkConfig.AA_CONFIG_SPI_I2C);
 
             // Enable the I2C bus pullup resistors (2.2k resistors).

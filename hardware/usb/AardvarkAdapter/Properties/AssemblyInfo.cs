@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("aardvark")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Aardvark .NET binding")]
+[assembly: AssemblyDescription(".NET binding for Aardvark")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("TrueLight")]
-[assembly: AssemblyProduct("aardvark")]
-[assembly: AssemblyCopyright("Copyright © TrueLight 2015")]
+[assembly: AssemblyProduct("Aardvark")]
+[assembly: AssemblyCopyright("Copyright © TrueLight 2026")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
