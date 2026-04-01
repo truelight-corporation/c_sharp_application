@@ -18,7 +18,6 @@ using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Web.UI;
 using System.Windows.Forms;
 using System.Xml;
 using ComponentFactory.Krypton.Toolkit;
@@ -53,6 +52,10 @@ namespace IntegratedGuiV2
         private bool IsListeningForHideKeys = false;
         private bool IsSwitching = false;
         private bool _isQCMode = false;
+        private enum StationState { Idle, ReadyToSN, FaultHotplug, Recovering, Recovered }
+        private StationState _stationState = StationState.Idle;
+        private string _recoveryBackupPath = string.Empty;
+        private string _pendingRecoverySN = string.Empty;
         private string CurrentDate = DateTime.Now.ToString("yyMMdd");
         private int Revision = 1;
         private string TempFolderPath = string.Empty;
@@ -390,14 +393,229 @@ namespace IntegratedGuiV2
 
         private void HandlePluginDetected(bool isDetected)
         {
-            if (isDetected) {
-                if (!ForceConnectWithoutInvoke)
-                    loadingForm.PluginDetected();
+            if (isDetected)
+            {
+                if (_stationState == StationState.ReadyToSN ||
+                    _stationState == StationState.FaultHotplug ||
+                    _stationState == StationState.Recovered)
+                {
+                    _stationState = StationState.FaultHotplug;
+
+                    BeginInvoke(new Action(async () =>
+                    {
+                        bStart.Enabled = false;
+                        bWriteSnDateCone.Enabled = false;
+                        lCh1Message.Text = "Abnormal power loss detected, awaiting confirmation...";
+
+                        DialogResult result = MessageBox.Show(
+                            "Abnormal module power loss detected.\n" +
+                            "Please confirm: is the module currently in the fixture\n" +
+                            "the SAME module that just lost power?\n\n" +
+                            "[Yes] : Execute recovery\n" +
+                            "[No]  : Keep waiting\n" +
+                            "[Cancel] : Skip this module",
+                            "Abnormal Power Loss Detected",
+                            MessageBoxButtons.YesNoCancel,
+                            MessageBoxIcon.Warning,
+                            MessageBoxDefaultButton.Button2);
+
+                        switch (result)
+                        {
+                            case DialogResult.Yes:
+                                await HandleRecoveryAsync();
+                                break;
+                            case DialogResult.No:
+                                lCh1Message.Text = "Please re-insert the affected module. System will auto-detect.";
+                                break;
+                            case DialogResult.Cancel:
+                                HandleBypass();
+                                break;
+                        }
+                    }));
+                }
                 else
-                    MessageBox.Show("Get it!");
+                {
+                    if (!ForceConnectWithoutInvoke)
+                        loadingForm.PluginDetected();
+                }
             }
         }
 
+        private async Task<bool> WaitForModuleReadyAsync(int timeoutMs = 3000)
+        {
+            int intervalMs = 100;
+            int elapsed = 0;
+
+            while (elapsed < timeoutMs)
+            {
+                // Wait first, then read: gives module boot buffer time
+                // to avoid hitting an unstable I2C bus immediately after insertion
+                await Task.Delay(intervalMs);
+                elapsed += intervalMs;
+
+                try
+                {
+                    int result = engineerForm.InformationReadApi();
+                    if (result >= 0)
+                    {
+                        string sn = engineerForm.GetVendorSnFromDdmiApi();
+                        if (!string.IsNullOrWhiteSpace(sn))
+                            return true;
+                    }
+                }
+                catch
+                {
+                    // I2C NACK or exception, continue polling
+                }
+            }
+
+            return false;
+        }
+
+        private async Task HandleRecoveryAsync()
+        {
+            lCh1Message.Text = "Waiting for module boot to complete...";
+
+            bool isReady = await WaitForModuleReadyAsync(timeoutMs: 3000);
+            if (!isReady)
+            {
+                MessageBox.Show("Module did not become ready within the expected time.\nPlease re-insert or check hardware.",
+                                "Timeout", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                lCh1Message.Text = "Boot wait timeout. Please re-insert module.";
+                return;
+            }
+
+            // Re-read after boot confirmation to ensure SN data is fresh, not cached
+            engineerForm.InformationReadApi();
+            string currentSN = engineerForm.GetVendorSnFromDdmiApi();
+
+            if (currentSN != _pendingRecoverySN)
+            {
+                MessageBox.Show("SN mismatch. A different module may have been inserted. Recovery rejected.\n\n" +
+                                $"Expected SN : {_pendingRecoverySN}\n" +
+                                $"Current SN  : {currentSN}",
+                                "Critical Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                lCh1Message.Text = "SN mismatch. Please verify the module.";
+                return;
+            }
+
+            await RestoreBackupToModuleAsync();
+        }
+        private async Task RestoreBackupToModuleAsync()
+        {
+            if (!File.Exists(_recoveryBackupPath))
+            {
+                _stationState = StationState.FaultHotplug;
+                MessageBox.Show("Backup file not found. Unable to restore module parameters.",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            _stationState = StationState.Recovering;
+            lCh1Message.Text = "Restoring parameters from backup";
+
+            // Task.Run: RestoreRecoverySnapshotApi is a blocking I2C operation
+            // Push to background thread to keep UI responsive
+            bool success = await Task.Run(() =>
+            {
+                int result = engineerForm.RestoreRecoverySnapshotApi(_recoveryBackupPath);
+                return result >= 0;
+            });
+
+            if (!success)
+            {
+                _stationState = StationState.FaultHotplug;
+                MessageBox.Show("Failed to restore backup data. Please check I2C communication and retry.",
+                                "Restore Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                lCh1Message.Text = "Restore failed. Please re-run Start.";
+                return;
+            }
+
+            _stationState = StationState.Recovered;
+            bStart.Enabled = false;
+            bWriteSnDateCone.Enabled = true;
+            lCh1Message.Text = "Recovery complete. Please proceed with Write SN.";
+        }
+        private void HandleBypass()
+        {
+            string reason = PromptForBypassReason();
+            if (string.IsNullOrEmpty(reason)) return;
+
+            WriteBypassLog(reason);
+
+            _stationState = StationState.Idle;
+            _pendingRecoverySN = string.Empty;
+            _recoveryBackupPath = string.Empty;
+            bStart.Enabled = true;
+            bWriteSnDateCone.Enabled = true;
+            lCh1Message.Text = "Module bypassed. Ready for next operation.";
+        }
+
+        private string PromptForBypassReason()
+        {
+            using (Form prompt = new Form())
+            {
+                prompt.Width = 400;
+                prompt.Height = 170;
+                prompt.FormBorderStyle = FormBorderStyle.FixedDialog;
+                prompt.Text = "Select Bypass Reason";
+                prompt.StartPosition = FormStartPosition.CenterParent;
+                prompt.MaximizeBox = false;
+                prompt.MinimizeBox = false;
+
+                System.Windows.Forms.ComboBox combo = new System.Windows.Forms.ComboBox
+                {
+                    Left = 20,
+                    Top = 25,
+                    Width = 340,
+                    DropDownStyle = ComboBoxStyle.DropDownList
+                };
+                combo.Items.AddRange(new string[]
+                {
+            "Hotplug abnormality - unrecoverable",
+            "Customer confirmed no recovery needed",
+            "Other"
+                });
+                combo.SelectedIndex = 0;
+
+                System.Windows.Forms.Button btnOk = new System.Windows.Forms.Button
+                {
+                    Text = "Confirm Bypass",
+                    Left = 140,
+                    Top = 80,
+                    Width = 110,
+                    Height = 30,
+                    DialogResult = DialogResult.OK
+                };
+
+                prompt.Controls.AddRange(new System.Windows.Forms.Control[] { combo, btnOk });
+                prompt.AcceptButton = btnOk;
+
+                return prompt.ShowDialog(this) == DialogResult.OK
+                    ? combo.SelectedItem?.ToString() ?? string.Empty
+                    : string.Empty;
+            }
+        }
+
+        private void WriteBypassLog(string reason)
+        {
+            try
+            {
+                string logDir = tbLogFilePath.Text;
+                if (!Directory.Exists(logDir))
+                    Directory.CreateDirectory(logDir);
+
+                string logPath = Path.Combine(logDir, "BypassLog.txt");
+                string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                string logContent = $"[{timestamp}] [SN:{_pendingRecoverySN}] Bypass reason: {reason}{Environment.NewLine}";
+                File.AppendAllText(logPath, logContent);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to write Bypass Log: {ex.Message}",
+                                "Log Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
         public MainForm()
         {
             InitializeComponent();
@@ -2484,6 +2702,12 @@ namespace IntegratedGuiV2
                 if (engineerForm.ExportLogfileApi(modelType, logFileName, true, true) < 0)
                     return -1; //Must be implement
             }
+            if (_stationState == StationState.FaultHotplug ||_stationState == StationState.Recovering)
+            {
+                MessageBox.Show("System is in an abnormal state.\nPlease complete the module recovery process before executing Write SN.",
+                                "Operation Blocked", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return -1;
+            }
 
             Thread.Sleep(10);
             _UpdateMessage(ch, "LogFile..exported");
@@ -2661,10 +2885,9 @@ namespace IntegratedGuiV2
         private void bStart_Click(object sender, EventArgs e)
         {
             if (lMode.Text == "Customer")
-            {
+                {
                 cbSkipFlashingVerifyOnly.Checked = false;
-            }
-
+                }
             int tmp;
             bool isCustomerMode = (lMode.Text == "Customer" || lMode.Text == "");
             bool isVerifyOnlyMode = cbSkipFlashingVerifyOnly.Checked; //Status read from checkbox
@@ -2674,6 +2897,10 @@ namespace IntegratedGuiV2
             {
                 _DisableButtons();
                 _InitialUi();
+
+                _stationState = StationState.Idle;
+                _pendingRecoverySN = string.Empty;
+                _recoveryBackupPath = string.Empty;
 
                 if (isVerifyOnlyMode)
                 {
@@ -2706,6 +2933,14 @@ namespace IntegratedGuiV2
 
                     return;
                 }
+                if (!isVerifyOnlyMode && tmp == 0)
+                {
+                    //engineerForm.InformationReadApi();
+                    _pendingRecoverySN = engineerForm.GetVendorSnFromDdmiApi();
+                    _recoveryBackupPath = Path.Combine(Application.StartupPath, "LogFolder", "ModuleRegisterFile.csv");
+                    _stationState = StationState.ReadyToSN;
+                }
+
                 if ((isVerifyOnlyMode || isCustomerMode) && tmp == 0)
                 {
                     _GetFirmwareVersion(1);
@@ -2714,7 +2949,12 @@ namespace IntegratedGuiV2
                     string successMsg = isVerifyOnlyMode ? "Verification completed successfully!" : "Operation completed successfully!";
                     MessageBox.Show("Verification completed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                if (_stationState == StationState.ReadyToSN)
+                    bStart.Enabled = false;
+
                 _EnableButtons();
+                if (_stationState == StationState.ReadyToSN)
+                    bStart.Enabled = false;
                 bStart.Select();
             }
         }
@@ -2791,7 +3031,14 @@ namespace IntegratedGuiV2
         {
             string RegisterFilePath = Path.Combine(TempFolderPath, "RegisterFile.csv"); //Generate the CfgFilePath with config folder
                                                                                         //FirstRound = true;  //??
-
+            if (_stationState == StationState.FaultHotplug ||_stationState == StationState.Recovering)
+            {
+                MessageBox.Show(
+                    "System is in an abnormal state.\n" +
+                    "Please complete the module recovery process before executing Write SN.",
+                    "Operation Blocked", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return -1;
+            }
 
             if (_VenderSnInputFormatCheck() < 0)
                 return _CloseLoadingFormAndReturn(-1);
@@ -2830,6 +3077,10 @@ namespace IntegratedGuiV2
             SerialNumber++;
             _SetDomainUpDownValue("dudSsss", SerialNumber);
             _UpdateSerialNumberTextBox();
+            _stationState = StationState.Idle;
+            _pendingRecoverySN = string.Empty;
+            _recoveryBackupPath = string.Empty;
+            bStart.Enabled = true;
             return 0;
         }
 
@@ -3006,9 +3257,15 @@ namespace IntegratedGuiV2
             _DisableButtons();
             _InitialUi();
 
-            _WriteSnDateCodeFlow();
+            int result = _WriteSnDateCodeFlow();
 
             _EnableButtons();
+            if (result < 0)
+            {
+                bWriteSnDateCone.Select();
+                return;
+            }
+
             bWriteSnDateCone.Select();
         }
 

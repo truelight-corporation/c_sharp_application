@@ -515,7 +515,29 @@ namespace IntegratedGuiV2
             else
                 return ucDigitalDiagnosticsMonitoring.RxPowerReadApi();
         }
+        public int RestoreRecoverySnapshotApi(string snapshotPath)
+        {
+            if (this.InvokeRequired)
+                return (int)this.Invoke(new Func<int>(() => _RestoreRecoverySnapshot(snapshotPath)));
+            else
+                return _RestoreRecoverySnapshot(snapshotPath);
+        }
 
+        private int _RestoreRecoverySnapshot(string snapshotPath)
+        {
+            if (!File.Exists(snapshotPath))
+                return -1;
+
+            if (_WriteRegisterPage("Up 00h", 50, snapshotPath) < 0) return -1;
+            if (_WriteRegisterPage("Up 03h", 50, snapshotPath) < 0) return -1;
+            if (_WriteRegisterPage("80h", 200, snapshotPath) < 0) return -1;
+            if (_WriteRegisterPage("81h", 200, snapshotPath) < 0) return -1;
+            if (_WriteRegisterPage("Rx", 1000, snapshotPath) < 0) return -1;
+            if (_WriteRegisterPage("Tx", 1000, snapshotPath) < 0) return -1;
+            // StoreIntoFlashApi() deliberately omitted.
+            // Write SN will trigger hardware Auto-Page-Flush to persist parameters.
+            return 0;
+        }
         public void UpdateSecurityLockStateFromNuvotonIcpApi()
         {
             if (this.InvokeRequired)
