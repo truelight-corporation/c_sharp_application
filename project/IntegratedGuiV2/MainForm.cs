@@ -395,49 +395,10 @@ namespace IntegratedGuiV2
         {
             if (isDetected)
             {
-                if (_stationState == StationState.ReadyToSN ||
-                    _stationState == StationState.FaultHotplug ||
-                    _stationState == StationState.Recovered)
-                {
-                    _stationState = StationState.FaultHotplug;
-
-                    BeginInvoke(new Action(async () =>
-                    {
-                        bStart.Enabled = false;
-                        bWriteSnDateCone.Enabled = false;
-                        lCh1Message.Text = "Abnormal power loss detected, awaiting confirmation...";
-
-                        DialogResult result = MessageBox.Show(
-                            "Abnormal module power loss detected.\n" +
-                            "Please confirm: is the module currently in the fixture\n" +
-                            "the SAME module that just lost power?\n\n" +
-                            "[Yes] : Execute recovery\n" +
-                            "[No]  : Keep waiting\n" +
-                            "[Cancel] : Skip this module",
-                            "Abnormal Power Loss Detected",
-                            MessageBoxButtons.YesNoCancel,
-                            MessageBoxIcon.Warning,
-                            MessageBoxDefaultButton.Button2);
-
-                        switch (result)
-                        {
-                            case DialogResult.Yes:
-                                await HandleRecoveryAsync();
-                                break;
-                            case DialogResult.No:
-                                lCh1Message.Text = "Please re-insert the affected module. System will auto-detect.";
-                                break;
-                            case DialogResult.Cancel:
-                                HandleBypass();
-                                break;
-                        }
-                    }));
-                }
+                if (!ForceConnectWithoutInvoke)
+                    loadingForm.PluginDetected();
                 else
-                {
-                    if (!ForceConnectWithoutInvoke)
-                        loadingForm.PluginDetected();
-                }
+                    MessageBox.Show("Get it!");
             }
         }
 
@@ -472,70 +433,7 @@ namespace IntegratedGuiV2
             return false;
         }
 
-        private async Task HandleRecoveryAsync()
-        {
-            lCh1Message.Text = "Waiting for module boot to complete...";
-
-            bool isReady = await WaitForModuleReadyAsync(timeoutMs: 3000);
-            if (!isReady)
-            {
-                MessageBox.Show("Module did not become ready within the expected time.\nPlease re-insert or check hardware.",
-                                "Timeout", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                lCh1Message.Text = "Boot wait timeout. Please re-insert module.";
-                return;
-            }
-
-            // Re-read after boot confirmation to ensure SN data is fresh, not cached
-            engineerForm.InformationReadApi();
-            string currentSN = engineerForm.GetVendorSnFromDdmiApi();
-
-            if (currentSN != _pendingRecoverySN)
-            {
-                MessageBox.Show("SN mismatch. A different module may have been inserted. Recovery rejected.\n\n" +
-                                $"Expected SN : {_pendingRecoverySN}\n" +
-                                $"Current SN  : {currentSN}",
-                                "Critical Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                lCh1Message.Text = "SN mismatch. Please verify the module.";
-                return;
-            }
-
-            await RestoreBackupToModuleAsync();
-        }
-        private async Task RestoreBackupToModuleAsync()
-        {
-            if (!File.Exists(_recoveryBackupPath))
-            {
-                _stationState = StationState.FaultHotplug;
-                MessageBox.Show("Backup file not found. Unable to restore module parameters.",
-                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            _stationState = StationState.Recovering;
-            lCh1Message.Text = "Restoring parameters from backup";
-
-            // Task.Run: RestoreRecoverySnapshotApi is a blocking I2C operation
-            // Push to background thread to keep UI responsive
-            bool success = await Task.Run(() =>
-            {
-                int result = engineerForm.RestoreRecoverySnapshotApi(_recoveryBackupPath);
-                return result >= 0;
-            });
-
-            if (!success)
-            {
-                _stationState = StationState.FaultHotplug;
-                MessageBox.Show("Failed to restore backup data. Please check I2C communication and retry.",
-                                "Restore Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                lCh1Message.Text = "Restore failed. Please re-run Start.";
-                return;
-            }
-
-            _stationState = StationState.Recovered;
-            bStart.Enabled = false;
-            bWriteSnDateCone.Enabled = true;
-            lCh1Message.Text = "Recovery complete. Please proceed with Write SN.";
-        }
+    
         private void HandleBypass()
         {
             string reason = PromptForBypassReason();
@@ -2640,6 +2538,22 @@ namespace IntegratedGuiV2
 
         private int _WriteSnDatecode(int ch)
         {
+            bool conditionA = (_stationState == StationState.ReadyToSN);
+            bool conditionB = (ch == 1);
+
+            if (_stationState == StationState.ReadyToSN && ch == 1)
+            {
+                int preCheckResult = _PreWriteSnCheck();
+                if (preCheckResult < 0)
+                    return -1;
+            }
+
+            if (_stationState == StationState.ReadyToSN && ch ==1)
+            {
+                int preCheckResult = _PreWriteSnCheck();
+                if (preCheckResult < 0)
+                    return -1;
+            }
             string modelType = lProduct.Text;
             string venderSn = tbVenderSn.Text;
             string dataCode = tbDateCode.Text;
@@ -2711,10 +2625,37 @@ namespace IntegratedGuiV2
 
             Thread.Sleep(10);
             _UpdateMessage(ch, "LogFile..exported");
+            _stationState = StationState.Idle;
+            _pendingRecoverySN = string.Empty;
+            _recoveryBackupPath = string.Empty;
+            bStart.Enabled = true;
+            return 0;
+        }
+        private int _PreWriteSnCheck()
+        {
+            if (!File.Exists(_recoveryBackupPath))
+            {
+                return -1;
+            }
+
+            lCh1Message.Text = "Pre-check: verifying module parameters...";
+            Application.DoEvents();
+
+            engineerForm.InformationReadApi();
+            string currentSN = engineerForm.GetVendorSnFromDdmiApi();
+
+                int restoreResult = engineerForm.RestoreRecoverySnapshotApi(_recoveryBackupPath);
+                if (restoreResult < 0)
+                {
+                    return -1;
+                }
+
+                lCh1Message.Text = "Parameters restored. Proceeding with Write SN...";
+                Application.DoEvents();
+                Thread.Sleep(200);
 
             return 0;
         }
-
         private void ShowDebugInfo(string originalVenderSn, string originalDateCode)
         {
             MessageBox.Show("Information check"
@@ -2935,10 +2876,13 @@ namespace IntegratedGuiV2
                 }
                 if (!isVerifyOnlyMode && tmp == 0)
                 {
-                    //engineerForm.InformationReadApi();
-                    _pendingRecoverySN = engineerForm.GetVendorSnFromDdmiApi();
-                    _recoveryBackupPath = Path.Combine(Application.StartupPath, "LogFolder", "ModuleRegisterFile.csv");
-                    _stationState = StationState.ReadyToSN;
+                    {
+                        _pendingRecoverySN = engineerForm.GetVendorSnFromDdmiApi();
+                        _recoveryBackupPath = Path.Combine(
+                            Application.StartupPath, "LogFolder", "RecoverySnapshot.csv");
+                        _stationState = StationState.ReadyToSN;
+                    }
+
                 }
 
                 if ((isVerifyOnlyMode || isCustomerMode) && tmp == 0)

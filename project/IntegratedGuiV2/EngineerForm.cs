@@ -1253,6 +1253,10 @@ namespace IntegratedGuiV2
                 else if (fileName == "ReWriteRegister") {
                     folderPath = Path.Combine(Application.StartupPath, "RegisterFiles");
                 }
+                else if (fileName == "RecoverySnapshot")
+                {  
+                    folderPath = Path.Combine(Application.StartupPath, "LogFolder");
+                }
                 else {
                     MainFormPaths lastPath = _LoadLastPaths();
                     folderPath = lastPath.LogFilePath;
@@ -1273,7 +1277,8 @@ namespace IntegratedGuiV2
             tempExportFilePath = Path.Combine(folderPath, "temp_" + fileName);
 
             if (File.Exists(exportFilePath)) {
-                if (fileName == "ModuleRegisterFile.csv") {
+                if (fileName == "ModuleRegisterFile.csv" ||fileName == "RecoverySnapshot.csv")
+                {
                     File.Delete(exportFilePath);
                 }
                 else {
@@ -1603,6 +1608,8 @@ namespace IntegratedGuiV2
 
         private void HandlePluginDetected(bool isDetected) // 當DUT插入檢測成功時的處理程序
         {
+            //System.Diagnostics.Debug.WriteLine($"[Layer1] EngineerForm.HandlePluginDetected fired: {isDetected}");
+            //System.Diagnostics.Debug.WriteLine($"[Layer1] OnPluginDetected subscriber count: {OnPluginDetected?.GetInvocationList().Length ?? 0}");
             OnPluginDetected?.Invoke(isDetected);
         }
 
@@ -1621,6 +1628,7 @@ namespace IntegratedGuiV2
             ucNuvotonIcpTool.RequestI2cOperation += UcNuvotonIcpControl_RequestI2cOperation;
             ucNuvotonIcpTool.OnPluginWaiting += HandlePluginWaiting;
             ucNuvotonIcpTool.OnPluginDetected += HandlePluginDetected;
+            System.Diagnostics.Debug.WriteLine("[Init] OnPluginDetected subscription registered.");
             ucDigitalDiagnosticsMonitoring.TextBoxTextChanged += ucDigitalDiagnosticsMonitoring_TextBoxTextChanged;
             this.Size = new System.Drawing.Size(1170, 870);
             _InitialStateBar();
@@ -3234,6 +3242,21 @@ namespace IntegratedGuiV2
 
             StoreIntoFlashApi();
             StateUpdated("Write State:\nStore into flash...Done", 95);
+
+            string modelType = cbProductSelect.SelectedItem?.ToString() ?? string.Empty;
+            if (!string.IsNullOrEmpty(modelType))
+            {
+                string snapshotFolder = Path.Combine(Application.StartupPath, "LogFolder");
+                string snapshotPath = Path.Combine(snapshotFolder, "RecoverySnapshot.csv");
+
+                if (!Directory.Exists(snapshotFolder))
+                    Directory.CreateDirectory(snapshotFolder);
+
+                if (File.Exists(snapshotPath))
+                    File.Delete(snapshotPath);
+
+                _ExportLogfile(modelType, "RecoverySnapshot", true, false);
+            }
 
             return 0;
         }
