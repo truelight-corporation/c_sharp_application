@@ -2153,16 +2153,21 @@ namespace IntegratedGuiV2
                 permissionsNode.SetAttribute("role", "Customer");
             }
 
-            else if (rbCustomerCheckMode.Checked)
+            /*else if (rbCustomerCheckMode.Checked)
             {
                 permissionsNode.SetAttribute("role", "Customer_Check");
-            }
+            }*/
 
             else if (rbMpMode.Checked) {
                 permissionsNode.SetAttribute("role", "MP");
             }
 
             root.AppendChild(permissionsNode);
+
+            string currentFwVersion = GetFirmwareVersionCodeApi().Trim();
+            XmlElement fwVersionNode = xmlDoc.CreateElement("FirmwareVersion");
+            fwVersionNode.SetAttribute("name", currentFwVersion);
+            permissionsNode.AppendChild(fwVersionNode);
 
             // Check product selected
             if (cbProductSelect.SelectedItem != null) {
@@ -2207,6 +2212,9 @@ namespace IntegratedGuiV2
                 _GlobalWriteFromUi(false);
                 _InitialStateBar();
                 _ExportLogfile(modelType, logFileName, false, false); // Export CfgFile to config folder
+
+                string registerFilePath = Path.Combine(folderPath, "RegisterFile.csv");
+                _ApplyCustomerMaskToRegisterFile(registerFilePath);
 
                 if (!string.IsNullOrWhiteSpace(targetApromPath)) {
                     string destinationFilePath = Path.Combine(folderPath, Path.GetFileName(APROMPath));
@@ -2260,8 +2268,13 @@ namespace IntegratedGuiV2
             else {
                 permissionsNode.SetAttribute("role", "Customer Check");
             }
-
             root.AppendChild(permissionsNode);
+
+            string currentFwVersion = GetFirmwareVersionCodeApi().Trim();
+            XmlElement fwVersionNode = xmlDoc.CreateElement("FirmwareVersion");
+            fwVersionNode.SetAttribute("name", currentFwVersion);
+            permissionsNode.AppendChild(fwVersionNode);
+
             XmlElement productNode = xmlDoc.CreateElement("Product");
             productNode.SetAttribute("name", "SAS3.0");
             permissionsNode.AppendChild(productNode);
@@ -3216,10 +3229,10 @@ namespace IntegratedGuiV2
             if (WriteRegisterPageApi("81h", 200, BackupRegisterFilePath) < 0)
                 return -1;
             StateUpdated("Write State:\nPage 0x81h...Done", 70);
-            if (WriteRegisterPageApi("Rx", 1000, BackupRegisterFilePath) < 0)
+            if (WriteRegisterPageApi("Rx", 1000, CfgFilePath) < 0)
                 return -1;
             StateUpdated("Write State:\nRxIcConfig...Done", 80);
-            if (WriteRegisterPageApi("Tx", 1000, BackupRegisterFilePath) < 0)
+            if (WriteRegisterPageApi("Tx", 1000, CfgFilePath) < 0)
                 return -1;
             StateUpdated("Write State:\nTxIcConfig...Done", 90);
 
@@ -3243,6 +3256,7 @@ namespace IntegratedGuiV2
             StoreIntoFlashApi();
             StateUpdated("Write State:\nStore into flash...Done", 95);
 
+            // Export golden snapshot
             string modelType = cbProductSelect.SelectedItem?.ToString() ?? string.Empty;
             if (!string.IsNullOrEmpty(modelType))
             {
@@ -3261,6 +3275,54 @@ namespace IntegratedGuiV2
             return 0;
         }
 
+        private void _ApplyCustomerMaskToRegisterFile(string filePath)
+        {
+            if (!File.Exists(filePath)) return;
+
+            var masks = new List<(string page, int row, int[] byteIndices)>
+    {
+
+        // CrossingAdj (0x4F~0x52)
+        ("Tx", 0x50, new[] { 0, 1, 2 }),
+
+        // Rx - MATA37044C
+        // Output Swing (0x42~0x45)
+        // De-emphasis1 (0x46), De-emphasis2 (0x47)
+        ("Rx", 0x40, new[] { 2, 3, 4, 5, 6, 7 }),
+    };
+
+            var lines = File.ReadAllLines(filePath).ToList();
+
+            for (int i = 0; i < lines.Count; i++)
+            {
+                string line = lines[i];
+                string[] parts = line.Split(',');
+                if (parts.Length < 3) continue;
+
+                string page = parts[0].Trim().Trim('"');
+                if (!int.TryParse(parts[1].Trim().Trim('"'),
+                    System.Globalization.NumberStyles.HexNumber,
+                    null, out int row))
+                    continue;
+
+                foreach (var mask in masks)
+                {
+                    if (page == mask.page && row == mask.row)
+                    {
+                        foreach (int byteIdx in mask.byteIndices)
+                        {
+                            int colIdx = byteIdx + 2;
+                            if (colIdx < parts.Length)
+                                parts[colIdx] = "FF";
+                        }
+                        lines[i] = string.Join(",", parts);
+                        break;
+                    }
+                }
+            }
+
+            File.WriteAllLines(filePath, lines);
+        }
         internal int _WriteFromRegisterFileForSas3(bool CustomerMode, string CfgFilePath, int processingChannel)
         {
             StateUpdated("Write State:\nPreparing resources...", 10);

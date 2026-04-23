@@ -67,7 +67,8 @@ namespace IntegratedGuiV2
         private List<NamingRuleModel> namingRules;
         private Dictionary<string, DomainUpDown> fieldControls;
         private Dictionary<string, Label> lables;
-    
+        private string _requiredFwVersion = string.Empty;
+
         public class NamingRuleModel
         {
             public string RuleName { get; set; }
@@ -1736,6 +1737,9 @@ namespace IntegratedGuiV2
             XmlNode productNode = xmlDoc.SelectSingleNode("//Product");
             string productName = productNode.Attributes["name"].Value;
 
+            XmlNode fwVersionNode = xmlDoc.SelectSingleNode("//FirmwareVersion");
+            _requiredFwVersion = fwVersionNode?.Attributes["name"]?.Value?.Trim() ?? string.Empty;
+
             lMode.Text = role;
             lProduct.Text = productName;
             Sas3Module = (lProduct.Text == "SAS3.0");
@@ -2296,6 +2300,29 @@ namespace IntegratedGuiV2
                 MessageBox.Show("Verify Mode\n" +
                                "directoryPath: \n" + directoryPath +
                                "\nRegisterFilePath: \n" + registerFilePath);
+            }
+
+            if (!string.IsNullOrEmpty(_requiredFwVersion))
+            {
+                string currentFwVersion = engineerForm.GetFirmwareVersionCodeApi().Trim();
+
+                if (currentFwVersion != _requiredFwVersion)
+                {
+                    DialogResult versionCheckResult = MessageBox.Show(
+                        $"Firmware version mismatch detected!\n\n" +
+                        $"Module current version  : {currentFwVersion}\n" +
+                        $"Config required version : {_requiredFwVersion}\n\n" +
+                        "Using an incorrect Config version may overwrite\n" +
+                        "module calibration parameters and cause optical failure.\n\n" +
+                        "Do you want to continue anyway?",
+                        "Version Mismatch Warning",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning,
+                        MessageBoxDefaultButton.Button2);
+
+                    if (versionCheckResult == DialogResult.No)
+                        return -1;
+                }
             }
 
             if (!((_PathCheck(lApName)) || (_PathCheck(lDataName))))
