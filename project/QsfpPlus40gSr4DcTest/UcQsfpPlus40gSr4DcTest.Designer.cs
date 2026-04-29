@@ -148,6 +148,11 @@
             this.dgvAfterTestConfig = new System.Windows.Forms.DataGridView();
             this.bSaveConfig = new System.Windows.Forms.Button();
             this.gbMonitorThreshold = new System.Windows.Forms.GroupBox();
+            this.lRxThresholdMax = new System.Windows.Forms.Label();
+            this.tbRx4ThresholdMax = new System.Windows.Forms.TextBox();
+            this.tbRx1ThresholdMax = new System.Windows.Forms.TextBox();
+            this.tbRx2ThresholdMax = new System.Windows.Forms.TextBox();
+            this.tbRx3ThresholdMax = new System.Windows.Forms.TextBox();
             this.lHtMaxThreshold = new System.Windows.Forms.Label();
             this.tbHtMaxThreshold = new System.Windows.Forms.TextBox();
             this.lLtMaxThreshold = new System.Windows.Forms.Label();
@@ -230,11 +235,6 @@
             this.tbPassword124 = new System.Windows.Forms.TextBox();
             this.l = new System.Windows.Forms.Label();
             this.tbPassword123 = new System.Windows.Forms.TextBox();
-            this.tbRx4ThresholdMax = new System.Windows.Forms.TextBox();
-            this.tbRx1ThresholdMax = new System.Windows.Forms.TextBox();
-            this.tbRx2ThresholdMax = new System.Windows.Forms.TextBox();
-            this.tbRx3ThresholdMax = new System.Windows.Forms.TextBox();
-            this.lRxThresholdMax = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecord)).BeginInit();
             this.tcFunctionSelect.SuspendLayout();
             this.tpLog.SuspendLayout();
@@ -1669,6 +1669,56 @@
             this.gbMonitorThreshold.TabStop = false;
             this.gbMonitorThreshold.Text = "Threshold Config";
             // 
+            // lRxThresholdMax
+            // 
+            this.lRxThresholdMax.AutoSize = true;
+            this.lRxThresholdMax.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lRxThresholdMax.Location = new System.Drawing.Point(6, 113);
+            this.lRxThresholdMax.Name = "lRxThresholdMax";
+            this.lRxThresholdMax.Size = new System.Drawing.Size(62, 16);
+            this.lRxThresholdMax.TabIndex = 142;
+            this.lRxThresholdMax.Text = "Rx Max:";
+            // 
+            // tbRx4ThresholdMax
+            // 
+            this.tbRx4ThresholdMax.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbRx4ThresholdMax.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRx4ThresholdMax.Location = new System.Drawing.Point(208, 109);
+            this.tbRx4ThresholdMax.Name = "tbRx4ThresholdMax";
+            this.tbRx4ThresholdMax.Size = new System.Drawing.Size(40, 27);
+            this.tbRx4ThresholdMax.TabIndex = 140;
+            this.tbRx4ThresholdMax.Text = "5000";
+            // 
+            // tbRx1ThresholdMax
+            // 
+            this.tbRx1ThresholdMax.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbRx1ThresholdMax.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRx1ThresholdMax.Location = new System.Drawing.Point(70, 109);
+            this.tbRx1ThresholdMax.Name = "tbRx1ThresholdMax";
+            this.tbRx1ThresholdMax.Size = new System.Drawing.Size(40, 27);
+            this.tbRx1ThresholdMax.TabIndex = 137;
+            this.tbRx1ThresholdMax.Text = "5000";
+            // 
+            // tbRx2ThresholdMax
+            // 
+            this.tbRx2ThresholdMax.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbRx2ThresholdMax.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRx2ThresholdMax.Location = new System.Drawing.Point(116, 109);
+            this.tbRx2ThresholdMax.Name = "tbRx2ThresholdMax";
+            this.tbRx2ThresholdMax.Size = new System.Drawing.Size(40, 27);
+            this.tbRx2ThresholdMax.TabIndex = 138;
+            this.tbRx2ThresholdMax.Text = "5000";
+            // 
+            // tbRx3ThresholdMax
+            // 
+            this.tbRx3ThresholdMax.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tbRx3ThresholdMax.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbRx3ThresholdMax.Location = new System.Drawing.Point(162, 109);
+            this.tbRx3ThresholdMax.Name = "tbRx3ThresholdMax";
+            this.tbRx3ThresholdMax.Size = new System.Drawing.Size(40, 27);
+            this.tbRx3ThresholdMax.TabIndex = 139;
+            this.tbRx3ThresholdMax.Text = "5000";
+            // 
             // lHtMaxThreshold
             // 
             this.lHtMaxThreshold.AutoSize = true;
@@ -2545,56 +2595,6 @@
             this.tbPassword123.Size = new System.Drawing.Size(40, 27);
             this.tbPassword123.TabIndex = 101;
             this.tbPassword123.Text = "0";
-            // 
-            // tbRx4ThresholdMax
-            // 
-            this.tbRx4ThresholdMax.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRx4ThresholdMax.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbRx4ThresholdMax.Location = new System.Drawing.Point(208, 109);
-            this.tbRx4ThresholdMax.Name = "tbRx4ThresholdMax";
-            this.tbRx4ThresholdMax.Size = new System.Drawing.Size(40, 27);
-            this.tbRx4ThresholdMax.TabIndex = 140;
-            this.tbRx4ThresholdMax.Text = "5000";
-            // 
-            // tbRx1ThresholdMax
-            // 
-            this.tbRx1ThresholdMax.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRx1ThresholdMax.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbRx1ThresholdMax.Location = new System.Drawing.Point(70, 109);
-            this.tbRx1ThresholdMax.Name = "tbRx1ThresholdMax";
-            this.tbRx1ThresholdMax.Size = new System.Drawing.Size(40, 27);
-            this.tbRx1ThresholdMax.TabIndex = 137;
-            this.tbRx1ThresholdMax.Text = "5000";
-            // 
-            // tbRx2ThresholdMax
-            // 
-            this.tbRx2ThresholdMax.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRx2ThresholdMax.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbRx2ThresholdMax.Location = new System.Drawing.Point(116, 109);
-            this.tbRx2ThresholdMax.Name = "tbRx2ThresholdMax";
-            this.tbRx2ThresholdMax.Size = new System.Drawing.Size(40, 27);
-            this.tbRx2ThresholdMax.TabIndex = 138;
-            this.tbRx2ThresholdMax.Text = "5000";
-            // 
-            // tbRx3ThresholdMax
-            // 
-            this.tbRx3ThresholdMax.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tbRx3ThresholdMax.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbRx3ThresholdMax.Location = new System.Drawing.Point(162, 109);
-            this.tbRx3ThresholdMax.Name = "tbRx3ThresholdMax";
-            this.tbRx3ThresholdMax.Size = new System.Drawing.Size(40, 27);
-            this.tbRx3ThresholdMax.TabIndex = 139;
-            this.tbRx3ThresholdMax.Text = "5000";
-            // 
-            // lRxThresholdMax
-            // 
-            this.lRxThresholdMax.AutoSize = true;
-            this.lRxThresholdMax.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lRxThresholdMax.Location = new System.Drawing.Point(6, 113);
-            this.lRxThresholdMax.Name = "lRxThresholdMax";
-            this.lRxThresholdMax.Size = new System.Drawing.Size(62, 16);
-            this.lRxThresholdMax.TabIndex = 142;
-            this.lRxThresholdMax.Text = "Rx Max:";
             // 
             // UcQsfpPlus40gSr4DcTest
             // 

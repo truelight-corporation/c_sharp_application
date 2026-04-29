@@ -224,6 +224,9 @@ namespace QsfpPlus40gSr4DcTest
             bool bPass = true;
             bool bReBurnIn = false;
 
+            if (!lClassification.Text.Equals("A"))
+                bPass = false;
+
             switch (logModeSelect) {
                 case "AfterBurnIn":
                     filteredRows = dtValue.Select("Lable = 'BeforeBurnIn' AND SN = '" + serialNumber + "'");
@@ -2177,6 +2180,281 @@ namespace QsfpPlus40gSr4DcTest
             return 0;
         }
 
+        private void _DumpMiniSASHdAocReg(StreamWriter swDumpLog)
+        {
+            String sTmp;
+            byte[] data = new byte[256];
+            int i;
+
+            swDumpLog.WriteLine("Page,Row,00,01,02,03,04,05,06,07,08,09,0A,0B,0C,0D,0E,0F");
+
+            if (i2cReadCB(80, 0, 128, data) != 128)
+                goto exit;
+
+            sTmp = "";
+            for (i = 0; i < 128; i++) {
+                if (i % 16 == 0) {
+                    if (i != 0) {
+                        swDumpLog.WriteLine(sTmp);
+                        sTmp = "";
+                    }
+                    sTmp = "\"Low Page\",\"" + i.ToString("X2") + "\"";
+                }
+
+                sTmp += ",\"" + data[i].ToString("X2") + "\"";
+            }
+            swDumpLog.WriteLine(sTmp);
+            sTmp = "";
+
+            data[0] = 0x00;
+            if (i2cWriteCB(80, 127, 1, data) < 0)
+                goto exit;
+            Thread.Sleep(100);
+            if (i2cReadCB(80, 128, 128, data) != 128)
+                goto exit;
+            for (i = 0; i < 128; i++) {
+                if (i % 16 == 0) {
+                    if (i != 0) {
+                        swDumpLog.WriteLine(sTmp);
+                        sTmp = "";
+                    }
+                    sTmp = "\"Up 00h\",\"" + i.ToString("X2") + "\"";
+                }
+
+                sTmp += ",\"" + data[i].ToString("X2") + "\"";
+            }
+            swDumpLog.WriteLine(sTmp);
+            sTmp = "";
+
+            data[0] = 0x01;
+            if (i2cWriteCB(80, 127, 1, data) < 0)
+                goto exit;
+            Thread.Sleep(100);
+            if (i2cReadCB(80, 128, 128, data) != 128)
+                goto exit;
+            for (i = 0; i < 128; i++) {
+                if (i % 16 == 0) {
+                    if (i != 0) {
+                        swDumpLog.WriteLine(sTmp);
+                        sTmp = "";
+                    }
+                    sTmp = "\"Up 01h\",\"" + i.ToString("X2") + "\"";
+                }
+
+                sTmp += ",\"" + data[i].ToString("X2") + "\"";
+            }
+            swDumpLog.WriteLine(sTmp);
+            sTmp = "";
+
+            data[0] = 0x02;
+            if (i2cWriteCB(80, 127, 1, data) < 0)
+                goto exit;
+            Thread.Sleep(100);
+            if (i2cReadCB(80, 128, 128, data) != 128)
+                goto exit;
+            for (i = 0; i < 128; i++) {
+                if (i % 16 == 0) {
+                    if (i != 0) {
+                        swDumpLog.WriteLine(sTmp);
+                        sTmp = "";
+                    }
+                    sTmp = "\"Up 02h\",\"" + i.ToString("X2") + "\"";
+                }
+
+                sTmp += ",\"" + data[i].ToString("X2") + "\"";
+            }
+            swDumpLog.WriteLine(sTmp);
+            sTmp = "";
+
+            data[0] = 0x03;
+            if (i2cWriteCB(80, 127, 1, data) < 0)
+                goto exit;
+            Thread.Sleep(100);
+            if (i2cReadCB(80, 128, 128, data) != 128)
+                goto exit;
+            for (i = 0; i < 128; i++) {
+                if (i % 16 == 0) {
+                    if (i != 0) {
+                        swDumpLog.WriteLine(sTmp);
+                        sTmp = "";
+                    }
+                    sTmp = "\"Up 03h\",\"" + i.ToString("X2") + "\"";
+                }
+
+                sTmp += ",\"" + data[i].ToString("X2") + "\"";
+            }
+            swDumpLog.WriteLine(sTmp);
+            sTmp = "";
+
+            data[0] = 0x80;
+            if (i2cWriteCB(80, 127, 1, data) < 0)
+                goto exit;
+            Thread.Sleep(100);
+            if (i2cReadCB(80, 128, 128, data) != 128)
+                goto exit;
+            for (i = 0; i < 128; i++) {
+                if (i % 16 == 0) {
+                    if (i != 0) {
+                        swDumpLog.WriteLine(sTmp);
+                        sTmp = "";
+                    }
+                    sTmp = "\"80h\",\"" + i.ToString("X2") + "\"";
+                }
+
+                sTmp += ",\"" + data[i].ToString("X2") + "\"";
+            }
+            swDumpLog.WriteLine(sTmp);
+            sTmp = "";
+
+            data[0] = 0x81;
+            if (i2cWriteCB(80, 127, 1, data) < 0)
+                goto exit;
+            Thread.Sleep(100);
+            if (i2cReadCB(80, 128, 128, data) != 128)
+                goto exit;
+            for (i = 0; i < 128; i++) {
+                if (i % 16 == 0) {
+                    if (i != 0) {
+                        swDumpLog.WriteLine(sTmp);
+                        sTmp = "";
+                    }
+                    sTmp = "\"81h\",\"" + i.ToString("X2") + "\"";
+                }
+
+                sTmp += ",\"" + data[i].ToString("X2") + "\"";
+            }
+            swDumpLog.WriteLine(sTmp);
+            sTmp = "";
+
+            if (i2cReadCB(11, 0, 128, data) != 128)
+                goto exit;
+            for (i = 0; i < 128; i++) {
+                if (i % 16 == 0) {
+                    if (i != 0) {
+                        swDumpLog.WriteLine(sTmp);
+                        sTmp = "";
+                    }
+                    sTmp = "\"Rx\",\"" + i.ToString("X2") + "\"";
+                }
+
+                sTmp += ",\"" + data[i].ToString("X2") + "\"";
+            }
+            swDumpLog.WriteLine(sTmp);
+            sTmp = "";
+            if (i2cReadCB(11, 128, 128, data) != 128)
+                goto exit;
+            for (i = 0; i < 128; i++) {
+                if (i % 16 == 0) {
+                    if (i != 0) {
+                        swDumpLog.WriteLine(sTmp);
+                        sTmp = "";
+                    }
+                    sTmp = "\"Rx\",\"" + (i + 128).ToString("X2") + "\"";
+                }
+
+                sTmp += ",\"" + data[i].ToString("X2") + "\"";
+            }
+            swDumpLog.WriteLine(sTmp);
+            sTmp = "";
+
+            if (i2cReadCB(12, 0, 128, data) != 128)
+                goto exit;
+            for (i = 0; i < 128; i++) {
+                if (i % 16 == 0) {
+                    if (i != 0) {
+                        swDumpLog.WriteLine(sTmp);
+                        sTmp = "";
+                    }
+                    sTmp = "\"Tx\",\"" + i.ToString("X2") + "\"";
+                }
+
+                sTmp += ",\"" + data[i].ToString("X2") + "\"";
+            }
+            swDumpLog.WriteLine(sTmp);
+            sTmp = "";
+            if (i2cReadCB(12, 128, 128, data) != 128)
+                goto exit;
+            for (i = 0; i < 128; i++) {
+                if (i % 16 == 0) {
+                    if (i != 0) {
+                        swDumpLog.WriteLine(sTmp);
+                        sTmp = "";
+                    }
+                    sTmp = "\"Tx\",\"" + (i + 128).ToString("X2") + "\"";
+                }
+
+                sTmp += ",\"" + data[i].ToString("X2") + "\"";
+            }
+            swDumpLog.WriteLine(sTmp);
+
+        exit:
+            return;
+        }
+
+        private void _DumpAocData()
+        {
+            StreamWriter swDumpLog;
+            String sDumpLogDirectory, sDumpLogFileName;
+            String sVendorPartNumbers, sVendorName, sVendorSerialNumber, sVendorRevision, sVendorDateCode,
+                sPciSigVendorID, sPropagationDelay, sPciExpress;
+            byte[] data = new byte[64];
+            byte[] bATmp;
+
+            sDumpLogDirectory = fileDirectory + "\\" + tbLotNumber.Text + "-" + tbSubLotNumber.Text;
+            Directory.CreateDirectory(sDumpLogDirectory);
+            sDumpLogFileName = sDumpLogDirectory + "\\" + tbCableSerialNumber.Text + ".csv";
+
+            if (i2cReadCB(80, 108, 6, data) != 6)
+                goto exit;
+            sPropagationDelay = "0x" + data[0].ToString("X2") + data[1].ToString("X2");
+            sPciExpress = "0x" + data[3].ToString("X2") + data[4].ToString("X2");
+
+            data[0] = 0;
+            if (i2cWriteCB(80, 127, 1, data) < 0)
+                goto exit;
+            if (i2cReadCB(80, 128, 64, data) != 64)
+                goto exit;
+            bATmp = new byte[16];
+            System.Buffer.BlockCopy(data, 20, bATmp, 0, 16);
+            sVendorName = Encoding.Default.GetString(bATmp);
+            sPciSigVendorID = "0x" + data[37].ToString("X2") + data[38].ToString("X2") + data[39].ToString("X2");
+            bATmp = new byte[16];
+            System.Buffer.BlockCopy(data, 40, bATmp, 0, 16);
+            sVendorPartNumbers = Encoding.Default.GetString(bATmp);
+            bATmp = new byte[2];
+            System.Buffer.BlockCopy(data, 56, bATmp, 0, 2);
+            sVendorRevision = Encoding.Default.GetString(bATmp);
+
+            if (i2cReadCB(80, 192, 32, data) != 32)
+                goto exit;
+            bATmp = new byte[16];
+            System.Buffer.BlockCopy(data, 4, bATmp, 0, 16);
+            sVendorSerialNumber = Encoding.Default.GetString(bATmp);
+            bATmp = new byte[8];
+            System.Buffer.BlockCopy(data, 20, bATmp, 0, 8);
+            sVendorDateCode = Encoding.Default.GetString(bATmp);
+
+            swDumpLog = new StreamWriter(sDumpLogFileName);
+            swDumpLog.WriteLine("Vendor Part Number                : " + sVendorPartNumbers.PadRight(16));
+            swDumpLog.WriteLine("Vendor Name                       : " + sVendorName.PadRight(16));
+            swDumpLog.WriteLine("Vendor Serial Number              : " + sVendorSerialNumber.PadRight(16));
+            swDumpLog.WriteLine("Vendor Revision                   : " + sVendorRevision);
+            swDumpLog.WriteLine("Vendor Date Code                  : " + sVendorDateCode.PadRight(8));
+            swDumpLog.WriteLine("PCI-SIG Vendor ID                 : " + sPciSigVendorID);
+            swDumpLog.WriteLine("Propagation Delay                 : " + sPropagationDelay);
+            swDumpLog.WriteLine("PCI Express                       : " + sPciExpress);
+            swDumpLog.WriteLine("Temperature                       : ");
+            swDumpLog.WriteLine("Voltage                           : ");
+            swDumpLog.WriteLine("RxRSSI                            : " + tbRx1Log.Text + " / " + tbRx2Log.Text + " / "
+                + tbRx3Log.Text + " / " + tbRx4Log.Text);
+            swDumpLog.WriteLine("");
+            
+            _DumpMiniSASHdAocReg(swDumpLog);
+            swDumpLog.Close();
+        exit:
+            return;
+        }
+
         public void MonitorValueUpdateApi(object sender, DoWorkEventArgs e)
         {
             bool bGetModuleMonitorValueError;
@@ -2279,14 +2557,21 @@ namespace QsfpPlus40gSr4DcTest
                             _WritePassword();
                             _SetQsfpMode(0x4D);
                             statusNotifyCount = 0;
-                            bwMonitor.ReportProgress(5, null);
-                            _SetBeforeTestConfig();
                             bwMonitor.ReportProgress(4, null);
                             if (_SetCustomerSerialNumber() < 0) {
                                 bGetModuleMonitorValueError = true;
                                 break;
                             }
+                            statusNotifyCount = 1;
+                            bwMonitor.ReportProgress(1, null);
+                            if (_StoreConfigIntoFlash() < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+                            Thread.Sleep(1000); // Wait value stable
 
+                            bwMonitor.ReportProgress(5, null);
+                            _SetBeforeTestConfig();
                             statusNotifyCount = 2;
                             bwMonitor.ReportProgress(2, null);
                             Thread.Sleep(1000); // Wait value stable
@@ -2300,18 +2585,6 @@ namespace QsfpPlus40gSr4DcTest
                                 break;
                             }
                             bwMonitor.ReportProgress(9, null);
-
-                            statusNotifyCount = 0;
-                            bwMonitor.ReportProgress(6, null);
-                            _SetAfterTestConfig();
-                            
-                            statusNotifyCount = 1;
-                            bwMonitor.ReportProgress(1, null);
-                            if (_StoreConfigIntoFlash() < 0) {
-                                bGetModuleMonitorValueError = true;
-                                break;
-                            }
-                            Thread.Sleep(1000); // Wait value stable
 
                             if (setPowerSupplyCB(false) < 0) {
                                 bGetModuleMonitorValueError = true;
@@ -2339,6 +2612,11 @@ namespace QsfpPlus40gSr4DcTest
                                 bGetModuleMonitorValueError = true;
                                 break;
                             }
+                            _WritePassword();
+                            _SetQsfpMode(0x4D);
+                            statusNotifyCount = 0;
+                            bwMonitor.ReportProgress(6, null);
+                            _SetAfterTestConfig();
 
                             bwMonitor.ReportProgress(10, null);
                             while (logValue == true) // Wait log done
@@ -2552,6 +2830,14 @@ namespace QsfpPlus40gSr4DcTest
                                 break;
                             }
 
+                            statusNotifyCount = 1;
+                            bwMonitor.ReportProgress(1, null);
+                            if (_StoreConfigIntoFlash() < 0) {
+                                bGetModuleMonitorValueError = true;
+                                break;
+                            }
+                            Thread.Sleep(1000); // Wait value stable
+
                             statusNotifyCount = 0;
                             bwMonitor.ReportProgress(5, null);
                             _SetBeforeTestConfig();
@@ -2574,13 +2860,8 @@ namespace QsfpPlus40gSr4DcTest
                             bwMonitor.ReportProgress(6, null);
                             _SetAfterTestConfig();
 
-                            statusNotifyCount = 1;
-                            bwMonitor.ReportProgress(1, null);
-                            if (_StoreConfigIntoFlash() < 0) {
-                                bGetModuleMonitorValueError = true;
-                                break;
-                            }
-                            Thread.Sleep(1000); // Wait value stable
+                            bwMonitor.ReportProgress(14, null);
+                            _DumpAocData();
 
                             bwMonitor.ReportProgress(10, null);
                             while (logValue == true) // Wait log done
@@ -3159,7 +3440,7 @@ namespace QsfpPlus40gSr4DcTest
             fOffset = (float)(((fTarget - fTemperature) * 2) + oldOffset);
 
             if ((fOffset > 127) || (fOffset < -128)) {
-                messageBoxError = "Voltage offset out of range: " + fOffset + " (-128 ~ 127)!!";
+                messageBoxError = "Temperature offset out of range: " + fOffset + " (-128 ~ 127)!!";
                 return -1;
             }
 
@@ -3796,6 +4077,11 @@ namespace QsfpPlus40gSr4DcTest
                     lAction.Update();
                     return;
 
+                case 14:
+                    lAction.Text = "Dump reg ...";
+                    lAction.Update();
+                    return;
+
                 case 99:
                     lAction.Text = "Wait log ...";
                     lAction.Update();
@@ -3807,13 +4093,14 @@ namespace QsfpPlus40gSr4DcTest
                     break;
 
                 default:
-                    if (messageBoxError.Length != 0) {
-                        MessageBox.Show(messageBoxError);
-                        messageBoxError = "";
-                    }
                     break;
             }
-            
+
+            if (messageBoxError.Length != 0) {
+                MessageBox.Show(messageBoxError);
+                messageBoxError = "";
+            }
+
             _UpdateTxPowerGui();
             tbTemperature.Text = temperature;
             tbTemperature.Update();
