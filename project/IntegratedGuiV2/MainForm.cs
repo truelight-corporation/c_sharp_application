@@ -2442,7 +2442,7 @@ namespace IntegratedGuiV2
 
         private int _RemoteControlForSas3(bool customerMode)
         {
-            string dutCheck;
+            string dutCheck = string.Empty;
             string directoryPath = TempFolderPath;
             string registerFileName = "RegisterFile.csv";
             string registerFilePath = Path.Combine(directoryPath, registerFileName); //Generate the CfgFilePath with config folder
@@ -2457,8 +2457,27 @@ namespace IntegratedGuiV2
                 dutCheck = engineerForm.GetVenderPnApi();
 
             } while (string.IsNullOrEmpty(dutCheck) && (++reWriteCount <= maxRetryCount));
+            if (string.IsNullOrEmpty(dutCheck))
+            {
+                _UpdateMessage(ProcessingChannel, "Verification failed.");
+                return -1;
+            }
+
+            if (engineerForm._KeyForSas3() < 0)
+                return -1;
+
+            if (engineerForm._WriteFromRegisterFileForSas3(customerMode, registerFilePath, ProcessingChannel) < 0)
+            { 
+                MessageBox.Show("RegisterFile.csv 不存在：" + registerFilePath);
+            return -1;
+            }
+            if (engineerForm._KeyForSas3() < 0)
+                return -1;
+            if (engineerForm._WriteFromRegisterFileForSas3(customerMode, registerFilePath, ProcessingChannel) < 0)
+                return -1;
             return 0;
         }
+
         private int _RemoteVerifyOnlyForSas3()
         {
 
