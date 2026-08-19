@@ -247,12 +247,12 @@ namespace IntegratedGuiV2
                 throw new ArgumentException("Invalid Var Name or Var is not a bool type");
             }
         }
-        public int ComparisonRegisterApi(string modelType, string filePath, bool onlyVerifyMode, string comparisonObject, bool engineerMode)
+        public int ComparisonRegisterApi(string modelType, string filePath, bool onlyVerifyMode, string comparisonObject, bool engineerMode, int ch = 1)
         {
             if (this.InvokeRequired)
-                return (int)this.Invoke(new Action(() => _ComparisonRegister(modelType, filePath, onlyVerifyMode, comparisonObject, engineerMode)));
+                return (int)this.Invoke(new Action(() => _ComparisonRegister(modelType, filePath, onlyVerifyMode, comparisonObject, engineerMode, ch)));
             else
-                return _ComparisonRegister(modelType, filePath, onlyVerifyMode, comparisonObject, engineerMode);
+                return _ComparisonRegister(modelType, filePath, onlyVerifyMode, comparisonObject, engineerMode, ch);
         }
 
         public int ComparisonRegisterForSas3Api(string filePath, bool onlyVerifyMode, string comparisonObject, bool engineerMode, int ch)
@@ -1190,7 +1190,31 @@ namespace IntegratedGuiV2
                 Directory.CreateDirectory(folderPath);
 
             if (File.Exists(exportFilePath))
-                File.Delete(exportFilePath);
+            {
+                try
+                {
+                    File.Delete(exportFilePath);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(
+                        $"刪除舊檔案失敗！\n路徑：{exportFilePath}\n錯誤：{ex.Message}",
+                        "Delete Failed",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                }
+
+                if (File.Exists(exportFilePath))
+                {
+                    MessageBox.Show(
+                        $"警告：檔案刪除後依然存在！\n路徑：{exportFilePath}",
+                        "Delete Verification Failed",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+                }
+            }
 
             tempUcMemoryFile = Path.Combine(folderPath, "temp_" + fileName);
 
@@ -2910,6 +2934,9 @@ namespace IntegratedGuiV2
             int delay = 10;
             StateUpdated("Read State:\nPreparing resources...", 1);
 
+            FwVersionCode = _GetFirmwareVersionCode();
+            tbFWversion.Text = FwVersionCode;
+
             if (cbInfomation.Checked)
             {
                 Thread.Sleep(delay);
@@ -3626,9 +3653,10 @@ namespace IntegratedGuiV2
             return 0;
         }
 
-        internal int _ComparisonRegister(string modelType, string RegisterFilePath, bool onlyVerifyMode,string comparisonObject, bool engineerMode)
+        internal int _ComparisonRegister(string modelType, string RegisterFilePath, bool onlyVerifyMode,string comparisonObject, bool engineerMode, int ch = 1)
         {
-            string fileName1 = "UpdatedModuleRegisterFile"; // Module cfg file
+            string sideTag = (ch == 2) ? "_B" : "_A";
+            string fileName1 = "UpdatedModuleRegisterFile" + sideTag; // Module cfg file
             string fileName2 = Path.GetFileName(RegisterFilePath); // Reference cfg file
             string filePath1;
             string filePath2 = RegisterFilePath; // Reference cfg file
@@ -3678,6 +3706,11 @@ namespace IntegratedGuiV2
                                 "Error alarm", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 StateUpdated("Verify State:\nVerify failed", null);
                 return 1;
+            }
+
+            if (onlyVerifyMode)
+            {
+                _DisplayDifferencesInGrid(dt1, dt2, masks);
             }
 
             // Delete the temp file, if there are no errors
@@ -3755,14 +3788,14 @@ namespace IntegratedGuiV2
                 StateUpdated("Verify State:\nVerify failed", null);
                 return 1;
             }
-            if (!_CompareDataTables(dt1, dt2))
+            /*if (!_CompareDataTables(dt1, dt2))
             {
                 if (engineerMode || onlyVerifyMode)
                     _DisplayDifferencesInGrid(dt1, dt2, masks);
                 else
                     MessageBox.Show("There are differences...");
                 return 1;
-            }
+            }*/
 
             if (onlyVerifyMode)
             {
@@ -3851,12 +3884,13 @@ namespace IntegratedGuiV2
                 return new List <(string page, int row, int[] columns)> {
                     ("Low Page", 00, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
                     ("Low Page", 10, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
-                    ("Low Page", 20, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
-                    ("Low Page", 30, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }),
+                    ("Low Page", 20, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }),
+                    ("Low Page", 30, new[] {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
                     ("Low Page", 40, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
                     ("Low Page", 50, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
                     ("Low Page", 60, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 15}),
-                    ("Low Page", 70, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
+                    ("Low Page", 70, new[] {0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
+                    ("Up 00h", 30, new[] {15}),
                     ("Up 00h", 40, new[] {4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
                     ("Up 00h", 50, new[] {0, 1, 2, 3, 4, 5, 6, 7 ,8 ,9 ,10 ,11, 15})
                 };
@@ -3865,12 +3899,13 @@ namespace IntegratedGuiV2
                 return new List<(string page, int row, int[] columns)> {
                     ("Low Page", 00, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
                     ("Low Page", 10, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
-                    ("Low Page", 20, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
-                    ("Low Page", 30, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }),
+                    ("Low Page", 20, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}),
+                    ("Low Page", 30, new[] {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 }),
                     ("Low Page", 40, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
                     ("Low Page", 50, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
                     ("Low Page", 60, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 15}),
-                    ("Low Page", 70, new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
+                    ("Low Page", 70, new[] {0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
+                    ("Up 00h", 30, new[] {15}),
                     ("Up 00h", 40, new[] {4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}),
                     ("Up 00h", 50, new[] {0, 1, 2, 3, 4, 5, 6, 7 ,8 ,9 ,10 ,11, 15}),
                     ("80h", 70, new[] {12, 13, 14, 15}),
@@ -4777,6 +4812,11 @@ namespace IntegratedGuiV2
                 ChannelSetApi(2);
             else
                 ChannelSetApi(0);
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void cbAllCh_CheckedChanged(object sender, EventArgs e)

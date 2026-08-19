@@ -1297,6 +1297,8 @@ namespace IntegratedGuiV2
                 //lCh1EC.Visible = true;
                 //lCh2EC.Visible = false;
                 DoubleSideMode = false;
+                bCfgFileComparison.Enabled = true;
+                cbSkipFlashingVerifyOnly.Enabled = true;
                 tbVersionCodeCh2.Visible = false;
                 tbVersionCodeReNewCh2.Visible = false;
                 tbOrignalSNCh2.Visible = false;
@@ -1318,6 +1320,9 @@ namespace IntegratedGuiV2
                 //lCh1EC.Visible = true;
                 //lCh2EC.Visible = true;
                 DoubleSideMode = true;
+                bCfgFileComparison.Enabled = false;
+                cbSkipFlashingVerifyOnly.Checked = false;
+                cbSkipFlashingVerifyOnly.Enabled = false;
                 tbVersionCodeCh2.Visible = true;
                 tbVersionCodeReNewCh2.Visible = true;
                 lRxPowerCh2_0.Visible = true;
@@ -2183,7 +2188,8 @@ namespace IntegratedGuiV2
             int relinkCount = 0, startTime = 0, intervalTime = 0;
 
             //Check module status
-            engineerForm.InformationReadApi();
+            engineerForm.SetCheckBoxCheckedByNameApi("cbMemDump", true);
+            engineerForm._GlobalRead();
             if (string.IsNullOrEmpty(engineerForm.GetVendorSnFromDdmiApi())) {
                 MessageBox.Show("Please confirm the plug-in status of the module.", "Warning!!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return -1;
@@ -2290,11 +2296,11 @@ namespace IntegratedGuiV2
                 return -1;
             }
 
-            tbOrignalTLSN.Text = engineerForm.GetSerialNumberApi();
+            /*tbOrignalTLSN.Text = engineerForm.GetSerialNumberApi();
             if (string.IsNullOrEmpty(tbOrignalTLSN.Text))
             {
                 return -1;
-            }
+            }*/
             if (DebugMode)
             {
                 MessageBox.Show("Verify Mode\n" +
@@ -2374,7 +2380,7 @@ namespace IntegratedGuiV2
                     return -1;
                 }
 
-                Thread.Sleep(10);
+                /*Thread.Sleep(10);
 
                 tbReNewTLSN.Text = engineerForm.GetSerialNumberApi();
                 if (string.IsNullOrEmpty(tbReNewTLSN.Text))
@@ -2403,6 +2409,45 @@ namespace IntegratedGuiV2
                         MessageBoxIcon.Error
                     );
                     return -1;
+                }*/
+
+                string filePathToCompare;
+
+                if (Path.GetExtension(tbFilePath.Text).ToLower() == ".zip")
+                {
+                    filePathToCompare = Path.Combine(TempFolderPath, "RegisterFile.csv");
+
+                    if (!File.Exists(filePathToCompare))
+                    {
+                        MessageBox.Show(
+                            $"找不到解壓後的 RegisterFile.csv\n路徑：{filePathToCompare}",
+                            "錯誤",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error
+                        );
+                        return -1;
+                    }
+                }
+                else
+                {
+                    filePathToCompare = tbFilePath.Text;
+                }
+
+                int compareResult = engineerForm.ComparisonRegisterApi(modelType, filePathToCompare, true, "CfgFile", cbRegisterMapView.Checked, ProcessingChannel);
+
+                if (compareResult != 0)
+                {
+                    if (ProcessingChannel == 1)
+                    {
+                        lCh1Message.Text = "Verification Failed";
+                        cProgressBar1.ForeColor = Color.Red;
+                    }
+                    else if (ProcessingChannel == 2)
+                    {
+                        lCh2Message.Text = "Verification Failed";
+                        cProgressBar2.ForeColor = Color.Red;
+                    }
+                    return compareResult;
                 }
 
                 if (ProcessingChannel == 1)
@@ -3267,6 +3312,16 @@ namespace IntegratedGuiV2
             _CfgFileComparison();
 
             _EnableButtons();
+            if (DoubleSideMode)
+            {
+                MessageBox.Show(
+                    "不支援 Both side 比對，請切換至 Single side 後再試。",
+                    "功能限制",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
             bCfgFileComparison.Select();
         }
 
@@ -3284,13 +3339,15 @@ namespace IntegratedGuiV2
                 //Thread.Sleep(500);
                 I2cConnected = !(engineerForm.ChannelSetApi(ProcessingChannel) < 0);
                 Thread.Sleep(200);
+                if (_RemoteInitial(false) < 0)   // ← 新增這行，仿照燒錄迴圈的做法
+                    return _CloseLoadingFormAndReturn(-1);
 
                 if (Sas3Module) {
                     engineerForm._KeyForSas3();
                     comparisonResults = engineerForm.ComparisonRegisterForSas3Api(registerFilePath, isVerifyOnlyMode, "CfgFile", cbRegisterMapView.Checked, ProcessingChannel);
                 }
                 else {
-                    comparisonResults = engineerForm.ComparisonRegisterApi(modelType, registerFilePath, isVerifyOnlyMode, "CfgFile", cbRegisterMapView.Checked);
+                    comparisonResults = engineerForm.ComparisonRegisterApi(modelType, registerFilePath, isVerifyOnlyMode, "CfgFile", cbRegisterMapView.Checked, ProcessingChannel);
                 }
 
                 if (comparisonResults < 0)
@@ -3408,7 +3465,7 @@ namespace IntegratedGuiV2
                     comparisonResults = engineerForm.ComparisonRegisterForSas3Api(registerFilePath, true, "LogFile", cbRegisterMapView.Checked, ProcessingChannel);
                 }
                 else {
-                    comparisonResults = engineerForm.ComparisonRegisterApi(modelType, registerFilePath, true, "LogFile", cbRegisterMapView.Checked);
+                    comparisonResults = engineerForm.ComparisonRegisterApi(modelType, registerFilePath, true, "LogFile", cbRegisterMapView.Checked, ProcessingChannel);
                 }
 
                 Thread.Sleep(100);
@@ -4071,6 +4128,10 @@ namespace IntegratedGuiV2
 
         private void cbSkipFlashingVerifyOnly_CheckedChanged(object sender, EventArgs e)
         {
+            if(cbSkipFlashingVerifyOnly.Checked)
+                rbBoth.Enabled = false;
+            else 
+                rbBoth.Enabled = true;
         }
 
         private void lMode_Click(object sender, EventArgs e)

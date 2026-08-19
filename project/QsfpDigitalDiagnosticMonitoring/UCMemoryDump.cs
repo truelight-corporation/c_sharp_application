@@ -577,7 +577,7 @@ namespace QsfpDigitalDiagnosticMonitoring
         {
             string targetPage = "Low Page";
             int startByte = 108;
-            int endByte = 112;
+            int endByte = 113;
 
             if (string.IsNullOrEmpty(registerFilePath)) {
                 MessageBox.Show("The file path for the write operation is incorrect or empty.", "Error", 
@@ -991,7 +991,7 @@ namespace QsfpDigitalDiagnosticMonitoring
 
             if (targetPage == "Low Page") {
                 starAddr = 108;
-                if (i2cWriteCB(80, starAddr, 5, data) < 0)
+                if (i2cWriteCB(80, starAddr, 6, data) < 0)
                     goto exit;
             }
             else {

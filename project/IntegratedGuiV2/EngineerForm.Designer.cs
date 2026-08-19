@@ -139,7 +139,8 @@ namespace IntegratedGuiV2
             this.tbPasswordB2 = new System.Windows.Forms.TextBox();
             this.tbPasswordB1 = new System.Windows.Forms.TextBox();
             this.tbPasswordB0 = new System.Windows.Forms.TextBox();
-            //this.rbSas3CustomerCheckMode = new System.Windows.Forms.RadioButton();
+            this.tbFWversion = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.gbChannelSwitcher.SuspendLayout();
             this.gbGlobalControl.SuspendLayout();
             this.gbPermissions.SuspendLayout();
@@ -223,24 +224,10 @@ namespace IntegratedGuiV2
             this.lPassword.Location = new System.Drawing.Point(4, 3);
             this.lPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lPassword.Name = "lPassword";
-            this.lPassword.Size = new System.Drawing.Size(93, 15);
+            this.lPassword.Size = new System.Drawing.Size(66, 15);
             this.lPassword.TabIndex = 6;
-            this.lPassword.Text = "Password(Hex)：";
             this.lPassword.Text = "Password：";
             // 
-            // tbPassword
-            /* 
-            this.tbPassword.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbPassword.Location = new System.Drawing.Point(67, 0);
-            this.tbPassword.Margin = new System.Windows.Forms.Padding(2);
-            this.tbPassword.Name = "tbPassword";
-            this.tbPassword.ShortcutsEnabled = false;
-            this.tbPassword.Size = new System.Drawing.Size(72, 22);
-            this.tbPassword.TabIndex = 7;
-            this.tbPassword.Text = "3234";
-            this.tbPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbPassword.UseSystemPasswordChar = true;
-            */ 
             // bGlobalRead
             // 
             this.bGlobalRead.Font = new System.Drawing.Font("Times New Roman", 12F);
@@ -844,6 +831,14 @@ namespace IntegratedGuiV2
             this.rbSas3MpMode.TabStop = true;
             this.rbSas3MpMode.Text = "MP mode";
             this.rbSas3MpMode.UseVisualStyleBackColor = true;
+            // 
+            // rbSas3CustomerMode
+            // 
+            this.rbSas3CustomerMode.Location = new System.Drawing.Point(0, 0);
+            this.rbSas3CustomerMode.Name = "rbSas3CustomerMode";
+            this.rbSas3CustomerMode.Size = new System.Drawing.Size(104, 24);
+            this.rbSas3CustomerMode.TabIndex = 1039;
+            // 
             // cbASidePath
             // 
             this.cbASidePath.AutoSize = true;
@@ -1490,17 +1485,25 @@ namespace IntegratedGuiV2
             this.tbPasswordB0.TabIndex = 1044;
             this.tbPasswordB0.Text = "33";
             this.tbPasswordB0.UseSystemPasswordChar = true;
-            // rbSas3CustomerCheckMode
             // 
-            this.rbSas3CustomerCheckMode.AutoSize = true;
-            this.rbSas3CustomerCheckMode.Location = new System.Drawing.Point(6, 75);
-            this.rbSas3CustomerCheckMode.Margin = new System.Windows.Forms.Padding(2);
-            this.rbSas3CustomerCheckMode.Name = "rbSas3CustomerCheckMode";
-            this.rbSas3CustomerCheckMode.Size = new System.Drawing.Size(155, 20);
-            this.rbSas3CustomerCheckMode.TabIndex = 1038;
-            this.rbSas3CustomerCheckMode.Text = "Customer Check mode";
-            this.rbSas3CustomerCheckMode.UseVisualStyleBackColor = true;
-            this.rbSas3CustomerCheckMode.CheckedChanged += new System.EventHandler(this.rbSas3CustomerCheckMode_CheckedChanged);
+            // tbFWversion
+            // 
+            this.tbFWversion.Location = new System.Drawing.Point(362, 1);
+            this.tbFWversion.Name = "tbFWversion";
+            this.tbFWversion.Size = new System.Drawing.Size(97, 22);
+            this.tbFWversion.TabIndex = 1048;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 9F);
+            this.label1.Location = new System.Drawing.Point(252, 3);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(103, 15);
+            this.label1.TabIndex = 1049;
+            this.label1.Text = "Firmware version：";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // EngineerForm
             // 
@@ -1508,6 +1511,8 @@ namespace IntegratedGuiV2
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
             this.ClientSize = new System.Drawing.Size(1184, 845);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.tbFWversion);
             this.Controls.Add(this.tbPasswordB3);
             this.Controls.Add(this.tbPasswordB2);
             this.Controls.Add(this.tbPasswordB1);
@@ -1690,6 +1695,8 @@ namespace IntegratedGuiV2
         private System.Windows.Forms.TextBox tbPasswordB2;
         private System.Windows.Forms.TextBox tbPasswordB1;
         private System.Windows.Forms.TextBox tbPasswordB0;
+        private System.Windows.Forms.TextBox tbFWversion;
+        private System.Windows.Forms.Label label1;
     }
 }
 
